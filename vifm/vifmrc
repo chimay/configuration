@@ -1,0 +1,30 @@
+" vim: set filetype=vim:
+
+colo personnel
+
+set statusline="  %t %T %A %E / %a %u:%g %D %z"
+
+set timefmt=" %d/%m %H:%M"
+
+set viewcolumns=*50%{name}.,25%{mtime}.,15%{size}.,10%{ext}.
+
+set sort=-mtime,+name
+
+set trash
+
+set trashdir=~/racine/trash/Vifm
+
+set smartcase
+
+set vicmd='vim'
+
+set vixcmd='gvim'
+
+"filetype * open %c
+
+"filetype * xdg-open
+
+"filextype *.html,*.htm
+        "\ {Open with firefox}
+        "\ firefox %f &,
+"filetype *.html,*.htm links, lynx

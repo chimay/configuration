@@ -1,0 +1,74 @@
+# vim: set filetype=conf:
+
+# Options {{{1
+
+set font "monospace normal 12"
+
+set guioptions cs
+
+set incremental-search true
+
+set window-height 700
+set window-width 1200
+
+set adjust-open width
+
+# }}}1
+
+# Maps {{{1
+
+map <PageUp> navigate previous
+map <PageDown> navigate next
+ 
+map + zoom in
+map - zoom out
+ 
+map ZZ quit
+
+# }}}1
+
+# Thème {{{1
+
+set default-fg "#5b3c11"
+set default-bg "black"
+
+set inputbar-fg "#5b3c11"
+set inputbar-bg "black"
+
+set statusbar-fg "#5b3c11"
+set statusbar-bg "black"
+
+set completion-fg "#5b3c11"
+set completion-bg "black"
+
+set completion-highlight-fg "black"
+set completion-highlight-bg "#5b3c11"
+
+set tabbar-fg "#5b3c11"
+set tabbar-bg "black"
+
+set tabbar-fg "black"
+set tabbar-bg "#5b3c11"
+
+set notification-fg "#5b3c11"
+set notification-bg "black"
+
+set notification-warning-fg "green"
+set notification-warning-bg "black"
+
+set notification-error-fg "red"
+set notification-error-bg "black"
+
+set render-loading-fg "#5b3c11"
+set render-loading-bg "black"
+
+set index-fg "#5b3c11"
+set index-bg "black"
+
+set index-active-fg "black"
+set index-active-bg "#5b3c11"
+
+#set completion-group-fg "black"
+#set completion-group-bg "#5b3c11"
+
+# }}}1
