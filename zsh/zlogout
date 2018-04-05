@@ -1,0 +1,3 @@
+clear
+
+print -l $PWD ${(u)~dirstack} >! $DIRSTACKFILE

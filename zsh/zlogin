@@ -1,0 +1,17 @@
+# vim: set ft=zsh :
+
+[[ $OPERASYS = *linux* ]] && {
+
+	screenfetch -N
+}
+
+[[ $OPERASYS = *bsd* ]] && {
+
+	bsdinfo
+}
+
+task
+
+echo
+
+lance-ssh-agent
