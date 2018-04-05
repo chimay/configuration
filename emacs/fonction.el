@@ -1,5 +1,58 @@
 ;; -*- mode: lisp -*-
 
+(defun sauve-ligne ()
+ "Sauve la ligne"
+ (interactive)
+ (kill-whole-line)
+ (undo-boundary)
+ (undo)
+ )
+
+(defun sauve-jusque-fin-ligne ()
+ "Sauve la ligne"
+ (interactive)
+ (kill-line)
+ (undo-boundary)
+ (undo)
+ )
+
+(defun efface-contenu-ligne ()
+ "Efface le contenu de la ligne"
+ (interactive)
+ (kill-line 0)
+ (kill-line)
+ )
+
+(defun efface-jusque-debut-ligne ()
+"kill from point to start of line"
+(interactive)
+(kill-line 0)
+)
+
+(defun affiche-nom-fichier ()
+  "Show the full path file name in the minibuffer."
+  (interactive)
+  (message (buffer-file-name))
+  (kill-new (file-truename buffer-file-name))
+  )
+
+(defun tampon-precedent ()
+ "Va au tampon précédent"
+ (interactive)
+ (switch-to-buffer nil)
+ )
+
+(defun insertion-date () (interactive)
+  (insert (shell-command-to-string "echo -n $(date +'%d %b %Y')")))
+
+(defun insertion-date-jour () (interactive)
+  (insert (shell-command-to-string "echo -n $(date +'%a %d %b %Y')")))
+
+(defun insertion-date-heure () (interactive)
+  (insert (shell-command-to-string "echo -n $(date +'%H : %M %a %d %b %Y')")))
+
+; ==============================
+
 (defun lignes-simples ()
 
   (interactive)
@@ -32,6 +85,11 @@
 (defun php-vers-org-sans-niveau-un ()
 
   (interactive)
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "|" nil t)
+    (replace-match "¦" t nil))
 
   (goto-char (point-min))
 
@@ -303,20 +361,20 @@ charge.*
   (goto-char (point-min))
 
   (while (search-forward-regexp "^[[:space:]]*<li>\\(.+\\)</li>$" nil t)
-    (replace-match (concat "  - " (match-string 1)) t 'literal))
+    (replace-match (concat "\n  - " (match-string 1)) t 'literal))
 
   (goto-char (point-min))
 
   (while (search-forward-regexp "^[[:space:]]*<li>\\(.+\\)
 \\(.+\\)</li>" nil t)
-    (replace-match (concat "  - " (match-string 1) " " (match-string 2)) t 'literal))
+    (replace-match (concat "\n  - " (match-string 1) " " (match-string 2)) t 'literal))
 
   (goto-char (point-min))
 
   (while (search-forward-regexp "^[[:space:]]*<li>\\(.+\\)
 \\(.+\\)
 \\(.*\\)</li>" nil t)
-    (replace-match (concat "  - " (match-string 1) " "
+    (replace-match (concat "\n  - " (match-string 1) " "
 			   (match-string 2) " "
 			   (match-string 3)) t 'literal))
 
