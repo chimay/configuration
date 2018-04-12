@@ -1,0 +1,5 @@
+(:name xah-math-input
+       :website "http://github.com/xahlee/xah-math-input"
+       :description "Math & HTML symbols for emacs"
+       :type github
+       :pkgname "xahlee/xah-math-input")
