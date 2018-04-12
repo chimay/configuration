@@ -1,0 +1,260 @@
+
+#+STARTUP: showall
+
+* Impression
+
+#+begin_src emacs-lisp
+
+;; Options génériques
+
+(setq lpr-switches '("-o number-up=2" "-o Duplex=DuplexTumble"))
+
+;; Avec lpr
+
+;; (setq lpr-command "lpr")
+
+;; (setq printer-name "Printer_Name")
+
+;; Avec lp
+
+(setq lpr-command "lp")
+
+(setq printer-name nil)
+
+(setq lpr-add-switches nil)
+
+#+end_src
+
+
+* Configuration des paquets
+
+
+** Organisation
+
+
+*** Org-mode
+
+#+begin_src emacs-lisp
+
+(require 'org)
+
+#+end_src
+
+
+**** Options
+
+#+begin_src emacs-lisp
+
+(setq org-use-speed-commands t)
+
+(setq org-adapt-indentation nil)
+
+(setq org-list-use-circular-motion t)
+
+(setq org-archive-location "~/racine/plain/orgdir/archive.org::* Fichier %s")
+
+(setq org-export-preserve-breaks nil)
+
+#+end_src
+
+
+**** Org goto
+
+#+begin_src emacs-lisp
+
+(setq org-directory "~/racine/plain/orgdir/")
+
+(setq org-goto-auto-isearch nil)
+
+(setq org-goto-interface 'outline-path-completionp)
+(setq org-outline-path-complete-in-steps nil)
+
+#+end_src
+
+
+**** Bindings
+
+#+begin_src emacs-lisp
+
+(defun org-super-retour ()
+ "Passer une ligne avant Meta-return"
+ (interactive)
+ (org-meta-return)
+ (beginning-of-visual-line)
+ (newline)
+ (end-of-visual-line)
+ )
+
+(add-hook
+ 'org-mode-hook
+ '(lambda ()
+    (define-key org-mode-map (kbd "s-§") 'org-goto)
+    (define-key org-mode-map (kbd "C-c l") 'org-store-link)
+    (define-key org-mode-map (kbd "C-c a") 'org-agenda)
+    (define-key org-mode-map (kbd "C-c c") 'org-capture)
+    (define-key org-mode-map (kbd "C-c b") 'org-iswitchb)
+    (define-key org-mode-map (kbd "<s-return>") 'org-super-retour)
+    )
+ )
+
+#+end_src
+
+
+**** Modules
+
+#+begin_src emacs-lisp
+
+(require 'org-checklist)
+
+(require 'org-tempo)
+
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '(
+    (emacs-lisp . t)
+    (shell t)
+    (org t)
+    (lilypond t)
+    (octave t)
+    ))
+
+(require 'evil-org)
+
+(evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
+
+(require 'org-tempo)
+
+;; (require 'org-alert)
+
+;; (org-alert-enable)
+
+#+end_src
+
+
+**** Agenda
+
+Voir C-c [ & C-c ] pour la gestion de org-agenda-files
+
+#+begin_src emacs-lisp
+
+(setq org-agenda-include-diary t)
+
+#+end_src
+
+
+**** Liste de choses à faire
+
+#+begin_src emacs-lisp
+
+(setq org-treat-S-cursor-todo-selection-as-state-change nil)
+
+;; (setq org-use-fast-todo-selection t)
+
+;; (setq org-todo-keywords
+;;       (quote
+;;        ((sequence "TODO(t!)" "DONE(d!)" "MAYBE(m!)" "WAIT(w@/!)" "|" "CANCELLED(c@)"))))
+
+#+end_src
+
+
+**** Capture
+
+#+begin_src emacs-lisp
+
+(setq org-default-notes-file "~/racine/plain/orgdir/notes.org")
+
+(setq org-capture-templates
+      '(("a" "Agenda" entry (file+olp "~/racine/plain/orgdir/agenda.org" "Agenda" "Ordinaires")
+             "\n\n* %?\n\nCréé le : %U\n\nLien : %a\n\n%i")
+	("t" "Todo : Liste de tâches" entry (file+headline "~/racine/plain/orgdir/taches.org" "Tâches")
+             "\n\n* TODO %?\n\nCréé le : %U\n\nLien : %a\n\n%i")
+        ("f" "Fix : Astuces, résolution de bugs" entry (file+headline "~/racine/plain/orgdir/astuces.org" "Astuces")
+             "\n\n* %?\n\nCréé le : %U\n\nLien : %a\n\n%i")
+        ("l" "Log : Journal de bord du capitaine" entry (file+olp+datetree "~/racine/plain/orgdir/journaldebord.org" "Journal")
+         "\n\n* %?\n\nCréé le %U\n\nLien : %a\n\n%i")
+        ("n" "Notes" entry (file+headline "~/racine/plain/orgdir/notes.org" "Notes")
+             "\n\n* %?\n\nCréé le : %U\n\nLien : %a\n\n%i")))
+
+#+end_src
+
+
+**** Refile
+
+#+begin_src emacs-lisp
+
+(setq org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9)))
+
+(setq org-refile-use-outline-path t)                  ; Show full paths for refiling
+
+#+end_src
+
+
+**** Présentation
+
+#+begin_src emacs-lisp
+
+(setq org-list-demote-modify-bullet
+      '(("-" . "+") ("+" . "*") ("*" . "-")))
+
+;; use org-bullets-mode for utf8 symbols as org bullets
+
+;;(require 'org-bullets)
+
+;; make available "org-bullet-face" such that I can control the font size individually
+
+(setq org-bullets-face-name (quote org-bullet-face))
+
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+(setq org-bullets-bullet-list '("☯" "☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
+
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+#+end_src
+
+
+** Exploration
+
+
+*** MTorus
+
+#+begin_src emacs-lisp
+
+(require 'mtorus)
+(mtorus-init)
+
+;; (mtorus-install-suggested-bindings)
+
+(global-set-key (kbd "H-= c") 'mtorus-new-ring)
+(global-set-key (kbd "H-= m") 'mtorus-rename-ring)
+(global-set-key (kbd "H-= d") 'mtorus-delete-ring)
+
+(global-set-key (kbd "H-= u") 'mtorus-update-current-marker)
+
+(global-set-key (kbd "H-= p") 'mtorus-describe-current-ring)
+
+(global-set-key (kbd "H-= s") 'mtorus-save-torus)
+(global-set-key (kbd "H-= r") 'mtorus-read-torus)
+
+(global-set-key (kbd "s-=") 'mtorus-switch-to-ring)
+
+(global-set-key (kbd "<s-insert>") 'mtorus-add-current-pos-to-current-ring)
+(global-set-key (kbd "<s-delete>") 'mtorus-delete-current-marker-from-current-ring)
+
+(global-set-key (kbd "<H-insert>") 'mtorus-update-current-marker)
+
+(global-set-key (kbd "<s-home>") 'mtorus-cycle-ring-next)
+(global-set-key (kbd "<s-end>") 'mtorus-cycle-ring-previous)
+
+(global-set-key (kbd "<s-prior>") 'mtorus-cycle-marker-previous)
+(global-set-key (kbd "<s-next>") 'mtorus-cycle-marker-next)
+
+;; (global-set-key [C-prior] 'mtorus-cycle-blist-prev)
+;; (global-set-key [C-next] 'mtorus-cycle-blist-next)
+
+(setq mtorus-save-on-exit t)
+(setq mtorus-file-name "~/racine/plugin/data/mtorus/mtorus.el")
+
+;; (mtorus-read-torus)
+
+#+end_src

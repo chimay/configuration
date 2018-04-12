@@ -1,66 +1,30 @@
 ;; -*- mode: lisp -*-
 
-;; ==============================
-;; * Org mode
-;; ==============================
+;; * Debug
 
-(setq org-goto-interface 'outline-path-completionp)
-(setq org-outline-path-complete-in-steps nil)
+(setq debug-on-error t)
 
-(setq org-use-speed-commands t)
+;; * Chemins d’accès aux fichiers à charger
 
-(setq org-goto-auto-isearch nil)
+(add-to-list 'load-path "~/racine/config/edit/emacs")
 
-(setq org-adapt-indentation nil)
+(require 'personnel-chemins "chemins")
 
-(setq org-list-use-circular-motion t)
+;; * Paquets
 
-(org-babel-do-load-languages
-  'org-babel-load-languages
-  '(
-    (emacs-lisp . t)
-    (shell t)
-    (org t)
-    (lilypond t)
-    (octave t)
-    ))
+(require 'personnel-paquets "paquets")
 
-(require 'org-checklist)
+;; * Fonctions
 
-(setq org-list-demote-modify-bullet
-      '(("-" . "+") ("+" . "*") ("*" . "-")))
+(require 'personnel-fonction "fonction")
 
-(setq org-export-preserve-breaks nil)
+;; * Configuration en org-mode / babel
 
-;; Plugin
-;;(require 'org-bullets)
+(require 'personnel-orgmode-configuration "orgconfig")
 
-(setq org-bullets-face-name (quote org-bullet-face))
+;; * Variables locales
 
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
-(setq org-bullets-bullet-list '("☯" "☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
-
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
-;; ==============================
-;; * Impression
-;; ==============================
-
-;; Options génériques
-
-(setq lpr-switches '("-o number-up=2" "-o Duplex=DuplexTumble"))
-
-;; Avec lpr
-
-;; (setq lpr-command "lpr")
-
-;; (setq printer-name "Printer_Name")
-
-;; Avec lp
-
-(setq lpr-command "lp")
-
-(setq printer-name nil)
-
-(setq lpr-add-switches nil)
+;; Local Variables:
+;; eval: (outline-minor-mode)
+;; outline-regexp: "^[;]*[ ]*[*]+"
+;; End:
