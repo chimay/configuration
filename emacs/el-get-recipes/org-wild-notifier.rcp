@@ -1,0 +1,6 @@
+(:name org-wild-notifier.el
+       :website "https://github.com/akhramov/org-wild-notifier.el"
+       :description "Alert notifications for org-agenda"
+       :type github
+       :pkgname "akhramov/org-wild-notifier.el")
+
