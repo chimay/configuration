@@ -1,6 +1,180 @@
 
 #+STARTUP: showall
 
+* Aide en ligne
+
+C-h i   : lecteur info (très pratique)
+C-h r   : manuel emacs en mode info
+C-h C-h : aide sur l’aide en ligne
+C-h f   : aide de la fonction donnée
+C-h k   : aide de la séquence de touches donnée
+C-h v   : aide de la variable donnée
+C-h m   : aide sur le mode majeur & les modes mineurs courant
+
+Début de séquence de touches puis « C-h » :
+liste de toutes les séquences de touches
+commençant par celle donnée
+
+C-h a : commandes dont les noms correspondent à un motif donné
+C-h b : tous les keybindings
+C-h c : commande lancée par la séquence de touche donnée
+C-h C : système de coding
+C-h d : fonctions, variables, etc, dont les noms correspondent à un motif donné
+C-h e : messages (echo area)
+C-h F : aide de la commande donnée
+C-h K : aide de la commande liée à la séquence de touches donnée
+C-h n : changements récents dans emacs
+C-h p : paquet correspondant à un mot clé
+C-h P : décrit le paquet donné
+C-h s : table de syntaxe courante
+C-h S : section info du symbole courant
+C-h t : tutoriel
+C-h w : quelle séquence de touche lance la commande donnée ?
+C-h . : aide correspondant au point courant dans l’echo area
+C-h C-a : information à propos d’emacs
+C-h C-f : emacs FAQ
+C-h C-p : known problems
+
+
+* Historique
+
+Minibuffer :
+
+M-p, ‘up’ (‘previous-history-element’) – retrieve the input before the one currently in the minibuffer
+M-n, ‘down’ (‘next-history-element’) – retrieve the input after the one currently in the minibuffer
+
+M-r (‘previous-matching-history-element’) – Move to an earlier item in the minibuffer history that matches a regexp you enter.
+
+M-s (‘next-matching-history-element’) – Move to a later item in the minibuffer history that matches a regexp you enter.
+
+
+* Démarrage
+
+#+begin_src emacs-lisp
+
+(setq inhibit-startup-message t)
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-screen t)
+
+(setq initial-buffer-choice t)
+
+;(setq initial-scratch-message "")
+
+(setq initial-buffer-choice (lambda ()
+    (org-agenda-list 30)
+    (get-buffer "*Org Agenda*")))
+
+#+end_src
+
+
+* Configuration automatique
+
+Fichier utilisé par customize
+
+#+begin_src emacs-lisp
+
+(setq custom-file "~/racine/config/edit/emacs/customiseur.el")
+(load custom-file)
+
+#+end_src
+
+
+* Info
+
+#+begin_src emacs-lisp
+
+(setq Info-use-header-line t)
+(setq Info-hide-note-references t)
+
+(setq Info-scroll-prefer-subnodes nil)
+
+(setq Info-isearch-search t)
+
+(setq Info-enable-active-nodes nil)
+
+#+end_src
+
+
+* Serveur
+
+#+begin_src emacs-lisp
+
+(require 'server)
+
+(unless (server-running-p) (server-start))
+
+#+end_src
+
+
+* Édition
+
+
+** Indentation
+
+#+begin_src emacs-lisp
+
+(setq indent-tabs-mode t)
+
+(setq standard-indent 4)
+(setq tab-width 4)
+
+(setq c-basic-offset 4)
+
+#+end_src
+
+
+** Format
+
+#+begin_src emacs-lisp
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+; Mode texte en auto-fill par défaut (créé une nouvelle ligne  entre deux mots à
+; chaque fois que la ligne courant devient trop longue)
+
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+; en Americain, les phrases (sentences) se terminent par deux espaces
+; ce comportement n'est pas souhaitable en francais
+
+(setq sentence-end-double-space nil)
+
+; Eviter que la cesure de fin de ligne, operée par exemple par le
+; mode autofill ou par un M-q, coupe au niveau d'un caractere ( ou :
+
+(add-hook 'fill-no-break-predicate 'fill-french-nobreak-p)
+
+#+end_src
+
+
+** Recherche & Remplacement
+
+#+begin_src emacs-lisp
+
+; Wrap search
+
+(setq isearch-wrap-function nil)
+
+(setq search-default-mode #'char-fold-to-regexp)
+
+(setq replace-char-fold t)
+
+#+end_src
+
+
+** Confirmation
+
+#+begin_src emacs-lisp
+
+; y / n au lieu de yes / no
+
+;(fset 'yes-or-no-p 'y-or-n-p)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+#+end_src
+
+
 * Impression
 
 #+begin_src emacs-lisp
