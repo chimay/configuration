@@ -175,6 +175,118 @@ Fichier utilisé par customize
 #+end_src
 
 
+* Répertoires
+
+#+begin_src emacs-lisp
+
+(require 'dired-x)
+
+(require 'dired-aux)
+
+(require 'wdired)
+
+(setq wdired-allow-to-change-permissions t)
+
+(setq default-directory "~/racine")
+
+(setq delete-by-moving-to-trash t)
+
+(setq trash-directory "~/racine/trash/Emacs")
+
+(setq dired-listing-switches "--time-style=iso -lhDF")
+
+(setq ls-lisp-dirs-first t)
+
+(setq dired-ls-F-marks-symlinks t)
+
+(setq dired-recursive-copies 'always)
+(setq dired-recursive-deletes 'always)
+
+(add-hook 'dired-mode-hook 'auto-revert-mode)
+
+(setq dired-listing-switches "-lha")
+
+(setq-default dired-omit-files-p t) ; this is buffer-local variable
+
+;; (setq dired-omit-files
+;;     (concat dired-omit-files "^\\..*\\.un~"))
+
+(setq dired-omit-files "^\\..*\\.un~")
+
+(setq
+ wdired-allow-to-change-permissions t
+ wdired-allow-to-redirect-links t
+ )
+
+#+end_src
+
+
+* Tampons (buffers)
+
+
+** Tampon contenant la liste des tampons
+
+#+begin_src emacs-lisp
+
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+
+#+end_src
+
+
+* Historique
+
+
+** Sauvegarde
+
+#+begin_src emacs-lisp
+
+(setq savehist-file
+ (concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/savehist"))
+
+(setq savehist-autosave-interval 300)
+
+(setq save-place-file
+ (concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/saveplace"))
+
+(setq-default save-place t)
+
+; Important de placer le require après la définition des variables
+
+(require 'saveplace)
+
+(savehist-mode 1)
+
+#+end_src
+
+
+** Fichiers récents
+
+#+begin_src emacs-lisp
+
+(setq recentf-max-saved-items 1234)
+(setq recentf-max-menu-items 1234)
+
+(setq recentf-save-file
+ (concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/recentf"))
+
+; Important de placer le require après la définition des variables
+
+(require 'recentf)
+
+(recentf-mode 1)
+
+#+end_src
+
+
+* Contrôle de version
+
+#+begin_src emacs-lisp
+
+(require 'vc)
+
+#+end_src
+
+
 * Impression
 
 #+begin_src emacs-lisp
