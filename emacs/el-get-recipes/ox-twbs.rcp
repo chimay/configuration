@@ -1,0 +1,5 @@
+(:name xah-math-input
+       :website "https://github.com/marsmining/ox-twbs"
+       :description "https://github.com/marsmining/ox-twbs"
+       :type github
+       :pkgname "marsmining/ox-twbs")

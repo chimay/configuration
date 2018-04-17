@@ -1,86 +1,6 @@
 ;; -*- mode: lisp -*-
 
-(defun sauve-ligne ()
- "Sauve la ligne"
- (interactive)
- (kill-whole-line)
- (undo-boundary)
- (undo)
- )
-
-(defun sauve-jusque-fin-ligne ()
- "Sauve la ligne"
- (interactive)
- (kill-line)
- (undo-boundary)
- (undo)
- )
-
-(defun efface-contenu-ligne ()
- "Efface le contenu de la ligne"
- (interactive)
- (kill-line 0)
- (kill-line)
- )
-
-(defun efface-jusque-debut-ligne ()
-"kill from point to start of line"
-(interactive)
-(kill-line 0)
-)
-
-(defun affiche-nom-fichier ()
-  "Show the full path file name in the minibuffer."
-  (interactive)
-  (message (buffer-file-name))
-  (kill-new (file-truename buffer-file-name))
-  )
-
-(defun tampon-precedent ()
- "Va au tampon précédent"
- (interactive)
- (switch-to-buffer nil)
- )
-
-(defun insertion-date () (interactive)
-  (insert (shell-command-to-string "echo -n $(date +'%d %b %Y')")))
-
-(defun insertion-date-jour () (interactive)
-  (insert (shell-command-to-string "echo -n $(date +'%a %d %b %Y')")))
-
-(defun insertion-date-heure () (interactive)
-  (insert (shell-command-to-string "echo -n $(date +'%H : %M %a %d %b %Y')")))
-
-; ==============================
-
-(defun lignes-simples ()
-
-  (interactive)
-
-  (goto-char (point-min))
-
-  (while (re-search-forward "\\(^\\s-*$\\)\n" nil t)
-    (replace-match "\n")
-    (forward-char 1))
-
-  (goto-char (point-min))
-)
-
-; ==============================
-
-(defun lignes-doubles-avant-titres ()
-
-  (interactive)
-
-  (goto-char (point-min))
-
-  (while (re-search-forward "\\(^\\*+ \\)" nil t) ;
-    (replace-match (concat "\n" (match-string 1)) t nil))
-
-  (goto-char (point-min))
-)
-
-; ==============================
+;; * Php vers org sans niveau un
 
 (defun php-vers-org-sans-niveau-un ()
 
@@ -507,7 +427,7 @@ charge.*
   (goto-char (point-min))
 )
 
-; ==============================
+;; * Tex vers org
 
 (defun tex-vers-org ()
 
@@ -574,7 +494,7 @@ charge.*
   (goto-char (point-min))
 )
 
-; ==============================
+;; * Tex vers org sans niveau un
 
 (defun tex-vers-org-sans-niveau-un ()
   (interactive)
@@ -635,7 +555,9 @@ charge.*
   (goto-char (point-min))
 )
 
-; (query-replace-regexp "^\\chapter{\([^}]*\)}$" "* \1" nil (point-min) (point-max))
+;; * Bouts de code
+
+;; (query-replace-regexp "^\\chapter{\([^}]*\)}$" "* \1" nil (point-min) (point-max))
 
 ;; * Provide
 
