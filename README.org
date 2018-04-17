@@ -1,0 +1,6 @@
+
+#+STARTUP: showall
+
+* Configuration files
+
+Some dot files.
