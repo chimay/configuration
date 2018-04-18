@@ -1,0 +1,1628 @@
+#!/usr/bin/env zsh
+
+# vim: set ft=zsh :
+
+# Logo {{{1
+
+#   _________  _   _ ____   ____
+#  |__  / ___|| | | |  _ \ / ___|
+#    / /\___ \| |_| | |_) | |
+# _ / /_ ___) |  _  |  _ <| |___
+#(_)____|____/|_| |_|_| \_\\____|
+#
+
+# }}}1
+
+# ------------------------------------------------------------
+
+#  Complétion {{{1
+
+#  Initialisation {{{2
+# ------------------------------------------------------------------------
+
+autoload -Uz compinit
+
+compinit
+
+zmodload -i zsh/complist
+
+#zmodload -i zsh/stat
+#disable stat
+
+# }}}2
+
+#  Options {{{2
+# ------------------------------------------------------------------------
+
+# Menu
+# ------------------------------------
+
+setopt menu_complete
+
+setopt always_last_prompt
+
+# Liste des solutions
+# ------------------------------------
+
+# Affiche la liste des solutions
+# en cas d'ambiguité
+
+setopt auto_list
+
+# Affiche ligne par ligne et non
+# colonne par colonne
+
+#setopt list_rows_first
+
+# Préfixe non ambigu inséré
+
+setopt list_ambiguous
+
+# Affiche un caractère à la fin
+# permettant de différencier les
+# types de fichiers :
+# standard, répertoire, lien, ...
+
+setopt list_types
+
+# Complète à l'endroit du curseur
+# ex : th_js --> theatre.js
+# ------------------------------------
+
+setopt complete_in_word
+
+# Déplace le curseur à la fin du mot
+# après une complétion
+# ------------------------------------
+
+setopt always_to_end
+
+# Si un espace est inséré automatiquement après un motif
+# et que le caractère suivant termine le mot : }, :, etc
+# l'espace est effacé
+# ------------------------------------
+
+setopt auto_param_keys
+
+# En cas de complétion d'un répertoire, ajout d'un /
+# à la fin
+# ------------------------------------
+
+setopt auto_param_slash
+
+# Quand le dernier caractère d’une complétion est / et que l’on
+# tape espace après, le / est effacé
+# ------------------------------------
+
+setopt auto_remove_slash
+
+# Alias
+# ------------------------------------
+
+unsetopt complete_aliases
+
+# Globbing
+# ------------------------------------
+
+setopt glob_complete
+
+# Ksh
+# ------------------------------------
+
+#	ksh-like Glob Operators
+#	If the KSH_GLOB option is set, the effects of parentheses can be modified by a preceding `@', `*', `+', `?' or `!'.
+#	This character need not be unquoted to have special effects, but the `(' must be.
+#
+#	@(...) Match the pattern in the parentheses.  (Like `(...)'.)
+#
+#	*(...) Match any number of occurrences.  (Like `(...)#'.)
+#
+#	+(...) Match at least one occurrence.  (Like `(...)##'.)
+#
+#	?(...) Match zero or one occurrence.  (Like `(|...)'.)
+#
+#	!(...) Match anything but the expression in parentheses.  (Like `(^(...))'.)
+
+setopt ksh_glob
+
+# }}}2
+
+#  Zstyle {{{2
+# ------------------------------------------------------------------------
+
+# Priorité des complétions
+# ------------------------------------
+
+zstyle ':completion:*' \
+	completer \
+		_all_matches \
+		_oldlist \
+		_expand:-glob _expand:-subst \
+		_complete \
+		_match \
+		_approximate:-serre \
+		_approximate:-large \
+		_files \
+		_ignored
+
+		#_history \
+
+# Dernière liste
+# ------------------------------------
+
+zstyle ':completion:*' old-list always
+
+# Groupes
+# ------------------------------------
+
+zstyle ':completion:*' group-name ''
+
+zstyle ':completion:*' list-grouped yes
+
+zstyle ':completion:*:-command-' group-order builtins functions commands
+
+# Présentation
+# ------------------------------------
+
+# Majuscule = activé / minuscule = désactivé
+# %S = inversion couleurs
+# %B = gras
+# %U = souligné
+
+zstyle ':completion:*:descriptions' format '%UCompletion par %d%u'
+zstyle ':completion:*:messages' format '%B%UCompletion par %d%u%b'
+zstyle ':completion:*:warnings' format '%BPas de résultats pour : %d%b'
+zstyle ':completion:*:corrections' format '%B%d (%e erreur(s))%b'
+
+zstyle ':completion:*:options' description yes
+zstyle ':completion:*:options' auto-description '%d'
+
+zstyle ':completion:*' list-separator ' : '
+
+zstyle ':completion:*' list-colors ''
+
+# Menu
+# ------------------------------------
+
+# pour obtenir un menu convivial pour la completion (avec les flèches du clavier)
+# le chiffre est le nombre minimal de possibilités pour afficher le menu
+
+zstyle ':completion:*' menu 'select=2' 'yes=long'
+
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+
+#zstyle ':completion:*' old-menu yes
+
+# Expansion par le système de complétion
+# ------------------------------------
+
+zstyle ':completion:*:expand-glob:*' glob yes
+zstyle ':completion:*:expand-subst:*' substitute yes
+
+# Plus souple via _all_matches
+
+#zstyle ':completion::expand-glob:*' tag-order all-expansions
+#zstyle ':completion::expand-subst:*' tag-order all-expansions
+
+# Variables
+# ------------------------------------
+
+# Indices des tableaux
+
+zstyle ':completion:*:-subscript-:*' tag-order indexes parameters
+
+# Fichiers
+# ------------------------------------
+
+# Affichage détaillé
+
+zstyle ':completion:*' file-list list=7 insert=7
+
+# Slashs retirés automatiquement
+
+zstyle ':completion:*' squeeze-slashes yes
+
+# Répertoires
+# ------------------------------------
+
+# Répertoires en premier
+
+zstyle ':completion:*' list-dirs-first yes
+
+# Ordre
+
+zstyle ':completion:*:cd:*' tag-order "local-directories path-directories"
+
+# ../
+
+zstyle ':completion:*' ignore-parents parent pwd
+
+# Partie non ambiguë
+# ------------------------------------
+
+zstyle ':completion:*' insert-unambiguous true
+
+# Tabulation littérale en début de ligne
+# ------------------------------------
+
+zstyle ':completion:*' insert-tab yes
+
+# Complétion floue
+# ------------------------------------
+
+#zstyle ':completion:*:approximate-serre:*' max-errors 2 numeric
+#zstyle ':completion:*:approximate-large:*' max-errors 4 numeric
+
+zstyle -e ':completion:*:approximate-serre:*' \
+        max-errors 'reply=($(( ($#PREFIX+$#SUFFIX) / 4 )) numeric)'
+
+zstyle -e ':completion:*:approximate-large:*' \
+        max-errors 'reply=($(( ($#PREFIX+$#SUFFIX) / 3 )) numeric)'
+
+zstyle ':completion:*:correct:*' max-errors 2 numeric
+
+zstyle ':completion:*' original true
+
+# Unicité
+# ------------------------------------
+
+# Pour éviter de reproposer un argument déjà utilisés
+# dans la commande lors de la completion
+
+zstyle ':completion:*:mv:*' ignore-line yes
+zstyle ':completion:*:cp:*' ignore-line yes
+zstyle ':completion:*:rm:*' ignore-line yes
+zstyle ':completion:*:diff:*' ignore-line yes
+
+zstyle ':completion:*:joue:*' ignore-line yes
+zstyle ':completion:*:mplayer:*' ignore-line yes
+
+# Motifs de fichiers
+# ------------------------------------
+
+zstyle ':completion:*:rm:*' \
+	file-patterns \
+		'*.pyc:compiled-python' \
+		'*.dvi:dvi-files' \
+		'*.o:object-files' \
+		'%p:all-files'
+
+# Listes de sous-commandes
+# ------------------------------------
+
+#zstyle ':completion:*:gravure:*' \
+	#file-patterns \
+		#'gravure-iso image-iso gravure-cd'
+
+# Motifs à ignorer
+# ------------------------------------
+
+#fignore=(.zwc .pyc .dvi .o \~)
+
+zstyle ':completion:*:(all-|)files' ignored-patterns '*?.pyc' '*?.dvi' '*?.o' '*?~'
+
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
+# Complète par les ignorés si rien d'autre
+
+zstyle ':completion:*:ignored:*' completer _complete
+
+# Utilisateurs et hôtes
+# ------------------------------------
+
+zstyle ':completion:*' users-hosts
+
+# Historique
+# ------------------------------------
+
+#zstyle ':completion:history-complete-word:*' list yes
+zstyle ':completion:history-complete-word:*' remove-all-dups yes
+
+# Correspondances
+# ------------------------------------
+
+# m:... : insensibilité à la casse
+# r:... : mots partiels
+# l:... r:... : mots entourés
+# ...||... : AF --> ArbreFlottant
+
+zstyle ':completion:*' \
+	matcher-list \
+		'' \
+		'm:{a-z-}={A-Z_}' \
+		'+m:{A-Z-}={a-z_}' \
+		'r:|[-_./]=* r:|=*' \
+		'l:|=* r:|=*' \
+		'r:[^A-Z0-9]||[A-Z0-9]=** r:|=*'
+
+# En cas d’insertion de toutes les possibilités
+# ------------------------------------
+
+zstyle ':completion:all-matches:*' old-matches only
+
+# Cache
+# ------------------------------------
+
+# Crée un cache des complétion possibles
+# très utile pour les complétion qui demandent beaucoup de temps
+# comme la recherche d'un paquet aptitude install moz<tab>
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/racine/dotdir/zsh/cache/completion
+
+# Courriel
+# ------------------------------------
+
+zstyle ':completion:*' mail-directory ~/bal
+zstyle ':completion:*' muttrc ~/racine/config/courriel/muttrc/muttrc
+
+# Predict
+# ------------------------------------
+
+zstyle ':completion:predict:*' completer _complete
+
+# Divers
+# ------------------------------------
+
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+                             /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*' force-list always
+
+zstyle ':completion:*:*:pkill:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:pkill:*' menu yes select
+
+zstyle ':completion:*:*:killall:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:killall:*' menu yes select
+
+# }}}2
+
+#  Compdef {{{2
+# ------------------------------------------------------------------------
+
+compdef '_files -g "*.htm *.html *.php *.phtm *.phtml"' elinks firefox
+compdef '_files -g "*.pdf *.ps"' okular apvlv
+compdef '_files -g "*.ar"' ar
+compdef '_files -g "*.tar *.tar.* *.tgz *.tbz *.tbz2"' tar
+compdef '_files -g "*.zip"' zip zipinfo
+compdef '_files -g "*.7z"' 7z
+compdef '_files -g "*.gz"' zcat
+compdef '_files -g "*.bz *.bz2"' bzcat
+compdef '_files -g "*.tex"' latex
+compdef '_files -g "*.ly"' lilypond
+
+# Listes d’arguments
+# ------------------------------------
+
+compdef '_arguments \
+	"1:Commandes:(help lock default-eval evaluation detox \
+		rsync unison remove add update recursive-update \
+		default all presync core addrm)" \
+	"2:Options:(safe risky)" \
+	"*:Repertoires:->file"' syncron
+
+compdef '_arguments "1:Commandes:(help sync sync-files sync-ports \
+	install reinstall local-install source-compile-install \
+	remove purge \
+	update full-update \
+	clean \
+	search search-file \
+	info list-files \
+	depends \
+	list-group-members \
+	)"' pack
+
+compdef '_arguments -shuffle -novideo "*:Fichiers:->file"' joue
+
+compdef '_arguments "1:Modes:(gravure-iso image-iso gravure-cdrom efface-cdrom gravure-dvd efface-dvd)"' gravure
+
+compdef '_arguments "1:Subcmds:(dmsend update setup block unblock follow unfollow \
+	lsarchive lscommands lsdm lsdmarchive lsblocking lsfollowers lsfollowing lsrecent lsreplies \
+	lsrt lsrtarchive lsrtreplies)"' twidge
+
+# Alias, fonctions
+# ------------------------------------
+
+compdef _cd pu
+compdef _man manmost
+compdef _man manless
+compdef _man manvi
+compdef _man info
+
+# }}}2
+
+#  Compctl (ancien système) {{{2
+# ------------------------------------------------------------------------
+
+zstyle ':completion:*' use-compctl true
+
+#arguments=( \
+	#dmsend update setup \
+	#block unblock follow unfollow \
+	#lsarchive lscommands lsdm lsdmarchive lsblocking lsfollowers lsfollowing lsrecent lsreplies \
+	#lsrt lsrtarchive lsrtreplies \
+	#)
+#compctl -k arguments twidge
+
+#compctl -c man nohup
+
+#compctl -f cd pushd
+
+#compctl -g '*(-/)' cd pushd pu
+
+#compctl -s '$(setopt)' unsetopt
+
+#  Pip, paquets python {{{3
+
+# function _pip_completion {
+#
+# 	local words cword
+#
+# 	read -Ac words
+# 	read -cn cword
+#
+# 	reply=( $( COMP_WORDS="$words[*]" \
+# 		COMP_CWORD=$(( cword-1 )) \
+# 		PIP_AUTO_COMPLETE=1 $words[1] )
+# 	)
+# }
+
+# compctl -K _pip_completion pip
+
+# }}}3
+
+# }}}2
+
+# }}}1
+
+#  Éditeur interne de ligne de commande (ZLE) {{{1
+
+#  Initialisation {{{2
+# ------------------------------------------------------------------------
+
+zmodload -i zsh/zle
+zmodload -i zsh/zleparameter
+
+# }}}2
+
+#  Codes du terminal {{{2
+# ------------------------------------------------------------------------
+
+# Terminfo
+# ------------------------------------
+
+# create a zkbd compatible hash;
+# to add other keys to this hash, see: man 5 terminfo
+
+typeset -A clavier
+
+clavier[Up]=${terminfo[kcuu1]}
+clavier[Down]=${terminfo[kcud1]}
+clavier[Left]=${terminfo[kcub1]}
+clavier[Right]=${terminfo[kcuf1]}
+
+clavier[ShiftLeft]=$terminfo[kLFT]
+clavier[ShiftRight]=$terminfo[kRIT]
+clavier[ShiftUp]=$terminfo[kri]
+clavier[ShiftDown]=$terminfo[kind]
+
+clavier[Backspace]=${terminfo[kbs]}
+clavier[Backtab]=${terminfo[cbt]}
+
+clavier[PageUp]=${terminfo[kpp]}
+clavier[PageDown]=${terminfo[knp]}
+
+clavier[Home]=${terminfo[khome]}
+clavier[End]=${terminfo[kend]}
+
+clavier[Insert]=${terminfo[kich1]}
+clavier[Delete]=${terminfo[kdch1]}
+
+# }}}2
+
+# Main keymap {{{2
+
+# Main keymap = emacs
+
+bindkey -e
+
+# Main keymap = viins
+
+#bindkey -v
+
+# Main keymap = vicmd
+
+#bindkey -a
+
+# }}}2
+
+# Aide {{{2
+
+bindkey '\eh' run-help
+
+bindkey '\e?' where-is
+
+# }}}2
+
+# Caractère littéral {{{2
+
+bindkey '^V' quoted-insert
+
+# }}}2
+
+# Fonctions zle {{{2
+
+bindkey '\e:' execute-named-cmd
+
+bindkey '^G' send-break
+
+# }}}2
+
+# Rafraîchir {{{2
+
+bindkey '^L' clear-screen
+
+# }}}2
+
+# Undo {{{2
+
+bindkey '^Xu' undo
+bindkey '^X^U' undo
+bindkey '^X^R' redo
+
+# }}}2
+
+# Mots {{{2
+
+autoload -U select-word-style
+select-word-style bash
+
+# }}}2
+
+# Orthographe {{{2
+
+bindkey '\es' spell-word
+
+# }}}2
+
+# Contrôle de flux {{{2
+
+# Désactive Ctrl-S et Ctrl-Q pendant l’édition
+
+unsetopt flowcontrol
+
+# }}}2
+
+#  Commandes {{{2
+# ------------------------------------------------------------------------
+
+bindkey '^J' accept-line
+bindkey '^M' accept-line
+
+bindkey '^O' accept-line-and-down-history
+
+bindkey '\e^J' self-insert-unmeta
+bindkey '\e^M' self-insert-unmeta
+
+bindkey '\ep' push-line-or-edit
+
+bindkey '\eg' get-line
+
+# }}}2
+
+# Caractères composés (digraph) {{{2
+
+autoload -Uz insert-composed-char
+zle -N insert-composed-char
+bindkey "^Xk" insert-composed-char
+
+# }}}2
+
+# Mouvements {{{2
+
+[[ -n "${clavier[Home]}" ]]     && bindkey "${clavier[Home]}" beginning-of-line
+[[ -n "${clavier[End]}" ]]      && bindkey "${clavier[End]}" end-of-line
+
+# [[ -n "${clavier[Up]}" ]]       && bindkey "${clavier[Up]}" up-line-or-history
+# [[ -n "${clavier[Down]}" ]]     && bindkey "${clavier[Down]}" down-line-or-history
+
+[[ -n "${clavier[Left]}" ]]     && bindkey "${clavier[Left]}" backward-char
+[[ -n "${clavier[Right]}" ]]    && bindkey "${clavier[Right]}" forward-char
+
+# [[ -n "${clavier[PageUp]}" ]]   && bindkey "${clavier[PageUp]}" beginning-of-buffer-or-history
+# [[ -n "${clavier[PageDown]}" ]] && bindkey "${clavier[PageDown]}" end-of-buffer-or-history
+
+[[ -n "${clavier[PageUp]}" ]]   && bindkey "${clavier[PageUp]}" history-beginning-search-backward-end
+[[ -n "${clavier[PageDown]}" ]] && bindkey "${clavier[PageDown]}" history-beginning-search-forward-end
+
+bindkey '^F' forward-char
+bindkey '^B' backward-char
+
+bindkey '\ef' forward-word
+bindkey '\eb' backward-word
+
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+
+# }}}2
+
+# Édition {{{2
+
+[[ -n "${clavier[Insert]}" ]] && bindkey "${clavier[Insert]}" overwrite-mode
+
+bindkey '^X^O' overwrite-mode
+
+[[ -n "${clavier[Delete]}" ]] && bindkey "${clavier[Delete]}" delete-char
+
+bindkey '\ec' capitalize-word
+
+bindkey '^T' transpose-chars
+bindkey '\et' transpose-words
+
+bindkey "\e'" quote-line
+bindkey '\e"' quote-region
+
+# }}}2
+
+#  Copier & Coller {{{2
+# ------------------------------------------------------------------------
+
+bindkey '\em' set-mark-command
+bindkey '^@' set-mark-command
+
+bindkey '\eM' exchange-point-and-mark
+
+# Shift-flèches pour sélection {{{3
+
+# Ne fonctionne pas
+
+# shift-arrow() {
+#   ((REGION_ACTIVE)) || zle set-mark-command
+#   zle $1
+# }
+#
+# shift-left() shift-arrow backward-char
+# shift-right() shift-arrow forward-char
+# shift-up() shift-arrow up-line-or-history
+# shift-down() shift-arrow down-line-or-history
+#
+# zle -N shift-left
+# zle -N shift-right
+# zle -N shift-up
+# zle -N shift-down
+#
+# [[ -n "${clavier[ShiftLeft]}" ]]  && bindkey "${clavier[ShiftLeft]}" shift-left
+# [[ -n "${clavier[ShiftRight]}" ]] && bindkey "${clavier[ShiftRight]}" shift-right
+# [[ -n "${clavier[ShiftUp]}" ]]    && bindkey "${clavier[ShiftUp]}" shift-up
+# [[ -n "${clavier[ShiftDown]}" ]]  && bindkey "${clavier[ShiftDown]}" shift-down
+
+# }}}3
+
+# Copie {{{3
+
+copie-et-desactive-region() {
+
+	zle copy-region-as-kill
+
+	(( REGION_ACTIVE == 1 )) && REGION_ACTIVE=0
+}
+
+zle -N copie-et-desactive-region
+
+#bindkey '\ew' copy-region-as-kill
+bindkey '\ew' copie-et-desactive-region
+
+# }}}3
+
+bindkey '\ek' kill-region
+
+bindkey '^Y' yank
+bindkey '\ey' yank-pop
+
+bindkey '^U' backward-kill-line
+bindkey '^K' kill-line
+bindkey '\er' kill-whole-line
+
+bindkey '^W' backward-kill-word
+
+# }}}2
+
+#  Historique {{{2
+# ------------------------------------------------------------------------
+
+# Recherche à partir du début de la ligne précédent le curseur {{{3
+
+[[ -n "${clavier[Up]}" ]]   && bindkey "${clavier[Up]}" history-beginning-search-backward
+[[ -n "${clavier[Down]}" ]] && bindkey "${clavier[Down]}" history-beginning-search-forward
+
+# }}}3
+
+# Recherche début de ligne, le curseur est ensuite positionné à la fin de la ligne {{{3
+
+autoload history-search-end
+
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+
+bindkey "^p"   history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
+
+# }}}3
+
+# Recherche à partir du premier mot de la ligne {{{3
+
+bindkey '\eP' history-search-backward
+bindkey '\eN' history-search-forward
+
+# }}}3
+
+# Menu pour recherches d’après le début de la ligne {{{3
+
+autoload -Uz history-beginning-search-menu
+zle -N history-beginning-search-menu
+bindkey '\e=' history-beginning-search-menu
+
+# }}}3
+
+# Prédiction de la ligne {{{3
+
+autoload -U predict-on
+zle -N predict-on
+zle -N predict-off
+bindkey '^Xp' predict-on
+bindkey '^X^P' predict-off
+
+# }}}3
+
+# Recherche incrémentale {{{3
+
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^S' history-incremental-pattern-search-forward
+
+bindkey '^Xr' history-incremental-search-backward
+bindkey '^Xs' history-incremental-search-forward
+
+# }}}3
+
+# Complétion incrémentale d’après l’historique {{{3
+
+autoload -Uz incremental-complete-word
+zle -N incremental-complete-word
+bindkey '^Xi' incremental-complete-word
+
+# }}}3
+
+# Mots {{{3
+
+# Dernier mot de la ligne précédente
+
+bindkey '\e;' insert-last-word
+
+# }}}3
+
+# }}}2
+
+#  Expansion & complétion {{{2
+# ------------------------------------------------------------------------
+
+bindkey '^I' menu-complete
+bindkey "${clavier[Backtab]}" reverse-menu-complete
+
+bindkey '\e^I' self-insert-unmeta
+
+bindkey '^D' delete-char-or-list
+
+# Expansion {{{3
+
+bindkey '\e*' expand-word
+
+# }}}3
+
+# Expansion & complétion {{{3
+
+#bindkey '^I' expand-or-complete
+
+#bindkey '^I' expand-or-complete-prefix
+
+#bindkey '^I' menu-expand-or-complete
+
+# }}}3
+
+# Historique {{{3
+
+bindkey '\e[1;3A' _history-complete-older
+bindkey '\e[1;3B' _history-complete-newer
+
+# }}}3
+
+# L’espace provoque l'expansion de : !!, !N, ... {{{3
+
+bindkey ' ' magic-space
+
+# }}}3
+
+# Accepte la sélection et relance la complétion (pratique pour les répertoires) {{{3
+
+bindkey -M menuselect ':' accept-and-infer-next-history
+
+# }}}3
+
+# Insère toutes les complétions possibles sur la ligne de commandes {{{3
+
+zle -C all-matches complete-word _generic
+
+bindkey '^Xa' all-matches
+
+# }}}3
+
+# }}}2
+
+# Modes {{{2
+
+# Mode vicmd {{{3
+
+bindkey '\ev' vi-cmd-mode
+
+bindkey -M vicmd '\ev' vi-insert
+
+bindkey -M vicmd 'i' vi-insert
+
+bindkey -M vicmd 'l' vi-forward-char
+bindkey -M vicmd 'h' vi-backward-char
+
+bindkey -M vicmd 'j' history-beginning-search-forward
+bindkey -M vicmd 'k' history-beginning-search-backward
+
+[[ -n "${clavier[Up]}" ]]   && bindkey -M vicmd "${clavier[Up]}" history-beginning-search-backward
+[[ -n "${clavier[Down]}" ]] && bindkey -M vicmd "${clavier[Down]}" history-beginning-search-forward
+
+bindkey -M vicmd '^P' history-beginning-search-backward-end
+bindkey -M vicmd '^N' history-beginning-search-forward-end
+
+bindkey -M vicmd '+' vi-down-line-or-history
+bindkey -M vicmd -- '-' vi-up-line-or-history
+
+bindkey -M vicmd ' ' vi-forward-char
+[[ -n "${clavier[Backspace]}" ]] && bindkey -M vicmd "${clavier[Backspace]}" vi-backward-char
+
+bindkey -M vicmd 'w' vi-forward-word
+bindkey -M vicmd 'e' vi-forward-word-end
+bindkey -M vicmd 'b' vi-backward-word
+
+bindkey -M vicmd 'W' vi-forward-blank-word
+bindkey -M vicmd 'E' vi-forward-blank-word-end
+bindkey -M vicmd 'B' vi-backward-blank-word
+
+bindkey -M vicmd '0' vi-digit-or-beginning-of-line
+bindkey -M vicmd '^' vi-first-non-blank
+bindkey -M vicmd '$' vi-end-of-line
+
+[[ -n "${clavier[Home]}" ]] && bindkey -M vicmd "${clavier[Home]}" vi-beginning-of-line
+[[ -n "${clavier[End]}" ]]  && bindkey -M vicmd "${clavier[End]}" vi-end-of-line
+
+bindkey -M vicmd 'f' vi-find-next-char
+bindkey -M vicmd 't' vi-find-next-char-skip
+
+bindkey -M vicmd 'F' vi-find-prev-char
+bindkey -M vicmd 'T' vi-find-prev-char-skip
+
+bindkey -M vicmd ';' vi-repeat-find
+bindkey -M vicmd ',' vi-rev-repeat-find
+
+bindkey -M vicmd '%' vi-match-bracket
+
+bindkey -M vicmd 'G' vi-fetch-history
+
+bindkey -M vicmd 'm' vi-set-mark
+
+bindkey -M vicmd '`' vi-goto-mark
+bindkey -M vicmd "'" vi-goto-mark
+
+bindkey -M vicmd '|' vi-goto-column
+
+bindkey -M vicmd '/' vi-history-search-backward
+bindkey -M vicmd '?' vi-history-search-forward
+
+bindkey -M vicmd 'a' vi-add-next
+
+bindkey -M vicmd 'I' vi-insert-bol
+bindkey -M vicmd 'A' vi-add-eol
+
+bindkey -M vicmd 'o' vi-open-line-below
+bindkey -M vicmd 'O' vi-open-line-below
+
+bindkey -M vicmd 's' vi-substitute
+bindkey -M vicmd 'r' vi-replace-chars
+bindkey -M vicmd 'R' vi-replace
+
+bindkey -M vicmd '~' vi-swap-case
+
+bindkey -M vicmd 'u' vi-undo-change
+bindkey -M vicmd '.' vi-repeat-change
+
+bindkey -M vicmd '>' vi-indent
+bindkey -M vicmd '<' vi-unindent
+
+bindkey -M vicmd 'J' vi-join
+
+bindkey -M vicmd 'n' vi-repeat-search
+bindkey -M vicmd 'N' vi-rev-repeat-search
+
+bindkey -M vicmd '"' vi-set-buffer
+
+bindkey -M vicmd 'y' vi-yank
+bindkey -M vicmd 'Y' vi-yank-whole-line
+
+bindkey -M vicmd 'p' vi-put-after
+bindkey -M vicmd 'P' vi-put-before
+
+bindkey -M vicmd 'x' vi-delete-char
+bindkey -M vicmd 'X' vi-backward-delete-char
+
+bindkey -M vicmd '^W' vi-backward-kill-word
+
+bindkey -M vicmd 'c' vi-change
+bindkey -M vicmd 'C' vi-change-eol
+bindkey -M vicmd 'S' vi-change-whole-line
+
+bindkey -M vicmd 'D' vi-kill-eol
+
+bindkey -M vicmd 'd' vi-delete
+
+# }}}3
+
+# Mode command {{{3
+
+bindkey -M command '^J' accept-line
+bindkey -M command '^M' accept-line
+
+bindkey -M command '^I' complete-word
+
+bindkey -M command '^D' delete-char-or-list
+
+bindkey -M command '^L' redisplay
+
+bindkey -M command '^W' backward-kill-word
+bindkey -M command '^U' backward-kill-line
+bindkey -M command '\er' kill-whole-line
+
+bindkey -M command '\ev' vi-cmd-mode
+
+# }}}3
+
+# Mode isearch {{{3
+
+bindkey -M isearch '^M' accept-search
+bindkey -M isearch '^R' history-incremental-search-backward
+bindkey -M isearch '^S' history-incremental-search-forward
+
+bindkey -M isearch '^L' redisplay
+
+bindkey -M isearch '^D' backward-delete-char
+bindkey -M isearch '^W' backward-kill-word
+
+bindkey -M isearch '\ev' vi-cmd-mode
+
+#zle-isearch-update() { zle -M "Line $HISTNO"; }
+#zle -N zle-isearch-update
+
+#zle-isearch-exit() { zle -M ""; }
+#zle -N zle-isearch-exit
+
+# }}}3
+
+# }}}2
+
+# Fonctions perso {{{2
+
+#  Éditeur externe {{{3
+# ------------------------------------------------------------------------
+
+autoload perso-edit-command-line
+
+zle -N perso-edit-command-line
+
+bindkey '\ee' perso-edit-command-line
+
+# }}}3
+
+#  Alternance des répertoires {{{3
+# ------------------------------------------------------------------------
+
+autoload perso-alternate-dirs
+
+zle -N perso-alternate-dirs
+
+bindkey '^\^' perso-alternate-dirs
+
+# }}}3
+
+# Trois points ... --> ../.. {{{3
+
+zle -N perso-three-dots
+
+bindkey "." perso-three-dots
+
+bindkey -M isearch "." self-insert
+
+zle -N perso-three-commas
+
+bindkey "," perso-three-commas
+
+bindkey -M isearch "," self-insert
+
+# }}}3
+
+# Trois étoiles {{{3
+
+zle -N perso-three-stars
+
+bindkey "*" perso-three-stars
+
+bindkey -M isearch "*" self-insert
+
+# }}}3
+
+# }}}2
+
+# Clausule {{{2
+
+# Finally, make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
+
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+    function zle-line-init () {
+        printf '%s' "${terminfo[smkx]}"
+    }
+    function zle-line-finish () {
+        printf '%s' "${terminfo[rmkx]}"
+    }
+    zle -N zle-line-init
+    zle -N zle-line-finish
+fi
+
+# }}}2
+
+# }}}1
+
+# ------------------------------------------------------------
+
+# FASD : Fast search of files and directories {{{1
+
+# Complétion :
+#
+# Tout : ,<tab>
+# Fichiers : f,<tab>
+# Répertoires : d,<tab>
+#
+# Plusieurs ,... sont possibles, exemple :
+#
+# ,bla,bli<tab> --> /blanc/blink
+
+eval "$(fasd --init auto)"
+
+# }}}1
+
+# FZF : Fuzzy Finder {{{1
+
+# Lie :
+#
+# **<tab> : complétion **/*
+#
+# Ctrl T : complétion par fichiers **/*
+#			remplace transpose-chars
+#
+# Ctrl R : recherche dans l’historique des commandes du shell
+#			remplace history-incremental-pattern-search-backward
+#
+# Alt c : complétion pour changement de répertoire
+#			remplace capitalize-word
+#			toujours disponible sur Alt Shift c
+
+[ -f ~/.fzf.zsh ] && source ~/racine/config/cmdline/fzf.zsh
+
+bindkey '\e^T' transpose-chars
+bindkey '\eC' capitalize-word
+
+# }}}1
+
+# Z : changement de répertoire {{{1
+
+unsetopt warn_create_global
+
+source ~/racine/config/cmdline/cd-with-z.sh
+
+export _Z_DATA=~/racine/index/filesys/z-dirs
+
+# }}}1
+
+# ------------------------------------------------------------
+
+#  Fonctions {{{1
+
+# $0 représente le nom de la fonction
+
+setopt function_arg_zero
+
+# Avertit en cas de variable globale dans une fonctions
+
+setopt warn_create_global
+
+# Les variables d'environnement sont globales par défaut
+
+setopt globalexport
+
+# Fichier des fonctions
+
+source ${RACINE_ZSH}/fonctions.zsh
+
+# }}}1
+
+#  Alias {{{1
+
+source ${RACINE_ZSH}/alias.zsh
+
+# }}}1
+
+#  Aide {{{1
+
+#unalias run-help
+#autoload -U run-help
+#export HELPDIR=/usr/share/zsh/help
+
+# }}}1
+
+#  Quotes {{{1
+
+# Le double '' correspond à un guillement simple
+# normal dans un '...' Exemple :
+# '...l''apostrophe...'
+
+setopt rcquotes
+
+# Pas d'expansion des "... ... ..."
+
+unsetopt shwordsplit
+
+# }}}1
+
+#  Tableaux associatifs des commandes, etc {{{1
+
+setopt hash_cmds
+setopt hash_all
+setopt hash_list_all
+
+# }}}1
+
+#  Profile {{{1
+
+source ${RACINE_ZSH}/zsh_profile
+
+# }}}1
+
+#  Correction {{{1
+
+# Possible aussi via ^x c et complétion
+
+# Commandes seulement
+
+#setopt correct
+
+# Commandes et arguments
+
+#setopt correctall
+
+# }}}1
+
+#  Historique {{{1
+
+# Fichier d’historique {{{2
+
+# Ajoute l’historique à la fin de l’ancien fichier
+
+setopt append_history
+
+# Chaque ligne est ajoutée dans l’historique au fur et à mesure
+
+#setopt inc_append_history
+
+# Regarde si d’autres zsh n’ont pas ajouté des lignes dans le fichier
+# d’historique
+
+#setopt share_history
+
+# Informations complémentaires dans le fichier d’historique
+
+#setopt extended_history
+
+# }}}2
+
+# Non enregistrés {{{2
+
+setopt hist_ignore_space
+
+#setopt hist_no_store
+#setopt hist_no_functions
+
+# }}}2
+
+# Commentaires {{{2
+
+setopt interactive_comments
+
+# }}}2
+
+# Doublons {{{2
+
+# Ne stocke pas une ligne dans l’historique si elle est identique à la précédente
+
+setopt hist_ignore_dups
+
+# Supprime les répétitions dans le fichier d’historique, ne conservant
+# que la dernière occurrence ajoutée
+
+setopt hist_ignore_all_dups
+
+# Ne sauve pas une commande plus d’une fois
+# au cours d’une même session
+
+setopt hist_save_no_dups
+
+# Supprime les répétitions dans l’historique lorsqu’il est plein, mais pas avant
+
+#setopt hist_expire_dups_first
+
+# La recherche dans l’historique avec l’éditeur de commandes de zsh ne
+# montre  pas une même  ligne  plus d’une fois,  meme  si  elle a été
+# enregistrée
+
+setopt hist_find_no_dups
+
+# }}}2
+
+# Bang substitution (!!, !..., etc) {{{2
+
+set hist_chars='!^#'
+
+# Vérifie avant d’exécuter une commande
+# !... faisant référence à l’historique
+
+#setopt hist_verify
+
+# }}}2
+
+# Modifications {{{2
+
+#setopt hist_reduce_blanks
+#setopt hist_allow_clobber
+
+# }}}2
+
+# }}}1
+
+#  Fichiers {{{1
+
+# Demande confirmation pour rm *
+
+unsetopt rm_star_silent
+
+# }}}1
+
+#  Redirections {{{1
+
+# Le fichier ne sera pas écrasé avec une redirection simple :
+# >| (ou l’équivalent >!) doit etre utilisé pour pouvoir ecraser
+# un fichier déjà existant
+
+unsetopt clobber
+
+# Redirection multiple
+
+setopt multios
+
+# }}}1
+
+#  Processus {{{1
+
+setopt monitor
+
+# Affiche le code de sortie si different de 0
+
+setopt print_exit_value
+
+# Les jobs qui tournent en tache de fond consomment moins de ressources
+
+setopt bg_nice
+
+# Envoie HUP aux jobs qui tournent quand le shell se ferme
+
+setopt hup
+
+# Signale la fin d'un job
+
+setopt notify
+
+# }}}1
+
+#  Limites {{{1
+
+# Limite le nombre de processus
+
+ulimit -u 4096
+
+# Limite la taille des paramètres utilisés dans les fonctions
+
+ulimit -s 8400
+
+# Limite la taille des coredumps
+
+ulimit -c 0
+
+# }}}1
+
+#  Couleurs {{{1
+
+autoload -U colors
+
+# }}}1
+
+#  Prompt {{{1
+
+source ${RACINE_ZSH}/prompt.zsh
+
+# }}}1
+
+#  Génération de noms de fichiers {{{1
+
+# Globbing
+
+setopt glob
+
+# Globbing étendu
+
+setopt extended_glob
+
+# Globbing à la ksh
+
+setopt ksh_glob
+
+# Les glob vides ne provoquent pas d’erreur
+
+setopt null_glob
+
+# Sensible à la casse ?
+
+unsetopt case_glob
+
+# Erreur si aucune correspondance
+
+setopt no_match
+
+# Qualificateurs
+
+setopt bare_glob_qual
+
+# Substitution du contenu d'une variable s'active aussi avec ${~var}
+
+unsetopt glob_subst
+
+# a=* est étendu en
+# a=( fichier1 fichier2 ... )
+# peut s'activer aussi sous la forme
+# a=(*)
+
+unsetopt glob_assign
+
+# Les fichiers et répertoires cachés
+# sont inclus dans *
+# peut s'activer aussi avec le qualificateur (D)
+
+unsetopt glob_dots
+
+# Trie aussi suivant les nombres
+# peut s'activer aussi avec le qualificateur (n)
+
+#setopt numeric_glob_sort
+
+# Chaine$Tableau
+# donne
+# ChaineElement1 ChaineElement2 ...
+# Aussi accessible avec la forme
+# chaine${^tableau}
+
+unsetopt rc_expand_param
+
+# Permet de générer 0 1 ... 9 a b ... f
+# avec {0-9a-f}
+
+setopt brace_ccl
+
+# Termine les répertoires
+# avec un /
+
+#setopt mark_dirs
+
+# Complétion
+
+# voir completion, option glob_complete
+
+# }}}1
+
+#  Divers {{{1
+
+setopt MULTIBYTE
+
+# Je ne veux JAMAIS de beeps
+
+unsetopt beep
+unsetopt hist_beep
+unsetopt list_beep
+
+# Ctrl+D est équivalent a exit
+
+unsetopt ignore_eof
+
+# Mime
+
+#autoload -U zsh-mime-setup
+#autoload -U zsh-mime-handler
+#autoload -U pick-web-browser
+#zsh-mime-setup
+
+# }}}1
+
+#  Modules {{{1
+
+# zmodload -i zsh/zutil
+# zmodload -i zsh/files
+
+# zmodload -i zsh/datetime
+
+#zmodload -i zsh/curses
+
+# zmodload -i zsh/deltochar
+# zmodload -i zsh/mapfile
+
+# zmodload -i zsh/regex
+
+#zmodload -i zsh/pcre
+
+# zmodload -i zsh/sched
+# zmodload -i zsh/stat
+# zmodload -i zsh/system
+# zmodload -i zsh/zprof
+# zmodload -i zsh/zpty
+# zmodload -i zsh/zselect
+
+# Zcalc
+# ------------------------------------
+
+# Calculette
+
+autoload -U zcalc
+
+# Zed
+# ------------------------------------
+
+# Éditeurs
+
+#autoload -U zed
+
+# Zargs
+# ------------------------------------
+
+autoload -U zargs
+
+# Zftp
+# ------------------------------------
+
+#autoload -U zfinit
+
+#zfinit
+
+#zfparams ftp.membres.lycos.fr eclats2vers
+
+# }}}1
+
+#  Navigation {{{1
+
+# Auto-cd {{{2
+
+# Si la commande est invalide mais correspond au nom
+# d’un sous-répertoire, exécuter cd sous-repertoire
+
+setopt auto_cd
+
+setopt cdable_vars
+
+# }}}2
+
+# Liens {{{2
+
+unsetopt chase_links
+unsetopt chase_dots
+
+# }}}2
+
+# Pile {{{2
+# ------------------------------------
+
+# L’execution de cd met le repertoire d’ou l’on vient sur la pile
+
+setopt auto_pushd
+
+# Ajout silencieux à la pile
+
+setopt pushd_silent
+
+# "pushd" sans argument = "pushd $HOME"
+
+setopt pushd_to_home
+
+# Ignore les doublons dans la pile
+
+setopt pushd_ignore_dups
+
+# Inverse +i / -i
+
+setopt pushd_minus
+
+# Ordre de la pile en cas de changement :
+# les plus récents en premier
+
+#autoload -U pu
+
+# Chargement de la pile des répertoires
+
+DIRSTACKFILE="$HOME/racine/dotdir/zsh/cache/dirs"
+
+if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+
+  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+
+  dirstack=( ${(u)dirstack} )
+
+  [[ -d $dirstack[1] ]] && cd $dirstack[1]
+fi
+
+# Voir aussi zshenv, variable DIRSTACKSIZE
+
+# Voir aussi fonctions.zsh dans les crochets, fonction chpwd
+
+# }}}2
+
+# }}}1
+
+# ------------------------------------------------------------
+
+# Base16 Color Themes {{{1
+
+#BASE16_SHELL=$HOME/racine/config/terminal/base16-shell/
+
+#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+# }}}1
+
+# Archlinux pkgfile {{{1
+
+[ $OPERASYS = archlinux ] && source /usr/share/doc/pkgfile/command-not-found.zsh
+
+# }}}1
+
+# pip {{{1
+
+# pip zsh completion
+
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+
+# }}}1

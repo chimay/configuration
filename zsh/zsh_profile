@@ -1,0 +1,3 @@
+# vim: set ft=zsh :
+
+source ~/racine/config/cmdline/shell/profile

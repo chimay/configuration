@@ -1,0 +1,138 @@
+
+# {{{ Système d’exploitation
+
+case $(uname -a) in
+
+	*Linux*ARCH*)
+		OPERASYS=archlinux
+		;;
+	*FreeBSD*)
+		OPERASYS=freebsd
+		;;
+	*Linux*|*linux*)
+		OPERASYS=linux
+		;;
+	?*)
+		OPERASYS=inconnu
+		;;
+esac
+
+export OPERASYS
+
+# }}}
+
+# read user settings
+source ${HOME}/racine/config/cmdline/zsh/zshrc
+#source ${HOME}/racine/config/cmdline/zsh/zshenv
+
+autoload -U colors && colors
+
+# {{{ Options
+
+#setopt noautocd noautomenu nohup nocheckjobs
+setopt nohup nocheckjobs
+
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+
+# }}}
+
+# {{{ Historique
+
+HISTFILE=${HOME}/racine/hist/zsh/$HOST-run-term
+SAVEHIST=84127
+HISTSIZE=$SAVEHIST
+
+# }}}
+
+# {{{ Exécutables
+# ------------------------------------
+
+setopt null_glob
+
+typeset -U path
+path=(/usr/local/bin /usr/local/sbin)
+
+# pip & autres
+path+=(~/.local/bin)
+
+# ruby gems
+path+=(~/.gem/ruby/2.1.0/bin)
+
+# haskell cabal
+path+=(~/.cabal/bin)
+
+path+=(/bin /sbin)
+path+=(/usr/bin /usr/sbin /usr/games)
+
+path+=(~/racine/shell ~/racine/shell/*(F))
+
+path+=(~/racine/bin/utils)
+
+path+=(~/racine/bin/python)
+
+path+=(~/racine/install/build)
+path+=(~/racine/install/config)
+path+=(~/racine/install/version)
+
+path+=(~/racine/install/automat)
+
+# }}}
+
+# {{{ Fonctions
+
+# {{{ mb_quit
+
+function mb_quit {
+
+    exit
+}
+
+zle -N mb_quit
+
+bindkey "^G" mb_quit
+
+# }}}
+
+# {{{ precmd
+
+typeset -ga precmd_functions
+
+precmd_functions=()
+
+function precmd {
+
+	# {{{ Prompt
+
+	prompt off
+
+	PROMPT='
+%F{red} cmd %! > %f'
+
+RPROMPT='%F{yellow}%D{(o) %H:%M [=] %a %d %b %Y}'
+
+	# }}}
+}
+
+# autre solution : redéfinition de la fonction precmd_prompt
+
+# }}}
+
+# {{{ preexec
+
+function preexec {
+
+    unset ZDOTDIR
+    #sh -c "$1" &
+    konsole -e zsh -c "$1" &!
+    exit
+}
+
+# }}}
+
+# }}}
+
+bindkey -r '.'
+bindkey '.' self-insert
