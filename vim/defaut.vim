@@ -94,13 +94,6 @@ set cdpath+=~
 
 " }}}1
 
-"  Shell {{{1
-" ------------------------------------------------------------------------
-
-let g:terminal_scrollback_buffer_size = 50000
-
-" }}}1
-
 "  Système de fichier {{{1
 " ------------------------------------------------------------------------
 
@@ -1585,15 +1578,6 @@ if has('statusline')
 	set statusline+=%<
 endif
 
-" 	set statusline+=\ \ %{strftime('%H:%M\ %a\ %d\ %b\ %Y')}
-" 	set statusline+=\ \ %{strftime('%H:%M')}
-" 	set statusline+=\ \ Car\ %2.2B
-" 	set statusline+=\ \ Car\ %3.3b\ x\ %2.2B
-
-"highlight statut ctermfg=green guifg=green
-"highlight statut ctermbg=black guibg=black
-"highlight statut cterm=bold gui=bold
-
 " }}}2
 
 "  Zone de commande {{{2
@@ -1646,8 +1630,6 @@ set guifont=Monospace\ 12
 " Onglets {{{2
 
 " Sans les onglets graphiques, affiche les onglets comme dans un terminal
-
-"set guioptions+=e
 
 set guioptions-=e
 
@@ -1786,12 +1768,6 @@ if !exists(":DiffOrig")
 endif
 
 " }}}2
-
-" }}}1
-
-" Terminal {{{1
-
-
 
 " }}}1
 
