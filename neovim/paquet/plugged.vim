@@ -86,6 +86,8 @@ Plug 'chrisbra/vim_faq'
 
 " {{{ Exploration
 
+Plug 'Shougo/denite.nvim'
+
 Plug 'Shougo/unite.vim'
 
 Plug 'ujihisa/unite-locate'
@@ -101,7 +103,7 @@ Plug 'Shougo/denite.nvim'
 Plug 'Shougo/defx.nvim'
 Plug 'Shougo/deol.nvim'
 
-Plug 'szw/vim-ctrlspace'
+Plug 'vim-ctrlspace/vim-ctrlspace', { 'as': 'ctrlspace' }
 
 Plug 'junegunn/fzf', { 'do' : './install --all'}
 Plug 'junegunn/fzf.vim'
@@ -132,8 +134,6 @@ Plug 'vim-scripts/YankRing.vim'
 " {{{ Complétion
 
 Plug 'Shougo/deoplete.nvim'
-
-Plug 'zchee/deoplete-jedi'
 
 Plug 'vim-scripts/CmdlineComplete'
 
