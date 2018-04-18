@@ -866,13 +866,6 @@ nnoremap [[ [z
 
 " }}}2
 
-" Édition {{{2
-
-nnoremap <D-a> :se fo+=a<cr>
-nnoremap <D-z> :se fo-=a<cr>
-
-" }}}2
-
 "  Fichiers {{{2
 " ------------------------------------------------------------------------
 
@@ -887,8 +880,6 @@ nnoremap <m-s-e> :e **/*
 nnoremap <m-g> :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
 
 nnoremap \e :e!<cr>
-
-nnoremap <D-e> :e!<cr>
 
 nnoremap <m-f> :find<space>
 
@@ -955,17 +946,6 @@ func! InterrupteurLectureSeule()
 endfunc
 
 " }}}3
-
-" }}}2
-
-" Fenêtres {{{2
-
-nnoremap <D-w>  <C-W>w
-
-nnoremap <D-Left>  <C-W><Left>
-nnoremap <D-Right> <C-W><Right>
-nnoremap <D-Up>    <C-W><Up>
-nnoremap <D-Down>  <C-W><Down>
 
 " }}}2
 
@@ -1053,15 +1033,6 @@ nnoremap <C-G> 2<C-G>
 
 " }}}2
 
-"  Redirection {{{2
-" ------------------------------------------------------------------------
-
-com! -nargs=* -complete=command BibliothequeRedirToBuffer call bibliotheque#redirToBuffer(<f-args>)
-
-nnoremap <D-lt> :BibliothequeRedirToBuffer<space>
-
-" }}}2
-
 "  Déplacements & Copie {{{2
 " ------------------------------------------------------------------------
 
@@ -1135,14 +1106,6 @@ nnoremap <silent> <M-u> :noh<CR>
 com! -nargs=0 BibliothequeGrep call bibliotheque#grep()
 
 nnoremap \g :BibliothequeGrep<cr>
-
-" }}}3
-
-" Vimgrep {{{3
-
-com! -nargs=0 BibliothequeVimgrep call bibliotheque#vimgrep()
-
-nnoremap <D-G> :BibliothequeVimgrep<cr>
 
 " }}}3
 
@@ -1347,15 +1310,6 @@ nnoremap \, :exec '!'.getline('.')<CR>
 
 " }}}2
 
-"  Orthographe {{{2
-" ------------------------------------------------------------------------
-
-"nnoremap <silent> \o :setlocal spell!<cr>
-
-nnoremap <silent> <D-o> :setlocal spell!<cr>
-
-" }}}2
-
 "  Informations {{{2
 " ------------------------------------------------------------------------
 
@@ -1395,48 +1349,6 @@ nmap <k6> 6
 nmap <k7> 7
 nmap <k8> 8
 nmap <k9> 9
-
-" }}}2
-
-" Présentation {{{2
-
-" Numérotation des lignes {{{3
-
-func! InterrupteurNumerotationAbsolueRelative()
-
-	if &relativenumber
-		set number norelativenumber
-	else
-		set number relativenumber
-	endif
-
-	set relativenumber?
-
-endfunc
-
-nnoremap <silent> <D-n> :call InterrupteurNumerotationAbsolueRelative()<cr>
-
-" }}}3
-
-"nnoremap \l :set cursorline!<cr>
-
-nnoremap <D-l> :set cursorline!<cr>
-
-" }}}2
-
-" Émulateur de terminal {{{2
-
-nnoremap <D-t> :split \| terminal<cr>
-
-" Passer en mode normal
-
-" En référence à Ctrl-Q / Ctrl-S
-
-tnoremap <D-s> <C-\><C-n>
-
-tnoremap <D-q> <C-\><C-n>
-
-tnoremap <C-q> <C-\><C-n>
 
 " }}}2
 
@@ -1486,7 +1398,7 @@ set relativenumber
 
 " Espacement
 
-set linespace=3
+set linespace=1
 
 " Longues lignes occupent plusieurs lignes (wrap) écran ou une seule (nowrap)
 
@@ -1720,6 +1632,7 @@ set guipty
 set guioptions+=a
 
 " Pour le modeless (normalement inclus dans le flag a)
+
 set guioptions+=A
 
 " }}}2
@@ -1735,6 +1648,7 @@ set guifont=Monospace\ 12
 " Sans les onglets graphiques, affiche les onglets comme dans un terminal
 
 "set guioptions+=e
+
 set guioptions-=e
 
 " }}}2
@@ -1742,6 +1656,7 @@ set guioptions-=e
 " Boites de dialogue {{{2
 
 " Dialogues simples en format texte
+
 set guioptions+=c
 
 set guioptions-=v
