@@ -44,14 +44,12 @@
 " }}}1
 
 "  Compatibilité {{{1
-" ------------------------------------------------------------------------
 
 "set cpoptions-=C
 
 " }}}1
 
 " Chemins de chargement {{{1
-" ------------------------------------------------------------------------
 
 set runtimepath+=~/racine/config/edit/neovim
 
@@ -78,7 +76,6 @@ set runtimepath+=~/racine/config/edit/neovim
 " ------------------------------------
 
 "  Caractères utilisés dans les mots {{{1
-" ------------------------------------------------------------------------
 
 "set iskeyword=48-57, ,192-255,@,:,/,-,_
 
@@ -97,17 +94,14 @@ set clipboard=
 " }}}1
 
 "  Environnement {{{1
-" ------------------------------------------------------------------------
 
 "  Chemins de recherche des fichiers {{{2
-" ------------------------------------------------------------------------
 
 set path=**
 
 " }}}2
 
 "  Chemins de recherche des répertoires {{{2
-" ------------------------------------------------------------------------
 
 set cdpath=.
 
@@ -119,17 +113,14 @@ set cdpath+=~
 " }}}1
 
 "  Shell {{{1
-" ------------------------------------------------------------------------
 
 let g:terminal_scrollback_buffer_size = 50000
 
 " }}}1
 
 "  Système de fichier {{{1
-" ------------------------------------------------------------------------
 
 "  Répertoire du fichier courant {{{2
-" ------------------------------------------------------------------------
 
 " Se place dans le répertoire du fichier courant
 " ------------------------------------------------------------
@@ -141,7 +132,6 @@ let g:terminal_scrollback_buffer_size = 50000
 " }}}2
 
 "  Explorateur de fichier {{{2
-" ------------------------------------------------------------------------
 
 " Répertoire de départ
 " ------------------------------------
@@ -153,7 +143,6 @@ set browsedir=current
 " }}}2
 
 "  Lecture / Écriture {{{2
-" ------------------------------------------------------------------------
 
 "set autowrite				" Sauvegarde automatique des fichiers lors de navigation
 							" dans les arguments, :stop, :suspend, :tag, :!, :make, ^],
@@ -164,7 +153,6 @@ set browsedir=current
 " }}}2
 
 "  Sauvegardes {{{2
-" ------------------------------------------------------------------------
 
 set backup
 
@@ -185,7 +173,6 @@ set backupskip=/tmp/*,/etc/*,mutt-*-*-*-*
 " }}}2
 
 "  Fichier de récupération en cas de crash {{{2
-" ------------------------------------------------------------------------
 
 set swapfile
 set directory=~/racine/varia/autosave
@@ -203,7 +190,6 @@ set updatetime=1000			" Millisecondes
 " }}}1
 
 "  Annulation {{{1
-" ------------------------------------------------------------------------
 
 set undolevels=1234
 
@@ -219,7 +205,6 @@ endif
 " }}}1
 
 "  Session {{{1
-" ------------------------------------------------------------------------
 
 set sessionoptions=
 
@@ -241,7 +226,6 @@ set sessionoptions+=winsize
 " }}}1
 
 "  Encodage {{{1
-" ------------------------------------------------------------------------
 
 setglobal fileencoding=utf-8
 setglobal fileencodings=utf-8
@@ -257,7 +241,6 @@ setglobal fileencodings=utf-8
 " }}}2
 
 "  Définition {{{2
-" ------------------------------------------------------------------------
 
 " Convertir les codes hexadécimaux de wikipédia en codes décimaux
 " via par exemple :
@@ -293,7 +276,6 @@ setglobal fileencodings=utf-8
 " }}}1
 
 "  Orthographe {{{1
-" ------------------------------------------------------------------------
 
 set spelllang=fr,en
 
@@ -302,7 +284,6 @@ set spellsuggest=best
 " }}}1
 
 "  Dictionnaire {{{1
-" ------------------------------------------------------------------------
 
 " Complétion par dictionnaire et synonymes
 
@@ -326,7 +307,6 @@ set thesaurus+=~/racine/index/spell/thes_fr.dat
 " }}}1
 
 "  Modes {{{1
-" ------------------------------------------------------------------------
 
 set virtualedit=block,onemore
 "set virtualedit=block,insert,onemore
@@ -344,10 +324,8 @@ set modelines=7
 " }}}1
 
 "  Périphériques {{{1
-" ------------------------------------------------------------------------
 
 "  Clavier {{{2
-" ------------------------------------------------------------------------
 
 " Autorise le passage d'une ligne à l'autre avec les flèches
 
@@ -356,7 +334,6 @@ set whichwrap=<,>,[,],~,b,s,h,l
 " }}}2
 
 "  Son {{{2
-" ------------------------------------------------------------------------
 
 set visualbell
 set noerrorbells
@@ -364,7 +341,6 @@ set noerrorbells
 " }}}2
 
 "  Souris {{{2
-" ------------------------------------------------------------------------
 
 set mouse=a
 
@@ -392,7 +368,6 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up
 " }}}1
 
 "  Recherche {{{1
-" ------------------------------------------------------------------------
 
 " Casse {{{2
 
@@ -425,7 +400,6 @@ set grepprg=grep\ --line-number\ --ignore-case\ --no-messages\ $*\ /dev/null
 " }}}1
 
 "  Complétion {{{1
-" ------------------------------------------------------------------------
 
 " Fichiers à ignorer {{{2
 " ------------------------------------
@@ -452,7 +426,6 @@ set wildignorecase
 " }}}2
 
 "  Complétion en mode insertion {{{2
-" ------------------------------------------------------------------------
 
 "set completeopt=menuone,preview
 
@@ -518,7 +491,6 @@ set omnifunc=syntaxcomplete#Complete
 " }}}2
 
 "  Complétion dans la ligne de commande {{{2
-" ------------------------------------------------------------------------
 
 set wildchar=<TAB>
 
@@ -556,7 +528,6 @@ set wildmode=list:full,full
 " }}}1
 
 "  Formattage du texte {{{1
-" ------------------------------------------------------------------------
 
 set textwidth=72
 set wrapmargin=7
@@ -584,7 +555,6 @@ set formatprg=fmt
 " }}}1
 
 "  Indentation {{{1
-" ------------------------------------------------------------------------
 
 " Tabulation {{{2
 
@@ -625,12 +595,10 @@ set cindent
 " }}}1
 
 "  Pliage {{{1
-" ------------------------------------------------------------------------
 
 set foldenable
 
 "  Options {{{2
-" ------------------------------------------------------------------------
 
 set foldenable
 
@@ -675,7 +643,6 @@ set foldtext=bibliotheque#texteDuPliage()
 " }}}2
 
 "  Méthode des marqueurs {{{2
-" ------------------------------------------------------------------------
 
 set foldmethod=marker
 
@@ -684,7 +651,6 @@ set foldmarker={{{,}}}
 " }}}2
 
 "  Autocommandes {{{2
-" ------------------------------------------------------------------------
 
 augroup Pliage
 
@@ -697,7 +663,6 @@ augroup END
 " }}}1
 
 "  Tampons {{{1
-" ------------------------------------------------------------------------
 
 " Autorise les fichiers modifiés à être cachés
 
@@ -709,7 +674,6 @@ set bufhidden=hide
 " }}}1
 
 "  Onglets {{{1
-" ------------------------------------------------------------------------
 
 " Barre d'onglets {{{2
 
@@ -736,17 +700,14 @@ set tabpagemax=50
 " }}}1
 
 "  Différences entre fichiers {{{1
-" ------------------------------------------------------------------------
 
 set diffopt=filler,context:4,vertical,foldcolumn:2
 
 " }}}1
 
 "  Labels, etiquettes {{{1
-" ------------------------------------------------------------------------
 
 "  Tags {{{2
-" ------------------------------------------------------------------------
 
 " Voir autocommandes.vim
 
@@ -757,7 +718,6 @@ set diffopt=filler,context:4,vertical,foldcolumn:2
 " }}}2
 
 "  Cscope {{{2
-" ------------------------------------------------------------------------
 
 set cscopeverbose
 
@@ -795,7 +755,6 @@ set cscopepathcomp=0
 " }}}1
 
 "  Compilation de fichiers {{{1
-" ------------------------------------------------------------------------
 
 set makeprg='make'
 
@@ -805,7 +764,6 @@ set makeef=
 " }}}1
 
 "  Maps {{{1
-" ------------------------------------------------------------------------
 
 " Idées {{{2
 
@@ -834,7 +792,6 @@ set makeef=
 " }}}2
 
 "  Options {{{2
-" ------------------------------------------------------------------------
 
 " Temps (en millisecondes)
 " avant de considérer un map ambigu comme complet
@@ -861,7 +818,6 @@ let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
 " }}}2
 
 "  Aide {{{2
-" ------------------------------------------------------------------------
 
 nnoremap <M-a> :tab help<space>
 nnoremap <M-S-a> :tab helpgrep<space>
@@ -898,7 +854,6 @@ nnoremap <D-z> :se fo-=a<cr>
 " }}}2
 
 "  Fichiers {{{2
-" ------------------------------------------------------------------------
 
 nnoremap <F1> :wa<cr>
 nnoremap <F2> :e!<cr>
@@ -994,7 +949,6 @@ nnoremap <D-Down>  <C-W><Down>
 " }}}2
 
 "  Onglets {{{2
-" ------------------------------------------------------------------------
 
 nnoremap <m-t> :tabnew<cr>
 
@@ -1057,7 +1011,6 @@ nnoremap ]<c-l> :lnfile<cr>
 " }}}2
 
 "  Tags {{{2
-" ------------------------------------------------------------------------
 
 nnoremap [<m-t> :tprevious<cr>
 nnoremap ]<m-t> :tnext<cr>
@@ -1071,14 +1024,12 @@ nnoremap <m-s-j> :tab tj /
 " }}}2
 
 "  Informations {{{2
-" ------------------------------------------------------------------------
 
 nnoremap <C-G> 2<C-G>
 
 " }}}2
 
 "  Redirection {{{2
-" ------------------------------------------------------------------------
 
 com! -nargs=* -complete=command BibliothequeRedirToBuffer call bibliotheque#redirToBuffer(<f-args>)
 
@@ -1087,7 +1038,6 @@ nnoremap <D-lt> :BibliothequeRedirToBuffer<space>
 " }}}2
 
 "  Déplacements & Copie {{{2
-" ------------------------------------------------------------------------
 
 " Début & Fin de fichier {{{3
 
@@ -1136,7 +1086,6 @@ nnoremap ' `
 " }}}2
 
 "  Recherche & Remplacement {{{2
-" ------------------------------------------------------------------------
 
 " Recherche d’un mot {{{3
 
@@ -1171,7 +1120,6 @@ nnoremap <D-G> :BibliothequeVimgrep<cr>
 " }}}3
 
 "  Remplacement {{{3
-" ------------------------------------------------------------------------
 
 nnoremap \: :s:\<\>::<left><left><left><left>
 
@@ -1194,7 +1142,6 @@ vnoremap \: :s:\<\>::<left><left><left><left>
 " }}}2
 
 "  Copier / Coller {{{2
-" ------------------------------------------------------------------------
 
 "  Copie jusqu'à la fin de la ligne pour rester consistant avec D et C
 
@@ -1221,7 +1168,6 @@ inoremap <S-Insert> <C-O>"*p
 " }}}2
 
 "  Annulation {{{2
-" ------------------------------------------------------------------------
 
 " <C-G>u entame un nouvel atome d'undo {{{3
 
@@ -1242,7 +1188,6 @@ vnoremap . :normal .<CR>
 " }}}2
 
 "  Pliage {{{2
-" ------------------------------------------------------------------------
 
 nnoremap g( (
 nnoremap g) (
@@ -1265,7 +1210,6 @@ vnoremap (z [z
 " }}}2
 
 "  Complétion {{{2
-" ------------------------------------------------------------------------
 
 inoremap <PageUp> <C-P>
 inoremap <PageDown> <C-N>
@@ -1372,7 +1316,6 @@ nnoremap \, :exec '!'.getline('.')<CR>
 " }}}2
 
 "  Orthographe {{{2
-" ------------------------------------------------------------------------
 
 "nnoremap <silent> \o :setlocal spell!<cr>
 
@@ -1381,7 +1324,6 @@ nnoremap <silent> <D-o> :setlocal spell!<cr>
 " }}}2
 
 "  Informations {{{2
-" ------------------------------------------------------------------------
 
 nnoremap \it :echo bibliotheque#tailleFichier()<cr>
 
@@ -1390,7 +1332,6 @@ nnoremap \ih :echo bibliotheque#highlightGroup()<cr>
 " }}}2
 
 "  Shell {{{2
-" ------------------------------------------------------------------------
 
 nnoremap \s :tabe ~/racine/snippet/shell/hist-$OPERASYS.zsh<cr>
 nnoremap \w :w! >> ~/racine/snippet/shell/hist-$OPERASYS.zsh<cr>
@@ -1473,7 +1414,6 @@ nnoremap \m :call mail#bibliotheque#envoieArchive()<cr>
 " }}}1
 
 "  Abréviations {{{1
-" ------------------------------------------------------------------------
 
 " Abréviations {{{2
 
@@ -1497,10 +1437,8 @@ iab sosu sous
 " }}}1
 
 "  Présentation {{{1
-" ------------------------------------------------------------------------
 
 "  Lignes {{{2
-" ------------------------------------------------------------------------
 
 " Numérotation
 
@@ -1526,14 +1464,12 @@ set breakat=" ^I!@*-+;:,./?"
 " }}}2
 
 "  Caractères non imprimables {{{2
-" ------------------------------------------------------------------------
 
 "set display+=uhex
 
 " }}}2
 
 "  Mise en évidence {{{2
-" ------------------------------------------------------------------------
 
 " Souligne une colonne après textwidth
 " ------------------------------------
@@ -1545,7 +1481,6 @@ set breakat=" ^I!@*-+;:,./?"
 " }}}2
 
 "  Correspondances {{{2
-" ------------------------------------------------------------------------
 
 set matchpairs=(:),{:},[:],<:>
 
@@ -1561,7 +1496,6 @@ set matchtime=7
 " }}}2
 
 "  Défilement {{{2
-" ------------------------------------------------------------------------
 
 " Nombre de lignes qui défilent lors d’un <C-U> <C-D>
 
@@ -1588,7 +1522,6 @@ set scrolljump=1
 " }}}2
 
 "  Tabulation et espaces de fin de lignes {{{2
-" ------------------------------------------------------------------------
 
 "set listchars+=tab:>-,trail:-
 
@@ -1606,7 +1539,6 @@ set listchars+=conceal:Δ
 " }}}2
 
 "  Curseur {{{2
-" ------------------------------------------------------------------------
 
 " Essaye de garder le curseur dans la même colonne
 " quand on change de ligne
@@ -1640,7 +1572,6 @@ set splitbelow
 " }}}2
 
 "  Messages {{{2
-" ------------------------------------------------------------------------
 
 " Rapport à partir de 0 lignes modifiées,
 " autrement dit tout le temps
@@ -1657,7 +1588,6 @@ set showmode
 " }}}2
 
 "  Barre de statut {{{2
-" ------------------------------------------------------------------------
 
 " Affiche la position du curseur ligne, colonne
 " ------------------------------------
@@ -1707,7 +1637,6 @@ endif
 " }}}2
 
 "  Zone de commande {{{2
-" ------------------------------------------------------------------------
 
 " Hauteur
 " ------------------------------------
@@ -1729,17 +1658,14 @@ set cmdheight=5
 " }}}1
 
 "  Syntaxe {{{1
-" ------------------------------------------------------------------------
 
 "  Activation {{{2
-" ------------------------------------------------------------------------
 
 syntax enable
 
 " }}}2
 
 "  Options {{{2
-" ------------------------------------------------------------------------
 
 "syntax sync fromstart
 
@@ -1780,14 +1706,12 @@ endif
 " }}}1
 
 "  Auto-commandes {{{1
-" ------------------------------------------------------------------------
 
 source ~/racine/config/edit/neovim/autocommandes.vim
 
 " }}}1
 
 "  Types de fichiers {{{1
-" ------------------------------------------------------------------------
 
 "filetype plugin indent on
 
@@ -1800,7 +1724,6 @@ filetype indent on
 " }}}1
 
 "  Thèmes {{{1
-" ------------------------------------------------------------------------
 
 colo personnel
 
