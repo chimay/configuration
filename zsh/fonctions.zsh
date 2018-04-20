@@ -4,12 +4,90 @@
 
 # Pour recompiler :
 # voir make dans
-# ~/racine/dotdir/zsh/autoload/compile.zsh
+# ~/racine/dotdir/zsh/autoload/Makefile
 
 for fichier in ~/racine/dotdir/zsh/autoload/*/*(.:t)
 do
 	autoload $fichier
 done
+
+# }}}1
+
+# Fonctions ordinaires {{{1
+
+# ssh {{{2
+
+ssh() {
+
+	local code=0
+	local ancien
+
+	ancien=$(tmux display-message -p '#{window_name}')
+
+	if [ $TERM = tmux -o $TERM = tmux-256color ]
+	then
+		tmux rename-window "$*"
+
+        command ssh "$@"
+
+		code=$?
+    else
+        command ssh "$@"
+
+		code=$?
+    fi
+
+	tmux rename-window $ancien
+
+	return $code
+}
+
+# }}}2
+
+# pg {{{2
+
+pg () {
+	command ps auxww | command grep -v grep | command grep --color=never $1
+}
+
+# }}}2
+
+# pid {{{2
+
+pid () {
+	command ps auxww | command grep -v grep | command grep --color=never $1 | awk '{print $2}'
+}
+
+
+# }}}2
+
+# pstop {{{2
+
+pstop () {
+	local reponse pid
+
+	command ps auxww | command grep -v grep | command grep --color=never $1
+
+	echo
+	echo -n "Voulez-vous arrêter ces processus ? (y/n, o/n) "
+	read reponse
+	echo
+
+	if [ $reponse = y -o $reponse = o -o $reponse = yes -o $reponse = oui ]
+	then
+		pid=$(command ps auxww | command grep -v grep | command grep --color=never $1 | awk '{print $2}')
+
+		echo "kill $=pid"
+		echo
+
+		kill $=pid
+	else
+		return 0
+	fi
+
+}
+
+# }}}2
 
 # }}}1
 
