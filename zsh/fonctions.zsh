@@ -15,36 +15,16 @@ done
 
 # Fonctions ordinaires {{{1
 
-# ssh {{{2
+# grep {{{2
 
-ssh() {
+grep () {
 
-	local code=0
-	local ancien
-
-	ancien=$(tmux display-message -p '#{window_name}')
-
-	if [ $TERM = tmux -o $TERM = tmux-256color ]
-	then
-		tmux rename-window "$*"
-
-        command ssh "$@"
-
-		code=$?
-    else
-        command ssh "$@"
-
-		code=$?
-    fi
-
-	tmux rename-window $ancien
-
-	return $code
+	command grep --color=never $* | sed 's/^/  /'
 }
 
 # }}}2
 
-# pg {{{2
+# pg : process grep {{{2
 
 pg () {
 	command ps auxww | command grep -v grep | command grep --color=never $1
@@ -52,7 +32,7 @@ pg () {
 
 # }}}2
 
-# pid {{{2
+# pid : grep process id(s) {{{2
 
 pid () {
 	command ps auxww | command grep -v grep | command grep --color=never $1 | awk '{print $2}'
@@ -61,7 +41,7 @@ pid () {
 
 # }}}2
 
-# pstop {{{2
+# pstop : process stop {{{2
 
 pstop () {
 	local reponse pid
@@ -85,6 +65,125 @@ pstop () {
 		return 0
 	fi
 
+}
+
+# }}}2
+
+# nf : nombre-de-fichiers {{{2
+
+nf () {
+	local arguments
+	local repertoire
+
+	if (( $# == 0 ))
+	then
+		arguments=.
+	else
+		arguments=($@)
+	fi
+
+	for repertoire in $arguments
+	do
+		[[ -d $repertoire ]] || continue
+
+		echo "`print -l ${repertoire}/**/*(.) | wc -l` : $repertoire"
+	done
+}
+
+# }}}2
+
+# err: display to stderr {{{2
+
+err () {
+
+	print "$@" 1>&2
+}
+
+# }}}2
+
+# x : échange des noms de fichiers {{{2
+
+x () {
+	(( $# < 2 )) && {
+		echo "Usage : x <file-1> <file 2>"
+		echo
+		return 1
+	}
+
+	local TMPFILE=tmp-$1-$2.$$
+
+	mv "$1" $TMPFILE
+
+	mv "$2" "$1"
+
+	mv $TMPFILE "$2"
+}
+
+# }}}2
+
+# pageur {{{2
+
+pageur () {
+	local less
+
+	less="less --lesskey-file=$HOME/racine/built/less/key.out"
+
+	(( $# == 0 )) && {
+
+		$=less .
+
+		return 0
+	}
+
+	$=less "$@"
+}
+
+# }}}2
+
+# commande-mplayer {{{2
+
+commande-mplayer () {
+
+	echo $* > ~/racine/run/fifo/mplayer
+}
+
+# }}}2
+
+# lh : liste-recents {{{2
+
+lh () {
+
+	command ls -lht "$@" | command head -n 13
+}
+
+# }}}2
+
+# ssh {{{2
+
+ssh() {
+
+	local code=0
+	local ancien
+	local nom="${*%.*}"
+
+	ancien=$(tmux display-message -p '#{window_name}')
+
+	if [ $TERM = tmux -o $TERM = tmux-256color ]
+	then
+		tmux rename-window "$nom"
+
+        command ssh "$@"
+
+		code=$?
+    else
+        command ssh "$@"
+
+		code=$?
+    fi
+
+	tmux rename-window $ancien
+
+	return $code
 }
 
 # }}}2
