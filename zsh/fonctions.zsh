@@ -265,7 +265,7 @@ function precmd {
 
 # Preexec {{{2
 
-typeset -ga peexec_functions
+typeset -ga preexec_functions
 
 function preexec {
 
