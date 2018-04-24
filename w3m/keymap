@@ -12,23 +12,30 @@
 
 # Personnel {{{1
 
-keymap	H	HELP
+keymap	h	HELP
+
 keymap	q	ABORT
 keymap	Q	QUIT
 
-keymap	u	GOTO
-keymap	U	PEEK_LINK
-keymap	o	LOAD
+keymap	o	GOTO
+keymap	O	GOTO_RELATIVE
+keymap	u	PEEK_LINK
+keymap	f	LOAD
 
 keymap	r	RELOAD
 
 keymap	i	INFO
 keymap	C-g	LINE_INFO
 
-keymap	h	MOVE_LEFT1
-keymap	j	MOVE_DOWN1
-keymap	k	MOVE_UP1
-keymap	l	MOVE_RIGHT1
+keymap	C-b	MOVE_LEFT1
+keymap	C-n	MOVE_DOWN1
+keymap	C-p	MOVE_UP1
+keymap	C-f	MOVE_RIGHT1
+
+keymap	j	UP
+keymap	k	DOWN
+
+keymap	l	LIST
 
 keymap	+	NEXT_LINK
 keymap	-	PREV_LINK
@@ -42,8 +49,8 @@ keymap	b	PREV_PAGE
 # DEL = BackSpace
 keymap	DEL	BACK
 keymap	B	BACK
-keymap	C-b	PREV
-keymap	C-f	NEXT
+keymap	H	PREV
+keymap	L	NEXT
 keymap	=	SELECT_MENU
 
 keymap	*	HISTORY
@@ -53,17 +60,31 @@ keymap	&	BOOKMARK
 
 keymap	t	TAB_LINK
 keymap	T	NEW_TAB
-keymap	X	CLOSE_TAB
+keymap	d	CLOSE_TAB
+keymap	J	PREV_TAB
+keymap	K	NEXT_TAB
 keymap	\^	PREV_TAB
 keymap	$	NEXT_TAB
 
 keymap	w	SAVE_SCREEN
 
-keymap	O	OPTIONS
+keymap	C-o	OPTIONS
 
 # }}}1
 
 # Par défaut {{{1
+
+# A sample of ~/.w3m/keymap (default)
+#
+# Ctrl  : C-, ^
+# Escape: ESC-, M-, ^[
+# Space : SPC, ' '
+# Tab   : TAB, ^i, ^I
+# Delete: DEL, ^?
+# Up    : UP, ^[[A
+# Down  : DOWN, ^[[B
+# Right : RIGHT, ^[[C
+# Left  : LEFT, ^[[D
 
 # keymap	C-@	MARK
 # keymap	C-a	LINE_BEGIN
@@ -197,4 +218,3 @@ keymap	O	OPTIONS
 # keymap	M-[28~	MENU
 
 # }}}1
-
