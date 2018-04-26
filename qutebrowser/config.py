@@ -67,7 +67,7 @@ c.completion.cmd_history_max_items = 30000
 
 ## The height of the completion, in px or as percentage of the window.
 ## Type: PercOrInt
-# c.completion.height = '50%'
+c.completion.height = '75%'
 
 ## Move on to the next part when there's only one possible completion
 ## left.
@@ -841,7 +841,9 @@ c.statusbar.position = 'bottom'
 ##   - bottom
 ##   - left
 ##   - right
-c.tabs.position = 'top'
+# c.tabs.position = 'top'
+c.tabs.position = 'bottom'
+# c.tabs.position = 'left'
 # c.tabs.position = 'right'
 
 ## Which tab to select when the focused tab is removed.
@@ -898,11 +900,7 @@ c.tabs.position = 'top'
 ## The width of the tab bar if it's vertical, in px or as percentage of
 ## the window.
 ## Type: PercOrInt
-c.tabs.width.bar = '20%'
-
-## Width of the progress indicator (0 to disable).
-## Type: Int
-# c.tabs.width.indicator = 3
+# c.tabs.width = '20%'
 
 ## Whether to wrap when changing tabs.
 ## Type: Bool
@@ -1030,7 +1028,10 @@ c.colors.completion.item.selected.fg = 'black'
 
 ## Foreground color of the matched text in the completion.
 ## Type: QssColor
-# c.colors.completion.match.fg = '#ff4444'
+# c.colors.completion.match.fg = '#bb4444'
+# c.colors.completion.match.fg = '#88421d'
+# c.colors.completion.match.fg = '#872e30'
+c.colors.completion.match.fg = '#7c5e33'
 
 ## Background color of the completion widget for odd rows.
 ## Type: QssColor
@@ -1209,7 +1210,7 @@ c.colors.statusbar.insert.fg = 'green'
 
 ## Background color of the statusbar.
 ## Type: QssColor
-# c.colors.statusbar.normal.bg = 'black'
+c.colors.statusbar.normal.bg = 'black'
 
 ## Foreground color of the statusbar.
 ## Type: QssColor
@@ -1259,10 +1260,12 @@ c.colors.statusbar.url.success.https.fg = '#5b3c11'
 
 ## Background color of unselected even tabs.
 ## Type: QtColor
+# c.colors.tabs.even.bg = '#ffffff'
 c.colors.tabs.even.bg = 'black'
 
 ## Foreground color of unselected even tabs.
 ## Type: QtColor
+# c.colors.tabs.even.fg = 'black'
 c.colors.tabs.even.fg = '#5b3c11'
 
 ## Color for the tab indicator on errors.
@@ -1288,14 +1291,17 @@ c.colors.tabs.even.fg = '#5b3c11'
 
 ## Background color of unselected odd tabs.
 ## Type: QtColor
+# c.colors.tabs.odd.bg = '#ffffff'
 c.colors.tabs.odd.bg = 'black'
 
 ## Foreground color of unselected odd tabs.
 ## Type: QtColor
+# c.colors.tabs.odd.fg = 'black'
 c.colors.tabs.odd.fg = '#5b3c11'
 
 ## Background color of selected even tabs.
 ## Type: QtColor
+# c.colors.tabs.selected.even.bg = '#ffdddd'
 c.colors.tabs.selected.even.bg = '#5b3c11'
 
 ## Foreground color of selected even tabs.
@@ -1304,6 +1310,7 @@ c.colors.tabs.selected.even.fg = 'black'
 
 ## Background color of selected odd tabs.
 ## Type: QtColor
+# c.colors.tabs.selected.odd.bg = '#ffdddd'
 c.colors.tabs.selected.odd.bg = '#5b3c11'
 
 ## Foreground color of selected odd tabs.
@@ -1313,7 +1320,7 @@ c.colors.tabs.selected.odd.fg = 'black'
 ## Background color for webpages if unset (or empty to use the theme's
 ## color)
 ## Type: QtColor
-c.colors.webpage.bg = 'lightgrey'
+c.colors.webpage.bg = 'white'
 
 # }}}1
 
@@ -1324,8 +1331,16 @@ c.colors.webpage.bg = 'lightgrey'
 config.bind("<F1>", 'help')
 config.bind("<F2>", 'set-cmd-text -s :help')
 
+config.bind('<F5>', 'reload')
+config.bind('<F6>', 'adblock-update')
+
 config.bind('O', 'set-cmd-text -s :open')
 config.bind('o', 'set-cmd-text -s :open -t')
+
+config.bind('gO', 'set-cmd-text :open {url:pretty}')
+config.bind('go', 'set-cmd-text :open -t -r {url:pretty}')
+
+config.bind('s', 'stop')
 
 config.bind('gg', 'scroll-to-perc 0')
 config.bind('G', 'scroll-to-perc 100')
@@ -1334,12 +1349,18 @@ config.bind("<Backspace>", 'back')
 
 config.bind('m', 'enter-mode set_mark')
 config.bind('M', 'bookmark-add')
-config.bind('µ', 'quickmark-save')
+
+config.bind("ù", 'set-cmd-text -s :quickmark-load -t')
+config.bind('%', 'quickmark-save')
 
 config.bind("=", 'set-cmd-text -s :buffer')
 
-config.bind("ù", 'set-cmd-text -s :session-load -c')
-config.bind("*", 'set-cmd-text -s :session-save -o')
+config.bind('J', 'tab-prev')
+config.bind('K', 'tab-next')
+
+config.bind("*", 'set-cmd-text -s :session-load -c')
+config.bind("µ", 'set-cmd-text -s :session-save -o')
+config.bind("<Shift-µ>", 'set-cmd-text -s :session-save -o')
 
 config.bind("§", 'spawn -u qutedmenu tab')
 config.bind("à", 'spawn -u taskadd proj:lecture')
@@ -1354,6 +1375,7 @@ config.bind("<Meta-i>", 'set-cmd-text -s :open -t !gi')
 config.bind("<Meta-l>", 'set-cmd-text -s :open -t !linuxfr')
 config.bind("<Meta-r>", 'set-cmd-text :open -t !reddit')
 config.bind("<Meta-s>", 'set-cmd-text -s :open -t !stackexchange')
+config.bind("<Meta-t>", 'set-cmd-text -s :open -t !gt')
 config.bind("<Meta-w>", 'set-cmd-text :open -t !w')
 config.bind("<Meta-y>", 'set-cmd-text -s :open -t !youtube')
 
@@ -1367,10 +1389,16 @@ config.bind("<Alt-s>", 'open -t http://stackexchange.com')
 config.bind("<Alt-w>", 'open -t http://wipipedia.org')
 config.bind("<Alt-y>", 'open -t http://youtube.com')
 
+config.bind("<Alt-d>", 'set-cmd-text -s :open -t !d')
+config.bind("<Alt-t>", 'set-cmd-text -s :open -t !t')
+
 # config.bind("<Alt-d>", 'open -t !drive')
 # config.bind("<Alt-m>", 'open -t !gmail')
 
 # config.bind("<F5>", 'spawn firefox {url:pretty}')
+
+config.bind(';o', 'hint links fill :open -t -r {hint-url}')
+config.bind(';O', 'hint links fill :open {hint-url}')
 
 # config.bind("'", 'enter-mode jump_mark')
 # config.bind('+', 'zoom-in')
@@ -1512,10 +1540,10 @@ config.bind("<Alt-y>", 'open -t http://youtube.com')
 # config.bind('wo', 'set-cmd-text -s :open -w')
 # config.bind('wp', 'open -w -- {clipboard}')
 # config.bind('xO', 'set-cmd-text :open -b -r {url:pretty}')
-# config.bind('xb', 'config-cycle statusbar.hide')
 # config.bind('xo', 'set-cmd-text -s :open -b')
-# config.bind('xt', 'config-cycle tabs.show always switching')
-# config.bind('xx', 'config-cycle statusbar.hide ;; config-cycle tabs.show always switching')
+config.bind('xb', 'config-cycle statusbar.hide')
+config.bind('xt', 'config-cycle tabs.show always switching')
+config.bind('xx', 'config-cycle statusbar.hide ;; config-cycle tabs.show always switching')
 # config.bind('yD', 'yank domain -s')
 # config.bind('yP', 'yank pretty-url -s')
 # config.bind('yT', 'yank title -s')
@@ -1564,6 +1592,9 @@ config.bind("<Alt-y>", 'open -t http://youtube.com')
 # Bindings for command mode {{{1
 
 config.bind('<Ctrl-I>', 'completion-item-focus next', mode='command')
+
+config.bind('<Up>', 'command-history-prev', mode='command')
+config.bind('<Down>', 'command-history-next', mode='command')
 
 # config.bind('<Alt-B>', 'rl-backward-word', mode='command')
 # config.bind('<Alt-Backspace>', 'rl-backward-kill-word', mode='command')
