@@ -1,11 +1,11 @@
 
 #+STARTUP: showall
 
-* Warning
-
-I try to be mindful when I code, but some bugs might remain, so be careful.
-
-
 * Configuration files
 
 Some dot files.
+
+
+* Warning
+
+I try to be mindful when I code, but some bugs might remain, so be careful.
