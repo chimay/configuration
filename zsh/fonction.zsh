@@ -45,7 +45,9 @@ pid () {
 
 pstop () {
 
-	local identifiants reponse
+	local identifiants reponse signal
+
+	reponse=n
 
 	command ps auxww | command grep -v grep | command grep --color=never $1
 	echo
@@ -55,19 +57,50 @@ pstop () {
 	echo $=identifiants
 	echo
 
-	echo -n "Voulez-vous arrêter ces processus ? (y/n, o/n) "
+	echo -n "Voulez-vous envoyer un signal à ces processus ? (y/n, o/n) "
 	read reponse
 	echo
 
-	if [ $reponse = y -o $reponse = o -o $reponse = yes -o $reponse = oui ]
-	then
-		echo "kill $=identifiants"
+	[ $reponse = y -o $reponse = o -o $reponse = yes -o $reponse = oui ] || return 0
+
+	echo -n "Signal [TERM] (l=liste des signaux) : "
+	read signal
+	echo
+
+	while [ $signal = l ]
+	do
+		echo "Signal		Valeur	Action	Commentaire"
+		echo "-----------------------------------------"
+		echo "HUP        1       Term    Hangup detected on controlling terminal or death of controlling process"
+		echo "INT        2       Term    Interrupt from keyboard"
+		echo "QUIT       3       Core    Quit from keyboard"
+		echo "ILL        4       Core    Illegal Instruction"
+		echo "ABRT       6       Core    Abort signal from abort(3)"
+		echo "FPE        8       Core    Floating-point exception"
+		echo "KILL       9       Term    Kill signal"
+		echo "SEGV      11       Core    Invalid memory reference"
+		echo "PIPE      13       Term    Broken pipe: write to pipe with no readers; see pipe(7)"
+		echo "ALRM      14       Term    Timer signal from alarm(2)"
+		echo "TERM      15       Term    Termination signal"
+		echo "USR1   30,10,16    Term    User-defined signal 1"
+		echo "USR2   31,12,17    Term    User-defined signal 2"
+		echo "CHLD   20,17,18    Ign     Child stopped or terminated"
+		echo "CONT   19,18,25    Cont    Continue if stopped"
+		echo "STOP   17,19,23    Stop    Stop process"
+		echo "TSTP   18,20,24    Stop    Stop typed at terminal"
+		echo "TTIN   21,21,26    Stop    Terminal input for background process"
+		echo "TTOU   22,22,27    Stop    Terminal output for background process"
 		echo
 
-		kill $=identifiants
-	else
-		return 0
-	fi
+		echo -n "Signal [TERM] (l=liste des signaux) : "
+		read signal
+		echo
+	done
+
+	echo "kill -$signal $=identifiants"
+	echo
+
+	kill -$signal $=identifiants
 
 }
 
