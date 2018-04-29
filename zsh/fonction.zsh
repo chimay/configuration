@@ -44,23 +44,27 @@ pid () {
 # pstop : process stop {{{2
 
 pstop () {
-	local reponse pid
+
+	local identifiants reponse
 
 	command ps auxww | command grep -v grep | command grep --color=never $1
-
 	echo
+
+	identifiants=$(command ps auxww | command grep -v grep | command grep --color=never $1 | awk '{print $2}')
+
+	echo $=identifiants
+	echo
+
 	echo -n "Voulez-vous arrêter ces processus ? (y/n, o/n) "
 	read reponse
 	echo
 
 	if [ $reponse = y -o $reponse = o -o $reponse = yes -o $reponse = oui ]
 	then
-		pid=$(command ps auxww | command grep -v grep | command grep --color=never $1 | awk '{print $2}')
-
-		echo "kill $=pid"
+		echo "kill $=identifiants"
 		echo
 
-		kill $=pid
+		kill $=identifiants
 	else
 		return 0
 	fi
@@ -190,6 +194,21 @@ ssh() {
 
 # }}}1
 
+# Fonctions ZLE {{{1
+
+# Copie et désactive région {{{2
+
+copie-et-desactive-region() {
+
+	zle copy-region-as-kill
+
+	(( REGION_ACTIVE == 1 )) && REGION_ACTIVE=0
+}
+
+# }}}2
+
+# }}}1
+
 # Fonctions mathématiques {{{1
 
 # Module {{{2
@@ -224,13 +243,7 @@ typeset -ga chpwd_functions
 
 function chpwd {
 
-	#echo -n $BLEU
-	#dirs -v
-	#echo -n $NEUTRE
-
-	#print -l $PWD >>! $DIRSTACKFILE.ajout
-
-	print -l $PWD ${(u)dirstack} >! $DIRSTACKFILE
+	print -l $PWD ${(u)dirstack} >! $REPERTOIRES_FICHIER
 }
 
 # }}}2
