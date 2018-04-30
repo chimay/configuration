@@ -23,7 +23,9 @@ grep () {
 
 	motif=${1:-''}
 
-	fichiers=${2:-''}
+	(( $# > 0 )) && shift
+
+	fichiers=(${*:-()})
 
 	(( $#motif > 0 )) || {
 
@@ -34,7 +36,7 @@ grep () {
 
 	(( $#motif > 0 )) || return 1
 
-	(( $#chemin > 0 )) || fichiers=(**/*(.))
+	(( $#fichiers > 0 )) || fichiers=(**/*(.))
 
 	command grep --color=never $motif $=fichiers | sed 's/^/  /'
 }
