@@ -19,7 +19,20 @@ done
 
 grep () {
 
-	command grep --color=never $* | sed 's/^/  /'
+	local motif
+
+	motif=$1
+
+	(( $#motif > 0 )) || {
+
+		echo -n "Motif : "
+		read motif
+		echo
+	}
+
+	(( $#motif > 0 )) || return 1
+
+	command grep --color=never $motif | sed 's/^/  /'
 }
 
 # }}}2
@@ -27,7 +40,21 @@ grep () {
 # pg : process grep {{{2
 
 pg () {
-	command ps auxww | command grep -v grep | command grep --color=never $1
+
+	local motif
+
+	motif=$1
+
+	(( $#motif > 0 )) || {
+
+		echo -n "Motif : "
+		read motif
+		echo
+	}
+
+	(( $#motif > 0 )) || return 1
+
+	command ps auxww | command grep -v grep | command grep --color=never $motif
 }
 
 # }}}2
@@ -35,7 +62,21 @@ pg () {
 # pid : grep process id(s) {{{2
 
 pid () {
-	command ps auxww | command grep -v grep | command grep --color=never $1 | awk '{print $2}'
+
+	local motif
+
+	motif=$1
+
+	(( $#motif > 0 )) || {
+
+		echo -n "Motif : "
+		read motif
+		echo
+	}
+
+	(( $#motif > 0 )) || return 1
+
+	command ps auxww | command grep -v grep | command grep --color=never $motif | awk '{print $2}'
 }
 
 
@@ -45,14 +86,25 @@ pid () {
 
 pstop () {
 
-	local identifiants reponse signal
+	local motif identifiants reponse signal
+
+	motif=$1
+
+	(( $#motif > 0 )) || {
+
+		echo -n "Motif : "
+		read motif
+		echo
+	}
+
+	(( $#motif > 0 )) || return 1
 
 	reponse=n
 
-	command ps auxww | command grep -v grep | command grep --color=never $1
+	command ps auxww | command grep -v grep | command grep --color=never $motif
 	echo
 
-	identifiants=$(command ps auxww | command grep -v grep | command grep --color=never $1 | awk '{print $2}')
+	identifiants=$(command ps auxww | command grep -v grep | command grep --color=never $motif | awk '{print $2}')
 
 	echo $=identifiants
 	echo
@@ -63,9 +115,11 @@ pstop () {
 
 	[ $reponse = y -o $reponse = o -o $reponse = yes -o $reponse = oui ] || return 0
 
-	echo -n "Signal [TERM] (l=liste des signaux) : "
+	echo -n "Signal [1=TERM] (l=liste des signaux) : "
 	read signal
 	echo
+
+	(( $#signal == 0 )) && signal=1
 
 	while [ $signal = l ]
 	do
@@ -95,7 +149,10 @@ pstop () {
 		echo -n "Signal [TERM] (l=liste des signaux) : "
 		read signal
 		echo
+
+		(( $#signal == 0 )) && signal=1
 	done
+
 
 	echo "kill -$signal $=identifiants"
 	echo
