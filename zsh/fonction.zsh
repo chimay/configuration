@@ -19,9 +19,11 @@ done
 
 grep () {
 
-	local motif
+	local motif fichiers
 
-	motif=$1
+	motif=${1:-''}
+
+	fichiers=${2:-''}
 
 	(( $#motif > 0 )) || {
 
@@ -32,7 +34,9 @@ grep () {
 
 	(( $#motif > 0 )) || return 1
 
-	command grep --color=never $motif | sed 's/^/  /'
+	(( $#chemin > 0 )) || fichiers=(**/*(.))
+
+	command grep --color=never $motif $=fichiers | sed 's/^/  /'
 }
 
 # }}}2
@@ -43,7 +47,7 @@ pg () {
 
 	local motif
 
-	motif=$1
+	motif=${1:-''}
 
 	(( $#motif > 0 )) || {
 
@@ -65,7 +69,7 @@ pid () {
 
 	local motif
 
-	motif=$1
+	motif=${1:-''}
 
 	(( $#motif > 0 )) || {
 
@@ -88,7 +92,7 @@ pstop () {
 
 	local motif identifiants reponse signal
 
-	motif=$1
+	motif=${1:-''}
 
 	(( $#motif > 0 )) || {
 
@@ -115,7 +119,7 @@ pstop () {
 
 	[ $reponse = y -o $reponse = o -o $reponse = yes -o $reponse = oui ] || return 0
 
-	echo -n "Signal [1=TERM] (l=liste des signaux) : "
+	echo -n "Signal [1 = TERM] (l=liste des signaux) : "
 	read signal
 	echo
 
@@ -146,7 +150,7 @@ pstop () {
 		echo "TTOU   22,22,27    Stop    Terminal output for background process"
 		echo
 
-		echo -n "Signal [TERM] (l=liste des signaux) : "
+		echo -n "Signal [1 = TERM] (l=liste des signaux) : "
 		read signal
 		echo
 
