@@ -1,0 +1,5 @@
+(:name eval-in-repl
+       :website "https://github.com/kaz-yos/eval-in-repl"
+       :description "Eval interface for various REPL"
+       :type github
+       :pkgname "kaz-yos/eval-in-repl")
