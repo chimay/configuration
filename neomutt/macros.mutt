@@ -1,0 +1,106 @@
+# vim: set filetype=muttrc :
+
+# Documentation {{{1
+
+# Commandes importantes :
+#
+# macro : définit une macro
+# ------------------------------------
+#
+# exemple : macro index \er '<enter-command>source $my_muttroot/neomuttrc<enter>'
+#
+# push : simule une frappe au clavier
+# ------------------------------------
+#
+# exemple : push "T~d >360d !~F<enter>\;"
+#
+# exec : exécute une fonction
+# ------------------------------------
+#
+# exemples :
+#
+# :exec help
+#
+# :exec first-entry
+#
+# Remarque :
+#
+# exec fonction
+#
+# est équivalent à :
+#
+# push <fonction>
+#
+# Liste des fonctions disponibles
+# ------------------------------------
+#
+# 	/usr/share/doc/neomutt/manual.txt
+#
+# et :
+#
+# 	~/racine/config/mail/neomutt/raccourcis.mutt
+
+# }}}1
+
+# Recharge la configuration {{{1
+# ------------------------------------------------------------------------
+
+# enter-command accède à la ligne de commande de type ex ":"
+
+macro index \cr '<enter-command>source $my_muttroot/neomuttrc<enter>'
+macro pager \cr '<enter-command>source $my_muttroot/neomuttrc<enter>'
+
+# }}}1
+
+# Nettoyage du cache {{{1
+
+macro index dc '<enter-command>set message_cache_clean=yes<enter>'
+macro pager dc '<enter-command>set message_cache_clean=yes<enter>'
+
+# }}}1
+
+# Nombre de lignes d’index dans le pager {{{1
+
+macro pager + '<enter-command>source $my_muttroot/scripts/incremente-index-pager.sh|<enter>'
+macro pager - '<enter-command>source $my_muttroot/scripts/decremente-index-pager.sh|<enter>'
+
+macro pager ,= '<enter-command>set pager_index_lines='
+
+# }}}1
+
+#  Filtrage {{{1
+
+# Affiche les messages non lus
+
+macro index ,n '<limit>~O | ~N<enter><enter-command>exec collapse-all<enter>'
+macro pager ,n '<limit>~O | ~N<enter><enter-command>exec collapse-all<enter>'
+
+# Affiche les messages de moins de 7 jours
+
+macro index ,r '<limit>~d <7d<enter><enter-command>exec collapse-all<enter>'
+macro pager ,r '<limit>~d <7d<enter><enter-command>exec collapse-all<enter>'
+
+# Affiche les messages importants
+
+macro index ,i '<limit>~F<enter><enter-command>exec collapse-all<enter>'
+macro pager ,i '<limit>~F<enter><enter-command>exec collapse-all<enter>'
+
+# Macro qui affiche tous les messages
+
+macro index ,a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
+macro pager ,a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
+
+# }}}1
+
+# Visualisation des liens {{{1
+
+macro pager U <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
+# }}}1
+
+# Ouverture du mail dans un navigateur {{{1
+# ------------------------------------------------------------------------
+
+macro attach V "<pipe-entry>cat >| ~/.cache/neoneomutt/mail.html && qutebrowser ~/.cache/neoneomutt/mail.html<enter>" 'Voir dans qutebrowser'
+
+# }}}1

@@ -3,7 +3,28 @@
 
 * Configuration files
 
-Some dot files.
+Some configuration files.
+
+The keybindings are essentially vim, less or emacs like, depending on
+the context. For example :
+
+  - Vim
+
+    + Mutt index
+
+  - Less
+
+    + Elinks
+
+    + W3m
+
+    + Mutt pager
+
+  - Emacs
+
+    + Zsh
+
+    + Elinks input fields
 
 
 * Warning
