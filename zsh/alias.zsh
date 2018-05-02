@@ -1,7 +1,6 @@
 # vim: set ft=zsh :
 
-#  {{{ Généralités
-# ------------------------------------------------------------------------
+#  Généralités {{{1
 
 # Commande qui ne fait rien
 # REM : pass est une commande de gestion de mot de passe
@@ -17,61 +16,37 @@ alias faux=false
 
 alias mk='make -f ~/racine/bin/make/generique.make'
 
-# }}}
+# }}}1
 
-#  {{{ Historique
-# ------------------------------------------------------------------------
+#  Historique {{{1
 
 alias hs='history -E'
 
 alias scr='script -f -a ~/log/${HOST}/cmdline/terminal.log'
 
-# }}}
+# }}}1
 
 # ------------------------------------
 
-#  {{{ Affichage
-# ------------------------------------------------------------------------
+#  Affichage {{{1
 
 alias e='print -l'
 
-alias ec='print -c'
+# }}}1
 
-alias out=affiche-stdout
-
-alias err=affiche-stderr
-
-alias pag=affiche-fichiers
-
-# }}}
-
-#  {{{ Échange
-
-alias xc=echange
-
-#  }}}
-
-# {{{ Archive
+# Archive {{{1
 
 alias a=archive
 
-# }}}
+# }}}1
 
-# {{{ Chiffrement
-
-alias x=crypte
-
-# }}}
-
-#  {{{ Clavier
-# ------------------------------------------------------------------------
+#  Clavier {{{1
 
 alias azer="setxkbmap be ; xmodmap ~/racine/config/windenv/xmodmap/belge-meta-super-hyper"
 
-# }}}
+# }}}1
 
-#  {{{ Contrôle de version
-# ------------------------------------------------------------------------
+#  Contrôle de version {{{1
 
 alias g='git'
 alias b='bzr'
@@ -81,14 +56,13 @@ alias b='bzr'
 
 #alias vcsh='versys-shell'
 
-alias 2='diff -BN'
+alias 1='diff -BN'
 
 alias p1='patch -p1 < '
 
-# }}}
+# }}}1
 
-#  {{{ Visualisation
-# ------------------------------------------------------------------------
+#  Visualisation {{{1
 
 alias m='pageur'
 
@@ -110,38 +84,36 @@ alias d=zathura
 
 alias i=vimiv
 
+# }}}1
 
-# }}}
+#  Édition {{{1
 
-#  {{{ Édition
-# ------------------------------------------------------------------------
-
-# {{{ Ed
+# Ed {{{2
 # ------------------------------------------------------------
 
-alias ed='ed -v -p " * ed : "'
+alias edi='ed -v -p " * ed : "'
 
-# }}}
+# }}}2
 
-#  {{{ Neovim
+# Vim {{{2
 
-alias nsrv='lance-neovim-serveur'
+alias v='vim'
 
-alias nv=nvim
-
-#  }}}
-
-# {{{ Vim
-
-alias vi='vim'
-
-alias v='/usr/local/bin/vim -u ~/racine/config/edit/vim/rc-viminime.vim'
+alias vi='/usr/local/bin/vim -u ~/racine/config/edit/vim/rc-viminime.vim'
 
 alias sv='sudoedit'
 
-# }}}
+alias 2='vimdiff'
 
-# {{{ Emacs
+# }}}2
+
+#  Neovim {{{2
+
+alias nsrv='lance-neovim-serveur'
+
+#  }}}2
+
+# Emacs {{{2
 # ------------------------------------------------------------
 
 alias esrv='lance-emacs-serveur'
@@ -160,22 +132,25 @@ alias em='emacsclient -t'
 
 alias emopen='emacsclient'
 
-# }}}
+# }}}2
 
-# Spacemacs, Spacevim {{{2
+# Spacemacs {{{2
 
 alias spacemacs='HOME=~/racine/dotdir emacs'
+
+# }}}2
+
+# Spacevim {{{2
 
 alias spacevim='nvim-qt -- -u ~/racine/dotdir/spacevim/init.vim'
 
 # }}}2
 
-# }}}
+# }}}1
 
-#  {{{ Système de fichiers
-# ------------------------------------------------------------------------
+#  Système de fichiers {{{1
 
-# {{{ Liste
+# Liste {{{2
 
 [ $OPERASYS = freebsd ] && {
 
@@ -192,53 +167,40 @@ alias spacevim='nvim-qt -- -u ~/racine/dotdir/spacevim/init.vim'
 	alias ll='ls -l --color=auto'
 }
 
-alias lh='liste-recents'
-alias lt='liste-tout'
+# }}}2
 
-# }}}
+# Répertoires {{{2
 
-# {{{ Infos
-
-alias nf='nombre-de-fichiers'
-
-# }}}
-
-# {{{ Répertoires
-
-alias c='repertoires'
-
-#alias pod='pop-directory'
+alias 0='cd ~/racine/plain'
 
 alias pw='pwd'
 
-# }}}
+# }}}2
 
-# {{{ Arborescence
+# Arborescence {{{2
 
 alias tree='tree -C -A'
 
-alias td=arbre-dossiers
+# }}}2
 
-# }}}
+# Place {{{2
 
-#  {{{ Copie
-# ------------------------------------------------------------------------
+alias df='df -h'
+alias dfc='dfc -c never'
 
-alias lcp='=cp -i'
+alias du='du -sh'
 
-# }}}
+# }}}2
 
-# {{{ Renommage & Déplacement
+# Renommage & Déplacement {{{2
 
 alias mv='mv -i'
 
 alias mm='qmv -f destination-only -d'
 
-# }}}
+# }}}2
 
-# {{{ Suppression
-
-#alias rm='rm -i'
+# Suppression {{{2
 
 alias rm=trash-put
 
@@ -248,21 +210,20 @@ alias trs=trash-restore
 alias tremove=trash-rm
 alias tempty=trash-empty
 
-alias rmrf='/bin/rm -rf'
+alias rmrf='command rm -rf'
 
 alias srm='srm -vvv'
 
-# }}}
+# }}}2
 
-# {{{ Liens
+# Liens {{{2
 
 alias ln='ln -i'
 alias rl='readlink -f'
 
-# }}}
+# }}}2
 
-#  {{{ Synchronisation
-# ------------------------------------------------------------------------
+#  Synchronisation {{{2
 
 alias cp='rsync --verbose --progress --stats --human-readable --itemize-changes \
 	--log-file="$HOME/log/rsync.log" \
@@ -278,61 +239,56 @@ alias sn='rsync --verbose --progress --stats --human-readable --itemize-changes 
 	--owner --group --times --perms --links \
 	--update'
 
-alias 1='unison'
+# Autres options de rsync :
+#
+# -R ou --relative
 
-# }}}
+# }}}2
 
-# {{{ Gestionnaires de fichiers
+# Gestionnaires de fichiers {{{2
 
 alias f='vifm'
 
 alias 3='ranger'
 
-# }}}
+# }}}2
 
-# }}}
+# }}}1
 
-#  {{{ Paquets
-# ------------------------------------------------------------------------
+#  Paquets {{{1
 
 alias pk='pack'
 
-# }}}
+# }}}1
 
-#  {{{ Processus
+#  Processus {{{1
 
- alias pgrep='pgrep -a -x'
- alias pkill='pkill -x'
+alias j='jobs'
 
-alias psgrep='ps auxww | grep -v grep | grep --color=never'
+alias top='htop'
 
- alias fini='mplayer ~/audio/Sonnerie/fini.ogg'
+alias k='kill'
 
-#  }}}
+alias fini='mplayer ~/audio/Sonnerie/fini.ogg'
 
-#  {{{ Manuel & Info
+#  }}}1
+
+#  Manuel & Info {{{1
 
 alias h=man
 
 alias he=w3mman
 
-alias o=info
+alias hi=info
 
 # Arch Linux Wiki
 # offline, mode texte
 
 alias aw=wiki-search
 
-#  }}}
+#  }}}1
 
-#  {{{ Recherche
-# ------------------------------------------------------------------------
-
-alias grep='grep -n --color=never'
-
-[[ -x /usr/bin/vendor_perl/ack ]] && alias ack=/usr/bin/vendor_perl/ack
-
-[[ -x ack-grep ]] && alias ack=ack-grep
+#  Recherche {{{1
 
 alias gv='ag --nocolor --vimgrep --smart-case'
 
@@ -342,56 +298,165 @@ alias lpk='locate -d ~/racine/index/locate/pacman-lib.db -e -A'
 alias lau='locate -d ~/racine/index/locate/audio.db -i -e -A'
 alias lph='locate -d ~/racine/index/locate/photo.db -i -e -A'
 
-# }}}
+# }}}1
 
-# {{{ Dictionnaires
-
-alias sd='sdcv'
-
-# }}}
-
-# {{{ Organisation
+# Organisation {{{1
 
 alias t=task
 
 alias agenda=calcurse
 
-# }}}
+# }}}1
+
+# Courriel {{{1
+
+alias c=neomutt
+
+# }}}1
+
+# Navigateurs {{{1
+
+alias w=w3m
+
+alias ww=elinks
+
+alias www='lynx -cfg=~/racine/config/webrowser/lynx/lynx.cfg -lss=~/racine/config/webrowser/lynx/lynx.lss'
+
+# }}}1
+
+#  Date {{{1
+
+alias jour='date +" [=] %A %d %B %Y  (o) %H : %M : %S  | %:z | "'
+
+# }}}1
+
+#  Langages de script {{{1
+
+#alias irb='irb --simple-prompt'
+
+alias rvm-bash='/bin/bash rvm'
+
+# }}}1
+
+#  Musique, Vidéo {{{1
+
+alias y=joue
+
+alias p=ncmpcpp
+
+alias q=cmus
+
+alias pc=playerctl
+
+# Mplayer {{{2
+# ------------------------------------------------------------
+
+alias mplayerdvd='mplayer -mouse-movements dvdnav://'
+
+# }}}2
+
+# Vlc {{{2
+# ------------------------------------------------------------
+
+#alias vlsh='vlc-shell'
+
+#alias vlc-help='vlc --longhelp --advanced'
+
+#alias vlc-term='vlc -I ncurses --browse-dir ~/audio'
+
+# Serveur
+# ------------------------------------
+
+# Serveur vlc, voir ~/racine/dotdir/zsh/autoload/mov/vlc-shell
+# pour la connexion en console avec complétion
+
+#alias vlc-server='cd ~/audio && vlc -I rc --rc-host 127.0.0.1:8080'
+#alias vlc-extraserver='cd ~/audio && vlc --extraintf rc --rc-host 127.0.0.1:8080'
+
+#alias vlsrv='cd ~/audio && vlc -I rc --rc-host 127.0.0.1:8080'
+#alias vlxsrv='cd ~/audio && vlc --extraintf rc --rc-host 127.0.0.1:8080'
+
+# Serveur http
+
+#alias vlc-http='vlc -I http --http-host 127.0.0.1:8080'
+
+# }}}2
+
+# }}}1
+
+#  Science {{{1
+
+alias 8='cd ~/Documents ; octave --no-gui -q ; cd -'
+
+# }}}1
+
+#  Surveillance système {{{1
+
+alias free='free -m'
+
+alias monte='mount | column -t'
+
+alias journeaux='tail /var/log/mail.* | ccze -A'
+
+# }}}1
+
+# Utilitaires {{{1
+
+alias wo=w
+
+alias wh='which -a'
+
+alias vmstat='vmstat 1 4'
+
+# }}}1
+
+# Dictionnaires {{{1
+
+alias sd='sdcv'
+
+# }}}1
+
+# Applications {{{1
+
+alias nautilus='nautilus --no-desktop'
+
+# }}}1
 
 # ------------------------------------
 
-#  {{{ Précommandes
-# ------------------------------------------------------------------------
+#  Précommandes {{{1
 
 alias mkdir='nocorrect mkdir -p'
 
-# }}}
+# }}}1
 
-#  {{{ Globaux : alias -g
-# ------------------------------------------------------------------------
+#  Globaux : alias -g {{{1
 
-alias -g L='|& command less'
-alias -g LR='|& command less -R'
+alias -g L='|& less'
+alias -g LR='|& less -R'
 
-alias -g U='| view -'
-alias -g V='| vimpager'
+alias -g U='| vimpager'
+alias -g V='| view -'
 
-alias -g R='| command tac'
+alias -g F='| fpp'
 
-alias -g G='| command grep --color=never'
-alias -g S='| command sort'
+alias -g R='| tac'
 
-alias -g H='| command head'
-alias -g T='| command tail'
+alias -g G='| command grep'
+alias -g S='| sort'
 
-alias -g N='| command wc -l'
+alias -g H='| head'
+alias -g T='| tail'
 
-alias -g DS='| command diffstat'
+alias -g N='| wc -l'
 
-# }}}
+alias -g DS='| diffstat'
 
-#  {{{ Suffixes : alias -s
-# ------------------------------------------------------------------------
+# }}}1
+
+#  Suffixes : alias -s {{{1
+
+# Pour choisir le programme qui va ouvrir le fichier, d’après l’extension
 
 alias -s htm='less'
 alias -s html='less'
@@ -413,12 +478,13 @@ alias -s mp3='mplayer'
 alias -s flac='mplayer'
 alias -s wav='mplayer'
 
-# }}}
+# }}}1
 
-#  {{{ Alias de répertoires : hash -d
-# ------------------------------------------------------------------------
+#  Alias de répertoires : hash -d {{{1
 
 hash -d racine=~/racine
+
+# Dossiers dans racine {{{2
 
 hash -d archive=~/racine/archive
 hash -d automat=~/racine/automat
@@ -467,13 +533,21 @@ hash -d trash=~/racine/trash
 hash -d varia=~/racine/varia
 hash -d void=~/racine/void
 
-#  {{{ Site
+# }}}2
+
+#  Site {{{2
 
 hash -d eclats2vers=~/racine/site/orgmode
 
-#  }}}
+#  }}}2
 
-# {{{ Shell, Script
+# Terminal {{{2
+
+hash -d tmuxconf=~/racine/config/multiplex/tmux
+
+# }}}2
+
+# Shell, Script {{{2
 # ------------------------------------
 
 hash -d historique=~/racine/dotdir/zsh
@@ -481,14 +555,14 @@ hash -d historique=~/racine/dotdir/zsh
 hash -d zconf=$RACINE_ZSH
 hash -d zdot=~/racine/dotdir/zsh
 
-# }}}
+# }}}2
 
-# {{{ Edit
+# Edit {{{2
 # ------------------------------------
 
-hash -d nconf=~/racine/config/edit/neovim
+hash -d neoconf=~/racine/config/edit/neovim
 
-hash -d nhist=~/racine/hist/neovim
+hash -d neohist=~/racine/hist/neovim
 
 # ------------
 
@@ -504,9 +578,15 @@ hash -d mdot=~/racine/dotdir/emacs.d
 
 hash -d pman=~/racine/plugin/manager
 
-# }}}
+# }}}2
 
-# {{{ Multimedia
+# Courriel {{{2
+
+hash -d muttconf=~/racine/config/mail/neomutt
+
+# }}}2
+
+# Multimedia {{{2
 # ------------------------------------
 
 hash -d aartistes=~/audio/Artistes
@@ -515,123 +595,6 @@ hash -d aclassique=~/audio/Artistes/Classique
 
 hash -d mtrois=~/audio/musique-3
 
-# }}}
+# }}}2
 
-# }}}
-
-# ------------------------------------
-
-# {{{ Applications
-
-alias nautilus='nautilus --no-desktop'
-
-# }}}
-
-# {{{ Navigateurs
-
-alias w=w3m
-
-# }}}
-
-#  {{{ Date
-# ------------------------------------------------------------------------
-
-alias jour='date +" [=] %A %d %B %Y  (o) %H : %M : %S  | %:z | "'
-
-# }}}
-
-#  {{{ Langages de script
-# ------------------------------------------------------------------------
-
-#alias irb='irb --simple-prompt'
-
-alias rvm-bash='/bin/bash rvm'
-
-# }}}
-
-#  {{{ Musique, Vidéo
-# ------------------------------------------------------------------------
-
-alias y=joue
-
-alias p=ncmpcpp
-
-alias q=cmus
-
-alias pc=playerctl
-
-# {{{ Mplayer
-# ------------------------------------------------------------
-
-alias mplayerdvd='mplayer -mouse-movements dvdnav://'
-
-# }}}
-
-# {{{ Vlc
-# ------------------------------------------------------------
-
-#alias vlsh='vlc-shell'
-
-#alias vlc-help='vlc --longhelp --advanced'
-
-#alias vlc-term='vlc -I ncurses --browse-dir ~/audio'
-
-# Serveur
-# ------------------------------------
-
-# Serveur vlc, voir ~/racine/dotdir/zsh/autoload/mov/vlc-shell
-# pour la connexion en console avec complétion
-
-#alias vlc-server='cd ~/audio && vlc -I rc --rc-host 127.0.0.1:8080'
-#alias vlc-extraserver='cd ~/audio && vlc --extraintf rc --rc-host 127.0.0.1:8080'
-
-#alias vlsrv='cd ~/audio && vlc -I rc --rc-host 127.0.0.1:8080'
-#alias vlxsrv='cd ~/audio && vlc --extraintf rc --rc-host 127.0.0.1:8080'
-
-# Serveur http
-
-#alias vlc-http='vlc -I http --http-host 127.0.0.1:8080'
-
-# }}}
-
-# }}}
-
-#  {{{ Science
-# ------------------------------------------------------------------------
-
-alias 8='cd ~/Documents ; octave --no-gui -q ; cd -'
-
-# }}}
-
-#  {{{ Surveillance système
-# ------------------------------------------------------------------------
-
-alias df='df -h'
-alias dfc='dfc -c never'
-
-alias du='du -sh'
-
-alias free='free -m'
-
-alias monte='mount | column -t'
-
-alias j='jobs'
-
-alias top='htop'
-
-alias k='kill'
-alias kn='pkill'
-
-alias journeaux='tail /var/log/mail.* | ccze -A'
-
-# }}}
-
-# {{{ Utilitaires
-
-alias wo=w
-
-alias wh='which -a'
-
-alias vmstat='vmstat 1 4'
-
-# }}}
+# }}}1

@@ -2,7 +2,7 @@
 
 setopt nullglob
 
-# {{{ Locale
+# Locale {{{1
 
 export LANG=fr_BE.UTF-8
 
@@ -25,9 +25,9 @@ export LC_MEASUREMENT="fr_BE.UTF-8"
 export LC_IDENTIFICATION="fr_BE.UTF-8"
 export LC_ALL=
 
-# }}}
+# }}}1
 
-# {{{ Système d’exploitation
+# Système d’exploitation {{{1
 
 case $(uname -a) in
 
@@ -52,24 +52,24 @@ fi
 
 export OPERASYS
 
-# }}}
+# }}}1
 
-#  {{{ Nom de l'ordinateur
+#  Nom de l'ordinateur {{{1
 # ------------------------------------------------------------------------
 
 export HOST=`hostname -s`
 export HOSTNAME=$HOST
 
-# }}}
+# }}}1
 
-#  {{{ Masque
+#  Masque {{{1
 # ------------------------------------------------------------------------
 
 umask 0022
 
-# }}}
+# }}}1
 
-#  {{{ Self (zsh configure zsh)
+#  Self (zsh configure zsh) {{{1
 # ------------------------------------------------------------------------
 
 export RACINE_ZSH=~/racine/config/cmdline/zsh
@@ -82,7 +82,7 @@ export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
 export PROMPT RPROMPT
 
-#  {{{ Historique
+#  Historique {{{2
 # ------------------------------------------------------------------------
 
 export HISTFILE=~/racine/hist/zsh/$HOST
@@ -96,7 +96,9 @@ export HISTFILESIZE=$HISTSIZE
 # Piles de répertoires
 # ------------------------------------
 
-export DIRSTACKSIZE=30
+export REPERTOIRES_NOMBRE=300
+
+export REPERTOIRES_FICHIER="$HOME/racine/hist/zsh/dirs-$HOST"
 
 # Octave
 # ------------------------------------
@@ -104,12 +106,12 @@ export DIRSTACKSIZE=30
 export OCTAVE_HISTFILE=~/racine/hist/octave/octave_hist
 export OCTAVE_HISTSIZE=34712
 
-# }}}
+# }}}2
 
-#  {{{ Chemins
+#  Chemins {{{2
 # ------------------------------------------------------------------------
 
-# {{{ Documentation (man)
+# Documentation (man) {{{3
 # ------------------------------------
 
 typeset -U manpath
@@ -124,24 +126,24 @@ manpath+=(/usr/local/man)
 
 #export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 
-# }}}
+# }}}3
 
-#  {{{ Documentation (info)
+#  Documentation (info) {{{3
 
 #export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
-#  }}}
+#  }}}3
 
-#  {{{ Fichiers indexés (locate)
+#  Fichiers indexés (locate) {{{3
 
 # Désactivé pour ne pas que la base de donnée soit reprise 2 x
 # Voir alias.zsh : lc & emacs : helm-locate
 
 #export LOCATE_PATH=~/racine/self/locate.db
 
-#  }}}
+#  }}}3
 
-# {{{ Exécutables
+# Exécutables {{{3
 # ------------------------------------
 
 # Déplacé dans ~/racine/config/cmdline/zsh/zprofile
@@ -149,9 +151,9 @@ manpath+=(/usr/local/man)
 # Nécessaire car zsh source /etc/profile
 # (qui réécrit PATH) après ~/.zshenv
 
-# }}}
+# }}}3
 
-# {{{ Fonctions
+# Fonctions {{{3
 # ------------------------------------
 
 typeset -U fpath
@@ -162,9 +164,9 @@ typeset -U fpath
 fpath+=(~/racine/dotdir/zsh/autoload/*(F))
 fpath+=(~/racine/dotdir/zsh/completion/*(F))
 
-# }}}
+# }}}3
 
-# {{{ Répertoires
+# Répertoires {{{3
 # ------------------------------------
 
 typeset -U cdpath
@@ -176,18 +178,18 @@ typeset -U cdpath
 #cdpath=($cdpath ~/src ~/vcs)
 #cdpath=($cdpath ~/racine/data ~/racine/var ~/log)
 
-# }}}
+# }}}3
 
-# {{{ Personnalisés
+# Personnalisés {{{3
 # ------------------------------------
 
 #typeset -TU CHEMINS_PERSONNELS chemins_personnels
 
-# }}}
+# }}}3
 
-# }}}
+# }}}2
 
-#  {{{ Tâches
+#  Tâches {{{2
 # ------------------------------------------------------------------------
 
 # Tâches périodiques
@@ -211,15 +213,17 @@ export REPORTTIME=300
 
 export KEYTIMEOUT=127
 
-# }}}
+# }}}2
 
-#  {{{ Courriel
+#  Courriel {{{2
 # ------------------------------------------------------------------------
 
 typeset -U mailpath
 
 repertoires=(\
-	/var/spool/mail/USER \
+	~/racine/mail/Systeme/Reception \
+	~/racine/mail/Themes/Finance/*(.) \
+	/var/spool/mail/david \
 )
 
 for boite in $repertoires
@@ -231,24 +235,21 @@ export MAIL=/var/spool/mail/$USER
 
 export MAILCHECK=36
 
-export VMAIL_BROWSER='elinks'
-export VMAIL_HTML_PART_READER='elinks -dump'
+# }}}2
 
-# }}}
+# }}}1
 
-# }}}
-
-#  {{{ Couleurs & Effets
+#  Couleurs & Effets {{{1
 # ------------------------------------------------------------------------
 
 source $RACINE_ZSH/couleurs.zsh
 
-# }}}
+# }}}1
 
-#  {{{ Compilation
+#  Compilation {{{1
 # ------------------------------------------------------------------------
 
-# C / C++ ...
+# C / C++ ... {{{2
 # ------------------------------------
 
 #   CC          C compiler command
@@ -272,7 +273,28 @@ source $RACINE_ZSH/couleurs.zsh
 
 #export CFLAGS
 
-# Pour vim
+# }}}2
+
+# Lisp {{{2
+
+#export LISP=sbcl
+
+# }}}2
+
+# Go {{{2
+
+export GOPATH=~/racine/bin/go
+
+# }}}2
+
+# Linuxbrew {{{2
+# ------------------------------------
+
+export HOMEBREW_CC=gcc
+
+# }}}2
+
+# Compilation de vim {{{2
 # ------------------------------------
 
 # Pour vim
@@ -290,19 +312,11 @@ source $RACINE_ZSH/couleurs.zsh
 # export CONF_OPT_COMPBY='"--with-compiledby=antoine.mechelynck@gmail.com"'
 # export CONF_ARGS=''
 
-# Lisp
-# ------------------------------------
+# }}}2
 
-#export LISP=sbcl
+# }}}1
 
-# Linuxbrew
-# ------------------------------------
-
-export HOMEBREW_CC=gcc
-
-# }}}
-
-#  {{{ Type de terminal
+#  Type de terminal {{{1
 # ------------------------------------------------------------------------
 
 # Nécessaire pour que mutt sache qu’il a accès à au moins 256 couleurs
@@ -313,10 +327,6 @@ case "$TERM" in
 
 	xterm*) TERM=xterm-256color;;
 
-	rxvt*) TERM=rxvt-256color;;
-
-	#konsole*) TERM=konsole-256color;;		# Conservateur, konsole supporte les vraies couleurs
-
 	tmux*) TERM=tmux-256color;;
 
 	screen*) TERM=screen-256color;;
@@ -324,29 +334,22 @@ esac
 
 export TERM
 
-# ----
+# }}}1
 
-psparent=`ps auxww | grep -v grep | grep --color=auto $PPID`
-
-# Provoque des problèmes avec vim
-#[[ $psparent = *konsole* ]] && TERM=konsole
-
-# }}}
-
-# {{{ Réseau
+# Réseau {{{1
 
 #export RSH=ssh
 
-# }}}
+# }}}1
 
-# {{{ Répertoire temporaire
+# Répertoire temporaire {{{1
 
 export TMPDIR=/tmp
 #export TMPDIR=~/tmp
 
-# }}}
+# }}}1
 
-#  {{{ Cmdline
+#  Cmdline {{{1
 # ------------------------------------------------------------------------
 
 export INPUTRC=~/racine/config/cmdline/inputrc
@@ -358,9 +361,9 @@ export RLWRAP_HOME=~/racine/config/cmdline/rlwrap
 
 export RLWRAP_EDITOR='vim -u ~/racine/config/edit/vim/minivim.vim +%L'
 
-# }}}
+# }}}1
 
-#  {{{ Utilitaires
+#  Utilitaires {{{1
 # ------------------------------------------------------------------------
 
 [ $OPERASYS != freebsd ] && {
@@ -370,13 +373,11 @@ export RLWRAP_EDITOR='vim -u ~/racine/config/edit/vim/minivim.vim +%L'
 
 export GREP_COLORS='ms=01;31:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36'
 
-# }}}
+# }}}1
 
-#  {{{ Pageurs
-# ------------------------------------------------------------------------
+#  Pageurs {{{1
 
-# Less
-# ------------------------------------
+# Less {{{2
 
 export PAGER=less
 export MANPAGER=less
@@ -400,7 +401,7 @@ export LESSEDIT='%E ?lm+%lm. %f'
 
 export LESSECHO=lessecho
 
-# {{{ Couleurs
+# Couleurs {{{3
 
 # LESS_TERMCAP_md # begin bold
 # LESS_TERMCAP_us # begin underline
@@ -429,36 +430,34 @@ export LESS_TERMCAP_se=$'\E[0m'
 
 export LESS_TERMCAP_ue=$'\E[0m'
 
-# }}}
+# }}}3
 
-# {{{ Most
+# }}}2
+
+# Most {{{2
 # ------------------------------------
 
 export MOST_EDITOR='vim -u ~/racine/config/edit/vim/varia/cf-minivim.vim'
 export MOST_SWITCHES='-s'
 
-# }}}
+# }}}2
 
-# }}}
+# }}}1
 
-#  {{{ Editeurs
+#  Editeurs {{{1
 # ------------------------------------------------------------------------
 
 # un VRAI éditeur de texte ;)
 
-export VISUAL='nvim'
+export VISUAL=vim
 
-export EDITOR='nvim'
+export EDITOR=vim
 
-export DIFFPROG='nvim -d -u ~/racine/config/edit/neovim/rc-vimzsh.vim'
+export DIFFPROG=vimdiff
 
-export FCEDIT='nvim -u ~/racine/config/edit/neovim/rc-vimzsh.vim'
+export FCEDIT=vim
 
-export SUDO_EDITOR='vim -u ~/racine/config/edit/vim/rc-viminime.vim'
-
-# Petit bug d’affichage provoquant l’affichage d’un faux caractère "q"
-
-#export SUDO_EDITOR='nvim -u ~/racine/config/edit/neovim/rc-minivim.vim'
+export SUDO_EDITOR='vim'
 
 # Pour emacs
 # ------------------------------------
@@ -479,24 +478,24 @@ export GTAGSCONF=~/racine/config/edit/labels/gtags.conf
 export GTAGSLABEL=native
 #export GTAGSLABEL=ctags
 
-# }}}
+# }}}1
 
-#  {{{ VCS
+#  VCS {{{1
 # ------------------------------------------------------------------------
 
 #export RCSINIT=''
 
 export CVSROOT=:local:~/racine/repo/central/cvsroot
 
-#export CVSROOT=:ext:USER@HOST:REPO
+#export CVSROOT=:ext:david@tixu.local:/home/david/racine/repo/cvs
 
 #export CVS_RSH=ssh
 
 #export GIT_DIR=./.git
 
-# }}}
+# }}}1
 
-#  {{{ Synchronisation
+#  Synchronisation {{{1
 # ------------------------------------------------------------------------
 
 export RSYNC_RSH=ssh
@@ -505,19 +504,19 @@ export UNISON=~/racine/config/sync/unison/archive/$HOST
 
 #export UNISONLOCALHOSTNAME=$HOST
 
-# }}}
+# }}}1
 
-#  {{{ Bases de données
+#  Bases de données {{{1
 # ------------------------------------------------------------------------
 
 export PGDATA=~/db/postgresql
-#export PGUSER=USER
-#export PGHOST=HOST
-#export PGPORT=PORT
+#export PGUSER=david
+#export PGHOST=localhost
+#export PGPORT=5432
 
-# }}}
+# }}}1
 
-#  {{{ Langages de script (perl, python, ruby, ...)
+#  Langages de script (perl, python, ruby, ...) {{{1
 # ------------------------------------------------------------------------
 
 # Perl
@@ -535,26 +534,18 @@ export RUBYPATH=~/racine/bin/ruby
 export RUBYLIB=~/racine/ruby/lib
 #export RUBYOPT=
 
-# }}}
+# }}}1
 
-#  {{{ Navigateurs
+#  Navigateurs {{{1
 # ------------------------------------------------------------------------
 
-#export HTTP_PROXY=localhost:9050
-#export HTTPS_PROXY=localhost:9050
-#export FTP_PROXY=localhost:9050
-#export NO_PROXY=http://localhost,http://www.google.com
+export BROWSER=qutebrowser
 
-export WWW_HOME="http://www.google.com"
+export WWW_HOME="https://start.duckduckgo.com"
 
-export LINKS_XTERM="konsole"
+# }}}1
 
-export ELINKS_CONFDIR=~/racine/config/webrowser/elinks
-export ELINKS_XTERM="konsole"
-
-# }}}
-
-#  {{{ Java
+#  Java {{{1
 # ------------------------------------------------------------------------
 
 # export JAVA_HOME=~/soft/mach/jre1.7.0_21
@@ -564,9 +555,9 @@ export ELINKS_XTERM="konsole"
 
 # export _JAVA_OPTIONS="-Xms256m -Xmx512m"
 
-# }}}
+# }}}1
 
-#  {{{ Multimedia
+#  Multimedia {{{1
 # ------------------------------------------------------------------------
 
 export MPLAYER_VERBOSE=0
@@ -578,18 +569,18 @@ export MPD_PORT=6600
 # Nécessaire pour dvdauthor
 #export VIDEO_FORMAT=PAL
 
-# }}}
+# }}}1
 
-#  {{{ Nouvelles
+#  Nouvelles {{{1
 # ------------------------------------------------------------------------
 
 export NNTPSERVER=news.gmane.org
 
 export SLRN_ROOT=~/nouvelles/spool
 
-# }}}
+# }}}1
 
-#  {{{ Chiffrement
+#  Chiffrement {{{1
 # ------------------------------------------------------------------------
 
 export GNUPGHOME=~/racine/config/crypte/gnupg
@@ -598,9 +589,9 @@ export GPG_TTY=`tty`
 
 #export GPGKEY=
 
-# }}}
+# }}}1
 
-#  {{{ Alphanumeriques
+#  Alphanumeriques {{{1
 # ------------------------------------------------------------------------
 
 # typeset -U chiffres alphabet_minuscule alphabet_majuscule alphanumerique
@@ -612,13 +603,13 @@ export GPG_TTY=`tty`
 #
 # alphanumerique=($chiffres $alphabet_majuscule $alphabet_minuscule)
 
-# }}}
+# }}}1
 
-#  {{{ Jeux
+#  Jeux {{{1
 # ------------------------------------------------------------------------
 
 #export FREECIV_PATH=${HOME}/data/alter/jeux/freeciv:${HOME}/config/jeux/freeciv:/usr/share/games/freeciv
 #export FREECIV_DATA_PATH=${HOME}/data/alter/jeux/freeciv
 #export FREECIV_SAVE_PATH=${HOME}/data/alter/jeux/freeciv/saves
 
-# }}}
+# }}}1
