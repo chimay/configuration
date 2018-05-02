@@ -223,7 +223,7 @@ typeset -U mailpath
 repertoires=(\
 	~/racine/mail/Systeme/Reception \
 	~/racine/mail/Themes/Finance/*(.) \
-	/var/spool/mail/david \
+	/var/spool/mail/$USER \
 )
 
 for boite in $repertoires
@@ -487,7 +487,7 @@ export GTAGSLABEL=native
 
 export CVSROOT=:local:~/racine/repo/central/cvsroot
 
-#export CVSROOT=:ext:david@tixu.local:/home/david/racine/repo/cvs
+#export CVSROOT=:ext:$USER@tixu.local:/home/$USER/racine/repo/cvs
 
 #export CVS_RSH=ssh
 
@@ -510,7 +510,7 @@ export UNISON=~/racine/config/sync/unison/archive/$HOST
 # ------------------------------------------------------------------------
 
 export PGDATA=~/db/postgresql
-#export PGUSER=david
+#export PGUSER=$USER
 #export PGHOST=localhost
 #export PGPORT=5432
 
