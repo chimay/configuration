@@ -85,10 +85,11 @@ hi TabLineFill		guifg=NONE		guibg=#151515		gui=NONE
 
 " {{{ Barre de statut
 
-" Pris en charge par vim-airline
+" Pas nécessaire et
+" cause un petit souci d’affichage avec CtrlSpace
 
-" hi StatusLine		guifg=NONE		guibg=NONE			gui=bold,reverse
-" hi StatusLineNC	guifg=NONE		guibg=NONE			gui=bold,reverse
+ "hi StatusLine		guifg=NONE		guibg=NONE			gui=bold,reverse
+ "hi StatusLineNC	guifg=NONE		guibg=NONE			gui=bold,reverse
 
 " }}}
 
@@ -285,8 +286,8 @@ hi TabLineFill		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
 " {{{ Barre de statut
 
-hi StatusLine		ctermfg=0			ctermbg=3			cterm=NONE
-hi StatusLineNC		ctermfg=0			ctermbg=3			cterm=NONE
+hi StatusLine		ctermfg=NONE		ctermbg=NONE		cterm=reverse
+hi StatusLineNC		ctermfg=NONE		ctermbg=NONE		cterm=reverse
 
 " }}}
 

@@ -50,8 +50,8 @@ set guioptions+=f
 "  Fenêtre {{{1
 
 if has("gui_running")
-  set lines=34
-  set columns=130
+  set lines=37
+  set columns=135
 endif
 
 " }}}1

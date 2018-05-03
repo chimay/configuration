@@ -1,0 +1,140 @@
+" vim: set ft=vim :
+
+" {{{ Processus asynchrones
+
+NeoBundle 'Shougo/vimproc.vim', {
+	\ 'build' : {
+	\     'windows' : 'make -f make_mingw32.mak',
+	\     'cygwin' : 'make -f make_cygwin.mak',
+	\     'mac' : 'make -f make_mac.mak',
+	\     'unix' : 'make clean ; make -f make_unix.mak',
+	\    },
+	\ }
+
+" NeoBundle 'pydave/AsyncCommand'
+" NeoBundle 'MarcWeber/vim-addon-async'
+
+" NeoBundleLazy 'tpope/vim-dispatch', {
+" 	\ 'autoload' : { 'commands' : 'Dispatch' }
+" 	\ }
+
+" }}}
+
+"  {{{ Submode (kana/vim-submode)
+" ------------------------------------------------------------------------
+
+let g:submode_timeout = 0
+"let g:submode_timeout = 12000
+
+call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
+call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
+call submode#leave_with('undo/redo', 'n', '', '<Esc>')
+call submode#map('undo/redo', 'n', '', '-', 'g-')
+call submode#map('undo/redo', 'n', '', '+', 'g+')
+
+call submode#enter_with('change-list', 'n', '', 'g;', 'g;')
+call submode#enter_with('change-list', 'n', '', 'g,', 'g,')
+call submode#leave_with('change-list', 'n', '', '<Esc>')
+call submode#map('change-list', 'n', '', ';', 'g;')
+call submode#map('change-list', 'n', '', ',', 'g,')
+
+" }}}
+
+" Pour LineJuggler
+
+NeoBundle 'vim-scripts/ingo-library'
+
+
+NeoBundle 'vim-scripts/LineJuggler'
+NeoBundle 'vim-scripts/LineJugglerCommands'
+
+" {{{ Librairies
+
+" Pour LineJuggler
+
+NeoBundle 'vim-scripts/ingo-library'
+
+" Pour cmdalias
+
+NeoBundle 'coot/CRDispatcher'
+
+" }}}
+
+" {{{ Async
+
+NeoBundle 'Shougo/vimproc.vim', {
+	\ 'build' : {
+	\     'windows' : 'make -f make_mingw32.mak',
+	\     'cygwin' : 'make -f make_cygwin.mak',
+	\     'mac' : 'make -f make_mac.mak',
+	\     'unix' : 'make clean ; make -f make_unix.mak',
+	\    },
+	\ }
+
+NeoBundle 'skywind3000/asyncrun.vim'
+
+" }}}
+
+" ------------
+
+" {{{ Plugins
+
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neoyank.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'coot/cmdalias_vim'
+NeoBundle 'drmikehenry/vim-fixkey'
+NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'nishigori/increment-activator'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'sk1418/QFGrep'
+NeoBundle 'stefandtw/quickfix-reflector.vim'
+NeoBundle 'szw/vim-ctrlspace'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'vim-scripts/DeleteTrailingWhitespace'
+NeoBundle 'vim-scripts/LineJuggler'
+NeoBundle 'vim-scripts/LineJugglerCommands'
+
+" }}}
+
+	au VimEnter * CmdAlias nbu Unite\ -log\ neobundle/update
+	au VimEnter * CmdAlias nbi NeoBundleInstall
+	au VimEnter * CmdAlias nbx NeoBundleClean
+
+Plug 'chriskempson/base16-vim'
+
+" Thème {{{1
+
+" Base 16 {{{2
+
+" if filereadable(expand("~/.vimrc_background"))
+"   let base16colorspace=256
+"   source ~/.vimrc_background
+" endif
+
+" }}}2
+
+" }}}1
+
+"  {{{ Submode (kana/vim-submode)
+" ------------------------------------------------------------------------
+
+let g:submode_timeout = 0
+let g:submode_timeoutlen = 10000
+
+call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
+call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
+call submode#leave_with('undo/redo', 'n', '', '<Esc>')
+call submode#map('undo/redo', 'n', '', '-', 'g-')
+call submode#map('undo/redo', 'n', '', '+', 'g+')
+
+call submode#enter_with('change-list', 'n', '', 'g;', 'g;')
+call submode#enter_with('change-list', 'n', '', 'g,', 'g,')
+call submode#leave_with('change-list', 'n', '', '<Esc>')
+call submode#map('change-list', 'n', '', ';', 'g;')
+call submode#map('change-list', 'n', '', ',', 'g,')
+
+" }}}
+
