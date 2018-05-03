@@ -1,0 +1,648 @@
+# vim: set filetype=muttrc :
+
+# Documentation {{{1
+
+# Alias pour boîtes aux lettres {{{2
+
+#	┌────────┬────────────────────────────────────────────────────────────────────┐
+#	│Shortcut│                            Refers to...                            │
+#	├────────┼────────────────────────────────────────────────────────────────────┤
+#	│!       │your $spoolfile (incoming) mailbox                                  │
+#	├────────┼────────────────────────────────────────────────────────────────────┤
+#	│>       │your $mbox file                                                     │
+#	├────────┼────────────────────────────────────────────────────────────────────┤
+#	│<       │your $record file                                                   │
+#	├────────┼────────────────────────────────────────────────────────────────────┤
+#	│^       │the current mailbox                                                 │
+#	├────────┼────────────────────────────────────────────────────────────────────┤
+#	│- or !! │the file you've last visited                                        │
+#	├────────┼────────────────────────────────────────────────────────────────────┤
+#	│~       │your home directory                                                 │
+#	├────────┼────────────────────────────────────────────────────────────────────┤
+#	│= or +  │your $folder directory                                              │
+#	├────────┼────────────────────────────────────────────────────────────────────┤
+#	│@alias  │to the default save folder as determined by the address of the alias│
+#	└────────┴────────────────────────────────────────────────────────────────────┘
+
+# }}}2
+
+# Motifs de recherche / correspondance {{{2
+
+#	┌─────────┬───────────────────────────────────────────────────────────────────┐
+#	│ Pattern │                            Description                            │
+#	│modifier │                                                                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~A       │all messages                                                       │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~b EXPR  │messages which contain EXPR in the message body                    │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│         │messages which contain STRING in the message body. If IMAP is      │
+#	│=b STRING│enabled, searches for STRING on the server, rather than downloading│
+#	│         │each message and searching it locally.                             │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~B EXPR  │messages which contain EXPR in the whole message                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~c EXPR  │messages carbon-copied to EXPR                                     │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│%c GROUP │messages carbon-copied to any member of GROUP                      │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~C EXPR  │messages either to: or cc: EXPR                                    │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│%C GROUP │messages either to: or cc: to any member of GROUP                  │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~d [MIN]-│messages with “date-sent” in a Date range                          │
+#	│[MAX]    │                                                                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~D       │deleted messages                                                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~e EXPR  │messages which contains EXPR in the “Sender” field                 │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│%e GROUP │messages which contain a member of GROUP in the “Sender” field     │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~E       │expired messages                                                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~F       │flagged messages                                                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~f EXPR  │messages originating from EXPR                                     │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│%f GROUP │messages originating from any member of GROUP                      │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~g       │cryptographically signed messages                                  │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~G       │cryptographically encrypted messages                               │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~h EXPR  │messages which contain EXPR in the message header                  │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~H EXPR  │messages with a spam attribute matching EXPR                       │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~i EXPR  │messages which match EXPR in the “Message-ID” field                │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~k       │messages which contain PGP key material                            │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~L EXPR  │messages either originated or received by EXPR                     │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│%L GROUP │message either originated or received by any member of GROUP       │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~l       │messages addressed to a known mailing list                         │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~m [MIN]-│messages in the range MIN to MAX *)                                │
+#	│[MAX]    │                                                                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~n [MIN]-│messages with a score in the range MIN to MAX *)                   │
+#	│[MAX]    │                                                                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~N       │new messages                                                       │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~O       │old messages                                                       │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~p       │messages addressed to you (consults alternates)                    │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~P       │messages from you (consults alternates)                            │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~Q       │messages which have been replied to                                │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~r [MIN]-│messages with “date-received” in a Date range                      │
+#	│[MAX]    │                                                                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~R       │read messages                                                      │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~s EXPR  │messages having EXPR in the “Subject” field.                       │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~S       │superseded messages                                                │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~t EXPR  │messages addressed to EXPR                                         │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~T       │tagged messages                                                    │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~u       │messages addressed to a subscribed mailing list                    │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~U       │unread messages                                                    │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~v       │messages part of a collapsed thread.                               │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~V       │cryptographically verified messages                                │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~x EXPR  │messages which contain EXPR in the “References” or “In-Reply-To”   │
+#	│         │field                                                              │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~X [MIN]-│messages with MIN to MAX attachments *)                            │
+#	│[MAX]    │                                                                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~y EXPR  │messages which contain EXPR in the “X-Label” field                 │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~z [MIN]-│messages with a size in the range MIN to MAX *) **)                │
+#	│[MAX]    │                                                                   │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~=       │duplicated messages (see $duplicate_threads)                       │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~$       │unreferenced messages (requires threaded view)                     │
+#	├─────────┼───────────────────────────────────────────────────────────────────┤
+#	│~(PATTERN│messages in threads containing messages matching PATTERN, e.g. all │
+#	│)        │threads containing messages from you: ~(~P)                        │
+#	└─────────┴───────────────────────────────────────────────────────────────────┘
+
+# }}}2
+
+# }}}1
+
+#  Générique {{{1
+
+#reset all
+
+set help
+
+set quit=yes
+
+# }}}1
+
+#  Environnement {{{1
+
+#  Shell {{{2
+# ------------------------------------------------------------------------
+
+set shell='zsh'
+
+set wait_key = yes
+
+# }}}2
+
+#  Visualisation {{{2
+# ------------------------------------------------------------------------
+
+set pager=builtin
+
+# }}}2
+
+#  Édition {{{2
+# ------------------------------------------------------------------------
+
+#set editor=builtin
+
+set editor='vim -u ~/racine/config/edit/vim/rc-vimail.vim'
+
+# }}}2
+
+#  Localisation {{{2
+# ------------------------------------------------------------------------
+
+set charset='utf-8'		# Encodage du terminal
+
+set send_charset="us-ascii:utf-8:iso-8859-1"
+
+# }}}2
+
+#  Sons {{{2
+# ------------------------------------------------------------------------
+
+set beep=no
+set beep_new=no
+
+# }}}2
+
+#  Cache {{{2
+# ------------------------------------------------------------------------
+
+set tmpdir=~/racine/varia/temp
+set header_cache=~/racine/varia/cache/neomutt-header-cache
+set message_cachedir=~/racine/varia/cache/neomutt-msg-cache
+set certificate_file=~/racine/varia/cache/neomutt-certs
+
+# }}}2
+
+# }}}1
+
+#  Historique {{{1
+
+set history=3000
+set history_file=~/racine/hist/neomutt/history
+
+# }}}1
+
+#  Présentation {{{1
+
+source $my_muttroot/presentation.mutt
+
+# }}}1
+
+#  Courriels {{{1
+
+#  Encodage {{{2
+
+set allow_8bit=yes
+
+# }}}2
+
+#  Drapeaux {{{2
+
+set mark_old=yes
+
+# }}}2
+
+#  En-têtes {{{2
+
+# Personnels
+
+set hdrs=yes
+set weed=yes
+
+# A afficher dans les courriels reçus
+
+ignore *
+unignore  From: To: Cc: Bcc: Subject: Date: Reply-To: In-Reply-To: X-Label:
+
+# Ordre de présentation
+
+unhdr_order *
+hdr_order From: To: Cc: Bcc: Date: Subject: Reply-To: In-Reply-To: X-Label:
+
+# A afficher dans la rédaction
+
+set write_bcc=yes
+
+# }}}2
+
+#  Corps {{{2
+
+# Multipartie
+# ------------------------------------
+
+unalternative_order *
+
+#alternative_order text/plain text/html application/pdf application/postscript application/x-tar-gz image/* audio/*
+
+alternative_order text/html text/plain application/pdf application/postscript application/x-tar-gz image/* audio/*
+
+# }}}2
+
+# }}}1
+
+#  Files de discussion {{{1
+
+#  Tri {{{2
+# ------------------------------------------------------------------------
+
+set sort='threads'
+
+# Les files ayant des messages plus récents en premier
+
+set sort_aux='reverse-last-date-received'
+
+# }}}2
+
+#  Options {{{2
+# ------------------------------------------------------------------------
+
+set duplicate_threads=yes
+
+set hide_thread_subject=yes
+
+set hide_missing=no
+set hide_top_missing=no
+
+set hide_limited=no
+set hide_top_limited=no
+
+set narrow_tree=no
+
+set strict_threads=no
+set sort_re=yes
+
+set collapse_unread=yes
+
+# }}}2
+
+# }}}1
+
+#  Tri {{{1
+
+set sort_alias="alias"
+set sort_browser='reverse-date'
+
+# }}}1
+
+#  Informations personnelles {{{1
+
+source $my_muttroot/perso.mutt
+
+# }}}1
+
+#  Sélections {{{1
+
+# Normalement, il faut introduire un Préfixe
+# (";" par défaut) pour pouvoir appliquer une action
+# à tous les messages sélectionnés au lieu du message courant
+# Lorsque cette option est activée, le préfixe n’est plus nécessaire
+
+set auto_tag=yes
+
+# Enlève le tag des messages marqués pour suppression
+
+set delete_untag=yes
+
+# }}}1
+
+#  Adresses {{{1
+
+# Alias
+
+source $my_muttroot/alias.mutt
+
+set alias_file=$my_muttroot/data/alias
+set reverse_alias=yes
+
+# Groupes
+
+source $my_muttroot/groupes.mutt
+
+# Requête externe
+
+set query_command="abook --mutt-query '%s'"
+
+# }}}1
+
+#  Groupes d'adresses {{{1
+
+source $my_muttroot/groupes.mutt
+
+# }}}1
+
+#  Boîtes {{{1
+
+# Répertoire racine des courriels {{{2
+
+set folder='~/racine/mail'
+
+# }}}2
+
+# Boîtes particulières {{{2
+
+set spoolfile='=Systeme/Reception'
+set mbox='=Systeme/Lus'
+set record=^
+set postponed='=Systeme/Ajournes'
+
+set trash='=Systeme/Corbeille'
+
+# }}}2
+
+#  Configuration {{{2
+
+set mbox_type=mbox			# Type des boîtes créées
+
+set move=no					# Déplacement des courriels lus
+set keep_flagged=yes		# Ne déplace pas les courriels avec drapeau
+
+set copy=yes			# Copie des courriels envoyés
+
+set delete=yes
+set mh_purge=yes
+set maildir_trash=no
+
+set postpone=yes			# Courriels postposés
+set recall=no				# Rappelle les courriels postposés
+
+set confirmappend=no	# Enregistre sans confirmation
+set confirmcreate=no	# Crée une boîte sans confirmation
+
+# }}}2
+
+# Boîtes distantes {{{2
+
+set mail_check=84
+set timeout=15
+
+# }}}2
+
+# Liste des boites {{{2
+
+unmailboxes *
+
+mailboxes `~/racine/automat/boites-mail.zsh`
+
+# }}}2
+
+# }}}1
+
+#  Crochets, Hooks {{{1
+
+set new_mail_command="~/racine/automat/nouveau-message.zsh %n %u &"
+
+source $my_muttroot/crochets.mutt
+
+# }}}1
+
+#  Listes de diffusion {{{1
+
+source $my_muttroot/listes.mutt
+
+# }}}1
+
+#  Envois {{{1
+
+set sendmail_wait=12
+set content_type="text/plain"
+
+# Garde une copie des courriels envoyés
+
+set copy=yes
+
+#  Champs {{{2
+
+set askcc=no
+set askbcc=no
+
+# }}}2
+
+#  Rédaction {{{2
+
+# Édition des en-têtes pendant la rédaction
+
+set edit_headers=yes
+
+# Demande initiale des destinataires et du sujet ou mode automatique
+
+set autoedit=no
+
+set abort_nosubject=no
+set abort_unmodified=no
+
+# }}}2
+
+#  Réponses {{{2
+
+set include=yes					# Inclut le message dans la réponse
+set include_onlyfirst=no
+
+set reply_to=ask-yes			# Demande quelle adresse en cas de champ Reply-To
+set fast_reply=yes
+
+set metoo=no					# On répond à tous sauf à soi
+set reply_self=no				# Réponse à un de mes messages
+								# ==> réponse aux destinataires
+
+set reverse_name=yes			# To: --> From: dans une réponse
+set reverse_realname=yes		# non seulement l'adresse, mais le nom aussi
+
+#set reply_regexp="^(re([\[0-9\]+])*|aw):[ \t]*"
+set reply_regexp="^(re|aw)([\[0-9\]+])*:[ \t]*"
+
+# Citation
+# ------------------------------------
+
+set attribution='%f wrote, on %d :\n'
+
+set indent_str='> '		# Préfixe de citation
+#set indent_str='%n> '	# Préfixe de citation avec nom expéditeur
+
+# Listes
+# ------------------------------------
+
+set followup_to=yes
+set honor_followup_to=ask-yes
+
+set ignore_list_reply_to=yes
+
+# }}}2
+
+#  Transferts {{{2
+
+set forward_edit=yes
+set forward_quote=yes
+set forward_format="[%a: %s]"
+
+# Mime
+# ------------------------------------
+
+set mime_forward=ask-no			# N'emballe pas les messages transférés dans un attachment
+
+# }}}2
+
+#  Renvois {{{2
+
+set bounce=yes
+set bounce_delivered=no
+
+# }}}2
+
+# }}}1
+
+#  Scores {{{1
+
+source $my_muttroot/scores.mutt
+
+# }}}1
+
+#  Compression {{{1
+
+# Handler for gzip compressed mailboxes
+
+open-hook   '\.gz$' "gzip --stdout --decompress '%f' >  '%t'"
+close-hook  '\.gz$' "gzip --stdout              '%t' >  '%f'"
+append-hook '\.gz$' "gzip --stdout              '%t' >> '%f'"
+
+# Handler for bzip2 compressed mailboxes
+
+open-hook   '\.bz2$' "bzip2 --stdout --decompress '%f' >  '%t'"
+close-hook  '\.bz2$' "bzip2 --stdout              '%t' >  '%f'"
+append-hook '\.bz2$' "bzip2 --stdout              '%t' >> '%f'"
+
+# Handler for xz compressed mailboxes
+
+open-hook   '\.xz$' "xz --stdout --decompress '%f' >  '%t'"
+close-hook  '\.xz$' "xz --stdout              '%t' >  '%f'"
+append-hook '\.xz$' "xz --stdout              '%t' >> '%f'"
+
+# }}}1
+
+#  Visualisation de différents types de fichiers {{{1
+
+#  Pas de caractères spéciaux non sécurisés passés au %s de mailcap {{{2
+# ------------------------------------------------------------------------
+
+set mailcap_sanitize=yes
+
+# }}}2
+
+#  Détermination automatique du type de fichier {{{2
+# ------------------------------------------------------------------------
+
+mime_lookup application/octet-stream
+
+# }}}2
+
+#  Mailcap {{{2
+# ------------------------------------------------------------------------
+
+set mailcap_path="~/racine/config/mail/mailcap"
+
+# }}}2
+
+#  Visualisation automatique {{{2
+# ------------------------------------------------------------------------
+
+unauto_view *
+
+# Text / Html
+
+auto_view text/html
+
+auto_view application/javascript
+
+# Gzip
+
+auto_view application/x-gzip
+
+# Images
+
+auto_view image/*
+
+# Word
+
+auto_view application/msword
+
+# }}}2
+
+# }}}1
+
+#  Raccourcis clavier {{{1
+
+source $my_muttroot/bindings.mutt
+
+# }}}1
+
+#  Macros {{{1
+
+source $my_muttroot/macros.mutt
+
+# }}}1
+
+#  Couleurs {{{1
+
+source $my_muttroot/color/personnel.mutt
+
+#source `case $TERM in\
+              #*256color) echo '~/racine/config/mail/neomutt/themes/fonce-256'; break ;;\
+              #*color) echo '~/racine/config/mail/neomutt/themes/huit'; break ;;\
+              #*)        echo '~/racine/config/mail/neomutt/themes/mono'; break ;;\
+         #esac`
+# }}}1
+
+#  Chiffrement {{{1
+
+source $my_muttroot/crypte.mutt
+
+# }}}1
+
+#  Recherche {{{1
+
+#set simple_search="~f %s | ~s %s | ~x %s | =b %s"
+
+set simple_search="~s %s"
+
+# }}}1
+
+#  Divers {{{1
+
+# set mixmaster = 'mixmaster'
+
+# }}}1

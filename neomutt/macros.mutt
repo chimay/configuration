@@ -92,6 +92,12 @@ macro pager ,a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
 
 # }}}1
 
+# Ajout de l’expéditeur dans abook {{{1
+
+macro index,pager  £ "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+
+# }}}1
+
 # Visualisation des liens {{{1
 
 macro pager U <pipe-entry>'urlview'<enter> 'Follow links with urlview'

@@ -114,6 +114,8 @@ bind index @ display-address
 bind index é limit
 bind index è show-limit
 
+bind index à limit-current-thread
+
 bind index o sort-mailbox
 bind index O sort-reverse
 
@@ -126,6 +128,9 @@ bind index k previous-entry
 
 bind index <down> next-entry
 bind index <up> previous-entry
+
+bind index ^ previous-entry
+bind index $ next-entry
 
 bind index J next-undeleted
 bind index K previous-undeleted
@@ -183,20 +188,19 @@ bind index \eg fetch-mail
 
 # Envoi {{{2
 
-bind index m mail
-bind index M resend-message
+bind index µ mail
 
 bind index m noop
 
 bind index mm mail
 
 bind index mb bounce-message
+bind index mc recall-message
 bind index mf forward-message
 bind index mg group-reply
 bind index ml list-reply
 bind index mr reply
-
-bind index mc recall-message
+bind index ms resend-message
 
 # }}}2
 
@@ -246,6 +250,10 @@ bind index up undelete-pattern
 bind index ut undelete-thread
 bind index us undelete-subthread
 
+bind index D noop
+
+bind index DD purge-message
+
 # }}}2
 
 # Destinataires {{{2
@@ -258,7 +266,7 @@ bind index a create-alias
 
 bind index | pipe-message
 
-bind index Q query
+bind index ù query
 
 # }}}2
 
@@ -276,7 +284,7 @@ bind pager \e% change-folder-readonly
 bind pager £ buffy-list
 bind pager § next-unread-mailbox
 
-bind pager $ sync-mailbox
+bind pager w sync-mailbox
 
 # }}}2
 
@@ -356,20 +364,19 @@ bind pager N search-opposite
 
 # Envoi {{{2
 
-bind pager m mail
-bind pager M resend-message
+bind pager µ mail
 
 bind pager m noop
 
 bind pager mm mail
 
 bind pager mb bounce-message
+bind pager mc recall-message
 bind pager mf forward-message
 bind pager mg group-reply
 bind pager ml list-reply
 bind pager mr reply
-
-bind pager mc recall-message
+bind pager ms resend-message
 
 # }}}2
 
@@ -423,7 +430,7 @@ bind pager us undelete-subthread
 
 # Attachés {{{2
 
-bind pager = view-attachments
+bind pager à view-attachments
 
 # }}}2
 
@@ -443,6 +450,7 @@ bind pager \cL redraw-screen
 
 bind pager q exit
 bind pager i exit
+bind pager = exit
 bind pager § exit
 
 bind pager Q quit
@@ -525,7 +533,9 @@ bind editor \el downcase-word
 bind editor \eu upcase-word
 
 bind editor <tab> complete
+
 bind editor \cT complete-query
+
 bind editor <space> buffy-cycle
 
 bind editor \cP history-up
@@ -550,10 +560,11 @@ bind alias uu undelete-entry
 
 # Query {{{1
 
-bind query Q query
+bind query ù query
+
+bind query m mail
 
 bind query a create-alias
-bind query m mail
 bind query A query-append
 
 # }}}1
@@ -613,11 +624,8 @@ bind compose y send-message
 
 # Postpone {{{1
 
-bind postpone d noop
-bind postpone u noop
-
-bind postpone dd delete-entry
-bind postpone uu undelete-entry
+bind postpone d delete-entry
+bind postpone u undelete-entry
 
 # }}}1
 
