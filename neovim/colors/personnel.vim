@@ -65,15 +65,16 @@ hi ErrorMsg			guifg=darkred		guibg=black			gui=undercurl
 
 " {{{ Curseur
 
-hi Cursor			guifg=#5B3C11		guibg=NONE		gui=NONE
-hi TermCursor		guifg=#5B3C11		guibg=NONE		gui=NONE
-hi TermCursorNC		guifg=#5B3C11		guibg=NONE		gui=NONE
-hi iCursor			guifg=#5B3C11		guibg=NONE		gui=NONE
-hi vCursor			guifg=#5B3C11		guibg=#4E1609	gui=NONE
+hi Cursor			guifg=NONE			guibg=#5B3C11		gui=NONE
+hi iCursor			guifg=NONE			guibg=#5B3C11		gui=NONE
+hi vCursor			guifg=#5B3C11		guibg=#4E1609		gui=NONE
 
 hi CursorLineNr		guifg=#5B3C11		guibg=NONE			gui=NONE
 hi CursorLine		guifg=NONE			guibg=#120507		gui=NONE
 hi CursorColumn		guifg=NONE			guibg=#120507		gui=NONE
+
+hi TermCursor		guifg=NONE			guibg=#754321		gui=NONE
+hi TermCursorNC		guifg=NONE			guibg=#B21818		gui=NONE
 
 " }}}
 
@@ -87,10 +88,11 @@ hi TabLineFill		guifg=NONE		guibg=#151515		gui=NONE
 
 " {{{ Barre de statut
 
-" Pris en charge par vim-airline
+" Pas nécessaire et
+" cause un petit souci d’affichage avec CtrlSpace
 
-" hi StatusLine		guifg=NONE		guibg=NONE			gui=bold,reverse
-" hi StatusLineNC	guifg=NONE		guibg=NONE			gui=bold,reverse
+ "hi StatusLine		guifg=NONE		guibg=NONE			gui=bold,reverse
+ "hi StatusLineNC	guifg=NONE		guibg=NONE			gui=bold,reverse
 
 " }}}
 
@@ -287,8 +289,8 @@ hi TabLineFill		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
 " {{{ Barre de statut
 
-hi StatusLine		ctermfg=0			ctermbg=3			cterm=NONE
-hi StatusLineNC		ctermfg=0			ctermbg=3			cterm=NONE
+hi StatusLine		ctermfg=NONE		ctermbg=NONE		cterm=reverse
+hi StatusLineNC		ctermfg=NONE		ctermbg=NONE		cterm=reverse
 
 " }}}
 
