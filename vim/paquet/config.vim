@@ -279,7 +279,7 @@ let g:neoyank#limit = 120
 
 let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history_yank'
 
-nnoremap ç :<c-u>Unite -prompt-direction=top history/yank<cr>
+nnoremap <D-ç> :<c-u>Unite -prompt-direction=top history/yank<cr>
 
 autocmd BufWinEnter \(*.asc\|*.gpg\) let g:neoyank_disable_write = 1
 
@@ -292,7 +292,7 @@ autocmd BufWinEnter \(*.asc\|*.gpg\) let g:neoyank_disable_write = 1
 
 " Map exceptionnel
 
-nnoremap <silent> <D-ç> :<C-U>YRShow<cr>
+nnoremap <silent> ç :<C-U>YRShow<cr>
 
 " Maps ordinaires
 
@@ -756,7 +756,7 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 let g:CtrlSpaceSetDefaultMapping = 1
 
-let g:CtrlSpaceDefaultMappingKey = "<D-Space>"
+let g:CtrlSpaceDefaultMappingKey = "<C-Space>"
 
 let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 
@@ -914,7 +914,7 @@ cmap <m-t> <Plug>CmdlineCompleteForward
 " ------------------------------------------------------------------------
 
 let g:submode_timeout = 0
-"let g:submode_timeout = 12000
+let g:submode_timeoutlen = 10000
 
 call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
 call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
@@ -939,10 +939,6 @@ augroup Cmdalias
 	au VimEnter * CmdAlias ali\%[as] CmdAlias
 
 	au VimEnter * CmdAlias h\%[elp] tab\ help
-
-	au VimEnter * CmdAlias nbu Unite\ -log\ neobundle/update
-	au VimEnter * CmdAlias nbi NeoBundleInstall
-	au VimEnter * CmdAlias nbx NeoBundleClean
 
 augroup END
 
@@ -1256,19 +1252,6 @@ let g:limelight_priority = -1
 " }}}
 
 " }}}
-
-" Thème {{{1
-
-" Base 16 {{{2
-
-" if filereadable(expand("~/.vimrc_background"))
-"   let base16colorspace=256
-"   source ~/.vimrc_background
-" endif
-
-" }}}2
-
-" }}}1
 
 " {{{ Divers
 

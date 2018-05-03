@@ -1,0 +1,115 @@
+" vim: set filetype=vim :
+
+" Console {{{1
+
+set guipty
+
+" }}}1
+
+"  Sélections {{{1
+
+set guioptions+=a
+
+" Pour le modeless (normalement inclus dans le flag a)
+
+set guioptions+=A
+
+" }}}1
+
+" Fonte {{{1
+
+set guifont=Monospace\ 11
+
+" }}}1
+
+" Onglets {{{1
+
+" Sans les onglets graphiques, affiche les onglets comme dans un terminal
+
+set guioptions-=e
+
+" }}}1
+
+" Boites de dialogue {{{1
+
+" Dialogues simples en format texte
+
+set guioptions+=c
+
+set guioptions-=v
+set guioptions-=p
+
+" }}}1
+
+" Avant-plan {{{1
+
+set guioptions+=f
+
+" }}}1
+
+"  Fenêtre {{{1
+
+if has("gui_running")
+  set lines=34
+  set columns=130
+endif
+
+" }}}1
+
+" Curseur {{{1
+
+" set guicursor=
+"
+" set guicursor+=n:block-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+" set guicursor+=o:hor35-blinkwait700-blinkon700-blinkoff250-Cursor
+"
+" set guicursor+=v:block-blinkon0-vCursor/lCursor
+" set guicursor+=ve:ver35-blinkon0-vCursor
+"
+" set guicursor+=i:ver25-blinkwait700-blinkon700-blinkoff250-iCursor/lCursor
+" set guicursor+=r:hor20-blinkwait700-blinkon700-blinkoff250-iCursor/lCursor
+"
+" set guicursor+=sm:block-blinkwait175-blinkoff150-blinkon175-Cursor
+"
+" set guicursor+=c:block-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+" set guicursor+=ci:ver25-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+" set guicursor+=cr:hor20-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+
+" }}}1
+
+"  Barres de défilement {{{1
+
+" Barre de défilement verticale
+
+set guioptions-=r
+set guioptions-=l
+
+" Barre de défilement horizontale
+
+set guioptions-=b
+set guioptions-=h
+
+" }}}1
+
+"  Barre de menu {{{1
+
+set guioptions-=m
+
+set guioptions-=t
+set guioptions-=g
+
+" }}}1
+
+"  Barre d'outils {{{1
+
+" Pas de barre d'outils
+
+set guioptions-=T
+
+" }}}1
+
+"  Icone {{{1
+
+set guioptions-=i
+
+" }}}1
