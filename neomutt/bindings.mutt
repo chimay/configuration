@@ -188,7 +188,7 @@ bind index \eg fetch-mail
 
 # Envoi {{{2
 
-bind index µ mail
+bind index ù mail
 
 bind index m noop
 
@@ -266,7 +266,7 @@ bind index a create-alias
 
 bind index | pipe-message
 
-bind index ù query
+bind index µ query
 
 # }}}2
 
@@ -281,7 +281,7 @@ bind pager h help
 bind pager % change-folder
 bind pager \e% change-folder-readonly
 
-bind pager £ buffy-list
+bind pager . buffy-list
 bind pager § next-unread-mailbox
 
 bind pager w sync-mailbox
@@ -364,7 +364,7 @@ bind pager N search-opposite
 
 # Envoi {{{2
 
-bind pager µ mail
+bind pager ù mail
 
 bind pager m noop
 
@@ -560,7 +560,7 @@ bind alias uu undelete-entry
 
 # Query {{{1
 
-bind query ù query
+bind query µ query
 
 bind query m mail
 
@@ -606,7 +606,7 @@ bind compose <return> view-attach
 
 bind compose H display-toggle-weed
 
-bind compose n new-mime
+bind compose \cn new-mime
 
 bind compose p postpone-message
 bind compose q exit
@@ -640,6 +640,12 @@ bind browser \cB previous-page
 bind browser <pageup> previous-page
 bind browser <pagedown> next-page
 
+bind browser / search
+bind browser ? search-reverse
+
+bind browser n search-next
+bind browser N search-opposite
+
 bind browser % change-dir
 
 bind browser @ display-filename
@@ -652,9 +658,9 @@ bind browser O sort-reverse
 bind browser <tab> toggle-mailboxes
 bind browser <space> view-file
 
-bind browser £ buffy-list
+bind browser . buffy-list
 
-bind browser n select-new
+bind browser \cn select-new
 bind browser C create-mailbox
 bind browser R rename-mailbox
 

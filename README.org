@@ -3,7 +3,7 @@
 
 * Configuration files
 
-Some configuration files.
+A coherent set of configuration files for my favorite apps.
 
 The keybindings are essentially vim, less or emacs like, depending on
 the context. For example :
