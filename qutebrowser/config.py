@@ -1347,6 +1347,8 @@ config.bind('G', 'scroll-to-perc 100')
 
 config.bind("<Backspace>", 'back')
 
+config.bind('<Ins>', 'enter-mode insert')
+
 config.bind('m', 'enter-mode set_mark')
 config.bind('M', 'bookmark-add')
 
@@ -1357,6 +1359,9 @@ config.bind("=", 'set-cmd-text -s :buffer')
 
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
+
+config.bind('^', 'tab-prev')
+config.bind('$', 'tab-next')
 
 config.bind("*", 'set-cmd-text -s :session-load -c')
 config.bind("µ", 'set-cmd-text -s :session-save -o')
@@ -1638,6 +1643,7 @@ config.bind('<Down>', 'command-history-next', mode='command')
 # Bindings for insert mode {{{1
 
 config.bind("<F1>", 'spawn -u qute-pass', mode='insert')
+config.bind('<F2>', 'open-editor', mode='insert')
 
 # config.bind('<Ctrl-E>', 'open-editor', mode='insert')
 # config.bind('<Escape>', 'leave-mode', mode='insert')
