@@ -1,0 +1,39 @@
+# Configuration file for the vimiv image viewer
+# Please refer to vimivrc(5) for further information
+
+[GENERAL] ######################################################################
+start_fullscreen: no
+start_slideshow: no
+slideshow_delay: 2
+shuffle: no
+display_bar: yes
+default_thumbsize: (128, 128)
+geometry: 800x600
+recursive: no
+rescale_svg: yes
+overzoom: 1
+search_case_sensitive: yes
+incsearch: yes
+copy_to_primary: no
+commandline_padding: 6
+thumb_padding: 10
+completion_height: 200
+play_animations: yes
+
+[LIBRARY] ######################################################################
+start_show_library: no
+library_width: 300
+expand_lib: yes
+border_width: 0
+markup: <span foreground="#875FFF">
+show_hidden: no
+desktop_start_dir: ~
+file_check_amount: 30
+tilde_in_statusbar: yes
+
+[EDIT] #########################################################################
+autosave_images: yes
+
+[ALIASES] ######################################################################
+
+# vim:ft=config

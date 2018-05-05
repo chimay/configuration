@@ -2,16 +2,27 @@
 
 # Options {{{1
 
-set font "monospace normal 12"
+set font "monospace normal 11"
 
 set guioptions cs
 
+set n-completion-items 15
+
 set incremental-search true
+
+set show-scrollbars false
 
 set window-height 700
 set window-width 1200
 
-set adjust-open width
+set adjust-open best-fit
+
+set window-title-basename true
+
+set zoom-step 20
+set scroll-step 80
+
+set selection-clipboard clipboard
 
 # }}}1
 
@@ -19,11 +30,24 @@ set adjust-open width
 
 map <PageUp> navigate previous
 map <PageDown> navigate next
- 
+
+map <Space> navigate next
+map b navigate previous
+
 map + zoom in
 map - zoom out
  
+map q quit
 map ZZ quit
+
+map [normal] a focus_inputbar ":bmark "
+map [normal] l jumplist backward
+map [normal] L jumplist forward
+
+map <C-1> feedkeys ":set pages-per-row 1"<Return>
+map <C-2> feedkeys ":set pages-per-row 2"<Return>
+map <C-3> feedkeys ":set pages-per-row 3"<Return>
+map <C-4> feedkeys ":set pages-per-row 4"<Return>
 
 # }}}1
 
@@ -41,14 +65,14 @@ set statusbar-bg "black"
 set completion-fg "#5b3c11"
 set completion-bg "black"
 
-set completion-highlight-fg "black"
-set completion-highlight-bg "#5b3c11"
-
 set tabbar-fg "#5b3c11"
 set tabbar-bg "black"
 
-set tabbar-fg "black"
-set tabbar-bg "#5b3c11"
+set tabbar-focus-fg "black"
+set tabbar-focus-bg "#5b3c11"
+
+set completion-highlight-fg "black"
+set completion-highlight-bg "#5b3c11"
 
 set notification-fg "#5b3c11"
 set notification-bg "black"
@@ -68,7 +92,10 @@ set index-bg "black"
 set index-active-fg "black"
 set index-active-bg "#5b3c11"
 
-#set completion-group-fg "black"
-#set completion-group-bg "#5b3c11"
+# set recolor true
+# set recolor-keephue true
+# set recolor-reverse-video true
+# set recolor-lightcolor "#5b3c11"
+# set recolor-darkcolor "black"
 
 # }}}1
