@@ -118,12 +118,6 @@ if exists('*minpac#init')
 
 endif
 
-" On charge tout 
-" Normalement fait automatiquement, mais plus tard ce qui provoque des
-" erreurs dans certains plugins
-
-packloadall
-
 " Commandes
 
 " Define user commands for updating/cleaning the plugins.
