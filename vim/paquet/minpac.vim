@@ -30,6 +30,9 @@ if exists('*minpac#init')
 	call minpac#add('Shougo/unite-outline', { 'type' : 'start' })
 	call minpac#add('vim-ctrlspace/vim-ctrlspace', { 'type' : 'start' })
 	 
+	call minpac#add('roxma/vim-hug-neovim-rpc', { 'type' : 'start' })
+	call minpac#add('roxma/nvim-yarp', { 'type' : 'start' })
+	call minpac#add('Shougo/deoplete.nvim', { 'type' : 'start' })
 	call minpac#add('SirVer/ultisnips', { 'type' : 'start' })
 	 
 	call minpac#add('vim-scripts/YankRing.vim', { 'type' : 'start' })
@@ -61,7 +64,6 @@ if exists('*minpac#init')
 
 	" Plugins dans opt
 
-	call minpac#add('Shougo/deoplete.nvim', { 'type' : 'opt' })
 	call minpac#add('Shougo/neobundle-vim-recipes', { 'type' : 'opt' })
 	call minpac#add('Shougo/vimfiler.vim', { 'type' : 'opt' })
 	call minpac#add('arecarn/crunch.vim', { 'type' : 'opt' })
@@ -85,8 +87,6 @@ if exists('*minpac#init')
 	call minpac#add('maralla/completor.vim', { 'type' : 'opt' })
 	call minpac#add('mbbill/undotree', { 'type' : 'opt' })
 	call minpac#add('osyo-manga/unite-quickfix', { 'type' : 'opt' })
-	call minpac#add('roxma/nvim-yarp', { 'type' : 'opt' })
-	call minpac#add('roxma/vim-hug-neovim-rpc', { 'type' : 'opt' })
 	call minpac#add('sk1418/QFGrep', { 'type' : 'opt' })
 	call minpac#add('skywind3000/asyncrun.vim', { 'type' : 'opt' })
 	call minpac#add('stefandtw/quickfix-reflector.vim', { 'type' : 'opt' })
