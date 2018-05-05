@@ -1,5 +1,6 @@
 " vim: set filetype=vim :
 
-"hi deniteSelectedLine		guifg=#88421D		guibg=default			gui=NONE
+ " Voir dans paquet / config.vim : denite
+ "  <url:~/racine/config/edit/neovim/paquet/postload.vim>
 
-hi deniteSelectedLine		guifg=#872E30		guibg=default			gui=NONE
+"hi deniteSelectedLine		guifg=#872E30		guibg=default			gui=NONE

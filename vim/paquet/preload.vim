@@ -1,6 +1,6 @@
 " vim: set filetype=vim :
 
-" {{{ Documentation
+" Documentation {{{1
 
 " Lors de l’utilisation d’un <plug>, seuls les maps récursifs fonctionnent :
 "
@@ -10,9 +10,9 @@
 "
 " nnoremap bidule <plug>PluginBidule
 
-" }}}
+" }}}1
 
-" {{{ Touches pour maps / préfixes de maps
+" Touches pour maps / préfixes de maps {{{1
 
 " <cr> = <enter>
 " <s-cr>
@@ -46,47 +46,43 @@
 
 " Autres idées : Tab, C-_, C-Space, C-B
 
-" }}}
+" }}}1
 
 " Éviter les mappings par défaut des plugins
-" ------------------------------------------------------------------------
 
 let g:no_plugin_maps = 1
 
 " Configuration des plugins
-" ------------------------------------------------------------------------
 
-" {{{ Librairies : fonctions, utilitaires
+" Librairies : fonctions, utilitaires {{{1
 
-" {{{ Tlib (tomtom/tlib_vim)
+" Tlib (tomtom/tlib_vim) {{{2
 
 "nnoremap ...p :TBrowseOutput<space>
 
 "nnoremap ...o :exec 'e' fnameescape(tlib#input#List('s', 'Old file', v:oldfiles))<cr>
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
 " ------------------------------------
 
-" {{{ Abréviations
+" Abréviations {{{1
 
-" {{{ Abolish (tpope/vim-abolish)
+" Abolish (tpope/vim-abolish) {{{2
 
 let g:abolish_save_file = $HOME . '/racine/plugin/data/abolish/abreviations'
 
 nnoremap <C-F11>s :Subvert //<Left>
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Alignement & Tableaux
+" Alignement {{{1
 
-" {{{ Alignement
-
-" {{{ Easy align (junegunn/vim-easy-align)
+" Easy align (junegunn/vim-easy-align) {{{2
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 
@@ -100,26 +96,26 @@ nmap ga <Plug>(EasyAlign)
 
 let g:easy_align_ignores = ['Comment', 'String']
 
-" }}}
+" }}}2
 
-" {{{ Tabular (godlygeek/tabular)
+" Tabular (godlygeek/tabular) {{{2
 
 nnoremap <s-tab> :Tabularize /
 vnoremap <s-tab> :Tabularize /
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Tableaux
+" Tableaux {{{1
 
-" {{{ Table-mode (dhruvasagar/vim-table-mode)
+" Table-mode (dhruvasagar/vim-table-mode) {{{2
 
 let g:table_mode_always_active = 0
 
 let g:table_mode_border = 1
 
-" {{{ Mappings
+" Mappings {{{3
 
 nnoremap <bar> :TableModeToggle<cr>
 
@@ -142,9 +138,9 @@ let g:table_mode_motion_right_map = ']<Bar>'
 let g:table_mode_cell_text_object_a_map = 'a<Bar>'
 let g:table_mode_cell_text_object_i_map = 'i<Bar>'
 
-" }}}
+" }}}3
 
-" {{{ Caractères
+" Caractères {{{3
 
 let g:table_mode_separator     = '|'
 let g:table_mode_corner        = '+'
@@ -153,24 +149,21 @@ let g:table_mode_fillchar      = '-'
 let g:table_mode_delimiter     = ','
 let g:table_mode_align_char    = ':'
 
-" }}}
+" }}}3
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" }}}
+" Bouts de code (snippets, bits, modèles) {{{1
 
-" {{{ Bouts de code (snippets, bits, modèles)
+"  UltiSnips (SirVer/ultisnips) {{{2
 
-"  {{{ UltiSnips (SirVer/ultisnips)
-" ------------------------------------------------------------------------
-
-" {{{ Mappings
+" Mappings {{{3
 
 " Si tab est défini ici, le commenter dans Neocomplcache
 
-" {{{ Unite & UltiSnips
+" Unite & UltiSnips {{{4
 
 function! UltiSnipsCallUnite()
 	Unite -start-insert -winheight=100 -immediately -no-empty ultisnips
@@ -181,7 +174,7 @@ inoremap <silent> <tab> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsC
 
 "nnoremap <silent> ... a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
 
-" }}}
+" }}}4
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -195,26 +188,25 @@ let g:UltiSnipsListSnippets='<C-F5>l'
 nnoremap <C-F5>e :UltiSnipsEdit<cr>
 nnoremap <C-F5>a :UltiSnipsAddFiletypes<space>
 
-" }}}
+" }}}3
 
-" {{{ Données
+" Données {{{3
 
 let g:UltiSnipsSnippetsDir = $HOME . '/racine/config/edit/vim/snippet'
 
 let g:UltiSnipsSnippetDirectories=['snippet', 'UltiSnips']
 
-" }}}
+" }}}3
 
 let g:UltiSnipsEditSplit = 'horizontal'
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Commentaires
+" Commentaires {{{1
 
-"  {{{ NERDCommenter (scrooloose/nerdcommenter)
-" ------------------------------------------------------------------------
+"  NERDCommenter (scrooloose/nerdcommenter) {{{2
 
 let NERDCreateDefaultMappings = 0
 
@@ -235,10 +227,9 @@ map <C-F11>cl <plug>NERDCommenterAlignLeft
 map <C-F11>cb <plug>NERDCommenterAlignBoth
 map <C-F11>cu <plug>NERDCommenterUncommentLine
 
-" }}}
+" }}}2
 
-"  {{{ TComment (tomtom/tcomment_vim)
-" ------------------------------------------------------------------------
+"  TComment (tomtom/tcomment_vim) {{{2
 
 let g:tcommentTextObjectInlineComment = '<C-F11>ic'
 
@@ -252,43 +243,37 @@ let g:tcomment_types = {
 	\ 'vim': '" %s'
 \}
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Complétion
+" Complétion {{{1
 
-"  {{{ Deoplete (Shougo/deoplete.nvim)
-" ------------------------------------------------------------------------
+" Deoplete {{{2
 
 let g:deoplete#enable_at_startup = 1
 
-let g:deoplete#auto_complete_start_length = 2
+" }}}2
 
-let g:deoplete#enable_camel_case = 1
+" }}}1
 
-" }}}
+" Copie {{{1
 
-" }}}
-
-" {{{ Copie
-
-" {{{ Neoyank (Shougo/neoyank.vim)
+" Neoyank (Shougo/neoyank.vim) {{{2
 
 let g:neoyank#limit = 120
 
-let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history_yank'
+let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history-vim'
 
-nnoremap <D-ç> :<c-u>Unite -prompt-direction=top history/yank<cr>
+nnoremap <D-y> :<c-u>Unite -prompt-direction=top history/yank<cr>
 
 autocmd BufWinEnter \(*.asc\|*.gpg\) let g:neoyank_disable_write = 1
 
-" }}}
+" }}}2
 
-"  {{{ YankRing (YankRing.vim)
-" ------------------------------------------------------------------------
+"  YankRing (YankRing.vim) {{{2
 
-" {{{ Mappings
+" Mappings {{{3
 
 " Map exceptionnel
 
@@ -312,9 +297,9 @@ function! YRRunAfterMaps()
 	nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
 endfunction
 
-" }}}
+" }}}3
 
-" {{{ Options
+" Options {{{3
 
 let g:yankring_max_history = 420
 
@@ -358,17 +343,17 @@ let g:yankring_clipboard_monitor = 1
 let g:yankring_manual_clipboard_check = 1
 let g:yankring_paste_check_default_register = 1
 
-" }}}
+" }}}3
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Paires : (), [], {}, <>, <a></a>, etc
+" Paires : (), [], {}, <>, <a></a>, etc {{{1
 
-"  {{{ Auto-pairs (jiangmiao/auto-pairs)
+"  Auto-pairs (jiangmiao/auto-pairs) {{{2
 
-" {{{ Options
+" Options {{{3
 
 let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
 
@@ -383,23 +368,23 @@ let g:AutoPairsMapBS = 1
 let g:AutoPairsMapCR = 1
 let g:AutoPairsMapSpace = 0
 
-" }}}
+" }}}3
 
-" {{{ Mappings
+" Mappings {{{3
 
 let g:AutoPairsShortcutToggle = '<C-F11><C-F11>('
 
 imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
-" }}}
+" }}}3
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Déplacement & Copie
+" Déplacement & Copie {{{1
 
-" {{{ Textmanip (t9md/vim-textmanip)
+" Textmanip (t9md/vim-textmanip) {{{2
 
 xmap z<Down> <Plug>(textmanip-move-down)
 xmap z<Up> <Plug>(textmanip-move-up)
@@ -412,9 +397,9 @@ xmap z<S-Up> <Plug>(textmanip-duplicate-up)
 nmap z<S-Down> <Plug>(textmanip-duplicate-down)
 nmap z<S-Up> <Plug>(textmanip-duplicate-up)
 
-" }}}
+" }}}2
 
-" {{{ Exchange (tommcdo/vim-exchange)
+" Exchange (tommcdo/vim-exchange) {{{2
 
 let g:exchange_no_mappings=1
 
@@ -423,13 +408,13 @@ vmap X <Plug>(Exchange)
 nmap cxc <Plug>(ExchangeClear)
 nmap cxx <Plug>(ExchangeLine)
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Espaces
+" Espaces {{{1
 
-" {{{ DeleteTrailingWhitespace (DeleteTrailingWhitespace)
+" DeleteTrailingWhitespace (DeleteTrailingWhitespace) {{{2
 
 let g:DeleteTrailingWhitespace = 1
 
@@ -438,14 +423,13 @@ let g:DeleteTrailingWhitespace_Action = 'delete'
 
 let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Exploration de l’arborescence du système de fichiers
+" Exploration de l’arborescence du système de fichiers {{{1
 
-"  {{{ Netrw (plugin standard)
-" ------------------------------------------------------------------------
+"  Netrw (plugin standard) {{{2
 
 "let g:loaded_netrw       = 0
 "let g:loaded_netrwPlugin = 0
@@ -470,7 +454,7 @@ let g:netrw_ctags          = 'ctags'
 let g:netrw_ssh_cmd        = 'ssh'
 let g:netrw_browsex_viewer = "kfmclient exec"
 
-" {{{ Tri
+" Tri {{{3
 
 let g:netrw_sort_by = 'name'
 let g:netrw_sort_direction = 'normal'
@@ -483,9 +467,9 @@ let g:netrw_sort_sequence .=',\.h$,\.c$,\.cpp$'
 let g:netrw_sort_sequence .=',\.py$,\.pyx$'
 let g:netrw_sort_sequence .='*,\~$'
 
-" }}}
+" }}}3
 
-" {{{ Masque
+" Masque {{{3
 
 let g:netrw_list_hide = '\.un\~$,\.renduHtml$,\.sessionvim$'
 let g:netrw_list_hide .= ',^tags$,^TAGS$,^cscope\.'
@@ -503,15 +487,15 @@ let g:netrw_list_hide .= ',\.aux$,,\.log$,\.maf$,\.toc$,\.ptc$,\.mtc$'
 
 let g:netrw_hide = 1
 
-" }}}
+" }}}3
 
-" }}}
+" }}}2
 
-" {{{ Dirvish
+" Dirvish {{{2
 
 nnoremap <D-f> :Dirvish<cr>
 
-" }}}
+" }}}2
 
 " Vifm {{{2
 
@@ -519,68 +503,13 @@ let g:vifmSplitWidth = 120
 
 " }}}2
 
-" }}}
+" }}}1
 
-" {{{ Exploration multiple
+" Exploration multiple {{{1
 
-"  {{{ Unite (Shougo/unite.vim)
-" ------------------------------------------------------------------------
+" Unite {{{2
 
-" {{{ Mappings
-
-nnoremap <C-F1>       :<c-u>Unite -prompt-direction=top<space>
-
-nnoremap <C-F2>       :<c-u>Unite -prompt-direction=top source<cr>
-
-nnoremap z=         :<c-u>Unite -winheight=15 spell_suggest<cr>
-
-nnoremap é          :<c-u>Unite -start-insert -prompt-direction=top line<cr>
-
-nnoremap §          :<c-u>Unite -start-insert -prompt-direction=top outline:folding<cr>
-
-nnoremap °          :<c-u>Unite -start-insert -prompt-direction=top buffer<cr>
-
-nnoremap è          :<c-u>Unite -prompt-direction=top jump<cr>
-
-nnoremap ù          :<c-u>Unite -start-insert -prompt-direction=top neomru/file buffer<cr>
-nnoremap µ          :<c-u>Unite -start-insert -prompt-direction=top file_rec<cr>
-nnoremap <s-µ>      :<c-u>Unite -start-insert -prompt-direction=top file_rec<cr>
-
-nnoremap £          :<c-u>Unite -start-insert -prompt-direction=top tag<cr>
-
-" nnoremap <C-F3>b      :<c-u>Unite -prompt-direction=top buffer<cr>
-" nnoremap <C-F3>B      :<c-u>Unite -prompt-direction=top bookmark<cr>
-" nnoremap <C-F3>c      :<c-u>Unite -prompt-direction=top command<cr>
-" nnoremap <C-F3>d      :<c-u>Unite -prompt-direction=top directory<cr>
-" nnoremap <C-F3>f      :<c-u>Unite -prompt-direction=top file_rec/async<cr>
-" nnoremap <C-F3>g      :<c-u>Unite -prompt-direction=top grep<cr>
-" nnoremap <C-F3>m      :<c-u>Unite -prompt-direction=top mapping<cr>
-" nnoremap <C-F3>M      :<c-u>Unite -no-split output:message<cr>
-" nnoremap <C-F3>h      :<c-u>Unite -prompt-direction=top help<cr>
-" nnoremap <C-F3>l      :<c-u>Unite -prompt-direction=top line<cr>
-" nnoremap <C-F3>q      :<c-u>Unite -no-quit -prompt-direction=top quickfix<cr>
-" nnoremap <C-F3>r      :<c-u>Unite -prompt-direction=top file_mru<cr>
-" nnoremap <C-F3>t      :<c-u>Unite -prompt-direction=top tag<cr>
-" nnoremap <C-F3>T      :<c-u>Unite -prompt-direction=top gtags/grep<cr>
-" nnoremap <C-F3>o      :<c-u>Unite -prompt-direction=top outline<cr>
-" nnoremap <C-F3>z      :<c-u>Unite -prompt-direction=top outline:folding<cr>
-" nnoremap <C-F3>'      :<c-u>Unite -prompt-direction=top mark<cr>
-" nnoremap <C-F3>"      :<c-u>Unite -prompt-direction=top register<cr>
-" nnoremap <C-F3>!      :<c-u>Unite -prompt-direction=top launcher<cr>
-" nnoremap <C-F3>:      :<c-u>Unite -prompt-direction=top history/command<cr>
-" nnoremap <C-F3>/      :<c-u>Unite -prompt-direction=top history/search<cr>
-" nnoremap <C-F3>y      :<c-u>Unite -prompt-direction=top history/yank<cr>
-" nnoremap <C-F3>j      :<c-u>Unite -prompt-direction=top jump<cr>
-" nnoremap <C-F3><tab>  :<c-u>Unite -prompt-direction=top jump<cr>
-" nnoremap <C-F3><bs>   :<c-u>Unite -prompt-direction=top change<cr>
-
-"nnoremap <C-F3>a      :<c-u>UniteBookmarkAdd<cr>
-
-"nnoremap <C-F3>s      :<c-u>Unite junkfile<cr>
-
-" }}}
-
-" {{{ Données
+" Données {{{3
 
 let g:unite_data_directory = $HOME . '/racine/plugin/data/unite'
 
@@ -589,60 +518,35 @@ let g:unite_source_mru_update_interval = 900
 
 let g:unite_source_directory_mru_long_limit = 3600
 
-" }}}
+" }}}3
 
-" {{{ Répertoires
+" Répertoires {{{3
 
 let g:unite_kind_openable_cd_command = 'cd'
 let g:unite_kind_openable_lcd_command = 'lcd'
 
-" }}}
+" }}}3
 
-" {{{ Ignore
-
-call unite#custom#source('file_rec', 'ignore_globs',
-	\ split(&wildignore, ','))
-
-" }}}
-
-" {{{ Motifs flous
-
-" call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-" }}}
-
-" {{{ Présentation
+" Présentation {{{3
 
 let g:unite_split_rule = 'dynamicbottom'
-
-call unite#custom#profile('default', 'context', {
-\   'direction' : 'dynamicbottom'
-\ })
-
-call unite#custom#profile('default', 'context', {
-\   'winheight' : 20
-\ })
-
-call unite#custom#profile('default', 'context', {
-\   'winwidth' : 20
-\ })
 
 let g:unite_enable_split_vertically = 0
 
 let g:unite_prompt = 'unite> '
 
-" }}}
+" }}}3 
 
-" {{{ Copie & Collage
+" Copie & Collage {{{3
 
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_history_yank_save_clipboard = 1
 
 let g:unite_source_history_yank_limit = 543
 
-" }}}
+" }}}3
 
-" {{{ Recherche grep
+" Recherche grep {{{3
 
 let g:unite_source_grep_max_candidates = 570
 
@@ -660,49 +564,33 @@ let g:unite_source_grep_recursive_opt = '-r'
 
 let g:unite_source_find_max_candidates = 570
 
-" }}}
+" }}}3
 
-" {{{ Autocommandes
+" }}}2 
 
-autocmd FileType unite call s:unite_my_settings()
+" Neomru {{{2
 
-function! s:unite_my_settings()
-	imap <silent><buffer><expr> <C-s>     unite#do_action('split')
-endfunction
+let g:neomru#file_mru_path = $HOME . '/racine/plugin/data/unite/neomru/file-vim'
 
-" }}}
+let g:neomru#file_mru_limit = 900
 
-" }}}
+let g:neomru#directory_mru_path = $HOME . '/racine/plugin/data/unite/neomru/directory-vim'
 
-" {{{ Neomru (Shougo/neomru.vim)
-
-let g:neomru#file_mru_path = $HOME . '/racine/plugin/data/unite/neomru/vim-file'
-
-let g:neomru#file_mru_limit = 300
-
-let g:neomru#directory_mru_path = $HOME . '/racine/plugin/data/unite/neomru/vim-directory'
-
-let g:neomru#directory_mru_limit = 1000
+let g:neomru#directory_mru_limit = 300
 
 let g:neomru#do_validate = 0
 
-call unite#custom#source('neomru/file', 'ignore_globs',
-			\ [
-			\ '/home/*/racine/plugin/manager/**/doc/*.txt',
-			\ 'term://*'
-			\ ])
+" }}}2 
 
-" }}}
-
-" {{{ Unite-outline (Shougo/unite-outline)
+" Unite-outline (Shougo/unite-outline) {{{2
 
 " Pour compatibilité, variable dépréciée dans unite
 " Réglé
 "let g:unite_abbr_highlight = 'Normal'
 
-" }}}
+" }}}2
 
-" {{{ FZF (junegunn/fzf.vim)
+" FZF (junegunn/fzf.vim) {{{2
 
 " This is the default extra key bindings
 let g:fzf_action = {
@@ -713,9 +601,6 @@ let g:fzf_action = {
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~40%' }
-
-" In vim, you can set up fzf window using a Vim command
-let g:fzf_layout = { 'window': 'new' }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -748,15 +633,15 @@ endfunction
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-" }}}
+" }}}2
 
-" {{{ CtrlSpace (szw/vim-ctrlspace)
+" CtrlSpace (szw/vim-ctrlspace) {{{2
 
-" {{{ Mappings
+" Mappings {{{3
 
 let g:CtrlSpaceSetDefaultMapping = 1
 
-let g:CtrlSpaceDefaultMappingKey = "<C-Space>"
+let g:CtrlSpaceDefaultMappingKey = "<D-Space>"
 
 let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 
@@ -769,9 +654,9 @@ nnoremap <C-Right> :CtrlSpaceGoDown<cr>
 nnoremap <C-PageUp> :CtrlSpaceGoUp<cr>
 nnoremap <C-PageDown> :CtrlSpaceGoDown<cr>
 
-" }}}
+" }}}3
 
-" {{{ Données
+" Données {{{3
 
 let g:CtrlSpaceCacheDir = $HOME . '/racine/plugin/data/ctrlspace'
 
@@ -781,18 +666,18 @@ let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp)[\/]'
 
 let g:CtrlSpaceSearchResonators = ['.', '/', '\', '_', '-']
 
-" }}}
+" }}}3
 
-" {{{ Limites
+" Limites {{{3
 
 let g:CtrlSpaceMaxFiles = 500
 let g:CtrlSpaceMaxSearchResults = 200
 
 let g:CtrlSpaceSearchTiming = [50, 500]
 
-" }}}
+" }}}3
 
-" {{{ Recherche de fichiers
+" Recherche de fichiers {{{3
 
 let g:CtrlSpaceFileEngine = "auto"
 
@@ -800,9 +685,9 @@ if executable("ag")
     let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 endif
 
-" }}}
+" }}}3
 
-" {{{ Présentation
+" Présentation {{{3
 
 let g:CtrlSpaceUseHorizontalSplits = 1
 
@@ -815,9 +700,9 @@ let g:CtrlSpaceUseTabline = 0
 
 let g:CtrlSpaceUnicodeFont = 1
 
-" }}}
+" }}}3
 
-" {{{ Workspaces
+" Workspaces {{{3
 
 let g:CtrlSpaceSaveWorkspaceOnExit = 0
 
@@ -825,9 +710,9 @@ let g:CtrlSpaceSaveWorkspaceOnSwitch = 0
 
 let g:CtrlSpaceLoadLastWorkspaceOnStart = 0
 
-" }}}
+" }}}3
 
-" {{{ Options
+" Options {{{3
 
 let g:CtrlSpaceSaveWorkspaceOnExit = 0
 let g:CtrlSpaceLoadLastWorkspaceOnStart = 0
@@ -838,16 +723,15 @@ let g:CtrlSpaceMaxSearches = 120
 let g:CtrlSpaceDefaultSortOrder = 1
 let g:CtrlSpaceUseMouseAndArrows = 1
 
-" }}}
+" }}}3
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Filtres
+" Filtres {{{1
 
-"  {{{ Narrow region (chrisbra/NrrwRgn)
-" ------------------------------------------------------------------------
+"  Narrow region (chrisbra/NrrwRgn) {{{2
 
 nnoremap à :NarrowRegion<cr>
 
@@ -869,34 +753,33 @@ let g:nrrw_rgn_nohl = 0
 
 let g:nrrw_rgn_update_orig_win = 1
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Historique d’undo
+" Historique d’undo {{{1
 
-" {{{ Undotree (mbbill/undotree)
+" Undotree (mbbill/undotree) {{{2
 
 nnoremap <s-bs> :UndotreeToggle<cr>
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Liens
+" Liens {{{1
 
-"  {{{ Utl (utl.vim)
-" ------------------------------------------------------------------------
+"  Utl (utl.vim) {{{2
 
 nnoremap <m-cr> :Utl<cr>
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Ligne de commande (:ex mode)
+" Ligne de commande (:ex mode) {{{1
 
-" {{{ CmdlineComplete (CmdlineComplete)
+" CmdlineComplete (CmdlineComplete) {{{2
 
 cmap <m-right> <Plug>CmdlineCompleteBackward
 cmap <m-left> <Plug>CmdlineCompleteForward
@@ -904,33 +787,20 @@ cmap <m-left> <Plug>CmdlineCompleteForward
 cmap <m-s-t> <Plug>CmdlineCompleteBackward
 cmap <m-t> <Plug>CmdlineCompleteForward
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Modes
+" Modes {{{1
 
-"  {{{ Submode (kana/vim-submode)
-" ------------------------------------------------------------------------
+" Submode {{{2
 
 let g:submode_timeout = 0
-let g:submode_timeoutlen = 10000
+"let g:submode_timeout = 12000
 
-call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
-call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
-call submode#leave_with('undo/redo', 'n', '', '<Esc>')
-call submode#map('undo/redo', 'n', '', '-', 'g-')
-call submode#map('undo/redo', 'n', '', '+', 'g+')
+" }}}2 
 
-call submode#enter_with('change-list', 'n', '', 'g;', 'g;')
-call submode#enter_with('change-list', 'n', '', 'g,', 'g,')
-call submode#leave_with('change-list', 'n', '', '<Esc>')
-call submode#map('change-list', 'n', '', ';', 'g;')
-call submode#map('change-list', 'n', '', ',', 'g,')
-
-" }}}
-
-" {{{ Cmdalias (coot/cmdalias_vim)
+" Cmdalias (coot/cmdalias_vim) {{{2
 
 augroup Cmdalias
 
@@ -942,19 +812,19 @@ augroup Cmdalias
 
 augroup END
 
-" }}}
+" }}}2
 
-" {{{ Cmdmatch (majkinetor/unite-cmdmatch)
+" Cmdmatch (majkinetor/unite-cmdmatch) {{{2
 
 cmap <c-o> <Plug>(unite_cmdmatch_complete)
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Objets texte
+" Objets texte {{{1
 
-" {{{ Targets (wellle/targets.vim)
+" Targets (wellle/targets.vim) {{{2
 
 let g:targets_aiAI = 'aiAI'
 let g:targets_nlNL = 'jkJK'
@@ -962,9 +832,9 @@ let g:targets_pairs = '()b {}B []r <>a'
 let g:targets_quotes = '" '' `'
 let g:targets_separators = ', . ; : + - = ~ _ * # / | \ & $'
 
-" }}}
+" }}}2
 
-" {{{ Textobj-user & dérivés (kana/vim-textobj-user)
+" Textobj-user & dérivés (kana/vim-textobj-user) {{{2
 
 let g:textobj_between_no_default_key_mappings = 1
 
@@ -1022,19 +892,19 @@ xmap  ae  <Plug>(textobj-entire-a)
 omap  ie  <Plug>(textobj-entire-i)
 xmap  ie  <Plug>(textobj-entire-i)
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Recherche & Remplacement
+" Recherche & Remplacement {{{1
 
-" {{{ Grepper
+" Grepper {{{2
 
 nnoremap <D-g> :Grepper<cr>
 
-" }}}
+" }}}2
 
-" {{{ Esearch
+" Esearch {{{2
 
 let g:esearch = {
 	\ 'adapter':    'ag',
@@ -1046,17 +916,17 @@ let g:esearch = {
 
 nmap <D-r> <Plug>(esearch)
 
-" }}}
+" }}}2
 
-" {{{ Quickfix reflector (stefandtw/quickfix-reflector.vim)
+" Quickfix reflector (stefandtw/quickfix-reflector.vim) {{{2
 
 let g:qf_modifiable = 1
 let g:qf_write_changes = 1
 let g:qf_join_changes = 1
 
-" }}}
+" }}}2
 
-" {{{ QFGrep
+" QFGrep {{{2
 
 " nmap <buffer> \r <Plug>QFRestore
 " nmap <buffer> \v <Plug>QFGrepV
@@ -1066,9 +936,9 @@ let g:QFG_hi_prompt='guifg=#5B3C11 guibg=black ctermfg=3 ctermbg=NONE'
 let g:QFG_hi_info='guifg=#5B3C11 guibg=black ctermfg=3 ctermbg=NONE'
 let g:QFG_hi_error='guifg=#5B3C11 guibg=black ctermfg=3 ctermbg=NONE'
 
-" }}}
+" }}}2
 
-" {{{ Sneak (justinmk/vim-sneak)
+" Sneak (justinmk/vim-sneak) {{{2
 
 " 2-character Sneak (default)
 
@@ -1141,19 +1011,19 @@ let g:sneak#map_netrw    = 1
 let g:sneak#streak       = 1
 let g:sneak#streak_esc = "\<space>"
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Calcul
+" Calcul {{{1
 
-" {{{ Crunch (arecarn/crunch.vim
+" Crunch (arecarn/crunch.vim {{{2
 
 nnoremap <D-=> :Crunch<cr>
 
-" }}}
+" }}}2
 
-" {{{ Increment activator (nishigori/increment-activator)
+" Increment activator (nishigori/increment-activator) {{{2
 
 let g:increment_activator_no_default_key_mappings = 1
 
@@ -1170,24 +1040,24 @@ let g:increment_activator_filetype_candidates = {
   \   ],
   \ }
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Terminal
+" Terminal {{{1
 
-" {{{ Neoterm (kassio/neoterm)
+" Neoterm (kassio/neoterm) {{{2
 
-nnoremap <D-$> :Ttoggle<cr>
+nnoremap <D-$> :new \| Ttoggle<cr>
 
 nnoremap <D-CR> :TREPLSendLine<cr>
 vnoremap <D-CR> :TREPLSendSelection<cr>
 
 nnoremap <D-x> :TREPLSendFile<cr>
 
-" }}}
+" }}}2
 
-" {{{ Neomake
+" Neomake {{{2
 
 nnoremap <D-m> :NeomakeSh<space>
 
@@ -1195,9 +1065,9 @@ let g:neomake_make_maker = {
 	\ 'exe': 'make',
 \ }
 
-" }}}
+" }}}2
 
-" {{{ Terminus (brettanomyces/nvim-terminus)
+" Terminus (brettanomyces/nvim-terminus) {{{2
 
 nnoremap <D-!> :TerminusOpen<space>
 
@@ -1210,20 +1080,26 @@ tmap <c-cr> <Plug>TerminusInterceptCommand
 
 let g:terminus_default_prompt = '>'
 
-" }}}
+" }}}2
 
-" }}}
+" Deol {{{2
 
-" {{{ Sans distraction
+nnoremap <D-s> :Deol<cr>
 
-" {{{ Goyo (junegunn/goyo.vim)
+" }}}2
+
+" }}}1
+
+" Sans distraction {{{1
+
+" Goyo (junegunn/goyo.vim) {{{2
 
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
-" }}}
+" }}}2
 
-" {{{ Limelight (junegunn/limelight.vim)
+" Limelight (junegunn/limelight.vim) {{{2
 
 " Color name (:help cterm-colors) or ANSI code
 "let g:limelight_conceal_ctermfg = 'gray'
@@ -1249,17 +1125,17 @@ let g:limelight_eop = '\ze\n^\s'
 "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
-" {{{ Divers
+" Divers {{{1
 
-" {{{ Unimpaired (tpope/vim-unimpaired)
+" Unimpaired (tpope/vim-unimpaired) {{{2
 
 nmap ( [
 nmap ) ]
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1

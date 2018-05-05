@@ -119,7 +119,7 @@ hi FoldColumn		guifg=#5B3C11		guibg=black			gui=NONE
 
 " {{{ Recherche
 
-hi Search			guifg=black			guibg=#5B3C11	gui=underline
+hi Search		guifg=#721919		guibg=NONE		gui=italic,underline
 
 " }}}
 
@@ -231,6 +231,7 @@ hi UtlUrl		guifg=NONE			guibg=NONE		gui=underline
 " {{{ Générique
 
 hi Normal			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+
 hi Comment			ctermfg=DarkGrey	ctermbg=NONE		cterm=NONE
 hi Constant     	ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi Delimiter		ctermfg=NONE		ctermbg=NONE		cterm=NONE
@@ -317,7 +318,7 @@ hi FoldColumn		ctermfg=NONE		ctermbg=black			cterm=NONE
 
 " {{{ Recherche
 
-hi Search			ctermfg=NONE			ctermbg=NONE	cterm=reverse
+hi Search			ctermfg=darkred			ctermbg=NONE	cterm=italic,underline
 
 " }}}
 

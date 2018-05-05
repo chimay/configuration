@@ -1383,6 +1383,10 @@ nnoremap <silent> <D-n> :call InterrupteurNumerotationAbsolueRelative()<cr>
 
 " }}}3
 
+set guicursor=
+
+set termguicolors
+
 "nnoremap \l :set cursorline!<cr>
 
 nnoremap <D-l> :set cursorline!<cr>
@@ -1798,9 +1802,17 @@ elseif $OPERASYS == 'freebsd'
 
 endif
 
+source ~/racine/config/edit/neovim/paquet/minpac.vim
 source ~/racine/config/edit/neovim/paquet/plugged.vim
 
-source ~/racine/config/edit/neovim/paquet/config.vim
+source ~/racine/config/edit/neovim/paquet/preload.vim
+
+" On charge tout, pour pouvoir utiliser certaines fonctions
+" de configuration
+
+packloadall
+
+source ~/racine/config/edit/neovim/paquet/postload.vim
 
 " }}}
 

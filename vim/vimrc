@@ -1630,19 +1630,7 @@ colo personnel
 
 " }}}1
 
-" ------------------------------------
-
-"  {{{ Plugins
-" ------------------------------------------------------------------------
-
-source ~/racine/config/edit/vim/paquet/minpac.vim
-
-source ~/racine/config/edit/vim/paquet/config.vim
-
-" }}}
-
 "  {{{ Historique
-" ------------------------------------------------------------------------
 
 set viminfo=
 	\!,
@@ -1667,8 +1655,25 @@ set history=10000
 
 " }}}
 
+" ------------------------------------
+
+"  {{{ Plugins
+
+source ~/racine/config/edit/vim/paquet/minpac.vim
+source ~/racine/config/edit/vim/paquet/plugged.vim
+
+source ~/racine/config/edit/vim/paquet/preload.vim
+
+" On charge tout, pour pouvoir utiliser certaines fonctions
+" de configuration
+
+packloadall
+
+source ~/racine/config/edit/vim/paquet/postload.vim
+
+" }}}
+
 "  {{{ Auto-commandes pour plugins
-" ------------------------------------------------------------------------
 
 source ~/racine/config/edit/vim/autocmd_plugin.vim
 

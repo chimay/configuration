@@ -65,15 +65,18 @@ hi ErrorMsg			guifg=darkred		guibg=black			gui=undercurl
 
 " {{{ Curseur
 
-hi Cursor			guifg=NONE			guibg=#5B3C11		gui=NONE
-hi iCursor			guifg=NONE			guibg=#5B3C11		gui=NONE
+hi Cursor			guifg=NONE			guibg=NONE			gui=reverse
+hi Cursor2			guifg=NONE			guibg=NONE			gui=reverse
+
+hi iCursor			guifg=NONE			guibg=NONE	   		gui=reverse
+hi lCursor			guifg=NONE			guibg=NONE	   		gui=reverse
 hi vCursor			guifg=#5B3C11		guibg=#4E1609		gui=NONE
 
 hi CursorLineNr		guifg=#5B3C11		guibg=NONE			gui=NONE
 hi CursorLine		guifg=NONE			guibg=#120507		gui=NONE
 hi CursorColumn		guifg=NONE			guibg=#120507		gui=NONE
 
-hi TermCursor		guifg=NONE			guibg=#754321		gui=NONE
+hi TermCursor		guifg=NONE			guibg=#5b3c11		gui=NONE
 hi TermCursorNC		guifg=NONE			guibg=#B21818		gui=NONE
 
 " }}}
@@ -122,7 +125,7 @@ hi FoldColumn		guifg=#5B3C11		guibg=black			gui=NONE
 
 " {{{ Recherche
 
-hi Search			guifg=black			guibg=#5B3C11	gui=NONE
+hi Search		guifg=#721919		guibg=NONE		gui=italic,underline
 
 " }}}
 
@@ -234,6 +237,7 @@ hi UtlUrl		guifg=NONE			guibg=NONE		gui=underline
 " {{{ Générique
 
 hi Normal			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+
 hi Comment			ctermfg=DarkGrey	ctermbg=NONE		cterm=NONE
 hi Constant     	ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi Delimiter		ctermfg=NONE		ctermbg=NONE		cterm=NONE
@@ -267,15 +271,17 @@ hi ErrorMsg			ctermfg=darkred		ctermbg=NONE		cterm=underline
 
 " {{{ Curseur
 
-hi Cursor			ctermfg=NONE		ctermbg=NONE		cterm=NONE
-hi TermCursor		ctermfg=NONE		ctermbg=NONE		cterm=NONE
-hi TermCursorNC		ctermfg=NONE		ctermbg=NONE		cterm=NONE
-hi iCursor			ctermfg=NONE		ctermbg=NONE		cterm=NONE
-hi vCursor			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi Cursor			ctermfg=NONE		ctermbg=NONE		cterm=reverse
+hi iCursor			ctermfg=NONE		ctermbg=NONE		cterm=reverse
+hi lCursor			ctermfg=NONE		ctermbg=NONE		cterm=reverse
+hi vCursor			ctermfg=NONE		ctermbg=NONE		cterm=reverse
 
-hi CursorLineNr		ctermfg=NONE			ctermbg=NONE		cterm=NONE
-hi CursorLine		ctermfg=NONE			ctermbg=NONE		cterm=NONE
-hi CursorColumn		ctermfg=NONE			ctermbg=NONE		cterm=NONE
+hi TermCursor		ctermfg=NONE		ctermbg=NONE		cterm=reverse
+hi TermCursorNC		ctermfg=NONE		ctermbg=NONE		cterm=reverse
+
+hi CursorLineNr		ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi CursorLine		ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi CursorColumn		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
 " }}}
 
@@ -321,7 +327,7 @@ hi FoldColumn		ctermfg=NONE		ctermbg=NONE			cterm=NONE
 
 " {{{ Recherche
 
-hi Search			ctermfg=NONE			ctermbg=NONE	cterm=reverse
+hi Search			ctermfg=NONE			ctermbg=NONE	cterm=italic,underline
 
 " }}}
 
