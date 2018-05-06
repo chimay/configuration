@@ -48,6 +48,8 @@ if exists('*minpac#init')
 	call minpac#add('coot/cmdalias_vim', { 'type' : 'start' })
 	call minpac#add('kana/vim-submode', { 'type' : 'start' })
 
+	call minpac#add('vim-scripts/DeleteTrailingWhitespace', { 'type' : 'start' })     
+
 	" Plugins dans opt
 
 	call minpac#add('Shougo/defx.nvim', { 'type' : 'opt' })     
@@ -97,7 +99,6 @@ if exists('*minpac#init')
 	call minpac#add('tsukkee/unite-tag', { 'type' : 'opt' })
 	call minpac#add('ujihisa/unite-locate', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/CmdlineComplete', { 'type' : 'opt' })
-	call minpac#add('vim-scripts/DeleteTrailingWhitespace', { 'type' : 'opt' })     
 	call minpac#add('vim-scripts/LogiPat', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/VisIncr', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/rcs.vim', { 'type' : 'opt' })

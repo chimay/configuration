@@ -61,6 +61,8 @@ if exists('*minpac#init')
 	call minpac#add('coot/cmdalias_vim', { 'type' : 'start' })
 	call minpac#add('kana/vim-submode', { 'type' : 'start' })
 
+	call minpac#add('vim-scripts/DeleteTrailingWhitespace', { 'type' : 'start' })     
+
 	" Plugins dans opt
 
 	call minpac#add('Shougo/neobundle-vim-recipes', { 'type' : 'opt' })
