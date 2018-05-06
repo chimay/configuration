@@ -228,6 +228,12 @@ hi UtlUrl		guifg=NONE			guibg=NONE		gui=underline
 
 " }}}
 
+" Highlighted Yank {{{3
+
+hi HighlightedyankRegion		guifg=#921717		guibg=black			gui=NONE
+
+" }}}3 
+
 " }}}
 
 " }}}
@@ -402,6 +408,12 @@ hi TableSeparator	ctermfg=NONE	ctermbg=NONE	cterm=NONE
 hi UtlUrl 		ctermfg=NONE		ctermbg=NONE	cterm=underline
 
 " }}}
+
+" Highlighted Yank {{{3
+
+hi HighlightedyankRegion		ctermfg=darkred		ctermbg=NONE		cterm=NONE
+
+" }}}3 
 
 " }}}
 

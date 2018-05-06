@@ -257,7 +257,7 @@ let g:deoplete#enable_at_startup = 1
 
 " }}}1
 
-" Copie {{{1
+" Copier & Coller {{{1
 
 " Neoyank (Shougo/neoyank.vim) {{{2
 
@@ -346,6 +346,12 @@ let g:yankring_paste_check_default_register = 1
 " }}}3
 
 " }}}2
+
+" Highlighted Yank {{{2
+
+let g:highlightedyank_highlight_duration = 1000
+
+" }}}2 
 
 " }}}1
 
@@ -648,8 +654,9 @@ let g:CtrlSpaceDefaultMappingKey = "<D-Space>"
 
 let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 
+let g:CtrlSpaceUseUnicode = 0
+
 nnoremap <c-space> :CtrlSpace<cr>
-nnoremap <c-cr> :CtrlSpace<cr>
 
 nnoremap <C-Left> :CtrlSpaceGoUp<cr>
 nnoremap <C-Right> :CtrlSpaceGoDown<cr>
@@ -775,6 +782,9 @@ nnoremap <s-bs> :UndotreeToggle<cr>
 "  Utl (utl.vim) {{{2
 
 nnoremap <m-cr> :Utl<cr>
+nnoremap <c-cr> :Utl<cr>
+
+let g:utl_cfg_hdl_scm_http = "!qutebrowser '%u#%f' &"
 
 " }}}2
 

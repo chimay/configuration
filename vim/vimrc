@@ -1669,6 +1669,9 @@ source ~/racine/config/edit/vim/paquet/preload.vim
 
 packloadall
 
+" Les appels aux fonctions autoload des plugins 
+" doivent se situer après packloadall
+
 source ~/racine/config/edit/vim/paquet/postload.vim
 
 " }}}

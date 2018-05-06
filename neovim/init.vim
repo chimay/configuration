@@ -125,7 +125,7 @@ let g:terminal_scrollback_buffer_size = 50000
 " Se place dans le répertoire du fichier courant
 " ------------------------------------------------------------
 
-" Voir aussi autocommandesneovim
+" Voir aussi autocommandes
 
 "set autochdir
 
@@ -1811,6 +1811,9 @@ source ~/racine/config/edit/neovim/paquet/preload.vim
 " de configuration
 
 packloadall
+
+" Les appels aux fonctions autoload des plugins 
+" doivent se situer après packloadall
 
 source ~/racine/config/edit/neovim/paquet/postload.vim
 

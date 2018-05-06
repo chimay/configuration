@@ -1,5 +1,15 @@
 " vim: set filetype=vim :
 
+" Complétion {{{1
+
+" Deoplete {{{2
+
+call deoplete#enable()
+
+" }}}2
+
+" }}}1
+
 " Exploration multiple {{{1
 
 " Denite {{{2
