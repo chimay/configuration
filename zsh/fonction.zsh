@@ -317,7 +317,7 @@ zmodload -i zsh/mathfunc
 
 # Gaussienne {{{2
 
-#function zmath_gauss() {
+#function zmath_gauss () {
 
 	#local x mu sigma
 
@@ -337,9 +337,14 @@ zmodload -i zsh/mathfunc
 
 # Chpwd {{{2
 
+# Voir aussi
+# <url:zshenv#tn=DIRSTACKSIZE>
+# <url:zshrc#tn=REPERTOIRES_FICHIER>
+# <url:zlogout>
+
 typeset -ga chpwd_functions
 
-function chpwd {
+chpwd () {
 
 	print -l $PWD >>! $REPERTOIRES_FICHIER
 }
@@ -352,7 +357,7 @@ typeset -ga period_functions
 
 # Exécutée chaque $PERIOD secondes
 
-function periodic {
+periodic () {
 
 
 }
@@ -363,7 +368,7 @@ function periodic {
 
 typeset -ga precmd_functions
 
-function precmd {
+precmd () {
 
 	case $TERM in
 		xterm*)
@@ -378,7 +383,7 @@ function precmd {
 
 typeset -ga preexec_functions
 
-function preexec {
+preexec () {
 
 	echo
 }
@@ -389,7 +394,7 @@ function preexec {
 
 typeset -ga zshaddhistory_functions
 
-function zshaddhistory {
+zshaddhistory () {
 
 	emulate -R zsh
 
@@ -412,7 +417,7 @@ function zshaddhistory {
 
 typeset -ga zshexit_functions
 
-function zshexit {
+zshexit () {
 
 
 }

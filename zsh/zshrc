@@ -1434,12 +1434,6 @@ autoload -U zargs
 
 #  Navigation dans les répertoires {{{1
 
-# Répertoire initial {{{2
-
-cd ~/racine/plain
-
-# }}}2 
-
 # Auto-cd {{{2
 
 # Si la commande est invalide mais correspond au nom
@@ -1489,18 +1483,23 @@ setopt pushd_minus
 
 # Chargement du fichier de la pile des répertoires {{{2
 
+# Voir aussi
+# <url:zshenv#tn=DIRSTACKSIZE>
+# <url:fonction.zsh#tn=chpwd ()>
+# <url:zlogout>
+
 if [[ -f $REPERTOIRES_FICHIER ]]
 then
-	dirstack=( ${(f)"$(< $REPERTOIRES_FICHIER)"} )
+	dirstack=( ${(fOa)"$(< $REPERTOIRES_FICHIER)"} )
 
-	dirstack=( ${(u)dirstack} )
+	dirstack=(${(u)dirstack})
+
+	print -l $~dirstack >! $REPERTOIRES_FICHIER
+
+	[[ -d $dirstack[1] ]] && cd $dirstack[1]
 fi
 
-# Voir aussi zshenv, variable DIRSTACKSIZE
-
-# Voir aussi fonction.zsh dans les crochets, fonction chpwd
-	
-# }}}2 
+# }}}2
 
 # }}}1
 

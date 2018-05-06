@@ -74,11 +74,16 @@ export HISTFILESIZE=$HISTSIZE
 
 # Piles de répertoires {{{2
 
+# Voir aussi
+# <url:zshrc#tn=REPERTOIRES_FICHIER>
+# <url:fonction.zsh#tn=chpwd ()>
+# <url:zlogout>
+
 export DIRSTACKSIZE=300
 
 export REPERTOIRES_FICHIER="$HOME/racine/hist/zsh/dirs-$HOST"
 
-# }}}2 
+# }}}2
 
 #  Chemins {{{2
 
@@ -107,8 +112,8 @@ manpath+=(/usr/local/man)
 #  Fichiers indexés (locate) {{{3
 
 # Désactivé pour ne pas que la base de donnée soit reprise 2 x
-# Voir : 
-#   - alias.zsh : alias à locat -
+# Voir :
+#   - alias.zsh : alias à locate
 #   - emacs : helm-locate
 
 #export LOCATE_PATH=~/racine/self/locate.db
@@ -463,7 +468,7 @@ export UNISON=~/racine/config/sync/unison/archive/$HOST
 export OCTAVE_HISTFILE=~/racine/hist/octave/octave_hist
 export OCTAVE_HISTSIZE=34712
 
-# }}}1 
+# }}}1
 
 #  Bases de données {{{1
 

@@ -2,8 +2,8 @@
 
 clear
 
-print -l $PWD >>! $REPERTOIRES_FICHIER
+pile=( ${(fOa)"$(< $REPERTOIRES_FICHIER)"} )
 
-pile=( ${(f)"$(< $REPERTOIRES_FICHIER)"} )
+pile=(${(u)pile})
 
-print -l ${(u)~pile} >! $REPERTOIRES_FICHIER
+print -l ${(Oa)~pile} >! $REPERTOIRES_FICHIER
