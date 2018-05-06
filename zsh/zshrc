@@ -1,24 +1,8 @@
 #!/usr/bin/env zsh
 
-# vim: set ft=zsh :
-
-# Logo {{{1
-
-#   _________  _   _ ____   ____
-#  |__  / ___|| | | |  _ \ / ___|
-#    / /\___ \| |_| | |_) | |
-# _ / /_ ___) |  _  |  _ <| |___
-#(_)____|____/|_| |_|_| \_\\____|
-#
-
-# }}}1
-
-# ------------------------------------------------------------
-
 #  Complétion {{{1
 
 #  Initialisation {{{2
-# ------------------------------------------------------------------------
 
 autoload -Uz compinit
 
@@ -32,17 +16,14 @@ zmodload -i zsh/complist
 # }}}2
 
 #  Options {{{2
-# ------------------------------------------------------------------------
 
 # Menu
-# ------------------------------------
 
 setopt menu_complete
 
 setopt always_last_prompt
 
 # Liste des solutions
-# ------------------------------------
 
 # Affiche la liste des solutions
 # en cas d'ambiguité
@@ -67,47 +48,39 @@ setopt list_types
 
 # Complète à l'endroit du curseur
 # ex : th_js --> theatre.js
-# ------------------------------------
 
 setopt complete_in_word
 
 # Déplace le curseur à la fin du mot
 # après une complétion
-# ------------------------------------
 
 setopt always_to_end
 
 # Si un espace est inséré automatiquement après un motif
 # et que le caractère suivant termine le mot : }, :, etc
 # l'espace est effacé
-# ------------------------------------
 
 setopt auto_param_keys
 
 # En cas de complétion d'un répertoire, ajout d'un /
 # à la fin
-# ------------------------------------
 
 setopt auto_param_slash
 
 # Quand le dernier caractère d’une complétion est / et que l’on
 # tape espace après, le / est effacé
-# ------------------------------------
 
 setopt auto_remove_slash
 
 # Alias
-# ------------------------------------
 
 unsetopt complete_aliases
 
 # Globbing
-# ------------------------------------
 
 setopt glob_complete
 
 # Ksh
-# ------------------------------------
 
 #	ksh-like Glob Operators
 #	If the KSH_GLOB option is set, the effects of parentheses can be modified by a preceding `@', `*', `+', `?' or `!'.
@@ -128,10 +101,8 @@ setopt ksh_glob
 # }}}2
 
 #  Zstyle {{{2
-# ------------------------------------------------------------------------
 
 # Priorité des complétions
-# ------------------------------------
 
 zstyle ':completion:*' \
 	completer \
@@ -148,12 +119,10 @@ zstyle ':completion:*' \
 		#_history \
 
 # Dernière liste
-# ------------------------------------
 
 zstyle ':completion:*' old-list always
 
 # Groupes
-# ------------------------------------
 
 zstyle ':completion:*' group-name ''
 
@@ -162,7 +131,6 @@ zstyle ':completion:*' list-grouped yes
 zstyle ':completion:*:-command-' group-order builtins functions commands
 
 # Présentation
-# ------------------------------------
 
 # Majuscule = activé / minuscule = désactivé
 # %S = inversion couleurs
@@ -179,10 +147,9 @@ zstyle ':completion:*:options' auto-description '%d'
 
 zstyle ':completion:*' list-separator ' : '
 
-zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-colors '=*='
 
 # Menu
-# ------------------------------------
 
 # pour obtenir un menu convivial pour la completion (avec les flèches du clavier)
 # le chiffre est le nombre minimal de possibilités pour afficher le menu
@@ -194,7 +161,6 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 #zstyle ':completion:*' old-menu yes
 
 # Expansion par le système de complétion
-# ------------------------------------
 
 zstyle ':completion:*:expand-glob:*' glob yes
 zstyle ':completion:*:expand-subst:*' substitute yes
@@ -205,14 +171,12 @@ zstyle ':completion:*:expand-subst:*' substitute yes
 #zstyle ':completion::expand-subst:*' tag-order all-expansions
 
 # Variables
-# ------------------------------------
 
 # Indices des tableaux
 
 zstyle ':completion:*:-subscript-:*' tag-order indexes parameters
 
 # Fichiers
-# ------------------------------------
 
 # Affichage détaillé
 
@@ -223,7 +187,6 @@ zstyle ':completion:*' file-list list=7 insert=7
 zstyle ':completion:*' squeeze-slashes yes
 
 # Répertoires
-# ------------------------------------
 
 # Répertoires en premier
 
@@ -238,17 +201,14 @@ zstyle ':completion:*:cd:*' tag-order "local-directories path-directories"
 zstyle ':completion:*' ignore-parents parent pwd
 
 # Partie non ambiguë
-# ------------------------------------
 
 zstyle ':completion:*' insert-unambiguous true
 
 # Tabulation littérale en début de ligne
-# ------------------------------------
 
 zstyle ':completion:*' insert-tab yes
 
 # Complétion floue
-# ------------------------------------
 
 #zstyle ':completion:*:approximate-serre:*' max-errors 2 numeric
 #zstyle ':completion:*:approximate-large:*' max-errors 4 numeric
@@ -264,7 +224,6 @@ zstyle ':completion:*:correct:*' max-errors 2 numeric
 zstyle ':completion:*' original true
 
 # Unicité
-# ------------------------------------
 
 # Pour éviter de reproposer un argument déjà utilisés
 # dans la commande lors de la completion
@@ -278,7 +237,6 @@ zstyle ':completion:*:joue:*' ignore-line yes
 zstyle ':completion:*:mplayer:*' ignore-line yes
 
 # Motifs de fichiers
-# ------------------------------------
 
 zstyle ':completion:*:rm:*' \
 	file-patterns \
@@ -288,14 +246,12 @@ zstyle ':completion:*:rm:*' \
 		'%p:all-files'
 
 # Listes de sous-commandes
-# ------------------------------------
 
 #zstyle ':completion:*:gravure:*' \
 	#file-patterns \
 		#'gravure-iso image-iso gravure-cd'
 
 # Motifs à ignorer
-# ------------------------------------
 
 #fignore=(.zwc .pyc .dvi .o \~)
 
@@ -308,18 +264,18 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*:ignored:*' completer _complete
 
 # Utilisateurs et hôtes
-# ------------------------------------
 
-zstyle ':completion:*' users-hosts
+zstyle ':completion:*' users-hosts \
+	$USER@quigonjinn.local \
+	$USER@shari.local \
+	$USER@tixu.local
 
 # Historique
-# ------------------------------------
 
 #zstyle ':completion:history-complete-word:*' list yes
 zstyle ':completion:history-complete-word:*' remove-all-dups yes
 
 # Correspondances
-# ------------------------------------
 
 # m:... : insensibilité à la casse
 # r:... : mots partiels
@@ -336,33 +292,28 @@ zstyle ':completion:*' \
 		'r:[^A-Z0-9]||[A-Z0-9]=** r:|=*'
 
 # En cas d’insertion de toutes les possibilités
-# ------------------------------------
 
 zstyle ':completion:all-matches:*' old-matches only
 
 # Cache
-# ------------------------------------
 
 # Crée un cache des complétion possibles
 # très utile pour les complétion qui demandent beaucoup de temps
-# comme la recherche d'un paquet aptitude install moz<tab>
+# comme la recherche d'un paquet
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/racine/dotdir/zsh/cache/completion
 
 # Courriel
-# ------------------------------------
 
 zstyle ':completion:*' mail-directory ~/bal
 zstyle ':completion:*' muttrc ~/racine/config/courriel/muttrc/muttrc
 
 # Predict
-# ------------------------------------
 
 zstyle ':completion:predict:*' completer _complete
 
 # Divers
-# ------------------------------------
 
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
                              /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
@@ -380,7 +331,6 @@ zstyle ':completion:*:*:killall:*' menu yes select
 # }}}2
 
 #  Compdef {{{2
-# ------------------------------------------------------------------------
 
 compdef '_files -g "*.htm *.html *.php *.phtm *.phtml"' elinks firefox
 compdef '_files -g "*.pdf *.ps"' okular apvlv
@@ -394,7 +344,6 @@ compdef '_files -g "*.tex"' latex
 compdef '_files -g "*.ly"' lilypond
 
 # Listes d’arguments
-# ------------------------------------
 
 compdef '_arguments \
 	"1:Commandes:(help lock default-eval evaluation detox \
@@ -423,7 +372,6 @@ compdef '_arguments "1:Subcmds:(dmsend update setup block unblock follow unfollo
 	lsrt lsrtarchive lsrtreplies)"' twidge
 
 # Alias, fonctions
-# ------------------------------------
 
 compdef _cd pu
 compdef _man manmost
@@ -434,7 +382,6 @@ compdef _man info
 # }}}2
 
 #  Compctl (ancien système) {{{2
-# ------------------------------------------------------------------------
 
 zstyle ':completion:*' use-compctl true
 
@@ -480,7 +427,6 @@ zstyle ':completion:*' use-compctl true
 #  Éditeur interne de ligne de commande (ZLE) {{{1
 
 #  Initialisation {{{2
-# ------------------------------------------------------------------------
 
 zmodload -i zsh/zle
 zmodload -i zsh/zleparameter
@@ -488,10 +434,8 @@ zmodload -i zsh/zleparameter
 # }}}2
 
 #  Codes du terminal {{{2
-# ------------------------------------------------------------------------
 
 # Terminfo
-# ------------------------------------
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
@@ -596,7 +540,6 @@ unsetopt flowcontrol
 # }}}2
 
 #  Commandes {{{2
-# ------------------------------------------------------------------------
 
 bindkey '^J' accept-line
 bindkey '^M' accept-line
@@ -625,17 +568,8 @@ bindkey "^Xk" insert-composed-char
 [[ -n "${clavier[Home]}" ]]     && bindkey "${clavier[Home]}" beginning-of-line
 [[ -n "${clavier[End]}" ]]      && bindkey "${clavier[End]}" end-of-line
 
-# [[ -n "${clavier[Up]}" ]]       && bindkey "${clavier[Up]}" up-line-or-history
-# [[ -n "${clavier[Down]}" ]]     && bindkey "${clavier[Down]}" down-line-or-history
-
 [[ -n "${clavier[Left]}" ]]     && bindkey "${clavier[Left]}" backward-char
 [[ -n "${clavier[Right]}" ]]    && bindkey "${clavier[Right]}" forward-char
-
-# [[ -n "${clavier[PageUp]}" ]]   && bindkey "${clavier[PageUp]}" beginning-of-buffer-or-history
-# [[ -n "${clavier[PageDown]}" ]] && bindkey "${clavier[PageDown]}" end-of-buffer-or-history
-
-[[ -n "${clavier[PageUp]}" ]]   && bindkey "${clavier[PageUp]}" history-beginning-search-backward-end
-[[ -n "${clavier[PageDown]}" ]] && bindkey "${clavier[PageDown]}" history-beginning-search-forward-end
 
 bindkey '^F' forward-char
 bindkey '^B' backward-char
@@ -656,9 +590,12 @@ bindkey '^X^O' overwrite-mode
 
 [[ -n "${clavier[Delete]}" ]] && bindkey "${clavier[Delete]}" delete-char
 
-bindkey '\ec' capitalize-word
+# Pris par fzf
+#bindkey '\ec' capitalize-word
 
-bindkey '^T' transpose-chars
+# Pris par fzf
+#bindkey '^T' transpose-chars
+
 bindkey '\et' transpose-words
 
 bindkey "\e'" quote-line
@@ -667,51 +604,16 @@ bindkey '\e"' quote-region
 # }}}2
 
 #  Copier & Coller {{{2
-# ------------------------------------------------------------------------
 
 bindkey '\em' set-mark-command
 bindkey '^@' set-mark-command
 
-bindkey '\eM' exchange-point-and-mark
-
-# Shift-flèches pour sélection {{{3
-
-# Ne fonctionne pas
-
-# shift-arrow() {
-#   ((REGION_ACTIVE)) || zle set-mark-command
-#   zle $1
-# }
-#
-# shift-left() shift-arrow backward-char
-# shift-right() shift-arrow forward-char
-# shift-up() shift-arrow up-line-or-history
-# shift-down() shift-arrow down-line-or-history
-#
-# zle -N shift-left
-# zle -N shift-right
-# zle -N shift-up
-# zle -N shift-down
-#
-# [[ -n "${clavier[ShiftLeft]}" ]]  && bindkey "${clavier[ShiftLeft]}" shift-left
-# [[ -n "${clavier[ShiftRight]}" ]] && bindkey "${clavier[ShiftRight]}" shift-right
-# [[ -n "${clavier[ShiftUp]}" ]]    && bindkey "${clavier[ShiftUp]}" shift-up
-# [[ -n "${clavier[ShiftDown]}" ]]  && bindkey "${clavier[ShiftDown]}" shift-down
-
-# }}}3
+bindkey '^X^X' exchange-point-and-mark
 
 # Copie {{{3
 
-copie-et-desactive-region() {
-
-	zle copy-region-as-kill
-
-	(( REGION_ACTIVE == 1 )) && REGION_ACTIVE=0
-}
-
 zle -N copie-et-desactive-region
 
-#bindkey '\ew' copy-region-as-kill
 bindkey '\ew' copie-et-desactive-region
 
 # }}}3
@@ -730,7 +632,6 @@ bindkey '^W' backward-kill-word
 # }}}2
 
 #  Historique {{{2
-# ------------------------------------------------------------------------
 
 # Recherche à partir du début de la ligne précédent le curseur {{{3
 
@@ -739,14 +640,17 @@ bindkey '^W' backward-kill-word
 
 # }}}3
 
-# Recherche début de ligne, le curseur est ensuite positionné à la fin de la ligne {{{3
+# Recherche à partir du début, le curseur est ensuite positionné à la fin de la ligne {{{3
 
 autoload history-search-end
 
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
-bindkey "^p"   history-beginning-search-backward-end
+[[ -n "${clavier[PageUp]}" ]]   && bindkey "${clavier[PageUp]}" history-beginning-search-backward-end
+[[ -n "${clavier[PageDown]}" ]] && bindkey "${clavier[PageDown]}" history-beginning-search-forward-end
+
+bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 
 # }}}3
@@ -778,8 +682,12 @@ bindkey '^X^P' predict-off
 
 # Recherche incrémentale {{{3
 
-bindkey '^R' history-incremental-pattern-search-backward
-bindkey '^S' history-incremental-pattern-search-forward
+# Plus nécessaire avec le ^R de fzf
+#bindkey '^R' history-incremental-pattern-search-backward
+
+# Pris par perso-repertoires
+# Plus nécessaire avec le ^R de fzf
+#bindkey '^S' history-incremental-pattern-search-forward
 
 bindkey '^Xr' history-incremental-search-backward
 bindkey '^Xs' history-incremental-search-forward
@@ -805,7 +713,6 @@ bindkey '\e;' insert-last-word
 # }}}2
 
 #  Expansion & complétion {{{2
-# ------------------------------------------------------------------------
 
 bindkey '^I' menu-complete
 bindkey "${clavier[Backtab]}" reverse-menu-complete
@@ -1017,19 +924,7 @@ bindkey -M isearch '\ev' vi-cmd-mode
 
 # Fonctions perso {{{2
 
-#  Éditeur externe {{{3
-# ------------------------------------------------------------------------
-
-autoload perso-edit-command-line
-
-zle -N perso-edit-command-line
-
-bindkey '\ee' perso-edit-command-line
-
-# }}}3
-
 #  Alternance des répertoires {{{3
-# ------------------------------------------------------------------------
 
 autoload perso-alternate-dirs
 
@@ -1065,6 +960,24 @@ bindkey -M isearch "*" self-insert
 
 # }}}3
 
+# Changement de répertoire avec fzf {{{3
+
+zle -N perso-repertoires
+
+bindkey "^S" perso-repertoires
+
+# }}}3
+
+#  Éditeur externe {{{3
+
+autoload perso-edit-command-line
+
+zle -N perso-edit-command-line
+
+bindkey '\ee' perso-edit-command-line
+
+# }}}3
+
 # }}}2
 
 # Clausule {{{2
@@ -1072,7 +985,8 @@ bindkey -M isearch "*" self-insert
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 
-if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} ))
+then
     function zle-line-init () {
         printf '%s' "${terminfo[smkx]}"
     }
@@ -1101,7 +1015,9 @@ fi
 #
 # ,bla,bli<tab> --> /blanc/blink
 
-eval "$(fasd --init auto)"
+# /!\ empêche alias -g F='| fpp' de fonctionner
+
+#eval "$(fasd --init auto)"
 
 # }}}1
 
@@ -1156,7 +1072,7 @@ setopt globalexport
 
 # Fichier des fonctions
 
-source ${RACINE_ZSH}/fonctions.zsh
+source ${RACINE_ZSH}/fonction.zsh
 
 # }}}1
 
@@ -1193,12 +1109,6 @@ unsetopt shwordsplit
 setopt hash_cmds
 setopt hash_all
 setopt hash_list_all
-
-# }}}1
-
-#  Profile {{{1
-
-source ${RACINE_ZSH}/zsh_profile
 
 # }}}1
 
@@ -1497,26 +1407,22 @@ unsetopt ignore_eof
 # zmodload -i zsh/zselect
 
 # Zcalc
-# ------------------------------------
 
 # Calculette
 
 autoload -U zcalc
 
 # Zed
-# ------------------------------------
 
 # Éditeurs
 
 #autoload -U zed
 
 # Zargs
-# ------------------------------------
 
 autoload -U zargs
 
 # Zftp
-# ------------------------------------
 
 #autoload -U zfinit
 
@@ -1526,7 +1432,13 @@ autoload -U zargs
 
 # }}}1
 
-#  Navigation {{{1
+#  Navigation dans les répertoires {{{1
+
+# Répertoire initial {{{2
+
+cd ~/racine/plain
+
+# }}}2 
 
 # Auto-cd {{{2
 
@@ -1546,8 +1458,7 @@ unsetopt chase_dots
 
 # }}}2
 
-# Pile {{{2
-# ------------------------------------
+# Pile des répertoires {{{2
 
 # L’execution de cd met le repertoire d’ou l’on vient sur la pile
 
@@ -1574,34 +1485,33 @@ setopt pushd_minus
 
 #autoload -U pu
 
-# Chargement de la pile des répertoires
+# }}}2
 
-DIRSTACKFILE="$HOME/racine/dotdir/zsh/cache/dirs"
+# Chargement du fichier de la pile des répertoires {{{2
 
-if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+if [[ -f $REPERTOIRES_FICHIER ]]
+then
+	dirstack=( ${(f)"$(< $REPERTOIRES_FICHIER)"} )
 
-  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-
-  dirstack=( ${(u)dirstack} )
-
-  [[ -d $dirstack[1] ]] && cd $dirstack[1]
+	dirstack=( ${(u)dirstack} )
 fi
 
 # Voir aussi zshenv, variable DIRSTACKSIZE
 
-# Voir aussi fonctions.zsh dans les crochets, fonction chpwd
-
-# }}}2
+# Voir aussi fonction.zsh dans les crochets, fonction chpwd
+	
+# }}}2 
 
 # }}}1
 
 # ------------------------------------------------------------
 
-# Base16 Color Themes {{{1
+# Thème {{{1
 
-#BASE16_SHELL=$HOME/racine/config/terminal/base16-shell/
+# Basé sur base16, permet d’uniformiser le thème du terminal
+# indépendamment des émulateurs
 
-#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+source ~/racine/config/terminal/theme/personnel.sh
 
 # }}}1
 

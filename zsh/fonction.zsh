@@ -88,9 +88,9 @@ pid () {
 
 # }}}2
 
-# pstop : process stop {{{2
+# psi : process signal {{{2
 
-pstop () {
+psi () {
 
 	local motif identifiants reponse signal
 
@@ -118,6 +118,8 @@ pstop () {
 	echo -n "Voulez-vous envoyer un signal à ces processus ? (y/n, o/n) "
 	read reponse
 	echo
+
+	(( $#reponse > 0 )) || return 1
 
 	[ $reponse = y -o $reponse = o -o $reponse = yes -o $reponse = oui ] || return 0
 
@@ -339,7 +341,7 @@ typeset -ga chpwd_functions
 
 function chpwd {
 
-	print -l $PWD ${(u)dirstack} >! $REPERTOIRES_FICHIER
+	print -l $PWD >>! $REPERTOIRES_FICHIER
 }
 
 # }}}2

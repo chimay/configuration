@@ -32,6 +32,8 @@ alias scr='script -f -a ~/log/${HOST}/cmdline/terminal.log'
 
 alias e='print -l'
 
+alias valve=wall
+
 # }}}1
 
 # Archive {{{1
@@ -435,8 +437,8 @@ alias mkdir='nocorrect mkdir -p'
 alias -g L='|& less'
 alias -g LR='|& less -R'
 
-alias -g U='| vimpager'
 alias -g V='| view -'
+alias -g W='| vimpager'
 
 alias -g F='| fpp'
 
@@ -444,6 +446,7 @@ alias -g R='| tac'
 
 alias -g G='| command grep'
 alias -g S='| sort'
+alias -g U='| sort | uniq'
 
 alias -g H='| head'
 alias -g T='| tail'
@@ -483,6 +486,7 @@ alias -s wav='mplayer'
 #  Alias de répertoires : hash -d {{{1
 
 hash -d racine=~/racine
+hash -d wallpaper=~/graphix/wallpaper
 
 # Dossiers dans racine {{{2
 
@@ -560,17 +564,15 @@ hash -d zdot=~/racine/dotdir/zsh
 # Edit {{{2
 # ------------------------------------
 
-hash -d neoconf=~/racine/config/edit/neovim
-
-hash -d neohist=~/racine/hist/neovim
-
-# ------------
-
 hash -d vimconf=~/racine/config/edit/vim
 
 # ------------
 
-hash -d mconf=~/racine/config/edit/emacs
+hash -d neovimconf=~/racine/config/edit/neovim
+
+# ------------
+
+hash -d emacsconf=~/racine/config/edit/emacs
 
 hash -d mdot=~/racine/dotdir/emacs.d
 

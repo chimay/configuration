@@ -1,3 +1,9 @@
+# vim: set ft=zsh :
+
 clear
 
-print -l $PWD ${(u)~dirstack} >! $DIRSTACKFILE
+print -l $PWD >>! $REPERTOIRES_FICHIER
+
+pile=( ${(f)"$(< $REPERTOIRES_FICHIER)"} )
+
+print -l ${(u)~pile} >! $REPERTOIRES_FICHIER
