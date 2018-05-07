@@ -1,0 +1,176 @@
+#! /usr/bin/env zsh
+
+# vim: set filetype=sh :
+# vim: set fdm=marker :
+
+# {{{ Documentation
+
+# PekWM start file
+# This file is a simple shell script; It gets run on pekwm startup, after
+# the theme and all config has loaded if it is set executable
+# (chmod +x start).
+#
+# This is different from ~/.xinitrc because a normal configuration of
+# .xinitrc you'll run all commands, then launch the window manager last.
+#
+# It also gets re-run every time pekwm is restarted.
+#
+# As for it's usefulness, well, it's up to you. I actually set my background
+# from my start file; since it runs after the theme gets loaded, this
+# effectively overrides whatever's in the theme.
+#
+# There's probably a few other good uses for it, too. I mainly pushed for it
+# because when I was doing fluxbox's docs, people used to complain that there
+# wasn't one, and I wanted to avoid that for pekwm. ;) --eyez
+
+# }}}
+
+# {{{ Chemins d’accès
+
+source ~/racine/config/cmdline/zsh/zprofile
+
+# }}}
+
+# {{{ Variables
+
+HOST=`hostname -s`
+
+# }}}
+
+# {{{ Alias
+
+alias psgrep='ps auxww | grep -v grep | grep --color=never'
+
+# }}}
+
+#  {{{ Environnement
+
+#  {{{ Fond d’écran
+# ------------------------------------------------------------------------
+
+psgrep fond-ecran || fond-ecran.zsh 7 +30 ~/graphix/list/wallpaper.gen >>! ~/log/fond-ecran.log &
+
+#psgrep xplanet || xplanet -wait 300 -label -labelpos -15+50 -projection rectangular &
+
+# }}}
+
+# {{{ Panel
+
+xfce4-panel &
+
+#lxpanel &
+
+#fbpanel &
+
+# }}}
+
+#  {{{ Dock
+
+#wbar -config ~/racine/config/xwin/dock/wbarrc -pos top-left -vbar -isize 48 -idist 24 -zoomf 2 -jumpf 1 -nanim 5 &
+#wbar -config ~/racine/config/xwin/dock/wbarrc -pos top -isize 48 -idist 24 -zoomf 2 -jumpf 1 -nanim 5 &
+
+# }}}
+
+#  {{{ Écran de veille
+# ------------------------------------------------------------------------
+
+#psgrep xscreensaver || xscreensaver -nosplash &
+
+# }}}
+
+# }}}
+
+# {{{ Services
+
+# {{{ Emacs
+
+#psgrep emacs || emacs --daemon >>! ~/log/emacs-server.log 2>&1 &
+
+# }}}
+
+# {{{ Musique
+
+psgrep mpd || { rm -f ~/racine/run/mpd/pid ; mpd ~/racine/config/music/mpd.conf }
+
+psgrep mplayer || mplayer -idle -slave -input file=$HOME/racine/run/fifo/mplayer &>>! ~/log/mplayer.log &!
+
+# }}}
+
+#  {{{ Horloge
+# ------------------------------------------------------------------------
+
+if [ $HOST = shari ]
+then
+	psgrep horloge || horloge.zsh -4 -f -i ~/racine/run/clock/horloge.etat >>! ~/log/horloge.log 2>&1 &
+fi
+
+# }}}
+
+# }}}
+
+#  {{{ Matériel
+
+# {{{ Écran
+
+#xbacklight -set 100
+
+#xset dpms 0 0 234
+
+psgrep redshift || redshift-gtk >>! ~/log/redshift.log 2>&1 &
+
+# }}}
+
+#  {{{ Clavier
+# ------------------------------------------------------------------------
+
+setxkbmap fr & sleep 1
+xmodmap ~/.Xmodmap >>! ~/log/xmodmap.log 2>&1 &
+
+#keynav &
+
+# }}}
+
+# {{{ Souris
+
+psgrep unclutter || unclutter -display :0.0 -root -jitter 7 -idle 5 &
+
+synclient TapButton1=1
+
+synclient VertEdgeScroll=1
+synclient HorizEdgeScroll=1
+
+synclient LBCornerButton=2
+synclient RBCornerButton=3
+
+# }}}
+
+#  {{{ Batterie
+# ------------------------------------------------------------------------
+
+if [ $HOST = shari ] || [ $HOST = tixu ]
+then
+	start-alarm-bat.zsh 15 10 5 3 2>&1 >>! ~/log/alerteBatterie.log &
+fi
+
+# }}}
+
+# {{{ Eviter le parquage excessif du disque
+# ------------------------------------------------------------
+
+psgrep load_cycle_fix || load_cycle_fix.sh &
+
+# }}}
+
+#  {{{ Réseau
+# ------------------------------------------------------------------------
+
+psgrep nm-applet || nm-applet &
+
+if [ $HOST = shari ]
+then
+	psgrep blueman-applet || blueman-applet &
+fi
+
+# }}}
+
+# }}}

@@ -1,0 +1,83 @@
+# vim: set filetype=conf :
+
+# Remarque : les doubles guillements "..." sont nécessaires,
+# ne fonctionne pas avec '...'
+
+# {{{ Lanceur
+
+$ROFI="~/racine/shell/run/lance-rofi.zsh"
+
+$DMENU="~/racine/shell/run/dmenurun.sh"
+
+$LANCEUR="~/racine/shell/run/zshrun.sh"
+$LANCEUR_DANS_TERM="~/racine/shell/run/zshrunterm.sh"
+
+# }}}
+
+# {{{ Applications
+
+$LXTERMINAL="lxterminal --geometry=140x39"
+
+$VIM="~/racine/shell/run/lance-gvim.zsh"
+
+$NEOVIM_CLIENT="~/racine/shell/run/lance-neovim-client.zsh"
+
+$EMACS_CLIENT="~/racine/shell/run/lance-emacs-client.zsh"
+
+$NEOVIM="~/racine/shell/run/lance-neovim.zsh"
+
+$EMACS="~/racine/shell/run/lance-emacs.zsh"
+
+# }}}
+
+# {{{ Écran
+
+#$AUTO_ECONOMISE_ON="xset +dpms"
+
+$AUTO_ECONOMISE_ON="xset dpms 123 175 234"
+
+$AUTO_ECONOMISE_OFF="xset -dpms"
+
+#$ECONOMISE_ECRAN="~/racine/bin/shell/xwin/economiseEcran.sh"
+
+$ECONOMISE_ECRAN="xset dpms force off"
+
+$VERROUILLE="slock"
+
+$BANNI="swarp 0 0"
+
+# }}}
+
+# {{{ Multimédia
+
+$MM_MIXER="pavucontrol"
+
+$MM_VOL_INC="amixer -c 0 -- set Master 2dB+"
+$MM_VOL_DEC="amixer -c 0 -- set Master 2dB-"
+
+$MM_VOL_INC_INC="amixer -c 0 -- set Master 4dB+"
+$MM_VOL_DEC_DEC="amixer -c 0 -- set Master 4dB-"
+
+$MPD_TOGGLE="mpc --no-status toggle"
+
+$MPD_REWIND="mpc --no-status seek 0:0"
+
+$MPD_NEXT="mpc --no-status next"
+$MPD_PREVIOUS="mpc --no-status prev"
+
+$CMUS_TOGGLE="cmus-remote -C player-pause"
+
+$CMUS_REWIND="cmus-remote -C 'seek 0'"
+
+$CMUS_NEXT="cmus-remote -C player-next"
+$CMUS_PREVIOUS="cmus-remote -C player-prev"
+
+# }}}
+
+# {{{ Thèmes
+
+#$THEME_PATH="/usr/share/pekwm/themes"
+
+$THEME_PATH="~/racine/config/windenv/pekwm/themes"
+
+# }}}

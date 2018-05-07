@@ -1,0 +1,299 @@
+# vim: set filetype=conf :
+
+# Remarque : "..." semble nécessaire, ne fonctionne pas avec '...'
+
+# {{{ Documentation
+
+# Pour les noms des touches, voir ~/racine/config/xwin/keyboard/xmodmap/belge
+
+# Voir :
+# xmodmap -pke
+# pour les #codes
+
+# Mod1 = Alt
+# Mod4 = Super (touche windows)
+#
+# Mouse1 = bouton gauche
+# Mouse2 = bouton milieu
+# Mouse3 = bouton droit
+
+# }}}
+
+INCLUDE = "vars"
+
+# {{{ Global
+
+Global {
+
+# {{{ Souvent utilisé
+
+	KeyPress = "Mod4 Ampersand" { Actions = "Exec $ROFI" }
+
+	KeyPress = "Mod4 Colon" { Actions = "Exec $LANCEUR" }
+
+	Chain = "Mod4 F1" {
+
+		KeyPress = "Ampersand" { Actions = "Exec $ROFI" }
+
+		KeyPress = "Comma" { Actions = "Exec $DMENU" }
+
+		KeyPress = "Colon" { Actions = "Exec $LANCEUR" }
+
+		KeyPress = "Semicolon" { Actions = "Exec $LANCEUR_DANS_TERM" }
+
+		KeyPress = "Equal" { Actions = "ShowCmdDialog" }
+
+		KeyPress = "Y" { Actions = "Exec yakuake" }
+
+		KeyPress = "T" { Actions = "Exec tilda" }
+
+		KeyPress = "K" { Actions = "Exec konsole" }
+
+		KeyPress = "L" { Actions = "Exec $LXTERMINAL" }
+
+		KeyPress = "X" { Actions = "Exec xfce-terminal" }
+
+		KeyPress = "N" { Actions = "Exec $NEOVIM_CLIENT" }
+
+		KeyPress = "E" { Actions = "Exec $EMACS_CLIENT" }
+
+		KeyPress = "V" { Actions = "Exec $VIM" }
+
+		KeyPress = "Z" { Actions = "Exec zathura" }
+
+		KeyPress = "I" { Actions = "Exec vimiv" }
+
+		KeyPress = "P" { Actions = "Exec pcmanfm" }
+
+		KeyPress = "Q" { Actions = "Exec qutebrowser" }
+
+		KeyPress = "F" { Actions = "Exec firefox" }
+
+		KeyPress = "S" { Actions = "Exec seamonkey" }
+
+		KeyPress = "O" { Actions = "Exec libreoffice" }
+
+		KeyPress = "G" { Actions = "Exec geogebra" }
+
+		KeyPress = "M" { Actions = "Exec musescore" }
+	}
+
+
+# }}}
+
+# {{{ Alternatives 1
+
+	Chain = "Mod4 F2" {
+
+		KeyPress = "M" { Actions = "Exec mate-terminal" }
+
+		KeyPress = "G" { Actions = "Exec gnome-terminal" }
+
+		KeyPress = "N" { Actions = "Exec $NEOVIM" }
+
+		KeyPress = "E" { Actions = "Exec $EMACS" }
+
+		KeyPress = "F" { Actions = "Exec filezilla" }
+
+		KeyPress = "V" { Actions = "Exec vlc" }
+
+		KeyPress = "S" { Actions = "Exec mp3splt-gtk" }
+	}
+
+
+# }}}
+
+# {{{ Alternatives 2
+
+	Chain = "Mod4 F3" {
+
+		KeyPress = "G" { Actions = "Exec guake" }
+
+		KeyPress = "S" { Actions = "Exec simple-scan" }
+	}
+
+
+# }}}
+
+#  {{{ Écran
+# ------------------------------------------------------------------------
+
+	Chain = "Mod4 F4" {
+
+		KeyPress = "I" { Actions = "Exec $AUTO_ECONOMISE_ON" }
+		KeyPress = "O" { Actions = "Exec $AUTO_ECONOMISE_OFF" }
+
+		KeyPress = "S" { Actions = "Exec $ECONOMISE_ECRAN" }
+		KeyPress = "L" { Actions = "Exec $VERROUILLE" }
+
+		KeyPress = "B" { Actions = "Exec $BANNI" }
+	}
+
+# }}}
+
+#  {{{ Frames
+# ------------------------------------------------------------------------
+
+	KeyPress = "Mod4 Tab" { Actions = "NextFrame EndRaise" }
+
+	KeyPress = "Mod4 F5" { Actions = "MoveResize" }
+
+	KeyPress = "Mod4 F6" { Actions = "Toggle Maximized True True" }
+
+# }}}
+
+#  {{{ Multimédia
+# ------------------------------------------------------------------------
+
+	Chain = "Mod4 F9" {
+
+		KeyPress = "M" { Actions = "Exec $MM_MIXER" }
+
+		KeyPress = "F10" { Actions = "Exec $MM_VOL_INC" }
+		KeyPress = "F11" { Actions = "Exec $MM_VOL_DEC" }
+
+		KeyPress = "Mod4 F10" { Actions = "Exec $MM_VOL_INC_INC" }
+		KeyPress = "Mod4 F11" { Actions = "Exec $MM_VOL_DEC_DEC" }
+
+		KeyPress = "Mod4 F9" { Actions = "Exec $MPD_TOGGLE" }
+
+		KeyPress = "BackSpace" { Actions = "Exec $MPD_REWIND" }
+
+		KeyPress = "N" { Actions = "Exec $MPD_NEXT" }
+		KeyPress = "P" { Actions = "Exec $MPD_PREVIOUS" }
+
+		KeyPress = "F9" { Actions = "Exec $CMUS_TOGGLE" }
+
+		KeyPress = "Space" { Actions = "Exec $CMUS_REWIND" }
+
+		KeyPress = "Right" { Actions = "Exec $CMUS_NEXT" }
+		KeyPress = "Left" { Actions = "Exec $CMUS_PREVIOUS" }
+	}
+
+# }}}
+
+#  {{{ Workspaces
+# ------------------------------------------------------------------------
+
+	KeyPress = "Mod1 Ctrl KP_1" { Actions = "GotoWorkspace 1" }
+	KeyPress = "Mod1 Ctrl KP_2" { Actions = "GotoWorkspace 2" }
+	KeyPress = "Mod1 Ctrl KP_3" { Actions = "GotoWorkspace 3" }
+	KeyPress = "Mod1 Ctrl KP_4" { Actions = "GotoWorkspace 4" }
+
+	KeyPress = "Mod4 Ctrl KP_1" { Actions = "GotoWorkspace 1" }
+	KeyPress = "Mod4 Ctrl KP_2" { Actions = "GotoWorkspace 2" }
+	KeyPress = "Mod4 Ctrl KP_3" { Actions = "GotoWorkspace 3" }
+	KeyPress = "Mod4 Ctrl KP_4" { Actions = "GotoWorkspace 4" }
+
+# }}}
+
+#  {{{ Menus
+# ------------------------------------------------------------------------
+
+	KeyPress = "Mod4 F10" { Actions = "ShowMenu WindowMenu" }
+
+	KeyPress = "Mod4 F11" { Actions = "ShowMenu Goto" }
+
+	KeyPress = "Mod4 F12" { Actions = "ShowMenu RootMenu" }
+
+# }}}
+
+}
+
+# }}}
+
+# {{{ Contextes
+
+#  {{{ Keys working in menus
+# ------------------------------------------------------------------------
+
+Menu {
+	KeyPress = "Down" { Actions = "NextItem" }
+	KeyPress = "Up" { Actions = "PrevItem" }
+	KeyPress = "Left" { Actions = "LeaveSubmenu" }
+	KeyPress = "Right" { Actions = "EnterSubmenu" }
+
+	KeyPress = "Ctrl N" { Actions = "NextItem" }
+	KeyPress = "Ctrl P" { Actions = "PrevItem" }
+
+	KeyPress = "Return" { Actions = "Select" }
+
+	KeyPress = "Space" { Actions = "Select" }
+
+	KeyPress = "Escape" { Actions = "Close" }
+
+	KeyPress = "Q" { Actions = "Close" }
+}
+
+# }}}
+
+#  {{{ Keys for CmdDialog editing
+# ------------------------------------------------------------------------
+
+InputDialog {
+
+	KeyPress = "Up" { Actions = "HistPrev" }
+	KeyPress = "Down" { Actions = "HistNext" }
+	KeyPress = "Ctrl P" { Actions = "HistPrev" }
+	KeyPress = "Ctrl N" { Actions = "HistNext" }
+
+	KeyPress = "Left" { Actions = "CursPrev" }
+	KeyPress = "Right" { Actions = "CursNext" }
+	KeyPress = "Ctrl B" { Actions = "CursPrev" }
+	KeyPress = "Ctrl F" { Actions = "CursNext" }
+
+	KeyPress = "Ctrl A" { Actions = "CursBegin" }
+	KeyPress = "Ctrl E" { Actions = "CursEnd" }
+
+	KeyPress = "Ctrl K" { Actions = "ClearFromCursor" }
+	KeyPress = "Ctrl C" { Actions = "Clear" }
+
+	KeyPress = "Tab" { Actions = "Complete" }
+
+	KeyPress = "BackSpace" { Actions = "Erase;CompleteAbort" }
+
+	KeyPress = "Return" { Actions = "Exec" }
+	KeyPress = "Escape" { Actions = "Close" }
+
+	KeyPress = "Any Any" { Actions = "Insert" }
+}
+
+# }}}
+
+#  {{{ Keys when MoveResize is active
+# ------------------------------------------------------------------------
+
+MoveResize {
+
+	Keypress = "Left" { Actions = "ResizeHorizontal -10" }
+	Keypress = "Right" { Actions = "ResizeHorizontal 10" }
+	Keypress = "Up" { Actions = "ResizeVertical -10" }
+	Keypress = "Down" { Actions = "ResizeVertical 10" }
+
+	KeyPress = "Mod4 Left" { Actions = "MoveHorizontal -10" }
+	KeyPress = "Mod4 Right" { Actions = "MoveHorizontal 10" }
+	KeyPress = "Mod4 Up" { Actions = "MoveVertical -10" }
+	KeyPress = "Mod4 Down" { Actions = "MoveVertical 10" }
+
+	Keypress = "Shift Left" { Actions = "MoveHorizontal -1" }
+	Keypress = "Shift Right" { Actions = "MoveHorizontal 1" }
+	Keypress = "Shift Up" { Actions = "MoveVertical -1" }
+	Keypress = "Shift Down" { Actions = "MoveVertical 1" }
+
+	Keypress = "Shift Mod4 Left" { Actions = "ResizeHorizontal -1" }
+	Keypress = "Shift Mod4 Right" { Actions = "ResizeHorizontal 1" }
+	Keypress = "Shift Mod4 Up" { Actions = "ResizeVertical -1" }
+	Keypress = "Shift Mod4 Down" { Actions = "ResizeVertical 1" }
+
+	Keypress = "s" { Actions = "MoveSnap" }
+
+	Keypress = "Escape" { Actions = "Cancel" }
+
+	Keypress = "q" { Actions = "Cancel" }
+
+	Keypress = "Return" { Actions = "End" }
+}
+
+# }}}
+
+# }}}
