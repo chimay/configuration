@@ -6,13 +6,23 @@
 
 # {{{ Modificateur principal
 
-set $mod Mod4
+# Mod1 = Alt
+# Mod4 = Super
+#
+# On my box, Mod3 = menu key, configured with xmodmap
+#
+# I choose Mod3 because Mod1 and Mod4 are used in neovim & emacs
+# bindings
+
+set $mod Mod3
 
 # }}}
 
 # {{{ Autostart
 
 exec ~/racine/automat/autostart.zsh
+
+#exec_always lxterminal
 
 # }}}
 
@@ -140,21 +150,161 @@ for_window [class="XClock"] move to scratchpad
 
 # Mode default {{{1
 
+# {{{ Recharger, Relancer, Sortir
+
+# reload the configuration file
+
+bindsym $mod+Shift+C reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+
+bindsym $mod+Shift+R restart
+
+# exit i3 (logs you out of your X session)
+
+bindsym $mod+Shift+X exit
+
+# }}}
+
+# Fenêtres {{{2
+
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+bindsym Shift+Q kill
+
+# }}}2
+
+# Hiérarchie {{{2
+
+# Focus the parent container
+
+bindsym $mod+BackSpace focus parent
+
+# Focus the child container
+
+bindsym $mod+Tab focus child
+
+# }}}2
+
+# Scission {{{2
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# }}}2
+
+# {{{ Layouts : default, stacking, tabbed
+
+bindsym $mod+Mod1+f fullscreen
+
+bindsym $mod+Mod1+d layout default
+bindsym $mod+Mod1+s layout stacking
+bindsym $mod+Mod1+t layout tabbed
+
+# }}}
+
+# Espaces de travail {{{2
+
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Right workspace next
 
+bindsym $mod+0 workspace $espace0
+bindsym $mod+1 workspace $espace1
+bindsym $mod+2 workspace $espace2
+bindsym $mod+3 workspace $espace3
+bindsym $mod+4 workspace $espace4
+bindsym $mod+5 workspace $espace5
+bindsym $mod+6 workspace $espace6
+bindsym $mod+7 workspace $espace7
+bindsym $mod+8 workspace $espace8
+bindsym $mod+9 workspace $espace9
+
+bindsym $mod+Shift+0 move workspace $espace0
+bindsym $mod+Shift+1 move workspace $espace1
+bindsym $mod+Shift+2 move workspace $espace2
+bindsym $mod+Shift+3 move workspace $espace3
+bindsym $mod+Shift+4 move workspace $espace4
+bindsym $mod+Shift+5 move workspace $espace5
+bindsym $mod+Shift+6 move workspace $espace6
+bindsym $mod+Shift+7 move workspace $espace7
+bindsym $mod+Shift+8 move workspace $espace8
+bindsym $mod+Shift+9 move workspace $espace9
+
 # Ne fonctionne pas ... pourquoi ?
 
-bindsym $mod+$pave0 workspace $espace0
-bindsym $mod+$pave1 workspace $espace1
-bindsym $mod+$pave2 workspace $espace2
-bindsym $mod+$pave3 workspace $espace3
-bindsym $mod+$pave4 workspace $espace4
-bindsym $mod+$pave5 workspace $espace5
-bindsym $mod+$pave6 workspace $espace6
-bindsym $mod+$pave7 workspace $espace7
-bindsym $mod+$pave8 workspace $espace8
-bindsym $mod+$pave9 workspace $espace9
+# bindsym $mod+$pave0 workspace $espace0
+# bindsym $mod+$pave1 workspace $espace1
+# bindsym $mod+$pave2 workspace $espace2
+# bindsym $mod+$pave3 workspace $espace3
+# bindsym $mod+$pave4 workspace $espace4
+# bindsym $mod+$pave5 workspace $espace5
+# bindsym $mod+$pave6 workspace $espace6
+# bindsym $mod+$pave7 workspace $espace7
+# bindsym $mod+$pave8 workspace $espace8
+# bindsym $mod+$pave9 workspace $espace9
+
+# }}}2
+
+# {{{ Scratchpad
+
+# Visibilité indépendante des workspaces
+
+bindsym $mod+o scratchpad show
+bindsym $mod+equal scratchpad show
+
+# }}}
+
+# Système {{{2
+
+bindsym $mod+r exec ~/racine/shell/run/lance-rofi.zsh
+
+bindsym $mod+colon exec ~/racine/shell/run/lance-rofi.zsh
+
+bindsym $mod+dollar exec lxterminal
+
+bindsym $mod+z exec xset dpms force off
+
+bindsym $mod+l exec i3lock --color "#754321"
+
+# }}}2
+
+# Applications {{{2
+
+bindsym $mod+Ctrl+v exec ~/racine/shell/run/lance-gvim.zsh
+
+bindsym $mod+Ctrl+n exec ~/racine/shell/run/lance-neovim-client.zsh
+bindsym $mod+Ctrl+Shift+N exec ~/racine/shell/run/lance-neovim.zsh
+
+bindsym $mod+Ctrl+e exec ~/racine/shell/run/lance-emacs-client.zsh
+bindsym $mod+Ctrl+Shift+E exec ~/racine/shell/run/lance-emacs.zsh
+
+bindsym $mod+Ctrl+q exec qutebrowser
+
+bindsym $mod+Ctrl+f exec firefox
+
+bindsym $mod+Ctrl+z exec zathura
+
+bindsym $mod+Ctrl+g exec geogebra
+
+bindsym $mod+Ctrl+m exec musescore
+
+bindsym $mod+Ctrl+o exec libreoffice
+
+bindsym $mod+Ctrl+Shift+F exec filezilla
+
+bindsym $mod+Ctrl+Shift+V exec vlc
+
+bindsym $mod+Ctrl+Shift+S exec mp3splt-gtk
+
+# }}}2
 
 # }}}1
 
@@ -194,10 +344,19 @@ bindsym Shift+Down  move down
 bindsym Shift+Up    move up
 bindsym Shift+Right move right
 
-bindsym Tab       focus right
-bindsym BackSpace focus left
-
 bindsym Shift+Q kill
+
+# }}}2
+
+# Hiérarchie {{{2
+
+# Focus the parent container
+
+bindsym BackSpace focus parent
+
+# Focus the child container
+
+bindsym Tab focus child
 
 # }}}2
 
@@ -241,29 +400,51 @@ bindsym Ctrl+f focus mode_toggle
 bindsym Ctrl+Left workspace prev
 bindsym Ctrl+Right workspace next
 
+bindsym 0 workspace $espace0
+bindsym 1 workspace $espace1
+bindsym 2 workspace $espace2
+bindsym 3 workspace $espace3
+bindsym 4 workspace $espace4
+bindsym 5 workspace $espace5
+bindsym 6 workspace $espace6
+bindsym 7 workspace $espace7
+bindsym 8 workspace $espace8
+bindsym 9 workspace $espace9
+
+bindsym Shift+0 move workspace $espace0
+bindsym Shift+1 move workspace $espace1
+bindsym Shift+2 move workspace $espace2
+bindsym Shift+3 move workspace $espace3
+bindsym Shift+4 move workspace $espace4
+bindsym Shift+5 move workspace $espace5
+bindsym Shift+6 move workspace $espace6
+bindsym Shift+7 move workspace $espace7
+bindsym Shift+8 move workspace $espace8
+bindsym Shift+9 move workspace $espace9
+
 # Ne fonctionne pas ... pourquoi ?
 
-bindsym $pave0 workspace $espace0
-bindsym $pave1 workspace $espace1
-bindsym $pave2 workspace $espace2
-bindsym $pave3 workspace $espace3
-bindsym $pave4 workspace $espace4
-bindsym $pave5 workspace $espace5
-bindsym $pave6 workspace $espace6
-bindsym $pave7 workspace $espace7
-bindsym $pave8 workspace $espace8
-bindsym $pave9 workspace $espace9
+# bindsym $pave0 workspace $espace0
+# bindsym $pave1 workspace $espace1
+# bindsym $pave2 workspace $espace2
+# bindsym $pave3 workspace $espace3
+# bindsym $pave4 workspace $espace4
+# bindsym $pave5 workspace $espace5
+# bindsym $pave6 workspace $espace6
+# bindsym $pave7 workspace $espace7
+# bindsym $pave8 workspace $espace8
+# bindsym $pave9 workspace $espace9
 
-bindsym Shift+$pave0 move workspace $espace0
-bindsym Shift+$pave1 move workspace $espace1
-bindsym Shift+$pave2 move workspace $espace2
-bindsym Shift+$pave3 move workspace $espace3
-bindsym Shift+$pave4 move workspace $espace4
-bindsym Shift+$pave5 move workspace $espace5
-bindsym Shift+$pave6 move workspace $espace6
-bindsym Shift+$pave7 move workspace $espace7
-bindsym Shift+$pave8 move workspace $espace8
-bindsym Shift+$pave9 move workspace $espace9
+# bindsym Shift+$pave0 move workspace $espace0
+# bindsym Shift+$pave1 move workspace $espace1
+# bindsym Shift+$pave2 move workspace $espace2
+# bindsym Shift+$pave3 move workspace $espace3
+# bindsym Shift+$pave4 move workspace $espace4
+# bindsym Shift+$pave5 move workspace $espace5
+# bindsym Shift+$pave6 move workspace $espace6
+# bindsym Shift+$pave7 move workspace $espace7
+# bindsym Shift+$pave8 move workspace $espace8
+# bindsym Shift+$pave9 move workspace $espace9
 
 # }}}2
 
@@ -271,33 +452,22 @@ bindsym Shift+$pave9 move workspace $espace9
 
 # Visibilité indépendante des workspaces
 
-bindsym period scratchpad show
-bindsym comma scratchpad show
+bindsym o scratchpad show
+bindsym equal scratchpad show
 
 # }}}
-
-# Hiérarchie {{{2
-
-# focus the parent container
-bindsym p focus parent
-
-# focus the child container
-bindcode c focus child
-
-# }}}2
 
 # Système {{{2
 
 bindsym r exec ~/racine/shell/run/lance-rofi.zsh
 
-bindsym equal exec ~/racine/shell/run/lance-rofi.zsh
+bindsym colon exec ~/racine/shell/run/lance-rofi.zsh
 
 bindsym dollar exec lxterminal
 
 bindsym z exec xset dpms force off
 
 bindsym l exec i3lock --color "#754321"
-#bindsym l exec slock
 
 # }}}2
 
@@ -346,7 +516,7 @@ bindsym Escape mode "default"
 
 # resize window (you can also use the mouse for that)
 
-bindsym Shift+F12 mode "resize"
+bindsym Mod4+F12 mode "resize"
 
 mode "resize" {
 
