@@ -258,7 +258,7 @@ bindsym $mod+Shift+9 move workspace $espace9
 # Visibilité indépendante des workspaces
 
 bindsym $mod+o scratchpad show
-bindsym $mod+equal scratchpad show
+bindsym $mod+period move scratchpad
 
 # }}}
 
@@ -453,7 +453,7 @@ bindsym Shift+9 move workspace $espace9
 # Visibilité indépendante des workspaces
 
 bindsym o scratchpad show
-bindsym equal scratchpad show
+bindsym period move scratchpad
 
 # }}}
 
