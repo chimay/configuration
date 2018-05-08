@@ -18,16 +18,7 @@ exec ~/racine/automat/autostart.zsh
 
 # Variables {{{1
 
-set $espace0 "0 Terminal"
-set $espace1 "1 Edition"
-set $espace2 "2 Navigation"
-set $espace3 "3 Bureautique"
-set $espace3 "4 Litterature"
-set $espace4 "5 Dessin"
-set $espace5 "6 Musique"
-set $espace6 "7 Cinema"
-set $espace8 "8 Jeu"
-set $espace9 "9 Graphique"
+# Pavé numérique {{{2
 
 # set $pave0=KP_0
 # set $pave1=KP_1
@@ -51,17 +42,37 @@ set $pave7=Mod2+KP_Home
 set $pave8=Mod2+KP_Up
 set $pave9=Mod2+KP_Prior
 
+# }}}2
+
+# Espaces de travail {{{2
+
+set $espace0 "0 Terminal"
+set $espace1 "1 Edition"
+set $espace2 "2 Navigation"
+set $espace3 "3 Bureautique"
+set $espace4 "4 Litterature"
+set $espace5 "5 Dessin"
+set $espace6 "6 Musique"
+set $espace7 "7 Cinema"
+set $espace8 "8 Jeu"
+set $espace9 "9 Graphique"
+
+# }}}2
+
 # }}}1
 
 # Présentation {{{1
 
-font pango:DejaVu Sans Mono 12 Bold
+font pango:DejaVu Sans Mono 11 Bold
 
 # class                 border  backgr. text    indicator
-client.focused          #5B3C11 #5B3C11 #000000 #2e9ef4
-client.focused_inactive #5B3C11 #5B3C11 #000000 #484e50
-client.unfocused        #121212 #000000 #5B3C11 #292d2e
-client.urgent           #2f343a #5B3C11 #000000 #2e9ef4
+
+client.focused          #5B3C11 #5B3C11 #000000 #7b3c11
+client.focused_inactive #5B3C11 #5B3C11 #000000 #7b3c11
+client.unfocused        #121212 #000000 #5B3C11 #7b3c11
+client.urgent           #2f343a #5B3C11 #000000 #7b3c11
+
+#hide_edge_borders both
 
 # }}}1
 
@@ -81,21 +92,31 @@ workspace_auto_back_and_forth yes
 
 # La flèche → est optionnelle
 
-assign [class="Lxterminal"] → $espace0
-assign [class="Xfce4-terminal"] → $espace0
+# assign [class="Lxterminal"] → $espace0
+# assign [class="Xfce4-terminal"] → $espace0
 
-assign [class="Gvim"] → $espace1
-assign [class="nvim-qt"] → $espace1
-assign [class="Emacs"] → $espace1
+assign [class="Lxterminal"] $espace0
+assign [class="Xfce4-terminal"] $espace0
 
-assign [class="com-sun-javaws-Main"] → $espace9
-assign [class="net-sourceforge-jnlp-runtime-Boot"] → $espace9
+assign [class="Gvim"]    $espace1
+assign [class="nvim-qt"] $espace1
+assign [class="Emacs"]   $espace1
+
+assign [class="qutebrowser"] $espace2
+assign [class="Firefox"] $espace2
+
+assign [class="GeoGebra"] $espace5
+
+assign [class="com-sun-javaws-Main"] $espace9
+assign [class="net-sourceforge-jnlp-runtime-Boot"] $espace9
 
 # }}}2
 
 # Mode flottant {{{2
 
 for_window [class="Pavucontrol"] floating enable
+
+#for_window [class="Firefox"] floating enable
 
 for_window [class="MPlayer"] floating enable
 for_window [class="Vlc"]     floating enable
@@ -119,6 +140,11 @@ for_window [class="XClock"] move to scratchpad
 
 # Mode default {{{1
 
+bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+Right workspace next
+
+# Ne fonctionne pas ... pourquoi ?
+
 bindsym $mod+$pave0 workspace $espace0
 bindsym $mod+$pave1 workspace $espace1
 bindsym $mod+$pave2 workspace $espace2
@@ -135,6 +161,8 @@ bindsym $mod+$pave9 workspace $espace9
 # Mode préfixe {{{1
 
 bindsym $mod+F12 mode "prefixe"
+
+# Ne fonctionne pas ... pourquoi ?
 
 mode "prefixe" {
 
@@ -175,7 +203,7 @@ bindsym Shift+Q kill
 
 # Scission {{{2
 
-bindsym s split h
+bindsym h split h
 bindsym v split v
 
 # }}}2
@@ -202,13 +230,18 @@ bindsym Ctrl+f focus mode_toggle
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 
-# Provoque une erreur
+# Provoque une erreur ... pourquoi ?
 
 #floating_modifier $mod
 
 # }}}
 
 # Espaces de travail {{{2
+
+bindsym Ctrl+Left workspace prev
+bindsym Ctrl+Right workspace next
+
+# Ne fonctionne pas ... pourquoi ?
 
 bindsym $pave0 workspace $espace0
 bindsym $pave1 workspace $espace1
@@ -255,14 +288,16 @@ bindcode c focus child
 
 # Système {{{2
 
+bindsym r exec ~/racine/shell/run/lance-rofi.zsh
+
 bindsym equal exec ~/racine/shell/run/lance-rofi.zsh
 
 bindsym dollar exec lxterminal
 
 bindsym z exec xset dpms force off
 
-#bindsym l exec i3lock
-bindsym l exec slock
+bindsym l exec i3lock --color "#754321"
+#bindsym l exec slock
 
 # }}}2
 
@@ -436,17 +471,19 @@ bar {
 
 	workspace_buttons yes
 
-	font pango:DejaVu Sans Mono 12 Bold
+	font pango:DejaVu Sans Mono 11 Bold
 
 	colors {
 		background #000000
 		statusline #5B3C11
-		separator #666666
+		separator #434343
+
+		# class            border  backgr. text
 
 		focused_workspace  #5B3C11 #5B3C11 #000000
-		active_workspace   #5B3C11 #5B3C11 #000000
+		active_workspace   #5B3C11 #000000 #5B3C11
 		inactive_workspace #121212 #000000 #5B3C11
-		urgent_workspace   #2f343a #5B3C11 #000000
+		urgent_workspace   #2f343a #000000 #88421D
 	}
 
 }
