@@ -29,6 +29,28 @@ set $espace6 "7 Cinema"
 set $espace8 "8 Jeu"
 set $espace9 "9 Graphique"
 
+# set $pave0=KP_0
+# set $pave1=KP_1
+# set $pave2=KP_2
+# set $pave3=KP_3
+# set $pave4=KP_4
+# set $pave5=KP_5
+# set $pave6=KP_6
+# set $pave7=KP_7
+# set $pave8=KP_8
+# set $pave9=KP_9
+
+set $pave0=Mod2+KP_Insert
+set $pave1=Mod2+KP_End
+set $pave2=Mod2+KP_Down
+set $pave3=Mod2+KP_Next
+set $pave4=Mod2+KP_Left
+set $pave5=Mod2+KP_Begin
+set $pave6=Mod2+KP_Right
+set $pave7=Mod2+KP_Home
+set $pave8=Mod2+KP_Up
+set $pave9=Mod2+KP_Prior
+
 # }}}1
 
 # Présentation {{{1
@@ -66,6 +88,9 @@ assign [class="Gvim"] → $espace1
 assign [class="nvim-qt"] → $espace1
 assign [class="Emacs"] → $espace1
 
+assign [class="com-sun-javaws-Main"] → $espace9
+assign [class="net-sourceforge-jnlp-runtime-Boot"] → $espace9
+
 # }}}2
 
 # Mode flottant {{{2
@@ -94,16 +119,16 @@ for_window [class="XClock"] move to scratchpad
 
 # Mode default {{{1
 
-bindsym $mod+KP_0 workspace $espace0
-bindsym $mod+KP_1 workspace $espace1
-bindsym $mod+KP_2 workspace $espace2
-bindsym $mod+KP_3 workspace $espace3
-bindsym $mod+KP_4 workspace $espace4
-bindsym $mod+KP_5 workspace $espace5
-bindsym $mod+KP_6 workspace $espace6
-bindsym $mod+KP_7 workspace $espace7
-bindsym $mod+KP_8 workspace $espace8
-bindsym $mod+KP_9 workspace $espace9
+bindsym $mod+$pave0 workspace $espace0
+bindsym $mod+$pave1 workspace $espace1
+bindsym $mod+$pave2 workspace $espace2
+bindsym $mod+$pave3 workspace $espace3
+bindsym $mod+$pave4 workspace $espace4
+bindsym $mod+$pave5 workspace $espace5
+bindsym $mod+$pave6 workspace $espace6
+bindsym $mod+$pave7 workspace $espace7
+bindsym $mod+$pave8 workspace $espace8
+bindsym $mod+$pave9 workspace $espace9
 
 # }}}1
 
@@ -157,11 +182,11 @@ bindsym v split v
 
 # {{{ Layouts : default, stacking, tabbed
 
-bindsym Alt+f fullscreen
+bindsym Mod1+f fullscreen
 
-bindsym Alt+d layout default
-bindsym Alt+s layout stacking
-bindsym Alt+t layout tabbed
+bindsym Mod1+d layout default
+bindsym Mod1+s layout stacking
+bindsym Mod1+t layout tabbed
 
 # }}}
 
@@ -185,27 +210,27 @@ bindsym Ctrl+f focus mode_toggle
 
 # Espaces de travail {{{2
 
-bindsym KP_0 workspace $espace0
-bindsym KP_1 workspace $espace1
-bindsym KP_2 workspace $espace2
-bindsym KP_3 workspace $espace3
-bindsym KP_4 workspace $espace4
-bindsym KP_5 workspace $espace5
-bindsym KP_6 workspace $espace6
-bindsym KP_7 workspace $espace7
-bindsym KP_8 workspace $espace8
-bindsym KP_9 workspace $espace9
+bindsym $pave0 workspace $espace0
+bindsym $pave1 workspace $espace1
+bindsym $pave2 workspace $espace2
+bindsym $pave3 workspace $espace3
+bindsym $pave4 workspace $espace4
+bindsym $pave5 workspace $espace5
+bindsym $pave6 workspace $espace6
+bindsym $pave7 workspace $espace7
+bindsym $pave8 workspace $espace8
+bindsym $pave9 workspace $espace9
 
-bindsym Shift+KP_0 move workspace $espace0
-bindsym Shift+KP_1 move workspace $espace1
-bindsym Shift+KP_2 move workspace $espace2
-bindsym Shift+KP_3 move workspace $espace3
-bindsym Shift+KP_4 move workspace $espace4
-bindsym Shift+KP_5 move workspace $espace5
-bindsym Shift+KP_6 move workspace $espace6
-bindsym Shift+KP_7 move workspace $espace7
-bindsym Shift+KP_8 move workspace $espace8
-bindsym Shift+KP_9 move workspace $espace9
+bindsym Shift+$pave0 move workspace $espace0
+bindsym Shift+$pave1 move workspace $espace1
+bindsym Shift+$pave2 move workspace $espace2
+bindsym Shift+$pave3 move workspace $espace3
+bindsym Shift+$pave4 move workspace $espace4
+bindsym Shift+$pave5 move workspace $espace5
+bindsym Shift+$pave6 move workspace $espace6
+bindsym Shift+$pave7 move workspace $espace7
+bindsym Shift+$pave8 move workspace $espace8
+bindsym Shift+$pave9 move workspace $espace9
 
 # }}}2
 
@@ -268,38 +293,6 @@ bindsym $mod+Shift+F exec filezilla
 bindsym $mod+Shift+V exec vlc
 
 bindsym $mod+Shift+S exec mp3splt-gtk
-
-# }}}2
-
-# Back to normal {{{2
-
-bindsym Return mode "default"
-bindsym Escape mode "default"
-
-# }}}2
-
-}
-
-# }}}1
-
-# Mode espaces {{{1
-
-bindsym $mod+F10 mode "espaces"
-
-mode "espaces" {
-
-# Espaces de travail {{{2
-
-bindsym a workspace $espace0
-bindsym b workspace $espace1
-bindsym c workspace $espace2
-bindsym d workspace $espace3
-bindsym e workspace $espace4
-bindsym f workspace $espace5
-bindsym g workspace $espace6
-bindsym h workspace $espace7
-bindsym i workspace $espace8
-bindsym j workspace $espace9
 
 # }}}2
 
