@@ -4,7 +4,9 @@
 
 # vim: set filetype=conf :
 
-# {{{ Modificateur principal
+# Variables {{{1
+
+# Modificateur principal {{{2
 
 # Mod1 = Alt
 # Mod4 = Super
@@ -16,17 +18,7 @@
 
 set $mod Mod3
 
-# }}}
-
-# {{{ Autostart
-
-exec ~/racine/automat/autostart.zsh
-
-#exec_always lxterminal
-
-# }}}
-
-# Variables {{{1
+# }}}2
 
 # Pavé numérique {{{2
 
@@ -56,8 +48,8 @@ set $pave9=Mod2+KP_Prior
 
 # Espaces de travail {{{2
 
-set $espace0 "0 Terminal"
-set $espace1 "1 Edition"
+set $espace0 "0 Principal"
+set $espace1 "1 Auxiliaire"
 set $espace2 "2 Navigation"
 set $espace3 "3 Bureautique"
 set $espace4 "4 Litterature"
@@ -71,16 +63,26 @@ set $espace9 "9 Graphique"
 
 # }}}1
 
+# Autostart {{{1
+
+exec --no-startup-id ~/racine/config/windenv/i3/autostart.zsh
+
+exec_always --no-startup-id i3-msg "workspace $espace0"
+
+# }}}1
+
 # Présentation {{{1
 
 font pango:DejaVu Sans Mono 11 Bold
 
-# class                 border  backgr. text    indicator
+# class                 border  backgr. text    indicator	child_border
 
-client.focused          #5B3C11 #5B3C11 #000000 #7b3c11
-client.focused_inactive #5B3C11 #5B3C11 #000000 #7b3c11
-client.unfocused        #121212 #000000 #5B3C11 #7b3c11
-client.urgent           #2f343a #5B3C11 #000000 #7b3c11
+client.focused          #5b3c11 #5b3c11 #000000 #5b3c11		#341207
+client.focused_inactive #5b3c11 #5b3c11 #000000 #5b3c11		#341207
+client.unfocused        #5b3c11 #000000 #5b3C11 #5b3c11		#341207
+client.urgent           #b21818 #000000 #b21818 #5b3c11		#341207
+
+client.background		#000000
 
 #hide_edge_borders both
 
@@ -90,7 +92,7 @@ client.urgent           #2f343a #5B3C11 #000000 #7b3c11
 
 default_orientation auto
 
-workspace_layout tabbed
+workspace_layout default
 
 workspace_auto_back_and_forth yes
 
@@ -106,19 +108,18 @@ workspace_auto_back_and_forth yes
 # assign [class="Xfce4-terminal"] → $espace0
 
 assign [class="Lxterminal"] $espace0
-assign [class="Xfce4-terminal"] $espace0
+assign [class="konsole"] $espace0
 
-assign [class="Gvim"]    $espace1
-assign [class="nvim-qt"] $espace1
-assign [class="Emacs"]   $espace1
+assign [class="Gvim"]    $espace0
+assign [class="nvim-qt"] $espace0
+assign [class="Emacs"]   $espace0
 
 assign [class="qutebrowser"] $espace2
 assign [class="Firefox"] $espace2
 
 assign [class="GeoGebra"] $espace5
 
-assign [class="com-sun-javaws-Main"] $espace9
-assign [class="net-sourceforge-jnlp-runtime-Boot"] $espace9
+assign [class="sun-awt-X11-XFramePeer"] $espace9
 
 # }}}2
 
@@ -126,31 +127,18 @@ assign [class="net-sourceforge-jnlp-runtime-Boot"] $espace9
 
 for_window [class="Pavucontrol"] floating enable
 
-#for_window [class="Firefox"] floating enable
-
 for_window [class="MPlayer"] floating enable
 for_window [class="Vlc"]     floating enable
 
-for_window [class="XClock"]     floating enable
-
-for_window [class="com-sun-javaws-Main"] floating enable
-for_window [class="net-sourceforge-jnlp-runtime-Boot"] floating enable
+for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
 # }}}2
 
-# Scratchpad  {{{2
+# }}}1
 
-# Visibilité indépendante des workspaces
+# Mode défaut {{{1
 
-for_window [class="XClock"] move to scratchpad
-
-# }}}2
-
-# }}}
-
-# Mode default {{{1
-
-# {{{ Recharger, Relancer, Sortir
+# Recharger, Relancer, Sortir {{{2
 
 # reload the configuration file
 
@@ -164,7 +152,7 @@ bindsym $mod+Shift+R restart
 
 bindsym $mod+Shift+X exit
 
-# }}}
+# }}}2
 
 # Fenêtres {{{2
 
@@ -201,15 +189,27 @@ bindsym $mod+v split v
 
 # }}}2
 
-# {{{ Layouts : default, stacking, tabbed
+# Layouts : default, stacking, tabbed {{{2
 
-bindsym $mod+Mod1+f fullscreen
+bindsym $mod+f fullscreen
 
-bindsym $mod+Mod1+d layout default
-bindsym $mod+Mod1+s layout stacking
-bindsym $mod+Mod1+t layout tabbed
+bindsym $mod+d layout default
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
 
-# }}}
+# }}}2
+
+# Fenêtres flottantes {{{2
+
+# toggle tiling / floating
+
+bindsym $mod+Shift+F floating toggle
+
+# change focus between tiling / floating windows
+
+bindsym $mod+Mod1+F focus mode_toggle
+
+# }}}2
 
 # Espaces de travail {{{2
 
@@ -253,14 +253,14 @@ bindsym $mod+Shift+9 move workspace $espace9
 
 # }}}2
 
-# {{{ Scratchpad
+# Scratchpad {{{2
 
 # Visibilité indépendante des workspaces
 
 bindsym $mod+o scratchpad show
-bindsym $mod+period move scratchpad
+bindsym $mod+Shift+period move scratchpad
 
-# }}}
+# }}}2
 
 # Système {{{2
 
@@ -269,40 +269,36 @@ bindsym $mod+r exec ~/racine/shell/run/lance-rofi.zsh
 bindsym $mod+colon exec ~/racine/shell/run/lance-rofi.zsh
 
 bindsym $mod+dollar exec lxterminal
+bindsym $mod+Return exec konsole
 
 bindsym $mod+z exec xset dpms force off
 
-bindsym $mod+l exec i3lock --color "#754321"
+# Supporte les images png
+
+bindsym $mod+l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png
 
 # }}}2
 
 # Applications {{{2
 
-bindsym $mod+Ctrl+v exec ~/racine/shell/run/lance-gvim.zsh
+bindsym Mod4+Ctrl+V exec ~/racine/shell/run/lance-gvim.zsh
 
-bindsym $mod+Ctrl+n exec ~/racine/shell/run/lance-neovim-client.zsh
-bindsym $mod+Ctrl+Shift+N exec ~/racine/shell/run/lance-neovim.zsh
+bindsym Mod4+Ctrl+N exec ~/racine/shell/run/lance-neovim-client.zsh
+bindsym Mod4+Ctrl+Shift+N exec ~/racine/shell/run/lance-neovim.zsh
 
-bindsym $mod+Ctrl+e exec ~/racine/shell/run/lance-emacs-client.zsh
-bindsym $mod+Ctrl+Shift+E exec ~/racine/shell/run/lance-emacs.zsh
+bindsym Mod4+Ctrl+E exec ~/racine/shell/run/lance-emacs-client.zsh
+bindsym Mod4+Ctrl+Shift+E exec ~/racine/shell/run/lance-emacs.zsh
 
-bindsym $mod+Ctrl+q exec qutebrowser
+bindsym Mod4+Ctrl+F exec firefox
+bindsym Mod4+Ctrl+G exec geogebra
+bindsym Mod4+Ctrl+M exec musescore
+bindsym Mod4+Ctrl+O exec libreoffice
+bindsym Mod4+Ctrl+Q exec qutebrowser
+bindsym Mod4+Ctrl+S exec mp3splt-gtk
+bindsym Mod4+Ctrl+Z exec zathura
 
-bindsym $mod+Ctrl+f exec firefox
-
-bindsym $mod+Ctrl+z exec zathura
-
-bindsym $mod+Ctrl+g exec geogebra
-
-bindsym $mod+Ctrl+m exec musescore
-
-bindsym $mod+Ctrl+o exec libreoffice
-
-bindsym $mod+Ctrl+Shift+F exec filezilla
-
-bindsym $mod+Ctrl+Shift+V exec vlc
-
-bindsym $mod+Ctrl+Shift+S exec mp3splt-gtk
+bindsym Mod4+Ctrl+Shift+F exec filezilla
+bindsym Mod4+Ctrl+Shift+V exec vlc
 
 # }}}2
 
@@ -312,11 +308,9 @@ bindsym $mod+Ctrl+Shift+S exec mp3splt-gtk
 
 bindsym $mod+F12 mode "prefixe"
 
-# Ne fonctionne pas ... pourquoi ?
-
 mode "prefixe" {
 
-# {{{ Recharger, Relancer, Sortir
+# Recharger, Relancer, Sortir {{{2
 
 # reload the configuration file
 
@@ -330,7 +324,7 @@ bindsym Shift+R restart
 
 bindsym Shift+X exit
 
-# }}}
+# }}}2
 
 # Fenêtres {{{2
 
@@ -367,17 +361,17 @@ bindsym v split v
 
 # }}}2
 
-# {{{ Layouts : default, stacking, tabbed
+# Layouts : default, stacking, tabbed {{{2
 
-bindsym Mod1+f fullscreen
+bindsym f fullscreen
 
-bindsym Mod1+d layout default
-bindsym Mod1+s layout stacking
-bindsym Mod1+t layout tabbed
+bindsym d layout default
+bindsym s layout stacking
+bindsym t layout tabbed
 
-# }}}
+# }}}2
 
-# {{{ Fenêtres flottantes
+# Fenêtres flottantes {{{2
 
 # toggle tiling / floating
 
@@ -385,15 +379,9 @@ bindsym Shift+F floating toggle
 
 # change focus between tiling / floating windows
 
-bindsym Ctrl+f focus mode_toggle
+bindsym Mod1+F focus mode_toggle
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-
-# Provoque une erreur ... pourquoi ?
-
-#floating_modifier $mod
-
-# }}}
+# }}}2
 
 # Espaces de travail {{{2
 
@@ -448,14 +436,14 @@ bindsym Shift+9 move workspace $espace9
 
 # }}}2
 
-# {{{ Scratchpad
+# Scratchpad {{{2
 
 # Visibilité indépendante des workspaces
 
 bindsym o scratchpad show
-bindsym period move scratchpad
+bindsym Shift+period move scratchpad
 
-# }}}
+# }}}2
 
 # Système {{{2
 
@@ -463,41 +451,9 @@ bindsym r exec ~/racine/shell/run/lance-rofi.zsh
 
 bindsym colon exec ~/racine/shell/run/lance-rofi.zsh
 
-bindsym dollar exec lxterminal
-
 bindsym z exec xset dpms force off
 
 bindsym l exec i3lock --color "#754321"
-
-# }}}2
-
-# Applications {{{2
-
-bindsym $mod+v exec ~/racine/shell/run/lance-gvim.zsh
-
-bindsym $mod+n exec ~/racine/shell/run/lance-neovim-client.zsh
-bindsym $mod+Shift+N exec ~/racine/shell/run/lance-neovim.zsh
-
-bindsym $mod+e exec ~/racine/shell/run/lance-emacs-client.zsh
-bindsym $mod+Shift+E exec ~/racine/shell/run/lance-emacs.zsh
-
-bindsym $mod+q exec qutebrowser
-
-bindsym $mod+f exec firefox
-
-bindsym $mod+z exec zathura
-
-bindsym $mod+g exec geogebra
-
-bindsym $mod+m exec musescore
-
-bindsym $mod+o exec libreoffice
-
-bindsym $mod+Shift+F exec filezilla
-
-bindsym $mod+Shift+V exec vlc
-
-bindsym $mod+Shift+S exec mp3splt-gtk
 
 # }}}2
 
@@ -512,13 +468,13 @@ bindsym Escape mode "default"
 
 # }}}1
 
-# {{{ Mode resize
+# Mode redimensionnement {{{1
 
 # resize window (you can also use the mouse for that)
 
-bindsym Mod4+F12 mode "resize"
+bindsym $mod+F11 mode "redimensionnement"
 
-mode "resize" {
+mode "redimensionnement" {
 
 # These bindings trigger as soon as you enter the resize mode
 
@@ -526,31 +482,31 @@ mode "resize" {
 # when pressing left, the window is resized so that it has
 # more space on its left
 
-bindsym j resize shrink left 10 px or 10 ppt
-bindsym Shift+J resize grow   left 10 px or 10 ppt
+bindsym h resize shrink left 5 px or 5 ppt
+bindsym Shift+H resize grow   left 5 px or 5 ppt
 
-bindsym k resize shrink down 10 px or 10 ppt
-bindsym Shift+K resize grow   down 10 px or 10 ppt
+bindsym j resize shrink down 5 px or 5 ppt
+bindsym Shift+J resize grow   down 5 px or 5 ppt
 
-bindsym l resize shrink up 10 px or 10 ppt
-bindsym Shift+L resize grow   up 10 px or 10 ppt
+bindsym k resize shrink up 5 px or 5 ppt
+bindsym Shift+K resize grow   up 5 px or 5 ppt
 
-bindsym m resize shrink right 10 px or 10 ppt
-bindsym Shift+M resize grow   right 10 px or 10 ppt
+bindsym l resize shrink right 5 px or 5 ppt
+bindsym Shift+L resize grow   right 5 px or 5 ppt
 
 # same bindings, but for the arrow keys
 
-bindsym Left resize shrink left 10 px or 10 ppt
-bindsym Shift+Left resize grow   left 10 px or 10 ppt
+bindsym Left resize shrink left 5 px or 5 ppt
+bindsym Shift+Left resize grow   left 5 px or 5 ppt
 
-bindsym Down resize shrink down 10 px or 10 ppt
-bindsym Shift+Down resize grow   down 10 px or 10 ppt
+bindsym Down resize shrink down 5 px or 5 ppt
+bindsym Shift+Down resize grow   down 5 px or 5 ppt
 
-bindsym Up resize shrink up 10 px or 10 ppt
-bindsym Shift+Up resize grow   up 10 px or 10 ppt
+bindsym Up resize shrink up 5 px or 5 ppt
+bindsym Shift+Up resize grow   up 5 px or 5 ppt
 
-bindsym Right resize shrink right 10 px or 10 ppt
-bindsym Shift+Right resize grow   right 10 px or 10 ppt
+bindsym Right resize shrink right 5 px or 5 ppt
+bindsym Shift+Right resize grow   right 5 px or 5 ppt
 
 # Back to normal: Enter or Escape {{{2
 
@@ -561,11 +517,50 @@ bindsym Escape mode "default"
 
 }
 
-# }}}
+# }}}1
+
+# Mode applications {{{1
+
+bindsym Mod4+F12 mode "applications"
+
+mode "applications" {
+
+bindsym dollar exec lxterminal
+bindsym Shift+Return exec konsole
+
+bindsym v exec ~/racine/shell/run/lance-gvim.zsh
+
+bindsym n exec ~/racine/shell/run/lance-neovim-client.zsh
+bindsym Shift+N exec ~/racine/shell/run/lance-neovim.zsh
+
+bindsym e exec ~/racine/shell/run/lance-emacs-client.zsh
+bindsym Shift+E exec ~/racine/shell/run/lance-emacs.zsh
+
+bindsym f exec firefox
+bindsym g exec geogebra
+bindsym m exec musescore
+bindsym o exec libreoffice
+bindsym q exec qutebrowser
+bindsym s exec mp3splt-gtk
+bindsym z exec zathura
+
+bindsym Shift+F exec filezilla
+bindsym Shift+V exec vlc
+
+# Back to normal {{{2
+
+bindsym Return mode "default"
+bindsym Escape mode "default"
+
+# }}}2
+
+}
+
+# }}}1
 
 # Mode multimedia {{{1
 
-bindsym $mod+F9 mode "multimedia"
+bindsym Mod4+F9 mode "multimedia"
 
 mode "multimedia" {
 
@@ -573,21 +568,21 @@ mode "multimedia" {
 
 bindsym M         exec pavucontrol
 
-bindsym F11        exec amixer -c 0 -- set Master 2dB+
+bindsym F10        exec amixer -c 0 -- set Master 2dB+
 bindsym F11        exec amixer -c 0 -- set Master 2dB-
-bindsym $mod+F10   exec amixer -c 0 -- set Master 4dB+
-bindsym $mod+F11   exec amixer -c 0 -- set Master 4dB-
+bindsym Mod4+F10   exec amixer -c 0 -- set Master 4dB+
+bindsym Mod4+F11   exec amixer -c 0 -- set Master 4dB-
 
 # bindsym F11      exec pamixer --decrease 5
 # bindsym F11      exec pamixer --increase 5
-# bindsym $mod+F10 exec pamixer --decrease 10
-# bindsym $mod+F11 exec pamixer --increase 10
+# bindsym Mod4+F10 exec pamixer --decrease 10
+# bindsym Mod4+F11 exec pamixer --increase 10
 
 # }}}2
 
 # MPC {{{2
 
-bindsym $mod+F9        exec mpc --no-status toggle
+bindsym Mod4+F9        exec mpc --no-status toggle
 
 bindsym BackSpace exec mpc --no-status seek 0:0
 
@@ -624,7 +619,17 @@ bindsym Escape mode "default"
 
 # }}}1
 
-# {{{ Barre de status
+# Souris {{{1
+
+focus_follows_mouse no
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+
+floating_modifier $mod
+
+# }}}1
+
+# Barre de status {{{1
 
 # Workspaces, infos, tray, ...
 
@@ -658,4 +663,4 @@ bar {
 
 }
 
-# }}}
+# }}}1
