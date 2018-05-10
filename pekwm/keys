@@ -13,6 +13,8 @@
 # Mod1 = Alt
 # Mod4 = Super (touche windows)
 #
+# On my keyboard, Mod3 = Hyper = menu key, configured with xmodmap
+#
 # Mouse1 = bouton gauche
 # Mouse2 = bouton milieu
 # Mouse3 = bouton droit
