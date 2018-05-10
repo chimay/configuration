@@ -4,19 +4,17 @@
 
 (setq debug-on-error t)
 
-;; * Chemins d’accès aux fichiers à charger
+;; * Chemin d’accès aux fichiers à charger
 
 (add-to-list 'load-path "~/racine/config/edit/emacs")
-
-(require 'personnel-chemins "chemins")
 
 ;; * Paquets
 
 (require 'personnel-paquets "paquets")
 
-;; * Fonctions
+;; * Perso
 
-(require 'personnel-fonction "fonction")
+(require 'personnel-perso "perso")
 
 ;; * Configuration en org-mode / babel
 
