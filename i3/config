@@ -144,12 +144,12 @@ for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
 # Bof
 
-# bindsym $mod+i exec "i3-nagbar -t warning \
-# 	-m 'Bienvenue sur i3' \
-# 	-b 'Sortir' 'exec --no-startup-id ~/racine/shell/power/rofi-eteindre.zsh' \
-# 	-b 'Terminal' 'exec qterminal' \
-# 	-b 'Lancer une application' 'exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh' \
-# 	"
+bindsym $mod+i exec "i3-nagbar -t warning \
+	-m 'Bienvenue sur i3' \
+	-b 'Sortir' '~/racine/shell/power/rofi-eteindre.zsh' \
+	-b 'Terminal' 'qterminal' \
+	-b 'Lancer une application' '~/racine/shell/run/lance-rofi.zsh' \
+	"
 
 # }}}2
 
