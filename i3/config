@@ -631,31 +631,35 @@ bindsym Mod4+minus   exec amixer -c 0 -- set Master 4dB-
 
 # }}}2
 
+# CMUS {{{2
+
+bindsym F9        exec cmus-remote -C player-pause
+
+bindsym space     exec cmus-remote -C player-pause
+
+bindsym BackSpace exec cmus-remote -C 'seek 0'
+
+bindsym right     exec cmus-remote -C player-next
+bindsym left      exec cmus-remote -C player-prev
+
+# }}}2
+
 # MPC {{{2
 
 bindsym Mod4+F9        exec mpc --no-status toggle
 
-bindsym BackSpace exec mpc --no-status seek 0:0
+bindsym Mod4+space     exec mpc --no-status toggle
 
-bindsym p         exec mpc prev
+bindsym Mod4+BackSpace exec mpc --no-status seek 0:0
+
 bindsym n         exec mpc next
+bindsym p         exec mpc prev
 
 bindsym f         exec mpc seek +0:15
 bindsym b         exec mpc seek -0:15
 
 bindsym Shift+F   exec mpc seek +1:00
 bindsym Shift+B   exec mpc seek -1:00
-
-# }}}2
-
-# CMUS {{{2
-
-bindsym F9        exec cmus-remote -C player-pause
-
-bindsym space     exec cmus-remote -C 'seek 0'
-
-bindsym left      exec cmus-remote -C player-prev
-bindsym right     exec cmus-remote -C player-next
 
 # }}}2
 
