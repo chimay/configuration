@@ -140,6 +140,19 @@ for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
 # Mode défaut {{{1
 
+# Nagbar {{{2
+
+# Bof
+
+# bindsym $mod+i exec "i3-nagbar -t warning \
+# 	-m 'Bienvenue sur i3' \
+# 	-b 'Sortir' 'exec --no-startup-id ~/racine/shell/power/rofi-eteindre.zsh' \
+# 	-b 'Terminal' 'exec qterminal' \
+# 	-b 'Lancer une application' 'exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh' \
+# 	"
+
+# }}}2
+
 # Recharger, Relancer, Sortir {{{2
 
 # reload the configuration file
@@ -195,11 +208,13 @@ bindsym $mod+v split v
 
 # }}}2
 
-# Layouts : default, stacking, tabbed {{{2
+# Layouts {{{2
 
 bindsym $mod+f fullscreen
 
 bindsym Mod4+F5 fullscreen
+
+bindsym $mod+space layout toggle all
 
 bindsym $mod+d layout default
 bindsym $mod+s layout stacking
@@ -381,9 +396,11 @@ bindsym v split v
 
 # }}}2
 
-# Layouts : default, stacking, tabbed {{{2
+# Layouts {{{2
 
 bindsym f fullscreen
+
+bindsym space layout toggle all
 
 bindsym d layout default
 bindsym s layout stacking
@@ -556,24 +573,25 @@ mode "applications" {
 bindsym dollar exec lxterminal
 bindsym Shift+Return exec konsole
 
-bindsym v exec --no-startup-id ~/racine/shell/run/lance-gvim.zsh
+bindsym v exec --no-startup-id ~/racine/shell/run/lance-gvim.zsh ; mode "default"
 
-bindsym n exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh
-bindsym Shift+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh
+bindsym n exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh ; mode "default"
+bindsym Shift+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh ; mode "default"
 
-bindsym e exec --no-startup-id ~/racine/shell/run/lance-emacs-client.zsh
-bindsym Shift+E exec --no-startup-id ~/racine/shell/run/lance-emacs.zsh
+bindsym e exec --no-startup-id ~/racine/shell/run/lance-emacs-client.zsh ; mode "default"
+bindsym Shift+E exec --no-startup-id ~/racine/shell/run/lance-emacs.zsh ; mode "default"
 
-bindsym f exec firefox
-bindsym g exec geogebra
-bindsym m exec musescore
-bindsym o exec libreoffice
-bindsym q exec qutebrowser
-bindsym s exec mp3splt-gtk
-bindsym z exec zathura
+bindsym f exec firefox ; mode "default"
+bindsym g exec geogebra ; mode "default"
+bindsym m exec musescore ; mode "default"
+bindsym o exec libreoffice ; mode "default"
+bindsym p exec pcmanfm ; mode "default"
+bindsym q exec qutebrowser ; mode "default"
+bindsym s exec mp3splt-gtk ; mode "default"
+bindsym z exec zathura ; mode "default"
 
-bindsym Shift+F exec filezilla
-bindsym Shift+V exec vlc
+bindsym Shift+F exec filezilla ; mode "default"
+bindsym Shift+V exec vlc ; mode "default"
 
 # Back to normal {{{2
 
