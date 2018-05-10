@@ -119,6 +119,7 @@ assign [class="Firefox"] $espace2
 
 assign [class="GeoGebra"] $espace5
 
+assign [class="net-sourceforge-jnlp-runtime-Boot"] $espace9
 assign [class="sun-awt-X11-XFramePeer"] $espace9
 
 # }}}2
@@ -130,6 +131,7 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="MPlayer"] floating enable
 for_window [class="Vlc"]     floating enable
 
+for_window [class="net-sourceforge-jnlp-runtime-Boot"] floating enable
 for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
 # }}}2
@@ -150,7 +152,7 @@ bindsym $mod+Shift+R restart
 
 # exit i3 (logs you out of your X session)
 
-bindsym $mod+Shift+X exit
+bindsym $mod+Mod4+Q exit
 
 # }}}2
 
@@ -161,12 +163,16 @@ bindsym $mod+Down  focus down
 bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
+bindsym Mod4+Tab focus right
+bindsym Mod4+Shift+Tab focus left
+bindsym Mod4+Ctrl+Tab focus down
+
 bindsym $mod+Shift+Left  move left
 bindsym $mod+Shift+Down  move down
 bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
-bindsym Shift+Q kill
+bindsym $mod+Shift+X kill
 
 # }}}2
 
@@ -193,6 +199,8 @@ bindsym $mod+v split v
 
 bindsym $mod+f fullscreen
 
+bindsym Mod4+F5 fullscreen
+
 bindsym $mod+d layout default
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
@@ -205,9 +213,13 @@ bindsym $mod+t layout tabbed
 
 bindsym $mod+Shift+F floating toggle
 
+bindsym Mod4+F6 floating toggle
+
 # change focus between tiling / floating windows
 
 bindsym $mod+Mod1+F focus mode_toggle
+
+bindsym Mod4+F7 focus mode_toggle
 
 # }}}2
 
@@ -238,6 +250,11 @@ bindsym $mod+Shift+7 move workspace $espace7
 bindsym $mod+Shift+8 move workspace $espace8
 bindsym $mod+Shift+9 move workspace $espace9
 
+bindsym Mod4+F1 workspace $espace0
+bindsym Mod4+F2 workspace $espace1
+bindsym Mod4+F3 workspace $espace2
+bindsym Mod4+F4 workspace $espace9
+
 # Ne fonctionne pas ... pourquoi ?
 
 # bindsym $mod+$pave0 workspace $espace0
@@ -264,12 +281,15 @@ bindsym $mod+Shift+period move scratchpad
 
 # Système {{{2
 
-bindsym $mod+r exec ~/racine/shell/run/lance-rofi.zsh
+bindsym $mod+r exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
 
-bindsym $mod+colon exec ~/racine/shell/run/lance-rofi.zsh
+bindsym $mod+colon exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
+
+bindsym $mod+Shift+Q exec --no-startup-id ~/racine/shell/power/rofi-eteindre.zsh
 
 bindsym $mod+dollar exec lxterminal
 bindsym $mod+Return exec konsole
+bindsym $mod+Shift+sterling exec qterminal
 
 bindsym $mod+z exec xset dpms force off
 
@@ -281,13 +301,13 @@ bindsym $mod+l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/g
 
 # Applications {{{2
 
-bindsym Mod4+Ctrl+V exec ~/racine/shell/run/lance-gvim.zsh
+bindsym Mod4+Ctrl+V exec --no-startup-id ~/racine/shell/run/lance-gvim.zsh
 
-bindsym Mod4+Ctrl+N exec ~/racine/shell/run/lance-neovim-client.zsh
-bindsym Mod4+Ctrl+Shift+N exec ~/racine/shell/run/lance-neovim.zsh
+bindsym Mod4+Ctrl+N exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh
+bindsym Mod4+Ctrl+Shift+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh
 
-bindsym Mod4+Ctrl+E exec ~/racine/shell/run/lance-emacs-client.zsh
-bindsym Mod4+Ctrl+Shift+E exec ~/racine/shell/run/lance-emacs.zsh
+bindsym Mod4+Ctrl+E exec --no-startup-id ~/racine/shell/run/lance-emacs-client.zsh
+bindsym Mod4+Ctrl+Shift+E exec --no-startup-id ~/racine/shell/run/lance-emacs.zsh
 
 bindsym Mod4+Ctrl+F exec firefox
 bindsym Mod4+Ctrl+G exec geogebra
@@ -322,7 +342,7 @@ bindsym Shift+R restart
 
 # exit i3 (logs you out of your X session)
 
-bindsym Shift+X exit
+bindsym Mod4+Q exit
 
 # }}}2
 
@@ -338,7 +358,7 @@ bindsym Shift+Down  move down
 bindsym Shift+Up    move up
 bindsym Shift+Right move right
 
-bindsym Shift+Q kill
+bindsym Shift+X kill
 
 # }}}2
 
@@ -447,13 +467,21 @@ bindsym Shift+period move scratchpad
 
 # Système {{{2
 
-bindsym r exec ~/racine/shell/run/lance-rofi.zsh
+bindsym r exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
 
-bindsym colon exec ~/racine/shell/run/lance-rofi.zsh
+bindsym colon exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
+
+bindsym Shift+Q exec --no-startup-id ~/racine/shell/power/rofi-eteindre.zsh
+
+bindsym dollar exec lxterminal
+bindsym Shift+Return exec konsole
+bindsym Shift+sterling exec qterminal
 
 bindsym z exec xset dpms force off
 
-bindsym l exec i3lock --color "#754321"
+# Supporte les images png
+
+bindsym l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png
 
 # }}}2
 
@@ -528,13 +556,13 @@ mode "applications" {
 bindsym dollar exec lxterminal
 bindsym Shift+Return exec konsole
 
-bindsym v exec ~/racine/shell/run/lance-gvim.zsh
+bindsym v exec --no-startup-id ~/racine/shell/run/lance-gvim.zsh
 
-bindsym n exec ~/racine/shell/run/lance-neovim-client.zsh
-bindsym Shift+N exec ~/racine/shell/run/lance-neovim.zsh
+bindsym n exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh
+bindsym Shift+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh
 
-bindsym e exec ~/racine/shell/run/lance-emacs-client.zsh
-bindsym Shift+E exec ~/racine/shell/run/lance-emacs.zsh
+bindsym e exec --no-startup-id ~/racine/shell/run/lance-emacs-client.zsh
+bindsym Shift+E exec --no-startup-id ~/racine/shell/run/lance-emacs.zsh
 
 bindsym f exec firefox
 bindsym g exec geogebra
@@ -572,6 +600,11 @@ bindsym F10        exec amixer -c 0 -- set Master 2dB+
 bindsym F11        exec amixer -c 0 -- set Master 2dB-
 bindsym Mod4+F10   exec amixer -c 0 -- set Master 4dB+
 bindsym Mod4+F11   exec amixer -c 0 -- set Master 4dB-
+
+bindsym plus       exec amixer -c 0 -- set Master 2dB+
+bindsym minus      exec amixer -c 0 -- set Master 2dB-
+bindsym Mod4+plus    exec amixer -c 0 -- set Master 4dB+
+bindsym Mod4+minus   exec amixer -c 0 -- set Master 4dB-
 
 # bindsym F11      exec pamixer --decrease 5
 # bindsym F11      exec pamixer --increase 5
