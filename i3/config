@@ -452,6 +452,7 @@ bindsym l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/geomet
 
 # Back to normal {{{2
 
+bindsym q mode "default"
 bindsym Return mode "default"
 bindsym Escape mode "default"
 
@@ -503,6 +504,7 @@ bindsym Shift+Right resize grow   right 5 px or 5 ppt
 
 # Back to normal: Enter or Escape {{{2
 
+bindsym q mode "default"
 bindsym Return mode "default"
 bindsym Escape mode "default"
 
@@ -544,6 +546,7 @@ bindsym Shift+V exec vlc ; mode "default"
 
 # Back to normal {{{2
 
+bindsym Mod4+q mode "default"
 bindsym Return mode "default"
 bindsym Escape mode "default"
 
@@ -588,8 +591,8 @@ bindsym space     exec cmus-remote -C player-pause
 
 bindsym BackSpace exec cmus-remote -C 'seek 0'
 
-bindsym right     exec cmus-remote -C player-next
-bindsym left      exec cmus-remote -C player-prev
+bindsym n         exec cmus-remote -C player-next
+bindsym p         exec cmus-remote -C player-prev
 
 # }}}2
 
@@ -601,11 +604,8 @@ bindsym Mod4+space     exec mpc --no-status toggle
 
 bindsym Mod4+BackSpace exec mpc --no-status seek 0:0
 
-bindsym n         exec mpc next
-bindsym p         exec mpc prev
-
-bindsym f         exec mpc seek +0:15
-bindsym b         exec mpc seek -0:15
+bindsym f         exec mpc next
+bindsym b         exec mpc prev
 
 bindsym Shift+F   exec mpc seek +1:00
 bindsym Shift+B   exec mpc seek -1:00
@@ -614,6 +614,7 @@ bindsym Shift+B   exec mpc seek -1:00
 
 # Back to normal {{{2
 
+bindsym q mode "default"
 bindsym Return mode "default"
 bindsym Escape mode "default"
 
