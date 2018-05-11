@@ -566,15 +566,15 @@ mode "multimedia" {
 
 bindsym M         exec pavucontrol
 
-bindsym F10        exec amixer -c 0 -- set Master 2dB+
-bindsym F11        exec amixer -c 0 -- set Master 2dB-
-bindsym Mod4+F10   exec amixer -c 0 -- set Master 4dB+
-bindsym Mod4+F11   exec amixer -c 0 -- set Master 4dB-
+bindsym F10      exec amixer -c 0 -- set Master 2dB+
+bindsym F11      exec amixer -c 0 -- set Master 2dB-
+bindsym Mod4+F10 exec amixer -c 0 -- set Master 4dB+
+bindsym Mod4+F11 exec amixer -c 0 -- set Master 4dB-
 
-bindsym plus       exec amixer -c 0 -- set Master 2dB+
-bindsym minus      exec amixer -c 0 -- set Master 2dB-
-bindsym Mod4+plus    exec amixer -c 0 -- set Master 4dB+
-bindsym Mod4+minus   exec amixer -c 0 -- set Master 4dB-
+bindsym prior exec amixer -c 0 -- set Master 2dB+
+bindsym next  exec amixer -c 0 -- set Master 2dB-
+bindsym home  exec amixer -c 0 -- set Master 4dB+
+bindsym end   exec amixer -c 0 -- set Master 4dB-
 
 # bindsym F11      exec pamixer --decrease 5
 # bindsym F11      exec pamixer --increase 5
