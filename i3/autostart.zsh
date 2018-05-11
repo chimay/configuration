@@ -3,28 +3,6 @@
 # vim: set filetype=sh :
 # vim: set fdm=marker :
 
-# Documentation {{{1
-
-# PekWM start file
-# This file is a simple shell script; It gets run on pekwm startup, after
-# the theme and all config has loaded if it is set executable
-# (chmod +x start).
-#
-# This is different from ~/.xinitrc because a normal configuration of
-# .xinitrc you'll run all commands, then launch the window manager last.
-#
-# It also gets re-run every time pekwm is restarted.
-#
-# As for it's usefulness, well, it's up to you. I actually set my background
-# from my start file; since it runs after the theme gets loaded, this
-# effectively overrides whatever's in the theme.
-#
-# There's probably a few other good uses for it, too. I mainly pushed for it
-# because when I was doing fluxbox's docs, people used to complain that there
-# wasn't one, and I wanted to avoid that for pekwm. ;) --eyez
-
-# }}}1
-
 # Chemins d’accès {{{1
 
 source ~/racine/config/cmdline/zsh/zprofile
@@ -55,7 +33,7 @@ psgrep fond-ecran || fond-ecran.zsh 7 +30 ~/graphix/list/wallpaper.gen >>! ~/log
 
 # Panel {{{2
 
-xfce4-panel &
+#xfce4-panel &
 
 #lxpanel &
 

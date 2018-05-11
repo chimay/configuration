@@ -42,11 +42,18 @@ $AUTO_ECONOMISE_OFF="xset -dpms"
 
 $ECONOMISE_ECRAN="xset dpms force off"
 
-$VERROUILLE="slock"
+$VERROUILLE="i3lock -c '#341207' -i ~/graphix/wallpaper/geometry/A-chakras-02.png"
 
 $BANNI="swarp 0 0"
 
 # }}}
+
+# Xdotool {{{1
+
+$MINIMISE_FENETRES="~/racine/shell/windenv/xdotool-minimise.zsh"
+$MAXIMISE_FENETRES="~/racine/shell/windenv/xdotool-maximise.zsh"
+
+# }}}1
 
 # {{{ Multimédia
 

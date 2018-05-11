@@ -31,7 +31,8 @@ Global {
 
 	KeyPress = "Mod4 Tab" { Actions = "NextFrame EndRaise" }
 
-	KeyPress = "Mod4 Ampersand" { Actions = "Exec $ROFI" }
+	KeyPress = "Mod3 r" { Actions = "Exec $ROFI" }
+	KeyPress = "Mod3 Colon" { Actions = "Exec $ROFI" }
 	KeyPress = "Mod4 Colon" { Actions = "Exec $LANCEUR" }
 
 	KeyPress = "Mod4 F1" { Actions = "GotoWorkspace 1" }
@@ -57,10 +58,10 @@ Chain = "Mod3 F12" {
 	KeyPress = "w" { Actions = "ShowMenu WindowMenu" }
 	KeyPress = "G" { Actions = "ShowMenu Goto" }
 
-	KeyPress = "Equal" { Actions = "ShowCmdDialog" }
+	KeyPress = "C" { Actions = "ShowCmdDialog" }
 
-	KeyPress = "Ampersand" { Actions = "Exec $ROFI" }
-	KeyPress = "Comma" { Actions = "Exec $DMENU" }
+	KeyPress = "R" { Actions = "Exec $ROFI" }
+	KeyPress = "D" { Actions = "Exec $DMENU" }
 
 	KeyPress = "Colon" { Actions = "Exec $LANCEUR" }
 	KeyPress = "Semicolon" { Actions = "Exec $LANCEUR_DANS_TERM" }
@@ -104,16 +105,16 @@ Chain = "Mod4 F12" {
 		KeyPress = "Y" { Actions = "Exec yakuake" }
 		KeyPress = "Z" { Actions = "Exec zathura" }
 
-		KeyPress = "Mod4+E" { Actions = "Exec $EMACS" }
-		KeyPress = "Mod4+F" { Actions = "Exec filezilla" }
-		KeyPress = "Mod4+G" { Actions = "Exec gnome-terminal" }
-		KeyPress = "Mod4+M" { Actions = "Exec mate-terminal" }
-		KeyPress = "Mod4+N" { Actions = "Exec $NEOVIM" }
-		KeyPress = "Mod4+S" { Actions = "Exec mp3splt-gtk" }
-		KeyPress = "Mod4+V" { Actions = "Exec vlc" }
+		KeyPress = "Mod4 E" { Actions = "Exec $EMACS" }
+		KeyPress = "Mod4 F" { Actions = "Exec filezilla" }
+		KeyPress = "Mod4 G" { Actions = "Exec gnome-terminal" }
+		KeyPress = "Mod4 M" { Actions = "Exec mate-terminal" }
+		KeyPress = "Mod4 N" { Actions = "Exec $NEOVIM" }
+		KeyPress = "Mod4 S" { Actions = "Exec mp3splt-gtk" }
+		KeyPress = "Mod4 V" { Actions = "Exec vlc" }
 
-		KeyPress = "Mod1+G" { Actions = "Exec guake" }
-		KeyPress = "Mod1+S" { Actions = "Exec simple-scan" }
+		KeyPress = "Mod1 G" { Actions = "Exec guake" }
+		KeyPress = "Mod1 S" { Actions = "Exec simple-scan" }
 }
 
 # }}}2
