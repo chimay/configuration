@@ -21,6 +21,12 @@ alias psgrep='ps auxww | grep -v grep | grep --color=never'
 
 # }}}1
 
+# Configuration {{{1
+
+xrdb ~/.Xresources
+
+# }}}1
+
 #  Environnement {{{1
 
 #  Fond d’écran {{{2
