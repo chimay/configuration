@@ -251,15 +251,18 @@ bindsym $mod+Shift+M exec i3-input \
 
 # Signets de fenêtres {{{2
 
-bindsym $mod+m exec i3-input \
-	-F 'mark %s' \
-	-P 'Nom du signet: ' \
-	-f 'pango:DejaVu Sans Mono 11 Bold'
+bindsym $mod+m exec i3-msg mark "$(zenity --entry --text 'Nom du signet')"
+bindsym $mod+apostrophe exec i3-msg [con_mark="$(zenity --entry --text 'Nom du signet')"] focus
 
-bindsym $mod+apostrophe exec i3-input \
-	-F '[con_mark="%s"] focus' \
-	-P 'Aller au signet: ' \
-	-f 'pango:DejaVu Sans Mono 11 Bold'
+# bindsym $mod+m exec i3-input \
+# 	-F 'mark %s' \
+# 	-P 'Nom du signet: ' \
+# 	-f 'pango:DejaVu Sans Mono 11 Bold'
+
+# bindsym $mod+apostrophe exec i3-input \
+# 	-F '[con_mark="%s"] focus' \
+# 	-P 'Aller au signet: ' \
+# 	-f 'pango:DejaVu Sans Mono 11 Bold'
 
 # }}}2
 
