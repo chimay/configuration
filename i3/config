@@ -418,25 +418,6 @@ bindsym Shift+F2 move workspace $espace1
 bindsym Shift+F3 move workspace $espace2
 bindsym Shift+F4 move workspace $espace3
 
-bindsym Shift+M exec i3-input \
-	-F 'rename workspace to "%s"' \
-	-P 'Nouveau nom du bureau: ' \
-	-f 'pango:DejaVu Sans Mono 11 Bold'
-
-# }}}2
-
-# Signets de fenêtres {{{2
-
-bindsym m exec i3-input \
-	-F 'mark %s' \
-	-P 'Nom du signet: ' \
-	-f 'pango:DejaVu Sans Mono 11 Bold'
-
-bindsym apostrophe exec i3-input \
-	-F '[con_mark="%s"] focus' \
-	-P 'Aller au signet: ' \
-	-f 'pango:DejaVu Sans Mono 11 Bold'
-
 # }}}2
 
 # Scratchpad {{{2
