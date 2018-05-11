@@ -567,7 +567,7 @@ mode "multimedia" {
 
 # Mixer {{{2
 
-bindsym M         exec pavucontrol
+bindsym M         exec pavucontrol ; mode "default"
 
 bindsym F10      exec amixer -c 0 -- set Master 2dB+
 bindsym F11      exec amixer -c 0 -- set Master 2dB-
