@@ -123,6 +123,9 @@ for_window [class="Vlc"]     floating enable
 for_window [class="net-sourceforge-jnlp-runtime-Boot"] floating enable
 for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
+for_window [class="XClock"]     floating enable
+for_window [class="Clock"]     floating enable
+
 # }}}2
 
 # }}}1
@@ -585,7 +588,7 @@ bindsym end   exec amixer -c 0 -- set Master 4dB-
 
 # CMUS {{{2
 
-bindsym F9        exec cmus-remote -C player-pause
+bindsym F9        exec cmus-remote -C player-pause ; mode "default"
 
 bindsym space     exec cmus-remote -C player-pause
 
@@ -598,7 +601,7 @@ bindsym p         exec cmus-remote -C player-prev
 
 # MPC {{{2
 
-bindsym Mod4+F9        exec mpc --no-status toggle
+bindsym Mod4+F9        exec mpc --no-status toggle ; mode "default"
 
 bindsym Mod4+space     exec mpc --no-status toggle
 
