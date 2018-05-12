@@ -96,9 +96,6 @@ workspace_auto_back_and_forth yes
 
 # La flèche → est optionnelle
 
-assign [class="konsole"] $espace0
-assign [class="Lxterminal"] $espace0
-
 assign [class="Gvim"]    $espace0
 assign [class="nvim-qt"] $espace0
 assign [class="Emacs"]   $espace0
@@ -114,6 +111,7 @@ assign [class="sun-awt-X11-XFramePeer"] $espace3
 # Mode flottant {{{2
 
 for_window [class="yakuake"] floating enable
+for_window [class="URxvt"] floating enable
 
 for_window [class="Pavucontrol"] floating enable
 
@@ -140,7 +138,7 @@ bindsym $mod+i exec "i3-nagbar -t warning \
 	-m 'Bienvenue sur i3' \
 	-b 'Sortir' '~/racine/shell/power/rofi-eteindre.zsh' \
 	-b 'Lancer une application' '~/racine/shell/run/lance-rofi.zsh' \
-	-b 'Terminal' 'qterminal' \
+	-b 'Terminal' 'urxvtc' \
 	"
 
 # }}}2
@@ -232,6 +230,8 @@ bindsym Mod4+F7 focus mode_toggle
 
 # Espaces de travail {{{2
 
+bindsym $mod+w exec --no-startup-id ~/racine/shell/dialog/rofi-workspaces.zsh
+
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Right workspace next
 
@@ -269,15 +269,6 @@ bindsym $mod+apostrophe exec i3-msg [con_mark="$(zenity --entry --text 'Nom du s
 
 # }}}2
 
-# Scratchpad {{{2
-
-# Visibilité indépendante des workspaces
-
-bindsym $mod+o scratchpad show
-bindsym $mod+Shift+period move scratchpad
-
-# }}}2
-
 # Système {{{2
 
 bindsym $mod+r exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
@@ -289,8 +280,7 @@ bindsym $mod+Shift+Q exec --no-startup-id ~/racine/shell/power/rofi-eteindre.zsh
 
 bindsym $mod+Return exec yakuake
 bindsym $mod+dollar exec konsole
-bindsym $mod+asterisk exec lxterminal
-bindsym $mod+Shift+sterling exec qterminal
+bindsym $mod+asterisk exec urxvtc
 
 bindsym $mod+z exec xset dpms force off
 
@@ -320,6 +310,19 @@ bindsym Mod4+Ctrl+Z exec zathura
 
 bindsym Mod4+Ctrl+Shift+F exec filezilla
 bindsym Mod4+Ctrl+Shift+V exec vlc
+
+# }}}2
+
+# Outils (scratchpad) {{{2
+
+bindsym $mod+o move scratchpad
+bindsym $mod+0 scratchpad show
+
+bindsym Mod4+Shift+t exec urxvtc -name terminal -geometry 70x20 && sleep 1 ; move scratchpad
+bindsym Mod4+Shift+c exec urxvtc -name calculatrice -geometry 70x20 -e python && sleep 1 ; move scratchpad
+
+bindsym $mod+F1 [instance="terminal"] scratchpad show ; [instance="terminal"] move position center
+bindsym $mod+F2 [instance="calculatrice"] scratchpad show ; [instance="calculatrice"] move position center
 
 # }}}2
 
@@ -408,6 +411,8 @@ bindsym Mod1+F focus mode_toggle
 
 # Espaces de travail {{{2
 
+bindsym w exec --no-startup-id ~/racine/shell/dialog/rofi-workspaces.zsh
+
 bindsym Ctrl+Left workspace prev
 bindsym Ctrl+Right workspace next
 
@@ -423,21 +428,11 @@ bindsym Shift+F4 move workspace $espace3
 
 # }}}2
 
-# Scratchpad {{{2
-
-# Visibilité indépendante des workspaces
-
-bindsym o scratchpad show
-bindsym Shift+period move scratchpad
-
-# }}}2
-
 # Système {{{2
 
 bindsym ampersand exec yakuake
 bindsym dollar exec konsole
-bindsym Shift+sterling exec qterminal
-bindsym asterisk exec lxterminal
+bindsym asterisk exec urxvtc
 
 bindsym r exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
 
@@ -540,6 +535,7 @@ bindsym o exec libreoffice ; mode "default"
 bindsym p exec pcmanfm ; mode "default"
 bindsym q exec qutebrowser ; mode "default"
 bindsym s exec mp3splt-gtk ; mode "default"
+bindsym u exec urxvtc ; mode "default"
 bindsym y exec yakuake ; mode "default"
 bindsym z exec zathura ; mode "default"
 
@@ -550,6 +546,40 @@ bindsym Shift+V exec vlc ; mode "default"
 # Back to normal {{{2
 
 bindsym Mod4+q mode "default"
+bindsym Return mode "default"
+bindsym Escape mode "default"
+
+# }}}2
+
+}
+
+# }}}1
+
+# Mode outils (scratchpad) {{{1
+
+# Visibilité indépendante des workspaces
+
+bindsym Mod4+F11 mode "outils"
+
+mode "outils" {
+
+bindsym o move scratchpad
+
+bindsym 0 scratchpad show
+
+# Lancement des outils
+
+bindsym t exec urxvtc -name terminal -geometry 70x20 && sleep 1 ; move scratchpad
+bindsym c exec urxvtc -name calculatrice -geometry 70x20 -e python && sleep 1 ; move scratchpad
+
+# Affichage des outils
+
+bindsym dollar [instance="terminal"] scratchpad show ; [instance="terminal"] move position center ; mode "default"
+bindsym equal [instance="calculatrice"] scratchpad show ; [instance="calculatrice"] move position center ; mode "default"
+
+# Back to normal {{{2
+
+bindsym q mode "default"
 bindsym Return mode "default"
 bindsym Escape mode "default"
 

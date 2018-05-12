@@ -64,7 +64,13 @@ psgrep fond-ecran || fond-ecran.zsh 7 +30 ~/graphix/list/wallpaper.gen >>! ~/log
 
 # Services {{{1
 
-# Emacs {{{2
+# Terminal {{{2
+
+psgrep urxvtd || urxvtd -q -o -f
+
+# }}}2
+
+# Édition {{{2
 
 #psgrep emacs || emacs --daemon >>! ~/log/emacs-server.log 2>&1 &
 
