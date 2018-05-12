@@ -57,12 +57,6 @@ set $espace3 "3 Graphique"
 
 # }}}1
 
-# Autostart {{{1
-
-exec --no-startup-id ~/racine/config/windenv/i3/autostart.zsh
-
-# }}}1
-
 # Présentation {{{1
 
 font pango:DejaVu Sans Mono 11 Bold
@@ -125,6 +119,26 @@ for_window [class="XClock"]     floating enable
 for_window [class="Clock"]     floating enable
 
 # }}}2
+
+# Scratchpad {{{2
+
+for_window [instance="deroulant"] floating enable
+for_window [instance="deroulant"] move scratchpad
+
+for_window [instance="calculatrice"] floating enable
+for_window [instance="calculatrice"] move scratchpad
+
+# }}}2
+
+# }}}1
+
+# Autostart {{{1
+
+exec --no-startup-id ~/racine/config/windenv/i3/autostart.zsh
+
+# Ne fonctionne pas. Pourquoi ?
+# exec --no-startup-id urxvtc -name deroulant -geometry 70x20
+# exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xft:monospace:size=12" -e calc
 
 # }}}1
 
@@ -274,6 +288,9 @@ bindsym $mod+apostrophe exec i3-msg [con_mark="$(zenity --entry --text 'Nom du s
 bindsym $mod+r exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
 bindsym $mod+colon exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
 
+bindsym --whole-window $mod+button3 exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
+bindsym --whole-window Mod4+button3 exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
+
 bindsym Mod4+colon exec --no-startup-id ~/racine/shell/run/zshrun.sh
 
 bindsym $mod+Shift+Q exec --no-startup-id ~/racine/shell/power/rofi-eteindre.zsh
@@ -306,6 +323,7 @@ bindsym Mod4+Ctrl+M exec musescore
 bindsym Mod4+Ctrl+O exec libreoffice
 bindsym Mod4+Ctrl+Q exec qutebrowser
 bindsym Mod4+Ctrl+S exec mp3splt-gtk
+bindsym Mod4+Ctrl+X exec xclock
 bindsym Mod4+Ctrl+Z exec zathura
 
 bindsym Mod4+Ctrl+Shift+F exec filezilla
@@ -318,10 +336,14 @@ bindsym Mod4+Ctrl+Shift+V exec vlc
 bindsym $mod+o move scratchpad
 bindsym $mod+0 scratchpad show
 
-bindsym Mod4+Shift+t exec urxvtc -name terminal -geometry 70x20 && sleep 1 ; move scratchpad
-bindsym Mod4+Shift+c exec urxvtc -name calculatrice -geometry 70x20 -e python && sleep 1 ; move scratchpad
+# Lancement des outils
 
-bindsym $mod+F1 [instance="terminal"] scratchpad show ; [instance="terminal"] move position center
+bindsym Mod4+Shift+d exec --no-startup-id urxvtc -name deroulant -geometry 70x20
+bindsym Mod4+Shift+c exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xft:monospace:size=12" -e calc
+
+# Affichage des outils
+
+bindsym $mod+F1 [instance="deroulant"] scratchpad show ; [instance="deroulant"] move position center
 bindsym $mod+F2 [instance="calculatrice"] scratchpad show ; [instance="calculatrice"] move position center
 
 # }}}2
@@ -452,6 +474,7 @@ bindsym l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/geomet
 
 bindsym q mode "default"
 bindsym Return mode "default"
+bindsym KP_Enter mode "default"
 bindsym Escape mode "default"
 
 # }}}2
@@ -504,6 +527,7 @@ bindsym Shift+Right resize grow   right 5 px or 5 ppt
 
 bindsym q mode "default"
 bindsym Return mode "default"
+bindsym KP_Enter mode "default"
 bindsym Escape mode "default"
 
 # }}}2
@@ -536,6 +560,7 @@ bindsym p exec pcmanfm ; mode "default"
 bindsym q exec qutebrowser ; mode "default"
 bindsym s exec mp3splt-gtk ; mode "default"
 bindsym u exec urxvtc ; mode "default"
+bindsym x exec xclock ; mode "default"
 bindsym y exec yakuake ; mode "default"
 bindsym z exec zathura ; mode "default"
 
@@ -547,6 +572,7 @@ bindsym Shift+V exec vlc ; mode "default"
 
 bindsym Mod4+q mode "default"
 bindsym Return mode "default"
+bindsym KP_Enter mode "default"
 bindsym Escape mode "default"
 
 # }}}2
@@ -569,18 +595,19 @@ bindsym 0 scratchpad show
 
 # Lancement des outils
 
-bindsym t exec urxvtc -name terminal -geometry 70x20 && sleep 1 ; move scratchpad
-bindsym c exec urxvtc -name calculatrice -geometry 70x20 -e python && sleep 1 ; move scratchpad
+bindsym d exec --no-startup-id urxvtc -name deroulant -geometry 70x20
+bindsym c exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xft:monospace:size=12" -e calc
 
 # Affichage des outils
 
-bindsym dollar [instance="terminal"] scratchpad show ; [instance="terminal"] move position center ; mode "default"
+bindsym dollar [instance="deroulant"] scratchpad show ; [instance="deroulant"] move position center ; mode "default"
 bindsym equal [instance="calculatrice"] scratchpad show ; [instance="calculatrice"] move position center ; mode "default"
 
 # Back to normal {{{2
 
 bindsym q mode "default"
 bindsym Return mode "default"
+bindsym KP_Enter mode "default"
 bindsym Escape mode "default"
 
 # }}}2
@@ -649,6 +676,7 @@ bindsym Shift+B   exec mpc seek -1:00
 
 bindsym q mode "default"
 bindsym Return mode "default"
+bindsym KP_Enter mode "default"
 bindsym Escape mode "default"
 
 # }}}2
@@ -683,6 +711,7 @@ bar {
 	position bottom
 
 	workspace_buttons yes
+	binding_mode_indicator yes
 
 	font pango:DejaVu Sans Mono 11 Bold
 
