@@ -55,7 +55,7 @@ set runtimepath+=~/racine/config/edit/vim
 
 set ttyfast
 
-" }}}1 
+" }}}1
 
 "  Caractères utilisés dans les mots {{{1
 
@@ -969,7 +969,7 @@ nnoremap ]<c-l> :lnfile<cr>
 
 " Anciens fichiers {{{2
 
-" Fichiers dont une marque est présente dansviminfo
+" Fichiers dont une marque est présente dans viminfo
 
 " Voir la configuration de la librairie tlib
 
@@ -1639,6 +1639,7 @@ set viminfo=
 	\h,
 	\<12,
 	\s12,
+	\%30,
 	\'60,
 	\:7543,
 	\/1234,
@@ -1669,7 +1670,7 @@ source ~/racine/config/edit/vim/paquet/preload.vim
 
 packloadall
 
-" Les appels aux fonctions autoload des plugins 
+" Les appels aux fonctions autoload des plugins
 " doivent se situer après packloadall
 
 source ~/racine/config/edit/vim/paquet/postload.vim

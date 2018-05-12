@@ -265,7 +265,7 @@ let g:neoyank#limit = 120
 
 let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history-vim'
 
-nnoremap <D-y> :<c-u>Unite -prompt-direction=top history/yank<cr>
+"nnoremap <D-y> :<c-u>Unite -prompt-direction=top history/yank<cr>
 
 autocmd BufWinEnter \(*.asc\|*.gpg\) let g:neoyank_disable_write = 1
 
@@ -351,7 +351,7 @@ let g:yankring_paste_check_default_register = 1
 
 let g:highlightedyank_highlight_duration = 1000
 
-" }}}2 
+" }}}2
 
 " }}}1
 
@@ -499,7 +499,7 @@ let g:netrw_hide = 1
 
 " Dirvish {{{2
 
-nnoremap <D-f> :Dirvish<cr>
+"nnoremap <D-f> :Dirvish<cr>
 
 " }}}2
 
@@ -541,7 +541,7 @@ let g:unite_enable_split_vertically = 0
 
 let g:unite_prompt = 'unite> '
 
-" }}}3 
+" }}}3
 
 " Copie & Collage {{{3
 
@@ -572,7 +572,7 @@ let g:unite_source_find_max_candidates = 570
 
 " }}}3
 
-" }}}2 
+" }}}2
 
 " Neomru {{{2
 
@@ -586,7 +586,7 @@ let g:neomru#directory_mru_limit = 300
 
 let g:neomru#do_validate = 0
 
-" }}}2 
+" }}}2
 
 " Unite-outline (Shougo/unite-outline) {{{2
 
@@ -647,7 +647,7 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 let g:CtrlSpaceSetDefaultMapping = 1
 
-let g:CtrlSpaceDefaultMappingKey = "<D-Space>"
+let g:CtrlSpaceDefaultMappingKey = "<C-Space>"
 
 let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 
@@ -808,7 +808,7 @@ cmap <m-t> <Plug>CmdlineCompleteForward
 let g:submode_timeout = 0
 "let g:submode_timeout = 12000
 
-" }}}2 
+" }}}2
 
 " Cmdalias (coot/cmdalias_vim) {{{2
 
@@ -910,7 +910,7 @@ xmap  ie  <Plug>(textobj-entire-i)
 
 " Grepper {{{2
 
-nnoremap <D-g> :Grepper<cr>
+"nnoremap <D-g> :Grepper<cr>
 
 " }}}2
 
@@ -924,7 +924,7 @@ let g:esearch = {
 	\ 'use':        ['visual', 'hlsearch', 'last'],
 	\}
 
-nmap <D-r> <Plug>(esearch)
+"nmap <D-r> <Plug>(esearch)
 
 " }}}2
 
@@ -948,88 +948,13 @@ let g:QFG_hi_error='guifg=#5B3C11 guibg=black ctermfg=3 ctermbg=NONE'
 
 " }}}2
 
-" Sneak (justinmk/vim-sneak) {{{2
-
-" 2-character Sneak (default)
-
-nmap <D-;> <Plug>Sneak_s
-nmap <D-,> <Plug>Sneak_S
-
-" visual-mode
-
-xmap <D-;> <Plug>Sneak_s
-xmap <D-,> <Plug>Sneak_S
-
-" operator-pending-mode
-
-omap <D-;> <Plug>Sneak_s
-omap <D-,> <Plug>Sneak_S
-
-" explicit repeat (as opposed to implicit 'clever-s' repeat)
-
-"map s <Plug>SneakNext
-"map S <Plug>SneakPrevious
-
-" 1-character enhanced 'f'
-
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-
-" visual-mode
-
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-
-" operator-pending-mode
-
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-
-" 1-character enhanced 't'
-
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-
-" visual-mode
-
-xmap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
-
-" operator-pending-mode
-
-omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
-
-" force streak-mode always
-
-"nmap <D-;> <Plug>(SneakStreak)
-"nmap <D-,> <Plug>(SneakStreakBackward)
-
-nmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : ';'
-nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : ','
-
-let g:sneak#prompt = 'sneak [char-char] > '
-
-let g:sneak#f_reset      = 0
-let g:sneak#s_next       = 1
-let g:sneak#absolute_dir = 0
-let g:sneak#textobject_z = 1
-let g:sneak#use_ic_scs   = 1
-
-let g:sneak#map_netrw    = 1
-
-let g:sneak#streak       = 1
-let g:sneak#streak_esc = "\<space>"
-
-" }}}2
-
 " }}}1
 
 " Calcul {{{1
 
 " Crunch (arecarn/crunch.vim {{{2
 
-nnoremap <D-=> :Crunch<cr>
+"nnoremap <D-=> :Crunch<cr>
 
 " }}}2
 
@@ -1058,18 +983,18 @@ let g:increment_activator_filetype_candidates = {
 
 " Neoterm (kassio/neoterm) {{{2
 
-nnoremap <D-$> :new \| Ttoggle<cr>
+"nnoremap <D-$> :new \| Ttoggle<cr>
 
-nnoremap <D-CR> :TREPLSendLine<cr>
-vnoremap <D-CR> :TREPLSendSelection<cr>
+"nnoremap <D-CR> :TREPLSendLine<cr>
+"vnoremap <D-CR> :TREPLSendSelection<cr>
 
-nnoremap <D-x> :TREPLSendFile<cr>
+"nnoremap <D-x> :TREPLSendFile<cr>
 
 " }}}2
 
 " Neomake {{{2
 
-nnoremap <D-m> :NeomakeSh<space>
+"nnoremap <D-m> :NeomakeSh<space>
 
 let g:neomake_make_maker = {
 	\ 'exe': 'make',
@@ -1079,7 +1004,7 @@ let g:neomake_make_maker = {
 
 " Terminus (brettanomyces/nvim-terminus) {{{2
 
-nnoremap <D-!> :TerminusOpen<space>
+"nnoremap <D-!> :TerminusOpen<space>
 
 tmap <c-x>e <Plug>TerminusEditCommand
 
@@ -1094,7 +1019,7 @@ let g:terminus_default_prompt = '>'
 
 " Deol {{{2
 
-nnoremap <D-s> :Deol<cr>
+"nnoremap <D-s> :Deol<cr>
 
 " }}}2
 
