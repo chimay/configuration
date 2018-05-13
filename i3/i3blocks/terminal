@@ -1,0 +1,8 @@
+#!/usr/bin/env /bin/zsh
+
+echo Terminal
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	urxvtc > /dev/null
+fi

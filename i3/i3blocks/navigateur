@@ -1,0 +1,9 @@
+#!/usr/bin/env /bin/zsh
+
+echo Navigateur
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	firefox > /dev/null
+fi
+

@@ -107,6 +107,9 @@ assign [class="sun-awt-X11-XFramePeer"] $espace3
 for_window [class="yakuake"] floating enable
 for_window [class="URxvt"] floating enable
 
+for_window [class="qutebrowser"] layout tabbed
+for_window [class="Firefox"] layout tabbed
+
 for_window [class="Pavucontrol"] floating enable
 
 for_window [class="MPlayer"] floating enable
@@ -117,6 +120,8 @@ for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
 for_window [class="XClock"]     floating enable
 for_window [class="Clock"]     floating enable
+
+for_window [class="Zenity"]     floating enable
 
 # }}}2
 
@@ -343,8 +348,13 @@ bindsym Mod4+Shift+c exec --no-startup-id urxvtc -name calculatrice -geometry 70
 
 # Affichage des outils
 
-bindsym $mod+F1 [instance="deroulant"] scratchpad show ; [instance="deroulant"] move position center
-bindsym $mod+F2 [instance="calculatrice"] scratchpad show ; [instance="calculatrice"] move position center
+bindsym $mod+F1 [instance="deroulant"] scratchpad show ; \
+	[instance="deroulant"] move position center ; \
+	[instance="deroulant"] move up 100
+
+bindsym $mod+F2 [instance="calculatrice"] scratchpad show ; \
+	[instance="calculatrice"] move position center ; \
+	[instance="calculatrice"] move up 100
 
 # }}}2
 
@@ -498,30 +508,30 @@ mode "redimensionnement" {
 # more space on its left
 
 bindsym h resize shrink left 5 px or 5 ppt
-bindsym Shift+H resize grow   left 5 px or 5 ppt
+bindsym Shift+H resize grow left 5 px or 5 ppt
 
 bindsym j resize shrink down 5 px or 5 ppt
-bindsym Shift+J resize grow   down 5 px or 5 ppt
+bindsym Shift+J resize grow down 5 px or 5 ppt
 
 bindsym k resize shrink up 5 px or 5 ppt
-bindsym Shift+K resize grow   up 5 px or 5 ppt
+bindsym Shift+K resize grow up 5 px or 5 ppt
 
 bindsym l resize shrink right 5 px or 5 ppt
-bindsym Shift+L resize grow   right 5 px or 5 ppt
+bindsym Shift+L resize grow right 5 px or 5 ppt
 
 # same bindings, but for the arrow keys
 
 bindsym Left resize shrink left 5 px or 5 ppt
-bindsym Shift+Left resize grow   left 5 px or 5 ppt
+bindsym Shift+Left resize grow left 5 px or 5 ppt
 
 bindsym Down resize shrink down 5 px or 5 ppt
-bindsym Shift+Down resize grow   down 5 px or 5 ppt
+bindsym Shift+Down resize grow down 5 px or 5 ppt
 
 bindsym Up resize shrink up 5 px or 5 ppt
-bindsym Shift+Up resize grow   up 5 px or 5 ppt
+bindsym Shift+Up resize grow up 5 px or 5 ppt
 
 bindsym Right resize shrink right 5 px or 5 ppt
-bindsym Shift+Right resize grow   right 5 px or 5 ppt
+bindsym Shift+Right resize grow right 5 px or 5 ppt
 
 # Back to normal: Enter or Escape {{{2
 
@@ -600,8 +610,13 @@ bindsym c exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xf
 
 # Affichage des outils
 
-bindsym dollar [instance="deroulant"] scratchpad show ; [instance="deroulant"] move position center ; mode "default"
-bindsym equal [instance="calculatrice"] scratchpad show ; [instance="calculatrice"] move position center ; mode "default"
+bindsym dollar [instance="deroulant"] scratchpad show ; \
+	[instance="deroulant"] move position center ; \
+	[instance="deroulant"] move up 100
+
+bindsym equal [instance="calculatrice"] scratchpad show ; \
+	[instance="calculatrice"] move position center ; \
+	[instance="calculatrice"] move up 100
 
 # Back to normal {{{2
 
@@ -626,49 +641,49 @@ mode "multimedia" {
 
 bindsym M         exec pavucontrol ; mode "default"
 
-bindsym F10      exec amixer -c 0 -- set Master 2dB+
-bindsym F11      exec amixer -c 0 -- set Master 2dB-
-bindsym Mod4+F10 exec amixer -c 0 -- set Master 4dB+
-bindsym Mod4+F11 exec amixer -c 0 -- set Master 4dB-
+bindsym F10      exec --no-startup-id amixer -c 0 -- set Master 2dB+
+bindsym F11      exec --no-startup-id amixer -c 0 -- set Master 2dB-
+bindsym Mod4+F10 exec --no-startup-id amixer -c 0 -- set Master 4dB+
+bindsym Mod4+F11 exec --no-startup-id amixer -c 0 -- set Master 4dB-
 
-bindsym prior exec amixer -c 0 -- set Master 2dB+
-bindsym next  exec amixer -c 0 -- set Master 2dB-
-bindsym home  exec amixer -c 0 -- set Master 4dB+
-bindsym end   exec amixer -c 0 -- set Master 4dB-
+bindsym prior exec --no-startup-id amixer -c 0 -- set Master 2dB+
+bindsym next  exec --no-startup-id amixer -c 0 -- set Master 2dB-
+bindsym home  exec --no-startup-id amixer -c 0 -- set Master 4dB+
+bindsym end   exec --no-startup-id amixer -c 0 -- set Master 4dB-
 
-# bindsym F11      exec pamixer --decrease 5
-# bindsym F11      exec pamixer --increase 5
-# bindsym Mod4+F10 exec pamixer --decrease 10
-# bindsym Mod4+F11 exec pamixer --increase 10
+# bindsym F11      exec --no-startup-id pamixer --decrease 5
+# bindsym F11      exec --no-startup-id pamixer --increase 5
+# bindsym Mod4+F10 exec --no-startup-id pamixer --decrease 10
+# bindsym Mod4+F11 exec --no-startup-id pamixer --increase 10
 
 # }}}2
 
 # CMUS {{{2
 
-bindsym F9        exec cmus-remote -C player-pause ; mode "default"
+bindsym F9        exec --no-startup-id cmus-remote -C player-pause ; mode "default"
 
-bindsym space     exec cmus-remote -C player-pause
+bindsym space     exec --no-startup-id cmus-remote -C player-pause
 
-bindsym BackSpace exec cmus-remote -C 'seek 0'
+bindsym BackSpace exec --no-startup-id cmus-remote -C 'seek 0'
 
-bindsym n         exec cmus-remote -C player-next
-bindsym p         exec cmus-remote -C player-prev
+bindsym n         exec --no-startup-id cmus-remote -C player-next
+bindsym p         exec --no-startup-id cmus-remote -C player-prev
 
 # }}}2
 
 # MPC {{{2
 
-bindsym Mod4+F9        exec mpc --no-status toggle ; mode "default"
+bindsym Mod4+F9        exec --no-startup-id mpc --no-status toggle ; mode "default"
 
-bindsym Mod4+space     exec mpc --no-status toggle
+bindsym Mod4+space     exec --no-startup-id mpc --no-status toggle
 
-bindsym Mod4+BackSpace exec mpc --no-status seek 0:0
+bindsym Mod4+BackSpace exec --no-startup-id mpc --no-status seek 0:0
 
-bindsym f         exec mpc next
-bindsym b         exec mpc prev
+bindsym f         exec --no-startup-id mpc next
+bindsym b         exec --no-startup-id mpc prev
 
-bindsym Shift+F   exec mpc seek +1:00
-bindsym Shift+B   exec mpc seek -1:00
+bindsym Shift+F   exec --no-startup-id mpc seek +1:00
+bindsym Shift+B   exec --no-startup-id mpc seek -1:00
 
 # }}}2
 
@@ -695,12 +710,14 @@ floating_modifier $mod
 
 # }}}1
 
-# Barre de status {{{1
+# Barres de status {{{1
 
 # Workspaces, infos, tray, ...
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
+# Barre inférieure {{{2
 
 bar {
 
@@ -718,7 +735,7 @@ bar {
 	colors {
 		background #000000
 		statusline #5B3C11
-		separator #434343
+		separator #341207
 
 		# class            border  backgr. text
 
@@ -729,5 +746,39 @@ bar {
 	}
 
 }
+
+# }}}2
+
+# Barre supérieure {{{2
+
+bar {
+
+	i3bar_command /usr/bin/i3bar
+	status_command i3blocks -c ~/racine/config/windenv/i3/i3blocks.conf
+
+	mode dock
+	position top
+
+	workspace_buttons yes
+	binding_mode_indicator yes
+
+	font pango:DejaVu Sans Mono 11 Bold
+
+	colors {
+		background #000000
+		statusline #5B3C11
+		separator #341207
+
+		# class            border  backgr. text
+
+		focused_workspace  #5B3C11 #5B3C11 #000000
+		active_workspace   #5B3C11 #000000 #5B3C11
+		inactive_workspace #121212 #000000 #5B3C11
+		urgent_workspace   #2f343a #000000 #88421D
+	}
+
+}
+
+# }}}2
 
 # }}}1

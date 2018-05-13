@@ -1,0 +1,17 @@
+#!/usr/bin/env /bin/zsh
+
+musique=$(mpc -f '%file%' | awk '{ if ( NR == 1 ) print $0 }')
+
+musique=${musique##*/}
+musique=${musique%.*}
+musique=$musique[3,-1]
+musique=${musique:gs/-/ /}
+
+print $musique
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	(( BLOCK_BUTTON ==1 )) && mpc toggle
+	(( BLOCK_BUTTON ==2 )) && mpc prev
+	(( BLOCK_BUTTON ==3 )) && mpc next
+fi
