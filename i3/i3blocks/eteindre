@@ -1,0 +1,8 @@
+#!/usr/bin/env /bin/zsh
+
+echo Éteindre
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	~/racine/shell/power/rofi-eteindre.zsh > /dev/null
+fi
