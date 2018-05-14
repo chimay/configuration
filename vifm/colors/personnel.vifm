@@ -2,21 +2,22 @@
 
 highlight Win             cterm=none ctermfg=default    ctermbg=none
 
-highlight TopLine         cterm=reverse ctermfg=default       ctermbg=none
-highlight TopLineSel      cterm=reverse ctermfg=default       ctermbg=none
-highlight StatusLine      cterm=reverse ctermfg=default       ctermbg=none
+highlight TopLine         cterm=reverse ctermfg=default    ctermbg=none
+highlight TopLineSel      cterm=reverse ctermfg=default    ctermbg=none
+highlight StatusLine      cterm=reverse ctermfg=default    ctermbg=none
 highlight Border          cterm=none ctermfg=default       ctermbg=none
 
-highlight Selected        cterm=bold ctermfg=default    ctermbg=default
-highlight CurrLine        cterm=reverse ctermfg=default    ctermbg=default
+highlight Selected        cterm=bold      ctermfg=default ctermbg=default
+highlight CurrLine        cterm=reverse   ctermfg=default ctermbg=default
+highlight OtherLine       cterm=underline ctermfg=default ctermbg=default
 
-highlight WildMenu        cterm=underline,reverse ctermfg=white ctermbg=black
-highlight CmdLine         cterm=none ctermfg=default ctermbg=none
-highlight ErrorMsg        cterm=none ctermfg=red ctermbg=none
+highlight WildMenu        cterm=reverse ctermfg=white   ctermbg=black
+highlight CmdLine         cterm=none    ctermfg=default ctermbg=none
+highlight ErrorMsg        cterm=none    ctermfg=red     ctermbg=none
 
-highlight Directory       cterm=none ctermfg=red ctermbg=default
-highlight Link            cterm=underline ctermfg=default ctermbg=default
-highlight BrokenLink      cterm=none ctermfg=cyan ctermbg=default
+highlight Directory       cterm=none ctermfg=default ctermbg=default
+highlight Link            cterm=none ctermfg=default ctermbg=default
+highlight BrokenLink      cterm=none ctermfg=cyan    ctermbg=default
 highlight Socket          cterm=none ctermfg=magenta ctermbg=default
 highlight Device          cterm=none ctermfg=magenta ctermbg=default
 highlight Fifo            cterm=none ctermfg=magenta ctermbg=default
