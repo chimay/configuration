@@ -1,8 +1,8 @@
 #!/usr/bin/env /bin/zsh
 
-echo Navigateur
+echo Menu
 
 if [ -n "$BLOCK_BUTTON" ]
 then
-	firefox > /dev/null
+	xfce4-appfinder > /dev/null
 fi

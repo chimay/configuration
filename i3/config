@@ -99,6 +99,7 @@ assign [class="Firefox"] $espace2
 
 assign [class="net-sourceforge-jnlp-runtime-Boot"] $espace3
 assign [class="sun-awt-X11-XFramePeer"] $espace3
+assign [class="java-lang-Thread"] $espace3
 
 # }}}2
 
@@ -117,11 +118,20 @@ for_window [class="Vlc"]     floating enable
 
 for_window [class="net-sourceforge-jnlp-runtime-Boot"] floating enable
 for_window [class="sun-awt-X11-XFramePeer"] floating enable
+for_window [class="java-lang-Thread"] floating enable
 
 for_window [class="XClock"]     floating enable
 for_window [class="Clock"]     floating enable
 
 for_window [class="Zenity"]     floating enable
+
+for_window [class="Xfce4-appfinder"]     floating enable
+
+# }}}2
+
+# Dimensions {{{2
+
+for_window [class="Xfce4-appfinder"] resize set 700 700
 
 # }}}2
 
@@ -251,8 +261,8 @@ bindsym Mod4+F7 focus mode_toggle
 
 bindsym $mod+w exec --no-startup-id ~/racine/shell/dialog/rofi-workspaces.zsh
 
-bindsym $mod+Ctrl+Left workspace prev
-bindsym $mod+Ctrl+Right workspace next
+bindsym Mod4+Ctrl+Left workspace prev
+bindsym Mod4+Ctrl+Right workspace next
 
 bindsym Mod4+F1 workspace $espace0
 bindsym Mod4+F2 workspace $espace1

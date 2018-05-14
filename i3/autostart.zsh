@@ -39,11 +39,7 @@ psgrep fond-ecran || fond-ecran.zsh 7 +30 ~/graphix/list/wallpaper.gen >>! ~/log
 
 # Panel {{{2
 
-#xfce4-panel &
-
-#lxpanel &
-
-#fbpanel &
+#[ $HOST = shari ] && xfce4-panel &
 
 # }}}2
 

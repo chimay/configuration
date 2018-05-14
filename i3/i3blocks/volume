@@ -5,6 +5,8 @@ volume=$(awk -F"[][]" '/dB/ { print $2 }' <(amixer -c 0 sget Master))
 echo $volume
 
 case $BLOCK_BUTTON in
-  1) amixer -c 0 -- set Master 4dB+ ;;
-  3) amixer -c 0 -- set Master 4dB- ;;
+  1) pavucontrol ;;
+  3) urxvtc -e alsamixer -c 0 ;;
+  4) amixer -c 0 -- set Master 2dB+ ;;
+  5) amixer -c 0 -- set Master 2dB- ;;
 esac
