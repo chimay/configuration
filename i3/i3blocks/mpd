@@ -6,6 +6,7 @@ musique=${musique##*/}
 musique=${musique%.*}
 musique=$musique[3,-1]
 musique=${musique:gs/-/ /}
+musique=${musique:gs/_/ /}
 
 print $musique
 
