@@ -290,7 +290,9 @@ bindsym $mod+colon exec --no-startup-id ~/racine/shell/dialog/rofi-combi.zsh
 
 bindsym Mod4+colon exec --no-startup-id ~/racine/shell/run/zshrun.sh
 
-bindsym --whole-window $mod+button3 exec --no-startup-id ~/racine/shell/dialog/rofi-combi.zsh
+# Voir aussi <url:~/racine/config/windenv/xbindkeysrc>
+
+bindsym --whole-window ctrl+button3 exec --no-startup-id ~/racine/shell/dialog/rofi-menu.zsh
 
 bindsym $mod+Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh
 
