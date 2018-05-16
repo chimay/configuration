@@ -1,8 +1,8 @@
 #!/usr/bin/env /bin/zsh
 
-echo Bureaux
+echo Bur
 
 if [ -n "$BLOCK_BUTTON" ]
 then
-	~/racine/shell/dialog/rofi-workspaces.zsh > /dev/null
+	~/racine/shell/dialog/rofi-bureaux.zsh > /dev/null
 fi

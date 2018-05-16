@@ -108,6 +108,8 @@ assign [class="java-lang-Thread"] $espace3
 for_window [class="yakuake"] floating enable
 for_window [class="URxvt"] floating enable
 
+for_window [class="Vimiv"] floating enable
+
 for_window [class="qutebrowser"] layout tabbed
 for_window [class="Firefox"] layout tabbed
 
@@ -158,19 +160,6 @@ exec --no-startup-id ~/racine/config/windenv/i3/autostart.zsh
 # }}}1
 
 # Mode défaut {{{1
-
-# Nagbar {{{2
-
-# Bof
-
-bindsym $mod+i exec "i3-nagbar -t warning \
-	-m 'Bienvenue sur i3' \
-	-b 'Sortir' '~/racine/shell/power/rofi-eteindre.zsh' \
-	-b 'Lancer une application' '~/racine/shell/run/lance-rofi.zsh' \
-	-b 'Terminal' 'urxvtc' \
-	"
-
-# }}}2
 
 # Recharger, Relancer, Sortir {{{2
 
@@ -259,7 +248,9 @@ bindsym Mod4+F7 focus mode_toggle
 
 # Espaces de travail {{{2
 
-bindsym $mod+w exec --no-startup-id ~/racine/shell/dialog/rofi-workspaces.zsh
+bindsym $mod+w exec --no-startup-id ~/racine/shell/dialog/rofi-bureaux.zsh
+
+bindsym $mod+Shift+W exec --no-startup-id ~/racine/shell/dialog/rofi-renomme-bureau.zsh
 
 bindsym Mod4+Ctrl+Left workspace prev
 bindsym Mod4+Ctrl+Right workspace next
@@ -273,11 +264,6 @@ bindsym Mod4+Shift+F1 move workspace $espace0
 bindsym Mod4+Shift+F2 move workspace $espace1
 bindsym Mod4+Shift+F3 move workspace $espace2
 bindsym Mod4+Shift+F4 move workspace $espace3
-
-bindsym $mod+Shift+M exec i3-input \
-	-F 'rename workspace to "%s"' \
-	-P 'Nouveau nom du bureau: ' \
-	-f 'pango:DejaVu Sans Mono 11 Bold'
 
 # }}}2
 
@@ -300,15 +286,13 @@ bindsym $mod+apostrophe exec i3-msg [con_mark="$(zenity --entry --text 'Nom du s
 
 # Système {{{2
 
-bindsym $mod+r exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
-bindsym $mod+colon exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
-
-bindsym --whole-window $mod+button3 exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
-bindsym --whole-window Mod4+button3 exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
+bindsym $mod+colon exec --no-startup-id ~/racine/shell/dialog/rofi-combi.zsh
 
 bindsym Mod4+colon exec --no-startup-id ~/racine/shell/run/zshrun.sh
 
-bindsym $mod+Shift+Q exec --no-startup-id ~/racine/shell/power/rofi-eteindre.zsh
+bindsym --whole-window $mod+button3 exec --no-startup-id ~/racine/shell/dialog/rofi-combi.zsh
+
+bindsym $mod+Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh
 
 bindsym $mod+Return exec yakuake
 bindsym $mod+dollar exec konsole
@@ -453,7 +437,9 @@ bindsym Mod1+F focus mode_toggle
 
 # Espaces de travail {{{2
 
-bindsym w exec --no-startup-id ~/racine/shell/dialog/rofi-workspaces.zsh
+bindsym w exec --no-startup-id ~/racine/shell/dialog/rofi-bureaux.zsh
+
+bindsym Shift+W exec --no-startup-id ~/racine/shell/dialog/rofi-renomme-bureau.zsh
 
 bindsym Ctrl+Left workspace prev
 bindsym Ctrl+Right workspace next
@@ -476,11 +462,9 @@ bindsym ampersand exec yakuake
 bindsym dollar exec konsole
 bindsym asterisk exec urxvtc
 
-bindsym r exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
+bindsym colon exec --no-startup-id ~/racine/shell/dialog/rofi-combi.zsh
 
-bindsym colon exec --no-startup-id ~/racine/shell/run/lance-rofi.zsh
-
-bindsym Shift+Q exec --no-startup-id ~/racine/shell/power/rofi-eteindre.zsh
+bindsym Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh
 
 bindsym z exec xset dpms force off
 
@@ -668,32 +652,32 @@ bindsym end   exec --no-startup-id amixer -c 0 -- set Master 4dB-
 
 # }}}2
 
-# CMUS {{{2
+# MPC {{{2
 
-bindsym F9        exec --no-startup-id cmus-remote -C player-pause ; mode "default"
+bindsym F9        exec --no-startup-id mpc --no-status toggle ; mode "default"
 
-bindsym space     exec --no-startup-id cmus-remote -C player-pause
+bindsym space     exec --no-startup-id mpc --no-status toggle
 
-bindsym BackSpace exec --no-startup-id cmus-remote -C 'seek 0'
+bindsym BackSpace exec --no-startup-id mpc --no-status seek 0:0
 
-bindsym n         exec --no-startup-id cmus-remote -C player-next
-bindsym p         exec --no-startup-id cmus-remote -C player-prev
+bindsym n         exec --no-startup-id mpc next
+bindsym p         exec --no-startup-id mpc prev
+
+bindsym f   exec --no-startup-id mpc seek +1:00
+bindsym b   exec --no-startup-id mpc seek -1:00
 
 # }}}2
 
-# MPC {{{2
+# CMUS {{{2
 
-bindsym Mod4+F9        exec --no-startup-id mpc --no-status toggle ; mode "default"
+bindsym Mod4+F9        exec --no-startup-id cmus-remote -C player-pause ; mode "default"
 
-bindsym Mod4+space     exec --no-startup-id mpc --no-status toggle
+bindsym Mod4+space     exec --no-startup-id cmus-remote -C player-pause
 
-bindsym Mod4+BackSpace exec --no-startup-id mpc --no-status seek 0:0
+bindsym Mod4+BackSpace exec --no-startup-id cmus-remote -C 'seek 0'
 
-bindsym f         exec --no-startup-id mpc next
-bindsym b         exec --no-startup-id mpc prev
-
-bindsym Shift+F   exec --no-startup-id mpc seek +1:00
-bindsym Shift+B   exec --no-startup-id mpc seek -1:00
+bindsym Mod4+n         exec --no-startup-id cmus-remote -C player-next
+bindsym Mod4+p         exec --no-startup-id cmus-remote -C player-prev
 
 # }}}2
 

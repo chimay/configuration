@@ -60,6 +60,12 @@ psgrep fond-ecran || fond-ecran.zsh 7 +30 ~/graphix/list/wallpaper.gen >>! ~/log
 
 # Services {{{1
 
+# Presse-papier {{{2
+
+greenclip daemon &
+
+# }}}2
+
 # Terminal {{{2
 
 psgrep urxvtd || urxvtd -q -o -f
