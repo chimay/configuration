@@ -8,4 +8,7 @@
 !
 ! xrdb -query -all
 
+#include ".Xresources.d/main"
+
+#include ".Xresources.d/rofi"
 #include ".Xresources.d/rxvt-unicode"

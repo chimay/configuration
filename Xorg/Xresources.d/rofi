@@ -1,0 +1,45 @@
+! vim: set filetype=xdefaults:
+
+rofi.modi:                           ssh,window,drun,run
+rofi.sidebar-mode:                   true
+rofi.terminal:                       urxvtc -geometry 140x39
+rofi.ssh-client:                     ssh
+rofi.ssh-command:                    {terminal} -e "{ssh-client} {host}"
+rofi.opacity:                        100
+
+rofi.width:                          50
+rofi.lines:                          8
+rofi.columns:                        1
+
+rofi.font:                           Inconsolata 24
+
+rofi.fg:                             #5b3c11
+rofi.bg:                             #000000
+rofi.fg-active:                      #872e30
+rofi.fg-urgent:                      #88421d
+rofi.hlfg-active:                    #000000
+rofi.hlfg-urgent:                    #000000
+rofi.bg-active:                      #000000
+rofi.bg-urgent:                      #000000
+rofi.hlbg-active:                    #5b3c11
+rofi.hlbg-urgent:                    #5b3c11
+rofi.bgalt:                          #000000
+rofi.hlfg:                           #000000
+rofi.hlbg:                           #5b3c11
+rofi.bc:                             #789ee1
+! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
+rofi.color-normal: #000000,  #5b3c11,  #000000,  #5b3c11,  #000000
+
+!                  'background', 'border'
+rofi.color-window: #070403,      #341207
+rofi.bw:                             10
+rofi.location:                       0
+rofi.padding:                        20
+rofi.levenshtein-sort:               true
+rofi.case-sensitive:                 false
+rofi.fuzzy:                          false
+rofi.line-margin:                    2
+rofi.separator-style:                solid
+rofi.hide-scrollbar:                 true
+rofi.markup-rows:                    false
+rofi.scrollbar-width:                8
