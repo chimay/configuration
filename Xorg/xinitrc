@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Formes types de xinitrc
+
+# ------------------------------------
+
+# export VARIABLE_ENV='contenu'
+
+# ------------------------------------
+
+# outils &
+#
+# exec windowmanager
+
+# ------------------------------------
+
+# windowmanager & wmpid=$!
+#
+# outils &
+#
+# wait $wmpid
+
+# ------------------------------------
+
+# { sleep 36 ; commande }
+
+# ====================================
+
+exec i3
