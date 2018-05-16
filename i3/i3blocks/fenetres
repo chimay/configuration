@@ -1,6 +1,6 @@
 #!/usr/bin/env /bin/zsh
 
-echo Fen
+echo Fenetre
 
 if [ -n "$BLOCK_BUTTON" ]
 then

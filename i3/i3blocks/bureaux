@@ -1,6 +1,6 @@
 #!/usr/bin/env /bin/zsh
 
-echo Bur
+echo Bureau
 
 if [ -n "$BLOCK_BUTTON" ]
 then

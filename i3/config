@@ -255,6 +255,16 @@ bindsym $mod+Shift+W exec --no-startup-id ~/racine/shell/dialog/rofi-renomme-bur
 bindsym Mod4+Ctrl+Left workspace prev
 bindsym Mod4+Ctrl+Right workspace next
 
+bindsym $mod+F1 workspace $espace0
+bindsym $mod+F2 workspace $espace1
+bindsym $mod+F3 workspace $espace2
+bindsym $mod+F4 workspace $espace3
+
+bindsym $mod+Shift+F1 move workspace $espace0
+bindsym $mod+Shift+F2 move workspace $espace1
+bindsym $mod+Shift+F3 move workspace $espace2
+bindsym $mod+Shift+F4 move workspace $espace3
+
 bindsym Mod4+F1 workspace $espace0
 bindsym Mod4+F2 workspace $espace1
 bindsym Mod4+F3 workspace $espace2
@@ -286,7 +296,7 @@ bindsym $mod+apostrophe exec i3-msg [con_mark="$(zenity --entry --text 'Nom du s
 
 # Système {{{2
 
-bindsym $mod+colon exec --no-startup-id ~/racine/shell/dialog/rofi-combi.zsh
+bindsym $mod+colon exec --no-startup-id ~/racine/shell/dialog/rofi-menu.zsh
 
 bindsym Mod4+colon exec --no-startup-id ~/racine/shell/run/zshrun.sh
 
@@ -344,11 +354,11 @@ bindsym Mod4+Shift+c exec --no-startup-id urxvtc -name calculatrice -geometry 70
 
 # Affichage des outils
 
-bindsym $mod+F1 [instance="deroulant"] scratchpad show ; \
+bindsym $mod+F5 [instance="deroulant"] scratchpad show ; \
 	[instance="deroulant"] move position center ; \
 	[instance="deroulant"] move up 100
 
-bindsym $mod+F2 [instance="calculatrice"] scratchpad show ; \
+bindsym $mod+F6 [instance="calculatrice"] scratchpad show ; \
 	[instance="calculatrice"] move position center ; \
 	[instance="calculatrice"] move up 100
 
@@ -464,7 +474,7 @@ bindsym ampersand exec yakuake
 bindsym dollar exec konsole
 bindsym asterisk exec urxvtc
 
-bindsym colon exec --no-startup-id ~/racine/shell/dialog/rofi-combi.zsh
+bindsym colon exec --no-startup-id ~/racine/shell/dialog/rofi-menu.zsh
 
 bindsym Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh
 
