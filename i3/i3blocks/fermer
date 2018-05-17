@@ -1,0 +1,8 @@
+#!/usr/bin/env /bin/zsh
+
+echo '[X]'
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	~/racine/shell/dialog/rofi-fermer.zsh > /dev/null
+fi
