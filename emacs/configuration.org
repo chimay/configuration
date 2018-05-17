@@ -333,17 +333,27 @@ Fichier utilisé par customize
 
 ** Sélection en rectangle
 
-Activé par C-RET
+
+*** En partant d’une sélection ordinaire
+
+Activé par C-x <SPC>.
+
+
+*** CUA Mode
+
+Activé par [[*Bindings][un binding]].
 
 Ensuite :
-  - RET change le curseur de coin
-  - Le texte inséré se place à gauche ou à droite du rectangle, suivant la
-  position du curseur
-  - C-2 M-w sauve le texte dans le registre 2
-  - C-S-<SPC> place une marque globale où tous les textes copiés seront
-  ajoutés
 
-Voir [[*Bindings][les bindings]]
+  - RET change le curseur de coin
+
+  - Le texte inséré se place à gauche ou à droite du rectangle,
+    suivant la position du curseur
+
+  - C-2 M-w sauve le texte dans le registre 2
+
+  - C-S-<SPC> place une marque globale où tous les textes copiés
+    seront ajoutés
 
 
 ** Chiffrement
@@ -901,7 +911,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(blink-cursor-mode t)
+(setq blink-cursor-mode nil)
 
 (global-hl-line-mode 1)
 
@@ -997,7 +1007,6 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-;(setq resize-mini-windows "grow-only")
 (setq resize-mini-windows t)
 
 (setq max-mini-window-height 3)
@@ -1408,10 +1417,9 @@ CUA mode est mieux
 	)
 )
 
-;; (global-set-key (kbd "M-/") 'hippie-expand)
-;; (global-set-key (kbd "TAB") 'hippie-expand)
+(global-set-key (kbd "H--") 'hippie-expand)
 
-(global-set-key (kbd "<s-tab>") 'hippie-expand)
+(global-set-key (kbd "M-TAB") 'pcomplete)
 
 #+end_src
 
