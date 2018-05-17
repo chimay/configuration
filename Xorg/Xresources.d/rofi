@@ -1,10 +1,10 @@
 ! vim: set filetype=xdefaults:
 
-rofi.modi:                           ssh,window,drun,run
+rofi.modi:                           combi,run,window,ssh,keys
 rofi.sidebar-mode:                   true
 rofi.terminal:                       urxvtc -geometry 140x39
 rofi.ssh-client:                     ssh
-rofi.ssh-command:                    {terminal} -e "{ssh-client} {host}"
+rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
 rofi.opacity:                        100
 
 rofi.width:                          50
