@@ -1342,6 +1342,16 @@ Voir Helm dans la configuration des paquets
 #+end_src
 
 
+** Effacer
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "<C-backspace>")   'backward-kill-word)
+(global-set-key (kbd "<M-backspace>")   'just-one-space)
+
+#+end_src
+
+
 ** Copier & Coller
 
 #+begin_src emacs-lisp
@@ -1417,7 +1427,7 @@ CUA mode est mieux
 	)
 )
 
-(global-set-key (kbd "H--") 'hippie-expand)
+(global-set-key (kbd "M-SPC") 'hippie-expand)
 
 (global-set-key (kbd "M-TAB") 'pcomplete)
 
@@ -1560,6 +1570,7 @@ Voir aussi hydra dans la configuration des paquets
 (global-set-key (kbd "C-&") 'calc)
 
 #+end_src
+
 
 *** Compilation
 

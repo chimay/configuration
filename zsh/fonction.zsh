@@ -115,6 +115,8 @@ psi () {
 	echo $=identifiants
 	echo
 
+	(( $#identifiants > 0 )) || return 2
+
 	echo -n "Voulez-vous envoyer un signal à ces processus ? (y/n, o/n) "
 	read reponse
 	echo
@@ -264,9 +266,39 @@ lh () {
 
 ssh() {
 
+	local options mots
 	local code=0
 	local ancien
-	local nom="${*%.*}"
+	local nom
+
+	options=()
+	mots=()
+
+	# {{{ Arguments
+
+	while true
+	do
+		case $1 in
+			-*)
+				options+=$1
+				shift
+				;;
+			?*)
+				mots+=$1
+				shift
+				;;
+			*)
+				break
+				;;
+		esac
+	done
+
+	# }}}
+
+	nom=${mots[1]%.*}
+
+	echo nom = $nom
+	echo
 
 	ancien=$(tmux display-message -p '#{window_name}')
 
@@ -274,16 +306,19 @@ ssh() {
 	then
 		tmux rename-window "$nom"
 
-        command ssh "$@"
+		echo "command ssh $=options $=mots"
+		echo
+
+		command ssh $=options $=mots
 
 		code=$?
+
+		tmux rename-window $ancien
     else
-        command ssh "$@"
+        command ssh $=options $=mots[1,-2]
 
 		code=$?
     fi
-
-	tmux rename-window $ancien
 
 	return $code
 }
