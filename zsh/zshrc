@@ -102,7 +102,7 @@ setopt ksh_glob
 
 #  Zstyle {{{2
 
-# Priorité des complétions
+# Priorité {{{3
 
 zstyle ':completion:*' \
 	completer \
@@ -122,7 +122,21 @@ zstyle ':completion:*' \
 
 zstyle ':completion:*' old-list always
 
-# Groupes
+# Indices des tableaux
+
+zstyle ':completion:*:-subscript-:*' tag-order indexes parameters
+
+# Ordre des répertoires
+
+zstyle ':completion:*:cd:*' tag-order "local-directories path-directories"
+
+# Répertoires en premier
+
+zstyle ':completion:*' list-dirs-first yes
+
+# }}}3
+
+# Groupes {{{3
 
 zstyle ':completion:*' group-name ''
 
@@ -130,7 +144,32 @@ zstyle ':completion:*' list-grouped yes
 
 zstyle ':completion:*:-command-' group-order builtins functions commands
 
-# Présentation
+# }}}3
+
+# Complétion floue {{{3
+
+#zstyle ':completion:*:approximate-serre:*' max-errors 2 numeric
+#zstyle ':completion:*:approximate-large:*' max-errors 4 numeric
+
+zstyle -e ':completion:*:approximate-serre:*' \
+        max-errors 'reply=($(( ($#PREFIX+$#SUFFIX) / 4 )) numeric)'
+
+zstyle -e ':completion:*:approximate-large:*' \
+        max-errors 'reply=($(( ($#PREFIX+$#SUFFIX) / 3 )) numeric)'
+
+zstyle ':completion:*:correct:*' max-errors 2 numeric
+
+zstyle ':completion:*' original true
+
+# }}}3
+
+# Prédiction {{{3
+
+zstyle ':completion:predict:*' completer _complete
+
+# }}}3
+
+# Présentation {{{3
 
 # Majuscule = activé / minuscule = désactivé
 # %S = inversion couleurs
@@ -149,7 +188,9 @@ zstyle ':completion:*' list-separator ' : '
 
 zstyle ':completion:*' list-colors '=*='
 
-# Menu
+# }}}3
+
+# Menu {{{3
 
 # pour obtenir un menu convivial pour la completion (avec les flèches du clavier)
 # le chiffre est le nombre minimal de possibilités pour afficher le menu
@@ -160,70 +201,64 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 
 #zstyle ':completion:*' old-menu yes
 
-# Expansion par le système de complétion
-
-zstyle ':completion:*:expand-glob:*' glob yes
-zstyle ':completion:*:expand-subst:*' substitute yes
-
-# Plus souple via _all_matches
-
-#zstyle ':completion::expand-glob:*' tag-order all-expansions
-#zstyle ':completion::expand-subst:*' tag-order all-expansions
-
-# Variables
-
-# Indices des tableaux
-
-zstyle ':completion:*:-subscript-:*' tag-order indexes parameters
-
-# Fichiers
-
 # Affichage détaillé
 
 zstyle ':completion:*' file-list list=7 insert=7
 
-# Slashs retirés automatiquement
+# }}}3
 
-zstyle ':completion:*' squeeze-slashes yes
+# Historique {{{3
 
-# Répertoires
+zstyle ':completion:history-complete-word:*' remove-all-dups yes
 
-# Répertoires en premier
+# }}}3
 
-zstyle ':completion:*' list-dirs-first yes
+# Cache {{{3
 
-# Ordre
+# Cache
 
-zstyle ':completion:*:cd:*' tag-order "local-directories path-directories"
+# Crée un cache des complétion possibles
+# très utile pour les complétion qui demandent beaucoup de temps
+# comme la recherche d'un paquet
 
-# ../
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/racine/dotdir/zsh/cache/completion
 
-zstyle ':completion:*' ignore-parents parent pwd
+# }}}3
 
-# Partie non ambiguë
+# Commandes {{{3
 
-zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*:rm:*' \
+	file-patterns \
+		'*.pyc:compiled-python' \
+		'*.dvi:dvi-files' \
+		'*.o:object-files' \
+		'%p:all-files'
 
-# Tabulation littérale en début de ligne
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+                             /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 
-zstyle ':completion:*' insert-tab yes
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*' force-list always
 
-# Complétion floue
+zstyle ':completion:*:*:pkill:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:pkill:*' menu yes select
 
-#zstyle ':completion:*:approximate-serre:*' max-errors 2 numeric
-#zstyle ':completion:*:approximate-large:*' max-errors 4 numeric
+zstyle ':completion:*:*:killall:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:killall:*' menu yes select
 
-zstyle -e ':completion:*:approximate-serre:*' \
-        max-errors 'reply=($(( ($#PREFIX+$#SUFFIX) / 4 )) numeric)'
+# }}}3
 
-zstyle -e ':completion:*:approximate-large:*' \
-        max-errors 'reply=($(( ($#PREFIX+$#SUFFIX) / 3 )) numeric)'
+# Sous-commandes {{{3
 
-zstyle ':completion:*:correct:*' max-errors 2 numeric
+#zstyle ':completion:*:gravure:*' \
+	#file-patterns \
+		#'gravure-iso image-iso gravure-cd'
 
-zstyle ':completion:*' original true
+# }}}3
 
-# Unicité
+# Unicité {{{3
 
 # Pour éviter de reproposer un argument déjà utilisés
 # dans la commande lors de la completion
@@ -236,22 +271,9 @@ zstyle ':completion:*:diff:*' ignore-line yes
 zstyle ':completion:*:joue:*' ignore-line yes
 zstyle ':completion:*:mplayer:*' ignore-line yes
 
-# Motifs de fichiers
+# }}}3
 
-zstyle ':completion:*:rm:*' \
-	file-patterns \
-		'*.pyc:compiled-python' \
-		'*.dvi:dvi-files' \
-		'*.o:object-files' \
-		'%p:all-files'
-
-# Listes de sous-commandes
-
-#zstyle ':completion:*:gravure:*' \
-	#file-patterns \
-		#'gravure-iso image-iso gravure-cd'
-
-# Motifs à ignorer
+# Ignorer {{{3
 
 #fignore=(.zwc .pyc .dvi .o \~)
 
@@ -263,19 +285,9 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 
 zstyle ':completion:*:ignored:*' completer _complete
 
-# Utilisateurs et hôtes
+# }}}3
 
-zstyle ':completion:*' users-hosts \
-	$USER@quigonjinn.local \
-	$USER@shari.local \
-	$USER@tixu.local
-
-# Historique
-
-#zstyle ':completion:history-complete-word:*' list yes
-zstyle ':completion:history-complete-word:*' remove-all-dups yes
-
-# Correspondances
+# Motifs {{{3
 
 # m:... : insensibilité à la casse
 # r:... : mots partiels
@@ -291,46 +303,56 @@ zstyle ':completion:*' \
 		'l:|=* r:|=*' \
 		'r:[^A-Z0-9]||[A-Z0-9]=** r:|=*'
 
+# }}}3
+
+# Utilisateurs & Hôtes {{{3
+
+zstyle ':completion:*' users-hosts \
+	$USER@quigonjinn.local \
+	$USER@shari.local \
+	$USER@tixu.local
+
+# }}}3
+
+# Courriel {{{3
+
+zstyle ':completion:*' mail-directory ~/racine/mail
+zstyle ':completion:*' muttrc ~/racine/config/mail/neomutt/alias.mutt
+
+# }}}3
+
+# Options {{{3
+
+zstyle ':completion:*:expand-glob:*' glob yes
+zstyle ':completion:*:expand-subst:*' substitute yes
+
+# Slashs retirés automatiquement
+
+zstyle ':completion:*' squeeze-slashes yes
+
+# ../
+
+zstyle ':completion:*' ignore-parents parent pwd
+
+# Partie non ambiguë
+
+zstyle ':completion:*' insert-unambiguous true
+
+# Tabulation littérale en début de ligne
+
+zstyle ':completion:*' insert-tab yes
+
 # En cas d’insertion de toutes les possibilités
 
 zstyle ':completion:all-matches:*' old-matches only
 
-# Cache
-
-# Crée un cache des complétion possibles
-# très utile pour les complétion qui demandent beaucoup de temps
-# comme la recherche d'un paquet
-
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/racine/dotdir/zsh/cache/completion
-
-# Courriel
-
-zstyle ':completion:*' mail-directory ~/bal
-zstyle ':completion:*' muttrc ~/racine/config/courriel/muttrc/muttrc
-
-# Predict
-
-zstyle ':completion:predict:*' completer _complete
-
-# Divers
-
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                             /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*' force-list always
-
-zstyle ':completion:*:*:pkill:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:*:pkill:*' menu yes select
-
-zstyle ':completion:*:*:killall:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:*:killall:*' menu yes select
+# }}}3
 
 # }}}2
 
 #  Compdef {{{2
+
+# Types de fichiers {{{3
 
 compdef '_files -g "*.htm *.html *.php *.phtm *.phtml"' elinks firefox
 compdef '_files -g "*.pdf *.ps"' okular apvlv
@@ -342,6 +364,10 @@ compdef '_files -g "*.gz"' zcat
 compdef '_files -g "*.bz *.bz2"' bzcat
 compdef '_files -g "*.tex"' latex
 compdef '_files -g "*.ly"' lilypond
+
+# }}}3
+
+# Listes d’arguments {{{3
 
 # Listes d’arguments
 
@@ -371,13 +397,18 @@ compdef '_arguments "1:Subcmds:(dmsend update setup block unblock follow unfollo
 	lsarchive lscommands lsdm lsdmarchive lsblocking lsfollowers lsfollowing lsrecent lsreplies \
 	lsrt lsrtarchive lsrtreplies)"' twidge
 
+# }}}3
+
+# Fonctions de complétion identiques pour plusieurs commandes {{{3
+
 # Alias, fonctions
 
-compdef _cd pu
-compdef _man manmost
-compdef _man manless
-compdef _man manvi
+compdef sshx=ssh
+compdef k=kill
+
 compdef _man info
+
+# }}}3
 
 # }}}2
 
@@ -715,7 +746,9 @@ bindkey '\e;' insert-last-word
 #  Expansion & complétion {{{2
 
 bindkey '^I' menu-complete
-bindkey "${clavier[Backtab]}" reverse-menu-complete
+
+# urxvt ne connaît pas backtab
+#bindkey "${clavier[Backtab]}" reverse-menu-complete
 
 bindkey '\e^I' self-insert-unmeta
 
@@ -919,6 +952,14 @@ bindkey -M isearch '\ev' vi-cmd-mode
 #zle -N zle-isearch-exit
 
 # }}}3
+
+# }}}2
+
+# Key sequences {{{2
+
+# Dernière commande sans le dernier argument
+
+bindkey -s '\e-' "!:0-\t"
 
 # }}}2
 
@@ -1494,7 +1535,7 @@ then
 
 	dirstack=(${(u)dirstack})
 
-	print -l $~dirstack >! $REPERTOIRES_FICHIER
+	print -l ${(Oa)~dirstack} >! $REPERTOIRES_FICHIER
 
 	[[ -d $dirstack[1] ]] && cd $dirstack[1]
 fi

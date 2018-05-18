@@ -46,6 +46,12 @@ esac
 
 export TERM
 
+# Pour i3
+# Prendre un terminal qui supporte les bonnes options pour visualiser le
+# journal d’erreur
+
+export TERMINAL=konsole
+
 # }}}1
 
 #  Self (zsh configure zsh) {{{1
@@ -93,13 +99,11 @@ typeset -U manpath
 
 manpath=()
 
+manpath+=(~/racine/bin/local/man)
+
 manpath+=(/usr/local/share/man)
 manpath+=(/usr/share/man)
 manpath+=(/usr/local/man)
-
-#export MANPATH=/usr/local/share/man:/usr/share/man
-
-#export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 
 # }}}3
 
@@ -205,6 +209,12 @@ done
 export MAIL=/var/spool/mail/$USER
 
 export MAILCHECK=36
+
+# }}}2
+
+# Autosuggestions {{{2
+
+#export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=2"
 
 # }}}2
 
@@ -343,14 +353,13 @@ export GREP_COLORS='ms=01;31:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36'
 # Less {{{2
 
 export PAGER=less
+
 export MANPAGER=less
 
-# LESS="--no-init --quit-if-one-screen --raw-control-chars --ignore-case --status-column"
-# LESS="$LESS --buffers=360 --tabs=4 --jump-target=.36"
-# LESS="$LESS --window=-4 --shift=.36 --max-forw-scroll=36 --max-back-scroll=36"
-# LESS="$LESS --LONG-PROMPT --prompt=M?f%f:[Tube]. ?m (%x) No %i/%m:. ?ljLigne %l.?L/%L:. ?djPage %dj:.?D/%D:. ?pPct %pj:."
+# Permet d’avoir une table des matières
+#export MANPAGER="nvim -c 'set ft=man' -"
 
-# export LESS
+export LESS="--no-init --quit-if-one-screen --raw-control-chars --ignore-case --buffers=360 --tabs=4 --jump-target=.36 --window=-4 --shift=.36 --max-forw-scroll=36 --max-back-scroll=36 --LONG-PROMPT --prompt=M?f%f:[Tube]. ?m (%x) No %i/%m:. ?ljLigne %l.?L/%L:. ?djPage %dj:.?D/%D:. ?pPct %pj:."
 
 # Voir ~/racine/config/visu/less/key
 
@@ -397,7 +406,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 
 # Most {{{2
 
-export MOST_EDITOR='vim -u ~/racine/config/edit/vim/varia/cf-minivim.vim'
+export MOST_EDITOR='vim'
 export MOST_SWITCHES='-s'
 
 # }}}2

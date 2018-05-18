@@ -32,6 +32,8 @@ alias scr='script -f -a ~/log/${HOST}/cmdline/terminal.log'
 
 alias e='print -l'
 
+alias ef='printf'
+
 alias valve=wall
 
 # }}}1
@@ -58,7 +60,7 @@ alias b='bzr'
 
 #alias vcsh='versys-shell'
 
-alias 1='diff -BN'
+#alias diff='diff -BN'
 
 alias p1='patch -p1 < '
 
@@ -86,6 +88,8 @@ alias d=zathura
 
 alias i=vimiv
 
+alias ii=sxiv
+
 # }}}1
 
 #  Édition {{{1
@@ -100,16 +104,17 @@ alias edi='ed -v -p " * ed : "'
 # Vim {{{2
 
 alias v='vim'
-
-alias vi='/usr/local/bin/vim -u ~/racine/config/edit/vim/rc-viminime.vim'
+alias vi='vim'
 
 alias sv='sudoedit'
 
-alias 2='vimdiff'
+alias 1='vimdiff'
 
 # }}}2
 
 #  Neovim {{{2
+
+alias nv=nvim
 
 alias nsrv='lance-neovim-serveur'
 
@@ -227,6 +232,17 @@ alias rl='readlink -f'
 
 #  Synchronisation {{{2
 
+# Autres options intéressantes de rsync :
+#
+# -R ou --relative
+
+alias rmv='rsync --verbose --progress --stats --human-readable --itemize-changes \
+	--log-file="$HOME/log/rsync.log" \
+	--rsh=ssh \
+	--recursive \
+	--owner --group --times --perms --links \
+	--remove-source-files'
+
 alias cp='rsync --verbose --progress --stats --human-readable --itemize-changes \
 	--log-file="$HOME/log/rsync.log" \
 	--rsh=ssh \
@@ -234,24 +250,55 @@ alias cp='rsync --verbose --progress --stats --human-readable --itemize-changes 
 	--owner --group --times --perms --links \
 	--update'
 
+alias cpr='rsync --verbose --progress --stats --human-readable --itemize-changes \
+	--log-file="$HOME/log/rsync.log" \
+	--rsh=ssh \
+	--recursive \
+	--owner --group --times --perms --links \
+	--update \
+	--relative'
+
+alias cpf='rsync --verbose --progress --stats --human-readable --itemize-changes \
+	--log-file="$HOME/log/rsync.log" \
+	--rsh=ssh \
+	--recursive \
+	--owner --group --times --perms --links \
+	--ignore-times'
+
 alias sn='rsync --verbose --progress --stats --human-readable --itemize-changes \
 	--log-file="$HOME/log/rsync.log" \
 	--rsh=ssh \
-	--recursive --delete-during \
+	--recursive \
+	--delete-during \
 	--owner --group --times --perms --links \
 	--update'
 
-# Autres options de rsync :
-#
-# -R ou --relative
+alias snr='rsync --verbose --progress --stats --human-readable --itemize-changes \
+	--log-file="$HOME/log/rsync.log" \
+	--rsh=ssh \
+	--recursive \
+	--delete-during \
+	--owner --group --times --perms --links \
+	--update \
+	--relative'
+
+alias snf='rsync --verbose --progress --stats --human-readable --itemize-changes \
+	--log-file="$HOME/log/rsync.log" \
+	--rsh=ssh \
+	--recursive \
+	--delete-during \
+	--owner --group --times --perms --links \
+	--ignore-times'
 
 # }}}2
 
 # Gestionnaires de fichiers {{{2
 
-alias f='vifm'
+alias 2='vifm'
 
-alias 3='ranger'
+# Pas de LESS=...--quit-if-one-screen...
+
+alias 3='LESS= ranger'
 
 # }}}2
 
@@ -314,9 +361,15 @@ alias agenda=calcurse
 
 alias c=neomutt
 
+alias s='newsboat -c ~/racine/index/newsboat/cache.db'
+
 # }}}1
 
 # Navigateurs {{{1
+
+alias sr='BROWSER=w3m surfraw'
+
+alias bm='BROWSER=w3m buku'
 
 alias w=w3m
 
@@ -576,15 +629,23 @@ hash -d emacsconf=~/racine/config/edit/emacs
 
 hash -d mdot=~/racine/dotdir/emacs.d
 
-# ------------
-
-hash -d pman=~/racine/plugin/manager
-
 # }}}2
 
 # Courriel {{{2
 
 hash -d muttconf=~/racine/config/mail/neomutt
+
+# }}}2
+
+# Plugins {{{2
+
+hash -d pman=~/racine/plugin/manager
+
+hash -d antigen=~/racine/plugin/manager/antigen
+hash -d vimpack=~/racine/plugin/manager/vimpack
+hash -d neovimpack=~/racine/plugin/manager/neovimpack
+hash -d plugged=~/racine/plugin/manager/plugged
+hash -d elget=~/racine/plugin/manager/el-get
 
 # }}}2
 

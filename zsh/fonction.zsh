@@ -315,7 +315,76 @@ ssh() {
 
 		tmux rename-window $ancien
     else
-        command ssh $=options $=mots[1,-2]
+		echo "command ssh $=options $=mots"
+		echo
+
+		command ssh $=options $=mots
+
+		code=$?
+    fi
+
+	return $code
+}
+
+# }}}2
+
+# sshx : ssh -X sous X Window {{{2
+
+sshx() {
+
+	local options mots
+	local code=0
+	local ancien
+	local nom
+
+	options=()
+	mots=()
+
+	# {{{ Arguments
+
+	while true
+	do
+		case $1 in
+			-*)
+				options+=$1
+				shift
+				;;
+			?*)
+				mots+=$1
+				shift
+				;;
+			*)
+				break
+				;;
+		esac
+	done
+
+	# }}}
+
+	nom=${mots[1]%.*}
+
+	echo nom = $nom
+	echo
+
+	ancien=$(tmux display-message -p '#{window_name}')
+
+	if [ $TERM = tmux -o $TERM = tmux-256color ]
+	then
+		tmux rename-window "$nom"
+
+		echo "command ssh -X -C $=options $=mots"
+		echo
+
+		command ssh -X -C $=options $=mots
+
+		code=$?
+
+		tmux rename-window $ancien
+    else
+		echo "command ssh -X -C $=options $=mots"
+		echo
+
+		command ssh -X -C $=options $=mots
 
 		code=$?
     fi
