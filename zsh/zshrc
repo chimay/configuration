@@ -785,7 +785,18 @@ bindkey ' ' magic-space
 
 # Accepte la sélection et relance la complétion (pratique pour les répertoires) {{{3
 
-bindkey -M menuselect ':' accept-and-infer-next-history
+bindkey -M menuselect 'm' accept-and-infer-next-history
+
+bindkey -M menuselect '^N' vi-down-line-or-history
+bindkey -M menuselect '^P' vi-up-line-or-history
+
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
+bindkey -M menuselect 'n' vi-forward-blank-word
+bindkey -M menuselect 'p' vi-backward-blank-word
 
 # }}}3
 
