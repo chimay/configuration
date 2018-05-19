@@ -43,6 +43,14 @@ grep () {
 
 # }}}2
 
+# find-command {{{2
+
+grep-command () {
+	print -l $commands | command grep "$@"
+}
+
+# }}}2
+
 # pg : process grep {{{2
 
 pg () {

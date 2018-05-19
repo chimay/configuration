@@ -195,7 +195,7 @@ zstyle ':completion:*' list-colors '=*='
 # pour obtenir un menu convivial pour la completion (avec les flèches du clavier)
 # le chiffre est le nombre minimal de possibilités pour afficher le menu
 
-zstyle ':completion:*' menu 'select=2' 'yes=long'
+zstyle ':completion:*:*:*:*' menu 'select=2' 'yes=long'
 
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 
@@ -529,7 +529,7 @@ bindkey '^V' quoted-insert
 
 # Fonctions zle {{{2
 
-bindkey '\e:' execute-named-cmd
+bindkey '\ex' execute-named-cmd
 
 bindkey '^G' send-break
 
@@ -737,7 +737,7 @@ bindkey '^Xi' incremental-complete-word
 
 # Dernier mot de la ligne précédente
 
-bindkey '\e;' insert-last-word
+bindkey '\e$' insert-last-word
 
 # }}}3
 
@@ -753,6 +753,36 @@ bindkey '^I' menu-complete
 bindkey '\e^I' self-insert-unmeta
 
 bindkey '^D' delete-char-or-list
+
+# Menu {{{3
+
+bindkey -M menuselect '^F' vi-forward-char
+bindkey -M menuselect '^B' vi-backward-char
+bindkey -M menuselect '^N' vi-down-line-or-history
+bindkey -M menuselect '^P' vi-up-line-or-history
+bindkey -M menuselect '\en' vi-forward-blank-word
+bindkey -M menuselect '\ep' vi-backward-blank-word
+
+# Accepte la sélection et relance la complétion (pratique pour les répertoires)
+
+bindkey -M menuselect '\t' accept-and-infer-next-history
+
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+
+# bindkey -M menuselect 'n' vi-forward-blank-word
+# bindkey -M menuselect 'p' vi-backward-blank-word
+
+# }}}3
+
+# Historique {{{3
+
+bindkey '\ep' _history-complete-older
+bindkey '\en' _history-complete-newer
+
+# }}}3
 
 # Expansion {{{3
 
@@ -770,37 +800,9 @@ bindkey '\e*' expand-word
 
 # }}}3
 
-# Historique {{{3
-
-bindkey '\e[1;3A' _history-complete-older
-bindkey '\e[1;3B' _history-complete-newer
-
-# }}}3
-
 # L’espace provoque l'expansion de : !!, !N, ... {{{3
 
 bindkey ' ' magic-space
-
-# }}}3
-
-# Accepte la sélection et relance la complétion (pratique pour les répertoires) {{{3
-
-bindkey -M menuselect '\t' accept-and-infer-next-history
-
-bindkey -M menuselect '^F' vi-forward-char
-bindkey -M menuselect '^B' vi-backward-char
-bindkey -M menuselect '^N' vi-down-line-or-history
-bindkey -M menuselect '^P' vi-up-line-or-history
-bindkey -M menuselect '\en' vi-forward-blank-word
-bindkey -M menuselect '\ep' vi-backward-blank-word
-
-# bindkey -M menuselect 'h' vi-backward-char
-# bindkey -M menuselect 'j' vi-down-line-or-history
-# bindkey -M menuselect 'k' vi-up-line-or-history
-# bindkey -M menuselect 'l' vi-forward-char
-
-# bindkey -M menuselect 'n' vi-forward-blank-word
-# bindkey -M menuselect 'p' vi-backward-blank-word
 
 # }}}3
 
@@ -972,9 +974,15 @@ bindkey -M isearch '\ev' vi-cmd-mode
 
 # Key sequences {{{2
 
+bindkey -s '\e^' "!:0\t"
+
+# Voir insert-last-word
+
+#bindkey -s '\e$' "!:$\t"
+
 # Dernière commande sans le dernier argument
 
-bindkey -s '\e-' "!:0-\t"
+bindkey -s '\e:' "!:0-\t"
 
 # }}}2
 
