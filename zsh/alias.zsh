@@ -232,9 +232,7 @@ alias rl='readlink -f'
 
 #  Synchronisation {{{2
 
-# Autres options intéressantes de rsync :
-#
-# -R ou --relative
+alias rs='rsync -av'
 
 alias rmv='rsync --verbose --progress --stats --human-readable --itemize-changes \
 	--log-file="$HOME/log/rsync.log" \
@@ -644,7 +642,6 @@ hash -d pman=~/racine/plugin/manager
 hash -d antigen=~/racine/plugin/manager/antigen
 hash -d vimpack=~/racine/plugin/manager/vimpack
 hash -d neovimpack=~/racine/plugin/manager/neovimpack
-hash -d plugged=~/racine/plugin/manager/plugged
 hash -d elget=~/racine/plugin/manager/el-get
 
 # }}}2
