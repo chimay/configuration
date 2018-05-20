@@ -1,36 +1,130 @@
 #auto-reload yes
 
+# Options {{{1
+
 save-path "~/racine/news/saved"
 
+browser w3m
+#browser elinks
 external-url-viewer "urlview"
 
 cleanup-on-quit yes
 delete-read-articles-on-quit no
 keep-articles-days 90
+max-items 300
 
-bind-key U show-urls
-bind-key w save
+# }}}1
+
+# Bindings {{{1
+
+# All contexts {{{2
+
+bind-key h help
+
+bind-key ^E edit-urls
+bind-key ^R reload-urls
 
 bind-key j down
 bind-key k up
-bind-key j next articlelist
-bind-key k prev articlelist
-bind-key J next-feed articlelist
-bind-key K prev-feed articlelist
-bind-key G end
-bind-key g home
+
+bind-key NPAGE pagedown
+bind-key PPAGE pageup
 bind-key d pagedown
 bind-key u pageup
 
-bind-key l open
-bind-key h quit
+bind-key r reload
+bind-key R reload-all
 
-bind-key a toggle-article-read
-bind-key n next-unread
-bind-key N prev-unread
+bind-key HOME home
+bind-key END end
+bind-key g home
+bind-key G end
 
-bind-key D pb-download
-bind-key x pb-delete
+bind-key / open-search
+bind-key o sort
+bind-key O rev-sort
+
+bind-key é select-filter
+bind-key ù set-filter
+bind-key è clear-filter
+
+bind-key ENTER open
+bind-key q quit
+
+bind-key Q hard-quit
+
+bind-key w save
+
+bind-key f edit-flags
+
+bind-key | pipe-to
+bind-key U show-urls
+bind-key B open-in-browser
+bind-key ^B open-in-browser-and-mark-read
+
+bind-key ) next-unread
+bind-key ( prev-unread
+
+bind-key = view-dialogs
+bind-key § view-dialogs
+
+bind-key ^N next-dialog
+bind-key ^P prev-dialog
+
+# }}}2
+
+# Feedlist {{{2
+
+#bind-key j next-feed feedlist
+#bind-key k prev-feed feedlist
+
+bind-key n mark-feed-read
+bind-key N mark-all-feeds-read
+
+# }}}2
+
+# Articlelist {{{2
+
+#bind-key j next articlelist
+#bind-key k prev articlelist
+
+bind-key ^ prev-feed articlelist
+bind-key $ next-feed articlelist
+
+bind-key n toggle-article-read
+bind-key N mark-feed-read
+
+# }}}2
+
+# Article {{{2
+
+bind-key ^ prev article
+bind-key $ next article
+
+bind-key n toggle-article-read
+
+# }}}2
+
+# }}}1
+
+# Macros {{{1
+
+
+
+# }}}1
+
+# Filtres {{{1
+
+define-filter "non lus" "unread = \"yes\"""
+
+define-filter "tag news" "tags # \"news\""
+
+define-filter "tag multics" "tags # \"multics\""
+define-filter "tag unix" "tags # \"unix\""
+
+# }}}1
+
+# Thème {{{1
 
 color listnormal default default
 color listfocus default default bold
@@ -39,14 +133,4 @@ color listfocus_unread default default bold
 color info default default standout
 color article default default
 
-browser linkhandler
-macro , open-in-browser
-macro v set browser "i3 exec mpv"; open-in-browser ; set browser linkhandler
-macro y set browser "spawndl"; open-in-browser ; set browser linkhandler
-macro w set browser "w3m"; open-in-browser ; set browser linkhandler
-macro p set browser "dmenuhandler"; open-in-browser ; set browser linkhandler
-
-# c copies the link to the clipboard.
-# The line below is probably the skiddiest line I've ever written.
-
-macro c set browser "copy(){ echo $1 | xclip ;}; copy "; open-in-browser ; set browser linkhandler
+# }}}1
