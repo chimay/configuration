@@ -79,6 +79,8 @@ set clipboard=
 
 "  Chemins de recherche des fichiers {{{2
 
+" Permet une recherche récursive avec :find
+
 set path=**
 
 " }}}2
@@ -1102,9 +1104,7 @@ nnoremap Y y$
 
 nnoremap \p :set paste!<cr>
 
-" Terminal {{{3
-
-" permet le shift-insert fonctionnel comme dans les Xterm
+" Permet le shift-insert fonctionnel comme dans les Xterm
 
 vnoremap <C-Insert> "*y
 
@@ -1113,8 +1113,6 @@ nnoremap <S-Insert> "*p
 inoremap <S-Insert> <C-O>"*p
 
 " noremap <S-Insert> <MiddleMouse>
-
-" }}}3
 
 " }}}2
 
@@ -1271,6 +1269,16 @@ nnoremap \, :exec '!'.getline('.')<CR>
 nnoremap \it :echo bibliotheque#tailleFichier()<cr>
 
 nnoremap \ih :echo bibliotheque#highlightGroup()<cr>
+
+" }}}2
+
+" Émulateur de terminal {{{2
+
+nnoremap <m-$> :terminal bash<cr>
+
+set termwinkey=<C-W>
+
+tnoremap <F5> <C-W>N
 
 " }}}2
 

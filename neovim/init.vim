@@ -97,6 +97,8 @@ set clipboard=
 
 "  Chemins de recherche des fichiers {{{2
 
+" Permet une recherche récursive avec :find
+
 set path=**
 
 " }}}2
@@ -1395,7 +1397,9 @@ nnoremap <D-l> :set cursorline!<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <D-t> :split \| terminal<cr>
+nnoremap <m-$> :split \| e term://
+
+nnoremap <D-t> :split \| e term://$SHELL<cr>
 
 " Passer en mode normal
 
@@ -1408,6 +1412,12 @@ tnoremap <D-s> <C-\><C-n>
 tnoremap <D-^> <C-\><C-n><C-^>
 
 tnoremap <D-q> <C-\><C-n>:ls!<cr>:silent bd!<space>
+
+" }}}2
+
+" Pages de manuel {{{2
+
+nnoremap <D-h> :e man://
 
 " }}}2
 
@@ -1522,7 +1532,7 @@ set sidescroll=7
 " Minimum de lignes visibles à l'écran
 " au-dessus et en-dessous du curseur
 
-set scrolloff=7
+set scrolloff=4
 
 " Minimum de colonnes visibles à l'écran
 " à gauche et à droite du curseur
@@ -1763,14 +1773,14 @@ colo personnel
 set shada=
 	\!,
 	\f1,
-	\c,
 	\h,
 	\<12,
 	\s12,
+	\%30,
 	\'60,
-	\:7543,
-	\/1234,
-	\@1234,
+	\:10000,
+	\/10000,
+	\@10000,
 	\n~/racine/hist/neovim/main.shada
 
 " Remplacé par neomru
@@ -1812,7 +1822,7 @@ source ~/racine/config/edit/neovim/paquet/preload.vim
 
 packloadall
 
-" Les appels aux fonctions autoload des plugins 
+" Les appels aux fonctions autoload des plugins
 " doivent se situer après packloadall
 
 source ~/racine/config/edit/neovim/paquet/postload.vim
