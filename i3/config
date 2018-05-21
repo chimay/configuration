@@ -1,7 +1,9 @@
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
+#
+# Les noms des touches spéciales doivent commencer par une majuscule
+#
 # vim: set filetype=conf :
 
 # Variables {{{1
@@ -53,6 +55,8 @@ set $espace1 "1 Auxiliaire"
 set $espace2 "2 Navigation"
 set $espace3 "3 Graphique"
 
+set $espace4 "4 Void"
+
 # }}}2
 
 # }}}1
@@ -92,7 +96,7 @@ workspace_auto_back_and_forth yes
 
 assign [class="Gvim"]    $espace0
 assign [class="nvim-qt"] $espace0
-assign [class="Emacs"]   $espace0
+assign [class="Emacs"]   $espace1
 
 assign [class="qutebrowser"] $espace2
 assign [class="Firefox"] $espace2
@@ -152,10 +156,6 @@ for_window [instance="calculatrice"] move scratchpad
 # Autostart {{{1
 
 exec --no-startup-id ~/racine/config/windenv/i3/autostart.zsh
-
-# Ne fonctionne pas. Pourquoi ?
-# exec --no-startup-id urxvtc -name deroulant -geometry 70x20
-# exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xft:monospace:size=12" -e calc
 
 # }}}1
 
@@ -260,6 +260,9 @@ bindsym $mod+F2 workspace $espace1
 bindsym $mod+F3 workspace $espace2
 bindsym $mod+F4 workspace $espace3
 
+# parenleft 5
+bindsym $mod+parenleft workspace $espace4
+
 bindsym $mod+Shift+F1 move workspace $espace0
 bindsym $mod+Shift+F2 move workspace $espace1
 bindsym $mod+Shift+F3 move workspace $espace2
@@ -296,19 +299,19 @@ bindsym $mod+apostrophe exec i3-msg [con_mark="$(zenity --entry --text 'Nom du s
 
 # Système {{{2
 
-bindsym $mod+colon exec --no-startup-id ~/racine/shell/dialog/rofi-menu.zsh
+bindsym $mod+colon exec --no-startup-id ~/racine/shell/dialog/rofi-meta.zsh
 
 bindsym Mod4+colon exec --no-startup-id ~/racine/shell/run/zshrun.sh
 
 # Voir aussi <url:~/racine/config/windenv/xbindkeysrc>
 
-bindsym --whole-window ctrl+button3 exec --no-startup-id ~/racine/shell/dialog/rofi-menu.zsh
+bindsym --whole-window ctrl+button3 exec --no-startup-id ~/racine/shell/dialog/rofi-meta.zsh
 
 bindsym $mod+Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh
 
 bindsym $mod+Return exec yakuake
 bindsym $mod+dollar exec konsole
-bindsym $mod+asterisk exec urxvtc
+bindsym $mod+asterisk exec urxvtc -e zsh -l
 
 bindsym $mod+z exec xset dpms force off
 
@@ -342,14 +345,14 @@ bindsym Mod4+Ctrl+Shift+V exec vlc
 
 # }}}2
 
-# Outils (scratchpad) {{{2
+# Scratchpad {{{2
 
 bindsym $mod+o move scratchpad
 bindsym $mod+0 scratchpad show
 
 # Lancement des outils
 
-bindsym Mod4+Shift+d exec --no-startup-id urxvtc -name deroulant -geometry 70x20
+bindsym Mod4+Shift+d exec --no-startup-id urxvtc -name deroulant -geometry 70x20 -e zsh -l
 bindsym Mod4+Shift+c exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xft:monospace:size=12" -e calc
 
 # Affichage des outils
@@ -472,9 +475,9 @@ bindsym Shift+F4 move workspace $espace3
 
 bindsym ampersand exec yakuake
 bindsym dollar exec konsole
-bindsym asterisk exec urxvtc
+bindsym asterisk exec urxvtc -e zsh -l
 
-bindsym colon exec --no-startup-id ~/racine/shell/dialog/rofi-menu.zsh
+bindsym colon exec --no-startup-id ~/racine/shell/dialog/rofi-meta.zsh
 
 bindsym Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh
 
@@ -575,7 +578,7 @@ bindsym o exec libreoffice ; mode "default"
 bindsym p exec pcmanfm ; mode "default"
 bindsym q exec qutebrowser ; mode "default"
 bindsym s exec mp3splt-gtk ; mode "default"
-bindsym u exec urxvtc ; mode "default"
+bindsym u exec urxvtc -e zsh -l ; mode "default"
 bindsym x exec xclock ; mode "default"
 bindsym y exec yakuake ; mode "default"
 bindsym z exec zathura ; mode "default"
@@ -597,13 +600,13 @@ bindsym Escape mode "default"
 
 # }}}1
 
-# Mode outils (scratchpad) {{{1
+# Mode scratchpad {{{1
 
 # Visibilité indépendante des workspaces
 
-bindsym Mod4+F11 mode "outils"
+bindsym Mod4+F11 mode "scratchpad"
 
-mode "outils" {
+mode "scratchpad" {
 
 bindsym o move scratchpad
 
@@ -611,7 +614,7 @@ bindsym 0 scratchpad show
 
 # Lancement des outils
 
-bindsym d exec --no-startup-id urxvtc -name deroulant -geometry 70x20
+bindsym d exec --no-startup-id urxvtc -name deroulant -geometry 70x20 -e zsh -l
 bindsym c exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xft:monospace:size=12" -e calc
 
 # Affichage des outils
@@ -652,10 +655,12 @@ bindsym F11      exec --no-startup-id amixer -c 0 -- set Master 2dB-
 bindsym Mod4+F10 exec --no-startup-id amixer -c 0 -- set Master 4dB+
 bindsym Mod4+F11 exec --no-startup-id amixer -c 0 -- set Master 4dB-
 
-bindsym prior exec --no-startup-id amixer -c 0 -- set Master 2dB+
-bindsym next  exec --no-startup-id amixer -c 0 -- set Master 2dB-
-bindsym home  exec --no-startup-id amixer -c 0 -- set Master 4dB+
-bindsym end   exec --no-startup-id amixer -c 0 -- set Master 4dB-
+bindsym Up exec --no-startup-id amixer -c 0 -- set Master 2dB+
+bindsym Down exec --no-startup-id amixer -c 0 -- set Master 2dB-
+bindsym Prior exec --no-startup-id amixer -c 0 -- set Master 4dB+
+bindsym Next  exec --no-startup-id amixer -c 0 -- set Master 4dB-
+bindsym Home  exec --no-startup-id amixer -c 0 -- set Master 7dB+
+bindsym End   exec --no-startup-id amixer -c 0 -- set Master 7dB-
 
 # bindsym F11      exec --no-startup-id pamixer --decrease 5
 # bindsym F11      exec --no-startup-id pamixer --increase 5
