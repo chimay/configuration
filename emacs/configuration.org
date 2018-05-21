@@ -274,13 +274,13 @@ Fichier utilisé par customize
 
 #+begin_src emacs-lisp
 
-;; Voir smartparens dans paquet-config.el
+;; Voir aussi smartparens
 
-;; (show-paren-mode 1)
+(show-paren-mode 1)
 
-;; (setq show-paren-delay 0)
+(setq show-paren-delay 0)
 
-;; (electric-pair-mode t)
+(electric-pair-mode t)
 
 #+end_src
 
@@ -1346,8 +1346,9 @@ Voir Helm dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<C-backspace>")   'backward-kill-word)
-(global-set-key (kbd "<M-backspace>")   'just-one-space)
+(global-set-key (kbd "<C-backspace>") 'backward-kill-word)
+
+(global-set-key (kbd "M-/") 'just-one-space)
 
 #+end_src
 
@@ -1358,11 +1359,11 @@ Voir Helm dans la configuration des paquets
 
 (global-set-key (kbd "<C-insert>")   'sauve-ligne)
 
-(global-set-key (kbd "s-k")   'sauve-jusque-fin-ligne)
+(global-set-key (kbd "<M-insert>")   'sauve-jusque-fin-ligne)
 
-(global-set-key (kbd "s-w")   'efface-contenu-ligne)
+(global-set-key (kbd "<C-delete>")   'efface-contenu-ligne)
 
-(global-set-key (kbd "M-k")   'efface-jusque-debut-ligne)
+(global-set-key (kbd "<M-delete>")   'efface-jusque-debut-ligne)
 
 (global-set-key (kbd "<s-backspace>")   'kill-whole-line)
 
@@ -1373,7 +1374,7 @@ Voir Helm dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<C-s-return>") 'cua-rectangle-mark-mode)
+(global-set-key (kbd "<s-v>") 'cua-rectangle-mark-mode)
 
 #+end_src
 
@@ -1400,8 +1401,8 @@ CUA mode est mieux
 
 #+begin_src emacs-lisp
 
-;(define-key isearch-mode-map (kbd "M-p") 'isearch-ring-retreat)
-;(define-key isearch-mode-map (kbd "M-n") 'isearch-ring-advance)
+;;(define-key isearch-mode-map (kbd "M-p") 'isearch-ring-retreat)
+;;(define-key isearch-mode-map (kbd "M-n") 'isearch-ring-advance)
 
 (global-set-key (kbd "s-r") 'rgrep)
 
@@ -1428,8 +1429,6 @@ CUA mode est mieux
 )
 
 (global-set-key (kbd "M-SPC") 'hippie-expand)
-
-(global-set-key (kbd "M-TAB") 'pcomplete)
 
 #+end_src
 
@@ -2485,23 +2484,21 @@ Ajuster les fenêtres
 
 ;; (mtorus-install-suggested-bindings)
 
-(global-set-key (kbd "H-= c") 'mtorus-new-ring)
-(global-set-key (kbd "H-= m") 'mtorus-rename-ring)
-(global-set-key (kbd "H-= d") 'mtorus-delete-ring)
+(global-set-key (kbd "s-@ c") 'mtorus-new-ring)
+(global-set-key (kbd "s-@ m") 'mtorus-rename-ring)
+(global-set-key (kbd "s-@ d") 'mtorus-delete-ring)
 
-(global-set-key (kbd "H-= u") 'mtorus-update-current-marker)
+(global-set-key (kbd "s-@ u") 'mtorus-update-current-marker)
 
-(global-set-key (kbd "H-= p") 'mtorus-describe-current-ring)
+(global-set-key (kbd "s-@ p") 'mtorus-describe-current-ring)
 
-(global-set-key (kbd "H-= s") 'mtorus-save-torus)
-(global-set-key (kbd "H-= r") 'mtorus-read-torus)
+(global-set-key (kbd "s-@ s") 'mtorus-save-torus)
+(global-set-key (kbd "s-@ r") 'mtorus-read-torus)
 
-(global-set-key (kbd "s-=") 'mtorus-switch-to-ring)
+(global-set-key (kbd "s-@ =") 'mtorus-switch-to-ring)
 
 (global-set-key (kbd "<s-insert>") 'mtorus-add-current-pos-to-current-ring)
 (global-set-key (kbd "<s-delete>") 'mtorus-delete-current-marker-from-current-ring)
-
-(global-set-key (kbd "<H-insert>") 'mtorus-update-current-marker)
 
 (global-set-key (kbd "<s-home>") 'mtorus-cycle-ring-next)
 (global-set-key (kbd "<s-end>") 'mtorus-cycle-ring-previous)
@@ -2581,8 +2578,8 @@ Ajuster les fenêtres
 (global-set-key (kbd "s-;") 'iy-go-to-char)
 (global-set-key (kbd "s-,") 'iy-go-to-char-backward)
 
-(global-set-key (kbd "H-;") 'iy-go-to-or-up-to-continue)
-(global-set-key (kbd "H-,") 'iy-go-to-or-up-to-continue-backward)
+(global-set-key (kbd "s-S-;") 'iy-go-to-or-up-to-continue)
+(global-set-key (kbd "s-S-,") 'iy-go-to-or-up-to-continue-backward)
 
 #+end_src
 
@@ -2762,7 +2759,7 @@ configuration when invoked to evaluate a line."
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "H-e") 'er/expand-region)
+(global-set-key (kbd "s-e") 'er/expand-region)
 
 #+end_src
 
@@ -2771,13 +2768,11 @@ configuration when invoked to evaluate a line."
 
 #+begin_src emacs-lisp
 
-(define-key region-bindings-mode-map (kbd "<s-return>") 'mc/mark-next-like-this)
+(define-key region-bindings-mode-map (kbd "s-return>) 'mc/mark-next-like-this)
 
-(define-key region-bindings-mode-map (kbd "<H-return>") 'mc/mark-all-like-this)
+(define-key region-bindings-mode-map (kbd "s-SPC") 'mc/mark-more-like-this-extended)
 
-(define-key region-bindings-mode-map (kbd "H-SPC") 'mc/mark-more-like-this-extended)
-
-(define-key region-bindings-mode-map (kbd "H-=") 'mc/edit-lines)
+(define-key region-bindings-mode-map (kbd "s-=") 'mc/edit-lines)
 
 #+end_src
 
@@ -2791,11 +2786,13 @@ configuration when invoked to evaluate a line."
 
 (require 'smartparens)
 
-(smartparens-global-mode t)
+(smartparens-global-mode nil)
 
-(show-smartparens-global-mode t)
+(show-smartparens-global-mode nil)
 
-(require 'smartparens-config)
+;;(require 'smartparens-config)
+
+(add-hook 'lisp-mode #'smartparens-strict-mode)
 
 (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
 
@@ -2807,47 +2804,6 @@ configuration when invoked to evaluate a line."
 #+begin_src emacs-lisp
 
 (global-set-key (kbd "<f12> p") 'smartparens-global-mode)
-
-(define-key smartparens-mode-map (kbd "C-M-f") 'sp-forward-sexp)
-(define-key smartparens-mode-map (kbd "C-M-b") 'sp-backward-sexp)
-
-(define-key smartparens-mode-map (kbd "C-M-n") 'sp-next-sexp)
-(define-key smartparens-mode-map (kbd "C-M-p") 'sp-previous-sexp)
-
-(define-key smartparens-mode-map (kbd "C-M-<down>") 'sp-down-sexp)
-(define-key smartparens-mode-map (kbd "C-M-<up>") 'sp-up-sexp)
-
-(define-key smartparens-mode-map (kbd "C-M-d") 'sp-backward-down-sexp)
-(define-key smartparens-mode-map (kbd "C-M-u") 'sp-backward-up-sexp)
-
-(define-key smartparens-mode-map (kbd "C-S-f") 'sp-forward-symbol)
-(define-key smartparens-mode-map (kbd "C-S-b") 'sp-backward-symbol)
-
-(define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-slurp-sexp)
-(define-key smartparens-mode-map (kbd "H-<right>") 'sp-forward-barf-sexp)
-(define-key smartparens-mode-map (kbd "C-<left>") 'sp-backward-slurp-sexp)
-(define-key smartparens-mode-map (kbd "H-<left>") 'sp-backward-barf-sexp)
-
-(define-key smartparens-mode-map (kbd "C-s-t") 'sp-transpose-sexp)
-(define-key smartparens-mode-map (kbd "H-t") 'sp-transpose-hybrid-sexp)
-
-(define-key smartparens-mode-map (kbd "M-]") 'sp-unwrap-sexp)
-(define-key smartparens-mode-map (kbd "M-[") 'sp-backward-unwrap-sexp)
-
-(define-key smartparens-mode-map (kbd "C-M-k") 'sp-kill-sexp)
-(define-key smartparens-mode-map (kbd "H-k") 'sp-kill-hybrid-sexp)
-
-(define-key smartparens-mode-map (kbd "M-D") 'sp-splice-sexp)
-
-(define-key smartparens-mode-map (kbd "H-<delete>") 'sp-splice-sexp-killing-forward)
-(define-key smartparens-mode-map (kbd "H-<backspace>") 'sp-splice-sexp-killing-backward)
-(define-key smartparens-mode-map (kbd "C-H-<backspace>") 'sp-splice-sexp-killing-around)
-
-(define-key smartparens-mode-map (kbd "s-|") 'sp-split-sexp)
-
-(define-key smartparens-mode-map (kbd "s-]") 'sp-select-next-thing-exchange)
-(define-key smartparens-mode-map (kbd "s-[") 'sp-select-previous-thing)
-(define-key smartparens-mode-map (kbd "C-s-]") 'sp-select-next-thing)
 
 #+end_src
 
