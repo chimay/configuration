@@ -669,20 +669,10 @@ bindkey '^W' backward-kill-word
 [[ -n "${clavier[Up]}" ]]   && bindkey "${clavier[Up]}" history-beginning-search-backward
 [[ -n "${clavier[Down]}" ]] && bindkey "${clavier[Down]}" history-beginning-search-forward
 
+bindkey "^P" history-beginning-search-backward
+bindkey "^N" history-beginning-search-forward
+
 # }}}3
-
-# Recherche à partir du début, le curseur est ensuite positionné à la fin de la ligne {{{3
-
-autoload history-search-end
-
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-
-[[ -n "${clavier[PageUp]}" ]]   && bindkey "${clavier[PageUp]}" history-beginning-search-backward-end
-[[ -n "${clavier[PageDown]}" ]] && bindkey "${clavier[PageDown]}" history-beginning-search-forward-end
-
-bindkey "^p" history-beginning-search-backward-end
-bindkey "^n" history-beginning-search-forward-end
 
 # }}}3
 
@@ -756,6 +746,8 @@ bindkey '^D' delete-char-or-list
 
 # Menu {{{3
 
+bindkey -M menuselect '\t' vi-forward-char
+
 bindkey -M menuselect '^F' vi-forward-char
 bindkey -M menuselect '^B' vi-backward-char
 bindkey -M menuselect '^N' vi-down-line-or-history
@@ -765,7 +757,10 @@ bindkey -M menuselect '\ep' vi-backward-blank-word
 
 # Accepte la sélection et relance la complétion (pratique pour les répertoires)
 
-bindkey -M menuselect '\t' accept-and-infer-next-history
+bindkey -M menuselect '\e\t' accept-and-infer-next-history
+bindkey -M menuselect '\ef' accept-and-infer-next-history
+
+#bindkey -M menuselect "${clavier[Down]}" accept-and-infer-next-history
 
 # bindkey -M menuselect 'h' vi-backward-char
 # bindkey -M menuselect 'j' vi-down-line-or-history
@@ -835,9 +830,6 @@ bindkey -M vicmd 'k' history-beginning-search-backward
 [[ -n "${clavier[Up]}" ]]   && bindkey -M vicmd "${clavier[Up]}" history-beginning-search-backward
 [[ -n "${clavier[Down]}" ]] && bindkey -M vicmd "${clavier[Down]}" history-beginning-search-forward
 
-bindkey -M vicmd '^P' history-beginning-search-backward-end
-bindkey -M vicmd '^N' history-beginning-search-forward-end
-
 bindkey -M vicmd '+' vi-down-line-or-history
 bindkey -M vicmd -- '-' vi-up-line-or-history
 
@@ -879,8 +871,11 @@ bindkey -M vicmd "'" vi-goto-mark
 
 bindkey -M vicmd '|' vi-goto-column
 
-bindkey -M vicmd '/' vi-history-search-backward
-bindkey -M vicmd '?' vi-history-search-forward
+bindkey -M vicmd '?' vi-history-search-backward
+bindkey -M vicmd '/' vi-history-search-forward
+
+bindkey -M vicmd 'n' vi-repeat-search
+bindkey -M vicmd 'N' vi-rev-repeat-search
 
 bindkey -M vicmd 'a' vi-add-next
 
@@ -903,9 +898,6 @@ bindkey -M vicmd '>' vi-indent
 bindkey -M vicmd '<' vi-unindent
 
 bindkey -M vicmd 'J' vi-join
-
-bindkey -M vicmd 'n' vi-repeat-search
-bindkey -M vicmd 'N' vi-rev-repeat-search
 
 bindkey -M vicmd '"' vi-set-buffer
 
