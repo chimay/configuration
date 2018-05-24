@@ -1,0 +1,126 @@
+! vim: set filetype=xdefaults:
+! vim: set commentstring=!\ %s :
+
+! Font {{{1
+
+XTerm*faceName: DejaVu Sans Mono
+XTerm*faceSize: 11
+
+xterm*faceSize1: 9
+xterm*faceSize2: 10
+xterm*faceSize3: 11
+xterm*faceSize4: 12
+xterm*faceSize5: 14
+
+! }}}1
+
+! Couleurs {{{1
+
+xterm.foreground:   #5b3c11
+xterm.background:   #000000
+
+xterm.cursorColor:	#5b3c11
+XTerm*cursorBlink: true
+
+! Cursor ====================================================
+! pointer and cursor (blinking and color)
+XTerm*pointerColor: #5b3c11
+XTerm*pointerColorBackground: black
+
+XTerm.color0: #000000
+XTerm.color1: #b21818
+XTerm.color2: #118011
+XTerm.color3: #965724
+XTerm.color4: #1818b2
+XTerm.color5: #b218b2
+XTerm.color6: #149696
+XTerm.color7: #949494
+XTerm.color8: #434343
+XTerm.color9: #c74141
+XTerm.color10: #36a636
+XTerm.color11: #988404
+XTerm.color12: #5454ff
+XTerm.color13: #c842c8
+XTerm.color14: #309494
+XTerm.color15: #ffffff
+
+! }}}1
+
+! Localisation {{{1
+
+! Ensure that your locale is set up for UTF-8. If you do not use UTF-8, you may need to force xterm to more strictly follow your locale by setting
+XTerm.vt100.locale: true
+
+! }}}1
+
+! Sélection {{{1
+
+!! Selecting Text ========================================================
+! Only select text
+XTerm*highlightSelection: true
+! Remove trailing spaces
+XTerm*trimSelection: true
+
+! }}}1
+
+! Défilement {{{1
+
+!! Scrolling ========================================================
+! Use: Shift-Pageup / Shift-Pagedown to scroll or mousewheel
+! Lines of output that you can scroll back over
+
+XTerm*saveLines: 16384
+
+! Turn the scrollbar on, and put it on the right
+! XTerm.vt100.scrollBar: true
+! XTerm.vt100.scrollbar.width: 8
+! xterm*scrollBar: true
+! xterm*rightScrollBar: true
+
+! Do not scroll when there is new input e.g. tail -f /var/syslog
+
+XTerm*scrollTtyOutput: false
+
+! }}}1
+
+! Bindings {{{1
+
+!! Keybinding ========================================================
+! http://blog.rot13.org/2010/03/change-font-size-in-xterm-using-keyboard.html
+! - change fontsize on the fly (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
+! - copy/paste hotkey (ctrl+shift+c = copy ; ctrl+shift+v = paste)
+! - open url (clickable links)
+!   1) double click to highlight the full url
+!   2) Shift + click it to open it
+
+XTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+  Ctrl <Key> plus: larger-vt-font() \n\
+  Ctrl <Key> 0: set-vt-font(d) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
+  <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+  <Btn2Up>: insert-selection(PRIMARY)
+
+! enable copy/paste hotkey to work (shift+insert = paste ; mouse highlight = copy)
+XTerm*selectToClipboard: true
+! disable fullscreen hotkey alt+enter (hotkey conflicts with weechat, midnight commander ...etc)
+XTerm*fullscreen: never
+! enable alt key to work
+XTerm*metaSendsEscape: true
+! Fix the backspace key (for Emacs)
+XTerm.vt100.backarrowKey: false
+XTerm.ttyModes: erase ^?
+
+! double-click to select whole URLs :D
+! https://scarygliders.net/2011/12/01/customize-xterm-the-original-and-best-terminal/
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+! Tips: Left and right selection (text selection using left button for beginning and right button for end)
+! Tips: Triple Click ( 1 click = nothing, 2 click = select word, 3 click = select line )
+!
+! XTerm*on3Clicks: regex [[:alpha:]]+://([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+XTerm*on3Clicks: regex ([[:alpha:]]+://)?([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+
+! }}}1

@@ -1,0 +1,23 @@
+! vim: set filetype=xdefaults:
+! vim: set commentstring=!\ %s :
+
+! Options valables partout par défaut
+
+! Couleurs {{{1
+
+XClock*geometry:          210x210+1020+12
+
+!XClock*update: 1
+
+XClock*foreground: #5b3c11
+XClock*background: #000000
+
+XClock.Clock.hourColor:   rgba:be/18/18/ff
+XClock.Clock.minuteColor: rgba:87/2e/30/c1
+
+!XClock.Clock.secondColor: rgba:50/93/30/6f
+
+XClock.Clock.majorColor:  rgba:be/18/18/ff
+XClock.Clock.minorColor:  rgba:96/57/24/ff
+
+! }}}1
