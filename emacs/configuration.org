@@ -1264,7 +1264,7 @@ Client et server
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "s-a s-z") 'save-buffers-kill-emacs)
+(global-set-key (kbd "s-c s-x") 'save-buffers-kill-emacs)
 
 #+end_src
 
@@ -1382,8 +1382,8 @@ CUA mode est mieux
 
 #+begin_src emacs-lisp
 
-;(global-set-key (kbd "C-s-r") 'string-insert-rectangle)
-;(global-set-key (kbd "M-s-r") 'string-rectangle)
+;;(global-set-key (kbd "C-x s-r") 'string-insert-rectangle)
+;;(global-set-key (kbd "C-x s-r") 'string-rectangle)
 
 #+end_src
 
@@ -1451,12 +1451,6 @@ Voir aussi hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-;; (global-set-key (kbd "s-0") 'delete-window)
-;; (global-set-key (kbd "s-1") 'delete-other-windows)
-;; (global-set-key (kbd "s-2") 'split-window-below)
-;; (global-set-key (kbd "s-3") 'split-window-right)
-;; (global-set-key (kbd "s-5") 'other-window)
-
 (global-set-key (kbd "<s-kp-0>") 'delete-window)
 (global-set-key (kbd "<s-kp-1>") 'delete-other-windows)
 (global-set-key (kbd "<s-kp-2>") 'split-window-below)
@@ -1465,10 +1459,15 @@ Voir aussi hydra dans la configuration des paquets
 
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
 
-(global-set-key (kbd "<s-up>") 'windmove-up)
-(global-set-key (kbd "<s-down>") 'windmove-down)
-(global-set-key (kbd "<s-right>") 'windmove-right)
-(global-set-key (kbd "<s-left>") 'windmove-left)
+(global-set-key (kbd "<S-up>") 'windmove-up)
+(global-set-key (kbd "<S-down>") 'windmove-down)
+(global-set-key (kbd "<S-right>") 'windmove-right)
+(global-set-key (kbd "<S-left>") 'windmove-left)
+
+(global-set-key (kbd "C-x <C-up>") 'windmove-up)
+(global-set-key (kbd "C-x <C-down>") 'windmove-down)
+(global-set-key (kbd "C-x <C-right>") 'windmove-right)
+(global-set-key (kbd "C-x <C-left>") 'windmove-left)
 
 (global-set-key (kbd "<f12> f") 'follow-mode)
 
@@ -1598,8 +1597,8 @@ Voir aussi hydra dans la configuration des paquets
 
 (global-set-key (kbd "<f5> SPC") (lambda () (interactive) (insert " ")))
 
-(global-set-key (kbd "C-s-a") (lambda () (interactive) (insert "⟻")))
-(global-set-key (kbd "C-s-z") (lambda () (interactive) (insert "⟼")))
+(global-set-key (kbd "C-c s-a") (lambda () (interactive) (insert "⟻")))
+(global-set-key (kbd "C-c s-z") (lambda () (interactive) (insert "⟼")))
 
 ;(global-set-key (kbd "<f5> -") (lambda () (interactive) (insert "⟼")))
 ;(global-set-key (kbd "<f5> =") (lambda () (interactive) (insert "⟻")))
@@ -2433,7 +2432,7 @@ Ajuster les fenêtres
 (global-set-key (kbd "s-ù") 'helm-projectile)
 (global-set-key (kbd "s-*") 'helm-projectile-find-file)
 
-(global-set-key (kbd "S-s-SPC") 'helm-projectile-recentf)
+(global-set-key (kbd "C-c s-SPC") 'helm-projectile-recentf)
 
 (global-set-key (kbd "s-p s-f") 'helm-projectile-find-file-in-known-projects)
 
@@ -2574,8 +2573,8 @@ Ajuster les fenêtres
 (global-set-key (kbd "s-;") 'iy-go-to-char)
 (global-set-key (kbd "s-,") 'iy-go-to-char-backward)
 
-(global-set-key (kbd "s-S-;") 'iy-go-to-or-up-to-continue)
-(global-set-key (kbd "s-S-,") 'iy-go-to-or-up-to-continue-backward)
+(global-set-key (kbd "C-c s-;") 'iy-go-to-or-up-to-continue)
+(global-set-key (kbd "C-c s-,") 'iy-go-to-or-up-to-continue-backward)
 
 #+end_src
 
