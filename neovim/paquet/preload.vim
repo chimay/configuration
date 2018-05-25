@@ -322,7 +322,7 @@ let g:yankring_default_menu_mode = 0
 let g:yankring_persist = 1
 let g:yankring_share_between_instances = 1
 
-let g:yankring_history_dir = $HOME . '/racine/plugin/data/yankring'
+let g:yankring_history_dir = $HOME . '/racine/plugin/data/yankring-neovim'
 let g:yankring_history_file = 'yankring-hist'
 
 let g:yankring_ignore_duplicate = 1
@@ -351,7 +351,7 @@ let g:yankring_paste_check_default_register = 1
 
 let g:highlightedyank_highlight_duration = 1000
 
-" }}}2 
+" }}}2
 
 " }}}1
 
@@ -437,8 +437,16 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 "  Netrw (plugin standard) {{{2
 
+" Chargement {{{3
+
 "let g:loaded_netrw       = 0
+
+" Décommenter pour ne pas charcher automatiquement netrw lors de
+" l’ouverture d’un répertoire
+
 "let g:loaded_netrwPlugin = 0
+
+" }}}3
 
 let g:netrw_home           = $HOME . '/racine/plugin/data/netrw'
 
@@ -497,12 +505,6 @@ let g:netrw_hide = 1
 
 " }}}2
 
-" Dirvish {{{2
-
-nnoremap <D-f> :Dirvish<cr>
-
-" }}}2
-
 " Vifm {{{2
 
 let g:vifmSplitWidth = 120
@@ -541,7 +543,7 @@ let g:unite_enable_split_vertically = 0
 
 let g:unite_prompt = 'unite> '
 
-" }}}3 
+" }}}3
 
 " Copie & Collage {{{3
 
@@ -572,7 +574,7 @@ let g:unite_source_find_max_candidates = 570
 
 " }}}3
 
-" }}}2 
+" }}}2
 
 " Neomru {{{2
 
@@ -586,7 +588,7 @@ let g:neomru#directory_mru_limit = 300
 
 let g:neomru#do_validate = 0
 
-" }}}2 
+" }}}2
 
 " Unite-outline (Shougo/unite-outline) {{{2
 
@@ -658,11 +660,11 @@ let g:CtrlSpaceUseUnicode = 0
 
 nnoremap <c-space> :CtrlSpace<cr>
 
-nnoremap <C-Left> :CtrlSpaceGoUp<cr>
-nnoremap <C-Right> :CtrlSpaceGoDown<cr>
+nnoremap <M-Left> :CtrlSpaceGoUp<cr>
+nnoremap <M-Right> :CtrlSpaceGoDown<cr>
 
-nnoremap <C-PageUp> :CtrlSpaceGoUp<cr>
-nnoremap <C-PageDown> :CtrlSpaceGoDown<cr>
+nnoremap <M-PageUp> :CtrlSpaceGoUp<cr>
+nnoremap <M-PageDown> :CtrlSpaceGoDown<cr>
 
 " }}}3
 
@@ -811,7 +813,7 @@ cmap <m-t> <Plug>CmdlineCompleteForward
 let g:submode_timeout = 0
 "let g:submode_timeout = 12000
 
-" }}}2 
+" }}}2
 
 " Cmdalias (coot/cmdalias_vim) {{{2
 
@@ -951,88 +953,13 @@ let g:QFG_hi_error='guifg=#5B3C11 guibg=black ctermfg=3 ctermbg=NONE'
 
 " }}}2
 
-" Sneak (justinmk/vim-sneak) {{{2
-
-" 2-character Sneak (default)
-
-nmap <D-;> <Plug>Sneak_s
-nmap <D-,> <Plug>Sneak_S
-
-" visual-mode
-
-xmap <D-;> <Plug>Sneak_s
-xmap <D-,> <Plug>Sneak_S
-
-" operator-pending-mode
-
-omap <D-;> <Plug>Sneak_s
-omap <D-,> <Plug>Sneak_S
-
-" explicit repeat (as opposed to implicit 'clever-s' repeat)
-
-"map s <Plug>SneakNext
-"map S <Plug>SneakPrevious
-
-" 1-character enhanced 'f'
-
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-
-" visual-mode
-
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-
-" operator-pending-mode
-
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-
-" 1-character enhanced 't'
-
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-
-" visual-mode
-
-xmap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
-
-" operator-pending-mode
-
-omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
-
-" force streak-mode always
-
-"nmap <D-;> <Plug>(SneakStreak)
-"nmap <D-,> <Plug>(SneakStreakBackward)
-
-nmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : ';'
-nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : ','
-
-let g:sneak#prompt = 'sneak [char-char] > '
-
-let g:sneak#f_reset      = 0
-let g:sneak#s_next       = 1
-let g:sneak#absolute_dir = 0
-let g:sneak#textobject_z = 1
-let g:sneak#use_ic_scs   = 1
-
-let g:sneak#map_netrw    = 1
-
-let g:sneak#streak       = 1
-let g:sneak#streak_esc = "\<space>"
-
-" }}}2
-
 " }}}1
 
 " Calcul {{{1
 
 " Crunch (arecarn/crunch.vim {{{2
 
-nnoremap <D-=> :Crunch<cr>
+nnoremap <D-=> :Crunch<space>
 
 " }}}2
 
@@ -1061,7 +988,7 @@ let g:increment_activator_filetype_candidates = {
 
 " Neoterm (kassio/neoterm) {{{2
 
-nnoremap <D-$> :new \| Ttoggle<cr>
+nnoremap <D-t> :new \| Ttoggle<cr>
 
 nnoremap <D-CR> :TREPLSendLine<cr>
 vnoremap <D-CR> :TREPLSendSelection<cr>
@@ -1077,27 +1004,6 @@ nnoremap <D-m> :NeomakeSh<space>
 let g:neomake_make_maker = {
 	\ 'exe': 'make',
 \ }
-
-" }}}2
-
-" Terminus (brettanomyces/nvim-terminus) {{{2
-
-nnoremap <D-!> :TerminusOpen<space>
-
-tmap <c-x>e <Plug>TerminusEditCommand
-
-tmap <c-x>v <Plug>TerminusInterceptCommand
-
-tmap <s-cr> <Plug>TerminusEditCommand
-tmap <c-cr> <Plug>TerminusInterceptCommand
-
-let g:terminus_default_prompt = '>'
-
-" }}}2
-
-" Deol {{{2
-
-nnoremap <D-s> :Deol<cr>
 
 " }}}2
 

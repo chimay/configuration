@@ -322,7 +322,7 @@ let g:yankring_default_menu_mode = 0
 let g:yankring_persist = 1
 let g:yankring_share_between_instances = 1
 
-let g:yankring_history_dir = $HOME . '/racine/plugin/data/yankring'
+let g:yankring_history_dir = $HOME . '/racine/plugin/data/yankring-vim'
 let g:yankring_history_file = 'yankring-hist'
 
 let g:yankring_ignore_duplicate = 1
@@ -505,7 +505,7 @@ let g:netrw_hide = 1
 
 " Vifm {{{2
 
-let g:vifmSplitWidth = 120
+let g:vifm_term = 'urxvtc -e'
 
 " }}}2
 
@@ -655,11 +655,11 @@ let g:CtrlSpaceUseUnicode = 0
 
 nnoremap <c-space> :CtrlSpace<cr>
 
-nnoremap <C-Left> :CtrlSpaceGoUp<cr>
-nnoremap <C-Right> :CtrlSpaceGoDown<cr>
+nnoremap <M-Left> :CtrlSpaceGoUp<cr>
+nnoremap <M-Right> :CtrlSpaceGoDown<cr>
 
-nnoremap <C-PageUp> :CtrlSpaceGoUp<cr>
-nnoremap <C-PageDown> :CtrlSpaceGoDown<cr>
+nnoremap <M-PageUp> :CtrlSpaceGoUp<cr>
+nnoremap <M-PageDown> :CtrlSpaceGoDown<cr>
 
 " }}}3
 
