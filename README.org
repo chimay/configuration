@@ -43,7 +43,7 @@ Beyond thar, some applications :
 
 Reserved for Window Manager (i3) :
 
-  - Mod3 (menu key) with any other key
+  - Mod3 (menu key) with any key(s)
 
   - Mod4 (super key) with
 
@@ -53,7 +53,11 @@ Reserved for Window Manager (i3) :
 
     + Home / End
 
-    + Other modifier
+    + Modifier(s)
+
+  - Mod4 with other modifier(s) and
+
+    + Any key(s)
 
   - Préfix chosen in the previous keys
 
@@ -61,7 +65,7 @@ Reserved for Window Manager (i3) :
 
 Reserved for applications :
 
-  - Mod 4 with all other keys :
+  - Mod4 with all other keys :
 
     + Letters
 
