@@ -57,7 +57,7 @@ pg () {
 
 	local motif
 
-	motif=${1:-''}
+	motif="$@"
 
 	(( $#motif > 0 )) || {
 
@@ -68,7 +68,7 @@ pg () {
 
 	(( $#motif > 0 )) || return 1
 
-	command ps auxww | command grep -v grep | command grep --color=never $motif
+	command ps --no-headers -eo '%p %a' | command grep -v grep | command grep --color=never $motif
 }
 
 # }}}2
@@ -79,7 +79,7 @@ pid () {
 
 	local motif
 
-	motif=${1:-''}
+	motif="$@"
 
 	(( $#motif > 0 )) || {
 
@@ -90,7 +90,10 @@ pid () {
 
 	(( $#motif > 0 )) || return 1
 
-	command ps auxww | command grep -v grep | command grep --color=never $motif | awk '{print $2}'
+	command ps --no-headers -eo '%p %a' | \
+		command grep -v grep | \
+		command grep --color=never $motif | \
+		awk '{print $1}'
 }
 
 
@@ -102,7 +105,7 @@ psi () {
 
 	local motif identifiants reponse signal
 
-	motif=${1:-''}
+	motif="$@"
 
 	(( $#motif > 0 )) || {
 
@@ -115,10 +118,15 @@ psi () {
 
 	reponse=n
 
-	command ps auxww | command grep -v grep | command grep --color=never $motif
+	command ps --no-headers -eo '%p %a' | command grep -v grep | command grep --color=never $motif
 	echo
 
-	identifiants=$(command ps auxww | command grep -v grep | command grep --color=never $motif | awk '{print $2}')
+	identifiants=($(
+		command ps --no-headers -eo '%p %a' |
+		command grep -v grep |
+		command grep --color=never $motif |
+		awk '{print $1}'
+	))
 
 	echo $=identifiants
 	echo
@@ -176,6 +184,122 @@ psi () {
 	echo
 
 	kill -$signal $=identifiants
+
+}
+
+# }}}2
+
+# pgroup : groupe d’un processus {{{2
+
+pgroup () {
+
+	local motif listiden iden groupe arbre
+
+	motif="$@"
+
+	(( $#motif > 0 )) || {
+
+		echo -n "Motif : "
+		read motif
+		echo
+	}
+
+	(( $#motif > 0 )) || return 1
+
+	listiden=($(
+		command ps --no-headers -eo '%p %a' |
+		command grep -v grep |
+		command grep --color=never $motif |
+		awk '{print $1}'
+	))
+
+	for iden in $=listiden
+	do
+		groupe=$(ps --no-headers -o "%r" -p $iden | tr -d ' \t\n\r')
+
+		arbre=($(
+			ps -eo "%r %p" |
+			awk '{ if ( $1 == '$groupe' ) print $2 }'
+		))
+
+		echo "Groupe de $iden : $groupe"
+		echo "------------------------------"
+		echo
+		command ps -o "%r %p %a" -p $=arbre
+		echo
+	done
+}
+
+# }}}2
+
+# ptree : arbre du groupe d’un processus {{{2
+
+ptree () {
+
+	local motif listiden iden listgroupes groupe
+	local parent enfant racine
+
+	motif="$@"
+
+	(( $#motif > 0 )) || {
+
+		echo -n "Motif : "
+		read motif
+		echo
+	}
+
+	(( $#motif > 0 )) || return 1
+
+	listiden=($(
+		command ps --no-headers -eo '%p %a' |
+		command grep -v grep |
+		command grep --color=never $motif |
+		awk '{print $1}'
+	))
+
+	listgroupes=()
+
+	typeset -A grpiden
+
+	for iden in $=listiden
+	do
+		groupe=$(ps --no-headers -o "%r" -p $iden | tr -d ' \t\n\r')
+		listgroupes+=$groupe
+		grpiden[$groupe]=$iden
+	done
+
+	listgroupes=(${(u)listgroupes})
+
+	for groupe in $=listgroupes
+	do
+		enfant=$grpiden[$groupe]
+
+		while true
+		do
+			parent=$( \
+				ps -eo "%r %P %p" | \
+				awk '{ if ( $1 == '$groupe' && $3 == '$enfant' ) print $2 }' \
+			)
+
+			echo "$parent -> $enfant"
+			echo
+
+			if (( $#parent > 0 ))
+			then
+				enfant=$parent
+				racine=$parent
+			else
+				break
+			fi
+		done
+
+		echo Racine : $racine
+		echo
+
+		pstree -p $racine
+		echo
+		ps -eo "%r %p %a" --forest | awk '{ if ( $1 == '$groupe' ) print $0 }'
+	done
 
 }
 
@@ -535,5 +659,24 @@ zshexit () {
 }
 
 # }}}2
+
+# }}}1
+
+# Special Widgets {{{1
+
+function zle-line-init zle-keymap-select {
+
+	if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} ))
+	then
+		printf '%s' "${terminfo[smkx]}"
+	fi
+
+    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}+"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 # }}}1
