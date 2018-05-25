@@ -891,8 +891,8 @@ nnoremap <m-s-b> :ls!<cr>:tab sb<space>
 
 " Remplacé par CtrlSpaceGo[Up/Down]
 
-"noremap <C-PageUp> :bp<cr>
-"noremap <C-PageDown> :bn<cr>
+"noremap <M-PageUp> :bp<cr>
+"noremap <M-PageDown> :bn<cr>
 
 nnoremap <m-q> :ls!<cr>:silent bd!<space>
 nnoremap <m-s-q> :ls!<cr>:silent bw!<space>
@@ -932,11 +932,14 @@ nnoremap <m-t> :tabnew<cr>
 
 nnoremap <m-s-t> :tabe <C-R>=expand("%:p:h") . "/*" <CR><C-D>
 
+nnoremap <C-Left> gT
+nnoremap <C-Right> gt
+
+nnoremap <C-Up> :tabm -1<cr>
+nnoremap <C-Down> :tabm +1<cr>
+
 nnoremap <C-PageUp> gT
 nnoremap <C-PageDown> gt
-
-nnoremap <C-Left> :tabm -1<cr>
-nnoremap <C-Right> :tabm +1<cr>
 
 nnoremap <C-Home>  :tabfirst<cr>
 nnoremap <C-End> :tablast<cr>
