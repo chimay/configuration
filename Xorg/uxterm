@@ -1,0 +1,126 @@
+! vim: set filetype=xdefaults:
+! vim: set commentstring=!\ %s :
+
+! Font {{{1
+
+UXTerm*faceName: DejaVu Sans Mono
+UXTerm*faceSize: 11
+
+UXTerm*faceSize1: 9
+UXTerm*faceSize2: 10
+UXTerm*faceSize3: 11
+UXTerm*faceSize4: 12
+UXTerm*faceSize5: 14
+
+! }}}1
+
+! Couleurs {{{1
+
+UXTerm.foreground:   #5b3c11
+UXTerm.background:   #000000
+
+UXTerm.cursorColor:	#5b3c11
+UXTerm*cursorBlink: true
+
+! Cursor ====================================================
+! pointer and cursor (blinking and color)
+UXTerm*pointerColor: #5b3c11
+UXTerm*pointerColorBackground: black
+
+UXTerm.color0: #000000
+UXTerm.color1: #b21818
+UXTerm.color2: #118011
+UXTerm.color3: #965724
+UXTerm.color4: #1818b2
+UXTerm.color5: #b218b2
+UXTerm.color6: #149696
+UXTerm.color7: #949494
+UXTerm.color8: #434343
+UXTerm.color9: #c74141
+UXTerm.color10: #36a636
+UXTerm.color11: #988404
+UXTerm.color12: #5454ff
+UXTerm.color13: #c842c8
+UXTerm.color14: #309494
+UXTerm.color15: #ffffff
+
+! }}}1
+
+! Localisation {{{1
+
+! Ensure that your locale is set up for UTF-8. If you do not use UTF-8, you may need to force UXTerm to more strictly follow your locale by setting
+UXTerm.vt100.locale: true
+
+! }}}1
+
+! Sélection {{{1
+
+!! Selecting Text ========================================================
+! Only select text
+UXTerm*highlightSelection: true
+! Remove trailing spaces
+UXTerm*trimSelection: true
+
+! }}}1
+
+! Défilement {{{1
+
+!! Scrolling ========================================================
+! Use: Shift-Pageup / Shift-Pagedown to scroll or mousewheel
+! Lines of output that you can scroll back over
+
+UXTerm*saveLines: 16384
+
+! Turn the scrollbar on, and put it on the right
+! UXTerm.vt100.scrollBar: true
+! UXTerm.vt100.scrollbar.width: 8
+! UXTerm*scrollBar: true
+! UXTerm*rightScrollBar: true
+
+! Do not scroll when there is new input e.g. tail -f /var/syslog
+
+UXTerm*scrollTtyOutput: false
+
+! }}}1
+
+! Bindings {{{1
+
+!! Keybinding ========================================================
+! http://blog.rot13.org/2010/03/change-font-size-in-UXTerm-using-keyboard.html
+! - change fontsize on the fly (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
+! - copy/paste hotkey (ctrl+shift+c = copy ; ctrl+shift+v = paste)
+! - open url (clickable links)
+!   1) double click to highlight the full url
+!   2) Shift + click it to open it
+
+UXTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+  Ctrl <Key> plus: larger-vt-font() \n\
+  Ctrl <Key> 0: set-vt-font(d) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
+  <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+  <Btn2Up>: insert-selection(PRIMARY)
+
+! enable copy/paste hotkey to work (shift+insert = paste ; mouse highlight = copy)
+UXTerm*selectToClipboard: true
+! disable fullscreen hotkey alt+enter (hotkey conflicts with weechat, midnight commander ...etc)
+UXTerm*fullscreen: never
+! enable alt key to work
+UXTerm*metaSendsEscape: true
+! Fix the backspace key (for Emacs)
+UXTerm.vt100.backarrowKey: false
+UXTerm.ttyModes: erase ^?
+
+! double-click to select whole URLs :D
+! https://scarygliders.net/2011/12/01/customize-UXTerm-the-original-and-best-terminal/
+UXTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+! Tips: Left and right selection (text selection using left button for beginning and right button for end)
+! Tips: Triple Click ( 1 click = nothing, 2 click = select word, 3 click = select line )
+!
+! UXTerm*on3Clicks: regex [[:alpha:]]+://([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+UXTerm*on3Clicks: regex ([[:alpha:]]+://)?([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+
+! }}}1
