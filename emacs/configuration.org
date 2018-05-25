@@ -2486,28 +2486,24 @@ Ajuster les fenêtres
 
 (global-set-key (kbd "s-@ c") 'mtorus-new-ring)
 (global-set-key (kbd "s-@ m") 'mtorus-rename-ring)
-(global-set-key (kbd "s-@ d") 'mtorus-delete-ring)
+(global-set-key (kbd "s-@ D") 'mtorus-delete-ring)
 
+(global-set-key (kbd "s-@ a") 'mtorus-add-current-pos-to-current-ring)
 (global-set-key (kbd "s-@ u") 'mtorus-update-current-marker)
+(global-set-key (kbd "s-@ d") 'mtorus-delete-current-marker-from-current-ring)
 
-(global-set-key (kbd "s-@ p") 'mtorus-describe-current-ring)
+(global-set-key (kbd "s-@ l") 'mtorus-describe-current-ring)
 
-(global-set-key (kbd "s-@ s") 'mtorus-save-torus)
-(global-set-key (kbd "s-@ r") 'mtorus-read-torus)
+(global-set-key (kbd "s-@ n") 'mtorus-cycle-marker-next)
+(global-set-key (kbd "s-@ p") 'mtorus-cycle-marker-previous)
+
+(global-set-key (kbd "s-@ N") 'mtorus-cycle-ring-next)
+(global-set-key (kbd "s-@ P") 'mtorus-cycle-ring-previous)
 
 (global-set-key (kbd "s-@ =") 'mtorus-switch-to-ring)
 
-(global-set-key (kbd "<s-insert>") 'mtorus-add-current-pos-to-current-ring)
-(global-set-key (kbd "<s-delete>") 'mtorus-delete-current-marker-from-current-ring)
-
-(global-set-key (kbd "<s-home>") 'mtorus-cycle-ring-next)
-(global-set-key (kbd "<s-end>") 'mtorus-cycle-ring-previous)
-
-(global-set-key (kbd "<s-prior>") 'mtorus-cycle-marker-previous)
-(global-set-key (kbd "<s-next>") 'mtorus-cycle-marker-next)
-
-;; (global-set-key [C-prior] 'mtorus-cycle-blist-prev)
-;; (global-set-key [C-next] 'mtorus-cycle-blist-next)
+(global-set-key (kbd "s-@ s") 'mtorus-save-torus)
+(global-set-key (kbd "s-@ r") 'mtorus-read-torus)
 
 (setq mtorus-save-on-exit t)
 (setq mtorus-file-name "~/racine/plugin/data/mtorus/mtorus.el")

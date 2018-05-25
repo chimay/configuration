@@ -2,7 +2,10 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #
+# La syntaxe du fichier xmodmap doit être respectée, y compris la casse :
+#
 # Les noms des touches spéciales doivent commencer par une majuscule
+# Les noms des autres touches doivent commencer par une minuscule
 #
 # vim: set filetype=conf :
 
@@ -48,14 +51,14 @@ set $pave9=Mod2+KP_Prior
 
 # }}}2
 
-# Espaces de travail {{{2
+# Bureaux {{{2
 
-set $espace0 "0 Principal"
-set $espace1 "1 Auxiliaire"
-set $espace2 "2 Navigation"
-set $espace3 "3 Graphique"
+set $bureau0 "0 Principal"
+set $bureau1 "1 Auxiliaire"
+set $bureau2 "2 Navigation"
+set $bureau3 "3 Graphique"
 
-set $espace4 "4 Void"
+set $bureau4 "4 Void"
 
 # }}}2
 
@@ -94,16 +97,16 @@ workspace_auto_back_and_forth yes
 
 # La flèche → est optionnelle
 
-assign [class="Gvim"]    $espace0
-assign [class="nvim-qt"] $espace0
-assign [class="Emacs"]   $espace1
+assign [class="Gvim"]    $bureau0
+assign [class="nvim-qt"] $bureau0
+assign [class="Emacs"]   $bureau1
 
-assign [class="qutebrowser"] $espace2
-assign [class="Firefox"] $espace2
+assign [class="qutebrowser"] $bureau2
+assign [class="Firefox"] $bureau2
 
-assign [class="net-sourceforge-jnlp-runtime-Boot"] $espace3
-assign [class="sun-awt-X11-XFramePeer"] $espace3
-assign [class="java-lang-Thread"] $espace3
+assign [class="net-sourceforge-jnlp-runtime-Boot"] $bureau3
+assign [class="sun-awt-X11-XFramePeer"] $bureau3
+assign [class="java-lang-Thread"] $bureau3
 
 # }}}2
 
@@ -179,14 +182,20 @@ bindsym $mod+Mod4+Q exit
 
 # Fenêtres {{{2
 
+bindsym Mod4+Next focus right
+bindsym Mod4+Prior focus left
+bindsym Mod4+Home focus up
+bindsym Mod4+End focus down
+
+bindsym Mod4+Ctrl+Left  move left
+bindsym Mod4+Ctrl+Down  move down
+bindsym Mod4+Ctrl+Up    move up
+bindsym Mod4+Ctrl+Right move right
+
 bindsym $mod+Left  focus left
 bindsym $mod+Down  focus down
 bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
-
-bindsym Mod4+Tab focus right
-bindsym Mod4+Shift+Tab focus left
-bindsym Mod4+Ctrl+Tab focus down
 
 bindsym $mod+Shift+Left  move left
 bindsym $mod+Shift+Down  move down
@@ -220,7 +229,7 @@ bindsym $mod+v split v
 
 bindsym $mod+f fullscreen
 
-bindsym Mod4+F5 fullscreen
+bindsym $mod+F1 fullscreen
 
 bindsym $mod+space layout toggle all
 
@@ -236,47 +245,36 @@ bindsym $mod+t layout tabbed
 
 bindsym $mod+Shift+F floating toggle
 
-bindsym Mod4+F6 floating toggle
+bindsym $mod+F2 floating toggle
 
 # change focus between tiling / floating windows
 
 bindsym $mod+Mod1+F focus mode_toggle
 
-bindsym Mod4+F7 focus mode_toggle
+bindsym $mod+F3 focus mode_toggle
 
 # }}}2
 
-# Espaces de travail {{{2
+# Bureaux {{{2
+
+bindsym $mod+Prior workspace prev
+bindsym $mod+Next  workspace next
+
+bindsym Mod4+F1 workspace $bureau0
+bindsym Mod4+F2 workspace $bureau1
+bindsym Mod4+F3 workspace $bureau2
+bindsym Mod4+F4 workspace $bureau3
+bindsym Mod4+F5 workspace $bureau4
+
+bindsym Mod4+Shift+F1 move workspace $bureau0
+bindsym Mod4+Shift+F2 move workspace $bureau1
+bindsym Mod4+Shift+F3 move workspace $bureau2
+bindsym Mod4+Shift+F4 move workspace $bureau3
+bindsym Mod4+Shift+F5 move workspace $bureau4
 
 bindsym $mod+w exec --no-startup-id ~/racine/shell/dialog/rofi-bureaux.zsh
 
 bindsym $mod+Shift+W exec --no-startup-id ~/racine/shell/dialog/rofi-renomme-bureau.zsh
-
-bindsym Mod4+Ctrl+Left workspace prev
-bindsym Mod4+Ctrl+Right workspace next
-
-bindsym $mod+F1 workspace $espace0
-bindsym $mod+F2 workspace $espace1
-bindsym $mod+F3 workspace $espace2
-bindsym $mod+F4 workspace $espace3
-
-# parenleft 5
-bindsym $mod+parenleft workspace $espace4
-
-bindsym $mod+Shift+F1 move workspace $espace0
-bindsym $mod+Shift+F2 move workspace $espace1
-bindsym $mod+Shift+F3 move workspace $espace2
-bindsym $mod+Shift+F4 move workspace $espace3
-
-bindsym Mod4+F1 workspace $espace0
-bindsym Mod4+F2 workspace $espace1
-bindsym Mod4+F3 workspace $espace2
-bindsym Mod4+F4 workspace $espace3
-
-bindsym Mod4+Shift+F1 move workspace $espace0
-bindsym Mod4+Shift+F2 move workspace $espace1
-bindsym Mod4+Shift+F3 move workspace $espace2
-bindsym Mod4+Shift+F4 move workspace $espace3
 
 # }}}2
 
@@ -310,8 +308,10 @@ bindsym --whole-window ctrl+button3 exec --no-startup-id ~/racine/shell/dialog/r
 bindsym $mod+Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh
 
 bindsym $mod+Return exec yakuake
-bindsym $mod+dollar exec konsole
+bindsym $mod+dollar exec xterm -e zsh -l
 bindsym $mod+asterisk exec urxvtc -e zsh -l
+bindsym $mod+Shift+sterling exec tilix
+bindsym $mod+equal exec tilix -q -e zsh -l
 
 bindsym $mod+z exec xset dpms force off
 
@@ -450,42 +450,46 @@ bindsym Mod1+F focus mode_toggle
 
 # }}}2
 
-# Espaces de travail {{{2
+# Bureaux {{{2
 
-bindsym w exec --no-startup-id ~/racine/shell/dialog/rofi-bureaux.zsh
+bindsym w exec --no-startup-id ~/racine/shell/dialog/rofi-bureaux.zsh ; mode "default"
 
-bindsym Shift+W exec --no-startup-id ~/racine/shell/dialog/rofi-renomme-bureau.zsh
+bindsym Shift+W exec --no-startup-id ~/racine/shell/dialog/rofi-renomme-bureau.zsh ; mode "default"
 
-bindsym Ctrl+Left workspace prev
-bindsym Ctrl+Right workspace next
+bindsym Prior workspace prev
+bindsym Next  workspace next
 
-bindsym F1 workspace $espace0
-bindsym F2 workspace $espace1
-bindsym F3 workspace $espace2
-bindsym F4 workspace $espace3
+bindsym F1 workspace $bureau0
+bindsym F2 workspace $bureau1
+bindsym F3 workspace $bureau2
+bindsym F4 workspace $bureau3
+bindsym F5 workspace $bureau4
 
-bindsym Shift+F1 move workspace $espace0
-bindsym Shift+F2 move workspace $espace1
-bindsym Shift+F3 move workspace $espace2
-bindsym Shift+F4 move workspace $espace3
+bindsym Shift+F1 move workspace $bureau0
+bindsym Shift+F2 move workspace $bureau1
+bindsym Shift+F3 move workspace $bureau2
+bindsym Shift+F4 move workspace $bureau3
+bindsym Shift+F5 move workspace $bureau4
 
 # }}}2
 
 # Système {{{2
 
-bindsym ampersand exec yakuake
-bindsym dollar exec konsole
-bindsym asterisk exec urxvtc -e zsh -l
+bindsym ampersand exec yakuake ; mode "default"
+bindsym dollar exec xterm -e zsh -l ; mode "default"
+bindsym asterisk exec urxvtc -e zsh -l ; mode "default"
+bindsym Shift+sterling exec tilix ; mode "default"
+bindsym equal exec tilix -q -e zsh -l ; mode "default"
 
-bindsym colon exec --no-startup-id ~/racine/shell/dialog/rofi-meta.zsh
+bindsym colon exec --no-startup-id ~/racine/shell/dialog/rofi-meta.zsh ; mode "default"
 
-bindsym Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh
+bindsym Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh ; mode "default"
 
 bindsym z exec xset dpms force off
 
 # Supporte les images png
 
-bindsym l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png
+bindsym l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png ; mode "default"
 
 # }}}2
 
@@ -561,6 +565,12 @@ bindsym Mod4+F12 mode "applications"
 
 mode "applications" {
 
+bindsym Ampersand exec yakuake ; mode "default"
+bindsym Dollar exec xterm -e zsh -l ; mode "default"
+bindsym Asterisk exec urxvtc -e zsh -l ; mode "default"
+bindsym Shift+sterling exec tilix ; mode "default"
+bindsym equal exec tilix ; mode "default"
+
 bindsym v exec --no-startup-id ~/racine/shell/run/lance-gvim.zsh ; mode "default"
 
 bindsym n exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh ; mode "default"
@@ -570,7 +580,6 @@ bindsym e exec --no-startup-id ~/racine/shell/run/lance-emacs-client.zsh ; mode 
 bindsym Shift+E exec --no-startup-id ~/racine/shell/run/lance-emacs.zsh ; mode "default"
 
 bindsym f exec firefox ; mode "default"
-bindsym k exec konsole ; mode "default"
 bindsym g exec geogebra ; mode "default"
 bindsym l exec lxterminal ; mode "default"
 bindsym m exec musescore ; mode "default"
@@ -578,9 +587,7 @@ bindsym o exec libreoffice ; mode "default"
 bindsym p exec pcmanfm ; mode "default"
 bindsym q exec qutebrowser ; mode "default"
 bindsym s exec mp3splt-gtk ; mode "default"
-bindsym u exec urxvtc -e zsh -l ; mode "default"
 bindsym x exec xclock ; mode "default"
-bindsym y exec yakuake ; mode "default"
 bindsym z exec zathura ; mode "default"
 
 bindsym Shift+F exec filezilla ; mode "default"
@@ -619,11 +626,11 @@ bindsym c exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xf
 
 # Affichage des outils
 
-bindsym dollar [instance="deroulant"] scratchpad show ; \
+bindsym F5 [instance="deroulant"] scratchpad show ; \
 	[instance="deroulant"] move position center ; \
 	[instance="deroulant"] move up 100
 
-bindsym equal [instance="calculatrice"] scratchpad show ; \
+bindsym F6 [instance="calculatrice"] scratchpad show ; \
 	[instance="calculatrice"] move position center ; \
 	[instance="calculatrice"] move up 100
 
