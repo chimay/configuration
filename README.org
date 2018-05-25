@@ -10,7 +10,7 @@ the context. For example :
 
   - Vim
 
-    + Mutt index
+    + Neomutt index
 
   - Less
 
@@ -18,13 +18,60 @@ the context. For example :
 
     + W3m
 
-    + Mutt pager
+    + Neomutt pager
+
+    + Newsboat
 
   - Emacs
 
     + Zsh
 
-    + Elinks input fields
+    + Elinks edit mode
+
+Beyond thar, some applications :
+
+  - Can use an independant keymap introduced by a prefix key
+
+    + tmux
+
+  - Can use independant keymap modes
+
+    + i3
+
+
+* Key Bindings
+
+Reserved for Window Manager (i3) :
+
+  - Mod3 (menu key) with any other key
+
+  - Mod4 (super key) with
+
+    + Arrows
+
+    + Page Up / Down
+
+    + Home / End
+
+    + Other modifier
+
+  - Préfix chosen in the previous keys
+
+  - Sub mode entered with one or more of the previous keys
+
+Reserved for applications :
+
+  - Mod 4 with all other keys :
+
+    + Letters
+
+    + Digits
+
+    + & @ ^ $ ! ( ) [ ] { } ...
+
+  - Préfix chosen in the previous keys
+
+  - Sub mode entered with one or more of the previous keys
 
 
 * Warning

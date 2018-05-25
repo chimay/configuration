@@ -917,11 +917,29 @@ endfunc
 
 " }}}2
 
+" Fenêtres {{{2
+
+nnoremap <S-Left>  <C-W><Left>
+nnoremap <S-Right> <C-W><Right>
+nnoremap <S-Up>    <C-W><Up>
+nnoremap <S-Down>  <C-W><Down>
+
+" }}}2
+
 "  Onglets {{{2
 
 nnoremap <m-t> :tabnew<cr>
 
 nnoremap <m-s-t> :tabe <C-R>=expand("%:p:h") . "/*" <CR><C-D>
+
+nnoremap <C-PageUp> gT
+nnoremap <C-PageDown> gt
+
+nnoremap <C-Left> :tabm -1<cr>
+nnoremap <C-Right> :tabm +1<cr>
+
+nnoremap <C-Home>  :tabfirst<cr>
+nnoremap <C-End> :tablast<cr>
 
 nnoremap [t gT
 nnoremap ]t gt
@@ -931,15 +949,6 @@ nnoremap ]T :tabm +1<cr>
 
 nnoremap [<c-t> :tabfirst<cr>
 nnoremap ]<c-t> :tablast<cr>
-
-nnoremap <S-PageUp> gT
-nnoremap <S-PageDown> gt
-
-nnoremap <S-Left> gT
-nnoremap <S-Right> gt
-
-nnoremap <S-Home> :tabm -1<cr>
-nnoremap <S-End> :tabm +1<cr>
 
 " }}}2
 
@@ -1011,9 +1020,6 @@ nnoremap G G$zt
 
 nnoremap + gj
 nnoremap - gk
-
-nnoremap <S-Up> gk
-nnoremap <S-Down> gj
 
 inoremap <S-Up> <C-o>gk
 inoremap <S-Down> <C-o>gj
@@ -1278,7 +1284,9 @@ nnoremap <m-$> :terminal bash<cr>
 
 set termwinkey=<C-W>
 
-tnoremap <F5> <C-W>N
+tnoremap <m-n> <C-W>N
+
+tnoremap <m-q> <C-W>N:ls!<cr>:silent bd!<space>
 
 " }}}2
 
@@ -1476,7 +1484,7 @@ set nostartofline
 
 set splitbelow
 
-" set splitright
+set splitright
 
 " }}}2
 

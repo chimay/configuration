@@ -941,12 +941,12 @@ endfunc
 
 " Fenêtres {{{2
 
-nnoremap <D-w>  <C-W>w
+nnoremap <S-Left>  <C-W><Left>
+nnoremap <S-Right> <C-W><Right>
+nnoremap <S-Up>    <C-W><Up>
+nnoremap <S-Down>  <C-W><Down>
 
-nnoremap <D-Left>  <C-W><Left>
-nnoremap <D-Right> <C-W><Right>
-nnoremap <D-Up>    <C-W><Up>
-nnoremap <D-Down>  <C-W><Down>
+nnoremap <D-w>  <C-W>w
 
 " }}}2
 
@@ -956,6 +956,15 @@ nnoremap <m-t> :tabnew<cr>
 
 nnoremap <m-s-t> :tabe <C-R>=expand("%:p:h") . "/*" <CR><C-D>
 
+nnoremap <C-PageUp> gT
+nnoremap <C-PageDown> gt
+
+nnoremap <C-Left> :tabm -1<cr>
+nnoremap <C-Right> :tabm +1<cr>
+
+nnoremap <C-Home>  :tabfirst<cr>
+nnoremap <C-End> :tablast<cr>
+
 nnoremap [t gT
 nnoremap ]t gt
 
@@ -964,15 +973,6 @@ nnoremap ]T :tabm +1<cr>
 
 nnoremap [<c-t> :tabfirst<cr>
 nnoremap ]<c-t> :tablast<cr>
-
-nnoremap <S-PageUp> gT
-nnoremap <S-PageDown> gt
-
-nnoremap <S-Left> gT
-nnoremap <S-Right> gt
-
-nnoremap <S-Home> :tabm -1<cr>
-nnoremap <S-End> :tabm +1<cr>
 
 " }}}2
 
@@ -1052,9 +1052,6 @@ nnoremap G G$zt
 
 nnoremap + gj
 nnoremap - gk
-
-nnoremap <S-Up> gk
-nnoremap <S-Down> gj
 
 inoremap <S-Up> <C-o>gk
 inoremap <S-Down> <C-o>gj
@@ -1242,9 +1239,6 @@ cnoremap <C-F> <Right>
 
 " Mot suivant / précédent
 
-" cnoremap <C-^> <C-Left>
-" cnoremap <C-@> <C-Right>
-
 cnoremap <m-b> <C-Left>
 cnoremap <m-f> <C-Right>
 
@@ -1397,19 +1391,24 @@ nnoremap <D-l> :set cursorline!<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <m-$> :split \| e term://
+nnoremap <D-$> :split \| e term://$SHELL<cr>
 
-nnoremap <D-t> :split \| e term://$SHELL<cr>
+nnoremap <D-!> :split \| e term://
 
 " Passer en mode normal
 
 " En référence à Ctrl-Q / Ctrl-S
 
-tnoremap <Esc> <C-\><C-n>
-
-tnoremap <D-s> <C-\><C-n>
+tnoremap <D-n> <C-\><C-n>
 
 tnoremap <D-^> <C-\><C-n><C-^>
+
+nnoremap <D-w> <C-W>w
+
+tnoremap <D-h> <C-\><C-n><C-W><Left>
+tnoremap <D-j> <C-\><C-n><C-W><Down>
+tnoremap <D-k> <C-\><C-n><C-W><Up>
+tnoremap <D-l> <C-\><C-n><C-W><Right>
 
 tnoremap <D-q> <C-\><C-n>:ls!<cr>:silent bd!<space>
 
@@ -1532,7 +1531,7 @@ set sidescroll=7
 " Minimum de lignes visibles à l'écran
 " au-dessus et en-dessous du curseur
 
-set scrolloff=4
+set scrolloff=7
 
 " Minimum de colonnes visibles à l'écran
 " à gauche et à droite du curseur
@@ -1591,7 +1590,7 @@ set nostartofline
 
 set splitbelow
 
-" set splitright
+set splitright
 
 " }}}2
 
