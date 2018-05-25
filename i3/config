@@ -187,10 +187,17 @@ bindsym Mod4+Prior focus left
 bindsym Mod4+Home focus up
 bindsym Mod4+End focus down
 
-bindsym Mod4+Ctrl+Left  move left
-bindsym Mod4+Ctrl+Down  move down
-bindsym Mod4+Ctrl+Up    move up
-bindsym Mod4+Ctrl+Right move right
+bindsym Mod4+Left  focus left
+bindsym Mod4+Down  focus down
+bindsym Mod4+Up    focus up
+bindsym Mod4+Right focus right
+
+bindsym Mod4+Tab focus right
+
+bindsym Mod4+Shift+Left  move left
+bindsym Mod4+Shift+Down  move down
+bindsym Mod4+Shift+Up    move up
+bindsym Mod4+Shift+Right move right
 
 bindsym $mod+Left  focus left
 bindsym $mod+Down  focus down
@@ -349,21 +356,6 @@ bindsym Mod4+Ctrl+Shift+V exec vlc
 
 bindsym $mod+o move scratchpad
 bindsym $mod+0 scratchpad show
-
-# Lancement des outils
-
-bindsym Mod4+Shift+d exec --no-startup-id urxvtc -name deroulant -geometry 70x20 -e zsh -l
-bindsym Mod4+Shift+c exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xft:monospace:size=12" -e calc
-
-# Affichage des outils
-
-bindsym $mod+F5 [instance="deroulant"] scratchpad show ; \
-	[instance="deroulant"] move position center ; \
-	[instance="deroulant"] move up 100
-
-bindsym $mod+F6 [instance="calculatrice"] scratchpad show ; \
-	[instance="calculatrice"] move position center ; \
-	[instance="calculatrice"] move up 100
 
 # }}}2
 
@@ -621,18 +613,20 @@ bindsym 0 scratchpad show
 
 # Lancement des outils
 
-bindsym d exec --no-startup-id urxvtc -name deroulant -geometry 70x20 -e zsh -l
-bindsym c exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xft:monospace:size=12" -e calc
+bindsym Shift+D exec --no-startup-id urxvtc -name deroulant -geometry 70x20 -e zsh -l
+bindsym Shift+C exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xft:monospace:size=12" -e calc
 
 # Affichage des outils
 
-bindsym F5 [instance="deroulant"] scratchpad show ; \
+bindsym d [instance="deroulant"] scratchpad show ; \
 	[instance="deroulant"] move position center ; \
-	[instance="deroulant"] move up 100
+	[instance="deroulant"] move up 100 ; \
+	mode "default"
 
-bindsym F6 [instance="calculatrice"] scratchpad show ; \
+bindsym c [instance="calculatrice"] scratchpad show ; \
 	[instance="calculatrice"] move position center ; \
-	[instance="calculatrice"] move up 100
+	[instance="calculatrice"] move up 100 ; \
+	mode "default"
 
 # Back to normal {{{2
 
