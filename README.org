@@ -5,6 +5,9 @@
 
 A coherent set of configuration files for my favorite apps.
 
+
+* Keybindings
+
 The keybindings are essentially vim, less or emacs like, depending on
 the context. For example :
 
@@ -28,7 +31,10 @@ the context. For example :
 
     + Elinks edit mode
 
-Beyond thar, some applications :
+
+** Prefix & Modes
+
+Some applications :
 
   - Can use an independant keymap introduced by a prefix key
 
@@ -39,9 +45,9 @@ Beyond thar, some applications :
     + i3
 
 
-* Key Bindings
+** Allocation
 
-Reserved for Window Manager (i3) :
+The following keys are reserved for Window Manager (i3) :
 
   - Mod3 (menu key) with any key(s)
 
@@ -63,7 +69,7 @@ Reserved for Window Manager (i3) :
 
   - Sub mode entered with one or more of the previous keys
 
-Reserved for applications :
+The following keys are reserved for applications :
 
   - Mod4 with all other keys :
 
@@ -76,6 +82,95 @@ Reserved for applications :
   - Préfix chosen in the previous keys
 
   - Sub mode entered with one or more of the previous keys
+
+
+** Coherence
+
+To be as intuitive as possible, some conventions are applied :
+
+  - Mod4 + arrows to move focus between X windows
+
+  - Shift + arrows to move focus between :
+
+    + Vim windows
+
+    + Emacs windows
+
+    + Tmux panes
+
+  - Ctrl + arrows to move focus between applications tabs
+
+  - Can use an independant keymap introduced by a prefix key
+
+    + tmux
+
+  - Can use independant keymap modes
+
+    + i3
+
+
+** Allocation
+
+The following keys are reserved for Window Manager (i3) :
+
+  - Mod3 (menu key) with any key(s)
+
+  - Mod4 (super key) with
+
+    + Arrows
+
+    + Page Up / Down
+
+    + Home / End
+
+    + Modifier(s)
+
+  - Mod4 with other modifier(s) and
+
+    + Any key(s)
+
+  - Préfix chosen in the previous keys
+
+  - Sub mode entered with one or more of the previous keys
+
+The following keys are reserved for applications :
+
+  - Mod4 with all other keys :
+
+    + Letters
+
+    + Digits
+
+    + & @ ^ $ ! ( ) [ ] { } ...
+
+  - Préfix chosen in the previous keys
+
+  - Sub mode entered with one or more of the previous keys
+
+
+** Coherence
+
+To be as intuitive as possible, some conventions are applied :
+
+  - Move focus between X windows :
+
+    + Mod4 + arrows
+
+  - Move focus between tmux panes, vim and emacs windows :
+
+    + Shift + arrows
+
+  - Move focus between buffers :
+
+    + Meta (Alt) + left / right arrows
+
+    + Meta (Alt) + page up / down
+
+  - Move focus between tabs :
+
+    + Ctrl + left / right arrows
+
+    + Ctrl + page up / down
 
 
 * Warning
