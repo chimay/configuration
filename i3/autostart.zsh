@@ -23,7 +23,9 @@ alias psgrep='ps auxww | grep -v grep | grep --color=never'
 
 # Configuration {{{1
 
-xrdb ~/.Xresources
+# Juste pour être sûr
+
+xrdb -load ~/.Xresources
 
 # }}}1
 
@@ -60,6 +62,12 @@ psgrep fond-ecran || fond-ecran.zsh 7 +30 ~/graphix/list/wallpaper.gen >>! ~/log
 
 # Services {{{1
 
+# Bindings clavier & souris {{{2
+
+xbindkeys
+
+# }}}2
+
 # Presse-papier {{{2
 
 greenclip daemon &
@@ -82,7 +90,14 @@ psgrep urxvtd || urxvtd -q -o -f
 
 psgrep mpd || { rm -f ~/racine/run/mpd/pid ; mpd ~/racine/config/music/mpd.conf }
 
-psgrep mplayer || mplayer -idle -slave -input file=$HOME/racine/run/fifo/mplayer &>>! ~/log/mplayer.log &!
+psgrep mplayer || \
+	mplayer \
+	-idle \
+	-slave \
+	-input file=$HOME/racine/run/fifo/mplayer \
+	-softvol \
+	-softvol-max 150 \
+	&>>! ~/log/mplayer.log &!
 
 # }}}2
 
