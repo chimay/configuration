@@ -4,8 +4,8 @@
 
 save-path "~/racine/news/saved"
 
-browser w3m
-#browser elinks
+#browser w3m
+browser elinks
 external-url-viewer "urlview"
 
 cleanup-on-quit yes
@@ -29,8 +29,8 @@ bind-key k up
 
 bind-key NPAGE pagedown
 bind-key PPAGE pageup
-bind-key d pagedown
-bind-key u pageup
+bind-key SPACE pagedown
+bind-key b pageup
 
 bind-key r reload
 bind-key R reload-all
@@ -53,17 +53,18 @@ bind-key q quit
 
 bind-key Q hard-quit
 
-bind-key w save
-
 bind-key f edit-flags
 
 bind-key | pipe-to
-bind-key U show-urls
+bind-key u show-urls
 bind-key B open-in-browser
 bind-key ^B open-in-browser-and-mark-read
 
 bind-key ) next-unread
 bind-key ( prev-unread
+
+bind-key D delete-article
+bind-key w purge-deleted
 
 bind-key = view-dialogs
 bind-key § view-dialogs
@@ -78,8 +79,8 @@ bind-key ^P prev-dialog
 #bind-key j next-feed feedlist
 #bind-key k prev-feed feedlist
 
-bind-key n mark-feed-read
-bind-key N mark-all-feeds-read
+bind-key n mark-feed-read feedlist
+bind-key N mark-all-feeds-read feedlist
 
 # }}}2
 
@@ -91,17 +92,19 @@ bind-key N mark-all-feeds-read
 bind-key ^ prev-feed articlelist
 bind-key $ next-feed articlelist
 
-bind-key n toggle-article-read
-bind-key N mark-feed-read
+bind-key n toggle-article-read articlelist
+bind-key N mark-feed-read articlelist
 
 # }}}2
 
 # Article {{{2
 
+bind-key n toggle-article-read article
+
+bind-key w save article
+
 bind-key ^ prev article
 bind-key $ next article
-
-bind-key n toggle-article-read
 
 # }}}2
 
