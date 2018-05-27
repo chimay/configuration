@@ -421,23 +421,11 @@ filextype */
 
 " Thème {{{1
 
-" Selected color scheme
-
-"colorscheme Default
-
 colorscheme personnel
 
-" Format for displaying time in file list. For example:
-" TIME_STAMP_FORMAT=%m/%d-%H:%M
-" See man date or man strftime for details.
-
-"set timefmt=%m/%d\ %H:%M
+set fillchars=vborder:|
 
 set timefmt=" %d/%m %H:%M"
-
-" Set custom status line look
-
-"set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 set statusline="  %t %T %A %E / %a %u:%g %D %z"
 
