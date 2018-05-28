@@ -2,11 +2,13 @@
 
 # Autoload {{{1
 
+# Voir aussi <url:~/racine/config/cmdline/zsh/zshenv#tn=Fonctions>
+
 # Pour recompiler :
 # voir make dans
 # ~/racine/dotdir/zsh/autoload/Makefile
 
-for fichier in ~/racine/dotdir/zsh/autoload/*/*(.:t)
+for fichier in ~/racine/fun/zsh/autoload/*/*(.:t)
 do
 	autoload $fichier
 done
@@ -14,6 +16,67 @@ done
 # }}}1
 
 # Fonctions ordinaires {{{1
+
+# err : display to stderr {{{2
+
+err () {
+
+	print "$@" 1>&2
+}
+
+# }}}2
+
+# x : échange des noms de fichiers {{{2
+
+x () {
+	(( $# < 2 )) && {
+		echo "Usage : x <file-1> <file 2>"
+		echo
+		return 1
+	}
+
+	local TMPFILE=tmp-$1-$2.$$
+
+	mv "$1" $TMPFILE
+
+	mv "$2" "$1"
+
+	mv $TMPFILE "$2"
+}
+
+# }}}2
+
+# nf : nombre-de-fichiers {{{2
+
+nf () {
+	local arguments
+	local repertoire
+
+	if (( $# == 0 ))
+	then
+		arguments=.
+	else
+		arguments=($@)
+	fi
+
+	for repertoire in $arguments
+	do
+		[[ -d $repertoire ]] || continue
+
+		echo "`print -l ${repertoire}/**/*(.) | wc -l` : $repertoire"
+	done
+}
+
+# }}}2
+
+# mrm : most recent modified files {{{2
+
+mrm () {
+
+	command ls -lht "$@" | command head -n 15
+}
+
+# }}}2
 
 # grep {{{2
 
@@ -305,58 +368,6 @@ ptree () {
 
 # }}}2
 
-# nf : nombre-de-fichiers {{{2
-
-nf () {
-	local arguments
-	local repertoire
-
-	if (( $# == 0 ))
-	then
-		arguments=.
-	else
-		arguments=($@)
-	fi
-
-	for repertoire in $arguments
-	do
-		[[ -d $repertoire ]] || continue
-
-		echo "`print -l ${repertoire}/**/*(.) | wc -l` : $repertoire"
-	done
-}
-
-# }}}2
-
-# err: display to stderr {{{2
-
-err () {
-
-	print "$@" 1>&2
-}
-
-# }}}2
-
-# x : échange des noms de fichiers {{{2
-
-x () {
-	(( $# < 2 )) && {
-		echo "Usage : x <file-1> <file 2>"
-		echo
-		return 1
-	}
-
-	local TMPFILE=tmp-$1-$2.$$
-
-	mv "$1" $TMPFILE
-
-	mv "$2" "$1"
-
-	mv $TMPFILE "$2"
-}
-
-# }}}2
-
 # pageur {{{2
 
 pageur () {
@@ -372,24 +383,6 @@ pageur () {
 	}
 
 	$=less "$@"
-}
-
-# }}}2
-
-# commande-mplayer {{{2
-
-commande-mplayer () {
-
-	echo $* > ~/racine/run/fifo/mplayer
-}
-
-# }}}2
-
-# lh : liste-recents {{{2
-
-lh () {
-
-	command ls -lht "$@" | command head -n 13
 }
 
 # }}}2
@@ -522,6 +515,24 @@ sshx() {
     fi
 
 	return $code
+}
+
+# }}}2
+
+# cmd-mplayer {{{2
+
+cmd-mplayer () {
+
+	echo $* > ~/racine/run/fifo/mplayer
+}
+
+# }}}2
+
+# cmd-mpv {{{2
+
+cmd-mpv () {
+
+	echo $* > ~/racine/run/fifo/mpv
 }
 
 # }}}2

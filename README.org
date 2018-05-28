@@ -49,9 +49,9 @@ Some applications :
 
 The following keys are reserved for Window Manager (i3) :
 
-  - Mod3 (menu key) with any key(s)
+  - Menu (Mod3) with any key(s)
 
-  - Mod4 (super key) with
+  - Super (Mod4) with
 
     + Arrows
 
@@ -63,7 +63,7 @@ The following keys are reserved for Window Manager (i3) :
 
     + Modifier(s)
 
-  - Mod4 with other modifier(s) and
+  - Super with other modifier(s) and
 
     + Any key(s)
 
@@ -73,7 +73,7 @@ The following keys are reserved for Window Manager (i3) :
 
 The following keys are reserved for applications :
 
-  - Mod4 with all other keys :
+  - Super with all other keys :
 
     + Letters
 
@@ -90,9 +90,15 @@ The following keys are reserved for applications :
 
 To be as intuitive as possible, some conventions are applied :
 
+  - Move focus between desktops :
+
+    + Menu + page up / down
+
   - Move focus between X windows :
 
-    + Mod4 + arrows
+    + Super + arrows
+
+    + Super + page up / down, prior / next
 
   - Move focus between tmux panes, vim and emacs windows :
 
@@ -109,6 +115,24 @@ To be as intuitive as possible, some conventions are applied :
     + Ctrl + left / right arrows
 
     + Ctrl + page up / down
+
+    + In pager context : ^ and $
+
+  - Move in history
+
+    + In pager context
+
+      * Backspace = back
+
+      * H = back
+
+      * L = forward
+
+    + In REPL context
+
+      * Up, M-p  = back, with typed text as filter
+
+      * Down, M-n = forward, with typed text as filter
 
 
 * Warning

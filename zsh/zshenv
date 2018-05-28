@@ -58,7 +58,7 @@ export TERMINAL=konsole
 
 export RACINE_ZSH=~/racine/config/cmdline/zsh
 
-export SHELL=zsh
+export SHELL=/bin/zsh
 
 export ZDOTDIR=$HOME
 
@@ -137,11 +137,10 @@ manpath+=(/usr/local/man)
 
 typeset -U fpath
 
-# fpath=(~/racine/dotdir/zsh/autoload/*(F) $fpath)
-# fpath=(~/racine/dotdir/zsh/completion/*(F) $fpath)
+# Voir aussi <url:~/racine/config/cmdline/zsh/fonction.zsh#tn=Autoload>
 
-fpath+=(~/racine/dotdir/zsh/autoload/*(F))
-fpath+=(~/racine/dotdir/zsh/completion/*(F))
+fpath+=(~/racine/fun/zsh/autoload/*(F))
+fpath+=(~/racine/fun/zsh/completion/*(F))
 
 # }}}3
 
@@ -375,20 +374,21 @@ export LESSECHO=lessecho
 
 # Couleurs {{{3
 
+# Voir <url:~/racine/snippet/shell.snip#tn=ANSI Codes>
+# pour les codes effets & couleurs
+
 # LESS_TERMCAP_md # begin bold
-# LESS_TERMCAP_us # begin underline
 # LESS_TERMCAP_mb # begin blinking
+# LESS_TERMCAP_us # begin underline
 # LESS_TERMCAP_so # begin standout-mode - info box
 
 export LESS_TERMCAP_md=$'\E[0;31m'
 
-#export LESS_TERMCAP_us=$'\E[4m'$'\E[1;30m'
-export LESS_TERMCAP_us=$'\E[0;33m'
-
 export LESS_TERMCAP_mb=$'\E[5m'
 
+export LESS_TERMCAP_us=$'\E[3;33m'
+
 export LESS_TERMCAP_so=$'\E[7m'
-#export LESS_TERMCAP_so=$'\E[0;33m'
 
 # LESS_TERMCAP_me # end mode
 # LESS_TERMCAP_ue # end underline
@@ -435,7 +435,7 @@ export EMACSLOADPATH="~/racine/plugin/manager/el-get/emacs-async:"
 
 # Eshell
 
-export ESHELL=zsh
+export ESHELL=/bin/zsh
 
 # Tags
 
@@ -506,7 +506,9 @@ export RUBYLIB=~/racine/ruby/lib
 
 #  Navigateurs {{{1
 
-export BROWSER=qutebrowser
+#export BROWSER=w3m
+export BROWSER=elinks
+#export BROWSER=qutebrowser
 
 export WWW_HOME="https://start.duckduckgo.com"
 

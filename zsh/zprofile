@@ -1,13 +1,14 @@
 # vim: set ft=zsh :
 
-# {{{ Chemins des exécutables
-# ------------------------------------
+# Chemins des exécutables {{{1
 
 setopt null_glob
 
 typeset -U path
 
 path=()
+
+# Langages de script {{{2
 
 # pip & autres
 
@@ -17,8 +18,10 @@ path+=(~/.local/bin)
 
 path+=(~/.gem/ruby/*/bin)
 
-# Racine dans $HOME
-#
+# }}}2
+
+# Racine dans $HOME {{{2
+
 # *(F) = répertoires non vides
 
 path+=(~/racine/self)
@@ -29,11 +32,16 @@ path+=(~/racine/pack/bin)
 
 path+=(~/racine/shell/*(F))
 
-path+=(~/racine/bin/*(F))
+path+=(~/racine/bin/python)
+
+path+=(~/racine/bin/local/bin)
+path+=(~/racine/bin/go/bin)
 
 path+=(~/racine/install/*(F))
 
-# System
+# }}}2
+
+# Système {{{2
 
 path+=(/usr/local/bin)
 path+=(/usr/local/sbin)
@@ -48,4 +56,6 @@ path+=(/usr/bin/core_perl)
 path+=(/usr/bin/site_perl)
 path+=(/usr/bin/vendor_perl)
 
-# }}}
+# }}}2
+
+# }}}1
