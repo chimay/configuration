@@ -1264,7 +1264,7 @@ Client et server
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "s-c s-x") 'save-buffers-kill-emacs)
+(global-set-key (kbd "s-a s-z") 'save-buffers-kill-emacs)
 
 #+end_src
 
@@ -1468,6 +1468,11 @@ Voir aussi hydra dans la configuration des paquets
 (global-set-key (kbd "C-x <C-down>") 'windmove-down)
 (global-set-key (kbd "C-x <C-right>") 'windmove-right)
 (global-set-key (kbd "C-x <C-left>") 'windmove-left)
+
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 (global-set-key (kbd "<f12> f") 'follow-mode)
 

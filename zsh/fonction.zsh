@@ -387,6 +387,14 @@ pageur () {
 
 # }}}2
 
+# vf : vim quick fix {{{1
+
+vf () {
+	vim +cope -q <(ag --no-color --vimgrep --smart-case "$@")
+}
+
+# }}}1
+
 # ssh {{{2
 
 ssh() {
