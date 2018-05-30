@@ -2,6 +2,8 @@
 
 " Options {{{1
 
+set cpoptions=st
+
 " Important pour lancer les commandes externes
 
 set shell=/bin/zsh
@@ -45,7 +47,7 @@ set fastrun
 
 " Tri
 
-set sort=-mtime,+name
+set sort=+name,-mtime
 
 " Natural sort of (version) numbers within text.
 
@@ -58,7 +60,7 @@ set undolevels=100
 " If you installed the vim.txt help file set vimhelp.
 " If would rather use a plain text help file set novimhelp.
 
-set novimhelp
+set vimhelp
 
 " If you would like to run an executable file when you
 " press return on the file name set this.
@@ -465,26 +467,88 @@ set viewcolumns=*50%{name}.,25%{mtime}.,15%{size}.,10%{ext}.
 " command! vgrep vim "+grep %a"
 " command! reload :write | restart
 
-command! diff vimdiff %f %F
+"command! h help
+
+command! vimdiff vimdiff %f %F
 command! link ln -s %d/%f %D
 
 " }}}1
 
 " Mappings {{{1
 
+" Concept
+"
+" Left ou h : répertoire parent
+" Down ou j : fichier suivant
+" Up ou j : fichier précédent
+" Right ou l : on entre dans le répertoire, ou on visualise le fichier
+
+" Recharger {{{2
+
+" Open editor to edit vifmrc and apply settings after returning to vifm
+
+nnoremap @ :write | edit $MYVIFMRC | restart<cr>
+
+" }}}2
+
+" Présentation {{{2
+
 " Toggle visibility of preview window
 
 nnoremap é :view<cr>
 vnoremap é :view<cr>gv
 
-" Éditer dans vim
+nnoremap è <s-tab>
 
-nnoremap ù :!less %f<cr>
-nnoremap µ :edit<cr>
+qnoremap è <s-tab>
+
+" }}}2
+
+" Sélectionner, tags {{{2
+
+nnoremap <space> t
+
+" }}}2
+
+" Tri {{{2
 
 " Display sorting dialog
 
 nnoremap o :sort<cr>
+
+nnoremap O :invert o<cr>
+
+" }}}2
+
+" Filtres {{{2
+
+" Fichiers cachés
+
+nnoremap zh za
+
+" }}}2
+
+" Visualiser & Éditer {{{2
+
+nnoremap ù :!less %f<cr>
+nnoremap µ :edit<cr>
+
+" Open file in the background using its default program
+
+nnoremap <m-e> :file &<cr>
+
+" }}}2
+
+" Répertoires {{{2
+
+nnoremap H :histprev<cr>
+nnoremap L :histnext<cr>
+
+nnoremap qd :history d<cr>
+
+" }}}2
+
+" Renommer {{{2
 
 " Mappings for faster renaming
 
@@ -492,43 +556,49 @@ nnoremap I cw<c-a>
 nnoremap cc cw<c-u>
 nnoremap A cw
 
+" }}}2
+
+" Copier, Coller, Supprimer {{{2
+
+" Copier & Déplacer
+
+nnoremap ç :!cp %f %D<cr>
+nnoremap à :!mv %f %D<cr>
+
 " Copier & Coller
-
-nnoremap yY yy
-nnoremap yy :!cp %f %D<cr>
-
-nnoremap dD dd
-nnoremap dd :!mv %f %D<cr>
 
 nnoremap yp :clone <cr>
 
 " Corbeille générale
 
 nnoremap <delete> :!trash-put %f<cr>
-nnoremap u :!restore-trash <cr>
+nnoremap DD :!trash-put %f<cr>
+nnoremap DR :!trash-restore <cr>
+
+" }}}2
+
+" Autres opérations sur fichiers {{{2
+
+nnoremap i :!touch<space>
+
+nnoremap a :!mkdir<space>
 
 " Vimdiff
 
-nnoremap à :diff<cr>
+nnoremap <m-d> :vimdiff<cr>
 
 " Symlink
 
-nnoremap £ :link<cr>
+nnoremap <m-l> :link<cr>
+
+" }}}2
+
+" Shell {{{2
 
 " Start shell in current directory
 
 nnoremap $ :shell<cr>
 
-" Open file in the background using its default program
-
-nnoremap E :file &<cr>l
-
-" Open editor to edit vifmrc and apply settings after returning to vifm
-
-nnoremap @ :write | edit $MYVIFMRC | restart<cr>
-
-" Sélectionner
-
-nnoremap <space> t
+" }}}2
 
 " }}}1
