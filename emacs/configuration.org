@@ -139,6 +139,8 @@ Fichier utilisé par customize
 
 (setq message-log-max 3000)
 
+(setq debug-on-error t)
+
 #+end_src
 
 
@@ -1374,7 +1376,7 @@ Voir Helm dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<s-v>") 'cua-rectangle-mark-mode)
+(global-set-key (kbd "s-v") 'cua-rectangle-mark-mode)
 
 #+end_src
 
@@ -2768,10 +2770,8 @@ configuration when invoked to evaluate a line."
 
 #+begin_src emacs-lisp
 
-(define-key region-bindings-mode-map (kbd "s-return>) 'mc/mark-next-like-this)
-
+(define-key region-bindings-mode-map (kbd "s-m") 'mc/mark-next-like-this)
 (define-key region-bindings-mode-map (kbd "s-SPC") 'mc/mark-more-like-this-extended)
-
 (define-key region-bindings-mode-map (kbd "s-=") 'mc/edit-lines)
 
 #+end_src
