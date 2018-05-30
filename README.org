@@ -49,7 +49,7 @@ Some applications :
 
 The following keys are reserved for Window Manager (i3) :
 
-  - Menu (Mod3) with any key(s)
+  - Hyper (Mod3, I bind it to the Menu key) with any key(s)
 
   - Super (Mod4) with
 
@@ -92,7 +92,7 @@ To be as intuitive as possible, some conventions are applied :
 
   - Move focus between desktops :
 
-    + Menu + page up / down
+    + Hyper + page up / down
 
   - Move focus between X windows :
 

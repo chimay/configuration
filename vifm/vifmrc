@@ -110,6 +110,13 @@ set scrolloff=4
 "
 " set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 
+" }}}1
+
+" Environnement {{{1
+
+" La variable est ajustée mais pas prise en compte
+"let $LESS="--ignore-case"
+
 " Add additional place to look for executables
 "
 " let $PATH=$HOME.'/bin/fuse:'.$PATH
@@ -498,8 +505,9 @@ nnoremap @ :write | edit $MYVIFMRC | restart<cr>
 nnoremap é :view<cr>
 vnoremap é :view<cr>gv
 
-nnoremap è <s-tab>
+nnoremap $ :sync! all<cr>
 
+nnoremap è <s-tab>
 qnoremap è <s-tab>
 
 " }}}2
@@ -550,11 +558,11 @@ nnoremap qd :history d<cr>
 
 " Renommer {{{2
 
-" Mappings for faster renaming
-
 nnoremap I cw<c-a>
 nnoremap cc cw<c-u>
 nnoremap A cw
+
+nnoremap cv :rename<cr>
 
 " }}}2
 
@@ -579,9 +587,9 @@ nnoremap DR :!trash-restore <cr>
 
 " Autres opérations sur fichiers {{{2
 
-nnoremap i :!touch<space>
+nnoremap af :!touch<space>
 
-nnoremap a :!mkdir<space>
+nnoremap ad :!mkdir<space>
 
 " Vimdiff
 
@@ -597,7 +605,7 @@ nnoremap <m-l> :link<cr>
 
 " Start shell in current directory
 
-nnoremap $ :shell<cr>
+nnoremap <m-s> :shell<cr>
 
 " }}}2
 
