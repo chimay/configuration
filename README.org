@@ -135,6 +135,38 @@ To be as intuitive as possible, some conventions are applied :
       * Down, M-n = forward, with typed text as filter
 
 
+* Features
+
+
+** I3 WM
+
+Why i3 ?
+
+  - Tiling, Tabbed, Staking and floating modes
+
+    + Tiling means all screen space is available for apps
+
+    + Good support for floating window, so you can use it as an hybrid
+       WM if you want
+
+  - Dynamic workspaces
+
+  - Support of Super and Hyper keys in bindings
+
+  - You can define keybinding modes
+
+  - Automatic properties of windows : workspace, floating, size, ...
+
+  - Scriptable via i3-msg
+
+  - You can add rofi scripts, or any script to the panel (called bar)
+    via i3block ; see also i3status for information
+
+To be tested
+
+  - Multi monitors support
+
+
 * Warning
 
 I try to be mindful when I code, but some bugs might remain, so be careful.
