@@ -405,9 +405,6 @@ ssh() {
 	local nom
 
 	options=()
-	mots=()
-
-	# {{{ Arguments
 
 	while true
 	do
@@ -416,17 +413,13 @@ ssh() {
 				options+=$1
 				shift
 				;;
-			?*)
-				mots+=$1
-				shift
-				;;
 			*)
 				break
 				;;
 		esac
 	done
 
-	# }}}
+	mots=("$@")
 
 	nom=${mots[1]%.*}
 
@@ -461,7 +454,7 @@ ssh() {
 
 # }}}2
 
-# sshx : ssh -X sous X Window {{{2
+# sshx : ssh -X pour lancer des apps X Window {{{2
 
 sshx() {
 
@@ -471,9 +464,6 @@ sshx() {
 	local nom
 
 	options=()
-	mots=()
-
-	# {{{ Arguments
 
 	while true
 	do
@@ -482,17 +472,13 @@ sshx() {
 				options+=$1
 				shift
 				;;
-			?*)
-				mots+=$1
-				shift
-				;;
 			*)
 				break
 				;;
 		esac
 	done
 
-	# }}}
+	mots=("$@")
 
 	nom=${mots[1]%.*}
 
