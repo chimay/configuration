@@ -158,11 +158,12 @@ set vifminfo=
 mark 0 ~/racine/plain
 mark 1 ~/racine/site/orgmode
 
-mark s ~/racine/shell
+mark r ~/racine
 
 mark c ~/racine/config
-mark e ~/racine/config/edit
-mark w ~/racine/config/windenv
+mark s ~/racine/shell
+
+mark w ~/graphix/wallpaper
 
 mark D ~/Documents
 
