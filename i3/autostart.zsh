@@ -64,13 +64,13 @@ psgrep fond-ecran || fond-ecran.zsh 7 +30 ~/graphix/list/wallpaper.gen >>! ~/log
 
 # Bindings clavier & souris {{{2
 
-xbindkeys
+psgrep xbindkeys || xbindkeys
 
 # }}}2
 
 # Presse-papier {{{2
 
-greenclip daemon &
+psgrep greenclip || greenclip daemon &
 
 # }}}2
 
@@ -90,14 +90,11 @@ psgrep urxvtd || urxvtd -q -o -f
 
 psgrep mpd || { rm -f ~/racine/run/mpd/pid ; mpd ~/racine/config/music/mpd.conf }
 
-psgrep mplayer || \
-	mplayer \
-	-idle \
-	-slave \
-	-input file=$HOME/racine/run/fifo/mplayer \
-	-softvol \
-	-softvol-max 150 \
-	&>>! ~/log/mplayer.log &!
+psgrep mpv || \
+	mpv \
+	--idle \
+	--input-file=$HOME/racine/run/fifo/mpv \
+	&>>! ~/log/mpv.log &!
 
 # }}}2
 
@@ -155,7 +152,7 @@ synclient RBCornerButton=3
 
 if [ $HOST = shari ] || [ $HOST = tixu ]
 then
-	start-alarm-bat.zsh 15 10 5 3 2>&1 >>! ~/log/alerteBatterie.log &
+	start-alarm-bat.zsh 15 10 5 3 >>! ~/log/alerteBatterie.log 2>&1 &
 fi
 
 # }}}2
