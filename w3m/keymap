@@ -53,18 +53,17 @@ keymap	B	BACK
 keymap	H	PREV
 keymap	L	NEXT
 keymap	=	SELECT_MENU
-keymap	B	SELECT_MENU
 
 keymap	s	HISTORY
 keymap	M-h	HISTORY
 
 keymap	a	ADD_BOOKMARK
 keymap	&	BOOKMARK
-keymap	&	BOOKMARK
 keymap	M-b	BOOKMARK
 
 keymap	t	TAB_LINK
 keymap	T	NEW_TAB
+keymap	x	CLOSE_TAB
 keymap	D	CLOSE_TAB
 keymap	J	PREV_TAB
 keymap	K	NEXT_TAB
@@ -72,6 +71,10 @@ keymap	\^	PREV_TAB
 keymap	$	NEXT_TAB
 
 keymap	w	SAVE_SCREEN
+
+keymap	u	  MARK_URL
+keymap	<	  EXTERN
+keymap	>     EXTERN_LINK
 
 keymap	C-o	OPTIONS
 
