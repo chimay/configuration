@@ -78,9 +78,9 @@ mrm () {
 
 # }}}2
 
-# grep {{{2
+# search-grep {{{2
 
-grep () {
+search-grep () {
 
 	local motif fichiers
 
@@ -106,10 +106,102 @@ grep () {
 
 # }}}2
 
+# search-ag {{{2
+
+search-ag () {
+
+	local motif fichiers
+
+	motif=${1:-''}
+
+	(( $# > 0 )) && shift
+
+	fichiers=(${*:-()})
+
+	(( $#motif > 0 )) || {
+
+		echo -n "Motif : "
+		read motif
+		echo
+	}
+
+	(( $#motif > 0 )) || return 1
+
+	(( $#fichiers > 0 )) || fichiers=(.)
+
+	command ag --nocolor --vimgrep --smart-case $motif $=fichiers | sed 's/^/  /'
+}
+
+# }}}2
+
 # find-command {{{2
 
 grep-command () {
 	print -l $commands | command grep "$@"
+}
+
+# }}}2
+
+# lc : locate {{{2
+
+lc () {
+	local options dossier motifs
+
+	options=()
+
+	while true
+	do
+		case $1 in
+			-*)
+				options+=$1
+				shift
+				;;
+			*)
+				break
+				;;
+		esac
+	done
+
+	if (( $# >= 2 ))
+	then
+		dossier=$1
+		shift
+		motifs=("$@")
+
+	elif (( $# == 1 ))
+	then
+		dossier=racine
+		motifs=($1)
+	fi
+
+	case $dossier in
+
+		r|ra|rac|raci|racin|racine)
+			echo "locate -d ~/racine/index/locate/racine.db -e -A $=options $=motifs"
+			echo
+			locate -d ~/racine/index/locate/racine.db -e -A $=options $=motifs
+			;;
+		ul|ulo|uloc|usrloc|usrlocal)
+			echo "locate -d ~/racine/index/locate/usr-local.db -e -A $=options $=motifs"
+			echo
+			locate -d ~/racine/index/locate/usr-local.db -e -A $=options $=motifs
+			;;
+		p|pa|pac|pacman|pacmanlib)
+			echo "locate -d ~/racine/index/locate/pacman-lib.db -e -A $=options $=motifs"
+			echo
+			locate -d ~/racine/index/locate/pacman-lib.db -e -A $=options $=motifs
+			;;
+		a|au|aud|audi|audio)
+			echo "locate -d ~/racine/index/locate/audio.db -e -A $=options $=motifs"
+			echo
+			locate -d ~/racine/index/locate/audio.db -e -A $=options $=motifs
+			;;
+		f|ph|pho|phot|photo)
+			echo "locate -d ~/racine/index/locate/photo.db -e -A $=options $=motifs"
+			echo
+			locate -d ~/racine/index/locate/photo.db -e -A $=options $=motifs
+			;;
+	esac
 }
 
 # }}}2
