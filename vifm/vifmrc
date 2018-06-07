@@ -163,6 +163,9 @@ mark r ~/racine
 mark c ~/racine/config
 mark s ~/racine/shell
 
+mark h ~/racine/infoman
+mark l ~/racine/liber
+
 mark w ~/graphix/wallpaper
 
 mark D ~/Documents
@@ -225,6 +228,7 @@ filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        \ ffplay -nodisp %c,
        \ {Play using MPlayer}
        \ mplayer %f,
+
 fileviewer *.mp3 mp3info
 fileviewer *.flac soxi
 
@@ -239,6 +243,7 @@ filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         \ dragon %f:p,
         \ {View using mplayer}
         \ mplayer %f,
+
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
           \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
           \*.as[fx]
@@ -262,6 +267,7 @@ filetype *.o nm %f | less
 " Man page
 
 filetype *.[1-8] man ./%c
+
 fileviewer *.[1-8] man ./%c | col -b
 
 " Images
@@ -273,8 +279,11 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
+
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
          \ convert -identify %f -verbose /dev/null
+
+filetype *.svg vimiv %f
 
 " OpenRaster
 
@@ -321,6 +330,7 @@ filetype *.asc
 " Torrent
 
 filetype *.torrent ktorrent %f &
+
 fileviewer *.torrent dumptorrent -v %c
 
 " FuseZipMount
@@ -332,6 +342,7 @@ filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ zip -sf %c | less,
        \ {Extract here}
        \ tar -xf %c,
+
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 
 " ArchiveMount
@@ -339,6 +350,7 @@ fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+
 fileviewer *.tgz,*.tar.gz tar -tzf %c
 fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
 fileviewer *.tar.txz,*.txz xz --list %c
@@ -349,6 +361,7 @@ fileviewer *.tar tar -tf %c
 filetype *.rar
        \ {Mount with rar2fs}
        \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
+
 fileviewer *.rar unrar v %c
 
 " IsoMount
@@ -374,11 +387,13 @@ filetype *.ftp
 filetype *.7z
        \ {Mount with fuse-7z}
        \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
+
 fileviewer *.7z 7z l %c
 
 " Office files
 
 filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
+
 fileviewer *.doc catdoc %c
 fileviewer *.docx, docx2txt.pl %f -
 
@@ -401,6 +416,7 @@ filextype */
 " Explicitly set highlight type for some extensions
 "
 " 256-color terminal
+
 " fileviewer *.[ch],*.[ch]pp highlight -O xterm256 -s dante --syntax c %c
 " fileviewer Makefile,Makefile.* highlight -O xterm256 -s dante --syntax make %c
 "
@@ -501,15 +517,7 @@ nnoremap @ :write | edit $MYVIFMRC | restart<cr>
 
 " Présentation {{{2
 
-" Toggle visibility of preview window
-
-nnoremap é :view<cr>
-vnoremap é :view<cr>gv
-
 nnoremap $ :sync! all<cr>
-
-nnoremap è <s-tab>
-qnoremap è <s-tab>
 
 " }}}2
 
@@ -539,8 +547,22 @@ nnoremap zh za
 
 " Visualiser & Éditer {{{2
 
-nnoremap ù :!less %f<cr>
+nnoremap ù :view<cr>
+vnoremap ù :view<cr>gv
+
+nnoremap | <s-tab>
+nnoremap ° <s-tab>
+
+qnoremap | <s-tab>
+qnoremap ° <s-tab>
+qnoremap q <s-tab>
+qnoremap ù <s-tab>
+
+nnoremap £ :!less %f<cr>
+
 nnoremap µ :edit<cr>
+
+" Toggle visibility of preview window
 
 " Open file in the background using its default program
 
