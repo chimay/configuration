@@ -53,7 +53,7 @@ set $pave9=Mod2+KP_Prior
 
 # Bureaux {{{2
 
-set $bureau0 "0 Void"
+set $bureau0 "0 Espace"
 set $bureau1 "1 Principal"
 set $bureau2 "2 Auxiliaire"
 set $bureau3 "3 Navigation"
@@ -568,6 +568,47 @@ bindsym Escape mode "default"
 
 # }}}1
 
+# Mode déplacement {{{1
+
+# Mode déplacement pour fenêtres flottantes
+
+bindsym $mod+F10 mode "deplacement"
+
+mode "deplacement" {
+
+bindsym h move left 5
+bindsym j move down 5
+bindsym k move up 5
+bindsym l move right 5
+
+bindsym Shift+H move left 10
+bindsym Shift+J move down 10
+bindsym Shift+K move up 10
+bindsym Shift+L move right 10
+
+bindsym Left  move left 5
+bindsym Down  move down 5
+bindsym Up    move up 5
+bindsym Right move right 5
+
+bindsym Shift+Left  move left 10
+bindsym Shift+Down  move down 10
+bindsym Shift+Up    move up 10
+bindsym Shift+Right move right 10
+
+# Back to normal: Enter or Escape {{{2
+
+bindsym q mode "default"
+bindsym Return mode "default"
+bindsym KP_Enter mode "default"
+bindsym Escape mode "default"
+
+# }}}2
+
+}
+
+# }}}1
+
 # Mode applications {{{1
 
 bindsym Mod4+F12 mode "applications"
@@ -665,7 +706,9 @@ mode "multimedia" {
 
 # Mixer {{{2
 
-bindsym M         exec pavucontrol ; mode "default"
+bindsym M       exec urxvtc -e pulsemixer ; mode "default"
+bindsym Shift+M exec urxvtc -e alsamixer -c 0 ; mode "default"
+bindsym Mod1+M  exec pavucontrol ; mode "default"
 
 bindsym Up exec --no-startup-id amixer -c 0 -- set Master 2dB+
 bindsym Down exec --no-startup-id amixer -c 0 -- set Master 2dB-

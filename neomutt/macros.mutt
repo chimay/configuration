@@ -47,15 +47,37 @@
 
 # enter-command accède à la ligne de commande de type ex ":"
 
-macro index \cr '<enter-command>source $my_muttroot/neomuttrc<enter>'
-macro pager \cr '<enter-command>source $my_muttroot/neomuttrc<enter>'
+macro index @ '<enter-command>source $my_muttroot/neomuttrc<enter>'
+macro pager @ '<enter-command>source $my_muttroot/neomuttrc<enter>'
 
 # }}}1
 
 # Nettoyage du cache {{{1
 
-macro index dc '<enter-command>set message_cache_clean=yes<enter>'
-macro pager dc '<enter-command>set message_cache_clean=yes<enter>'
+macro index ,c '<enter-command>set message_cache_clean=yes<enter>'
+macro pager ,c '<enter-command>set message_cache_clean=yes<enter>'
+
+# }}}1
+
+# Visualisation des liens {{{1
+
+macro pager L <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
+# }}}1
+
+# Ouverture du mail dans un navigateur {{{1
+# ------------------------------------------------------------------------
+
+macro attach V \
+	"<pipe-entry>cat >| ~/racine/varia/cache/neomutt/html/mail.html \
+	&& qutebrowser ~/racine/varia/cache/neomutt/html/mail.html<enter>" \
+	'Voir dans qutebrowser'
+
+# }}}1
+
+# Ajout de l’expéditeur dans abook {{{1
+
+macro index,pager  £ "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
 
 # }}}1
 
@@ -89,24 +111,5 @@ macro pager ,i '<limit>~F<enter><enter-command>exec collapse-all<enter>'
 
 macro index ,a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
 macro pager ,a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
-
-# }}}1
-
-# Ajout de l’expéditeur dans abook {{{1
-
-macro index,pager  £ "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
-
-# }}}1
-
-# Visualisation des liens {{{1
-
-macro pager U <pipe-entry>'urlview'<enter> 'Follow links with urlview'
-
-# }}}1
-
-# Ouverture du mail dans un navigateur {{{1
-# ------------------------------------------------------------------------
-
-macro attach V "<pipe-entry>cat >| ~/.cache/neoneomutt/mail.html && qutebrowser ~/.cache/neoneomutt/mail.html<enter>" 'Voir dans qutebrowser'
 
 # }}}1

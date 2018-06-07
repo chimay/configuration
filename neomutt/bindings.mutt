@@ -11,9 +11,12 @@
 # }}}1
 
 # Generic {{{1
-# ------------------------------------------------------------------------
 
 bind generic h help
+
+bind generic \cL refresh
+
+bind generic q exit
 
 # Mouvement {{{2
 
@@ -74,10 +77,6 @@ bind generic : enter-command
 bind generic ! shell-escape
 
 # }}}2
-
-bind generic \cL refresh
-
-bind generic q exit
 
 # }}}1
 
@@ -195,7 +194,7 @@ bind index m noop
 bind index mm mail
 
 bind index mb bounce-message
-bind index mc recall-message
+bind index mp recall-message
 bind index mf forward-message
 bind index mg group-reply
 bind index ml list-reply
@@ -276,6 +275,15 @@ bind index µ query
 
 bind pager h help
 
+bind pager \cL redraw-screen
+
+bind pager q exit
+bind pager i exit
+bind pager = exit
+bind pager § exit
+
+bind pager Q quit
+
 # Boîtes aux lettres {{{2
 
 bind pager % change-folder
@@ -317,8 +325,8 @@ bind pager k previous-line
 bind pager <down> next-line
 bind pager <up> previous-line
 
-bind pager \cU half-up
-bind pager \cD half-down
+bind pager u half-up
+bind pager d half-down
 
 bind pager \cF next-page
 bind pager \cB previous-page
@@ -415,22 +423,23 @@ bind pager r noop
 bind pager rt read-thread
 bind pager rs read-subthread
 
-bind pager d noop
-bind pager u noop
+bind pager D noop
+bind pager U noop
 
-bind pager dd delete-message
-bind pager dt delete-thread
-bind pager ds delete-subthread
+bind pager DD delete-message
+bind pager DT delete-thread
+bind pager DS delete-subthread
 
-bind pager uu undelete-message
-bind pager ut undelete-thread
-bind pager us undelete-subthread
+bind pager UU undelete-message
+bind pager UT undelete-thread
+bind pager US undelete-subthread
 
 # }}}2
 
 # Attachés {{{2
 
-bind pager à view-attachments
+bind pager & view-attachments
+bind pager A view-attachments
 
 # }}}2
 
@@ -445,15 +454,6 @@ bind pager a create-alias
 bind pager | pipe-message
 
 # }}}2
-
-bind pager \cL redraw-screen
-
-bind pager q exit
-bind pager i exit
-bind pager = exit
-bind pager § exit
-
-bind pager Q quit
 
 # }}}1
 
@@ -485,6 +485,7 @@ bind attach mr reply
 bind attach ^E edit-type
 
 bind attach s save-entry
+bind attach w save-entry
 
 bind attach d noop
 bind attach u noop
@@ -647,6 +648,9 @@ bind browser n search-next
 bind browser N search-opposite
 
 bind browser % change-dir
+bind browser § change-dir
+bind browser c change-dir
+bind browser d change-dir
 
 bind browser @ display-filename
 
@@ -661,11 +665,11 @@ bind browser <space> view-file
 bind browser . buffy-list
 
 bind browser \cn select-new
-bind browser C create-mailbox
-bind browser R rename-mailbox
+bind browser \er rename-mailbox
+bind browser \ec create-mailbox
 
-bind browser d noop
+bind browser D noop
 
-bind browser dd delete-mailbox
+bind browser DD delete-mailbox
 
 # }}}1
