@@ -203,9 +203,9 @@ set beep_new=no
 # ------------------------------------------------------------------------
 
 set tmpdir=~/racine/varia/temp
-set header_cache=~/racine/varia/cache/neomutt-header-cache
-set message_cachedir=~/racine/varia/cache/neomutt-msg-cache
-set certificate_file=~/racine/varia/cache/neomutt-certs
+set header_cache=~/racine/varia/cache/neomutt/headers
+set message_cachedir=~/racine/varia/cache/neomutt/messages
+set certificate_file=~/racine/varia/cache/neomutt/certs
 
 # }}}2
 
@@ -513,7 +513,9 @@ set forward_format="[%a: %s]"
 # Mime
 # ------------------------------------
 
-set mime_forward=ask-no			# N'emballe pas les messages transférés dans un attachment
+# Emballer les messages transférés dans un attachment ?
+
+set mime_forward=ask-no
 
 # }}}2
 
