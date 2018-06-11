@@ -25,6 +25,10 @@ set vicmd=vim
 
 set syscalls
 
+" Confirmation avant effacement définitif
+
+set confirm=permdelete
+
 " Trash Directory
 " The default is to move files that are deleted with dd or :d to
 " the trash directory.  If you change this you will not be able to move
@@ -161,6 +165,7 @@ mark 1 ~/racine/site/orgmode
 mark r ~/racine
 
 mark c ~/racine/config
+mark f ~/racine/fun
 mark i ~/racine/infoman
 mark l ~/racine/liber
 mark m ~/racine/mail
@@ -522,6 +527,8 @@ nnoremap @ :write | edit $MYVIFMRC | restart<cr>
 
 nnoremap $ :sync! all<cr>
 
+nnoremap % :set millerview!<cr>
+
 " }}}2
 
 " Sélectionner, tags {{{2
@@ -558,6 +565,8 @@ nnoremap zh za
 
 nnoremap ù :view<cr>
 vnoremap ù :view<cr>gv
+
+nnoremap é :view<cr>
 
 nnoremap | <s-tab>
 nnoremap ° <s-tab>
