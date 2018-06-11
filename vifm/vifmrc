@@ -161,12 +161,15 @@ mark 1 ~/racine/site/orgmode
 mark r ~/racine
 
 mark c ~/racine/config
+mark i ~/racine/infoman
+mark l ~/racine/liber
+mark m ~/racine/mail
+mark p ~/racine/public
 mark s ~/racine/shell
 
-mark h ~/racine/infoman
-mark l ~/racine/liber
+mark P ~/racine/papier
 
-mark w ~/graphix/wallpaper
+mark W ~/graphix/wallpaper
 
 mark D ~/Documents
 
@@ -524,6 +527,12 @@ nnoremap $ :sync! all<cr>
 " Sélectionner, tags {{{2
 
 nnoremap <space> t
+
+" }}}2
+
+" Recherche {{{2
+
+nnoremap è :find<space>
 
 " }}}2
 
