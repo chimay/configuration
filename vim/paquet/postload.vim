@@ -64,6 +64,108 @@ call denite#custom#map(
 	  \ 'noremap'
 	  \)
 
+call denite#custom#map(
+	  \ '_',
+	  \ '<Left>',
+	  \ '<denite:jump_to_previous_source>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<Right>',
+	  \ '<denite:jump_to_next_source>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<C-P>',
+	  \ '<denite:move_to_previous_line>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<C-N>',
+	  \ '<denite:move_to_next_line>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<M-p>',
+	  \ '<denite:assign_previous_matched_text>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<M-n>',
+	  \ '<denite:assign_next_matched_text>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<S-Up>',
+	  \ '<denite:assign_previous_text>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<S-Down>',
+	  \ '<denite:assign_next_text>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<Home>',
+	  \ '<denite:move_to_first_line>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<End>',
+	  \ '<denite:move_to_last_line>',
+	  \ 'noremap'
+	  \)
+
+" }}}3
+
+" Mappings multi-modes {{{3
+
+call denite#custom#map(
+	  \ 'normal,insert',
+	  \ '<Up>',
+	  \ '<denite:move_to_previous_line>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal,insert',
+	  \ '<Down>',
+	  \ '<denite:move_to_next_line>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal,insert',
+	  \ '<PageUp>',
+	  \ '<denite:scroll_page_backwards>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal,insert',
+	  \ '<PageDown>',
+	  \ '<denite:scroll_page_forwards>',
+	  \ 'noremap'
+	  \)
+
 " }}}3
 
 " Mappings en mode normal dans denite {{{3
@@ -119,62 +221,6 @@ call denite#custom#map(
 
 call denite#custom#map(
 	  \ 'normal',
-	  \ '<Left>',
-	  \ '<denite:jump_to_previous_source>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'normal',
-	  \ '<Right>',
-	  \ '<denite:jump_to_next_source>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'normal',
-	  \ '<Up>',
-	  \ '<denite:move_to_previous_line>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'normal',
-	  \ '<Down>',
-	  \ '<denite:move_to_next_line>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'normal',
-	  \ '<PageUp>',
-	  \ '<denite:scroll_page_backwards>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'normal',
-	  \ '<PageDown>',
-	  \ '<denite:scroll_page_forwards>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'normal',
-	  \ '<Home>',
-	  \ '<denite:move_to_first_line>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'normal',
-	  \ '<End>',
-	  \ '<denite:move_to_last_line>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'normal',
 	  \ 's',
 	  \ '<denite:do_action:split>',
 	  \ 'noremap'
@@ -221,57 +267,29 @@ call denite#custom#map(
 
 call denite#custom#map(
 	  \ 'insert',
-	  \ '<Up>',
-	  \ '<denite:move_to_previous_line>',
+	  \ '<S-Space>',
+	  \ '<denite:toggle_select_down>',
 	  \ 'noremap'
 	  \)
 
 call denite#custom#map(
 	  \ 'insert',
-	  \ '<Down>',
-	  \ '<denite:move_to_next_line>',
+	  \ '<S-BackSpace>',
+	  \ '<denite:move_up_path>',
 	  \ 'noremap'
 	  \)
 
 call denite#custom#map(
 	  \ 'insert',
-	  \ '<C-P>',
-	  \ '<denite:move_to_previous_line>',
+	  \ '<M-s>',
+	  \ '<denite:do_action:split>',
 	  \ 'noremap'
 	  \)
 
 call denite#custom#map(
 	  \ 'insert',
-	  \ '<C-N>',
-	  \ '<denite:move_to_next_line>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'insert',
-	  \ '<M-p>',
-	  \ '<denite:assign_previous_matched_text>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'insert',
-	  \ '<M-n>',
-	  \ '<denite:assign_next_matched_text>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'insert',
-	  \ '<S-Up>',
-	  \ '<denite:assign_previous_text>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ 'insert',
-	  \ '<S-Down>',
-	  \ '<denite:assign_next_text>',
+	  \ '<M-v>',
+	  \ '<denite:do_action:vsplit>',
 	  \ 'noremap'
 	  \)
 
