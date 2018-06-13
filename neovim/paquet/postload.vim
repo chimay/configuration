@@ -70,20 +70,6 @@ call denite#custom#map(
 
 call denite#custom#map(
 	  \ '_',
-	  \ '<C-P>',
-	  \ '<denite:move_to_previous_line>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ '_',
-	  \ '<C-N>',
-	  \ '<denite:move_to_next_line>',
-	  \ 'noremap'
-	  \)
-
-call denite#custom#map(
-	  \ '_',
 	  \ '<M-p>',
 	  \ '<denite:assign_previous_matched_text>',
 	  \ 'noremap'
@@ -153,6 +139,20 @@ call denite#custom#map(
 	  \ 'normal,insert',
 	  \ '<PageDown>',
 	  \ '<denite:scroll_page_forwards>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal,insert',
+	  \ '<C-P>',
+	  \ '<denite:move_to_previous_line>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal,insert',
+	  \ '<C-N>',
+	  \ '<denite:move_to_next_line>',
 	  \ 'noremap'
 	  \)
 
