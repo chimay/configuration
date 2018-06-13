@@ -459,7 +459,7 @@ colorscheme personnel
 
 set fillchars=vborder:|
 
-set timefmt=" %d/%m %H:%M"
+set timefmt="%H:%M %d-%m-%y"
 
 set statusline="  %t %T %A %E / %a %u:%g %D %z"
 
@@ -467,9 +467,7 @@ set statusline="  %t %T %A %E / %a %u:%g %D %z"
 
 " Customize view columns a bit (enable ellipsis for truncated file names)
 "
-" set viewcolumns=-{name}..,6{}.
-
-set viewcolumns=*50%{name}.,25%{mtime}.,15%{size}.,10%{ext}.
+set viewcolumns=*40%{name}.,-25%{mtime}.,-25%{perms}.,-10%{size}.
 
 " Filter-out build and temporary files
 "
@@ -611,8 +609,8 @@ nnoremap cv :rename<cr>
 
 " Copier & Déplacer
 
-nnoremap ç :!cp %f %D<cr>
-nnoremap à :!mv %f %D<cr>
+nnoremap çç :!cp %f %D<cr>
+nnoremap àà :!mv %f %D<cr>
 
 " Copier & Coller
 
@@ -623,6 +621,12 @@ nnoremap yp :clone <cr>
 nnoremap <delete> :!trash-put %f<cr>
 nnoremap DD :!trash-put %f<cr>
 nnoremap DR :!trash-restore <cr>
+
+" Nom du chemin, fichier, répertoire -> clipboard
+
+map çp :!echo -n %d/%f | xsel -i; xsel -o | xsel -i -b<cr>
+map çf :!echo -n %f    | xsel -i; xsel -o | xsel -i -b<cr>
+map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
 " }}}2
 

@@ -1037,11 +1037,7 @@ inoremap <S-Down> <C-o>gj
 
 " Sauts {{{3
 
-" C-I = Tab = saut suivant
-" C-O = C-H = Backspace = saut précédent
-
-" Remplacé par Unite change
-"nnoremap <BS> <C-O>
+nnoremap <BS> <C-O>
 
 " }}}3
 

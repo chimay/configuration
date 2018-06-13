@@ -16,26 +16,53 @@ call deoplete#enable()
 
 " Mappings {{{3
 
-nnoremap é          :<c-u>Denite line<cr>
+nnoremap <S-F1>     :<c-u>Denite<space>
 
-nnoremap §          :<c-u>Denite unite:outline:folding<cr>
+nnoremap é          :<c-u>Denite line:all line:buffers change jump<cr>
+nnoremap è          :<c-u>Denite grep<cr>
 
-nnoremap °          :<c-u>Denite -mode=normal buffer<cr>
+nnoremap §          :<c-u>Denite unite:outline:folding outline<cr>
 
-nnoremap è          :<c-u>Denite -mode=normal jump<cr>
+nnoremap °          :<c-u>Denite -mode=normal output:!ls<cr>
 
-nnoremap ù          :<c-u>Denite file_mru<cr>
+nnoremap ù          :<c-u>Denite buffer file_mru file/old file_rec<cr>
 
-nnoremap µ          :<c-u>Denite -root-markers=.racine-projet file_rec<cr>
-nnoremap <s-µ>      :<c-u>Denite -root-markers=.racine-projet file_rec<cr>
-
-" nnoremap µ          :<c-u>DeniteProjectDir -root-markers=.racine-projet file_rec<cr>
-" nnoremap <s-µ>      :<c-u>DeniteProjectDir -root-markers=.racine-projet file_rec<cr>
-
-" nnoremap µ          :<c-u>DeniteBufferDir file_rec<cr>
-" nnoremap <s-µ>      :<c-u>DeniteBufferDir file_rec<cr>
+nnoremap µ          :<c-u>Denite register command command_history help filetype<cr>
+nnoremap <s-µ>      :<c-u>Denite register command command_history help filetype<cr>
 
 nnoremap £          :<c-u>Denite tag<cr>
+
+" }}}3
+
+" Mappings pour tous les modes {{{3
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<C-M>',
+	  \ '<denite:do_action:default>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<CR>',
+	  \ '<denite:do_action:default>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<C-Z>',
+	  \ '<denite:suspend>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<Tab>',
+	  \ '<denite:choose_action>',
+	  \ 'noremap'
+	  \)
 
 " }}}3
 
@@ -64,6 +91,48 @@ call denite#custom#map(
 
 call denite#custom#map(
 	  \ 'normal',
+	  \ '<Space>',
+	  \ '<denite:toggle_select_down>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ '<BackSpace>',
+	  \ '<denite:move_up_path>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ 'h',
+	  \ '<denite:jump_to_previous_source>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ 'l',
+	  \ '<denite:jump_to_next_source>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ '<Left>',
+	  \ '<denite:jump_to_previous_source>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ '<Right>',
+	  \ '<denite:jump_to_next_source>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
 	  \ '<Up>',
 	  \ '<denite:move_to_previous_line>',
 	  \ 'noremap'
@@ -73,6 +142,48 @@ call denite#custom#map(
 	  \ 'normal',
 	  \ '<Down>',
 	  \ '<denite:move_to_next_line>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ '<PageUp>',
+	  \ '<denite:scroll_page_backwards>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ '<PageDown>',
+	  \ '<denite:scroll_page_forwards>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ '<Home>',
+	  \ '<denite:move_to_first_line>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ '<End>',
+	  \ '<denite:move_to_last_line>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ 's',
+	  \ '<denite:do_action:split>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ 'v',
+	  \ '<denite:do_action:vsplit>',
 	  \ 'noremap'
 	  \)
 
@@ -91,6 +202,20 @@ call denite#custom#map(
 	  \ 'insert',
 	  \ '<Insert>',
 	  \ '<denite:enter_mode:insert>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<Left>',
+	  \ '<denite:jump_to_previous_source>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<Right>',
+	  \ '<denite:jump_to_next_source>',
 	  \ 'noremap'
 	  \)
 

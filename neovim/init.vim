@@ -1069,11 +1069,7 @@ inoremap <S-Down> <C-o>gj
 
 " Sauts {{{3
 
-" C-I = Tab = saut suivant
-" C-O = C-H = Backspace = saut précédent
-
-" Remplacé par Unite change
-"nnoremap <BS> <C-O>
+nnoremap <BS> <C-O>
 
 " }}}3
 
@@ -1091,9 +1087,11 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap \; /\<\><left><left>
+nnoremap <D-,> /\<\><left><left>
+vnoremap <D-,> /\<\><left><left>
 
-vnoremap \; /\<\><left><left>
+nnoremap \, /\<\><left><left>
+vnoremap \, /\<\><left><left>
 
 " }}}3
 
@@ -1123,9 +1121,11 @@ nnoremap <D-G> :BibliothequeVimgrep<cr>
 
 "  Remplacement {{{3
 
-nnoremap \: :s:\<\>::<left><left><left><left>
+nnoremap <D-;> :s:\<\>::<left><left><left><left>
+vnoremap <D-;> :s:\<\>::<left><left><left><left>
 
-vnoremap \: :s:\<\>::<left><left><left><left>
+nnoremap \; :s:\<\>::<left><left><left><left>
+vnoremap \; :s:\<\>::<left><left><left><left>
 
 " Bibliotheque {{{4
 
@@ -1293,22 +1293,16 @@ nnoremap \c :set cmdheight=
 
 " }}}3
 
-" Exécuter la ligne courante comme commande ex {{{3
+" Ligne ou sélection courante {{{3
 
-nnoremap <M-:> :exe getline(".")<CR>
-vnoremap <M-:> :<C-U>exe getreg("*")<CR>
+" Comme commande ex
 
-"vnoremap <M-:> :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
+nnoremap <m-:> :exe getline(".")<CR>
+vnoremap <m-:> :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
 
-" }}}3
+" Comme commande externe
 
-" Commande externe {{{3
-
-nnoremap <m-!> :!<space>
-
-" Exécuter la ligne courante comme commande externe
-
-nnoremap \, :exec '!'.getline('.')<CR>
+nnoremap <m-!> :exec '!'.getline('.')<CR>
 
 " }}}3
 
@@ -1394,9 +1388,9 @@ nnoremap <D-l> :set cursorline!<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <D-$> :split \| e term://$SHELL<cr>
+nnoremap <D-$> :split \| :term $SHELL<cr>
 
-nnoremap <D-!> :split \| e term://
+nnoremap <D-!> :split \| :term<space>
 
 " Passer en mode normal
 
