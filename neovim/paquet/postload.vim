@@ -4,7 +4,7 @@
 
 " Denite {{{2
 
-" Mappings {{{3
+" Mappings de lancement {{{3
 
 nnoremap <S-F1>     :<c-u>Denite<space>
 
@@ -13,12 +13,12 @@ nnoremap è          :<c-u>Denite grep<cr>
 
 nnoremap §          :<c-u>Denite unite:outline:folding outline<cr>
 
-nnoremap °          :<c-u>Denite -mode=normal output:!ls<cr>
+nnoremap °          :<c-u>Denite -mode=normal command help filetype output:!ls<cr>
 
 nnoremap ù          :<c-u>Denite buffer file_mru file/old file_rec<cr>
 
-nnoremap µ          :<c-u>Denite register command command_history help filetype<cr>
-nnoremap <s-µ>      :<c-u>Denite register command command_history help filetype<cr>
+nnoremap µ          :<c-u>Denite register command_history <cr>
+nnoremap <s-µ>      :<c-u>Denite register command_history <cr>
 
 nnoremap £          :<c-u>Denite tag<cr>
 
@@ -37,6 +37,13 @@ call denite#custom#map(
 	  \ '_',
 	  \ '<CR>',
 	  \ '<denite:do_action:default>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ '_',
+	  \ '<C-L>',
+	  \ '<denite:redraw>',
 	  \ 'noremap'
 	  \)
 
@@ -162,6 +169,13 @@ call denite#custom#map(
 
 call denite#custom#map(
 	  \ 'normal',
+	  \ '<C-R>',
+	  \ '<denite:restart>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
 	  \ '<Esc>',
 	  \ '<denite:enter_mode:normal>',
 	  \ 'noremap'
@@ -191,9 +205,16 @@ call denite#custom#map(
 call denite#custom#map(
 	  \ 'normal',
 	  \ '<BackSpace>',
-	  \ '<denite:move_up_path>',
+	  \ '<denite:change_path>',
 	  \ 'noremap'
 	  \)
+
+" call denite#custom#map(
+" 	  \ 'normal',
+" 	  \ '<BackSpace>',
+" 	  \ '<denite:move_up_path>',
+" 	  \ 'noremap'
+" 	  \)
 
 call denite#custom#map(
 	  \ 'normal',
@@ -206,6 +227,13 @@ call denite#custom#map(
 	  \ 'normal',
 	  \ 'l',
 	  \ '<denite:jump_to_next_source>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'normal',
+	  \ 'm',
+	  \ '<denite:quick_move>',
 	  \ 'noremap'
 	  \)
 
@@ -226,6 +254,13 @@ call denite#custom#map(
 " }}}3
 
 " Mappings en mode insertion dans denite {{{3
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<C-J>',
+	  \ '<denite:input_command_line>',
+	  \ 'noremap'
+	  \)
 
 call denite#custom#map(
 	  \ 'insert',
@@ -266,6 +301,69 @@ call denite#custom#map(
 	  \ 'insert',
 	  \ '<S-BackSpace>',
 	  \ '<denite:move_up_path>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<M-f>',
+	  \ '<denite:move_caret_to_one_word_right>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<M-b>',
+	  \ '<denite:move_caret_to_one_word_left>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<C-A>',
+	  \ '<denite:move_caret_to_head>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<C-E>',
+	  \ '<denite:move_caret_to_tail>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<C-D>',
+	  \ '<denite:delete_char_under_caret>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<C-H>',
+	  \ '<denite:delete_char_before_caret>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<C-W>',
+	  \ '<denite:delete_word_before_caret>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<M-d>',
+	  \ '<denite:delete_word_after_caret>',
+	  \ 'noremap'
+	  \)
+
+call denite#custom#map(
+	  \ 'insert',
+	  \ '<C-U>',
+	  \ '<denite:delete_entire_text>',
 	  \ 'noremap'
 	  \)
 
