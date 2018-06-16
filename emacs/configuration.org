@@ -2005,226 +2005,6 @@ heure.
 #+end_src
 
 
-** Modes
-
-
-*** Key-chord
-
-#+begin_src emacs-lisp
-
-;(key-chord-mode 1)
-
-(setq key-chord-two-keys-delay 0.1)
-(setq key-chord-one-key-delay 0.2)
-
-(global-set-key (kbd "<f12> c") 'key-chord-mode)
-
-#+end_src
-
-Exemples :
-
-#+begin_src emacs-lisp
-
-(key-chord-define-global "uu" 'undo)
-
-#+end_src
-
-
-*** Hydra
-
-Mouvements
-
-#+begin_src emacs-lisp
-
-(defhydra hydra-move ()
-   "move"
-   ;; ("n" next-line)
-   ;; ("p" previous-line)
-   ;; ("f" forward-char)
-   ;; ("b" backward-char)
-   ;; ("a" beginning-of-line)
-   ;; ("e" move-end-of-line)
-   ;; ("F" forward-word)
-   ;; ("B" backward-word)
-   ;; ("A" backward-sentence)
-   ;; ("E" forward-sentence)
-   ;; ("v" scroll-up-command)
-   ;; ("V" scroll-down-command)
-   ("<kp-6>" forward-word)
-   ("<kp-4>" backward-word)
-   ("<kp-7>" backward-sentence)
-   ("<kp-1>" forward-sentence)
-   ("<kp-8>" backward-paragraph)
-   ("<kp-2>" forward-paragraph)
-   ("<kp-9>" scroll-down-command)
-   ("<kp-3>" scroll-up-command)
-   ;; ("r" move-to-window-line-top-bottom)
-   ;; ("l" recenter-top-bottom)
-   ("<kp-5>" nil "quit")
-   ("q" nil "quit"))
-
-;; (global-set-key (kbd "C-f") #'hydra-move/forward-char)
-;; (global-set-key (kbd "C-b") #'hydra-move/backward-char)
-
-;; (global-set-key (kbd "M-f") #'hydra-move/forward-word)
-;; (global-set-key (kbd "M-b") #'hydra-move/backward-word)
-
-(global-set-key (kbd "<C-up>") #'hydra-move/backward-paragraph)
-(global-set-key (kbd "<C-down>") #'hydra-move/forward-paragraph)
-
-;; (global-set-key (kbd "C-n") #'hydra-move/next-line)
-;; (global-set-key (kbd "C-p") #'hydra-move/previous-line)
-;; (global-set-key (kbd "C-f") #'hydra-move/forward-char)
-;; (global-set-key (kbd "C-b") #'hydra-move/backward-char)
-;; (global-set-key (kbd "M-f") #'hydra-move/forward-word)
-;; (global-set-key (kbd "M-b") #'hydra-move/backward-word)
-;; (global-set-key (kbd "C-a") #'hydra-move/beginning-of-line)
-;; (global-set-key (kbd "C-e") #'hydra-move/move-end-of-line)
-;; (global-set-key (kbd "M-a") #'hydra-move/backward-sentence)
-;; (global-set-key (kbd "M-e") #'hydra-move/forward-sentence)
-;; (global-set-key (kbd "<C-up>") #'hydra-move/backward-paragraph)
-;; (global-set-key (kbd "<C-down>") #'hydra-move/forward-paragraph)
-;; (global-set-key (kbd "C-v") #'hydra-move/scroll-up-command)
-;; (global-set-key (kbd "M-v") #'hydra-move/scroll-down-command)
-
-;; (global-set-key (kbd "<prior>") #'hydra-move/scroll-down-command)
-;; (global-set-key (kbd "<next>") #'hydra-move/scroll-up-command)
-
-#+end_src
-
-Copier & Coller
-
-#+begin_src emacs-lisp
-
-(defhydra hydra-yank-pop ()
-  "yank"
-  ("C-y" yank nil)
-  ("M-y" yank-pop nil)
-  ("y" (yank-pop 1) "next")
-  ("Y" (yank-pop -1) "prev")
-  ("l" helm-show-kill-ring "list" :color red))   ; or browse-kill-ring
-
-(global-set-key (kbd "M-y") #'hydra-yank-pop/yank-pop)
-(global-set-key (kbd "C-y") #'hydra-yank-pop/yank)
-
-#+end_src
-
-Transposition (échange de caractères, mots, ...)
-
-#+begin_src emacs-lisp
-
-(global-set-key (kbd "C-c t")
-    (defhydra hydra-transpose (:color red)
-    "Transpose"
-     ("c" transpose-chars "characters")
-     ("w" transpose-words "words")
-     ("o" org-transpose-words "Org mode words")
-     ("l" transpose-lines "lines")
-     ("s" transpose-sentences "sentences")
-     ("e" org-transpose-elements "Org mode elements")
-     ("p" transpose-paragraphs "paragraphs")
-     ("t" org-table-transpose-table-at-point "Org mode table")
-     ("q" nil "cancel" :color blue)))
-
-#+end_src
-
-Fenêtres
-
-#+begin_src emacs-lisp
-
-;; (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
-
-;; (defhydra hydra-windmove ()
-;;    "windmove"
-;;    ("k" windmove-up)
-;;    ("j" windmove-down)
-;;    ("h" windmove-left)
-;;    ("l" windmove-right)
-;;    ("0" delete-window)
-;;    ("1" delete-other-windows)
-;;    ("2" split-window-below)
-;;    ("3" split-window-right)
-;;    ("<kp-0>" delete-window)
-;;    ("<kp-1>" delete-other-windows)
-;;    ("<kp-2>" split-window-below)
-;;    ("<kp-3>" split-window-right)
-;;    ("o" other-window))
-
-;; (global-set-key (kbd "C-x o") #'hydra-windmove/other-window)
-;; (global-set-key (kbd "C-x 2") #'hydra-windmove/split-window-below)
-;; (global-set-key (kbd "C-x 3") #'hydra-windmove/split-window-right)
-
-#+end_src
-
-Ajuster les fenêtres
-
-#+begin_src emacs-lisp
-
-(require 'hydra-examples)
-
-(defhydra hydra-splitter (global-map "s-<")
-  "splitter"
-  ("h" hydra-move-splitter-left)
-  ("j" hydra-move-splitter-down)
-  ("k" hydra-move-splitter-up)
-  ("l" hydra-move-splitter-right))
-
-#+end_src
-
-
-*** Region-bindings-mode
-
-#+begin_src emacs-lisp
-
-(region-bindings-mode-enable)
-
-(setq region-bindings-mode-disable-predicates ((lambda () buffer-read-only)))
-
-(define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
-
-(global-set-key (kbd "C-w") 'backward-kill-word)
-
-#+end_src
-
-
-*** Xah-math-input
-
-#+begin_src emacs-lisp
-
-(require 'xah-math-input)
-
-(global-set-key (kbd "<f12> x") 'xah-math-input-mode)
-
-#+end_src
-
-
-*** Evil
-
-#+begin_src emacs-lisp
-
-(global-set-key (kbd "<f12> v") 'evil-mode)
-
-;(evil-mode 1)
-
-;(define-key evil-normal-state-map (kbd "<s-z>") 'evil-emacs-state)
-;(define-key evil-emacs-state-map (kbd "<s-z>") 'evil-normal-state)
-
-#+end_src
-
-
-*** Which-key
-
-#+begin_src emacs-lisp
-
-(require 'which-key)
-
-(which-key-mode)
-
-(setq which-key-idle-delay 2.0)
-
-#+end_src
-
-
 ** Exploration
 
 
@@ -2858,6 +2638,236 @@ configuration when invoked to evaluate a line."
 ;; (powerline-center-theme)
 ;; (powerline-center-evil-theme)
 ;; (powerline-default-theme)
+
+#+end_src
+
+
+** Bindings
+
+
+*** Key-chord
+
+#+begin_src emacs-lisp
+
+(key-chord-mode 1)
+
+(setq key-chord-two-keys-delay 0.1)
+(setq key-chord-one-key-delay 0.2)
+
+(global-set-key (kbd "<f12> c") 'key-chord-mode)
+
+#+end_src
+
+Exemples :
+
+#+begin_src emacs-lisp
+
+(key-chord-define-global "uu" 'undo)
+
+(key-chord-define-global "wi" 'delete-other-windows)
+(key-chord-define-global "wu" 'split-window-below)
+(key-chord-define-global "wo" 'split-window-right)
+
+(key-chord-define-global "wh" 'windmove-left)
+(key-chord-define-global "wj" 'windmove-down)
+(key-chord-define-global "wk" 'windmove-up)
+(key-chord-define-global "wl" 'windmove-right)
+
+
+#+end_src
+
+
+*** Hydra
+
+Mouvements
+
+#+begin_src emacs-lisp
+
+(defhydra hydra-move ()
+   "move"
+   ;; ("n" next-line)
+   ;; ("p" previous-line)
+   ;; ("f" forward-char)
+   ;; ("b" backward-char)
+   ;; ("a" beginning-of-line)
+   ;; ("e" move-end-of-line)
+   ;; ("F" forward-word)
+   ;; ("B" backward-word)
+   ;; ("A" backward-sentence)
+   ;; ("E" forward-sentence)
+   ;; ("v" scroll-up-command)
+   ;; ("V" scroll-down-command)
+   ("<kp-6>" forward-word)
+   ("<kp-4>" backward-word)
+   ("<kp-7>" backward-sentence)
+   ("<kp-1>" forward-sentence)
+   ("<kp-8>" backward-paragraph)
+   ("<kp-2>" forward-paragraph)
+   ("<kp-9>" scroll-down-command)
+   ("<kp-3>" scroll-up-command)
+   ;; ("r" move-to-window-line-top-bottom)
+   ;; ("l" recenter-top-bottom)
+   ("<kp-5>" nil "quit")
+   ("q" nil "quit"))
+
+;; (global-set-key (kbd "C-f") #'hydra-move/forward-char)
+;; (global-set-key (kbd "C-b") #'hydra-move/backward-char)
+
+;; (global-set-key (kbd "M-f") #'hydra-move/forward-word)
+;; (global-set-key (kbd "M-b") #'hydra-move/backward-word)
+
+(global-set-key (kbd "<C-up>") #'hydra-move/backward-paragraph)
+(global-set-key (kbd "<C-down>") #'hydra-move/forward-paragraph)
+
+;; (global-set-key (kbd "C-n") #'hydra-move/next-line)
+;; (global-set-key (kbd "C-p") #'hydra-move/previous-line)
+;; (global-set-key (kbd "C-f") #'hydra-move/forward-char)
+;; (global-set-key (kbd "C-b") #'hydra-move/backward-char)
+;; (global-set-key (kbd "M-f") #'hydra-move/forward-word)
+;; (global-set-key (kbd "M-b") #'hydra-move/backward-word)
+;; (global-set-key (kbd "C-a") #'hydra-move/beginning-of-line)
+;; (global-set-key (kbd "C-e") #'hydra-move/move-end-of-line)
+;; (global-set-key (kbd "M-a") #'hydra-move/backward-sentence)
+;; (global-set-key (kbd "M-e") #'hydra-move/forward-sentence)
+;; (global-set-key (kbd "<C-up>") #'hydra-move/backward-paragraph)
+;; (global-set-key (kbd "<C-down>") #'hydra-move/forward-paragraph)
+;; (global-set-key (kbd "C-v") #'hydra-move/scroll-up-command)
+;; (global-set-key (kbd "M-v") #'hydra-move/scroll-down-command)
+
+;; (global-set-key (kbd "<prior>") #'hydra-move/scroll-down-command)
+;; (global-set-key (kbd "<next>") #'hydra-move/scroll-up-command)
+
+#+end_src
+
+Copier & Coller
+
+#+begin_src emacs-lisp
+
+(defhydra hydra-yank-pop ()
+  "yank"
+  ("C-y" yank nil)
+  ("M-y" yank-pop nil)
+  ("y" (yank-pop 1) "next")
+  ("Y" (yank-pop -1) "prev")
+  ("l" helm-show-kill-ring "list" :color red))   ; or browse-kill-ring
+
+(global-set-key (kbd "M-y") #'hydra-yank-pop/yank-pop)
+(global-set-key (kbd "C-y") #'hydra-yank-pop/yank)
+
+#+end_src
+
+Transposition (échange de caractères, mots, ...)
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "C-c t")
+    (defhydra hydra-transpose (:color red)
+    "Transpose"
+     ("c" transpose-chars "characters")
+     ("w" transpose-words "words")
+     ("o" org-transpose-words "Org mode words")
+     ("l" transpose-lines "lines")
+     ("s" transpose-sentences "sentences")
+     ("e" org-transpose-elements "Org mode elements")
+     ("p" transpose-paragraphs "paragraphs")
+     ("t" org-table-transpose-table-at-point "Org mode table")
+     ("q" nil "cancel" :color blue)))
+
+#+end_src
+
+Fenêtres
+
+#+begin_src emacs-lisp
+
+;; (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
+
+;; (defhydra hydra-windmove ()
+;;    "windmove"
+;;    ("k" windmove-up)
+;;    ("j" windmove-down)
+;;    ("h" windmove-left)
+;;    ("l" windmove-right)
+;;    ("0" delete-window)
+;;    ("1" delete-other-windows)
+;;    ("2" split-window-below)
+;;    ("3" split-window-right)
+;;    ("<kp-0>" delete-window)
+;;    ("<kp-1>" delete-other-windows)
+;;    ("<kp-2>" split-window-below)
+;;    ("<kp-3>" split-window-right)
+;;    ("o" other-window))
+
+;; (global-set-key (kbd "C-x o") #'hydra-windmove/other-window)
+;; (global-set-key (kbd "C-x 2") #'hydra-windmove/split-window-below)
+;; (global-set-key (kbd "C-x 3") #'hydra-windmove/split-window-right)
+
+#+end_src
+
+Ajuster les fenêtres
+
+#+begin_src emacs-lisp
+
+(require 'hydra-examples)
+
+(defhydra hydra-splitter (global-map "s-<")
+  "splitter"
+  ("h" hydra-move-splitter-left)
+  ("j" hydra-move-splitter-down)
+  ("k" hydra-move-splitter-up)
+  ("l" hydra-move-splitter-right))
+
+#+end_src
+
+
+*** Region-bindings-mode
+
+#+begin_src emacs-lisp
+
+(region-bindings-mode-enable)
+
+(setq region-bindings-mode-disable-predicates ((lambda () buffer-read-only)))
+
+(define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
+
+(global-set-key (kbd "C-w") 'backward-kill-word)
+
+#+end_src
+
+
+*** Xah-math-input
+
+#+begin_src emacs-lisp
+
+(require 'xah-math-input)
+
+(global-set-key (kbd "<f12> x") 'xah-math-input-mode)
+
+#+end_src
+
+
+*** Evil
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "<f12> v") 'evil-mode)
+
+;(evil-mode 1)
+
+;(define-key evil-normal-state-map (kbd "<s-z>") 'evil-emacs-state)
+;(define-key evil-emacs-state-map (kbd "<s-z>") 'evil-normal-state)
+
+#+end_src
+
+
+*** Which-key
+
+#+begin_src emacs-lisp
+
+(require 'which-key)
+
+(which-key-mode)
+
+(setq which-key-idle-delay 2.0)
 
 #+end_src
 
