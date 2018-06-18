@@ -18,14 +18,6 @@ alias mk='make -f ~/racine/bin/make/generique.make'
 
 # }}}1
 
-#  Historique {{{1
-
-alias hs='history -E'
-
-alias scr='script -f -a ~/log/${HOST}/cmdline/terminal.log'
-
-# }}}1
-
 # ------------------------------------
 
 #  Affichage {{{1
@@ -38,12 +30,6 @@ alias valve=wall
 
 # }}}1
 
-# Archive {{{1
-
-alias a=archive
-
-# }}}1
-
 #  Clavier {{{1
 
 alias azer="setxkbmap be ; xmodmap ~/racine/config/windenv/xmodmap/belge-meta-super-hyper"
@@ -53,12 +39,8 @@ alias azer="setxkbmap be ; xmodmap ~/racine/config/windenv/xmodmap/belge-meta-su
 #  Contrôle de version {{{1
 
 alias g='git'
+
 alias b='bzr'
-
-# alias h='hg'
-# alias d='darcs'
-
-#alias vcsh='versys-shell'
 
 #alias diff='diff -BN'
 
@@ -72,11 +54,11 @@ alias m='pageur'
 
 alias M='pageur +G'
 
-alias n='most -C'
+alias mo='most -C'
 
 alias u=vimpager
 
-alias ta='multitail'
+alias tt='multitail'
 
 alias taco='multitail -C -ts'
 
@@ -89,6 +71,8 @@ alias d=zathura
 alias i=vimiv
 
 alias ii=sxiv
+
+alias iii=feh
 
 # }}}1
 
@@ -174,6 +158,8 @@ alias spacevim='nvim-qt -- -u ~/racine/dotdir/spacevim/init.vim'
 	alias ll='ls -l --color=auto'
 }
 
+alias ù=mrm
+
 # }}}2
 
 # Répertoires {{{2
@@ -231,6 +217,8 @@ alias rl='readlink -f'
 # }}}2
 
 #  Synchronisation {{{2
+
+alias ftp='sftp'
 
 alias rs='rsync -av'
 
@@ -292,13 +280,24 @@ alias snf='rsync --verbose --progress --stats --human-readable --itemize-changes
 
 # Gestionnaires de fichiers {{{2
 
-alias 2='vifm'
-
 # Pas de LESS=...--quit-if-one-screen...
+
+alias 2='LESS= vifm'
+alias §='LESS= vifm .'
 
 alias 3='LESS= ranger'
 
 # }}}2
+
+# }}}1
+
+# Copier & Coller {{{1
+
+alias çy='xclip -i -selection clipboard'
+alias çp='xclip -selection clipboard -o'
+
+alias ç1='xclip -selection primary -o'
+alias ç2='xclip -selection secondary -o'
 
 # }}}1
 
@@ -337,13 +336,8 @@ alias aw=wiki-search
 
 #  Recherche {{{1
 
-alias gv='ag --nocolor --vimgrep --smart-case'
-
-alias lc='locate -d ~/racine/index/locate/racine.db -e -A'
-alias lul='locate -d ~/racine/index/locate/usr-local.db -e -A'
-alias lpk='locate -d ~/racine/index/locate/pacman-lib.db -e -A'
-alias lau='locate -d ~/racine/index/locate/audio.db -i -e -A'
-alias lph='locate -d ~/racine/index/locate/photo.db -i -e -A'
+alias é=search-ag
+alias è=search-grep
 
 # }}}1
 
@@ -359,14 +353,13 @@ alias agenda=calcurse
 
 alias c=neomutt
 
-alias s='newsboat -c ~/racine/index/newsboat/cache.db'
+alias n='newsboat -c ~/racine/index/newsboat/cache.db'
 
 # }}}1
 
 # Navigateurs {{{1
 
-alias sr='BROWSER=w3m surfraw'
-
+alias sr='surfraw'
 alias bm='BROWSER=w3m buku'
 
 alias w=w3m
@@ -393,11 +386,13 @@ alias rvm-bash='/bin/bash rvm'
 
 #  Musique, Vidéo {{{1
 
+alias ma='alsamixer -c 0'
+alias mp=pulsemixer
+
 alias y=joue
 
-alias p=ncmpcpp
-
-alias q=cmus
+alias µ=ncmpcpp
+alias £=cmus
 
 alias pc=playerctl
 
@@ -485,26 +480,28 @@ alias mkdir='nocorrect mkdir -p'
 
 #  Globaux : alias -g {{{1
 
+alias -g R='| tac'
+
+alias -g N='| wc -l'
+
+alias -g H='| head'
+alias -g T='| tail'
+
+alias -g G='| command grep'
+alias -g S='| sort'
+alias -g U='| sort | uniq'
+
+alias -g Y='| xclip -i -selection clipboard'
+
 alias -g L='|& less'
 alias -g LR='|& less -R'
 
 alias -g V='| view -'
 alias -g W='| vimpager'
 
-alias -g F='| fpp'
-
-alias -g R='| tac'
-
-alias -g G='| command grep'
-alias -g S='| sort'
-alias -g U='| sort | uniq'
-
-alias -g H='| head'
-alias -g T='| tail'
-
-alias -g N='| wc -l'
-
 alias -g DS='| diffstat'
+
+alias -g F='| fpp'
 
 # }}}1
 
@@ -549,6 +546,7 @@ hash -d common=~/racine/common
 hash -d config=~/racine/config
 hash -d dotdir=~/racine/dotdir
 hash -d feder=~/racine/feder
+hash -d fun=~/racine/fun
 hash -d hist=~/racine/hist
 hash -d hub=~/racine/hub
 hash -d humour=~/racine/humour
