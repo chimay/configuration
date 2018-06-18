@@ -213,6 +213,8 @@ mark D ~/Documents
 filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
+filextype *.epub zathura %c %i &, apvlv %c, xpdf %c
+
 " PostScript
 
 filextype *.ps,*.eps,*.ps.gz
@@ -467,7 +469,7 @@ set statusline="  %t %T %A %E / %a %u:%g %D %z"
 
 " Customize view columns a bit (enable ellipsis for truncated file names)
 "
-set viewcolumns=*40%{name}.,-25%{mtime}.,-25%{perms}.,-10%{size}.
+set viewcolumns=*40%{name}.,25%{mtime}.,25%{perms}.,10%{size}.
 
 " Filter-out build and temporary files
 "
