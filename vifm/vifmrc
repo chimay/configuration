@@ -161,6 +161,7 @@ set vifminfo=
 
 mark 0 ~/racine/plain
 mark 1 ~/racine/site/orgmode
+mark 2 ~/racine/pictura
 
 mark r ~/racine
 
@@ -293,7 +294,7 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
          \ convert -identify %f -verbose /dev/null
 
-filetype *.svg vimiv %f
+filextype *.svg vimiv %f
 
 " OpenRaster
 
@@ -539,7 +540,7 @@ nnoremap <space> t
 
 " Recherche {{{2
 
-nnoremap è :find<space>
+nnoremap * :find . -name<space>
 
 " }}}2
 
@@ -637,6 +638,8 @@ map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 nnoremap af :!touch<space>
 
 nnoremap ad :!mkdir<space>
+
+nnoremap aw :!feh --bg-max --no-fehbg %f<cr>
 
 " Vimdiff
 
