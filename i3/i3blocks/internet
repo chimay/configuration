@@ -1,0 +1,8 @@
+#!/usr/bin/env /bin/zsh
+
+echo "@"
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	~/racine/shell/dialog/rofi-internet.zsh > /dev/null & disown
+fi

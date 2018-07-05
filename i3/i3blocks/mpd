@@ -1,5 +1,20 @@
 #!/usr/bin/env /bin/zsh
 
+recharge='pkill -RTMIN+2 i3blocks'
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	(( BLOCK_BUTTON == 1 )) && mpc toggle > /dev/null
+	(( BLOCK_BUTTON == 2 )) && mpc next > /dev/null
+	(( BLOCK_BUTTON == 3 )) && urxvtc -e ncmpcpp > /dev/null
+	(( BLOCK_BUTTON == 4 )) && mpc volume +5 > /dev/null
+	(( BLOCK_BUTTON == 5 )) && mpc volume -5 > /dev/null
+
+	sleep 0.1
+
+	$=recharge
+fi
+
 musique=$(mpc -f '%file%' | awk '{ if ( NR == 1 ) print $0 }')
 
 musique=${musique##*/}
@@ -7,14 +22,6 @@ musique=${musique%.*}
 musique=$musique[3,-1]
 musique=${musique:gs/-/ /}
 musique=${musique:gs/_/ /}
+musique=$musique[1,43]
 
 print $musique
-
-if [ -n "$BLOCK_BUTTON" ]
-then
-	(( BLOCK_BUTTON == 1 )) && mpc toggle
-	(( BLOCK_BUTTON == 2 )) && mpc next
-	(( BLOCK_BUTTON == 3 )) && urxvtc -e ncmpcpp
-	(( BLOCK_BUTTON == 4 )) && mpc volume +5
-	(( BLOCK_BUTTON == 5 )) && mpc volume -5
-fi

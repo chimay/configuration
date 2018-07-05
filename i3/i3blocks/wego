@@ -1,0 +1,8 @@
+#!/usr/bin/env /bin/zsh
+
+echo '=o='
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	~/racine/shell/dialog/zen-wego.zsh > /dev/null & disown
+fi

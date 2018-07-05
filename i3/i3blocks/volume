@@ -1,12 +1,22 @@
 #!/usr/bin/env /bin/zsh
 
-volume=$(awk -F"[][]" '/dB/ { print $2 }' <(amixer -c 0 sget Master))
+recharge='pkill -RTMIN+1 i3blocks'
 
-echo $volume
+if [ -n "$BLOCK_BUTTON" ]
+then
+	case $BLOCK_BUTTON in
+	  1) urxvtc -e pulsemixer ;;
+	  2) pavucontrol ;;
+	  3) urxvtc -e alsamixer -c 0 ;;
+	  4) pamixer --increase 5 ;;
+	  5) pamixer --decrease 5 ;;
+	esac
 
-case $BLOCK_BUTTON in
-  1) pavucontrol ;;
-  3) urxvtc -e alsamixer -c 0 ;;
-  4) amixer -c 0 -- set Master 2dB+ ;;
-  5) amixer -c 0 -- set Master 2dB- ;;
-esac
+	sleep 0.1
+
+	$=recharge
+fi
+
+volume=$(pamixer --get-volume)
+
+echo "$volume %"

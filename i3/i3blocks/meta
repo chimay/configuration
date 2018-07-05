@@ -1,0 +1,8 @@
+#!/usr/bin/env /bin/zsh
+
+echo §
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	~/racine/shell/dialog/rofi-meta.zsh > /dev/null & disown
+fi

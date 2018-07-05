@@ -1,0 +1,8 @@
+#!/usr/bin/env /bin/zsh
+
+echo '=o='
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	~/racine/shell/dialog/zen-wttr-in.zsh louvain-la-neuve > /dev/null & disown
+fi
