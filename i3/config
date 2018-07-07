@@ -2,7 +2,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #
-# La syntaxe du fichier xmodmap doit être respectée, y compris la casse :
+# La syntaxe du fichier xmodmap doit être respectée, y compris la casse de la première lettre
 #
 # Les noms des touches spéciales doivent commencer par une majuscule
 # Les noms des autres touches doivent commencer par une minuscule
@@ -110,6 +110,8 @@ assign [class="net-sourceforge-jnlp-runtime-Boot"] $bureau4
 assign [class="sun-awt-X11-XFramePeer"] $bureau4
 assign [class="java-lang-Thread"] $bureau4
 
+assign [class="vlc"] $bureau5
+
 # }}}2
 
 # Mode flottant {{{2
@@ -149,10 +151,7 @@ for_window [class="Xfce4-appfinder"] resize set 700 700
 # Scratchpad {{{2
 
 for_window [instance="deroulant"] floating enable
-for_window [instance="deroulant"] move scratchpad
-
 for_window [instance="calculatrice"] floating enable
-for_window [instance="calculatrice"] move scratchpad
 
 # }}}2
 
@@ -327,9 +326,12 @@ bindsym $mod+Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zs
 
 bindsym $mod+Return exec yakuake
 bindsym $mod+dollar exec xterm -e zsh -l
-bindsym $mod+asterisk exec urxvtc -e zsh -l
+bindsym $mod+asterisk exec --no-startup-id ~/racine/shell/run/lance-deroulant.zsh ; mode "default"
+
 bindsym $mod+Shift+sterling exec tilix
-bindsym $mod+equal exec tilix -q -e zsh -l
+bindsym $mod+Shift+degree exec tilix -q -e zsh -l
+
+bindsym $mod+equal exec --no-startup-id ~/racine/shell/run/lance-calculatrice.zsh ; mode "default"
 
 bindsym $mod+z exec xset dpms force off
 
@@ -343,17 +345,19 @@ bindsym $mod+l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/g
 
 bindsym Mod4+Ctrl+V exec --no-startup-id ~/racine/shell/run/lance-gvim.zsh
 
-bindsym Mod4+Ctrl+N exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh
-bindsym Mod4+Ctrl+Shift+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh
+#bindsym Mod4+Ctrl+N exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh
+#bindsym Mod4+Ctrl+Shift+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh
+bindsym Mod4+Ctrl+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh
 
 bindsym Mod4+Ctrl+E exec --no-startup-id ~/racine/shell/run/lance-emacs-client.zsh
 bindsym Mod4+Ctrl+Shift+E exec --no-startup-id ~/racine/shell/run/lance-emacs.zsh
 
-bindsym Mod4+Ctrl+F exec firefox
+bindsym Mod4+Ctrl+C exec caja --no-desktop
+bindsym Mod4+Ctrl+F exec ~/racine/shell/run/lance-firefox.zsh
 bindsym Mod4+Ctrl+G exec geogebra
 bindsym Mod4+Ctrl+M exec musescore
 bindsym Mod4+Ctrl+O exec libreoffice
-bindsym Mod4+Ctrl+Q exec qutebrowser
+bindsym Mod4+Ctrl+Q exec ~/racine/shell/run/lance-qutebrowser.zsh
 bindsym Mod4+Ctrl+S exec mp3splt-gtk
 bindsym Mod4+Ctrl+X exec xclock
 bindsym Mod4+Ctrl+Z exec zathura
@@ -623,19 +627,21 @@ bindsym equal exec tilix ; mode "default"
 
 bindsym v exec --no-startup-id ~/racine/shell/run/lance-gvim.zsh ; mode "default"
 
-bindsym n exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh ; mode "default"
-bindsym Shift+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh ; mode "default"
+#bindsym n exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh ; mode "default"
+#bindsym Shift+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh ; mode "default"
+bindsym n exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh ; mode "default"
 
 bindsym e exec --no-startup-id ~/racine/shell/run/lance-emacs-client.zsh ; mode "default"
 bindsym Shift+E exec --no-startup-id ~/racine/shell/run/lance-emacs.zsh ; mode "default"
 
-bindsym f exec firefox ; mode "default"
+bindsym c exec caja --no-desktop
+bindsym f exec ~/racine/shell/run/lance-firefox.zsh ; mode "default"
 bindsym g exec geogebra ; mode "default"
 bindsym l exec lxterminal ; mode "default"
 bindsym m exec musescore ; mode "default"
 bindsym o exec libreoffice ; mode "default"
 bindsym p exec pcmanfm ; mode "default"
-bindsym q exec qutebrowser ; mode "default"
+bindsym q exec ~/racine/shell/run/lance-qutebrowser.zsh ; mode "default"
 bindsym s exec mp3splt-gtk ; mode "default"
 bindsym x exec xclock ; mode "default"
 bindsym z exec zathura ; mode "default"
@@ -668,22 +674,10 @@ mode "scratchpad" {
 bindsym o move scratchpad
 bindsym p scratchpad show
 
-# Lancement des outils
+# Lancement ou affichage des outils
 
-bindsym Shift+D exec --no-startup-id urxvtc -name deroulant -geometry 70x20 -e zsh -l
-bindsym Shift+C exec --no-startup-id urxvtc -name calculatrice -geometry 70x20 -fn "xft:monospace:size=12" -e calc
-
-# Affichage des outils
-
-bindsym d [instance="deroulant"] scratchpad show ; \
-	[instance="deroulant"] move position center ; \
-	[instance="deroulant"] move up 100 ; \
-	mode "default"
-
-bindsym c [instance="calculatrice"] scratchpad show ; \
-	[instance="calculatrice"] move position center ; \
-	[instance="calculatrice"] move up 100 ; \
-	mode "default"
+bindsym equal exec --no-startup-id ~/racine/shell/run/lance-deroulant.zsh ; mode "default"
+bindsym dollar exec --no-startup-id ~/racine/shell/run/lance-calculatrice.zsh ; mode "default"
 
 # Back to normal {{{2
 
