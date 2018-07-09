@@ -1449,7 +1449,7 @@ CUA mode est mieux
 
 ** Fenêtres
 
-Voir aussi hydra dans la configuration des paquets
+Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
@@ -1471,10 +1471,7 @@ Voir aussi hydra dans la configuration des paquets
 (global-set-key (kbd "C-x <C-right>") 'windmove-right)
 (global-set-key (kbd "C-x <C-left>") 'windmove-left)
 
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(global-set-key (kbd "C-x _") 'shrink-window)
 
 (global-set-key (kbd "<f12> f") 'follow-mode)
 
@@ -1560,8 +1557,9 @@ Voir aussi hydra dans la configuration des paquets
 
 (global-set-key (kbd "C-|") 'shell-command-on-region)
 
-(global-set-key (kbd "s-!") 'shell)
-(global-set-key (kbd "s-t") 'term)
+(global-set-key (kbd "s-! !") 'term)
+(global-set-key (kbd "s-! $") 'shell)
+(global-set-key (kbd "s-! e") 'eshell)
 
 (global-set-key (kbd "C-!") 'eshell)
 
@@ -2140,6 +2138,8 @@ heure.
 
 **** Bindings
 
+Voir aussi key-chord & hydra dans la configuration des paquets
+
 #+begin_src emacs-lisp
 
 (global-set-key (kbd "s-h") 'helm-command-prefix)
@@ -2153,12 +2153,8 @@ heure.
 (define-key global-map [remap insert-register] 'helm-register)
 
 (global-set-key (kbd "s-SPC") 'helm-mini)
-(key-chord-define-global "bn" 'helm-mini)
-
-(key-chord-define-global "df" 'helm-find-files)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
-(key-chord-define-global "xc" 'helm-M-x)
 
 ; Même idée qu’occur
 
@@ -2217,7 +2213,8 @@ heure.
 (require 'helm-projectile)
 
 (global-set-key (kbd "s-ù") 'helm-projectile)
-(global-set-key (kbd "s-*") 'helm-projectile-find-file)
+
+;; (global-set-key (kbd "s-*") 'helm-projectile-find-file)
 
 (global-set-key (kbd "C-c s-SPC") 'helm-projectile-recentf)
 
@@ -2263,6 +2260,8 @@ heure.
 
 *** MTorus
 
+Voir aussi key-chord & hydra dans la configuration des paquets
+
 #+begin_src emacs-lisp
 
 (require 'mtorus)
@@ -2270,26 +2269,40 @@ heure.
 
 ;; (mtorus-install-suggested-bindings)
 
-(global-set-key (kbd "s-@ c") 'mtorus-new-ring)
-(global-set-key (kbd "s-@ m") 'mtorus-rename-ring)
-(global-set-key (kbd "s-@ D") 'mtorus-delete-ring)
+(global-set-key (kbd "s-t c") 'mtorus-new-ring)
+(global-set-key (kbd "s-t m") 'mtorus-rename-ring)
+(global-set-key (kbd "s-t D") 'mtorus-delete-ring)
 
-(global-set-key (kbd "s-@ a") 'mtorus-add-current-pos-to-current-ring)
-(global-set-key (kbd "s-@ u") 'mtorus-update-current-marker)
-(global-set-key (kbd "s-@ d") 'mtorus-delete-current-marker-from-current-ring)
+(global-set-key (kbd "<S-s-insert>") 'mtorus-new-ring)
 
-(global-set-key (kbd "s-@ l") 'mtorus-describe-current-ring)
+(global-set-key (kbd "s-t a") 'mtorus-add-current-pos-to-current-ring)
+(global-set-key (kbd "s-t u") 'mtorus-update-current-marker)
+(global-set-key (kbd "s-t d") 'mtorus-delete-current-marker-from-current-ring)
 
-(global-set-key (kbd "s-@ n") 'mtorus-cycle-marker-next)
-(global-set-key (kbd "s-@ p") 'mtorus-cycle-marker-previous)
+(global-set-key (kbd "<s-insert>") 'mtorus-add-current-pos-to-current-ring)
+(global-set-key (kbd "<s-delete>") 'mtorus-update-current-marker)
+(global-set-key (kbd "<S-s-delete>") 'mtorus-delete-current-marker-from-current-ring)
 
-(global-set-key (kbd "s-@ N") 'mtorus-cycle-ring-next)
-(global-set-key (kbd "s-@ P") 'mtorus-cycle-ring-previous)
+(global-set-key (kbd "s-t l") 'mtorus-describe-current-ring)
 
-(global-set-key (kbd "s-@ =") 'mtorus-switch-to-ring)
+(global-set-key (kbd "s-t n") 'mtorus-cycle-marker-next)
+(global-set-key (kbd "s-t p") 'mtorus-cycle-marker-previous)
 
-(global-set-key (kbd "s-@ s") 'mtorus-save-torus)
-(global-set-key (kbd "s-@ r") 'mtorus-read-torus)
+(global-set-key (kbd "<home>") 'mtorus-cycle-marker-previous)
+(global-set-key (kbd "<end>") 'mtorus-cycle-marker-next)
+
+(global-set-key (kbd "s-t N") 'mtorus-cycle-ring-next)
+(global-set-key (kbd "s-t P") 'mtorus-cycle-ring-previous)
+
+(global-set-key (kbd "<C-home>") 'mtorus-cycle-ring-previous)
+(global-set-key (kbd "<C-end>") 'mtorus-cycle-ring-next)
+
+(global-set-key (kbd "s-t *") 'mtorus-switch-to-ring)
+
+(global-set-key (kbd "s-*") 'mtorus-switch-to-ring)
+
+(global-set-key (kbd "s-t s") 'mtorus-save-torus)
+(global-set-key (kbd "s-t r") 'mtorus-read-torus)
 
 (setq mtorus-save-on-exit t)
 (setq mtorus-file-name "~/racine/plugin/data/mtorus/mtorus.el")
@@ -2371,6 +2384,8 @@ heure.
 
 *** Undo-tree
 
+Voir aussi key-chord & hydra dans la configuration des paquets
+
 #+begin_src emacs-lisp
 
 (setq undo-tree-auto-save-history t)
@@ -2379,8 +2394,6 @@ heure.
 
 (defconst perso-undo-dir (expand-file-name "~/racine/varia/undo/"))
 (setq undo-tree-history-directory-alist `((".*" . ,perso-undo-dir)))
-
-(key-chord-define-global "yu" 'undo-tree-visualize)
 
 (global-undo-tree-mode 1)
 
@@ -2658,24 +2671,76 @@ configuration when invoked to evaluate a line."
 
 #+end_src
 
-Exemples :
+
+**** Helm
 
 #+begin_src emacs-lisp
 
-(key-chord-define-global "uu" 'undo)
+(key-chord-define-global "xc" 'helm-M-x)
 
-(key-chord-define-global "wi" 'delete-other-windows)
-(key-chord-define-global "wu" 'split-window-below)
-(key-chord-define-global "wo" 'split-window-right)
+(key-chord-define-global "bn" 'helm-mini)
+
+(key-chord-define-global "df" 'helm-find-files)
+
+#+end_src
+
+
+**** Undo
+
+#+begin_src emacs-lisp
+
+(key-chord-define-global "uu" 'undo-tree-visualize)
+
+#+end_src
+
+
+**** Fenêtres
+
+#+begin_src emacs-lisp
+
+(key-chord-define-global "wz" 'delete-other-windows)
+(key-chord-define-global "ws" 'split-window-below)
+(key-chord-define-global "wq" 'split-window-right)
 
 (key-chord-define-global "wh" 'windmove-left)
 (key-chord-define-global "wj" 'windmove-down)
 (key-chord-define-global "wk" 'windmove-up)
 (key-chord-define-global "wl" 'windmove-right)
 
+(key-chord-define-global "wx" '(lambda () (interactive) (shrink-window-horizontally 5)))
+(key-chord-define-global "wc" '(lambda () (interactive) (shrink-window 5)))
+(key-chord-define-global "wv" '(lambda () (interactive) (enlarge-window 5)))
+(key-chord-define-global "wb" '(lambda () (interactive) (enlarge-window-horizontally 5)))
 
 #+end_src
 
+
+**** MTorus
+
+#+begin_src emacs-lisp
+
+(key-chord-define-global "=c" 'mtorus-new-ring)
+(key-chord-define-global "=m" 'mtorus-rename-ring)
+(key-chord-define-global "=x" 'mtorus-delete-ring)
+
+(key-chord-define-global "=a" 'mtorus-add-current-pos-to-current-ring)
+(key-chord-define-global "=u" 'mtorus-update-current-marker)
+(key-chord-define-global "=d" 'mtorus-delete-current-marker-from-current-ring)
+
+(key-chord-define-global "=l" 'mtorus-describe-current-ring)
+
+(key-chord-define-global "=n" 'mtorus-cycle-marker-next)
+(key-chord-define-global "=p" 'mtorus-cycle-marker-previous)
+
+(key-chord-define-global "=j" 'mtorus-cycle-ring-next)
+(key-chord-define-global "=k" 'mtorus-cycle-ring-previous)
+
+(key-chord-define-global "=g" 'mtorus-switch-to-ring)
+
+(key-chord-define-global "=s" 'mtorus-save-torus)
+(key-chord-define-global "=r" 'mtorus-read-torus)
+
+#+end_src
 
 *** Hydra
 
