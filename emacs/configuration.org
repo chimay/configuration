@@ -1346,8 +1346,8 @@ Client et server
 (global-set-key [kp-next]  'scroll-up-command)
 (global-set-key [next]     'scroll-up-command)
 
-(global-set-key [C-home]      'beginning-of-buffer)
-(global-set-key [C-end]      'end-of-buffer)
+(global-set-key [S-home]      'beginning-of-buffer)
+(global-set-key [S-end]      'end-of-buffer)
 
 #+end_src
 
@@ -1575,9 +1575,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (when (string-match "\*helm.*\*" (buffer-name)) (previous-buffer)))
 
 (ad-activate 'previous-buffer)
-
-(global-set-key [C-prior] 'previous-buffer)
-(global-set-key [C-next] 'next-buffer)
 
 #+end_src
 
@@ -1982,7 +1979,9 @@ Nécessite org-tempo
 
 #+begin_src emacs-lisp
 
-(setq org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9)))
+;; (setq org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9)))
+
+(setq org-refile-targets '((nil :maxlevel . 9)))
 
 (setq org-refile-use-outline-path t)                  ; Show full paths for refiling
 
@@ -2357,14 +2356,14 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (global-set-key (kbd "s-t n") 'mtorus-cycle-marker-next)
 (global-set-key (kbd "s-t p") 'mtorus-cycle-marker-previous)
 
-(global-set-key (kbd "<home>") 'mtorus-cycle-marker-previous)
-(global-set-key (kbd "<end>") 'mtorus-cycle-marker-next)
+(global-set-key (kbd "<C-prior>") 'mtorus-cycle-marker-previous)
+(global-set-key (kbd "<C-next>") 'mtorus-cycle-marker-next)
 
 (global-set-key (kbd "s-t N") 'mtorus-cycle-ring-next)
 (global-set-key (kbd "s-t P") 'mtorus-cycle-ring-previous)
 
-(global-set-key (kbd "<S-home>") 'mtorus-cycle-ring-previous)
-(global-set-key (kbd "<S-end>") 'mtorus-cycle-ring-next)
+(global-set-key (kbd "<C-home>") 'mtorus-cycle-ring-previous)
+(global-set-key (kbd "<C-end>") 'mtorus-cycle-ring-next)
 
 (global-set-key (kbd "s-t *") 'mtorus-switch-to-ring)
 
