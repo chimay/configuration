@@ -6,7 +6,7 @@
 
 ;; * Provide
 
-(provide 'personnel-orgmode-configuration)
+(provide 'personnel/orgmode-configuration)
 
 ;; * Variables locales
 

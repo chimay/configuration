@@ -83,12 +83,13 @@ use “t” for true, “nil” for false
 
 Minibuffer :
 
-M-p, ‘up’ (‘previous-history-element’) – retrieve the input before the one currently in the minibuffer
-M-n, ‘down’ (‘next-history-element’) – retrieve the input after the one currently in the minibuffer
+  - M-p, up (previous-history-element) : retrieve the input before the one currently in the minibuffer
 
-M-r (‘previous-matching-history-element’) – Move to an earlier item in the minibuffer history that matches a regexp you enter.
+  - M-n, down (next-history-element) : retrieve the input after the one currently in the minibuffer
 
-M-s (‘next-matching-history-element’) – Move to a later item in the minibuffer history that matches a regexp you enter.
+  - M-r (previous-matching-history-element) : Move to an earlier item in the minibuffer history that matches a regexp you enter.
+
+  - M-s (next-matching-history-element) : Move to a later item in the minibuffer history that matches a regexp you enter.
 
 
 * Chemins d’accès
@@ -215,7 +216,7 @@ Fichier utilisé par customize
 
 ; Coupures entre les mots
 
-(global-visual-line-mode 1) ; 1 for on, 0 for off.
+(global-visual-line-mode -1)
 
 ; La flèche vers le bas bouge par lignes visuelles
 
@@ -326,8 +327,6 @@ Fichier utilisé par customize
 
 ; y / n au lieu de yes / no
 
-;(fset 'yes-or-no-p 'y-or-n-p)
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 #+end_src
@@ -352,7 +351,7 @@ Ensuite :
   - Le texte inséré se place à gauche ou à droite du rectangle,
     suivant la position du curseur
 
-  - C-2 M-w sauve le texte dans le registre 2
+  - C-2 M-w copie le texte dans le registre 2
 
   - C-S-<SPC> place une marque globale où tous les textes copiés
     seront ajoutés
@@ -384,10 +383,10 @@ Ensuite :
 (setq kept-new-versions 7)
 (setq kept-old-versions 5)
 
-(defconst perso-backup-dir
+(defconst perso/backup-dir
  (concat (getenv "HOME") "/racine/varia/backup/"))
 
-(setq backup-directory-alist `((".*" . ,perso-backup-dir)))
+(setq backup-directory-alist '((".*" . ,perso/backup-dir)))
 
 #+end_src
 
@@ -401,12 +400,12 @@ Ensuite :
 (setq auto-save-interval 300)
 (setq auto-save-timeout 30)
 
-(defconst perso-autosave-dir
+(defconst perso/autosave-dir
  (concat (getenv "HOME") "/racine/varia/autosave/"))
 
-(setq auto-save-list-file-prefix perso-autosave-dir)
+(setq auto-save-list-file-prefix perso/autosave-dir)
 
-(setq auto-save-file-name-transforms `((".*" ,perso-autosave-dir t)))
+(setq auto-save-file-name-transforms `((".*" ,perso/autosave-dir t)))
 
 #+end_src
 
@@ -521,19 +520,6 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
 
 
 * Tampons (buffers)
-
-
-** Choix dans le minibuffer
-
-Remplacé par icicles
-
-#+begin_src emacs-lisp
-
-;; (iswitchb-mode t)
-;; (setq iswitchb-use-frame-buffer-list t)
-;; (setq iswitchb-max-to-show 36)
-
-#+end_src
 
 
 ** Tampon contenant la liste des tampons
@@ -857,40 +843,6 @@ Conflit avec org-mode/timestamp
 * Présentation
 
 
-** Taille de la fenêtre
-
-#+begin_src emacs-lisp
-
-(defun perso-taille-fenetre ()
-  (interactive)
-  (if window-system
-  (progn
-    ;; use 120 char wide window for largeish displays
-    ;; and smaller 80 column windows for smaller displays
-    ;; pick whatever numbers make sense for you
-    ;; 1280
-    (if (> (x-display-pixel-width) 700)
-           (add-to-list 'default-frame-alist (cons 'width 140)))
-    ;; for the height, subtract a couple hundred pixels
-    ;; from the screen height (for panels, menubars and
-    ;; whatnot), then divide by the height of a char to
-    ;; get the height we want
-    (add-to-list 'default-frame-alist
-         (cons 'height (/ (- (x-display-pixel-height) 200)
-                             (frame-char-height)))))))
-
-(add-hook 'after-init-hook 'perso-taille-fenetre)
-
-(add-hook 'before-make-frame-hook
-          #'(lambda ()
-              (add-to-list 'default-frame-alist '(left   . 193))
-              (add-to-list 'default-frame-alist '(top    . 0))
-              (add-to-list 'default-frame-alist '(height . 37))
-              (add-to-list 'default-frame-alist '(width  . 140))))
-
-#+end_src
-
-
 ** Police
 
 #+begin_src emacs-lisp
@@ -908,6 +860,14 @@ Conflit avec org-mode/timestamp
 
 #+end_src
 
+
+** Symboles
+
+#+begin_src emacs-lisp
+
+(global-prettify-symbols-mode 1)
+
+#+end_src
 
 ** Curseur
 
@@ -953,11 +913,6 @@ Conflit avec org-mode/timestamp
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'horizontal-scroll-bar-mode) (horizontal-scroll-bar-mode -1))
 
-;(toggle-scroll-bar nil)
-;(toggle-horizontal-scroll-bar nil)
-
-;(when (equal window-system 'x) (scroll-bar-mode -1))
-
 (setq	scroll-step 1
 	scroll-margin 7
 	scroll-conservatively 100000
@@ -999,8 +954,6 @@ Conflit avec org-mode/timestamp
 #+begin_src emacs-lisp
 
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-
-;(when (equal window-system 'x) (tool-bar-mode -1))
 
 #+end_src
 
@@ -1045,39 +998,79 @@ Conflit avec org-mode/timestamp
 #+end_src
 
 
-* Aliases
-
-#+begin_src emacs-lisp
-
-(defalias 'eb 'eval-buffer)
-
-#+end_src
-
-
 * Fonctions
 
 
-** Sauve ligne
+** Fichier de configuration
+
+
+*** Éditer ce fichier
 
 #+begin_src emacs-lisp
 
-(defun sauve-ligne ()
- "Sauve la ligne"
- (interactive)
- (kill-whole-line)
- (undo-boundary)
- (undo)
- )
+(defun perso/edite-configuration-org ()
+  (interactive)
+  (find-file "~/racine/config/edit/emacs/configuration.org"))
 
 #+end_src
 
 
-** Sauve jusque fin ligne
+*** Recharger ce fichier
 
 #+begin_src emacs-lisp
 
-(defun sauve-jusque-fin-ligne ()
- "Sauve la ligne"
+(defun perso/recharge-configuration-org ()
+  "Reloads configuration.org at runtime"
+  (interactive)
+  (org-babel-load-file "~/racine/config/edit/emacs/configuration.org"))
+
+#+end_src
+
+
+** Efface mot
+
+#+begin_src emacs-lisp
+
+(defun perso/efface-mot ()
+  "Efface le mot sous le curseur"
+  (interactive)
+  (forward-char 1)
+  (backward-word)
+  (kill-word 1)
+)
+
+#+end_src
+
+** Copie une ligne
+
+#+begin_src emacs-lisp
+
+(defun perso/copie-ligne ()
+  "Copies a line without regard for cursor position."
+  (interactive)
+  (save-excursion
+    (kill-new
+     (buffer-substring
+      (point-at-bol)
+      (point-at-eol)))))
+
+;; (defun perso/copie-ligne ()
+;;  "Copie une ligne"
+;;  (interactive)
+;;  (kill-whole-line)
+;;  (undo-boundary)
+;;  (undo)
+;;  )
+
+#+end_src
+
+
+** Copie jusqu’à la fin de la ligne
+
+#+begin_src emacs-lisp
+
+(defun perso/copie-jusque-fin-ligne ()
+ "Copie jusqu’à la fin de la ligne"
  (interactive)
  (kill-line)
  (undo-boundary)
@@ -1091,7 +1084,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun efface-contenu-ligne ()
+(defun perso/efface-contenu-ligne ()
  "Efface le contenu de la ligne"
  (interactive)
  (kill-line 0)
@@ -1105,7 +1098,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun efface-jusque-debut-ligne ()
+(defun perso/efface-jusque-debut-ligne ()
 "kill from point to start of line"
 (interactive)
 (kill-line 0)
@@ -1118,7 +1111,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun affiche-nom-fichier ()
+(defun perso/affiche-nom-fichier ()
   "Show the full path file name in the minibuffer."
   (interactive)
   (message (buffer-file-name))
@@ -1132,7 +1125,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun tampon-precedent ()
+(defun perso/tampon-precedent ()
  "Va au tampon précédent"
  (interactive)
  (switch-to-buffer nil)
@@ -1141,11 +1134,41 @@ Conflit avec org-mode/timestamp
 #+end_src
 
 
+** Tampon courant
+
+#+begin_src emacs-lisp
+
+(defun perso/supprime-tampon-courant ()
+  "Supprime le tampon courant."
+  (interactive)
+  (kill-buffer (current-buffer)))
+
+#+end_src
+
+
+** Fenêtres
+
+#+begin_src emacs-lisp
+
+(defun perso/scinde-et-suit-horizontalement ()
+  (interactive)
+  (split-window-below)
+  (balance-windows)
+  (other-window 1))
+
+(defun perso/scinde-et-suit-verticalement ()
+  (interactive)
+  (split-window-right)
+  (balance-windows)
+  (other-window 1))
+
+#+end_src
+
 ** Insertion date
 
 #+begin_src emacs-lisp
 
-(defun insertion-date () (interactive)
+(defun perso/insertion-date () (interactive)
   (insert (shell-command-to-string "echo -n $(date +'%d %b %Y')")))
 
 #+end_src
@@ -1155,7 +1178,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun insertion-date-jour () (interactive)
+(defun perso/insertion-date-jour () (interactive)
   (insert (shell-command-to-string "echo -n $(date +'%a %d %b %Y')")))
 
 #+end_src
@@ -1165,7 +1188,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun insertion-date-jour-heure () (interactive)
+(defun perso/insertion-date-jour-heure () (interactive)
   (insert (shell-command-to-string "echo -n $(date +'%H : %M %a %d %b %Y')")))
 
 #+end_src
@@ -1175,7 +1198,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun lignes-vides-simples ()
+(defun perso/lignes-vides-simples ()
 
   (interactive)
 
@@ -1195,7 +1218,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun lignes-doubles-avant-titres ()
+(defun perso/lignes-doubles-avant-titres ()
 
   (interactive)
 
@@ -1220,6 +1243,39 @@ Conflit avec org-mode/timestamp
 
 
 * Bindings
+
+
+** Fichier de configuration
+
+
+*** Éditer ce fichier
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "<f5> e") 'perso/edite-configuration-org)
+
+#+end_src
+
+
+*** Recharger ce fichier
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "<f5> r") 'perso/recharge-configuration-org)
+
+#+end_src
+
+
+*** Recharger un fichier lisp
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "<f5> b") 'eval-buffer)
+
+(global-set-key (kbd "s-l") 'eval-buffer)
+
+
+#+end_src
 
 
 ** Modificateurs
@@ -1290,11 +1346,8 @@ Client et server
 (global-set-key [kp-next]  'scroll-up-command)
 (global-set-key [next]     'scroll-up-command)
 
-(global-set-key [C-home]      'beginning-of-line)
-(global-set-key [C-end]      'end-of-line)
-
-(global-set-key [home]      'beginning-of-buffer)
-(global-set-key [end]      'end-of-buffer)
+(global-set-key [C-home]      'beginning-of-buffer)
+(global-set-key [C-end]      'end-of-buffer)
 
 #+end_src
 
@@ -1350,6 +1403,8 @@ Voir Helm dans la configuration des paquets
 
 (global-set-key (kbd "<C-backspace>") 'backward-kill-word)
 
+(global-set-key (kbd "<M-backspace>") 'perso/efface-mot)
+
 (global-set-key (kbd "M-/") 'just-one-space)
 
 #+end_src
@@ -1359,13 +1414,13 @@ Voir Helm dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<C-insert>")   'sauve-ligne)
+(global-set-key (kbd "<C-insert>")   'perso/copie-ligne)
 
-(global-set-key (kbd "<M-insert>")   'sauve-jusque-fin-ligne)
+(global-set-key (kbd "<M-insert>")   'perso/copie-jusque-fin-ligne)
 
-(global-set-key (kbd "<C-delete>")   'efface-contenu-ligne)
+(global-set-key (kbd "<C-delete>")   'perso/efface-contenu-ligne)
 
-(global-set-key (kbd "<M-delete>")   'efface-jusque-debut-ligne)
+(global-set-key (kbd "<M-delete>")   'perso/efface-jusque-debut-ligne)
 
 (global-set-key (kbd "<s-backspace>")   'kill-whole-line)
 
@@ -1455,8 +1510,10 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 (global-set-key (kbd "<s-kp-0>") 'delete-window)
 (global-set-key (kbd "<s-kp-1>") 'delete-other-windows)
-(global-set-key (kbd "<s-kp-2>") 'split-window-below)
-(global-set-key (kbd "<s-kp-3>") 'split-window-right)
+
+(global-set-key (kbd "<s-kp-2>") 'perso/scinde-et-suit-horizontalement)
+(global-set-key (kbd "<s-kp-3>") 'perso/scinde-et-suit-verticalement)
+
 (global-set-key (kbd "<s-kp-5>") 'other-window)
 
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
@@ -1465,11 +1522,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (global-set-key (kbd "<S-down>") 'windmove-down)
 (global-set-key (kbd "<S-right>") 'windmove-right)
 (global-set-key (kbd "<S-left>") 'windmove-left)
-
-(global-set-key (kbd "C-x <C-up>") 'windmove-up)
-(global-set-key (kbd "C-x <C-down>") 'windmove-down)
-(global-set-key (kbd "C-x <C-right>") 'windmove-right)
-(global-set-key (kbd "C-x <C-left>") 'windmove-left)
 
 (global-set-key (kbd "C-x _") 'shrink-window)
 
@@ -1484,14 +1536,14 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 ;; Informations sur le tampon courant
 
-(global-set-key [f6] 'affiche-nom-fichier)
+(global-set-key [f6] 'perso/affiche-nom-fichier)
 
 ;; Lancer et répondre "!" pour sauver tous les tampons modifiés
 ;;(global-set-key (kbd "C-x s") 'save-some-buffers)
 
 (define-key global-map [remap list-buffers] 'ibuffer)
 
-(global-set-key (kbd "C-^") 'tampon-precedent)
+(global-set-key (kbd "C-^") 'perso/tampon-precedent)
 
 #+end_src
 
@@ -1539,6 +1591,14 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
+*** Supprimer le tampon courant
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "C-x k") 'perso/supprime-tampon-courant)
+
+#+end_src
+
 ** Outils
 
 
@@ -1557,11 +1617,19 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 (global-set-key (kbd "C-|") 'shell-command-on-region)
 
-(global-set-key (kbd "s-! !") 'term)
-(global-set-key (kbd "s-! $") 'shell)
-(global-set-key (kbd "s-! e") 'eshell)
+(global-set-key (kbd "<s-return>") 'eshell)
+(global-set-key (kbd "C-!") 'shell)
+(global-set-key (kbd "s-!") 'ansi-term)
 
-(global-set-key (kbd "C-!") 'eshell)
+;; (global-set-key (kbd "s-!") 'term)
+
+(defvar perso/terminal-shell "/bin/bash")
+
+(defadvice ansi-term (before force-bash)
+  (interactive (list perso/terminal-shell))
+)
+
+(ad-activate 'ansi-term)
 
 #+end_src
 
@@ -1588,31 +1656,27 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "s-d") 'insertion-date)
-(global-set-key (kbd "s-D") 'insertion-date-jour)
+(global-set-key (kbd "s-d") 'perso/insertion-date)
+(global-set-key (kbd "s-D") 'perso/insertion-date-jour)
 
 #+end_src
 
 
 *** Caractères
 
+Voir aussi key-chord & hydra dans la configuration des paquets
+
 #+begin_src emacs-lisp
-
-(global-unset-key (kbd "<f5>"))
-
-(global-set-key (kbd "<f5> SPC") (lambda () (interactive) (insert " ")))
 
 (global-set-key (kbd "C-c s-a") (lambda () (interactive) (insert "⟻")))
 (global-set-key (kbd "C-c s-z") (lambda () (interactive) (insert "⟼")))
 
-;(global-set-key (kbd "<f5> -") (lambda () (interactive) (insert "⟼")))
-;(global-set-key (kbd "<f5> =") (lambda () (interactive) (insert "⟻")))
+(global-unset-key (kbd "<f9>"))
 
-(global-set-key (kbd "<f5> a") (lambda () (interactive) (insert "â")))
-(global-set-key (kbd "<f5> e") (lambda () (interactive) (insert "ê")))
-(global-set-key (kbd "<f5> i") (lambda () (interactive) (insert "î")))
-(global-set-key (kbd "<f5> o") (lambda () (interactive) (insert "ô")))
-(global-set-key (kbd "<f5> u") (lambda () (interactive) (insert "û")))
+(global-set-key (kbd "<f9> SPC") (lambda () (interactive) (insert " ")))
+
+;(global-set-key (kbd "<f9> -") (lambda () (interactive) (insert "⟼")))
+;(global-set-key (kbd "<f9> =") (lambda () (interactive) (insert "⟻")))
 
 #+end_src
 
@@ -1631,26 +1695,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-;; (fset 'efface-tag-fin-ligne
-;;    (lambda (&optional arg) "Keyboard macro." (interactive "p")
-;;      (kmacro-exec-ring-item (quote ([5 23 backspace backspace] 0 "%d")) arg)))
-;;
-;; (fset 'efface-tag-debut-ligne
-;;    (lambda (&optional arg) "Keyboard macro." (interactive "p")
-;;       (kmacro-exec-ring-item (quote ([134217747 94 60 return 1 134217828 134217828 134217828 4 4] 0 "%d")) arg)))
-;;
 ;; (fset 'efface-tag
 ;;    (lambda (&optional arg) "Keyboard macro." (interactive "p")
 ;;       (kmacro-exec-ring-item (quote ([19 60 return 2 134217828 134217828 134217828 4 4] 0 "%d")) arg)))
 ;;
-;; (fset 'remplace-tag-par-italique
-;;    (lambda (&optional arg) "Keyboard macro." (interactive "p")
-;;       (kmacro-exec-ring-item (quote ([19 60 return 2 134217828 134217828 134217828 4 4 47 19 60 2 134217828 4 47] 0 "%d")) arg)))
-;;
-;; (global-set-key (kbd "C-x C-k 0") 'efface-tag-fin-ligne)
-;; (global-set-key (kbd "C-x C-k 1") 'efface-tag-debut-ligne)
-;; (global-set-key (kbd "C-x C-k 2") 'efface-tag)
-;; (global-set-key (kbd "C-x C-k 3") 'remplace-tag-par-italique)
+;; (global-set-key (kbd "C-x C-k 0") 'efface-tag)
 
 #+end_src
 
@@ -1750,15 +1799,26 @@ Désactivé car induisant parfois en erreur.
 
 #+begin_src emacs-lisp
 
-(setq org-use-speed-commands t)
-
-(setq org-adapt-indentation nil)
-
-(setq org-list-use-circular-motion t)
+(setq org-directory "~/racine/plain/orgdir/")
 
 (setq org-archive-location "~/racine/plain/orgdir/archive.org::* Fichier %s")
 
+(setq org-use-speed-commands t) ; Commandes org accessibles au 1er * de chaque titre
+
+(setq org-adapt-indentation nil) ; Pas d’indentation auto pour suivre la hiérarchie
+
+(setq org-list-use-circular-motion t)
+
 (setq org-export-preserve-breaks nil)
+
+(setq org-ellipsis " -->")
+
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+(setq org-src-window-setup 'current-window)
+
+(setq org-confirm-babel-evaluate nil)
+(setq org-export-with-smart-quotes t)
 
 #+end_src
 
@@ -1766,8 +1826,6 @@ Désactivé car induisant parfois en erreur.
 **** Org goto
 
 #+begin_src emacs-lisp
-
-(setq org-directory "~/racine/plain/orgdir/")
 
 (setq org-goto-auto-isearch nil)
 
@@ -1781,7 +1839,7 @@ Désactivé car induisant parfois en erreur.
 
 #+begin_src emacs-lisp
 
-(defun org-super-retour ()
+(defun org-liste-espacee ()
  "Passer une ligne avant Meta-return"
  (interactive)
  (org-meta-return)
@@ -1798,7 +1856,7 @@ Désactivé car induisant parfois en erreur.
     (define-key org-mode-map (kbd "C-c a") 'org-agenda)
     (define-key org-mode-map (kbd "C-c c") 'org-capture)
     (define-key org-mode-map (kbd "C-c b") 'org-iswitchb)
-    (define-key org-mode-map (kbd "<s-return>") 'org-super-retour)
+    (define-key org-mode-map (kbd "<C-M-return>") 'org-liste-espacee)
     )
  )
 
@@ -1867,6 +1925,17 @@ Voir C-c [ & C-c ] pour la gestion de org-agenda-files
 (setq org-agenda-start-day nil)
 
 (setq org-agenda-include-diary nil)
+
+#+end_src
+
+
+**** Complétion
+
+Nécessite org-tempo
+
+#+begin_src emacs-lisp
+
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 
 #+end_src
 
@@ -2294,8 +2363,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (global-set-key (kbd "s-t N") 'mtorus-cycle-ring-next)
 (global-set-key (kbd "s-t P") 'mtorus-cycle-ring-previous)
 
-(global-set-key (kbd "<C-home>") 'mtorus-cycle-ring-previous)
-(global-set-key (kbd "<C-end>") 'mtorus-cycle-ring-next)
+(global-set-key (kbd "<S-home>") 'mtorus-cycle-ring-previous)
+(global-set-key (kbd "<S-end>") 'mtorus-cycle-ring-next)
 
 (global-set-key (kbd "s-t *") 'mtorus-switch-to-ring)
 
@@ -2350,6 +2419,24 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
+** Fenêtres
+
+#+begin_src emacs-lisp
+
+(use-package switch-window
+  :ensure t
+  :config
+    (setq switch-window-input-style 'minibuffer)
+    (setq switch-window-increase 4)
+    (setq switch-window-threshold 2)
+    (setq switch-window-shortcut-style 'qwerty)
+    (setq switch-window-qwerty-shortcuts
+        '("0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
+  :bind
+    ([remap other-window] . switch-window))
+
+#+end_src
+
 ** Recherche
 
 
@@ -2392,8 +2479,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 ;;(setq undo-tree-visualizer-timestamps t)
 
-(defconst perso-undo-dir (expand-file-name "~/racine/varia/undo/"))
-(setq undo-tree-history-directory-alist `((".*" . ,perso-undo-dir)))
+(defconst perso/undo-dir (expand-file-name "~/racine/varia/undo/"))
+(setq undo-tree-history-directory-alist `((".*" . ,perso/undo-dir)))
 
 (global-undo-tree-mode 1)
 
@@ -2563,7 +2650,7 @@ configuration when invoked to evaluate a line."
 
 #+begin_src emacs-lisp
 
-(define-key region-bindings-mode-map (kbd "s-m") 'mc/mark-next-like-this)
+(define-key region-bindings-mode-map (kbd "s-n") 'mc/mark-next-like-this)
 (define-key region-bindings-mode-map (kbd "s-SPC") 'mc/mark-more-like-this-extended)
 (define-key region-bindings-mode-map (kbd "s-=") 'mc/edit-lines)
 
@@ -2629,11 +2716,9 @@ configuration when invoked to evaluate a line."
 
 #+begin_src emacs-lisp
 
-(autoload 'dired-async-mode "dired-async.el" nil t)
-
-(dired-async-mode 1)
-
-(async-bytecomp-package-mode 1)
+(use-package async
+  :ensure t
+  :init (dired-async-mode 1))
 
 #+end_src
 
@@ -2660,12 +2745,14 @@ configuration when invoked to evaluate a line."
 
 *** Key-chord
 
+Ralentit la frappe : activer seulement lorsque nécessaire
+
 #+begin_src emacs-lisp
 
-(key-chord-mode 1)
+;;(key-chord-mode 1)
 
-(setq key-chord-two-keys-delay 0.1)
-(setq key-chord-one-key-delay 0.2)
+(setq key-chord-two-keys-delay 0.12)
+(setq key-chord-one-key-delay 0.12)
 
 (global-set-key (kbd "<f12> c") 'key-chord-mode)
 
@@ -2689,7 +2776,7 @@ configuration when invoked to evaluate a line."
 
 #+begin_src emacs-lisp
 
-(key-chord-define-global "uu" 'undo-tree-visualize)
+(key-chord-define-global "yz" 'undo-tree-visualize)
 
 #+end_src
 
@@ -2701,11 +2788,6 @@ configuration when invoked to evaluate a line."
 (key-chord-define-global "wz" 'delete-other-windows)
 (key-chord-define-global "ws" 'split-window-below)
 (key-chord-define-global "wq" 'split-window-right)
-
-(key-chord-define-global "wh" 'windmove-left)
-(key-chord-define-global "wj" 'windmove-down)
-(key-chord-define-global "wk" 'windmove-up)
-(key-chord-define-global "wl" 'windmove-right)
 
 (key-chord-define-global "wx" '(lambda () (interactive) (shrink-window-horizontally 5)))
 (key-chord-define-global "wc" '(lambda () (interactive) (shrink-window 5)))
@@ -2741,6 +2823,20 @@ configuration when invoked to evaluate a line."
 (key-chord-define-global "=r" 'mtorus-read-torus)
 
 #+end_src
+
+
+**** Caractères
+
+#+begin_src emacs-lisp
+
+(key-chord-define-global "a^" (lambda () (interactive) (insert "â")))
+(key-chord-define-global "e^" (lambda () (interactive) (insert "ê")))
+(key-chord-define-global "i^" (lambda () (interactive) (insert "î")))
+(key-chord-define-global "o^" (lambda () (interactive) (insert "ô")))
+(key-chord-define-global "u^" (lambda () (interactive) (insert "û")))
+
+#+end_src
+
 
 *** Hydra
 

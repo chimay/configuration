@@ -10,15 +10,15 @@
 
 ;; * Paquets
 
-(require 'personnel-paquets "paquets")
+(require 'personnel/paquets "paquets")
 
 ;; * Perso
 
-(require 'personnel-perso "perso")
+(require 'personnel/perso "perso")
 
 ;; * Configuration en org-mode / babel
 
-(require 'personnel-orgmode-configuration "orgconfig")
+(require 'personnel/orgmode-configuration "orgconfig")
 
 ;; * Variables locales
 

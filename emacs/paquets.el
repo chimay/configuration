@@ -3,16 +3,23 @@
 
 ;; * Gestionnaire de paquets natif
 
-;; Added by Package.el. This must come before configurations of installed
-;; packages. Don't delete this line. If you don't want it, just comment
-;; it out by adding a semicolon to the start of the line. You may delete
-;; these explanatory comments.
+;; This must come before configurations of installed packages.
+
+(require 'package)
+(setq package-enable-at-startup nil)
+
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 (package-initialize)
 
-;; * Gestionnaire de paquets el-get
+(unless (package-installed-p 'use-package)
+	(package-refresh-contents)
+	(package-install 'use-package)
+	)
 
-;; Mieux que le gestionnaire par défaut "package"
+;; * Gestionnaire de paquets el-get
 
 (add-to-list 'load-path "~/racine/plugin/manager/el-get/el-get")
 
@@ -28,7 +35,7 @@
 (add-to-list 'el-get-user-package-directory "~/racine/config/edit/emacs/pack")
 (add-to-list 'el-get-recipe-path "~/racine/plugin/data/el-get-user/recipes")
 
-;; ** Bindings
+;; * Bindings
 
 (global-unset-key (kbd "<f11>"))
 
@@ -44,18 +51,32 @@
 
 ;; * Liste de paquets installés
 
+;; ** Nécessaire pour d’autres paquets
+
+(el-get-bundle paredit)
+(el-get-bundle ace-window)
+(el-get-bundle ht)
+(el-get-bundle htmlize)
+
+;; ** Langages
+
+(el-get-bundle inf-perl)
+(el-get-bundle inf-ruby)
+(el-get-bundle python)
+
+;; ** Liste principale
+
 (el-get-bundle alert)
 (el-get-bundle auctex)
+(el-get-bundle auto-complete)
 (el-get-bundle auto-mark)
 (el-get-bundle avy)
 (el-get-bundle command-log-mode)
 (el-get-bundle counsel-projectile)
 (el-get-bundle dired-hacks)
-(el-get-bundle emacs-async)
 (el-get-bundle evil)
 (el-get-bundle evil-leader)
 (el-get-bundle evil-magit)
-(el-get-bundle evil-org-mode-somelauw)
 (el-get-bundle expand-region)
 (el-get-bundle ggtags)
 (el-get-bundle helm)
@@ -63,10 +84,9 @@
 (el-get-bundle helm-gtags)
 (el-get-bundle helm-projectile)
 (el-get-bundle helm-swoop)
+(el-get-bundle htmlize)
 (el-get-bundle hydra)
 (el-get-bundle ibuffer-vc)
-(el-get-bundle inf-perl)
-(el-get-bundle inf-ruby)
 (el-get-bundle iy-go-to-char)
 (el-get-bundle key-chord)
 (el-get-bundle linum-relative)
@@ -83,6 +103,7 @@
 (el-get-bundle projectile)
 (el-get-bundle region-bindings-mode)
 (el-get-bundle register-list)
+(el-get-bundle ruby-mode)
 (el-get-bundle savekill)
 (el-get-bundle smartparens)
 (el-get-bundle swiper)
@@ -95,16 +116,22 @@
 (el-get-bundle yasnippet)
 (el-get-bundle ztree)
 
+;; ** Recettes personnelles
+
+(el-get-bundle eval-in-repl)
+(el-get-bundle evil-org-mode-somelauw)
+(el-get-bundle mtorus-chimay)
+(el-get-bundle org-wild-notifier)
+(el-get-bundle ox-twbs)
+(el-get-bundle xah-math-input)
+
+;; Sync
+
 (el-get 'sync)
-
-;; * Autres paquets via source
-
-(add-to-list 'load-path "~/racine/plugin/source/mtorus")
-(add-to-list 'load-path "~/racine/plugin/source/xah-math-input")
 
 ;; * Provide
 
-(provide 'personnel-paquets)
+(provide 'personnel/paquets)
 
 ;; * Variables locales
 
