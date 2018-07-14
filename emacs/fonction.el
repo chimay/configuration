@@ -2,7 +2,7 @@
 
 ;; * Php vers org sans niveau un
 
-(defun php-vers-org-sans-niveau-un ()
+(defun perso/php-vers-org-sans-niveau-un ()
 
   (interactive)
 
@@ -429,7 +429,7 @@ charge.*
 
 ;; * Tex vers org
 
-(defun tex-vers-org ()
+(defun perso/tex-vers-org ()
 
   (interactive)
 
@@ -496,7 +496,7 @@ charge.*
 
 ;; * Tex vers org sans niveau un
 
-(defun tex-vers-org-sans-niveau-un ()
+(defun perso/tex-vers-org-sans-niveau-un ()
   (interactive)
 
   (goto-char (point-min))
