@@ -700,9 +700,9 @@ fzf-greenclip () {
 
 	tampon=$BUFFER
 
-	#echo -n "$(greenclip print | fzf)" | xclip -selection clipboard
-
 	copie=$(greenclip print | fzf)
+
+	echo $copie | xclip -selection clipboard
 
 	zle reset-prompt
 
