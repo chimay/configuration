@@ -73,7 +73,39 @@ nf () {
 
 mrm () {
 
-	command ls -lht "$@" | command head -n 15
+	local vecteur=()
+
+	local autres=()
+
+	while true
+	do
+		case $1 in
+			[0-9]##)
+				vecteur+=$1
+				shift
+				;;
+			?*)
+				autres+=$1
+				shift
+				;;
+			*)
+				break
+				;;
+		esac
+	done
+
+	local nombre=${vecteur[1]:-7}
+	local repertoire=${autres[1]:-.}
+
+	echo Répertoires
+	echo "------------"
+	echo
+	command ls -ltd $repertoire/*(/) | head -n $nombre
+	echo
+	echo Fichiers
+	echo "------------"
+	echo
+	command ls -lt $repertoire/**/*(.om[1,$nombre])
 }
 
 # }}}2
@@ -486,7 +518,7 @@ pageur () {
 # vf : vim quick fix {{{2
 
 vf () {
-	vim +cope -q <(ag --no-color --vimgrep --smart-case "$@")
+	vim +cope -q <(ag --nocolor --vimgrep --smart-case "$@")
 }
 
 # }}}2
@@ -631,13 +663,58 @@ cmd-mpv () {
 
 # Fonctions ZLE {{{1
 
+# Ne pas oublier :
+#
+# zle -N fonction
+#
+# avant
+#
+# bindkey '...' fonction
+
 # Copie et désactive région {{{2
 
-copie-et-desactive-region() {
+copie-et-desactive-region () {
+
+	emulate -R zsh
+
+	setopt local_options
+
+	setopt warn_create_global
 
 	zle copy-region-as-kill
 
 	(( REGION_ACTIVE == 1 )) && REGION_ACTIVE=0
+}
+
+# }}}2
+
+# Fzf & Greenclip {{{2
+
+fzf-greenclip () {
+
+	emulate -R zsh
+
+	setopt local_options
+
+	setopt warn_create_global
+
+	tampon=$BUFFER
+
+	#echo -n "$(greenclip print | fzf)" | xclip -selection clipboard
+
+	copie=$(greenclip print | fzf)
+
+	zle reset-prompt
+
+	zle kill-buffer
+
+	LBUFFER=$copie
+
+	zle quote-line
+
+	LBUFFER=$tampon$LBUFFER
+
+	zle beginning-of-line
 }
 
 # }}}2

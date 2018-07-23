@@ -20,6 +20,14 @@ alias mk='make -f ~/racine/bin/make/generique.make'
 
 # ------------------------------------
 
+# Sudo {{{1
+
+# Remplacement pour gksu, kdesu
+
+alias gsu=pkexec
+
+# }}}1
+
 #  Affichage {{{1
 
 alias e='print -l'
@@ -151,6 +159,30 @@ alias spacevim='nvim-qt -- -u ~/racine/dotdir/spacevim/init.vim'
 }
 
 [ $OPERASYS = archlinux ] && {
+
+	alias l='ls --color=auto --show-control-chars'
+	alias ls='ls --color=auto'
+	alias la='ls -a --color=auto'
+	alias ll='ls -l --color=auto'
+}
+
+[ $OPERASYS = linuxmint ] && {
+
+	alias l='ls --color=auto --show-control-chars'
+	alias ls='ls --color=auto'
+	alias la='ls -a --color=auto'
+	alias ll='ls -l --color=auto'
+}
+
+[ $OPERASYS = ubuntu ] && {
+
+	alias l='ls --color=auto --show-control-chars'
+	alias ls='ls --color=auto'
+	alias la='ls -a --color=auto'
+	alias ll='ls -l --color=auto'
+}
+
+[ $OPERASYS = linux ] && {
 
 	alias l='ls --color=auto --show-control-chars'
 	alias ls='ls --color=auto'
@@ -352,6 +384,8 @@ alias agenda=calcurse
 # Courriel {{{1
 
 alias c=neomutt
+
+alias o=lance-neomutt.zsh
 
 alias n='newsboat -c ~/racine/index/newsboat/cache.db'
 

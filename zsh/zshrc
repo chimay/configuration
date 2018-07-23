@@ -258,14 +258,17 @@ zstyle ':completion:*:*:killall:*' menu yes select
 
 # }}}3
 
-# Unicité {{{3
+# Unicité des arguments {{{3
 
 # Pour éviter de reproposer un argument déjà utilisés
 # dans la commande lors de la completion
 
 zstyle ':completion:*:mv:*' ignore-line yes
 zstyle ':completion:*:cp:*' ignore-line yes
+zstyle ':completion:*:rsync:*' ignore-line yes
+zstyle ':completion:*:x:*' ignore-line yes
 zstyle ':completion:*:rm:*' ignore-line yes
+zstyle ':completion:*:trash-put:*' ignore-line yes
 zstyle ':completion:*:diff:*' ignore-line yes
 
 zstyle ':completion:*:joue:*' ignore-line yes
@@ -556,12 +559,6 @@ select-word-style bash
 
 # }}}2
 
-# Orthographe {{{2
-
-bindkey '\es' spell-word
-
-# }}}2
-
 # Contrôle de flux {{{2
 
 # Désactive Ctrl-S et Ctrl-Q pendant l’édition
@@ -580,7 +577,7 @@ bindkey '^O' accept-line-and-down-history
 bindkey '\e^J' self-insert-unmeta
 bindkey '\e^M' self-insert-unmeta
 
-bindkey '\ep' push-line-or-edit
+bindkey '\es' push-line-or-edit
 
 bindkey '\eg' get-line
 
@@ -660,6 +657,10 @@ bindkey '\er' kill-whole-line
 
 bindkey '^W' backward-kill-word
 
+zle -N fzf-greenclip
+
+bindkey '\eç' fzf-greenclip
+
 # }}}2
 
 #  Historique {{{2
@@ -673,21 +674,6 @@ bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
 
 # }}}3
-
-# }}}3
-
-# Recherche à partir du premier mot de la ligne {{{3
-
-bindkey '\eP' history-search-backward
-bindkey '\eN' history-search-forward
-
-# }}}3
-
-# Menu pour recherches d’après le début de la ligne {{{3
-
-autoload -Uz history-beginning-search-menu
-zle -N history-beginning-search-menu
-bindkey '\e=' history-beginning-search-menu
 
 # }}}3
 
@@ -735,7 +721,8 @@ bindkey '\e$' insert-last-word
 
 #  Expansion & complétion {{{2
 
-bindkey '^I' menu-complete
+bindkey '\t' menu-complete
+bindkey '\e=' menu-complete
 
 # urxvt ne connaît pas backtab
 #bindkey "${clavier[Backtab]}" reverse-menu-complete
@@ -752,13 +739,13 @@ bindkey -M menuselect '^F' vi-forward-char
 bindkey -M menuselect '^B' vi-backward-char
 bindkey -M menuselect '^N' vi-down-line-or-history
 bindkey -M menuselect '^P' vi-up-line-or-history
-bindkey -M menuselect '\en' vi-forward-blank-word
-bindkey -M menuselect '\ep' vi-backward-blank-word
+bindkey -M menuselect '\ef' vi-forward-blank-word
+bindkey -M menuselect '\eb' vi-backward-blank-word
 
 # Accepte la sélection et relance la complétion (pratique pour les répertoires)
 
 bindkey -M menuselect '\e\t' accept-and-infer-next-history
-bindkey -M menuselect '\ef' accept-and-infer-next-history
+bindkey -M menuselect '\ei' accept-and-infer-next-history
 
 #bindkey -M menuselect "${clavier[Down]}" accept-and-infer-next-history
 
@@ -816,6 +803,7 @@ bindkey '^Xa' all-matches
 # Mode vicmd {{{3
 
 bindkey '\ev' vi-cmd-mode
+bindkey '\ei' vi-cmd-mode
 
 bindkey -M vicmd '\ev' vi-insert
 
@@ -892,6 +880,7 @@ bindkey -M vicmd 'R' vi-replace
 bindkey -M vicmd '~' vi-swap-case
 
 bindkey -M vicmd 'u' vi-undo-change
+bindkey -M vicmd '^R' redo
 bindkey -M vicmd '.' vi-repeat-change
 
 bindkey -M vicmd '>' vi-indent
@@ -953,12 +942,6 @@ bindkey -M isearch '^D' backward-delete-char
 bindkey -M isearch '^W' backward-kill-word
 
 bindkey -M isearch '\ev' vi-cmd-mode
-
-#zle-isearch-update() { zle -M "Line $HISTNO"; }
-#zle -N zle-isearch-update
-
-#zle-isearch-exit() { zle -M ""; }
-#zle -N zle-isearch-exit
 
 # }}}3
 
@@ -1036,28 +1019,20 @@ bindkey '\ee' perso-edit-command-line
 
 # }}}2
 
-# Clausule {{{2
-
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
-
-if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} ))
-then
-    function zle-line-init () {
-        printf '%s' "${terminfo[smkx]}"
-    }
-    function zle-line-finish () {
-        printf '%s' "${terminfo[rmkx]}"
-    }
-    zle -N zle-line-init
-    zle -N zle-line-finish
-fi
-
-# }}}2
-
 # }}}1
 
 # ------------------------------------------------------------
+
+# Tilix : émulateur de terminal {{{1
+
+# Optionnel si login shell
+
+# if [ $TILIX_ID ] || [ $VTE_VERSION ]
+# then
+#         source /etc/profile.d/vte.sh
+# fi
+
+# }}}1
 
 # FASD : Fast search of files and directories {{{1
 
@@ -1093,7 +1068,7 @@ fi
 #			remplace capitalize-word
 #			toujours disponible sur Alt Shift c
 
-[ -f ~/.fzf.zsh ] && source ~/racine/config/cmdline/fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/racine/config/cmdline/shell/fzf.zsh
 
 bindkey '\e^T' transpose-chars
 bindkey '\eC' capitalize-word
@@ -1104,7 +1079,7 @@ bindkey '\eC' capitalize-word
 
 unsetopt warn_create_global
 
-source ~/racine/config/cmdline/cd-with-z.sh
+source ~/racine/config/cmdline/shell/cd-with-z.sh
 
 export _Z_DATA=~/racine/index/filesys/z-dirs
 
@@ -1566,7 +1541,7 @@ fi
 # Basé sur base16, permet d’uniformiser le thème du terminal
 # indépendamment des émulateurs
 
-source ~/racine/config/terminal/theme/personnel.sh
+source ~/racine/config/terminal/theme/ornuit.sh
 
 # }}}1
 

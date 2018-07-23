@@ -4,10 +4,15 @@ setopt nullglob
 
 # Système d’exploitation {{{1
 
+OPERASYS=inconnu
+
 case $(uname -a) in
 
 	*Linux*ARCH*)
 		OPERASYS=archlinux
+		;;
+	*Linux*Ubuntu*)
+		OPERASYS=ubuntu
 		;;
 	*FreeBSD*)
 		OPERASYS=freebsd
@@ -15,8 +20,12 @@ case $(uname -a) in
 	*Linux*|*linux*)
 		OPERASYS=linux
 		;;
-	?*)
-		OPERASYS=inconnu
+esac
+
+case $(lsb_release -i) in
+
+	*LinuxMint*)
+		OPERASYS=linuxmint
 		;;
 esac
 
