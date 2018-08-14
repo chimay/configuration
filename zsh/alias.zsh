@@ -58,11 +58,11 @@ alias p1='patch -p1 < '
 
 #  Visualisation {{{1
 
-alias m='pageur'
+alias p=pageur
 
-alias M='pageur +G'
+alias pp='pageur +G'
 
-alias mo='most -C'
+alias o='most -C'
 
 alias u=vimpager
 
@@ -345,9 +345,9 @@ alias j='jobs'
 
 alias top='htop'
 
-alias k='kill'
+alias k=kill
 
-alias fini='mplayer ~/audio/Sonnerie/fini.ogg'
+alias fini='mpv ~/audio/Sonnerie/notification/fini.ogg'
 
 #  }}}1
 
@@ -383,9 +383,9 @@ alias agenda=calcurse
 
 # Courriel {{{1
 
-alias c=neomutt
+alias m=neomutt
 
-alias o=lance-neomutt.zsh
+alias M=lance-neomutt.zsh
 
 alias n='newsboat -c ~/racine/index/newsboat/cache.db'
 
@@ -422,6 +422,7 @@ alias rvm-bash='/bin/bash rvm'
 
 alias ma='alsamixer -c 0'
 alias mp=pulsemixer
+alias mpp=ncpamixer
 
 alias y=joue
 
@@ -527,8 +528,8 @@ alias -g U='| sort | uniq'
 
 alias -g Y='| xclip -i -selection clipboard'
 
-alias -g L='|& less'
-alias -g LR='|& less -R'
+alias -g P='|& less'
+alias -g PR='|& less -R'
 
 alias -g V='| view -'
 alias -g W='| vimpager'
@@ -543,25 +544,23 @@ alias -g F='| fpp'
 
 # Pour choisir le programme qui va ouvrir le fichier, d’après l’extension
 
-alias -s htm='less'
-alias -s html='less'
-alias -s php='less'
-alias -s css='less'
-alias -s js='less'
+alias -s htm=$BROWSER
+alias -s html=$BROWSER
+alias -s php=$BROWSER
 
-alias -s tex='less'
-alias -s ly='less'
-alias -s txt='less'
+alias -s pdf=zathura
+alias -s epub=zathura
 
-alias -s gz='less'
-alias -s bz2='less'
-alias -s zip='less'
-alias -s deb='less'
+alias -s xz=less
+alias -s gz=less
+alias -s bz2=less
+alias -s zip=less
+alias -s deb=less
 
-alias -s ogg='mplayer'
-alias -s mp3='mplayer'
-alias -s flac='mplayer'
-alias -s wav='mplayer'
+alias -s ogg=mpv
+alias -s mp3=mpv
+alias -s flac=mpv
+alias -s wav=mpv
 
 # }}}1
 
