@@ -256,7 +256,7 @@ Fichier utilisé par customize
 (setq sentence-end-double-space nil)
 
 ; Eviter que la cesure de fin de ligne, operée par exemple par le
-; mode autofill ou par un M-q, coupe au niveau d'un caractere ( ou :
+; mode autofill ou par un M-q, coupe au niveau d'un caractere parenthèse ouvrante ou :
 
 (add-hook 'fill-no-break-predicate 'fill-french-nobreak-p)
 
@@ -317,6 +317,8 @@ Fichier utilisé par customize
 #+begin_src emacs-lisp
 
 (setq kill-ring-max 712)
+
+(setq save-interprogram-paste-before-kill t)
 
 #+end_src
 
@@ -383,10 +385,7 @@ Ensuite :
 (setq kept-new-versions 7)
 (setq kept-old-versions 5)
 
-(defconst perso/backup-dir
- (concat (getenv "HOME") "/racine/varia/backup/"))
-
-(setq backup-directory-alist '((".*" . ,perso/backup-dir)))
+(setq backup-directory-alist '((".*" . "~/racine/varia/backup/")))
 
 #+end_src
 
@@ -400,12 +399,12 @@ Ensuite :
 (setq auto-save-interval 300)
 (setq auto-save-timeout 30)
 
-(defconst perso/autosave-dir
+(defconst biblio/autosave-dir
  (concat (getenv "HOME") "/racine/varia/autosave/"))
 
-(setq auto-save-list-file-prefix perso/autosave-dir)
+(setq auto-save-list-file-prefix biblio/autosave-dir)
 
-(setq auto-save-file-name-transforms `((".*" ,perso/autosave-dir t)))
+(setq auto-save-file-name-transforms `((".*" ,biblio/autosave-dir t)))
 
 #+end_src
 
@@ -414,9 +413,9 @@ Ensuite :
 
 #+begin_src emacs-lisp
 
-(global-auto-revert-mode 1)
-(setq global-auto-revert-non-file-buffers t)
-(setq auto-revert-verbose nil)
+;; (global-auto-revert-mode 1)
+;; (setq global-auto-revert-non-file-buffers t)
+;; (setq auto-revert-verbose nil)
 
 #+end_src
 
@@ -472,6 +471,14 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
 
 #+end_src
 
+
+** Accès à distance
+
+#+begin_src emacs-lisp
+
+(require 'tramp)
+
+#+end_src
 
 * Répertoires
 
@@ -531,6 +538,45 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
 #+end_src
 
 
+** Tampon précédent & suivant
+
+#+begin_src emacs-lisp
+
+(defadvice next-buffer (after avoid-messages-buffer-in-next-buffer)
+  (when (string= "*scratch*" (buffer-name)) (next-buffer))
+  (when (string= "*Messages*" (buffer-name)) (next-buffer))
+  (when (string= "*Completions*" (buffer-name)) (next-buffer))
+  (when (string= "*compilation*" (buffer-name)) (next-buffer))
+  (when (string= "*Help*" (buffer-name)) (next-buffer))
+  (when (string= "*Ibuffer*" (buffer-name)) (next-buffer))
+  (when (string-match "TAGS.*" (buffer-name)) (next-buffer))
+  (when (string-match "\*helm.*\*" (buffer-name)) (next-buffer)))
+
+(ad-activate 'next-buffer)
+
+(defadvice previous-buffer (after avoid-messages-buffer-in-previous-buffer)
+  (when (string= "*scratch*" (buffer-name)) (previous-buffer))
+  (when (string= "*Messages*" (buffer-name)) (previous-buffer))
+  (when (string= "*Completions*" (buffer-name)) (previous-buffer))
+  (when (string= "*compilation*" (buffer-name)) (previous-buffer))
+  (when (string= "*Help*" (buffer-name)) (previous-buffer))
+  (when (string= "*Ibuffer*" (buffer-name)) (previous-buffer))
+  (when (string-match "TAGS.*" (buffer-name)) (previous-buffer))
+  (when (string-match "\*helm.*\*" (buffer-name)) (previous-buffer)))
+
+(ad-activate 'previous-buffer)
+
+#+end_src
+
+
+** Tampons inactifs
+
+#+begin_src emacs-lisp
+(setq clean-buffer-list-delay-general 1) ; nombre de jours
+(setq clean-buffer-list-delay-special (* 12 3600)) ; nombre de secondes
+#+end_src
+
+
 ** Mini-tampon
 
 #+begin_src emacs-lisp
@@ -572,6 +618,8 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
 
 ** Fichiers récents
 
+Penser à exécuter recentf-cleanup de temps en temps
+
 #+begin_src emacs-lisp
 
 (setq recentf-max-saved-items 1234)
@@ -579,6 +627,8 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
 
 (setq recentf-save-file
  (concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/recentf"))
+
+(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
 
 ; Important de placer le require après la définition des variables
 
@@ -849,14 +899,7 @@ Conflit avec org-mode/timestamp
 
 (set-frame-font "Monospace-11")
 
-#+end_src
-
-
-*** Tester avec xfontsel
-
-#+begin_src emacs-lisp
-
-;(set-face-font 'default "-adobe-avant garde gothic-book-r-normal-*-17-120-100-100-p-*-*-*")
+(add-to-list 'default-frame-alist '(font . "Monospace-11" ))
 
 #+end_src
 
@@ -983,16 +1026,16 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(when (equal window-system 'x) (load-theme 'couleur-gui t))
-(when (equal window-system nil) (load-theme 'couleur-term t))
+(when (equal window-system 'x) (load-theme 'ornuit-gui t))
+(when (equal window-system nil) (load-theme 'ornuit-term t))
 
 (if (daemonp)
   (add-hook 'after-make-frame-functions
     '(lambda (frame)
      (with-selected-frame frame
-       (when (equal window-system 'x) (load-theme 'couleur-gui t))
+       (when (equal window-system 'x) (load-theme 'ornuit-gui t))
        )))
-  (when (equal window-system 'x) (load-theme 'couleur-gui t))
+  (when (equal window-system 'x) (load-theme 'ornuit-gui t))
 )
 
 #+end_src
@@ -1008,9 +1051,10 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/edite-configuration-org ()
+(defun biblio/edite-configuration-org ()
   (interactive)
-  (find-file "~/racine/config/edit/emacs/configuration.org"))
+  (find-file "~/racine/config/edit/emacs/configuration.org")
+  (cd "~/racine/config/edit/emacs"))
 
 #+end_src
 
@@ -1019,7 +1063,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/recharge-configuration-org ()
+(defun biblio/recharge-configuration-org ()
   "Reloads configuration.org at runtime"
   (interactive)
   (org-babel-load-file "~/racine/config/edit/emacs/configuration.org"))
@@ -1031,7 +1075,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/efface-mot ()
+(defun biblio/efface-mot ()
   "Efface le mot sous le curseur"
   (interactive)
   (forward-char 1)
@@ -1045,7 +1089,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/copie-ligne ()
+(defun biblio/copie-ligne ()
   "Copies a line without regard for cursor position."
   (interactive)
   (save-excursion
@@ -1054,7 +1098,7 @@ Conflit avec org-mode/timestamp
       (point-at-bol)
       (point-at-eol)))))
 
-;; (defun perso/copie-ligne ()
+;; (defun biblio/copie-ligne ()
 ;;  "Copie une ligne"
 ;;  (interactive)
 ;;  (kill-whole-line)
@@ -1069,7 +1113,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/copie-jusque-fin-ligne ()
+(defun biblio/copie-jusque-fin-ligne ()
  "Copie jusqu’à la fin de la ligne"
  (interactive)
  (kill-line)
@@ -1084,7 +1128,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/efface-contenu-ligne ()
+(defun biblio/efface-contenu-ligne ()
  "Efface le contenu de la ligne"
  (interactive)
  (kill-line 0)
@@ -1098,7 +1142,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/efface-jusque-debut-ligne ()
+(defun biblio/efface-jusque-debut-ligne ()
 "kill from point to start of line"
 (interactive)
 (kill-line 0)
@@ -1111,7 +1155,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/affiche-nom-fichier ()
+(defun biblio/affiche-copie-nom-fichier ()
   "Show the full path file name in the minibuffer."
   (interactive)
   (message (buffer-file-name))
@@ -1121,11 +1165,14 @@ Conflit avec org-mode/timestamp
 #+end_src
 
 
-** Tampon précédent
+** Tampons (buffers)
+
+
+*** Tampon précédent
 
 #+begin_src emacs-lisp
 
-(defun perso/tampon-precedent ()
+(defun biblio/tampon-precedent ()
  "Va au tampon précédent"
  (interactive)
  (switch-to-buffer nil)
@@ -1134,14 +1181,42 @@ Conflit avec org-mode/timestamp
 #+end_src
 
 
-** Tampon courant
+*** Fermer le tampon courant
 
 #+begin_src emacs-lisp
 
-(defun perso/supprime-tampon-courant ()
+(defun biblio/ferme-tampon-courant ()
   "Supprime le tampon courant."
   (interactive)
   (kill-buffer (current-buffer)))
+
+#+end_src
+
+
+*** Fermer tous les tampons
+
+#+begin_src emacs-lisp
+
+(defun biblio/ferme-tous-les-tampons ()
+  "Ferme tous les tampons."
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
+#+end_src
+
+
+*** Revert all buffers
+
+#+begin_src emacs-lisp
+
+  (defun biblio/revert-all-buffers ()
+      "Refreshes all open buffers from their respective files."
+      (interactive)
+      (dolist (buf (buffer-list))
+	(with-current-buffer buf
+	  (when (and (buffer-file-name) (file-exists-p (buffer-file-name)) (not (buffer-modified-p)))
+	    (revert-buffer t t t) )))
+      (message "Refreshed open files.") )
 
 #+end_src
 
@@ -1150,13 +1225,13 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/scinde-et-suit-horizontalement ()
+(defun biblio/scinde-et-suit-horizontalement ()
   (interactive)
   (split-window-below)
   (balance-windows)
   (other-window 1))
 
-(defun perso/scinde-et-suit-verticalement ()
+(defun biblio/scinde-et-suit-verticalement ()
   (interactive)
   (split-window-right)
   (balance-windows)
@@ -1168,7 +1243,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/insertion-date () (interactive)
+(defun biblio/insertion-date () (interactive)
   (insert (shell-command-to-string "echo -n $(date +'%d %b %Y')")))
 
 #+end_src
@@ -1178,7 +1253,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/insertion-date-jour () (interactive)
+(defun biblio/insertion-date-jour () (interactive)
   (insert (shell-command-to-string "echo -n $(date +'%a %d %b %Y')")))
 
 #+end_src
@@ -1188,7 +1263,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/insertion-date-jour-heure () (interactive)
+(defun biblio/insertion-date-jour-heure () (interactive)
   (insert (shell-command-to-string "echo -n $(date +'%H : %M %a %d %b %Y')")))
 
 #+end_src
@@ -1198,7 +1273,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/lignes-vides-simples ()
+(defun biblio/lignes-vides-simples ()
 
   (interactive)
 
@@ -1218,7 +1293,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun perso/lignes-doubles-avant-titres ()
+(defun biblio/lignes-doubles-avant-titres ()
 
   (interactive)
 
@@ -1245,6 +1320,18 @@ Conflit avec org-mode/timestamp
 * Bindings
 
 
+** Modificateurs
+
+X-Y, où X est un des éléments de la liste ci-dessous :
+
+S = Shift
+C = Control
+M = Meta
+A = Alt
+s = Super
+H = Hyper
+
+
 ** Fichier de configuration
 
 
@@ -1252,7 +1339,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<f5> e") 'perso/edite-configuration-org)
+(global-set-key (kbd "<f5> e") 'biblio/edite-configuration-org)
 
 #+end_src
 
@@ -1261,7 +1348,7 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<f5> r") 'perso/recharge-configuration-org)
+(global-set-key (kbd "<f5> r") 'biblio/recharge-configuration-org)
 
 #+end_src
 
@@ -1274,21 +1361,16 @@ Conflit avec org-mode/timestamp
 
 (global-set-key (kbd "s-l") 'eval-buffer)
 
-
 #+end_src
 
 
-** Modificateurs
+*** Thème courant
 
-X-Y, où X est un des éléments de la liste ci-dessous :
+#+begin_src emacs-lisp
 
-S = Shift
-C = Control
-M = Meta
-A = Alt
-s = Super
-H = Hyper
+(global-set-key (kbd "<f5> c") 'list-faces-display)
 
+#+end_src
 
 ** Exécution de fonction intéractive
 
@@ -1305,7 +1387,7 @@ H = Hyper
 
 #+begin_src emacs-lisp
 
-;(global-set-key (kbd "s-R" ) 'recentf-open-files)
+;;(global-set-key (kbd "s-R" ) 'recentf-open-files)
 
 (define-key minibuffer-local-map (kbd "M-p") 'previous-history-element)
 (define-key minibuffer-local-map (kbd "M-n") 'next-history-element)
@@ -1356,8 +1438,8 @@ Client et server
 
 #+begin_src emacs-lisp
 
-; (global-set-key (kbd "<f1> a")   'bookmark-set)
-; (global-set-key (kbd "<f1> b")   'bookmark-bmenu-list)
+;; (global-set-key (kbd "<f1> a")   'bookmark-set)
+;; (global-set-key (kbd "<f1> b")   'bookmark-bmenu-list)
 
 #+end_src
 
@@ -1368,10 +1450,10 @@ Voir Helm dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-;(global-set-key (kbd "M-*") 'find-tag)
+;;(global-set-key (kbd "M-*") 'find-tag)
 
-;(global-set-key (kbd "M-,") 'pop-tag-mark)
-;(global-set-key (kbd "M-.") 'tags-loop-continue)
+;;(global-set-key (kbd "M-,") 'pop-tag-mark)
+;;(global-set-key (kbd "M-.") 'tags-loop-continue)
 
 #+end_src
 
@@ -1403,7 +1485,7 @@ Voir Helm dans la configuration des paquets
 
 (global-set-key (kbd "<C-backspace>") 'backward-kill-word)
 
-(global-set-key (kbd "<M-backspace>") 'perso/efface-mot)
+(global-set-key (kbd "<M-backspace>") 'biblio/efface-mot)
 
 (global-set-key (kbd "M-/") 'just-one-space)
 
@@ -1414,13 +1496,13 @@ Voir Helm dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<C-insert>")   'perso/copie-ligne)
+(global-set-key (kbd "<C-insert>")   'biblio/copie-ligne)
 
-(global-set-key (kbd "<M-insert>")   'perso/copie-jusque-fin-ligne)
+(global-set-key (kbd "<M-insert>")   'biblio/copie-jusque-fin-ligne)
 
-(global-set-key (kbd "<C-delete>")   'perso/efface-contenu-ligne)
+(global-set-key (kbd "<C-delete>")   'biblio/efface-contenu-ligne)
 
-(global-set-key (kbd "<M-delete>")   'perso/efface-jusque-debut-ligne)
+(global-set-key (kbd "<M-delete>")   'biblio/efface-jusque-debut-ligne)
 
 (global-set-key (kbd "<s-backspace>")   'kill-whole-line)
 
@@ -1511,8 +1593,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (global-set-key (kbd "<s-kp-0>") 'delete-window)
 (global-set-key (kbd "<s-kp-1>") 'delete-other-windows)
 
-(global-set-key (kbd "<s-kp-2>") 'perso/scinde-et-suit-horizontalement)
-(global-set-key (kbd "<s-kp-3>") 'perso/scinde-et-suit-verticalement)
+(global-set-key (kbd "<s-kp-2>") 'biblio/scinde-et-suit-horizontalement)
+(global-set-key (kbd "<s-kp-3>") 'biblio/scinde-et-suit-verticalement)
 
 (global-set-key (kbd "<s-kp-5>") 'other-window)
 
@@ -1530,54 +1612,54 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
-** Tampons
+** Tampons (buffers)
+
+
+*** Tampon précédent
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-^") 'biblio/tampon-precedent)
+#+end_src
+
+
+*** Liste des tampons
+
+#+begin_src emacs-lisp
+  (define-key global-map [remap list-buffers] 'ibuffer)
+#+end_src
+
+
+*** Revert
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f2> r") 'revert-buffer)
+  (global-set-key (kbd "<f2> R") 'biblio/revert-all-buffers)
+#+end_src
+
+
+*** Fermer le tampon courant
 
 #+begin_src emacs-lisp
 
-;; Informations sur le tampon courant
-
-(global-set-key [f6] 'perso/affiche-nom-fichier)
-
-;; Lancer et répondre "!" pour sauver tous les tampons modifiés
-;;(global-set-key (kbd "C-x s") 'save-some-buffers)
-
-(define-key global-map [remap list-buffers] 'ibuffer)
-
-(global-set-key (kbd "C-^") 'perso/tampon-precedent)
+(global-set-key (kbd "C-x k") 'biblio/ferme-tampon-courant)
 
 #+end_src
 
 
-*** Tampon précédent & suivant
+*** Fermer tous les tampons
 
 #+begin_src emacs-lisp
 
-(defadvice next-buffer (after avoid-messages-buffer-in-next-buffer)
-  (when (string= "*scratch*" (buffer-name)) (next-buffer))
-  (when (string= "*Messages*" (buffer-name)) (next-buffer))
-  (when (string= "*Completions*" (buffer-name)) (next-buffer))
-  (when (string= "*compilation*" (buffer-name)) (next-buffer))
-  (when (string= "*Help*" (buffer-name)) (next-buffer))
-  (when (string= "*Ibuffer*" (buffer-name)) (next-buffer))
-  (when (string-match "TAGS.*" (buffer-name)) (next-buffer))
-  (when (string-match "\*helm.*\*" (buffer-name)) (next-buffer)))
-
-(ad-activate 'next-buffer)
-
-(defadvice previous-buffer (after avoid-messages-buffer-in-previous-buffer)
-  (when (string= "*scratch*" (buffer-name)) (previous-buffer))
-  (when (string= "*Messages*" (buffer-name)) (previous-buffer))
-  (when (string= "*Completions*" (buffer-name)) (previous-buffer))
-  (when (string= "*compilation*" (buffer-name)) (previous-buffer))
-  (when (string= "*Help*" (buffer-name)) (previous-buffer))
-  (when (string= "*Ibuffer*" (buffer-name)) (previous-buffer))
-  (when (string-match "TAGS.*" (buffer-name)) (previous-buffer))
-  (when (string-match "\*helm.*\*" (buffer-name)) (previous-buffer)))
-
-(ad-activate 'previous-buffer)
+(global-set-key (kbd "C-M-s-k") 'biblio/ferme-tous-les-tampons)
 
 #+end_src
 
+
+*** Tampons inactifs
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "<f2> c") 'clean-buffer-list)
+#+end_src
 
 *** Vue restreinte sur un tampon (narrowing)
 
@@ -1588,13 +1670,19 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
-*** Supprimer le tampon courant
+*** Divers
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "C-x k") 'perso/supprime-tampon-courant)
+  ;; Informations sur le tampon courant
+
+  (global-set-key (kbd "<f2> n") 'biblio/affiche-copie-nom-fichier)
+
+  ;; Lancer et répondre "!" pour sauver tous les tampons modifiés
+  ;;(global-set-key (kbd "C-x s") 'save-some-buffers)
 
 #+end_src
+
 
 ** Outils
 
@@ -1620,10 +1708,10 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 ;; (global-set-key (kbd "s-!") 'term)
 
-(defvar perso/terminal-shell "/bin/bash")
+(defvar biblio/terminal-shell "/bin/bash")
 
 (defadvice ansi-term (before force-bash)
-  (interactive (list perso/terminal-shell))
+  (interactive (list biblio/terminal-shell))
 )
 
 (ad-activate 'ansi-term)
@@ -1653,8 +1741,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "s-d") 'perso/insertion-date)
-(global-set-key (kbd "s-D") 'perso/insertion-date-jour)
+(global-set-key (kbd "s-d") 'biblio/insertion-date)
+(global-set-key (kbd "s-D") 'biblio/insertion-date-jour)
 
 #+end_src
 
@@ -1665,15 +1753,19 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "C-c s-a") (lambda () (interactive) (insert "⟻")))
-(global-set-key (kbd "C-c s-z") (lambda () (interactive) (insert "⟼")))
+(global-unset-key (kbd "<f8>"))
 
-(global-unset-key (kbd "<f9>"))
+(global-set-key (kbd "<f8> <") (lambda () (interactive) (insert "⟻")))
+(global-set-key (kbd "<f8> >") (lambda () (interactive) (insert "⟼")))
 
-(global-set-key (kbd "<f9> SPC") (lambda () (interactive) (insert " ")))
+(global-set-key (kbd "<f8> SPC") (lambda () (interactive) (insert " ")))
 
-;(global-set-key (kbd "<f9> -") (lambda () (interactive) (insert "⟼")))
-;(global-set-key (kbd "<f9> =") (lambda () (interactive) (insert "⟻")))
+(global-set-key (kbd "<f8> a") (lambda () (interactive) (insert "â")))
+(global-set-key (kbd "<f8> e") (lambda () (interactive) (insert "ê")))
+(global-set-key (kbd "<f8> i") (lambda () (interactive) (insert "î")))
+(global-set-key (kbd "<f8> o") (lambda () (interactive) (insert "ô")))
+(global-set-key (kbd "<f8> u") (lambda () (interactive) (insert "û")))
+
 
 #+end_src
 
@@ -1808,7 +1900,7 @@ Désactivé car induisant parfois en erreur.
 
 (setq org-export-preserve-breaks nil)
 
-(setq org-ellipsis " -->")
+(setq org-ellipsis " |--->")
 
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
@@ -1958,19 +2050,29 @@ Nécessite org-tempo
 
 (setq org-default-notes-file "~/racine/plain/orgdir/notes.org")
 
-(setq org-capture-templates
-      '(("a" "Agenda" entry (file+olp "~/racine/plain/orgdir/agenda.org" "Agenda" "Ordinaires")
-             "\n\n* %?\n\nCréé le : %U\n\nLien : %a\n\n%i")
+(setq org-capture-templates '(
+
+	("a" "Agenda" entry (file+olp "~/racine/plain/orgdir/agenda.org" "Agenda" "Ordinaires")
+         "* TODO %?\nSCHEDULED: %^{Agenda}T \nLien : %a\n\n%i" :empty-lines 2)
+
 	("t" "Todo : Liste de tâches" entry (file+headline "~/racine/plain/orgdir/taches.org" "Tâches")
-             "\n\n* TODO %?\n\nCréé le : %U\n\nLien : %a\n\n%i")
-        ("f" "Fix : Astuces, résolution de bugs" entry (file+headline "~/racine/plain/orgdir/astuces.org" "Astuces")
-             "\n\n* %?\n\nCréé le : %U\n\nLien : %a\n\n%i")
-        ("l" "Log : Journal de bord du capitaine" entry (file+olp+datetree "~/racine/plain/orgdir/journaldebord.org" "Journal")
-         "\n\n* %?\n\nCréé le %U\n\nLien : %a\n\n%i")
-        ("d" "Dreamtime : Rêverie" entry (file+olp+datetree "~/racine/plain/orgdir/reverie.org" "Rêverie")
-         "\n\n* %?\n\n")
-        ("n" "Notes" entry (file+headline "~/racine/plain/orgdir/notes.org" "Notes")
-             "\n\n* %?\n\nCréé le : %U\n\nLien : %a\n\n%i")))
+         "* TODO %?\n\nCréé le : %U\n\nLien : %a\n\n%i" :empty-lines 2)
+
+	("f" "Fix : Astuces, résolution de bugs" entry (file+headline "~/racine/plain/orgdir/astuces.org" "Astuces")
+         "* %?\n\nCréé le : %U\n\nLien : %a\n\n%i" :empty-lines 2)
+
+	("l" "Log : Journal de bord du capitaine" entry (file+olp+datetree "~/racine/plain/orgdir/journaldebord.org" "Journal")
+         "* %?\n\nCréé le %U\n\nLien : %a\n\n%i" :empty-lines 2)
+
+	("d" "Dreamtime : Rêverie" entry (file+olp+datetree "~/racine/plain/orgdir/reverie.org" "Rêverie")
+         "* %?" :empty-lines 1)
+
+	("e" "Éducation" entry (file+olp+datetree "~/racine/plain/orgdir/education.org" "Éducation")
+         "* %?" :empty-lines 1)
+
+	("n" "Notes" entry (file+headline "~/racine/plain/orgdir/notes.org" "Notes")
+         "* %?\n\nCréé le : %U\n\nLien : %a\n\n%i" :empty-lines 2)
+))
 
 #+end_src
 
@@ -2236,7 +2338,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (global-set-key (kbd "s-$") 'helm-etags-select)
 (global-set-key (kbd "s--") 'helm-locate)
 
-(global-set-key (kbd "s-&") 'helm-do-grep-ag)
+(global-set-key (kbd "s-g") 'helm-do-grep-ag)
+(global-set-key (kbd "s-&") 'helm-projectile-grep)
 
 (global-set-key (kbd "s-'") 'helm-all-mark-rings)
 
@@ -2255,21 +2358,12 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(define-key helm-map (kbd "s-z")  'helm-select-action)
+(define-key helm-map (kbd "s-z") 'helm-select-action)
 (define-key helm-map (kbd "C-z") 'helm-execute-persistent-action)
 
 ;;(helm-mode 1)
 
 (global-set-key (kbd "<f12> h") 'helm-mode)
-
-#+end_src
-
-
-*** Helm ag
-
-#+begin_src emacs-lisp
-
-(global-set-key (kbd "s-g") 'helm-ag)
 
 #+end_src
 
@@ -2365,9 +2459,13 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (global-set-key (kbd "<C-home>") 'mtorus-cycle-ring-previous)
 (global-set-key (kbd "<C-end>") 'mtorus-cycle-ring-next)
 
-(global-set-key (kbd "s-t *") 'mtorus-switch-to-ring)
+;; (global-set-key (kbd "s-t *") 'mtorus-switch-to-ring)
+
+(global-set-key (kbd "s-t *") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
 
 (global-set-key (kbd "s-*") 'mtorus-switch-to-ring)
+
+(global-set-key (kbd "s-*") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
 
 (global-set-key (kbd "s-t s") 'mtorus-save-torus)
 (global-set-key (kbd "s-t r") 'mtorus-read-torus)
@@ -2422,17 +2520,14 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(use-package switch-window
-  :ensure t
-  :config
-    (setq switch-window-input-style 'minibuffer)
-    (setq switch-window-increase 4)
-    (setq switch-window-threshold 2)
-    (setq switch-window-shortcut-style 'qwerty)
-    (setq switch-window-qwerty-shortcuts
-        '("0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
-  :bind
-    ([remap other-window] . switch-window))
+(setq switch-window-input-style 'minibuffer)
+(setq switch-window-increase 4)
+(setq switch-window-threshold 2)
+(setq switch-window-shortcut-style 'qwerty)
+(setq switch-window-qwerty-shortcuts
+    '("0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
+
+(define-key global-map [remap other-window] 'switch-window)
 
 #+end_src
 
@@ -2478,8 +2573,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 ;;(setq undo-tree-visualizer-timestamps t)
 
-(defconst perso/undo-dir (expand-file-name "~/racine/varia/undo/"))
-(setq undo-tree-history-directory-alist `((".*" . ,perso/undo-dir)))
+(setq undo-tree-history-directory-alist '((".*" . "~/racine/varia/undo/")))
 
 (global-undo-tree-mode 1)
 
@@ -2523,46 +2617,58 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 ** Complétion
 
 
-*** Auto-complete
+*** Company
 
 #+begin_src emacs-lisp
 
-(ac-config-default)
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 3)
 
-(setq-default ac-sources '(
-  ac-source-words-in-same-mode-buffers
-  ac-source-filename
-  ac-source-dictionary
-  ac-source-abbrev
-  ac-source-gtags
-  ac-source-yasnippet
-))
+(with-eval-after-load 'company
+;;  (define-key company-active-map (kbd "M-n") nil)
+;;  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous)
+  (define-key company-active-map (kbd "SPC") #'company-abort))
 
-(add-to-list 'ac-modes 'org-mode)
+(add-hook 'emacs-lisp-mode-hook 'company-mode)
 
-(setq ac-expand-on-auto-complete nil)
+#+end_src
 
-(setq ac-use-comphist t)
 
-(setq ac-comphist-file "~/racine/dotdir/emacs/ac-comphist")
+*** Yasnippet
 
-(setq ac-candidate-limit 500)
+#+begin_src emacs-lisp
 
-(setq ac-use-menu-map t)
+(require 'yasnippet)
 
-(setq ac-auto-start 15)
+(yas-reload-all)
 
-(setq ac-auto-show-menu 3.0)
+(add-hook 'emacs-lisp-mode-hook 'yas-minor-mode)
 
-(setq ac-menu-height 10)
+#+end_src
 
-(ac-set-trigger-key "s-n")
 
-(define-key ac-menu-map "\C-n" 'ac-next)
-(define-key ac-menu-map "\C-p" 'ac-previous)
+*** Auto-yasnippet
 
-(append ac-user-dictionary-files '("~/racine/index/spell/dictionnaire.txt"))
+#+begin_src emacs-lisp
+  (require 'auto-yasnippet)
 
+  (global-set-key (kbd "C-(") 'aya-create)
+  (global-set-key (kbd "C-)") 'aya-expand)
+#+end_src
+
+
+** Contrôle de version
+
+
+*** Magit
+
+Activer ou désactiver magit-auto-revert-mode ?
+
+#+begin_src emacs-lisp
+  (require 'magit)
+  (global-set-key (kbd "C-x g") 'magit-status)
 #+end_src
 
 
@@ -2715,9 +2821,11 @@ configuration when invoked to evaluate a line."
 
 #+begin_src emacs-lisp
 
-(use-package async
-  :ensure t
-  :init (dired-async-mode 1))
+(autoload 'dired-async-mode "dired-async.el" nil t)
+
+(dired-async-mode 1)
+
+(async-bytecomp-package-mode 1)
 
 #+end_src
 
@@ -2738,6 +2846,14 @@ configuration when invoked to evaluate a line."
 
 #+end_src
 
+
+*** Pretty mode
+
+#+begin_src emacs-lisp
+
+(global-pretty-mode t)
+
+#+end_src
 
 ** Bindings
 
@@ -2994,17 +3110,6 @@ Ajuster les fenêtres
 #+end_src
 
 
-*** Xah-math-input
-
-#+begin_src emacs-lisp
-
-(require 'xah-math-input)
-
-(global-set-key (kbd "<f12> x") 'xah-math-input-mode)
-
-#+end_src
-
-
 *** Evil
 
 #+begin_src emacs-lisp
@@ -3015,6 +3120,17 @@ Ajuster les fenêtres
 
 ;(define-key evil-normal-state-map (kbd "<s-z>") 'evil-emacs-state)
 ;(define-key evil-emacs-state-map (kbd "<s-z>") 'evil-normal-state)
+
+#+end_src
+
+
+*** Xah-math-input
+
+#+begin_src emacs-lisp
+
+(require 'xah-math-input)
+
+(global-set-key (kbd "<f12> x") 'xah-math-input-mode)
 
 #+end_src
 
