@@ -2463,7 +2463,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 (global-set-key (kbd "s-t *") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
 
-(global-set-key (kbd "s-*") 'mtorus-switch-to-ring)
+;; (global-set-key (kbd "s-*") 'mtorus-switch-to-ring)
 
 (global-set-key (kbd "s-*") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
 
