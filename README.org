@@ -102,23 +102,28 @@ To be as intuitive as possible, some conventions are applied :
 
     + Super + page up / down, prior / next
 
-  - Move focus between tmux panes, vim and emacs windows :
+  - Move focus between tmux panes & vim :
 
     + Shift + arrows
 
-  - Move focus between buffers :
+    + Also in emacs, but not in org files (org-shift<arrows>)
 
-    + Meta (Alt) + left / right arrows
+  - In buffer oriented applications, move focus between buffers :
 
-    + Meta (Alt) + page up / down
+    + Ctrl + page up / down
 
-  - Move focus between tabs :
-
-    + Ctrl + left / right arrows
+  - In tab oriented applications, move focus between tabs :
 
     + Ctrl + page up / down
 
     + In pager context : ^ and $
+
+  - In buffers & tabs oriented applications like vim with ctrlspace or
+    emacs with mtorus :
+
+    + Change buffer : Ctrl + page up / down
+
+    + Change tab, or ring : Ctrl + home / end
 
   - Move in history
 
