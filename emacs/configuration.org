@@ -2329,7 +2329,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (define-key global-map [remap bookmark-bmenu-list] 'helm-filtered-bookmarks)
 (define-key global-map [remap insert-register] 'helm-register)
 
-(global-set-key (kbd "s-SPC") 'helm-mini)
+(global-set-key (kbd "s-ù") 'helm-mini)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 
@@ -2381,11 +2381,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 (require 'helm-projectile)
 
-(global-set-key (kbd "s-ù") 'helm-projectile)
+(global-set-key (kbd "s-*") 'helm-projectile)
 
 ;; (global-set-key (kbd "s-*") 'helm-projectile-find-file)
 
-(global-set-key (kbd "C-c s-SPC") 'helm-projectile-recentf)
+(global-set-key (kbd "C-c s-*") 'helm-projectile-recentf)
 
 (global-set-key (kbd "s-p s-f") 'helm-projectile-find-file-in-known-projects)
 
@@ -2469,11 +2469,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 ;;(global-set-key (kbd "<C-home>") (lambda () (interactive) (mtorus-cycle-ring-previous) (mtorus-cycle-marker-next)))
 ;;(global-set-key (kbd "<C-end>") (lambda () (interactive) (mtorus-cycle-ring-next) (mtorus-cycle-marker-next)))
 
-(global-set-key (kbd "s-*") 'mtorus-switch-to-ring)
-(global-set-key (kbd "s-t *") 'mtorus-switch-to-ring)
+(global-set-key (kbd "s-SPC") 'mtorus-switch-to-ring)
+(global-set-key (kbd "s-t s") 'mtorus-switch-to-ring)
 
-;;(global-set-key (kbd "s-t *") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
-;;(global-set-key (kbd "s-*") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
+;;(global-set-key (kbd "s-SPC") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
+;;(global-set-key (kbd "s-t s") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
 
 (global-set-key (kbd "s-t w") 'mtorus-save-torus)
 (global-set-key (kbd "s-t r") 'mtorus-read-torus)
