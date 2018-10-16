@@ -125,6 +125,8 @@ To be as intuitive as possible, some conventions are applied :
 
     + Change tab, or ring : Ctrl + home / end
 
+    + Buffer / Tab (ring) manager : Super (Control) + space
+
   - Move in history
 
     + In pager context
