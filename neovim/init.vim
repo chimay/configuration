@@ -1167,9 +1167,10 @@ vnoremap <C-Insert> "+y
 nnoremap <C-Insert> "+yy
 inoremap <C-Insert> <esc>"+yy
 
-vnoremap <S-Insert> <C-G>"+p
+snoremap <S-Insert> <C-R>+
+vnoremap <S-Insert> c<C-R>+
 nnoremap <S-Insert> "+p
-inoremap <S-Insert> <C-O>"+p
+inoremap <S-Insert> <C-R>+
 
 " noremap <S-Insert> <MiddleMouse>
 
