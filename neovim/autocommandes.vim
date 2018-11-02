@@ -71,15 +71,13 @@ augroup RepertoiresDeTravail
 
 	" {{{ Par projet
 
-	au BufEnter ~/racine/notes/**/*     set tags=~/racine/notes/tags
-	au BufEnter ~/racine/artist/**/*    set tags=~/racine/artist/tags
-	au BufEnter ~/racine/scien/**/*     set tags=~/racine/scien/tags
-	au BufEnter ~/racine/bin/**/*       set tags=~/racine/bin/tags
-	au BufEnter ~/racine/install/**/*   set tags=~/racine/install/tags
-	au BufEnter ~/racine/dotdir/**/*    set tags=~/racine/dotdir/tags
+	au BufEnter ~/racine/plain/**/*     set tags=~/racine/plain/tags
+	au BufEnter ~/racine/site/**/*     set tags=~/racine/site/tags
 
-	au BufEnter ~/racine/config/cmdline/**/* set tags=~/racine/config/cmdline/tags
-	au BufEnter ~/racine/config/edit/**/*    set tags=~/racine/config/edit/tags
+	au BufEnter ~/racine/shell/**/*     set tags=~/racine/shell/tags
+
+	au BufEnter ~/racine/config/cmdline/**/*     set tags=~/racine/config/cmdline/tags
+	au BufEnter ~/racine/config/edit/**/*     set tags=~/racine/config/edit/tags
 
 	" }}}
 
@@ -352,5 +350,25 @@ augroup END
 " }}}
 
 " }}}
+
+" Man pager {{{1
+
+augroup manlaunchtoc
+
+    autocmd!
+
+    if has('nvim')
+        autocmd FileType man
+            \ call man#show_toc() |
+            \ nnoremap <buffer> l <Enter> |
+            \ wincmd H |
+            \ vert resize 35 |
+            \ wincmd p
+    endif
+
+            " \ setlocal laststatus=0 nonumber norelativenumber |
+augroup end
+
+" }}}1
 
 endif

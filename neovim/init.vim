@@ -856,9 +856,18 @@ nnoremap <D-z> :se fo-=a<cr>
 "  Fichiers {{{2
 
 nnoremap <F1> :wa<cr>
-nnoremap <F2> :e!<cr>
+inoremap <F1> <esc>:wa<cr>
 
-nnoremap <m-n> :new \| only<cr>
+nnoremap <F2> :e!<cr>
+nnoremap <F2> <esc>:e!<cr>
+
+nnoremap <F3> :new <bar> only<cr>
+
+nnoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
+
+nnoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
@@ -962,11 +971,8 @@ nnoremap <C-Right> gt
 nnoremap <C-Up> :tabm -1<cr>
 nnoremap <C-Down> :tabm +1<cr>
 
-nnoremap <C-PageUp> gT
-nnoremap <C-PageDown> gt
-
-nnoremap <C-Home>  :tabfirst<cr>
-nnoremap <C-End> :tablast<cr>
+nnoremap <C-Home> gT
+nnoremap <C-End> gt
 
 nnoremap [t gT
 nnoremap ]t gt
@@ -1157,11 +1163,13 @@ nnoremap \p :set paste!<cr>
 
 " permet le shift-insert fonctionnel comme dans les Xterm
 
-vnoremap <C-Insert> "*y
+vnoremap <C-Insert> "+y
+nnoremap <C-Insert> "+yy
+inoremap <C-Insert> <esc>"+yy
 
-nnoremap <S-Insert> "*p
-
-inoremap <S-Insert> <C-O>"*p
+vnoremap <S-Insert> <C-G>"+p
+nnoremap <S-Insert> "+p
+inoremap <S-Insert> <C-O>"+p
 
 " noremap <S-Insert> <MiddleMouse>
 
@@ -1326,8 +1334,8 @@ nnoremap \ih :echo bibliotheque#highlightGroup()<cr>
 
 "  Shell {{{2
 
-nnoremap \s :tabe ~/racine/snippet/shell/hist-$OPERASYS.zsh<cr>
-nnoremap \w :w! >> ~/racine/snippet/shell/hist-$OPERASYS.zsh<cr>
+nnoremap \s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 
 nnoremap \h :tabe ~/racine/hist/zsh/$HOST<cr>
 
@@ -1372,7 +1380,7 @@ func! InterrupteurNumerotationAbsolueRelative()
 
 endfunc
 
-nnoremap <silent> <D-n> :call InterrupteurNumerotationAbsolueRelative()<cr>
+nnoremap <silent> <M-n> :call InterrupteurNumerotationAbsolueRelative()<cr>
 
 " }}}3
 
@@ -1388,7 +1396,7 @@ nnoremap <D-l> :set cursorline!<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <D-$> :split \| :term $SHELL<cr>
+nnoremap <D-CR> :split \| :term $SHELL<cr>
 
 nnoremap <D-!> :split \| :term<space>
 
@@ -1397,6 +1405,8 @@ nnoremap <D-!> :split \| :term<space>
 " En référence à Ctrl-Q / Ctrl-S
 
 tnoremap <D-n> <C-\><C-n>
+tnoremap <D-v> <C-\><C-n>
+tnoremap <D-i> <C-\><C-n>
 
 tnoremap <D-^> <C-\><C-n><C-^>
 
@@ -1420,14 +1430,6 @@ nnoremap <D-h> :e man://
 " Courriel {{{2
 
 nnoremap \m :call mail#bibliotheque#envoieArchive()<cr>
-
-" }}}2
-
-" Gui {{{2
-
-" nvim-qt
-
-nnoremap <D-c> :call GuiClose()
 
 " }}}2
 
@@ -1759,7 +1761,7 @@ filetype indent on
 
 "  Thèmes {{{1
 
-colo personnel
+colo ornuit
 
 " }}}1
 
