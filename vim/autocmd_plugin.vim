@@ -47,15 +47,15 @@ augroup END
 "  {{{ Startify
 " ------------------------------------------------------------------------
 
-augroup ExtensionQFGrep
-
-	au!
-
-	au BufReadPost quickfix nmap <buffer> / <Plug>QFGrep
-	au BufReadPost quickfix nmap <buffer> ? <Plug>QFGrepV
-	au BufReadPost quickfix nmap <buffer> = <Plug>QFRestore
-
-augroup END
+" augroup ExtensionQFGrep
+"
+" 	au!
+"
+" 	au BufReadPost quickfix nmap <buffer> / <Plug>QFGrep
+" 	au BufReadPost quickfix nmap <buffer> ? <Plug>QFGrepV
+" 	au BufReadPost quickfix nmap <buffer> = <Plug>QFRestore
+"
+" augroup END
 
 " }}}
 

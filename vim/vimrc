@@ -837,10 +837,20 @@ nnoremap [[ [z
 
 "  Fichiers {{{2
 
-nnoremap <F1> :wa<cr>
-nnoremap <F2> :e!<cr>
+nnoremap <F1> :new <bar> only<cr>
+inoremap <F1> :new <bar> only<cr>
 
-nnoremap <m-n> :new <bar> only<cr>
+nnoremap <F2> :e!<cr>
+inoremap <F2> :e!<cr>
+
+nnoremap <F3> :wa<cr>
+inoremap <F3> :wa<cr>
+
+nnoremap <F5>e :e ~/racine/config/edit/vim/vimrc<cr>
+inoremap <F5>e :e ~/racine/config/edit/vim/vimrc<cr>
+
+nnoremap <F5>r :so ~/racine/config/edit/vim/vimrc<cr>
+inoremap <F5>r :so ~/racine/config/edit/vim/vimrc<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
@@ -1111,13 +1121,14 @@ nnoremap \p :set paste!<cr>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
-vnoremap <C-Insert> "*y
+vnoremap <C-Insert> "+y
+nnoremap <C-Insert> "+yy
+inoremap <C-Insert> <esc>"+yy
 
-nnoremap <S-Insert> "*p
-
-inoremap <S-Insert> <C-O>"*p
-
-" noremap <S-Insert> <MiddleMouse>
+snoremap <S-Insert> <C-R>+
+vnoremap <S-Insert> c<C-R>+
+nnoremap <S-Insert> "+p
+inoremap <S-Insert> <C-R>+
 
 " }}}2
 
@@ -1283,7 +1294,8 @@ nnoremap <m-$> :terminal bash<cr>
 
 set termwinkey=<C-W>
 
-tnoremap <m-n> <C-W>N
+tnoremap <m-v> <C-W>N
+tnoremap <m-i> <C-W>N
 
 tnoremap <m-q> <C-W>N:ls!<cr>:silent bd!<space>
 
@@ -1291,8 +1303,8 @@ tnoremap <m-q> <C-W>N:ls!<cr>:silent bd!<space>
 
 "  Shell {{{2
 
-nnoremap \s :tabe ~/racine/snippet/shell/hist-$OPERASYS.zsh<cr>
-nnoremap \w :w! >> ~/racine/snippet/shell/hist-$OPERASYS.zsh<cr>
+nnoremap \s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 
 nnoremap \h :tabe ~/racine/hist/zsh/$HOST<cr>
 
@@ -1641,7 +1653,7 @@ filetype indent on
 
 "  Thèmes {{{1
 
-colo personnel
+colo ornuit
 
 " }}}1
 

@@ -78,6 +78,18 @@ augroup RepertoiresDeTravail
 
 	" }}}
 
+	" {{{ Par projet
+
+	au BufEnter ~/racine/plain/**/*     set tags=~/racine/plain/tags
+	au BufEnter ~/racine/site/**/*     set tags=~/racine/site/tags
+
+	au BufEnter ~/racine/shell/**/*     set tags=~/racine/shell/tags
+
+	au BufEnter ~/racine/config/cmdline/**/*     set tags=~/racine/config/cmdline/tags
+	au BufEnter ~/racine/config/edit/**/*     set tags=~/racine/config/edit/tags
+
+	" }}}
+
 augroup END
 
 " }}}
