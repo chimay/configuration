@@ -161,23 +161,25 @@ set vifminfo=
 
 mark 0 ~/racine/plain
 mark 1 ~/racine/site/orgmode
-mark 2 ~/racine/pictura
+mark 2 ~/racine/public
 
 mark r ~/racine
 
+mark a ~/racine/automat
 mark c ~/racine/config
 mark f ~/racine/fun
 mark i ~/racine/infoman
 mark l ~/racine/liber
 mark m ~/racine/mail
-mark p ~/racine/public
+mark p ~/racine/pictura
 mark s ~/racine/shell
 
 mark P ~/racine/papier
 
-mark W ~/graphix/wallpaper
+mark w ~/graphix/wallpaper
 
 mark D ~/Documents
+mark T ~/Téléchargements
 
 " }}}1
 
@@ -458,7 +460,7 @@ filextype */
 
 " Thème {{{1
 
-colorscheme personnel
+colorscheme ornuit
 
 set fillchars=vborder:|
 
@@ -529,6 +531,14 @@ nnoremap @ :write | edit $MYVIFMRC | restart<cr>
 nnoremap $ :sync! all<cr>
 
 nnoremap % :set millerview!<cr>
+nnoremap | :set millerview!<cr>
+
+" }}}2
+
+" Déplacement {{{2
+
+nnoremap <PageUp> <C-B>
+nnoremap <PageDown> <C-F>
 
 " }}}2
 
@@ -540,7 +550,9 @@ nnoremap <space> t
 
 " Recherche {{{2
 
-nnoremap * :find . -name<space>
+nnoremap ù :find . -name '**'
+
+nnoremap * :filter<space>
 
 " }}}2
 
@@ -564,28 +576,23 @@ nnoremap zh za
 
 " Visualiser & Éditer {{{2
 
-nnoremap ù :view<cr>
-vnoremap ù :view<cr>gv
+nnoremap µ :view<cr>
+vnoremap µ :view<cr>gv
 
-nnoremap é :view<cr>
+nnoremap <C-^> <s-tab>
 
-nnoremap | <s-tab>
-nnoremap ° <s-tab>
-
-qnoremap | <s-tab>
-qnoremap ° <s-tab>
+qnoremap <C-^> <s-tab>
 qnoremap q <s-tab>
-qnoremap ù <s-tab>
 
 nnoremap £ :!less %f<cr>
 
-nnoremap µ :edit<cr>
+nnoremap è :edit<cr>
 
 " Toggle visibility of preview window
 
 " Open file in the background using its default program
 
-nnoremap <m-e> :file &<cr>
+nnoremap <m-o> :file &<cr>
 
 " }}}2
 
@@ -614,6 +621,11 @@ nnoremap cv :rename<cr>
 
 nnoremap çç :!cp %f %D<cr>
 nnoremap àà :!mv %f %D<cr>
+
+" Sync with Rsync
+
+nnoremap çs :!rsync -av %f %F<cr>
+nnoremap çr :!rsync -av %d/ %D<cr>
 
 " Copier & Coller
 
