@@ -360,12 +360,6 @@ set query_command="abook --mutt-query '%s'"
 
 # }}}1
 
-#  Groupes d'adresses {{{1
-
-source $my_muttroot/groupes.mutt
-
-# }}}1
-
 #  Boîtes {{{1
 
 # Répertoire racine des courriels {{{2
@@ -620,7 +614,7 @@ source $my_muttroot/macros.mutt
 
 #  Couleurs {{{1
 
-source $my_muttroot/color/personnel.mutt
+source $my_muttroot/color/ornuit.mutt
 
 #source `case $TERM in\
               #*256color) echo '~/racine/config/mail/neomutt/themes/fonce-256'; break ;;\
@@ -640,6 +634,14 @@ source $my_muttroot/crypte.mutt
 #set simple_search="~f %s | ~s %s | ~x %s | =b %s"
 
 set simple_search="~s %s"
+
+# }}}1
+
+# Impression {{{1
+
+#set print=ask-yes
+
+#set print_command="lp -o number-up=2 -o Duplex=DuplexTumble"
 
 # }}}1
 

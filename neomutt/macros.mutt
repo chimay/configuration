@@ -52,6 +52,16 @@ macro pager @ '<enter-command>source $my_muttroot/neomuttrc<enter>'
 
 # }}}1
 
+# Choix de la boîte aux lettres {{{1
+
+macro index ù '<change-folder>?'
+macro pager ù '<change-folder>?'
+
+macro index \c^ '<change-folder>-<enter>'
+macro pager \c^ '<change-folder>-<enter>'
+
+# }}}1
+
 # Nettoyage du cache {{{1
 
 macro index ,c '<enter-command>set message_cache_clean=yes<enter>'

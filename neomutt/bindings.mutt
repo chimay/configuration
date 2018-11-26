@@ -187,11 +187,11 @@ bind index \eg fetch-mail
 
 # Envoi {{{2
 
-bind index ù mail
-
 bind index m noop
 
 bind index mm mail
+
+bind index µ mail
 
 bind index mb bounce-message
 bind index mp recall-message
@@ -212,6 +212,8 @@ bind index v noop
 bind index vv tag-entry
 bind index vt tag-thread
 bind index vp tag-pattern
+
+bind index vu untag-pattern
 bind index vc untag-pattern
 
 # }}}2
@@ -265,7 +267,7 @@ bind index a create-alias
 
 bind index | pipe-message
 
-bind index µ query
+bind index = query
 
 # }}}2
 
@@ -292,7 +294,7 @@ bind pager \e% change-folder-readonly
 bind pager . buffy-list
 bind pager § next-unread-mailbox
 
-bind pager w sync-mailbox
+bind pager w save-message
 
 # }}}2
 
@@ -346,8 +348,8 @@ bind pager $ next-entry
 bind pager J next-undeleted
 bind pager K previous-undeleted
 
-bind pager ( next-new-then-unread
-bind pager ) previous-new-then-unread
+bind pager ( previous-new-then-unread
+bind pager ) next-new-then-unread
 
 bind pager p parent-message
 bind pager <backspace> parent-message
@@ -371,8 +373,6 @@ bind pager N search-opposite
 # }}}2
 
 # Envoi {{{2
-
-bind pager ù mail
 
 bind pager m noop
 
@@ -631,6 +631,9 @@ bind postpone u undelete-entry
 # }}}1
 
 # Browser {{{1
+
+bind browser = exit
+bind browser ù exit
 
 bind browser \cU half-up
 bind browser \cD half-down
