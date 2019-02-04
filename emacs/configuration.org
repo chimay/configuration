@@ -92,7 +92,37 @@ Minibuffer :
   - M-s (next-matching-history-element) : Move to a later item in the minibuffer history that matches a regexp you enter.
 
 
-* Chemins d’accès
+* Info
+
+#+begin_src emacs-lisp
+
+(setq Info-use-header-line t)
+(setq Info-hide-note-references t)
+
+(setq Info-scroll-prefer-subnodes nil)
+
+(setq Info-isearch-search t)
+
+(setq Info-enable-active-nodes nil)
+
+#+end_src
+
+
+* Interne
+
+
+** Serveur
+
+#+begin_src emacs-lisp
+
+(require 'server)
+
+(unless (server-running-p) (server-start))
+
+#+end_src
+
+
+** Chemins d’accès
 
 #+begin_src emacs-lisp
 
@@ -103,7 +133,55 @@ Minibuffer :
 #+end_src
 
 
-* Démarrage
+** Configuration automatique
+
+Fichier utilisé par customize
+
+#+begin_src emacs-lisp
+
+(setq custom-file "~/racine/config/edit/emacs/enligne.el")
+(load custom-file)
+
+#+end_src
+
+
+** Messages
+
+#+begin_src emacs-lisp
+
+(setq message-log-max 3000)
+
+(setq debug-on-error t)
+
+#+end_src
+
+
+** Optimisation
+
+#+begin_src emacs-lisp
+
+(setq gc-cons-threshold 20000000)
+
+#+end_src
+
+
+** Compilation bytecode
+
+Désactivé car induisant parfois en erreur.
+
+#+begin_src emacs-lisp
+
+;;(require 'bytecomp)
+
+;;(byte-recompile-directory "~/racine/config/edit/emacs" 0)
+
+#+end_src
+
+
+* Présentation
+
+
+** Démarrage
 
 #+begin_src emacs-lisp
 
@@ -122,78 +200,171 @@ Minibuffer :
 #+end_src
 
 
-* Configuration automatique
-
-Fichier utilisé par customize
+** Police
 
 #+begin_src emacs-lisp
 
-(setq custom-file "~/racine/config/edit/emacs/enligne.el")
-(load custom-file)
+(set-frame-font "Monospace-11")
+
+(add-to-list 'default-frame-alist '(font . "Monospace-11" ))
 
 #+end_src
 
 
-* Messages
+** Symboles
 
 #+begin_src emacs-lisp
 
-(setq message-log-max 3000)
-
-(setq debug-on-error t)
+(global-prettify-symbols-mode 1)
 
 #+end_src
 
 
-* Info
+** Curseur
 
 #+begin_src emacs-lisp
 
-(setq Info-use-header-line t)
-(setq Info-hide-note-references t)
-
-(setq Info-scroll-prefer-subnodes nil)
-
-(setq Info-isearch-search t)
-
-(setq Info-enable-active-nodes nil)
+(setq blink-cursor-mode nil)
 
 #+end_src
 
 
-* Optimisation
+** Menus
 
 #+begin_src emacs-lisp
 
-(setq gc-cons-threshold 20000000)
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 #+end_src
 
 
-* Serveur
+** Lignes et colonnes
+
+Mode hl-line activé/désactivé via un binding (voir [[*Apparence][bindings/apparence]])
 
 #+begin_src emacs-lisp
 
-(require 'server)
+(require 'linum)
+(global-linum-mode 1)
 
-(unless (server-running-p) (server-start))
+(setq line-number-display-limit nil)
+(line-number-mode t)
+
+(column-number-mode t)
+
+(global-hl-line-mode 0)
 
 #+end_src
 
 
-* Compilation
+** Barres de défilement
 
 #+begin_src emacs-lisp
 
-(setq compilation-window-height 12)
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'horizontal-scroll-bar-mode) (horizontal-scroll-bar-mode -1))
 
-(setq
- ;; use gdb-many-windows by default
- gdb-many-windows t
+(setq	scroll-step 1
+	scroll-margin 7
+	scroll-conservatively 100000
+	scroll-up-agressively 0.01
+	scroll-down-agressively 0.01
+	scroll-preserve-screen-position 1
+	auto-window-vscroll nil
+)
 
- ;; Non-nil means display source file containing the main routine at startup
- gdb-show-main t
- )
+(setq-default
+	scroll-up-agressively 0.01
+	scroll-down-agressively 0.01
+)
+
+(setq mouse-wheel-scroll-amount '(5 ((shift) . 10))) ; one line at a time
+(setq mouse-wheel-progressive-speed nil)            ; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't)                  ; scroll window under mouse
+(setq scroll-step 1)                                ; keyboard scroll one line at a time
+
+#+end_src
+
+
+** Coloration syntaxique
+
+#+begin_src emacs-lisp
+
+; Activer la coloration syntaxique
+(global-font-lock-mode t)
+
+;;(setq font-lock-maximum-decoration '((c-mode . 1) (t . 2)))
+
+(setq font-lock-maximum-decoration t)
+
+#+end_src
+
+
+** Barre d'outil
+
+#+begin_src emacs-lisp
+
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+
+#+end_src
+
+
+** Minibuffer
+
+#+begin_src emacs-lisp
+
+(setq resize-mini-windows t)
+
+(setq max-mini-window-height 3)
+
+#+end_src
+
+
+** Beep
+
+#+begin_src emacs-lisp
+
+(setq visible-bell 1)
+(setq visible-bell 'top-bottom)
+
+#+end_src
+
+
+** Thème
+
+#+begin_src emacs-lisp
+
+(when (equal window-system 'x) (load-theme 'ornuit-gui t))
+(when (equal window-system nil) (load-theme 'ornuit-term t))
+
+(if (daemonp)
+  (add-hook 'after-make-frame-functions
+    '(lambda (frame)
+     (with-selected-frame frame
+       (when (equal window-system 'x) (load-theme 'ornuit-gui t))
+       )))
+  (when (equal window-system 'x) (load-theme 'ornuit-gui t))
+)
+
+#+end_src
+
+
+** Souris
+
+#+begin_src emacs-lisp
+
+;; Move the mouse to the screen corner on any keypress.
+
+; (when (and (display-mouse-p) (require 'avoid nil t))
+;
+; 	;; Move the mouse to the lower-right corner instead of default upper-right
+;
+; 	(defun mouse-avoidance-banish-destination ()
+; 		(cons (+ 3 (frame-width)) (frame-height))
+; 	)
+;
+; 	(mouse-avoidance-mode 'banish)
+; )
 
 #+end_src
 
@@ -480,6 +651,7 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
 
 #+end_src
 
+
 * Répertoires
 
 #+begin_src emacs-lisp
@@ -496,7 +668,7 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
 
 (setq delete-by-moving-to-trash t)
 
-(setq trash-directory "~/racine/trash/Emacs")
+(setq trash-directory "~/racine/trash/emacs")
 
 (setq dired-listing-switches "--time-style=iso -lhDF")
 
@@ -629,19 +801,21 @@ Penser à exécuter recentf-cleanup de temps en temps
 
 #+begin_src emacs-lisp
 
-(setq recentf-max-saved-items 1234)
-(setq recentf-max-menu-items 1234)
+  (setq recentf-max-saved-items 1234)
+  (setq recentf-max-menu-items 1234)
 
-(setq recentf-save-file
- (concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/recentf"))
+  (setq recentf-save-file
+   (concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/recentf"))
 
-(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+  (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
 
-; Important de placer le require après la définition des variables
+  ; Important de placer le require après la définition des variables
 
-(require 'recentf)
+  (require 'recentf)
 
-(recentf-mode 1)
+  (append recentf-exclude '("*\\.html\\'" "*\\.epub"))
+
+  (recentf-mode 1)
 
 #+end_src
 
@@ -806,7 +980,24 @@ Pour lire ses mails dans emacs : M-x rmail
 #+end_src
 
 
-* Périphériques
+* Programmes externes
+
+
+** Compilation
+
+#+begin_src emacs-lisp
+
+(setq compilation-window-height 12)
+
+(setq
+ ;; use gdb-many-windows by default
+ gdb-many-windows t
+
+ ;; Non-nil means display source file containing the main routine at startup
+ gdb-show-main t
+ )
+
+#+end_src
 
 
 ** Impression
@@ -833,23 +1024,11 @@ Pour lire ses mails dans emacs : M-x rmail
 #+end_src
 
 
-** Souris
+** Navigation
 
-#+begin_src emacs-lisp
-
-;; Move the mouse to the screen corner on any keypress.
-
-; (when (and (display-mouse-p) (require 'avoid nil t))
-;
-; 	;; Move the mouse to the lower-right corner instead of default upper-right
-;
-; 	(defun mouse-avoidance-banish-destination ()
-; 		(cons (+ 3 (frame-width)) (frame-height))
-; 	)
-;
-; 	(mouse-avoidance-mode 'banish)
-; )
-
+#+begin_src
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "qutebrowser")
 #+end_src
 
 
@@ -893,157 +1072,6 @@ Conflit avec org-mode/timestamp
 #+begin_src emacs-lisp
 
 ;; (global-ede-mode)
-
-#+end_src
-
-
-* Présentation
-
-
-** Police
-
-#+begin_src emacs-lisp
-
-(set-frame-font "Monospace-11")
-
-(add-to-list 'default-frame-alist '(font . "Monospace-11" ))
-
-#+end_src
-
-
-** Symboles
-
-#+begin_src emacs-lisp
-
-(global-prettify-symbols-mode 1)
-
-#+end_src
-
-** Curseur
-
-#+begin_src emacs-lisp
-
-(setq blink-cursor-mode nil)
-
-(global-hl-line-mode 1)
-
-#+end_src
-
-
-** Menus
-
-#+begin_src emacs-lisp
-
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-
-#+end_src
-
-
-** Lignes et colonnes
-
-#+begin_src emacs-lisp
-
-(require 'linum)
-(global-linum-mode 1)
-
-(setq line-number-display-limit nil)
-(line-number-mode t)
-
-(column-number-mode t)
-
-(global-hl-line-mode 1) ; turn on highlighting current line
-
-#+end_src
-
-
-** Barres de défilement
-
-#+begin_src emacs-lisp
-
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(if (fboundp 'horizontal-scroll-bar-mode) (horizontal-scroll-bar-mode -1))
-
-(setq	scroll-step 1
-	scroll-margin 7
-	scroll-conservatively 100000
-	scroll-up-agressively 0.01
-	scroll-down-agressively 0.01
-	scroll-preserve-screen-position 1
-	auto-window-vscroll nil
-)
-
-(setq-default
-	scroll-up-agressively 0.01
-	scroll-down-agressively 0.01
-)
-
-(setq mouse-wheel-scroll-amount '(5 ((shift) . 10))) ; one line at a time
-(setq mouse-wheel-progressive-speed nil)            ; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't)                  ; scroll window under mouse
-(setq scroll-step 1)                                ; keyboard scroll one line at a time
-
-#+end_src
-
-
-** Coloration syntaxique
-
-#+begin_src emacs-lisp
-
-; Activer la coloration syntaxique
-(global-font-lock-mode t)
-
-;;(setq font-lock-maximum-decoration '((c-mode . 1) (t . 2)))
-
-(setq font-lock-maximum-decoration t)
-
-#+end_src
-
-
-** Barre d'outil
-
-#+begin_src emacs-lisp
-
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-
-#+end_src
-
-
-** Minibuffer
-
-#+begin_src emacs-lisp
-
-(setq resize-mini-windows t)
-
-(setq max-mini-window-height 3)
-
-#+end_src
-
-
-** Beep
-
-#+begin_src emacs-lisp
-
-(setq visible-bell 1)
-(setq visible-bell 'top-bottom)
-
-#+end_src
-
-
-** Thème
-
-#+begin_src emacs-lisp
-
-(when (equal window-system 'x) (load-theme 'ornuit-gui t))
-(when (equal window-system nil) (load-theme 'ornuit-term t))
-
-(if (daemonp)
-  (add-hook 'after-make-frame-functions
-    '(lambda (frame)
-     (with-selected-frame frame
-       (when (equal window-system 'x) (load-theme 'ornuit-gui t))
-       )))
-  (when (equal window-system 'x) (load-theme 'ornuit-gui t))
-)
 
 #+end_src
 
@@ -1179,8 +1207,8 @@ Conflit avec org-mode/timestamp
 
 #+begin_src emacs-lisp
 
-(defun biblio/tampon-precedent ()
- "Va au tampon précédent"
+(defun biblio/alterne-deux-derniers-tampons ()
+ "Visite alternativement les deux derniers tampons édités"
  (interactive)
  (switch-to-buffer nil)
  )
@@ -1364,9 +1392,7 @@ H = Hyper
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<f5> b") 'eval-buffer)
-
-(global-set-key (kbd "s-l") 'eval-buffer)
+(global-set-key (kbd "<f2> e") 'eval-buffer)
 
 #+end_src
 
@@ -1603,7 +1629,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (global-set-key (kbd "<s-kp-2>") 'biblio/scinde-et-suit-horizontalement)
 (global-set-key (kbd "<s-kp-3>") 'biblio/scinde-et-suit-verticalement)
 
-(global-set-key (kbd "<s-kp-5>") 'other-window)
+(global-set-key (kbd "<s-kp-7>") 'other-window)
 
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
 
@@ -1611,6 +1637,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (global-set-key (kbd "<S-down>") 'windmove-down)
 (global-set-key (kbd "<S-right>") 'windmove-right)
 (global-set-key (kbd "<S-left>") 'windmove-left)
+
+(global-set-key (kbd "<s-kp-8>") 'windmove-up)
+(global-set-key (kbd "<s-kp-5>") 'windmove-down)
+(global-set-key (kbd "<s-kp-6>") 'windmove-right)
+(global-set-key (kbd "<s-kp-4>") 'windmove-left)
 
 (global-set-key (kbd "C-x _") 'shrink-window)
 
@@ -1625,7 +1656,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Tampon précédent
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-^") 'biblio/tampon-precedent)
+  (global-set-key (kbd "C-^") 'biblio/alterne-deux-derniers-tampons)
 #+end_src
 
 
@@ -1710,6 +1741,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (global-set-key (kbd "C-|") 'shell-command-on-region)
 
 (global-set-key (kbd "<s-return>") 'eshell)
+(global-set-key (kbd "<s-kp-enter>") 'shell)
+
 (global-set-key (kbd "C-!") 'shell)
 (global-set-key (kbd "s-!") 'ansi-term)
 
@@ -1787,6 +1820,15 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
+** Apparence
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "<f2> l") 'hl-line-mode)
+
+(global-set-key (kbd "s-l") 'hl-line-mode)
+#+end_src
+
+
 * Macros enregistrées
 
 #+begin_src emacs-lisp
@@ -1796,19 +1838,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 ;;       (kmacro-exec-ring-item (quote ([19 60 return 2 134217828 134217828 134217828 4 4] 0 "%d")) arg)))
 ;;
 ;; (global-set-key (kbd "C-x C-k 0") 'efface-tag)
-
-#+end_src
-
-
-* Compilation bytecode
-
-Désactivé car induisant parfois en erreur.
-
-#+begin_src emacs-lisp
-
-;;(require 'bytecomp)
-
-;;(byte-recompile-directory "~/racine/config/edit/emacs" 0)
 
 #+end_src
 
@@ -1907,7 +1936,7 @@ Désactivé car induisant parfois en erreur.
 
 (setq org-export-preserve-breaks nil)
 
-(setq org-ellipsis " |--->")
+(setq org-ellipsis " [...]")
 
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
@@ -2683,8 +2712,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 Activer ou désactiver magit-auto-revert-mode ?
 
 #+begin_src emacs-lisp
-  ;; (require 'magit)
-  ;; (global-set-key (kbd "C-x g") 'magit-status)
+(require 'magit)
+(global-set-key (kbd "C-x g") 'magit-status)
 #+end_src
 
 
