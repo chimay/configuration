@@ -54,8 +54,34 @@ set color_win_title_fg=default
 
 # {{{ Bindings
 
-bind -f common " push mark
+bind -f common & push filter filename="**"
+bind -f common F push live-filter filename="**"
+
+bind -f common space win-toggle
+
+bind -f common " push mark filename="**"
 bind -f common ' unmark
+
+bind -f common < win-mv-before
+bind -f common > win-mv-after
+
+bind -f common L win-add-l
+bind -f common A toggle-play-library
+bind -f common P win-add-p
+bind -f common Q win-add-q
+
+bind -f common D win-remove
+
+bind -f common enter win-activate
+
+bind -f common y player-play
+bind -f common p player-pause
+bind -f common _ player-stop
+
+bind -f common g win-top
+bind -f common G win-bottom
+
+bind -f common q quit -i
 
 # }}}
 
@@ -79,6 +105,7 @@ bind -f common ' unmark
 # set dsp.ao.buffer_size=16384
 # set dsp.ao.driver=
 # set dsp.ao.wav_counter=1
+# set dsp.ao.wav_dir=/home/david
 # set dsp.jack.resampling_quality=2
 # set dsp.jack.server_name=
 # set dsp.oss.device=

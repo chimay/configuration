@@ -38,7 +38,7 @@ set confirm=permdelete
 
 set trash
 
-set trashdir=~/racine/trash/Vifm
+set trashdir=~/racine/trash/vifm
 
 " Automatically resolve symbolic links on l or Enter.
 
@@ -552,7 +552,7 @@ nnoremap <space> t
 
 nnoremap ù :find . -name '**'
 
-nnoremap * :filter<space>
+nnoremap é :filter<space>
 
 " }}}2
 
@@ -624,7 +624,7 @@ nnoremap àà :!mv %f %D<cr>
 
 " Sync with Rsync
 
-nnoremap çs :!rsync -av %f %F<cr>
+nnoremap çs :!rsync -av %f %D<cr>
 nnoremap çr :!rsync -av %d/ %D<cr>
 
 " Copier & Coller
@@ -647,19 +647,19 @@ map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
 " Autres opérations sur fichiers {{{2
 
-nnoremap af :!touch<space>
+nnoremap ,t :!touch %f<cr>
 
-nnoremap ad :!mkdir<space>
+nnoremap ,d :!mkdir<space>
 
-nnoremap aw :!feh --bg-max --no-fehbg %f<cr>
+nnoremap ,w :!feh --bg-max --no-fehbg %f<cr>
 
 " Vimdiff
 
-nnoremap <m-d> :vimdiff<cr>
+nnoremap ,2 :vimdiff<cr>
 
 " Symlink
 
-nnoremap <m-l> :link<cr>
+nnoremap ,l :link<cr>
 
 " }}}2
 
