@@ -550,11 +550,17 @@
 
 #  {{{ Information
 
-def_key "ctrl-s"
- show_server_info
+def_key "0"
+ show_help
 
-def_key "ctrl-g"
+def_key "i"
  show_song_info
+
+def_key "I"
+ show_artist_info
+
+def_key "@"
+ show_server_info
 
 def_key "|"
  toggle_separators_between_albums
@@ -564,28 +570,54 @@ def_key "y"
 
 #  }}}
 
+# Écrans {{{1
+
+def_key "J"
+ jump_to_browser
+
+def_key "J"
+ jump_to_playlist_editor
+
+
+# }}}1
+
 #  {{{ Mouvements
 
-def_key "c"
- jump_to_playing_song
-
-def_key "C"
- toggle_playing_song_centering
+def_key "%"
+ jump_to_position_in_song
 
 def_key "."
  jump_to_playing_song
 
-def_key "k"
-  scroll_up
+def_key "o"
+ jump_to_playing_song
+
+def_key "c"
+ toggle_playing_song_centering
 
 def_key "j"
   scroll_down
+
+def_key "k"
+  scroll_up
+
+def_key "ctrl-f"
+ page_down
+
+def_key "ctrl-b"
+ page_up
 
 def_key "page_up"
  page_up
 
 def_key "page_down"
  page_down
+
+def_key "g"
+ move_home
+
+def_key "G"
+ move_end
 
 def_key "home"
  move_home
@@ -600,6 +632,19 @@ def_key "end"
 def_key "space"
  select_item
  scroll_down
+
+def_key "v"
+ select_item
+ scroll_down
+
+def_key "ctrl-v"
+ select_range
+
+def_key "alt-v"
+ reverse_selection
+
+def_key "V"
+ remove_selection
 
 def_key "shift-down"
  select_item
@@ -619,16 +664,22 @@ def_key "p"
 def_key "S"
  stop
 
-def_key "l"
- next
-
 def_key "h"
+ seek_backward
+
+def_key "l"
+ seek_forward
+
+def_key "ctrl-p"
  previous
+
+def_key "ctrl-n"
+ next
 
 def_key "r"
  toggle_repeat
 
-def_key "ctrl-r"
+def_key "alt-c"
  toggle_consume
 
 def_key "z"
@@ -640,7 +691,7 @@ def_key "Z"
 def_key "ctrl-z"
  add_random_items
 
-def_key "I"
+def_key "ctrl-s"
  toggle_single
 
 #  }}}
@@ -694,8 +745,35 @@ def_key "s"
 def_key "$"
  reverse_playlist
 
-def_key "&"
+def_key "é"
  apply_filter
+
+def_key "è" [deferred]
+  require_runnable "apply_filter"
+  push_character "ctrl-w"
+  push_character "enter"
+  apply_filter
+
+def_command "cl" [deferred]
+  require_runnable "apply_filter"
+  push_character "ctrl-w"
+  push_characters "classique"
+  push_character "enter"
+  apply_filter
+
+def_command "jz" [deferred]
+  require_runnable "apply_filter"
+  push_character "ctrl-w"
+  push_characters "jazz"
+  push_character "enter"
+  apply_filter
+
+def_command "ch" [deferred]
+  require_runnable "apply_filter"
+  push_character "ctrl-w"
+  push_characters "chanson"
+  push_character "enter"
+  apply_filter
 
 def_key "w"
  save_playlist
@@ -742,23 +820,5 @@ def_command "quit" [deferred]
 
 def_command "q" [deferred]
   quit
-
-# def_command "cl" [deferred]
-#   require_runnable "apply_filter"
-#   push_character "ctrl-w"
-#   push_characters "classique"
-#   apply_filter
-
-# def_command "jz" [deferred]
-#   require_runnable "apply_filter"
-#   push_character "ctrl-w"
-#   push_characters "jazz"
-#   apply_filter
-
-# def_command "ch" [deferred]
-#   require_runnable "apply_filter"
-#   push_character "ctrl-w"
-#   push_characters "chanson"
-#   apply_filter
 
 #  }}}

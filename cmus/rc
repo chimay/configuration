@@ -1,91 +1,6 @@
 # vim: set filetype=conf:
 
-# Couleurs {{{1
-
-#colorscheme solarized-dark
-
-set color_cmdline_attr=default
-set color_cmdline_bg=default
-set color_cmdline_fg=default
-
-set color_cur_sel_attr=default
-
-set color_error=124
-set color_info=136
-
-set color_separator=default
-
-set color_statusline_attr=default
-set color_statusline_bg=black
-set color_statusline_fg=3
-
-set color_titleline_attr=default
-set color_titleline_bg=black
-set color_titleline_fg=3
-
-set color_win_attr=default
-set color_win_bg=default
-set color_win_cur=default
-
-set color_win_cur_sel_attr=reverse
-set color_win_cur_sel_bg=default
-set color_win_cur_sel_fg=default
-
-set color_win_dir=default
-set color_win_fg=default
-
-set color_win_inactive_cur_sel_attr=default
-set color_win_inactive_cur_sel_bg=default
-set color_win_inactive_cur_sel_fg=124
-
-set color_win_inactive_sel_attr=bold
-set color_win_inactive_sel_bg=default
-set color_win_inactive_sel_fg=default
-
-set color_win_sel_attr=reverse
-set color_win_sel_bg=default
-set color_win_sel_fg=default
-
-set color_win_title_attr=bold
-set color_win_title_bg=black
-set color_win_title_fg=default
-
-# }}}1
-
-# {{{ Bindings
-
-bind -f common & push filter filename="**"
-bind -f common F push live-filter filename="**"
-
-bind -f common space win-toggle
-
-bind -f common " push mark filename="**"
-bind -f common ' unmark
-
-bind -f common < win-mv-before
-bind -f common > win-mv-after
-
-bind -f common L win-add-l
-bind -f common A toggle-play-library
-bind -f common P win-add-p
-bind -f common Q win-add-q
-
-bind -f common D win-remove
-
-bind -f common enter win-activate
-
-bind -f common y player-play
-bind -f common p player-pause
-bind -f common _ player-stop
-
-bind -f common g win-top
-bind -f common G win-bottom
-
-bind -f common q quit -i
-
-# }}}
-
-# Auto {{{1
+# Défaut {{{1
 
 # set aaa_mode=all
 # set altformat_current= %F
@@ -244,3 +159,105 @@ bind -f common q quit -i
 # factivate
 
 # }}}1
+
+# Couleurs {{{1
+
+#colorscheme solarized-dark
+
+set color_cmdline_attr=default
+set color_cmdline_bg=default
+set color_cmdline_fg=default
+
+set color_cur_sel_attr=default
+
+set color_error=124
+set color_info=136
+
+set color_separator=default
+
+set color_statusline_attr=default
+set color_statusline_bg=black
+set color_statusline_fg=3
+
+set color_titleline_attr=default
+set color_titleline_bg=black
+set color_titleline_fg=3
+
+set color_win_attr=default
+set color_win_bg=default
+set color_win_cur=default
+
+set color_win_cur_sel_attr=reverse
+set color_win_cur_sel_bg=default
+set color_win_cur_sel_fg=default
+
+set color_win_dir=default
+set color_win_fg=default
+
+set color_win_inactive_cur_sel_attr=default
+set color_win_inactive_cur_sel_bg=default
+set color_win_inactive_cur_sel_fg=124
+
+set color_win_inactive_sel_attr=bold
+set color_win_inactive_sel_bg=default
+set color_win_inactive_sel_fg=default
+
+set color_win_sel_attr=reverse
+set color_win_sel_bg=default
+set color_win_sel_fg=default
+
+set color_win_title_attr=bold
+set color_win_title_bg=black
+set color_win_title_fg=default
+
+# }}}1
+
+# {{{ Bindings
+
+#bind -f common q quit -i
+bind -f common q quit
+
+bind -f common & push filter filename="**"
+bind -f common F push live-filter filename="**"
+
+bind -f common enter win-activate
+
+bind -f common space win-toggle
+
+bind -f common y player-play
+bind -f common p player-pause
+bind -f common _ player-stop
+
+bind -f common j win-down
+bind -f common k win-up
+
+bind -f common h seek -5
+bind -f common l seek +5
+
+bind -f common < win-mv-before
+bind -f common > win-mv-after
+
+bind -f common ^N player-next
+bind -f common ^P player-prev
+
+bind -f common n search-next
+bind -f common N search-prev
+
+bind -f common g win-top
+bind -f common G win-bottom
+
+bind -f common " push mark filename="**"
+bind -f common ' unmark
+
+# Play All or Playlist
+bind -f common ^A toggle play_library
+
+bind -f common L win-add-l
+bind -f common P win-add-p
+bind -f common Q win-add-q
+
+bind -f common D win-remove
+
+bind -f common Z toggle shuffle
+
+# }}}
