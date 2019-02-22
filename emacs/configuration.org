@@ -1567,6 +1567,8 @@ Voir Helm dans la configuration des paquets
 
   (global-set-key (kbd "<C-backspace>") 'backward-kill-word)
 
+  (global-set-key (kbd "<M-backspace>") 'biblio/efface-mot)
+
   (global-set-key (kbd "<S-delete>")   'biblio/efface-mot)
 
   (global-set-key (kbd "<M-delete>")   'biblio/efface-jusque-debut-ligne)
@@ -1578,8 +1580,6 @@ Voir Helm dans la configuration des paquets
   (global-set-key (kbd "<C-delete>")   'biblio/efface-contenu-ligne)
 
   (global-set-key (kbd "<s-backspace>")   'kill-whole-line)
-
-  (global-set-key (kbd "<M-backspace>") 'biblio/efface-mot)
 
   (global-set-key (kbd "M-/") 'just-one-space)
 
