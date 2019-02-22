@@ -1,7 +1,6 @@
 
 #+STARTUP: showall
 
-
 * Documentation
 
 
@@ -63,15 +62,6 @@ H = Hyper
 ** Keybindings
 
 [[https://stackoverflow.com/questions/683425/globally-override-key-binding-in-emacs/683575#683575]]
-
-
-** Mots-clé
-
-defun
-defalias
-defadvice
-
-add-hook
 
 
 ** Booléens
@@ -438,6 +428,7 @@ Mode hl-line activé/désactivé via un binding (voir [[*Apparence][bindings/app
 
 #+begin_src emacs-lisp
 
+(setq shift-select-mode nil)
 (delete-selection-mode 1)
 ;(pending-delete-mode t)
 
@@ -448,13 +439,22 @@ Mode hl-line activé/désactivé via un binding (voir [[*Apparence][bindings/app
 
 #+begin_src emacs-lisp
 
-;; Voir aussi smartparens
+  ;; Voir aussi smartparens
 
-(show-paren-mode 1)
+  (show-paren-mode 1)
 
-(setq show-paren-delay 0)
+  (setq show-paren-delay 0)
 
-(electric-pair-mode t)
+  (electric-pair-mode t)
+
+  ;; Ne fonctionne pas
+
+  ;; (add-hook
+  ;;  'lisp-mode-hook
+  ;;  (lambda ()
+  ;;    (setq-local electric-pair-inhibit-predicate
+  ;;                '(lambda (c)
+  ;;                   (if (char-equal c ?\') t (,electric-pair-inhibit-predicate c))))))
 
 #+end_src
 
@@ -1106,12 +1106,24 @@ Conflit avec org-mode/timestamp
 #+end_src
 
 
-** Efface mot
+** Affiche nom fichier
+
+#+begin_src emacs-lisp
+
+(defun biblio/affiche-copie-nom-fichier ()
+  (interactive)
+  (message (buffer-file-name))
+  (kill-new (file-truename buffer-file-name))
+  )
+
+#+end_src
+
+
+** Efface le mot
 
 #+begin_src emacs-lisp
 
 (defun biblio/efface-mot ()
-  "Efface le mot sous le curseur"
   (interactive)
   (forward-char 1)
   (backward-word)
@@ -1120,26 +1132,58 @@ Conflit avec org-mode/timestamp
 
 #+end_src
 
-** Copie une ligne
+
+** Efface jusqu’au début de la ligne
 
 #+begin_src emacs-lisp
 
-(defun biblio/copie-ligne ()
-  "Copies a line without regard for cursor position."
-  (interactive)
-  (save-excursion
-    (kill-new
-     (buffer-substring
-      (point-at-bol)
-      (point-at-eol)))))
+(defun biblio/efface-jusque-debut-ligne ()
+(interactive)
+(kill-line 0)
+)
 
-;; (defun biblio/copie-ligne ()
-;;  "Copie une ligne"
-;;  (interactive)
-;;  (kill-whole-line)
-;;  (undo-boundary)
-;;  (undo)
-;;  )
+#+end_src
+
+
+** Efface le contenu de la ligne
+
+#+begin_src emacs-lisp
+
+  (defun biblio/efface-contenu-ligne ()
+    (interactive)
+    (beginning-of-line)
+    (kill-line)
+  )
+
+#+end_src
+
+
+** Copie le mot
+
+#+begin_src emacs-lisp
+
+  (defun biblio/copie-mot ()
+    (interactive)
+    (forward-char 1)
+    (backward-word)
+    (kill-word 1)
+    (undo-boundary)
+    (undo)
+  )
+
+#+end_src
+
+
+** Copie jusqu’au début de la ligne
+
+#+begin_src emacs-lisp
+
+  (defun biblio/copie-jusque-debut-ligne ()
+    (interactive)
+    (kill-line 0)
+    (undo-boundary)
+    (undo)
+  )
 
 #+end_src
 
@@ -1149,7 +1193,6 @@ Conflit avec org-mode/timestamp
 #+begin_src emacs-lisp
 
 (defun biblio/copie-jusque-fin-ligne ()
- "Copie jusqu’à la fin de la ligne"
  (interactive)
  (kill-line)
  (undo-boundary)
@@ -1159,43 +1202,47 @@ Conflit avec org-mode/timestamp
 #+end_src
 
 
-** Efface contenu ligne
+** Copie le contenu d’une ligne
 
 #+begin_src emacs-lisp
 
-(defun biblio/efface-contenu-ligne ()
- "Efface le contenu de la ligne"
- (interactive)
- (kill-line 0)
- (kill-line)
- )
+  (defun biblio/copie-contenu-ligne ()
+    (interactive)
+    (save-excursion
+      (kill-new
+       (buffer-substring
+	(point-at-bol)
+	(point-at-eol)))))
 
 #+end_src
 
 
-** Efface jusque début ligne
+** Copie la phrase
 
 #+begin_src emacs-lisp
 
-(defun biblio/efface-jusque-debut-ligne ()
-"kill from point to start of line"
-(interactive)
-(kill-line 0)
-)
+  (defun biblio/copie-phrase ()
+   (interactive)
+   (kill-sentence)
+   (undo-boundary)
+   (undo)
+   )
+
 
 #+end_src
 
 
-** Affiche nom fichier
+** Copie une expression lisp simple
 
 #+begin_src emacs-lisp
 
-(defun biblio/affiche-copie-nom-fichier ()
-  "Show the full path file name in the minibuffer."
-  (interactive)
-  (message (buffer-file-name))
-  (kill-new (file-truename buffer-file-name))
-  )
+  (defun biblio/copie-sexp ()
+   "Copie une sexp lisp"
+   (interactive)
+   (kill-sexp)
+   (undo-boundary)
+   (undo)
+   )
 
 #+end_src
 
@@ -1273,6 +1320,7 @@ Conflit avec org-mode/timestamp
   (other-window 1))
 
 #+end_src
+
 
 ** Insertion date
 
@@ -1405,6 +1453,7 @@ H = Hyper
 
 #+end_src
 
+
 ** Exécution de fonction intéractive
 
 #+begin_src emacs-lisp
@@ -1512,32 +1561,44 @@ Voir Helm dans la configuration des paquets
 #+end_src
 
 
-** Effacer
+** Effacer, Couper
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<C-backspace>") 'backward-kill-word)
+  (global-set-key (kbd "<C-backspace>") 'backward-kill-word)
 
-(global-set-key (kbd "<M-backspace>") 'biblio/efface-mot)
+  (global-set-key (kbd "<S-delete>")   'biblio/efface-mot)
 
-(global-set-key (kbd "M-/") 'just-one-space)
+  (global-set-key (kbd "<M-delete>")   'biblio/efface-jusque-debut-ligne)
+
+  ;; Rappelle le C-u de Unix
+
+  (global-set-key (kbd "s-u")   'biblio/efface-jusque-debut-ligne)
+
+  (global-set-key (kbd "<C-delete>")   'biblio/efface-contenu-ligne)
+
+  (global-set-key (kbd "<s-backspace>")   'kill-whole-line)
+
+  (global-set-key (kbd "<M-backspace>") 'biblio/efface-mot)
+
+  (global-set-key (kbd "M-/") 'just-one-space)
 
 #+end_src
 
 
-** Copier & Coller
+** Copier
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<C-insert>")   'biblio/copie-ligne)
+  (global-set-key (kbd "<S-insert>")   'biblio/copie-mot)
 
-(global-set-key (kbd "<M-insert>")   'biblio/copie-jusque-fin-ligne)
+  (global-set-key (kbd "<M-insert>")   'biblio/copie-jusque-debut-ligne)
 
-(global-set-key (kbd "<C-delete>")   'biblio/efface-contenu-ligne)
+  (global-set-key (kbd "<C-M-insert>")   'biblio/copie-jusque-fin-ligne)
 
-(global-set-key (kbd "<M-delete>")   'biblio/efface-jusque-debut-ligne)
+  (global-set-key (kbd "<C-tab>")   'biblio/copie-jusque-fin-ligne)
 
-(global-set-key (kbd "<s-backspace>")   'kill-whole-line)
+  (global-set-key (kbd "<C-insert>")   'biblio/copie-contenu-ligne)
 
 #+end_src
 
@@ -1722,14 +1783,50 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
-** Outils
+** Langages
 
 
 *** Emacs-lisp
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "C-=") 'eval-expression)
+  (global-set-key (kbd "C-=") 'eval-expression)
+
+  (global-set-key (kbd "C-M-u") 'backward-up-list)
+  (global-set-key (kbd "C-M-d") 'down-list)
+
+  (global-set-key (kbd "<C-up>") 'backward-up-list)
+  (global-set-key (kbd "<C-down>") 'down-list)
+
+  (global-set-key (kbd "C-M-f") 'forward-sexp)
+  (global-set-key (kbd "C-M-b") 'backward-sexp)
+
+  (global-set-key (kbd "<C-right>") 'forward-sexp)
+  (global-set-key (kbd "<C-left>") 'backward-sexp)
+
+  (global-set-key (kbd "C-M-n") 'forward-list)
+  (global-set-key (kbd "C-M-p") 'backward-list)
+
+  (global-set-key (kbd "<C-M-right>") 'forward-list)
+  (global-set-key (kbd "<C-M-left>") 'backward-list)
+
+  (global-set-key (kbd "C-M-a") 'beginning-of-defun)
+  (global-set-key (kbd "C-M-e") 'end-of-defun)
+
+  ;; Plus général avec outline
+
+  ;; (global-set-key (kbd "M-p") 'beginning-of-defun)
+  ;; (global-set-key (kbd "M-n") 'end-of-defun)
+
+  (global-set-key (kbd "M-(") 'insert-parentheses)
+  (global-set-key (kbd "M-)") 'move-past-close-and-reindent)
+
+  (global-set-key (kbd "C-M-k") 'kill-sexp)
+
+  (global-set-key (kbd "s-y") 'biblio/copie-sexp)
+  (global-set-key (kbd "s-k") 'kill-sexp)
+
+  ;; Slurp & Barf, Split & Splice : voir smartparens
 
 #+end_src
 
@@ -1759,20 +1856,23 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
-*** Calculatrice
-
-#+begin_src emacs-lisp
-
-(global-set-key (kbd "C-&") 'calc)
-
-#+end_src
-
-
 *** Compilation
 
 #+begin_src emacs-lisp
 
 (global-set-key [f7] 'compile)
+
+#+end_src
+
+
+** Outils
+
+
+*** Calculatrice
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "C-&") 'calc)
 
 #+end_src
 
@@ -1869,32 +1969,44 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(require 'outline)
+  (require 'outline)
 
-(eval-after-load "outline" '(require 'foldout))
+  (eval-after-load "outline" '(require 'foldout))
 
-;(setq outline-minor-mode-prefix (kbd "C-c C-c"))
+  (define-prefix-command 'outline/map)
 
-(global-set-key (kbd "s-o n") 'outline-next-visible-heading)
-(global-set-key (kbd "s-o p") 'outline-previous-visible-heading)
-(global-set-key (kbd "s-o f") 'outline-forward-same-level)
-(global-set-key (kbd "s-o b") 'outline-backward-same-level)
-(global-set-key (kbd "s-o u") 'outline-up-heading)
+  (global-set-key (kbd "s-o") 'outline/map)
 
-(global-set-key (kbd "s-o c") 'hide-entry)
-(global-set-key (kbd "s-o e") 'show-entry)
-(global-set-key (kbd "s-o d") 'hide-subtree)
-(global-set-key (kbd "s-o s") 'show-subtree)
-(global-set-key (kbd "s-o l") 'hide-leaves)
-(global-set-key (kbd "s-o k") 'show-branches)
-(global-set-key (kbd "s-o i") 'show-children)
-(global-set-key (kbd "s-o t") 'hide-body)
-(global-set-key (kbd "s-o a") 'show-all)
-(global-set-key (kbd "s-o q") 'hide-sublevels)
-(global-set-key (kbd "s-o o") 'hide-others)
+  (define-key outline/map (kbd "n") 'outline-next-visible-heading)
+  (define-key outline/map (kbd "p") 'outline-previous-visible-heading)
 
-(global-set-key (kbd "s-o z") 'foldout-zoom-subtree)
-(global-set-key (kbd "s-o x") 'foldout-exit-fold)
+  (global-set-key (kbd "M-n") 'outline-next-visible-heading)
+  (global-set-key (kbd "M-p") 'outline-previous-visible-heading)
+
+  (define-key outline/map (kbd "f") 'outline-forward-same-level)
+  (define-key outline/map (kbd "b") 'outline-backward-same-level)
+
+  (define-key outline/map (kbd "u") 'outline-up-heading)
+
+  (define-key outline/map (kbd "h") 'outline-hide-entry)
+  (define-key outline/map (kbd "s") 'outline-show-entry)
+
+  (define-key outline/map (kbd "H") 'outline-hide-body)
+  (define-key outline/map (kbd "S") 'outline-show-all)
+
+  (define-key outline/map (kbd "C-h") 'outline-hide-subtree)
+  (define-key outline/map (kbd "C-s") 'outline-show-subtree)
+
+  (define-key outline/map (kbd "M-s") 'outline-show-branches)
+  (define-key outline/map (kbd "M-S-s") 'outline-show-children)
+
+  (define-key outline/map (kbd "C-M-c") 'outline-hide-sublevels)
+  (define-key outline/map (kbd "C-M-S-c") 'outline-hide-others)
+
+  (define-key outline/map (kbd "l") 'outline-hide-leaves)
+
+  (define-key outline/map (kbd "Z") 'foldout-zoom-subtree)
+  (define-key outline/map (kbd "X") 'foldout-exit-fold)
 
 #+end_src
 
@@ -2456,69 +2568,36 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
-*** MTorus
-
-Voir aussi key-chord & hydra dans la configuration des paquets
+*** Torus
 
 #+begin_src emacs-lisp
 
-(require 'mtorus)
-(mtorus-init)
+  (require 'torus)
 
-;; (mtorus-install-suggested-bindings)
+  (setq torus/save-on-exit t)
 
-(global-set-key (kbd "s-t c") 'mtorus-new-ring)
-(global-set-key (kbd "s-t m") 'mtorus-rename-ring)
-(global-set-key (kbd "s-t D") 'mtorus-delete-ring)
+  (setq torus/dirname "~/racine/plugin/data/torus/")
 
-(global-set-key (kbd "<S-s-insert>") 'mtorus-new-ring)
+  (setq torus/prefix-key (kbd "s-t"))
 
-(global-set-key (kbd "s-t a") 'mtorus-add-current-pos-to-current-ring)
-(global-set-key (kbd "s-t u") 'mtorus-update-current-marker)
-(global-set-key (kbd "s-t d") 'mtorus-delete-current-marker-from-current-ring)
+  (torus/init)
 
-(global-set-key (kbd "<s-insert>") 'mtorus-add-current-pos-to-current-ring)
-(global-set-key (kbd "<s-delete>") 'mtorus-update-current-marker)
-(global-set-key (kbd "<S-s-delete>") 'mtorus-delete-current-marker-from-current-ring)
+  (torus/install-default-bindings)
 
-(global-set-key (kbd "s-t l") 'mtorus-describe-current-ring)
+  (global-set-key (kbd "<S-s-insert>") 'torus/add-circle)
+  (global-set-key (kbd "<s-insert>") 'torus/add-element)
 
-(global-set-key (kbd "s-t n") 'mtorus-cycle-marker-next)
-(global-set-key (kbd "s-t p") 'mtorus-cycle-marker-previous)
+  (global-set-key (kbd "<s-delete>") 'torus/delete-element)
+  (global-set-key (kbd "<S-s-delete>") 'torus/delete-circle)
 
-(global-set-key (kbd "<C-prior>") 'mtorus-cycle-marker-previous)
-(global-set-key (kbd "<C-next>") 'mtorus-cycle-marker-next)
+  (global-set-key (kbd "<C-prior>") 'torus/previous-element)
+  (global-set-key (kbd "<C-next>") 'torus/next-element)
 
-(global-set-key (kbd "s-t N") 'mtorus-cycle-ring-next)
-(global-set-key (kbd "s-t P") 'mtorus-cycle-ring-previous)
+  (global-set-key (kbd "<C-home>") 'torus/previous-circle)
+  (global-set-key (kbd "<C-end>") 'torus/next-circle)
 
-(global-set-key (kbd "<C-home>") 'mtorus-cycle-ring-previous)
-(global-set-key (kbd "<C-end>") 'mtorus-cycle-ring-next)
-
-;;(global-set-key (kbd "<C-home>") (lambda () (interactive) (mtorus-cycle-ring-previous) (mtorus-cycle-marker-next)))
-;;(global-set-key (kbd "<C-end>") (lambda () (interactive) (mtorus-cycle-ring-next) (mtorus-cycle-marker-next)))
-
-(global-set-key (kbd "s-SPC") 'mtorus-switch-to-ring)
-(global-set-key (kbd "s-t S") 'mtorus-switch-to-ring)
-
-;;(global-set-key (kbd "s-SPC") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
-;;(global-set-key (kbd "s-t S") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
-
-(global-set-key (kbd "s-=") 'mtorus-switch-to-marker)
-(global-set-key (kbd "s-t s") 'mtorus-switch-to-marker)
-
-(global-set-key (kbd "s-t w") 'mtorus-save-torus)
-(global-set-key (kbd "s-t r") 'mtorus-read-torus)
-
-(setq mtorus-switch-to-marker-when-cycling-p t)
-(setq mtorus-update-marker-when-cycling-markers-p t)
-(setq mtorus-update-marker-when-cycling-rings-p t)
-(setq mtorus-switch-when-deleting-p t)
-
-(setq mtorus-save-on-exit t)
-(setq mtorus-file-name "~/racine/plugin/data/mtorus/mtorus.el")
-
-;; (mtorus-read-torus)
+  (global-set-key (kbd "s-SPC") 'torus/switch-circle)
+  (global-set-key (kbd "s-=") 'torus/switch-element)
 
 #+end_src
 
@@ -2699,8 +2778,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+begin_src emacs-lisp
   (require 'auto-yasnippet)
 
-  (global-set-key (kbd "C-(") 'aya-create)
-  (global-set-key (kbd "C-)") 'aya-expand)
+  (global-set-key (kbd "C-M-(") 'aya-create)
+  (global-set-key (kbd "C-M-)") 'aya-expand)
 #+end_src
 
 
@@ -2807,24 +2886,35 @@ configuration when invoked to evaluate a line."
 #+end_src
 
 
-** Parenthèses
+** Langages
 
 
 *** Smartparens
 
+Langages, parenthèses
+
 #+begin_src emacs-lisp
 
-(require 'smartparens)
+  (require 'smartparens)
 
-(smartparens-global-mode nil)
+  (smartparens-global-mode nil)
 
-(show-smartparens-global-mode nil)
+  (show-smartparens-global-mode nil)
 
-;;(require 'smartparens-config)
+  ;;(require 'smartparens-config)
 
-(add-hook 'lisp-mode #'smartparens-strict-mode)
+  (add-hook 'lisp-mode #'smartparens-strict-mode)
 
-(sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
+  (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
+
+  (define-key sp-keymap (kbd "C-)") 'sp-forward-slurp-sexp)
+  (define-key sp-keymap (kbd "C-(") 'sp-forward-barf-sexp)
+
+  (define-key sp-keymap (kbd "C-M-(") 'sp-backward-slurp-sexp)
+  (define-key sp-keymap (kbd "C-M-)") 'sp-backward-barf-sexp)
+
+  (define-key sp-keymap (kbd "s-)") 'sp-split-sexp)
+  (define-key sp-keymap (kbd "s-(") 'sp-splice-sexp)
 
 #+end_src
 
@@ -3006,6 +3096,14 @@ Mouvements
 
 (defhydra hydra-move ()
    "move"
+   ("<kp-6>" forward-word)
+   ("<kp-4>" backward-word)
+   ("<kp-7>" backward-sentence)
+   ("<kp-1>" forward-sentence)
+   ("<kp-8>" backward-paragraph)
+   ("<kp-2>" forward-paragraph)
+   ("<kp-9>" scroll-down-command)
+   ("<kp-3>" scroll-up-command)
    ;; ("n" next-line)
    ;; ("p" previous-line)
    ;; ("f" forward-char)
@@ -3018,27 +3116,19 @@ Mouvements
    ;; ("E" forward-sentence)
    ;; ("v" scroll-up-command)
    ;; ("V" scroll-down-command)
-   ("<kp-6>" forward-word)
-   ("<kp-4>" backward-word)
-   ("<kp-7>" backward-sentence)
-   ("<kp-1>" forward-sentence)
-   ("<kp-8>" backward-paragraph)
-   ("<kp-2>" forward-paragraph)
-   ("<kp-9>" scroll-down-command)
-   ("<kp-3>" scroll-up-command)
    ;; ("r" move-to-window-line-top-bottom)
    ;; ("l" recenter-top-bottom)
    ("<kp-5>" nil "quit")
    ("q" nil "quit"))
+
+(global-set-key (kbd "C-S-a") #'hydra-move/backward-paragraph)
+(global-set-key (kbd "C-S-e") #'hydra-move/forward-paragraph)
 
 ;; (global-set-key (kbd "C-f") #'hydra-move/forward-char)
 ;; (global-set-key (kbd "C-b") #'hydra-move/backward-char)
 
 ;; (global-set-key (kbd "M-f") #'hydra-move/forward-word)
 ;; (global-set-key (kbd "M-b") #'hydra-move/backward-word)
-
-(global-set-key (kbd "<C-up>") #'hydra-move/backward-paragraph)
-(global-set-key (kbd "<C-down>") #'hydra-move/forward-paragraph)
 
 ;; (global-set-key (kbd "C-n") #'hydra-move/next-line)
 ;; (global-set-key (kbd "C-p") #'hydra-move/previous-line)
@@ -3144,13 +3234,13 @@ Ajuster les fenêtres
 
 #+begin_src emacs-lisp
 
-(region-bindings-mode-enable)
+  (region-bindings-mode-enable)
 
-(setq region-bindings-mode-disable-predicates ((lambda () buffer-read-only)))
+  (setq region-bindings-mode-disable-predicates ((lambda () buffer-read-only)))
 
-(define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
+  (define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
 
-(global-set-key (kbd "C-w") 'backward-kill-word)
+  (global-set-key (kbd "C-w") 'backward-kill-word)
 
 #+end_src
 
