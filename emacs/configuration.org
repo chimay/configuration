@@ -2909,34 +2909,6 @@ Ralentit la frappe : activer seulement lorsque nécessaire
 #+end_src
 
 
-**** MTorus
-
-#+begin_src emacs-lisp
-
-(key-chord-define-global "=c" 'mtorus-new-ring)
-(key-chord-define-global "=m" 'mtorus-rename-ring)
-(key-chord-define-global "=x" 'mtorus-delete-ring)
-
-(key-chord-define-global "=a" 'mtorus-add-current-pos-to-current-ring)
-(key-chord-define-global "=u" 'mtorus-update-current-marker)
-(key-chord-define-global "=d" 'mtorus-delete-current-marker-from-current-ring)
-
-(key-chord-define-global "=l" 'mtorus-describe-current-ring)
-
-(key-chord-define-global "=n" 'mtorus-cycle-marker-next)
-(key-chord-define-global "=p" 'mtorus-cycle-marker-previous)
-
-(key-chord-define-global "=j" 'mtorus-cycle-ring-next)
-(key-chord-define-global "=k" 'mtorus-cycle-ring-previous)
-
-(key-chord-define-global "=g" 'mtorus-switch-to-ring)
-
-(key-chord-define-global "=s" 'mtorus-save-torus)
-(key-chord-define-global "=r" 'mtorus-read-torus)
-
-#+end_src
-
-
 **** Caractères
 
 #+begin_src emacs-lisp
