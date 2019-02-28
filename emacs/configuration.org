@@ -339,26 +339,6 @@ Mode hl-line activé/désactivé via un binding (voir [[*Apparence][bindings/app
 #+end_src
 
 
-** Souris
-
-#+begin_src emacs-lisp
-
-;; Move the mouse to the screen corner on any keypress.
-
-; (when (and (display-mouse-p) (require 'avoid nil t))
-;
-; 	;; Move the mouse to the lower-right corner instead of default upper-right
-;
-; 	(defun mouse-avoidance-banish-destination ()
-; 		(cons (+ 3 (frame-width)) (frame-height))
-; 	)
-;
-; 	(mouse-avoidance-mode 'banish)
-; )
-
-#+end_src
-
-
 * Édition
 
 
@@ -390,7 +370,7 @@ Mode hl-line activé/désactivé via un binding (voir [[*Apparence][bindings/app
 
 #+begin_src emacs-lisp
 
-(setq indent-tabs-mode t)
+(setq indent-tabs-mode nil)
 
 (setq standard-indent 4)
 (setq tab-width 4)
@@ -446,15 +426,6 @@ Mode hl-line activé/désactivé via un binding (voir [[*Apparence][bindings/app
   (setq show-paren-delay 0)
 
   (electric-pair-mode t)
-
-  ;; Ne fonctionne pas
-
-  ;; (add-hook
-  ;;  'lisp-mode-hook
-  ;;  (lambda ()
-  ;;    (setq-local electric-pair-inhibit-predicate
-  ;;                '(lambda (c)
-  ;;                   (if (char-equal c ?\') t (,electric-pair-inhibit-predicate c))))))
 
 #+end_src
 
@@ -619,7 +590,6 @@ Ensuite :
 
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
-
 #+end_src
 
 
@@ -656,44 +626,44 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
 
 #+begin_src emacs-lisp
 
-(require 'dired-x)
+  (require 'dired-x)
 
-(require 'dired-aux)
+  (require 'dired-aux)
 
-(require 'wdired)
+  (require 'wdired)
 
-(setq wdired-allow-to-change-permissions t)
+  (setq wdired-allow-to-change-permissions t)
 
-(setq default-directory "~/racine/plain/")
+  (setq default-directory "~/racine/plain/")
 
-(setq delete-by-moving-to-trash t)
+  (setq delete-by-moving-to-trash t)
 
-(setq trash-directory "~/racine/trash/emacs")
+  (setq trash-directory "~/racine/trash/emacs")
 
-(setq dired-listing-switches "--time-style=iso -lhDF")
+  (setq dired-listing-switches "--time-style=iso -lhDF")
 
-(setq ls-lisp-dirs-first t)
+  (setq ls-lisp-dirs-first t)
 
-(setq dired-ls-F-marks-symlinks t)
+  (setq dired-ls-F-marks-symlinks t)
 
-(setq dired-recursive-copies 'always)
-(setq dired-recursive-deletes 'always)
+  (setq dired-recursive-copies 'always)
+  (setq dired-recursive-deletes 'always)
 
-(add-hook 'dired-mode-hook 'auto-revert-mode)
+  (add-hook 'dired-mode-hook 'auto-revert-mode)
 
-(setq dired-listing-switches "-lha")
+  (setq dired-listing-switches "-lha")
 
-(setq-default dired-omit-files-p t) ; this is buffer-local variable
+  (setq-default dired-omit-files-p t)
 
-;; (setq dired-omit-files
-;;     (concat dired-omit-files "^\\..*\\.un~"))
+  ;; (setq dired-omit-files
+  ;;     (concat dired-omit-files "^\\..*\\.un~"))
 
-(setq dired-omit-files "^\\..*\\.un~")
+  (setq dired-omit-files "^\\..*\\.un~")
 
-(setq
- wdired-allow-to-change-permissions t
- wdired-allow-to-redirect-links t
- )
+  (setq
+   wdired-allow-to-change-permissions t
+   wdired-allow-to-redirect-links t
+   )
 
 #+end_src
 
@@ -744,8 +714,13 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
 ** Tampons inactifs
 
 #+begin_src emacs-lisp
-(setq clean-buffer-list-delay-general 1) ; nombre de jours
-(setq clean-buffer-list-delay-special (* 12 3600)) ; nombre de secondes
+
+; nombre de jours
+(setq clean-buffer-list-delay-general 1)
+
+; nombre de secondes
+(setq clean-buffer-list-delay-special (* 12 3600))
+
 #+end_src
 
 
@@ -805,12 +780,12 @@ Penser à exécuter recentf-cleanup de temps en temps
   (setq recentf-max-menu-items 1234)
 
   (setq recentf-save-file
-   (concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/recentf"))
+	(concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/recentf"))
 
-  (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+  ;; disable before we start recentf!
+  (setq recentf-auto-cleanup 'never)
 
-  ; Important de placer le require après la définition des variables
-
+  ;; Important de placer le require après la définition des variables
   (require 'recentf)
 
   (append recentf-exclude '("*\\.html\\'" "*\\.epub"))
@@ -941,45 +916,6 @@ Pour lire ses mails dans emacs : M-x rmail
 #+end_src
 
 
-* Usenet
-
-
-** Gnus
-
-
-*** Sources
-
-#+begin_src emacs-lisp
-
-;; (setq gnus-select-method '(nntp "news.gmane.org"))
-;;
-;; (setq gnus-secondary-select-methods '((nntp "news.gnus.org")))
-;; (add-to-list 'gnus-secondary-select-methods '(nnml ""))
-
-#+end_src
-
-
-*** Newsgroup
-
-#+begin_src emacs-lisp
-
-;; (setq gnus-startup-file (expand-file-name  "~/racine/config/news/gnus-newsrc"))
-;; (setq gnus-dribble-directory "~/racine/config/news")
-;;
-;; (setq gnus-check-new-newsgroups 'ask-server)
-;;
-;; (setq gnus-read-newsrc-file nil)
-;; (setq gnus-save-newsrc-file nil)
-;;
-;; (setq gnus-save-killed-list nil)
-;;
-;; (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
-;;
-;; (setq gnus-subscribe-hierarchical-interactive t)
-
-#+end_src
-
-
 * Programmes externes
 
 
@@ -987,15 +923,13 @@ Pour lire ses mails dans emacs : M-x rmail
 
 #+begin_src emacs-lisp
 
-(setq compilation-window-height 12)
+  (setq compilation-window-height 12)
 
-(setq
- ;; use gdb-many-windows by default
- gdb-many-windows t
+  ;; use gdb-many-windows by default
+  (setq gdb-many-windows t)
 
- ;; Non-nil means display source file containing the main routine at startup
- gdb-show-main t
- )
+  ;; Non-nil means display source file containing the main routine at startup
+  (setq gdb-show-main t)
 
 #+end_src
 
@@ -1058,20 +992,6 @@ Pour lire ses mails dans emacs : M-x rmail
 
 ;(ispell-change-dictionary "francais" t)
 ;(setq ispell-dictionary "francais")
-
-#+end_src
-
-
-* Développement
-
-
-** CEDET
-
-Conflit avec org-mode/timestamp
-
-#+begin_src emacs-lisp
-
-;; (global-ede-mode)
 
 #+end_src
 
@@ -1382,7 +1302,7 @@ Conflit avec org-mode/timestamp
 
   (goto-char (point-min))
 
-  (while (re-search-forward "\\(^\\*+ \\)" nil t) ;
+  (while (re-search-forward "\\(^\\*+ \\)" nil t)
     (replace-match (concat "\n" (match-string 1)) t nil))
 
   (goto-char (point-min))
@@ -1574,7 +1494,6 @@ Voir Helm dans la configuration des paquets
   (global-set-key (kbd "<M-delete>")   'biblio/efface-jusque-debut-ligne)
 
   ;; Rappelle le C-u de Unix
-
   (global-set-key (kbd "s-u")   'biblio/efface-jusque-debut-ligne)
 
   (global-set-key (kbd "<C-delete>")   'biblio/efface-contenu-ligne)
@@ -1717,7 +1636,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Tampon précédent
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-^") 'biblio/alterne-deux-derniers-tampons)
+
+  ;; Remplacé par torus-alternate
+
+  ;; (global-set-key (kbd "C-^") 'biblio/alterne-deux-derniers-tampons)
+
 #+end_src
 
 
@@ -2040,9 +1963,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 (setq org-archive-location "~/racine/plain/orgdir/archive.org::* Fichier %s")
 
-(setq org-use-speed-commands t) ; Commandes org accessibles au 1er * de chaque titre
+;; Commandes org accessibles au 1er * de chaque titre
+(setq org-use-speed-commands t)
 
-(setq org-adapt-indentation nil) ; Pas d’indentation auto pour suivre la hiérarchie
+;; Pas d’indentation auto pour suivre la hiérarchie
+(setq org-adapt-indentation nil)
 
 (setq org-list-use-circular-motion t)
 
@@ -2233,7 +2158,8 @@ Nécessite org-tempo
 
 (setq org-refile-targets '((nil :maxlevel . 9)))
 
-(setq org-refile-use-outline-path t)                  ; Show full paths for refiling
+;; Show full paths for refiling
+(setq org-refile-use-outline-path t)
 
 #+end_src
 
@@ -2244,12 +2170,6 @@ Nécessite org-tempo
 
 (setq org-list-demote-modify-bullet
       '(("-" . "+") ("+" . "*") ("*" . "-")))
-
-;; use org-bullets-mode for utf8 symbols as org bullets
-
-;;(require 'org-bullets)
-
-;; make available "org-bullet-face" such that I can control the font size individually
 
 (setq org-bullets-face-name (quote org-bullet-face))
 
@@ -2267,12 +2187,6 @@ Nécessite org-tempo
 #+begin_src emacs-lisp
 
 (setq alert-default-style 'libnotify)
-
-;; (setq alert-default-style 'mode-line)
-
-;; (setq alert-default-style 'fringe)
-
-;; (setq alert-default-style 'message)
 
 (setq alert-fade-time 30)
 
@@ -2297,6 +2211,7 @@ heure.
 (setq org-alert-headline-regexp "\\(Sched.+:.+\\|Deadline:.+\\)")
 
 (org-alert-enable)
+
 ;;(org-alert-disable)
 
 #+end_src
@@ -2328,25 +2243,19 @@ heure.
 
 #+begin_src emacs-lisp
 
-(setq projectile-indexing-method 'alien)
+  (setq projectile-indexing-method 'alien)
 
-;;(setq projectile-indexing-method 'native)
+  ;;(setq projectile-indexing-method 'native)
 
-(setq projectile-enable-caching t)
+  (setq projectile-enable-caching t)
 
-(setq projectile-completion-system 'helm)
+  (setq projectile-completion-system 'helm)
 
-(setq projectile-switch-project-action 'helm-projectile)
+  (setq projectile-switch-project-action 'helm-projectile)
 
-(setq projectile-keymap-prefix (kbd "s-p"))
+  (setq projectile-keymap-prefix (kbd "s-p"))
 
-;; (setq projectile-globally-ignored-files '("*.elc"))
-;; (setq projectile-globally-ignored-files (append '("*.html" "*.php" "*.pdf") projectile-globally-ignored-files))
-
-;; (setq projectile-globally-ignored-directories '(".git"))
-;; (setq projectile-globally-ignored-directories (append '(".hg" ".bzr") projectile-globally-ignored-directories))
-
-(projectile-global-mode)
+  (projectile-global-mode)
 
 #+end_src
 
@@ -2470,7 +2379,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (define-key global-map [remap bookmark-bmenu-list] 'helm-filtered-bookmarks)
 (define-key global-map [remap insert-register] 'helm-register)
 
-(global-set-key (kbd "s-ù") 'helm-mini)
+(global-set-key (kbd "s-*") 'helm-mini)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 
@@ -2493,7 +2402,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 (global-set-key (kbd "s-m") 'helm-filtered-bookmarks)
 
-(global-set-key (kbd "s-^") 'helm-gid)
+;; (global-set-key (kbd "s-^") 'helm-gid)
 
 (global-set-key (kbd "s-h y") 'helm-show-kill-ring)
 (global-set-key (kbd "s-h :") 'helm-mini-buffer-history)
@@ -2522,11 +2431,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 (require 'helm-projectile)
 
-(global-set-key (kbd "s-*") 'helm-projectile)
+(global-set-key (kbd "s-°") 'helm-projectile)
 
-;; (global-set-key (kbd "s-*") 'helm-projectile-find-file)
+;; (global-set-key (kbd "s-^") 'helm-projectile-find-file)
 
-(global-set-key (kbd "C-c s-*") 'helm-projectile-recentf)
+(global-set-key (kbd "C-c s-°") 'helm-projectile-recentf)
 
 (global-set-key (kbd "s-p s-f") 'helm-projectile-find-file-in-known-projects)
 
@@ -2574,30 +2483,46 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
   (require 'torus)
 
-  (setq torus/save-on-exit t)
+  (setq torus-prefix-key (kbd "s-t"))
 
-  (setq torus/dirname "~/racine/plugin/data/torus/")
+  (setq torus-dirname "~/racine/plugin/data/torus/")
 
-  (setq torus/prefix-key (kbd "s-t"))
+  (setq torus-optional-bindings t)
 
-  (torus/init)
+  (setq torus-save-on-exit t)
 
-  (torus/install-default-bindings)
+  (setq torus-history-maximum-elements 30)
 
-  (global-set-key (kbd "<S-s-insert>") 'torus/add-circle)
-  (global-set-key (kbd "<s-insert>") 'torus/add-element)
+  (setq torus-prefix-separator " : ")
 
-  (global-set-key (kbd "<s-delete>") 'torus/delete-element)
-  (global-set-key (kbd "<S-s-delete>") 'torus/delete-circle)
+  (torus-init)
 
-  (global-set-key (kbd "<C-prior>") 'torus/previous-element)
-  (global-set-key (kbd "<C-next>") 'torus/next-element)
+  (torus-install-default-bindings)
 
-  (global-set-key (kbd "<C-home>") 'torus/previous-circle)
-  (global-set-key (kbd "<C-end>") 'torus/next-circle)
+  (global-set-key (kbd "<S-s-insert>") 'torus-add-circle)
+  (global-set-key (kbd "<s-insert>") 'torus-add-location)
 
-  (global-set-key (kbd "s-SPC") 'torus/switch-circle)
-  (global-set-key (kbd "s-=") 'torus/switch-element)
+  (global-set-key (kbd "<s-delete>") 'torus-delete-location)
+  (global-set-key (kbd "<S-s-delete>") 'torus-delete-circle)
+
+  (global-set-key (kbd "<C-prior>") 'torus-previous-location)
+  (global-set-key (kbd "<C-next>") 'torus-next-location)
+
+  (global-set-key (kbd "<C-home>") 'torus-previous-circle)
+  (global-set-key (kbd "<C-end>") 'torus-next-circle)
+
+  (global-set-key (kbd "<S-prior>") 'torus-history-newer)
+  (global-set-key (kbd "<S-next>") 'torus-history-older)
+
+  (global-set-key (kbd "C-^") 'torus-alternate)
+  (global-set-key (kbd "s-<") 'torus-alternate-circles)
+  (global-set-key (kbd "s->") 'torus-alternate-in-same-circle)
+
+  (global-set-key (kbd "s-SPC") 'torus-switch-circle)
+  (global-set-key (kbd "s-=") 'torus-switch-location)
+  (global-set-key (kbd "s-^") 'torus-switch-torus)
+  (global-set-key (kbd "s-ù") 'torus-search)
+  (global-set-key (kbd "s-/") 'torus-search-history)
 
 #+end_src
 
@@ -2622,20 +2547,13 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(require 'dired-filter)
+  (require 'dired-filter)
 
-(define-key dired-mode-map (kbd "/") dired-filter-map)
+  (define-key dired-mode-map (kbd "/") dired-filter-map)
 
-(define-key dired-mode-map (kbd "_") dired-filter-mark-map)
+  (define-key dired-mode-map (kbd "_") dired-filter-mark-map)
 
-;; (setq dired-filter-group-saved-groups '(("defaut"
-;;   ("Org" (extension . "org"))
-;;   ("Lisp" (extension . "el"))
-;;   ("LaTeX" (extension "tex" "bib"))
-;;   ("PDF" (extension . "pdf"))
-;;   ("Archives" (extension "zip" "rar" "gz" "bz2" "tar")))))
-
-(define-key dired-mode-map (kbd "_ _") dired-filter-group-mode)
+  (define-key dired-mode-map (kbd "_ _") dired-filter-group-mode)
 
 #+end_src
 
@@ -2706,24 +2624,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
-**** Keep region when undoing in region
-
-#+begin_src emacs-lisp
-
-;; (defadvice undo-tree-undo (around keep-region activate)
-;;   (if (use-region-p)
-;;       (let ((m (set-marker (make-marker) (mark)))
-;;             (p (set-marker (make-marker) (point))))
-;;         ad-do-it
-;;         (goto-char p)
-;;         (set-mark m)
-;;         (set-marker p nil)
-;;         (set-marker m nil))
-;;     ad-do-it))
-
-#+end_src
-
-
 ** Registres
 
 
@@ -2749,8 +2649,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 (setq company-minimum-prefix-length 3)
 
 (with-eval-after-load 'company
-;;  (define-key company-active-map (kbd "M-n") nil)
-;;  (define-key company-active-map (kbd "M-p") nil)
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
   (define-key company-active-map (kbd "SPC") #'company-abort))
@@ -2784,16 +2682,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 
 ** Contrôle de version
-
-
-*** Magit
-
-Activer ou désactiver magit-auto-revert-mode ?
-
-#+begin_src emacs-lisp
-(require 'magit)
-(global-set-key (kbd "C-x g") 'magit-status)
-#+end_src
 
 
 ** Read Eval Print Loops
@@ -2931,27 +2819,6 @@ Langages, parenthèses
 ** Encodage
 
 
-*** Ucs-cmds
-
-#+begin_src emacs-lisp
-
-;; (require 'ucs)
-
-;; (set-frame-font "DejaVu Sans Mono-10")
-;; (set-frame-font "DejaVu Sans 10")
-;; (set-frame-font "Arial Unicode MS")
-
-;; (ucsc-make-commands "^math")
-;; (ucsc-make-commands "latin")
-;; (ucsc-make-commands "arabic")
-;; (ucsc-make-commands "^cjk")
-;; (ucsc-make-commands "^box drawings ")
-;; (ucsc-make-commands "^greek [a-z]+ letter")
-;; (ucsc-make-commands "\\(^hangul\\|^circled hangul\\|^parenthesized hangul\\)")
-
-#+end_src
-
-
 ** Async
 
 #+begin_src emacs-lisp
@@ -2972,12 +2839,7 @@ Langages, parenthèses
 
 #+begin_src emacs-lisp
 
-;; (powerline-vim-theme)
 (powerline-evil-vim-theme)
-;; (powerline-nano-theme)
-;; (powerline-center-theme)
-;; (powerline-center-evil-theme)
-;; (powerline-default-theme)
 
 #+end_src
 
@@ -3104,49 +2966,11 @@ Mouvements
    ("<kp-2>" forward-paragraph)
    ("<kp-9>" scroll-down-command)
    ("<kp-3>" scroll-up-command)
-   ;; ("n" next-line)
-   ;; ("p" previous-line)
-   ;; ("f" forward-char)
-   ;; ("b" backward-char)
-   ;; ("a" beginning-of-line)
-   ;; ("e" move-end-of-line)
-   ;; ("F" forward-word)
-   ;; ("B" backward-word)
-   ;; ("A" backward-sentence)
-   ;; ("E" forward-sentence)
-   ;; ("v" scroll-up-command)
-   ;; ("V" scroll-down-command)
-   ;; ("r" move-to-window-line-top-bottom)
-   ;; ("l" recenter-top-bottom)
    ("<kp-5>" nil "quit")
    ("q" nil "quit"))
 
 (global-set-key (kbd "C-S-a") #'hydra-move/backward-paragraph)
 (global-set-key (kbd "C-S-e") #'hydra-move/forward-paragraph)
-
-;; (global-set-key (kbd "C-f") #'hydra-move/forward-char)
-;; (global-set-key (kbd "C-b") #'hydra-move/backward-char)
-
-;; (global-set-key (kbd "M-f") #'hydra-move/forward-word)
-;; (global-set-key (kbd "M-b") #'hydra-move/backward-word)
-
-;; (global-set-key (kbd "C-n") #'hydra-move/next-line)
-;; (global-set-key (kbd "C-p") #'hydra-move/previous-line)
-;; (global-set-key (kbd "C-f") #'hydra-move/forward-char)
-;; (global-set-key (kbd "C-b") #'hydra-move/backward-char)
-;; (global-set-key (kbd "M-f") #'hydra-move/forward-word)
-;; (global-set-key (kbd "M-b") #'hydra-move/backward-word)
-;; (global-set-key (kbd "C-a") #'hydra-move/beginning-of-line)
-;; (global-set-key (kbd "C-e") #'hydra-move/move-end-of-line)
-;; (global-set-key (kbd "M-a") #'hydra-move/backward-sentence)
-;; (global-set-key (kbd "M-e") #'hydra-move/forward-sentence)
-;; (global-set-key (kbd "<C-up>") #'hydra-move/backward-paragraph)
-;; (global-set-key (kbd "<C-down>") #'hydra-move/forward-paragraph)
-;; (global-set-key (kbd "C-v") #'hydra-move/scroll-up-command)
-;; (global-set-key (kbd "M-v") #'hydra-move/scroll-down-command)
-
-;; (global-set-key (kbd "<prior>") #'hydra-move/scroll-down-command)
-;; (global-set-key (kbd "<next>") #'hydra-move/scroll-up-command)
 
 #+end_src
 
@@ -3160,7 +2984,7 @@ Copier & Coller
   ("M-y" yank-pop nil)
   ("y" (yank-pop 1) "next")
   ("Y" (yank-pop -1) "prev")
-  ("l" helm-show-kill-ring "list" :color red))   ; or browse-kill-ring
+  ("l" helm-show-kill-ring "list" :color red))
 
 (global-set-key (kbd "M-y") #'hydra-yank-pop/yank-pop)
 (global-set-key (kbd "C-y") #'hydra-yank-pop/yank)
@@ -3183,49 +3007,6 @@ Transposition (échange de caractères, mots, ...)
      ("p" transpose-paragraphs "paragraphs")
      ("t" org-table-transpose-table-at-point "Org mode table")
      ("q" nil "cancel" :color blue)))
-
-#+end_src
-
-Fenêtres
-
-#+begin_src emacs-lisp
-
-;; (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
-
-;; (defhydra hydra-windmove ()
-;;    "windmove"
-;;    ("k" windmove-up)
-;;    ("j" windmove-down)
-;;    ("h" windmove-left)
-;;    ("l" windmove-right)
-;;    ("0" delete-window)
-;;    ("1" delete-other-windows)
-;;    ("2" split-window-below)
-;;    ("3" split-window-right)
-;;    ("<kp-0>" delete-window)
-;;    ("<kp-1>" delete-other-windows)
-;;    ("<kp-2>" split-window-below)
-;;    ("<kp-3>" split-window-right)
-;;    ("o" other-window))
-
-;; (global-set-key (kbd "C-x o") #'hydra-windmove/other-window)
-;; (global-set-key (kbd "C-x 2") #'hydra-windmove/split-window-below)
-;; (global-set-key (kbd "C-x 3") #'hydra-windmove/split-window-right)
-
-#+end_src
-
-Ajuster les fenêtres
-
-#+begin_src emacs-lisp
-
-(require 'hydra-examples)
-
-(defhydra hydra-splitter (global-map "s-<")
-  "splitter"
-  ("h" hydra-move-splitter-left)
-  ("j" hydra-move-splitter-down)
-  ("k" hydra-move-splitter-up)
-  ("l" hydra-move-splitter-right))
 
 #+end_src
 
