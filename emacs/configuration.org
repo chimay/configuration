@@ -798,9 +798,7 @@ Penser à exécuter recentf-cleanup de temps en temps
 * Contrôle de version
 
 #+begin_src emacs-lisp
-
 (require 'vc)
-
 #+end_src
 
 
@@ -2287,13 +2285,13 @@ heure.
 
 (setq ivy-use-virtual-buffers t)
 
-(global-set-key (kbd "s-f") 'counsel-find-file)
+(global-set-key (kbd "s-F") 'counsel-find-file)
 
-(global-set-key (kbd "s-b") 'ivy-switch-buffer)
+(global-set-key (kbd "s-B") 'ivy-switch-buffer)
 
-(global-set-key (kbd "s-x") 'counsel-M-x)
+(global-set-key (kbd "s-X") 'counsel-M-x)
 
-(global-set-key (kbd "s-s") 'swiper)
+(global-set-key (kbd "s-S") 'swiper)
 
 (global-set-key (kbd "s-G") 'counsel-ag)
 
@@ -2369,44 +2367,46 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "s-h") 'helm-command-prefix)
+  (global-set-key (kbd "s-h") 'helm-command-prefix)
 
-(global-unset-key (kbd "C-x c"))
+  (global-unset-key (kbd "C-x c"))
 
-(define-key global-map [remap find-file] 'helm-find-files)
-(define-key global-map [remap occur] 'helm-occur)
-(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-(define-key global-map [remap bookmark-bmenu-list] 'helm-filtered-bookmarks)
-(define-key global-map [remap insert-register] 'helm-register)
+  (define-key global-map [remap find-file] 'helm-find-files)
+  (define-key global-map [remap occur] 'helm-occur)
+  (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+  (define-key global-map [remap bookmark-bmenu-list] 'helm-filtered-bookmarks)
+  (define-key global-map [remap insert-register] 'helm-register)
 
-(global-set-key (kbd "s-*") 'helm-mini)
+  (global-set-key (kbd "s-ù") 'helm-mini)
 
-(global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "M-x") 'helm-M-x)
 
-; Même idée qu’occur
+  (global-set-key (kbd "s-f") 'helm-find-files)
 
-(global-set-key (kbd "s-é") 'helm-swoop)
-(global-set-key (kbd "s-è") 'helm-multi-swoop)
+  ; Même idée qu’occur
 
-(global-set-key (kbd "s-ç") 'helm-show-kill-ring)
+  (global-set-key (kbd "s-é") 'helm-swoop)
+  (global-set-key (kbd "s-è") 'helm-multi-swoop)
 
-(global-set-key (kbd "M-s l") 'swiper-helm)
+  (global-set-key (kbd "s-ç") 'helm-show-kill-ring)
 
-(global-set-key (kbd "s-$") 'helm-etags-select)
-(global-set-key (kbd "s--") 'helm-locate)
+  (global-set-key (kbd "M-s l") 'swiper-helm)
 
-(global-set-key (kbd "s-g") 'helm-do-grep-ag)
-(global-set-key (kbd "s-&") 'helm-projectile-grep)
+  (global-set-key (kbd "s-$") 'helm-etags-select)
+  (global-set-key (kbd "s--") 'helm-locate)
 
-(global-set-key (kbd "s-'") 'helm-all-mark-rings)
+  (global-set-key (kbd "s-g") 'helm-do-grep-ag)
+  (global-set-key (kbd "s-&") 'helm-projectile-grep)
 
-(global-set-key (kbd "s-m") 'helm-filtered-bookmarks)
+  (global-set-key (kbd "s-'") 'helm-all-mark-rings)
 
-;; (global-set-key (kbd "s-^") 'helm-gid)
+  (global-set-key (kbd "s-m") 'helm-filtered-bookmarks)
 
-(global-set-key (kbd "s-h y") 'helm-show-kill-ring)
-(global-set-key (kbd "s-h :") 'helm-mini-buffer-history)
-(global-set-key (kbd "s-h '") 'helm-all-mark-rings)
+  ;; (global-set-key (kbd "s-^") 'helm-gid)
+
+  (global-set-key (kbd "s-h y") 'helm-show-kill-ring)
+  (global-set-key (kbd "s-h :") 'helm-mini-buffer-history)
+  (global-set-key (kbd "s-h '") 'helm-all-mark-rings)
 
 #+end_src
 
@@ -2521,7 +2521,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "s-SPC") 'torus-switch-circle)
   (global-set-key (kbd "s-=") 'torus-switch-location)
   (global-set-key (kbd "s-^") 'torus-switch-torus)
-  (global-set-key (kbd "s-ù") 'torus-search)
+  (global-set-key (kbd "s-*") 'torus-search)
   (global-set-key (kbd "s-/") 'torus-search-history)
 
 #+end_src
@@ -2682,6 +2682,16 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 
 ** Contrôle de version
+
+
+*** Magit
+
+Activer ou désactiver magit-auto-revert-mode ?
+
+#+begin_src emacs-lisp
+  (require 'magit)
+  (global-set-key (kbd "C-x g") 'magit-status)
+#+end_src
 
 
 ** Read Eval Print Loops
