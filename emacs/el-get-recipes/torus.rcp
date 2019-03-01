@@ -1,0 +1,5 @@
+(:name torus
+       :website "http://github.com/chimay/torus"
+       :description "Torus : Circle of Circles of buffers"
+       :type github
+       :pkgname "chimay/torus")
