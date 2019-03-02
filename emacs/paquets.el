@@ -1,25 +1,6 @@
+;;; -*- mode: emacs-lisp -*-
 
-;; -*- mode: lisp -*-
-
-;; * Gestionnaire de paquets natif
-
-;; This must come before configurations of installed packages.
-
-(require 'package)
-(setq package-enable-at-startup nil)
-
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-
-(package-initialize)
-
-(unless (package-installed-p 'use-package)
-	(package-refresh-contents)
-	(package-install 'use-package)
-	)
-
-;; * Gestionnaire de paquets el-get
+;;; * Gestionnaire de paquets el-get
 
 (add-to-list 'load-path "~/racine/plugin/manager/el-get/el-get")
 
@@ -35,7 +16,7 @@
 (add-to-list 'el-get-user-package-directory "~/racine/config/edit/emacs/pack")
 (add-to-list 'el-get-recipe-path "~/racine/plugin/data/el-get-user/recipes")
 
-;; * Bindings
+;;; ** Bindings
 
 (global-unset-key (kbd "<f11>"))
 
@@ -49,38 +30,39 @@
 (global-set-key (kbd "<f11> l") 'el-get-list-packages)
 (global-set-key (kbd "<f11> f") 'el-get-find-recipe-file)
 
-;; * Liste de paquets installés
+;;; ** Liste de paquets installés
 
-;; ** Nécessaire pour d’autres paquets
+;;; *** Nécessaire pour d’autres paquets
 
 (el-get-bundle paredit)
 (el-get-bundle ace-window)
 (el-get-bundle ht)
 (el-get-bundle htmlize)
 
-;; ** Langages
+;;; *** Langages
 
 (el-get-bundle inf-perl)
 (el-get-bundle inf-ruby)
 (el-get-bundle python)
 
-;; ** Liste principale
+;;; *** Liste principale
 
 (el-get-bundle alert)
 (el-get-bundle auctex)
-(el-get-bundle auto-complete)
 (el-get-bundle auto-mark)
+(el-get-bundle auto-yasnippet)
 (el-get-bundle avy)
 (el-get-bundle command-log-mode)
+(el-get-bundle company-mode)
 (el-get-bundle counsel-projectile)
 (el-get-bundle dired-hacks)
+(el-get-bundle emacs-async)
 (el-get-bundle evil)
 (el-get-bundle evil-leader)
-(el-get-bundle evil-magit)
 (el-get-bundle expand-region)
+(el-get-bundle flycheck)
 (el-get-bundle ggtags)
 (el-get-bundle helm)
-(el-get-bundle helm-ag)
 (el-get-bundle helm-gtags)
 (el-get-bundle helm-projectile)
 (el-get-bundle helm-swoop)
@@ -90,7 +72,6 @@
 (el-get-bundle iy-go-to-char)
 (el-get-bundle key-chord)
 (el-get-bundle linum-relative)
-(el-get-bundle magit)
 (el-get-bundle multiple-cursors)
 (el-get-bundle org-alert)
 (el-get-bundle org-bullets)
@@ -98,8 +79,10 @@
 (el-get-bundle org-publish)
 (el-get-bundle outline-magic)
 (el-get-bundle ox-pandoc)
+(el-get-bundle package-lint)
 (el-get-bundle powerline)
 (el-get-bundle powerline-evil)
+(el-get-bundle pretty-mode)
 (el-get-bundle projectile)
 (el-get-bundle region-bindings-mode)
 (el-get-bundle register-list)
@@ -108,32 +91,58 @@
 (el-get-bundle smartparens)
 (el-get-bundle swiper)
 (el-get-bundle swiper-helm)
+(el-get-bundle switch-window)
 (el-get-bundle ucs-cmds)
 (el-get-bundle undo-tree)
 (el-get-bundle vimish-fold)
 (el-get-bundle wgrep)
 (el-get-bundle which-key)
 (el-get-bundle yasnippet)
+(el-get-bundle yasnippet-snippets)
 (el-get-bundle ztree)
 
-;; ** Recettes personnelles
+;;; *** Recettes personnelles
 
 (el-get-bundle eval-in-repl)
 (el-get-bundle evil-org-mode-somelauw)
-(el-get-bundle mtorus-chimay)
 (el-get-bundle org-wild-notifier)
 (el-get-bundle ox-twbs)
 (el-get-bundle xah-math-input)
 
-;; Sync
+;;; *** Paquets Personnels
+
+(el-get-bundle torus)
+
+;;; Sync
 
 (el-get 'sync)
 
-;; * Provide
+;;; * Gestionnaire de paquets natif
+
+;; This must come before configurations of installed packages.
+
+(require 'package)
+(setq package-enable-at-startup nil)
+
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
+;;; ** Use-package
+
+(unless (package-installed-p 'use-package)
+	(package-refresh-contents)
+	(package-install 'use-package))
+
+;;; ** Liste de paquets
+
+(unless (package-installed-p 'magit)
+	(package-refresh-contents)
+	(package-install 'magit))
+
+;;; * Provide
 
 (provide 'personnel/paquets)
 
-;; * Variables locales
+;;; * Variables locales
 
 ;; Local Variables:
 ;; eval: (outline-minor-mode)

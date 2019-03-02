@@ -1,14 +1,14 @@
-; -*- lisp -*-
+;;; -*- mode: emacs-lisp -*-
 
-;; * Chargement du fichier
+;;; * Chargement du fichier
 
 (org-babel-load-file "~/racine/config/edit/emacs/configuration.org")
 
-;; * Provide
+;;; * Provide
 
 (provide 'personnel/orgmode-configuration)
 
-;; * Variables locales
+;;; * Variables locales
 
 ;; Local Variables:
 ;; eval: (outline-minor-mode)

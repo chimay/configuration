@@ -1,26 +1,26 @@
-;; -*- mode: lisp -*-
+;;; -*- mode: emacs-lisp -*-
 
-;; * Debug
+;;; * Debug
 
 (setq debug-on-error t)
 
-;; * Chemin d’accès aux fichiers à charger
+;;; * Chemin d’accès aux fichiers à charger
 
 (add-to-list 'load-path "~/racine/config/edit/emacs")
 
-;; * Paquets
+;;; * Paquets
 
 (require 'personnel/paquets "paquets")
 
-;; * Perso
+;;; * Perso
 
 (require 'personnel/perso "perso")
 
-;; * Configuration en org-mode / babel
+;;; * Configuration en org-mode / babel
 
 (require 'personnel/orgmode-configuration "orgconfig")
 
-;; * Variables locales
+;;; * Variables locales
 
 ;; Local Variables:
 ;; eval: (outline-minor-mode)
