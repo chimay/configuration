@@ -1404,7 +1404,7 @@ Client et server
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "s-a s-z") 'save-buffers-kill-emacs)
+(global-set-key (kbd "s-z s-z") 'save-buffers-kill-emacs)
 
 #+end_src
 
@@ -1422,14 +1422,17 @@ Client et server
 
 #+begin_src emacs-lisp
 
-(global-set-key [kp-prior] 'scroll-down-command)
-(global-set-key [prior]    'scroll-down-command)
+  (global-set-key [kp-prior] 'scroll-down-command)
+  (global-set-key [prior]    'scroll-down-command)
 
-(global-set-key [kp-next]  'scroll-up-command)
-(global-set-key [next]     'scroll-up-command)
+  (global-set-key [kp-next]  'scroll-up-command)
+  (global-set-key [next]     'scroll-up-command)
 
-(global-set-key [S-home]      'beginning-of-buffer)
-(global-set-key [S-end]      'end-of-buffer)
+  (global-set-key (kbd "s-a")  'beginning-of-buffer)
+  (global-set-key (kbd "s-e")  'end-of-buffer)
+
+  (global-set-key (kbd "<f9>")  'beginning-of-buffer)
+  (global-set-key (kbd "<f10>")  'end-of-buffer)
 
 #+end_src
 
@@ -1814,19 +1817,20 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(global-unset-key (kbd "<f8>"))
+  (define-prefix-command 'caracteres/map)
 
-(global-set-key (kbd "<f8> <") (lambda () (interactive) (insert "⟻")))
-(global-set-key (kbd "<f8> >") (lambda () (interactive) (insert "⟼")))
+  (global-set-key (kbd "<f8>") 'caracteres/map)
 
-(global-set-key (kbd "<f8> SPC") (lambda () (interactive) (insert " ")))
+  (define-key caracteres/map (kbd "<") (lambda () (interactive) (insert "⟻")))
+  (define-key caracteres/map (kbd ">") (lambda () (interactive) (insert "⟼")))
 
-(global-set-key (kbd "<f8> a") (lambda () (interactive) (insert "â")))
-(global-set-key (kbd "<f8> e") (lambda () (interactive) (insert "ê")))
-(global-set-key (kbd "<f8> i") (lambda () (interactive) (insert "î")))
-(global-set-key (kbd "<f8> o") (lambda () (interactive) (insert "ô")))
-(global-set-key (kbd "<f8> u") (lambda () (interactive) (insert "û")))
+  (define-key caracteres/map (kbd "SPC") (lambda () (interactive) (insert " ")))
 
+  (define-key caracteres/map (kbd "a") (lambda () (interactive) (insert "â")))
+  (define-key caracteres/map (kbd "e") (lambda () (interactive) (insert "ê")))
+  (define-key caracteres/map (kbd "i") (lambda () (interactive) (insert "î")))
+  (define-key caracteres/map (kbd "o") (lambda () (interactive) (insert "ô")))
+  (define-key caracteres/map (kbd "u") (lambda () (interactive) (insert "û")))
 
 #+end_src
 
@@ -2487,13 +2491,15 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
   (setq torus-dirname "~/racine/plugin/data/torus/")
 
-  (setq torus-optional-bindings t)
+  (setq torus-optional-bindings 3)
 
   (setq torus-save-on-exit t)
 
   (setq torus-history-maximum-elements 30)
 
   (setq torus-prefix-separator " : ")
+
+  (setq torus-verbosity 2)
 
   (torus-init)
 
@@ -2515,8 +2521,9 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "<S-next>") 'torus-history-older)
 
   (global-set-key (kbd "C-^") 'torus-alternate)
-  (global-set-key (kbd "s-<") 'torus-alternate-circles)
-  (global-set-key (kbd "s->") 'torus-alternate-in-same-circle)
+
+  (global-set-key (kbd "<S-home>") 'torus-alternate-circles)
+  (global-set-key (kbd "<S-end>") 'torus-alternate-in-same-circle)
 
   (global-set-key (kbd "s-SPC") 'torus-switch-circle)
   (global-set-key (kbd "s-=") 'torus-switch-location)
@@ -2768,7 +2775,7 @@ configuration when invoked to evaluate a line."
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "s-e") 'er/expand-region)
+(global-set-key (kbd "s-x") 'er/expand-region)
 
 #+end_src
 
@@ -2938,21 +2945,21 @@ Mouvements
 
 #+begin_src emacs-lisp
 
-(defhydra hydra-move ()
-   "move"
-   ("<kp-6>" forward-word)
-   ("<kp-4>" backward-word)
-   ("<kp-7>" backward-sentence)
-   ("<kp-1>" forward-sentence)
-   ("<kp-8>" backward-paragraph)
-   ("<kp-2>" forward-paragraph)
-   ("<kp-9>" scroll-down-command)
-   ("<kp-3>" scroll-up-command)
-   ("<kp-5>" nil "quit")
-   ("q" nil "quit"))
+  (defhydra hydra-move ()
+    "move"
+    ("<kp-6>" forward-word)
+    ("<kp-4>" backward-word)
+    ("<kp-7>" backward-sentence)
+    ("<kp-1>" forward-sentence)
+    ("<kp-8>" backward-paragraph)
+    ("<kp-2>" forward-paragraph)
+    ("<kp-9>" scroll-down-command)
+    ("<kp-3>" scroll-up-command)
+    ("<kp-5>" nil "quit")
+    ("q" nil "quit"))
 
-(global-set-key (kbd "C-S-a") #'hydra-move/backward-paragraph)
-(global-set-key (kbd "C-S-e") #'hydra-move/forward-paragraph)
+  (global-set-key (kbd "C-S-a") #'hydra-move/backward-paragraph)
+  (global-set-key (kbd "C-S-e") #'hydra-move/forward-paragraph)
 
 #+end_src
 
@@ -2960,16 +2967,17 @@ Copier & Coller
 
 #+begin_src emacs-lisp
 
-(defhydra hydra-yank-pop ()
-  "yank"
-  ("C-y" yank nil)
-  ("M-y" yank-pop nil)
-  ("y" (yank-pop 1) "next")
-  ("Y" (yank-pop -1) "prev")
-  ("l" helm-show-kill-ring "list" :color red))
+  (defhydra hydra-yank ()
+    "yank"
+    ("C-y" yank nil)
+    ("M-y" yank-pop nil)
+    ("y" (yank-pop 1) "next")
+    ("Y" (yank-pop -1) "prev")
+    ("l" helm-show-kill-ring "list" :color red)
+    ("q" nil "cancel" :color blue))
 
-(global-set-key (kbd "M-y") #'hydra-yank-pop/yank-pop)
-(global-set-key (kbd "C-y") #'hydra-yank-pop/yank)
+  (global-set-key (kbd "M-y") #'hydra-yank/yank-pop)
+  (global-set-key (kbd "C-y") #'hydra-yank/yank)
 
 #+end_src
 
@@ -2977,9 +2985,10 @@ Transposition (échange de caractères, mots, ...)
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "C-c t")
-    (defhydra hydra-transpose (:color red)
-    "Transpose"
+  (global-set-key
+   (kbd "C-c t")
+   (defhydra hydra-transpose (:color red)
+     "Transpose"
      ("c" transpose-chars "characters")
      ("w" transpose-words "words")
      ("o" org-transpose-words "Org mode words")
