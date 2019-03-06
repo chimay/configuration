@@ -18,17 +18,21 @@
 
 ;;; ** Bindings
 
-(global-unset-key (kbd "<f11>"))
+(global-unset-key (kbd "<f12>"))
 
-(global-set-key (kbd "<f11> i") 'el-get-install)
-(global-set-key (kbd "<f11> R") 'el-get-remove)
-(global-set-key (kbd "<f11> s") 'el-get-self-update)
-(global-set-key (kbd "<f11> u") 'el-get-update)
-(global-set-key (kbd "<f11> U") 'el-get-update-all)
-(global-set-key (kbd "<f11> r") 'el-get-reload)
-(global-set-key (kbd "<f11> h") 'el-get-describe)
-(global-set-key (kbd "<f11> l") 'el-get-list-packages)
-(global-set-key (kbd "<f11> f") 'el-get-find-recipe-file)
+(define-prefix-command 'elget/map)
+
+(global-set-key (kbd "<f12>") 'elget/map)
+
+(define-key elget/map (kbd "h") 'el-get-describe)
+(define-key elget/map (kbd "i") 'el-get-install)
+(define-key elget/map (kbd "R") 'el-get-remove)
+(define-key elget/map (kbd "s") 'el-get-self-update)
+(define-key elget/map (kbd "u") 'el-get-update)
+(define-key elget/map (kbd "U") 'el-get-update-all)
+(define-key elget/map (kbd "r") 'el-get-reload)
+(define-key elget/map (kbd "l") 'el-get-list-packages)
+(define-key elget/map (kbd "f") 'el-get-find-recipe-file)
 
 ;;; ** Liste de paquets installés
 
@@ -92,6 +96,7 @@
 (el-get-bundle swiper)
 (el-get-bundle swiper-helm)
 (el-get-bundle switch-window)
+(el-get-bundle toc-org)
 (el-get-bundle ucs-cmds)
 (el-get-bundle undo-tree)
 (el-get-bundle vimish-fold)
