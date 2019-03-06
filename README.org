@@ -64,11 +64,13 @@ The following keys are reserved for Window Manager (i3) :
 
     + F1 .. F12
 
+  - Super (Mod4) with any modifier(s) and same keys as above
+
   - Super with Control and
 
     + Any key(s)
 
-  - Préfix chosen in the previous keys
+  - Prefix chosen among the previous keys
 
   - Sub mode entered with one or more of the previous keys
 
@@ -89,7 +91,7 @@ The following keys are reserved for applications :
 
   - Super with Shift and same keys as above
 
-  - Préfix chosen in the previous keys
+  - Prefix chosen among the previous keys
 
   - Sub mode entered with one or more of the previous keys
 
