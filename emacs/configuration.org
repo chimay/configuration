@@ -1443,14 +1443,14 @@ Voir Helm dans la configuration des paquets
 ** Effacer, Couper
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<C-backspace>") 'backward-kill-word)
-  (global-set-key (kbd "<M-backspace>") 'biblio/efface-mot)
   (global-set-key (kbd "<S-delete>") 'biblio/efface-mot)
-  (global-set-key (kbd "<M-delete>") 'biblio/efface-jusque-debut-ligne)
+  (global-set-key (kbd "<M-delete>") 'biblio/efface-contenu-ligne)
+  (global-set-key (kbd "<C-delete>") 'kill-whole-line)
   ;; Rappelle le C-u de Unix
   (global-set-key (kbd "s-u") 'biblio/efface-jusque-debut-ligne)
-  (global-set-key (kbd "<C-delete>") 'biblio/efface-contenu-ligne)
-  (global-set-key (kbd "<s-backspace>") 'kill-whole-line)
+  ;; (global-set-key (kbd "C-k") 'kill-line)
+  (global-set-key (kbd "<C-backspace>") 'backward-kill-word)
+  (global-set-key (kbd "<M-backspace>") 'biblio/efface-mot)
   (global-set-key (kbd "<S-backspace>") 'just-one-space)
 #+end_src
 
@@ -1459,10 +1459,10 @@ Voir Helm dans la configuration des paquets
 
 #+begin_src emacs-lisp
   (global-set-key (kbd "<S-insert>")   'biblio/copie-mot)
-  (global-set-key (kbd "<M-insert>")   'biblio/copie-jusque-debut-ligne)
+  (global-set-key (kbd "<M-insert>")   'biblio/copie-contenu-ligne)
+  (global-set-key (kbd "<C-insert>")   'biblio/copie-ligne)
+  (global-set-key (kbd "<C-M-insert>")   'biblio/copie-jusque-debut-ligne)
   (global-set-key (kbd "<C-S-insert>")   'biblio/copie-jusque-fin-ligne)
-  (global-set-key (kbd "<C-insert>")   'biblio/copie-contenu-ligne)
-  (global-set-key (kbd "<C-M-insert>")   'biblio/copie-ligne)
 #+end_src
 
 
@@ -1815,23 +1815,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 * Configuration des paquets
 
 
-** Fonctions
-
-
-*** Rename modeline
-
-À quoi ça sert ?
-
-#+begin_src emacs-lisp
-
-(defmacro rename-modeline (package-name mode new-name)
-  `(eval-after-load ,package-name
-     '(defadvice ,mode (after rename-modeline activate)
-        (setq mode-name ,new-name))))
-
-#+end_src
-
-
 ** Organisation
 
 
@@ -2178,9 +2161,8 @@ heure.
 *** Toc-org
 
 #+begin_src emacs-lisp
-  (if (require 'toc-org nil t)
-      (add-hook 'org-mode-hook 'toc-org-mode)
-    (warn "toc-org not found"))
+  (use-package toc-org
+    :hook (org-mode . toc-org-mode))
 #+end_src
 
 ** Exploration
@@ -2189,61 +2171,42 @@ heure.
 *** Projectile
 
 #+begin_src emacs-lisp
-
-  (setq projectile-indexing-method 'alien)
-
-  ;;(setq projectile-indexing-method 'native)
-
-  (setq projectile-enable-caching t)
-
-  (setq projectile-completion-system 'helm)
-
-  (setq projectile-switch-project-action 'helm-projectile)
-
-  (setq projectile-keymap-prefix (kbd "s-p"))
-
-  (projectile-global-mode)
-
+  (use-package projectile
+    :custom ((projectile-indexing-method 'alien)
+	     (projectile-enable-caching t)
+	     (projectile-completion-system 'helm)
+	     (projectile-switch-project-action 'helm-projectile)
+	     (projectile-keymap-prefix (kbd "s-p")))
+    :config (projectile-global-mode))
 #+end_src
 
 
 *** Ivy & Swiper
 
 #+begin_src emacs-lisp
+  (global-set-key (kbd "<f6> i") 'ivy-mode)
 
-;;(ivy-mode 1)
+  (eval-after-load "ivy"
+   '(progn
+     (define-key ivy-minibuffer-map (kbd "s-o")  'ivy-dispatching-done)
+     (define-key ivy-minibuffer-map (kbd "M-o")  'ivy-dispatching-done)
+     (define-key ivy-minibuffer-map (kbd "C-n")  'ivy-next-line)
+     (define-key ivy-minibuffer-map (kbd "C-p")  'ivy-previous-line)
+     (define-key ivy-minibuffer-map (kbd "M-<")  'ivy-beginning-of-buffer)
+     (define-key ivy-minibuffer-map (kbd "M->")  'ivy-end-of-buffer)
+     (define-key ivy-minibuffer-map (kbd "C-v")  'ivy-scroll-up-command)
+     (define-key ivy-minibuffer-map (kbd "M-v")  'ivy-scroll-down-command)))
 
-(global-set-key (kbd "<f6> i") 'ivy-mode)
+  (setq ivy-height 20)
+  (setq ivy-wrap t)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-use-virtual-buffers t)
 
-(eval-after-load "ivy"
- '(progn
-   (define-key ivy-minibuffer-map (kbd "s-o")  'ivy-dispatching-done)
-   (define-key ivy-minibuffer-map (kbd "M-o")  'ivy-dispatching-done)
-   (define-key ivy-minibuffer-map (kbd "C-n")  'ivy-next-line)
-   (define-key ivy-minibuffer-map (kbd "C-p")  'ivy-previous-line)
-   (define-key ivy-minibuffer-map (kbd "M-<")  'ivy-beginning-of-buffer)
-   (define-key ivy-minibuffer-map (kbd "M->")  'ivy-end-of-buffer)
-   (define-key ivy-minibuffer-map (kbd "C-v")  'ivy-scroll-up-command)
-   (define-key ivy-minibuffer-map (kbd "M-v")  'ivy-scroll-down-command)))
-
-(setq ivy-height 20)
-
-(setq ivy-wrap t)
-
-(setq ivy-count-format "(%d/%d) ")
-
-(setq ivy-use-virtual-buffers t)
-
-(global-set-key (kbd "s-F") 'counsel-find-file)
-
-(global-set-key (kbd "s-B") 'ivy-switch-buffer)
-
-(global-set-key (kbd "s-X") 'counsel-M-x)
-
-(global-set-key (kbd "s-S") 'swiper)
-
-(global-set-key (kbd "s-G") 'counsel-ag)
-
+  (global-set-key (kbd "s-F") 'counsel-find-file)
+  (global-set-key (kbd "s-B") 'ivy-switch-buffer)
+  (global-set-key (kbd "s-X") 'counsel-M-x)
+  (global-set-key (kbd "s-S") 'swiper)
+  (global-set-key (kbd "s-G") 'counsel-ag)
 #+end_src
 
 
@@ -2416,87 +2379,67 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Ggtags
 
 #+begin_src emacs-lisp
-
-(global-set-key (kbd "<f6> g") 'ggtags-mode)
-
-(global-set-key (kbd "s-q") 'ggtags-idutils-query)
-
-(setq ggtags-completing-read-function nil)
-
+  (use-package ggtags
+    :bind (("<f6> g" . ggtags-mode)
+	   ("s-q" . ggtags-idutils-query))
+    :custom (ggtags-completing-read-function nil))
 #+end_src
 
 
 *** Torus
 
 #+begin_src emacs-lisp
-
-  (require 'torus)
-
-  (setq torus-prefix-key (kbd "s-t"))
-
-  (setq torus-binding-level 3)
-
-  (setq torus-verbosity 2)
-
-  (setq torus-dirname "~/racine/plugin/data/torus")
-
-  (setq torus-load-on-startup t)
-  (setq torus-save-on-exit t)
-
-  (setq torus-autoread-file "~/racine/plugin/data/torus/dernier")
-  (setq torus-autowrite-file torus-autoread-file)
-
-  (setq torus-history-maximum-elements 30)
-
-  (setq torus-maximum-horizontal-split 3)
-  (setq torus-maximum-vertical-split 4)
-
-  (setq torus-prefix-separator " : ")
-  (setq torus-join-separator " - ")
-
-  (torus-init)
-
-  (torus-install-default-bindings)
-
-  (global-set-key (kbd "<S-s-insert>") 'torus-add-circle)
-  (global-set-key (kbd "<s-insert>") 'torus-add-location)
-
-  (global-set-key (kbd "<s-delete>") 'torus-delete-location)
-  (global-set-key (kbd "<S-s-delete>") 'torus-delete-circle)
-
-  (global-set-key (kbd "<C-prior>") 'torus-previous-location)
-  (global-set-key (kbd "<C-next>") 'torus-next-location)
-
-  (global-set-key (kbd "<C-home>") 'torus-previous-circle)
-  (global-set-key (kbd "<C-end>") 'torus-next-circle)
-
-  (global-set-key (kbd "<S-prior>") 'torus-history-newer)
-  (global-set-key (kbd "<S-next>") 'torus-history-older)
-
-  (global-set-key (kbd "C-^") 'torus-alternate)
-
-  (global-set-key (kbd "<S-home>") 'torus-alternate-circles)
-  (global-set-key (kbd "<S-end>") 'torus-alternate-in-same-circle)
-
-  (global-set-key (kbd "s-SPC") 'torus-switch-circle)
-  (global-set-key (kbd "s-=") 'torus-switch-location)
-  (global-set-key (kbd "s-^") 'torus-switch-torus)
-  (global-set-key (kbd "s-*") 'torus-search)
-  (global-set-key (kbd "s-/") 'torus-search-history)
-
+  (use-package torus
+    :bind-keymap ("s-t" . torus-map)
+    :bind (("<S-s-insert>" . torus-add-circle)
+	   ("<s-insert>" . torus-add-location)
+	   ("<s-delete>" . torus-delete-location)
+	   ("<S-s-delete>" . torus-delete-circle)
+	   ("<C-prior>" . torus-previous-location)
+	   ("<C-next>" . torus-next-location)
+	   ("<C-home>" . torus-previous-circle)
+	   ("<C-end>" . torus-next-circle)
+	   ("<S-prior>" . torus-history-newer)
+	   ("<S-next>" . torus-history-older)
+	   ("C-^" . torus-alternate)
+	   ("<S-home>" . torus-alternate-circles)
+	   ("<S-end>" . torus-alternate-in-same-circle)
+	   ("s-SPC" . torus-switch-circle)
+	   ("s-=" . torus-switch-location)
+	   ("s-^" . torus-switch-torus)
+	   ("s-*" . torus-search)
+	   ("s-/" . torus-search-history)
+	   :map torus-map
+	   ("t" . torus-copy-to-circle))
+    :hook ((emacs-startup . torus-start)
+	   (kill-emacs . torus-quit))
+    :custom ((torus-prefix-key "s-t")
+	     (torus-binding-level 3)
+	     (torus-verbosity 2)
+	     (torus-dirname "~/racine/plugin/data/torus")
+	     (torus-load-on-startup t)
+	     (torus-save-on-exit t)
+	     (torus-autoread-file "~/racine/plugin/data/torus/dernier")
+	     (torus-autowrite-file torus-autoread-file)
+	     (torus-history-maximum-elements 30)
+	     (torus-maximum-horizontal-split 3)
+	     (torus-maximum-vertical-split 4)
+	     (torus-prefix-separator " : ")
+	     (torus-join-separator " - "))
+    :init (torus-init)
+    :config (torus-install-default-bindings))
 #+end_src
 
 
 *** Ibuffer-vc
 
 #+begin_src emacs-lisp
+  (defun ibuffer-vc--hook ()
+      (ibuffer-vc-set-filter-groups-by-vc-root)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+	(ibuffer-do-sort-by-alphabetic)))
 
-(add-hook 'ibuffer-hook
-  (lambda ()
-    (ibuffer-vc-set-filter-groups-by-vc-root)
-    (unless (eq ibuffer-sorting-mode 'alphabetic)
-      (ibuffer-do-sort-by-alphabetic))))
-
+  (add-hook 'ibuffer-hook 'ibuffer-vc--hook)
 #+end_src
 
 
@@ -2506,32 +2449,24 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Dired-hacks
 
 #+begin_src emacs-lisp
-
   (require 'dired-filter)
-
   (define-key dired-mode-map (kbd "/") dired-filter-map)
-
   (define-key dired-mode-map (kbd "_") dired-filter-mark-map)
-
   (define-key dired-mode-map (kbd "_ _") dired-filter-group-mode)
-
 #+end_src
 
 
 ** Fenêtres
 
 #+begin_src emacs-lisp
-
-(setq switch-window-input-style 'minibuffer)
-(setq switch-window-increase 4)
-(setq switch-window-threshold 2)
-(setq switch-window-shortcut-style 'qwerty)
-(setq switch-window-qwerty-shortcuts
-    '("0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
-
-(define-key global-map [remap other-window] 'switch-window)
-
+  (setq switch-window-input-style 'minibuffer)
+  (setq switch-window-increase 4)
+  (setq switch-window-threshold 2)
+  (setq switch-window-shortcut-style 'qwerty)
+  (setq switch-window-qwerty-shortcuts '("0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
+  (define-key global-map [remap other-window] 'switch-window)
 #+end_src
+
 
 ** Recherche
 
@@ -2539,26 +2474,20 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Wgrep
 
 #+begin_src emacs-lisp
-
-(require 'wgrep)
-
-(setq wgrep-auto-save-buffer t)
-
-(setq wgrep-enable-key "e")
-
+  (use-package wgrep
+    :custom ((wgrep-auto-save-buffer t)
+	     (wgrep-enable-key "e")))
 #+end_src
 
 
 *** Iy-go-to-char
 
 #+begin_src emacs-lisp
-
-(global-set-key (kbd "s-;") 'iy-go-to-char)
-(global-set-key (kbd "s-,") 'iy-go-to-char-backward)
-
-(global-set-key (kbd "C-c s-;") 'iy-go-to-or-up-to-continue)
-(global-set-key (kbd "C-c s-,") 'iy-go-to-or-up-to-continue-backward)
-
+  (use-package iy-go-to-char
+    :bind (( "s-;" . 'iy-go-to-char)
+	   ("s-," . 'iy-go-to-char-backward)
+	   ("C-c s-;" . 'iy-go-to-or-up-to-continue)
+	   ("C-c s-," . 'iy-go-to-or-up-to-continue-backward)))
 #+end_src
 
 
@@ -2570,17 +2499,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
-
-(setq undo-tree-auto-save-history t)
-
-;;(setq undo-tree-visualizer-timestamps t)
-
-(setq undo-tree-history-directory-alist '((".*" . "~/racine/varia/undo/")))
-
-(global-undo-tree-mode 1)
-
-(global-set-key (kbd "<f6> u") 'global-undo-tree-mode)
-
+  (setq undo-tree-auto-save-history t)
+  ;;(setq undo-tree-visualizer-timestamps t)
+  (setq undo-tree-history-directory-alist '((".*" . "~/racine/varia/undo/")))
+  (global-undo-tree-mode 1)
+  (global-set-key (kbd "<f6> u") 'global-undo-tree-mode)
 #+end_src
 
 
@@ -2590,11 +2513,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Register list
 
 #+begin_src emacs-lisp
-
-;;(require 'register-list)
-
-(global-set-key (kbd "C-x r L") 'register-list)
-
+  ;;(require 'register-list)
+  (global-set-key (kbd "C-x r L") 'register-list)
 #+end_src
 
 
@@ -2621,23 +2541,17 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Yasnippet
 
 #+begin_src emacs-lisp
-
-(require 'yasnippet)
-
-(yas-reload-all)
-
-(add-hook 'emacs-lisp-mode-hook 'yas-minor-mode)
-
+  (use-package yasnippet
+    :hook (emacs-lisp-mode . yas-minor-mode))
 #+end_src
 
 
 *** Auto-yasnippet
 
 #+begin_src emacs-lisp
-  (require 'auto-yasnippet)
-
-  (global-set-key (kbd "C-M-(") 'aya-create)
-  (global-set-key (kbd "C-M-)") 'aya-expand)
+  (use-package auto-yasnippet
+    :bind (("C-M-(" . 'aya-create)
+	   ("C-M-)" . 'aya-expand)))
 #+end_src
 
 
@@ -2649,8 +2563,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 Activer ou désactiver magit-auto-revert-mode ?
 
 #+begin_src emacs-lisp
-  (require 'magit)
-  (global-set-key (kbd "C-x g") 'magit-status)
+  (use-package magit
+    :bind ("C-x g" . magit-status))
 #+end_src
 
 
@@ -2660,64 +2574,62 @@ Activer ou désactiver magit-auto-revert-mode ?
 *** Eval in REPL
 
 #+begin_src emacs-lisp
+  ;; require the main file containing common functions
+  (require 'eval-in-repl)
 
-;; require the main file containing common functions
-(require 'eval-in-repl)
+  ;; Uncomment if no need to jump after evaluating current line
+  ;; (setq eir-jump-after-eval nil)
 
-;; Uncomment if no need to jump after evaluating current line
-;; (setq eir-jump-after-eval nil)
+  ;; Uncomment if you want to always split the script window into two.
+  ;; This will just split the current script window into two without
+  ;; disturbing other windows.
+  ;; (setq eir-always-split-script-window t)
 
-;; Uncomment if you want to always split the script window into two.
-;; This will just split the current script window into two without
-;; disturbing other windows.
-;; (setq eir-always-split-script-window t)
+  ;; Uncomment if you always prefer the two-window layout.
+  ;; (setq eir-delete-other-windows t)
 
-;; Uncomment if you always prefer the two-window layout.
-;; (setq eir-delete-other-windows t)
+  ;; Place REPL on the left/right/top/bottom of the script window when splitting.
+  (setq eir-repl-placement 'bottom)
 
-;; Place REPL on the left/right/top/bottom of the script window when splitting.
-(setq eir-repl-placement 'bottom)
+  ;;; ielm support (for emacs lisp)
+  (require 'eval-in-repl-ielm)
+  ;; Evaluate expression in the current buffer.
+  (setq eir-ielm-eval-in-current-buffer t)
+  ;; for .el files
+  (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+  ;; for *scratch*
+  (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
 
-;;; ielm support (for emacs lisp)
-(require 'eval-in-repl-ielm)
-;; Evaluate expression in the current buffer.
-(setq eir-ielm-eval-in-current-buffer t)
-;; for .el files
-(define-key emacs-lisp-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
-;; for *scratch*
-(define-key lisp-interaction-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+  ;;; Python support
+  (require 'python) ; if not done elsewhere
+  (require 'eval-in-repl-python)
+  (add-hook 'python-mode-hook
+	    '(lambda ()
+	       (local-set-key (kbd "<C-return>") 'eir-eval-in-python)))
 
-;;; Python support
-(require 'python) ; if not done elsewhere
-(require 'eval-in-repl-python)
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "<C-return>") 'eir-eval-in-python)))
+  ;;; Ruby support
+  (require 'ruby-mode) ; if not done elsewhere
+  (require 'inf-ruby)  ; if not done elsewhere
+  (require 'eval-in-repl-ruby)
+  (define-key ruby-mode-map (kbd "<C-return>") 'eir-eval-in-ruby)
 
-;;; Ruby support
-(require 'ruby-mode) ; if not done elsewhere
-(require 'inf-ruby)  ; if not done elsewhere
-(require 'eval-in-repl-ruby)
-(define-key ruby-mode-map (kbd "<C-return>") 'eir-eval-in-ruby)
+  ;; Shell support
+  (require 'eval-in-repl-shell)
+  (add-hook 'sh-mode-hook
+	    '(lambda()
+	       (local-set-key (kbd "C-<return>") 'eir-eval-in-shell)))
+  ;; Version with opposite behavior to eir-jump-after-eval configuration
+  (defun eir-eval-in-shell2 ()
+    "eval-in-repl for shell script (opposite behavior)
 
-;; Shell support
-(require 'eval-in-repl-shell)
-(add-hook 'sh-mode-hook
-          '(lambda()
-             (local-set-key (kbd "C-<return>") 'eir-eval-in-shell)))
-;; Version with opposite behavior to eir-jump-after-eval configuration
-(defun eir-eval-in-shell2 ()
-  "eval-in-repl for shell script (opposite behavior)
-
-This version has the opposite behavior to the eir-jump-after-eval
-configuration when invoked to evaluate a line."
-  (interactive)
-  (let ((eir-jump-after-eval (not eir-jump-after-eval)))
-       (eir-eval-in-shell)))
-(add-hook 'sh-mode-hook
-          '(lambda()
-             (local-set-key (kbd "C-M-<return>") 'eir-eval-in-shell2)))
-
+  This version has the opposite behavior to the eir-jump-after-eval
+  configuration when invoked to evaluate a line."
+    (interactive)
+    (let ((eir-jump-after-eval (not eir-jump-after-eval)))
+	 (eir-eval-in-shell)))
+  (add-hook 'sh-mode-hook
+	    '(lambda()
+	       (local-set-key (kbd "C-M-<return>") 'eir-eval-in-shell2)))
 #+end_src
 
 
@@ -2727,20 +2639,19 @@ configuration when invoked to evaluate a line."
 *** Expand-region
 
 #+begin_src emacs-lisp
-
-(global-set-key (kbd "s-x") 'er/expand-region)
-
+  (use-package er
+    :bind ("s-x" . er/expand-region))
 #+end_src
 
 
 *** Multiple cursors (mc)
 
 #+begin_src emacs-lisp
-
-(define-key region-bindings-mode-map (kbd "s-n") 'mc/mark-next-like-this)
-(define-key region-bindings-mode-map (kbd "s-SPC") 'mc/mark-more-like-this-extended)
-(define-key region-bindings-mode-map (kbd "s-=") 'mc/edit-lines)
-
+  (use-package mc
+    :bind (:map region-bindings-mode-map
+		("s-n" . 'mc/mark-next-like-this)
+		("s-SPC" . 'mc/mark-more-like-this-extended)
+		("s-=" . 'mc/edit-lines)))
 #+end_src
 
 
@@ -2752,7 +2663,6 @@ configuration when invoked to evaluate a line."
 Langages, parenthèses
 
 #+begin_src emacs-lisp
-
   (require 'smartparens)
 
   (smartparens-global-mode nil)
@@ -2765,24 +2675,14 @@ Langages, parenthèses
 
   (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
 
+  (global-set-key (kbd "<f6> p") 'smartparens-global-mode)
+
   (define-key sp-keymap (kbd "C-)") 'sp-forward-slurp-sexp)
   (define-key sp-keymap (kbd "C-(") 'sp-forward-barf-sexp)
-
   (define-key sp-keymap (kbd "C-M-(") 'sp-backward-slurp-sexp)
   (define-key sp-keymap (kbd "C-M-)") 'sp-backward-barf-sexp)
-
   (define-key sp-keymap (kbd "s-)") 'sp-split-sexp)
   (define-key sp-keymap (kbd "s-(") 'sp-splice-sexp)
-
-#+end_src
-
-
-**** Bindings
-
-#+begin_src emacs-lisp
-
-(global-set-key (kbd "<f6> p") 'smartparens-global-mode)
-
 #+end_src
 
 
@@ -2792,13 +2692,9 @@ Langages, parenthèses
 ** Async
 
 #+begin_src emacs-lisp
-
-(autoload 'dired-async-mode "dired-async.el" nil t)
-
-(dired-async-mode 1)
-
-(async-bytecomp-package-mode 1)
-
+  (autoload 'dired-async-mode "dired-async.el" nil t)
+  (dired-async-mode 1)
+  (async-bytecomp-package-mode 1)
 #+end_src
 
 
@@ -2808,18 +2704,14 @@ Langages, parenthèses
 *** Powerline
 
 #+begin_src emacs-lisp
-
-(powerline-evil-vim-theme)
-
+  (powerline-evil-vim-theme)
 #+end_src
 
 
 *** Pretty mode
 
 #+begin_src emacs-lisp
-
-(global-pretty-mode t)
-
+  (global-pretty-mode t)
 #+end_src
 
 ** Bindings
@@ -2830,65 +2722,50 @@ Langages, parenthèses
 Ralentit la frappe : activer seulement lorsque nécessaire
 
 #+begin_src emacs-lisp
-
-;;(key-chord-mode 1)
-
-(setq key-chord-two-keys-delay 0.12)
-(setq key-chord-one-key-delay 0.12)
-
-(global-set-key (kbd "<f6> c") 'key-chord-mode)
-
+  (setq key-chord-two-keys-delay 0.12)
+  (setq key-chord-one-key-delay 0.12)
+  (global-set-key (kbd "<f6> c") 'key-chord-mode)
 #+end_src
 
 
 **** Helm
 
 #+begin_src emacs-lisp
-
-(key-chord-define-global "xc" 'helm-M-x)
-
-(key-chord-define-global "bn" 'helm-mini)
-
-(key-chord-define-global "df" 'helm-find-files)
-
+  (key-chord-define-global "xc" 'helm-M-x)
+  (key-chord-define-global "bn" 'helm-mini)
+  (key-chord-define-global "df" 'helm-find-files)
 #+end_src
 
 
 **** Undo
 
 #+begin_src emacs-lisp
-
-(key-chord-define-global "yz" 'undo-tree-visualize)
-
+  (key-chord-define-global "yz" 'undo-tree-visualize)
 #+end_src
 
 
 **** Fenêtres
 
 #+begin_src emacs-lisp
+  (key-chord-define-global "wz" 'delete-other-windows)
+  (key-chord-define-global "ws" 'split-window-below)
+  (key-chord-define-global "wq" 'split-window-right)
 
-(key-chord-define-global "wz" 'delete-other-windows)
-(key-chord-define-global "ws" 'split-window-below)
-(key-chord-define-global "wq" 'split-window-right)
-
-(key-chord-define-global "wx" '(lambda () (interactive) (shrink-window-horizontally 5)))
-(key-chord-define-global "wc" '(lambda () (interactive) (shrink-window 5)))
-(key-chord-define-global "wv" '(lambda () (interactive) (enlarge-window 5)))
-(key-chord-define-global "wb" '(lambda () (interactive) (enlarge-window-horizontally 5)))
-
+  (key-chord-define-global "wx" '(lambda () (interactive) (shrink-window-horizontally 5)))
+  (key-chord-define-global "wc" '(lambda () (interactive) (shrink-window 5)))
+  (key-chord-define-global "wv" '(lambda () (interactive) (enlarge-window 5)))
+  (key-chord-define-global "wb" '(lambda () (interactive) (enlarge-window-horizontally 5)))
 #+end_src
 
 
 **** Caractères
 
 #+begin_src emacs-lisp
-
-(key-chord-define-global "a^" (lambda () (interactive) (insert "â")))
-(key-chord-define-global "e^" (lambda () (interactive) (insert "ê")))
-(key-chord-define-global "i^" (lambda () (interactive) (insert "î")))
-(key-chord-define-global "o^" (lambda () (interactive) (insert "ô")))
-(key-chord-define-global "u^" (lambda () (interactive) (insert "û")))
-
+  (key-chord-define-global "a^" (lambda () (interactive) (insert "â")))
+  (key-chord-define-global "e^" (lambda () (interactive) (insert "ê")))
+  (key-chord-define-global "i^" (lambda () (interactive) (insert "î")))
+  (key-chord-define-global "o^" (lambda () (interactive) (insert "ô")))
+  (key-chord-define-global "u^" (lambda () (interactive) (insert "û")))
 #+end_src
 
 
@@ -2937,7 +2814,6 @@ Copier & Coller
 Transposition (échange de caractères, mots, ...)
 
 #+begin_src emacs-lisp
-
   (global-set-key
    (kbd "C-c t")
    (defhydra hydra-transpose ()
@@ -2951,60 +2827,43 @@ Transposition (échange de caractères, mots, ...)
      ("p" transpose-paragraphs "paragraphs")
      ("t" org-table-transpose-table-at-point "Org mode table")
      ("q" nil "quit" :color red)))
-
 #+end_src
 
 
 *** Region-bindings-mode
 
 #+begin_src emacs-lisp
-
   (region-bindings-mode-enable)
-
   (setq region-bindings-mode-disable-predicates ((lambda () buffer-read-only)))
-
   (define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
-
   (global-set-key (kbd "C-w") 'backward-kill-word)
-
 #+end_src
 
 
 *** Evil
 
 #+begin_src emacs-lisp
+  (global-set-key (kbd "<f6> v") 'evil-mode)
 
-(global-set-key (kbd "<f6> v") 'evil-mode)
-
-;(evil-mode 1)
-
-;(define-key evil-normal-state-map (kbd "<s-z>") 'evil-emacs-state)
-;(define-key evil-emacs-state-map (kbd "<s-z>") 'evil-normal-state)
-
+  ;(define-key evil-normal-state-map (kbd "<s-z>") 'evil-emacs-state)
+  ;(define-key evil-emacs-state-map (kbd "<s-z>") 'evil-normal-state)
 #+end_src
 
 
 *** Xah-math-input
 
 #+begin_src emacs-lisp
-
-(require 'xah-math-input)
-
-(global-set-key (kbd "<f6> x") 'xah-math-input-mode)
-
+  (require 'xah-math-input)
+  (global-set-key (kbd "<f6> x") 'xah-math-input-mode)
 #+end_src
 
 
 *** Which-key
 
 #+begin_src emacs-lisp
-
-(require 'which-key)
-
-(which-key-mode)
-
-(setq which-key-idle-delay 2.0)
-
+  (require 'which-key)
+  (which-key-mode)
+  (setq which-key-idle-delay 1.0)
 #+end_src
 
 
