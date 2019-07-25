@@ -1022,6 +1022,16 @@ Pour les fonctionnelles
       (goto-char (point-min))))
 #+end_src
 
+
+** Fichiers souvent utilisés
+
+#+begin_src emacs-lisp
+  (defun biblio/aller-au-grenier ()
+    (interactive)
+    (find-file "Grenier"))
+#+end_src
+
+
 ** Efface le mot
 
 #+begin_src emacs-lisp
@@ -1214,12 +1224,10 @@ Pour les fonctionnelles
   (defun biblio/aller-au-tampon-scratch ()
     (interactive)
     (switch-to-buffer "*scratch*"))
-#+end_src
 
-#+begin_src emacs-lisp
   (defun biblio/aller-au-tampon-grenier ()
     (interactive)
-    (switch-to-buffer "Grenier"))
+    (find-file "Grenier"))
 #+end_src
 
 
@@ -1406,8 +1414,11 @@ H = Hyper
   ;; (define-key minibuffer-local-map (kbd "M-p") 'previous-history-element)
   ;; (define-key minibuffer-local-map (kbd "M-n") 'next-history-element)
 
-  (define-key minibuffer-local-map (kbd "M-p") 'previous-complete-history-element)
-  (define-key minibuffer-local-map (kbd "M-n") 'next-complete-history-element)
+  ;; (define-key minibuffer-local-map (kbd "M-p") 'previous-complete-history-element)
+  ;; (define-key minibuffer-local-map (kbd "M-n") 'next-complete-history-element)
+
+  (define-key minibuffer-local-map (kbd "<up>") 'previous-complete-history-element)
+  (define-key minibuffer-local-map (kbd "<down>") 'next-complete-history-element)
 #+end_src
 
 
@@ -1512,6 +1523,11 @@ Voir Helm dans la configuration des paquets
 ** Copier
 
 #+begin_src emacs-lisp
+  ;; M-w pour copier
+  ;; C-w pour couper
+  ;; C-y pour coller
+  ;; M-y pour faire tourner le yank-ring
+  ;; (global-set-key (kbd "M-y") 'yank-pop)
   (global-set-key (kbd "<S-insert>") 'biblio/copie-mot)
   (global-set-key (kbd "<M-insert>") 'biblio/copie-contenu-ligne)
   (global-set-key (kbd "<C-insert>") 'biblio/copie-ligne)
@@ -1859,6 +1875,14 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 * Configuration des paquets
 
+
+** Librairies
+
+#+begin_src emacs-lisp
+  (use-package duo
+    :config
+    (duo-init "duo-common" "duo-referen"))
+#+end_src
 
 ** Organisation
 
@@ -2432,46 +2456,54 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
   (use-package torus
+    :after (duo)
     :bind-keymap ("s-t" . torus-map)
-    :bind (("<S-s-insert>" . torus-add-circle)
-	   ("<s-insert>" . torus-add-location)
+    :bind (("<s-insert>" . torus-add-here)
+	   ("s-f" . torus-add-file)
+	   ("s-b" . torus-add-buffer)
+	   ("<S-s-insert>" . torus-add-circle)
 	   ("<s-delete>" . torus-delete-location)
 	   ("<S-s-delete>" . torus-delete-circle)
 	   ("<C-prior>" . torus-previous-location)
 	   ("<C-next>" . torus-next-location)
 	   ("<C-home>" . torus-previous-circle)
 	   ("<C-end>" . torus-next-circle)
-	   ("<S-prior>" . torus-history-newer)
-	   ("<S-next>" . torus-history-older)
-	   ("C-^" . torus-alternate-in-same-torus)
-	   ("<S-home>" . torus-alternate-circles)
+	   ("s-SPC" . torus-switch-location)
+	   ("s-=" . torus-switch-circle)
+	   ("s-*" . torus-switch-torus)
+	   ("s-s" . torus-search-location)
+	   ("s-?" . torus-search-location-in-torus)
+	   ("s-/" . torus-search-circle)
+	   ("<S-prior>" . torus-newer)
+	   ("<S-next>" . torus-older)
+	   ("C-^" . torus-alternate)
+	   ("s-^" . torus-alternate-menu)
+	   ("<S-home>" . torus-alternate-in-same-torus-other-circle)
 	   ("<S-end>" . torus-alternate-in-same-circle)
-	   ("s-SPC" . torus-switch-circle)
-	   ("s-=" . torus-switch-location)
-	   ("s-^" . torus-switch-torus)
-	   ("s-*" . torus-search)
-	   ("s-/" . torus-search-history)
-	   ("s-f" . torus-add-file)
-	   ("s-s" . torus-layout-menu)
+	   ("<M-prior>" . torus-move-location-backward)
+	   ("<M-next>" . torus-move-location-forward)
+	   ("<M-home>" . torus-rotate-circle-left)
+	   ("<M-end>" . torus-rotate-circle-right)
+	   ("s-%" . torus-layout-menu)
 	   ("s-g" . torus-autogroup-menu)
 	   :map torus-map
 	   ("t" . torus-copy-to-circle))
-    :hook ((emacs-startup . torus-start)
-	   (kill-emacs . torus-quit))
+    :hook ((emacs-startup . torus-hello)
+	   (kill-emacs . torus-bye))
     :custom ((torus-prefix-key "s-t")
 	     (torus-binding-level 3)
-	     (torus-verbosity 2)
-	     (torus-dirname "~/racine/plugin/data/torus/")
+	     (torus-verbosity 1)
+	     (torus-dirname "~/racine/plugin/data/torus")
 	     (torus-load-on-startup t)
 	     (torus-save-on-exit t)
-	     (torus-autoread-file (concat torus-dirname "dernier.el"))
-	     (torus-autowrite-file torus-autoread-file)
+	     (torus-autoread-file "auto")
+	     (torus-autowrite-file "auto")
 	     (torus-backup-number 7)
-	     (torus-history-maximum-elements 30)
+	     (torus-history-maximum-elements 50)
 	     (torus-maximum-horizontal-split 3)
 	     (torus-maximum-vertical-split 4)
 	     (torus-display-tab-bar t)
-	     (torus-prefix-separator "/")
+	     (torus-prefix-separator " : ")
 	     (torus-join-separator " & "))
     :config
     (torus-init)
@@ -2768,42 +2800,6 @@ Ralentit la frappe : activer seulement lorsque nécessaire
 
 
 *** Hydra
-
-Mouvements
-
-#+begin_src emacs-lisp
-  ;; (defhydra hydra-move ()
-  ;;   "move"
-  ;;   ("<kp-6>" forward-word)
-  ;;   ("<kp-4>" backward-word)
-  ;;   ("<kp-7>" backward-sentence)
-  ;;   ("<kp-1>" forward-sentence)
-  ;;   ("<kp-8>" backward-paragraph)
-  ;;   ("<kp-2>" forward-paragraph)
-  ;;   ("<kp-9>" scroll-down-command)
-  ;;   ("<kp-3>" scroll-up-command)
-  ;;   ("<kp-5>" nil "quit" :color red)
-  ;;   ("q" nil "quit" :color red))
-
-  ;; (global-set-key (kbd "s-a") #'hydra-move/backward-paragraph)
-  ;; (global-set-key (kbd "s-e") #'hydra-move/forward-paragraph)
-#+end_src
-
-Copier & Coller
-
-#+begin_src emacs-lisp
-  ;; (defhydra hydra-yank ()
-  ;;   "yank"
-  ;;   ("C-y" yank nil)
-  ;;   ("M-y" yank-pop nil)
-  ;;   ("y" (yank-pop 1) "next")
-  ;;   ("Y" (yank-pop -1) "prev")
-  ;;   ("l" helm-show-kill-ring "list")
-  ;;   ("q" nil "quit" :color red))
-
-  ;; (global-set-key (kbd "M-y") #'hydra-yank/yank-pop)
-  ;; (global-set-key (kbd "C-y") #'hydra-yank/yank)
-#+end_src
 
 Transposition (échange de caractères, mots, ...)
 
