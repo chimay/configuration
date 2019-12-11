@@ -684,18 +684,26 @@ let g:CtrlSpaceKeys = {
 		\ "Buffer": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
+			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
+			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
 		\},
 		\ "Tab": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
+			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
+			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
 		\},
 		\ "Workspace": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
+			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
+			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
 		\},
 		\ "Bookmark": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
+			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
+			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
 		\},
 	\}
 
