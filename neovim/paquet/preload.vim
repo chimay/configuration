@@ -119,17 +119,17 @@ let g:table_mode_border = 1
 
 nnoremap <bar> :TableModeToggle<cr>
 
-let g:table_mode_map_prefix = '<bs>'
+let g:table_mode_map_prefix = '<C-F11><bar>'
 
-nnoremap <bs>S :TableSort<cr>
+nnoremap <C-F11><bar>S :TableSort<cr>
 
-let g:table_mode_realign_map = '<bs>r'
-let g:table_mode_delete_row_map = '<bs>dd'
-let g:table_mode_delete_column_map = '<bs>dc'
-let g:table_mode_add_formula_map = '<bs>fa'
-let g:table_mode_eval_formula_map = '<bs>fe'
-let g:table_mode_echo_cell_map = '<bs>?'
-let g:table_mode_sort_map = '<bs>s'
+let g:table_mode_realign_map = '<C-F11><bar>r'
+let g:table_mode_delete_row_map = '<C-F11><bar>dd'
+let g:table_mode_delete_column_map = '<C-F11><bar>dc'
+let g:table_mode_add_formula_map = '<C-F11><bar>fa'
+let g:table_mode_eval_formula_map = '<C-F11><bar>fe'
+let g:table_mode_echo_cell_map = '<C-F11><bar>?'
+let g:table_mode_sort_map = '<C-F11><bar>s'
 
 let g:table_mode_motion_up_map = '{<Bar>'
 let g:table_mode_motion_down_map = '}<Bar>'
@@ -231,11 +231,11 @@ map <C-F11>cu <plug>NERDCommenterUncommentLine
 
 "  TComment (tomtom/tcomment_vim) {{{2
 
-let g:tcommentTextObjectInlineComment = '<C-F11>ic'
+let g:tcomment_textobject_inlinecomment = '<C-F11>ic'
 
 let g:tcommentBlankLines = 0
 
-let g:tcommentOptions = {
+let g:tcomment#options = {
 	\ 'col': 1
 \}
 
@@ -507,7 +507,15 @@ let g:netrw_hide = 1
 
 " Vifm {{{2
 
-let g:vifmSplitWidth = 120
+nnoremap <D-f> :Vifm .<cr>
+
+let g:vifmSplitWidth = 300
+
+" }}}2
+
+" Ranger {{{2
+
+nnoremap <S-D-F> :Ranger<cr>
 
 " }}}2
 
@@ -652,7 +660,7 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 let g:CtrlSpaceSetDefaultMapping = 1
 
-let g:CtrlSpaceDefaultMappingKey = "<D-Space>"
+let g:CtrlSpaceDefaultMappingKey = "<D-Space> "
 
 let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 
@@ -660,11 +668,36 @@ let g:CtrlSpaceUseUnicode = 0
 
 nnoremap <c-space> :CtrlSpace<cr>
 
-nnoremap <M-Left> :CtrlSpaceGoUp<cr>
-nnoremap <M-Right> :CtrlSpaceGoDown<cr>
+nnoremap <C-PageUp> :CtrlSpaceGoUp<cr>
+nnoremap <C-PageDown> :CtrlSpaceGoDown<cr>
 
-nnoremap <M-PageUp> :CtrlSpaceGoUp<cr>
-nnoremap <M-PageDown> :CtrlSpaceGoDown<cr>
+" Voir les fichiers dans
+" racine/plugin/manager/neovimpack/minpac/start/vim-ctrlspace/autoload/ctrlspace/keys
+
+let g:CtrlSpaceKeys = {
+		\ "Nop": {
+			\"h": "ctrlspace#keys#common#ToggleHelp",
+		\},
+		\ "Help": {
+			\"h": "ctrlspace#keys#common#ToggleHelp",
+		\},
+		\ "Buffer": {
+			\"*": "ctrlspace#keys#common#ToggleTabMode",
+			\"=": "ctrlspace#keys#common#ToggleBufferMode",
+		\},
+		\ "Tab": {
+			\"*": "ctrlspace#keys#common#ToggleTabMode",
+			\"=": "ctrlspace#keys#common#ToggleBufferMode",
+		\},
+		\ "Workspace": {
+			\"*": "ctrlspace#keys#common#ToggleTabMode",
+			\"=": "ctrlspace#keys#common#ToggleBufferMode",
+		\},
+		\ "Bookmark": {
+			\"*": "ctrlspace#keys#common#ToggleTabMode",
+			\"=": "ctrlspace#keys#common#ToggleBufferMode",
+		\},
+	\}
 
 " }}}3
 
@@ -739,6 +772,12 @@ let g:CtrlSpaceUseMouseAndArrows = 1
 
 " }}}2
 
+" Doughnut {{{2
+
+set runtimepath+=~/racine/public/doughnut
+
+" }}}2
+
 " }}}1
 
 " Filtres {{{1
@@ -783,8 +822,9 @@ nnoremap <s-bs> :UndotreeToggle<cr>
 
 "  Utl (utl.vim) {{{2
 
-nnoremap <m-cr> :Utl<cr>
-nnoremap <c-cr> :Utl<cr>
+nnoremap gf :Utl<cr>
+
+"nnoremap <m-o> :Utl<cr>
 
 let g:utl_cfg_hdl_scm_http = "!qutebrowser '%u#%f' &"
 
@@ -909,6 +949,24 @@ xmap  ie  <Plug>(textobj-entire-i)
 
 " }}}2
 
+" Multiple cursors {{{2
+
+let g:multi_cursor_use_default_mapping=0
+
+let g:multi_cursor_start_word_key      = '<D-n>'
+let g:multi_cursor_select_all_word_key = '<S-D-n>'
+let g:multi_cursor_start_key           = 'g<D-n>'
+let g:multi_cursor_select_all_key      = 'g<S-D-n>'
+let g:multi_cursor_next_key            = '<D-n>'
+let g:multi_cursor_prev_key            = '<D-p>'
+let g:multi_cursor_skip_key            = '<D-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
+
+" }}}2
+
 " }}}1
 
 " Recherche & Remplacement {{{1
@@ -988,12 +1046,12 @@ let g:increment_activator_filetype_candidates = {
 
 " Neoterm (kassio/neoterm) {{{2
 
-nnoremap <D-t> :new \| Ttoggle<cr>
+nnoremap <C-!> :new \| Ttoggle<cr>
 
-nnoremap <D-CR> :TREPLSendLine<cr>
-vnoremap <D-CR> :TREPLSendSelection<cr>
+nnoremap <C-CR> :TREPLSendLine<cr>
+vnoremap <C-CR> :TREPLSendSelection<cr>
 
-nnoremap <D-x> :TREPLSendFile<cr>
+nnoremap <S-C-CR> :TREPLSendFile<cr>
 
 " }}}2
 
@@ -1056,5 +1114,20 @@ nmap ( [
 nmap ) ]
 
 " }}}2
+
+" {{{ Open-pdf (rhysd/open-pdf.vim)
+
+let g:pdf_cache_dir = $HOME . '/racine/plugin/data/addon/open-pdf'
+
+let g:pdf_open_cmd = 'tabnew | view'
+let g:pdf_edit_cmd = 'edit'
+let g:pdf_read_cmd = 'read'
+
+let g:pdf_convert_on_edit = 1
+let g:pdf_convert_on_read = 1
+
+let g:unite_pdf_search_cmd = 'locate -l 30 "*%s*.pdf"'
+
+" }}}
 
 " }}}1
