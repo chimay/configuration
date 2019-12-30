@@ -11,26 +11,6 @@ evaluate-commands %sh{
     ornuit_rouge_pale="rgb:845a3b"
     ornuit_fond="rgb:000000"
 
-    lucius_darker_grey="rgb:303030"
-    lucius_dark_grey="rgb:444444"
-    lucius_grey="rgb:808080"
-    lucius_light_grey="rgb:b2b2b2"
-    lucius_lighter_grey="rgb:d7d7d7"
-
-    lucius_dark_red="rgb:870000"
-    lucius_light_red="rgb:ff8787"
-    lucius_orange="rgb:d78700"
-    lucius_purple="rgb:d7afd7"
-
-    lucius_dark_green="rgb:5f875f"
-    lucius_bright_green="rgb:87af00"
-    lucius_green="rgb:afd787"
-    lucius_light_green="rgb:d7d7af"
-
-    lucius_dark_blue="rgb:005f87"
-    lucius_blue="rgb:87afd7"
-    lucius_light_blue="rgb:87d7ff"
-
     echo "
         # then we map them to code
         face global value ${ornuit_brun}
