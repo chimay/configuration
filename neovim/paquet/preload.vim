@@ -107,6 +107,16 @@ vnoremap <s-tab> :Tabularize /
 
 " }}}1
 
+" Brouillons {{{1
+
+" Backscratch {{{2
+
+nnoremap <D-s> :Scratch<space>
+
+" }}}2
+
+" }}}1
+
 " Tableaux {{{1
 
 " Table-mode (dhruvasagar/vim-table-mode) {{{2
@@ -163,19 +173,6 @@ let g:table_mode_align_char    = ':'
 
 " Si tab est défini ici, le commenter dans Neocomplcache
 
-" Unite & UltiSnips {{{4
-
-function! UltiSnipsCallUnite()
-	Unite -start-insert -winheight=100 -immediately -no-empty ultisnips
-	return ''
-endfunction
-
-inoremap <silent> <tab> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
-
-"nnoremap <silent> ... a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
-
-" }}}4
-
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -192,7 +189,7 @@ nnoremap <C-F5>a :UltiSnipsAddFiletypes<space>
 
 " Données {{{3
 
-let g:UltiSnipsSnippetsDir = $HOME . '/racine/config/edit/neovim/snippet'
+"let g:UltiSnipsSnippetsDir = $HOME . '/racine/config/edit/neovim/snippet'
 
 let g:UltiSnipsSnippetDirectories=['snippet', 'UltiSnips']
 

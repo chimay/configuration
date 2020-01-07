@@ -51,7 +51,10 @@
 
 " Chemins de chargement {{{1
 
-set runtimepath+=~/racine/config/edit/neovim
+" Pas nécessaire : ~/.config/nvim -> ~config/edit/neovim
+" Provoque des doublons avec ultisnips
+
+"set runtimepath+=~/racine/config/edit/neovim
 
 " }}}1
 
@@ -105,7 +108,7 @@ set path=**
 
 "  Chemins de recherche des répertoires {{{2
 
-set cdpath=.
+set cdpath=,
 
 set cdpath+=~/racine
 set cdpath+=~
@@ -291,8 +294,9 @@ set spellsuggest=best
 
 " Dictionnaires {{{2
 
-set dictionary+=fr-classique+reforme1990.dic
-set dictionary+=en_GB.dic
+set dictionary+=~/racine/index/spell/dictionnaire.txt
+set dictionary+=~/racine/index/spell/fr-classique+reforme1990.dic
+set dictionary+=~/racine/index/spell/en_GB.dic
 
 " }}}2
 
@@ -822,6 +826,9 @@ let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
 nnoremap <M-a> :tab help<space>
 nnoremap <M-S-a> :tab helpgrep<space>
 
+nnoremap <M-h> :tab help<space>
+nnoremap <M-S-h> :tab helpgrep<space>
+
 "nnoremap <F1> <nop>
 
 " }}}2
@@ -855,19 +862,19 @@ nnoremap <D-z> :se fo-=a<cr>
 
 "  Fichiers {{{2
 
-nnoremap <F1> :wa<cr>
-inoremap <F1> <esc>:wa<cr>
-
-nnoremap <F2> :e!<cr>
-nnoremap <F2> <esc>:e!<cr>
-
-nnoremap <F3> :new <bar> only<cr>
-
 nnoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
 inoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
 
 nnoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
 inoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
+
+nnoremap <F6> :e!<cr>
+nnoremap <F6> <esc>:e!<cr>
+
+nnoremap <F7> :wa<cr>
+inoremap <F7> <esc>:wa<cr>
+
+nnoremap <F8> :new <bar> only<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
@@ -887,7 +894,7 @@ nnoremap <m-d> :cd <C-R>=expand('%:p:h') . '/'<CR>
 nnoremap <m-w> :wa<cr>
 nnoremap <m-s-w> :w <C-R>=expand('%:p:h') . '/' <CR>
 
-nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR>
+"nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR>
 
 "nnoremap <m-s-v> :silent execute '! rotation.zsh ' . expand('%:p:h') . '/.neovim/backup &> ~/log/edit/rotation-backup.log'<cr>
 
@@ -925,8 +932,8 @@ nnoremap <m-s-b> :ls!<cr>:tab sb<space>
 "noremap <M-PageUp> :bp<cr>
 "noremap <M-PageDown> :bn<cr>
 
-nnoremap <m-q> :ls!<cr>:silent bd!<space>
-nnoremap <m-s-q> :ls!<cr>:silent bw!<space>
+nnoremap <D-q> :ls!<cr>:silent bd!<space>
+nnoremap <m-q> :ls!<cr>:silent bw!<space>
 
 " Lecture seule {{{3
 
@@ -1288,9 +1295,10 @@ endfunction
 
 " Mode ex {{{3
 
+" Q ou gQ : mode ex
 " On en sort par :vi
 
-nnoremap QQ gQ
+"nnoremap QQ gQ
 
 " }}}3
 
@@ -1397,7 +1405,7 @@ nnoremap <D-l> :set cursorline!<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <D-CR> :split \| :term $SHELL<cr>
+nnoremap <D-CR> :split \| :term $SHELL -l<cr>
 
 nnoremap <D-!> :split \| :term<space>
 
@@ -1411,7 +1419,7 @@ tnoremap <D-i> <C-\><C-n>
 
 tnoremap <D-^> <C-\><C-n><C-^>
 
-nnoremap <D-w> <C-W>w
+tnoremap <D-w> <C-\><C-n><C-W>w
 
 tnoremap <D-h> <C-\><C-n><C-W><Left>
 tnoremap <D-j> <C-\><C-n><C-W><Down>

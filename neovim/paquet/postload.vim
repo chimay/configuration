@@ -6,19 +6,19 @@
 
 " Mappings de lancement {{{3
 
-nnoremap <S-F1>     :<c-u>Denite<space>
+nnoremap µ         :<c-u>Denite source<cr>
 
-nnoremap é          :<c-u>Denite line:all change jump<cr>
-nnoremap è          :<c-u>Denite line:buffers change jump<cr>
+nnoremap <F1>       :<c-u>Denite help<cr>
 
-nnoremap §          :<c-u>Denite unite:outline:folding<cr>
+nnoremap é          :<c-u>Denite line:all<cr>
+nnoremap è          :<c-u>Denite grep<cr>
 
-nnoremap °          :<c-u>Denite -mode=normal help command filetype output:!ls<cr>
+nnoremap °          :<c-u>Denite buffer mark change jump register<cr>
 
-nnoremap ù          :<c-u>Denite buffer file_mru file/old file/rec<cr>
+"nnoremap §          :<c-u>Denite unite:outline:folding<cr>
+nnoremap §          :<c-u>Denite outline<cr>
 
-nnoremap µ          :<c-u>Denite register command_history <cr>
-nnoremap <s-µ>      :<c-u>Denite register command_history <cr>
+nnoremap ù          :<c-u>Denite file_mru file/old file/rec<cr>
 
 nnoremap £          :<c-u>Denite tag<cr>
 
@@ -34,6 +34,10 @@ call denite#custom#option('default', {
 	  \ 'highlight_matched_char' : 'false',
 	  \ 'highlight_matched_range' : 'false',
 	  \ })
+
+call denite#custom#var(
+\ 'file/rec', 'command',
+\ ['ag', '--nocolor', '--smart-case', '--vimgrep', '-g', ''])
 
 call denite#custom#source(
 \ 'file_mru', 'matchers', ['matcher_substring'])
