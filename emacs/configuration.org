@@ -1023,15 +1023,6 @@ Pour les fonctionnelles
 #+end_src
 
 
-** Fichiers souvent utilisés
-
-#+begin_src emacs-lisp
-  (defun biblio/aller-au-grenier ()
-    (interactive)
-    (find-file "Grenier"))
-#+end_src
-
-
 ** Efface le mot
 
 #+begin_src emacs-lisp
@@ -1502,6 +1493,8 @@ Voir Helm dans la configuration des paquets
 
 (global-set-key (kbd "C-z" ) 'undo)
 
+;; Redo : M-_
+
 #+end_src
 
 
@@ -1859,6 +1852,12 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "s-l") 'hl-line-mode)
 #+end_src
 
+Infos sur les thèmes
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f5> f") (lambda () (interactive) (what-cursor-position t)))
+#+end_src
+
 
 * Macros enregistrées
 
@@ -1998,8 +1997,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
  (org-meta-return)
  (beginning-of-visual-line)
  (newline)
- (end-of-visual-line)
- )
+ (end-of-visual-line))
 
 (add-hook
  'org-mode-hook
@@ -2248,6 +2246,8 @@ heure.
 	     (projectile-switch-project-action 'helm-projectile)
 	     (projectile-keymap-prefix (kbd "s-p")))
     :config (projectile-global-mode))
+
+  (global-set-key (kbd "M-s M-o") 'projectile-multi-occur)
 #+end_src
 
 
@@ -2341,6 +2341,8 @@ heure.
 
   (setq helm-ack-grep-executable "/usr/bin/vendor_perl/ack")
 
+  ;; (helm-mode 1)
+
 #+end_src
 
 
@@ -2355,7 +2357,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-unset-key (kbd "C-x c"))
 
   (define-key global-map [remap find-file] 'helm-find-files)
-  (define-key global-map [remap occur] 'helm-occur)
+  (define-key global-map [remap occur] 'helm-multi-occur-from-isearch)
   (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
   (define-key global-map [remap bookmark-bmenu-list] 'helm-filtered-bookmarks)
   (define-key global-map [remap insert-register] 'helm-register)
@@ -2389,6 +2391,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "s-h :") 'helm-mini-buffer-history)
   (global-set-key (kbd "s-h '") 'helm-all-mark-rings)
 
+  (global-set-key (kbd "<f6> h") 'helm-mode)
+
 #+end_src
 
 
@@ -2396,12 +2400,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-(define-key helm-map (kbd "s-z") 'helm-select-action)
-(define-key helm-map (kbd "C-z") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "s-z") 'helm-select-action)
+  (define-key helm-map (kbd "C-z") 'helm-execute-persistent-action)
 
-;;(helm-mode 1)
-
-(global-set-key (kbd "<f6> h") 'helm-mode)
+  (define-key helm-map (kbd "<left>") 'helm-next-source)
+  (define-key helm-map (kbd "<right>") 'helm-previous-source)
 
 #+end_src
 
@@ -2474,6 +2477,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 	   ("s-s" . torus-search-location)
 	   ("s-?" . torus-search-location-in-torus)
 	   ("s-/" . torus-search-circle)
+	   ("s-c" . torus-search-circle)
 	   ("<S-prior>" . torus-newer)
 	   ("<S-next>" . torus-older)
 	   ("C-^" . torus-alternate)
@@ -2484,7 +2488,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 	   ("<M-next>" . torus-move-location-forward)
 	   ("<M-home>" . torus-rotate-circle-left)
 	   ("<M-end>" . torus-rotate-circle-right)
-	   ("s-%" . torus-layout-menu)
+	   ("s-%" . torus-split-menu)
 	   ("s-g" . torus-autogroup-menu)
 	   :map torus-map
 	   ("t" . torus-copy-to-circle))
