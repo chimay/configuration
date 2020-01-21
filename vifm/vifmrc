@@ -518,6 +518,10 @@ command! link ln -s %d/%f %D
 " Up ou j : fichier précédent
 " Right ou l : on entre dans le répertoire, ou on visualise le fichier
 
+" Disponibles
+"
+" % |
+
 " Recharger {{{2
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
@@ -530,8 +534,9 @@ nnoremap @ :write | edit $MYVIFMRC | restart<cr>
 
 nnoremap $ :sync! all<cr>
 
-nnoremap % :set millerview!<cr>
-nnoremap | :set millerview!<cr>
+nnoremap <C-w>1 <C-w>o
+nnoremap <C-w>2 <C-w>v
+nnoremap <C-w>3 :set millerview!<cr>
 
 " }}}2
 
@@ -576,12 +581,16 @@ nnoremap zh za
 
 " Visualiser & Éditer {{{2
 
+nnoremap § :tree!<cr>
+
 nnoremap µ :view<cr>
 vnoremap µ :view<cr>gv
 
 nnoremap <C-^> <s-tab>
+nnoremap ° <s-tab>
 
 qnoremap <C-^> <s-tab>
+qnoremap ° <s-tab>
 qnoremap q <s-tab>
 
 nnoremap £ :!less %f<cr>
@@ -629,7 +638,7 @@ nnoremap çr :!rsync -av %d/ %D<cr>
 
 " Copier & Coller
 
-nnoremap yp :clone <cr>
+nnoremap çc :clone<cr>
 
 " Corbeille générale
 
@@ -660,6 +669,10 @@ nnoremap ,2 :vimdiff<cr>
 " Symlink
 
 nnoremap ,l :link<cr>
+
+" Medias amovibles
+
+nnoremap ,m :media<cr>
 
 " }}}2
 
