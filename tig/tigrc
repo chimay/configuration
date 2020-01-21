@@ -378,7 +378,7 @@ bind generic	$	:toggle commit-title-overflow
 
 # Misc {{{2
 
-bind generic	£	edit			# Open in editor
+bind generic	µ	edit			# Open in editor
 
 bind generic	e	edit			# Open in editor
 bind generic	:	prompt			# Open the prompt
