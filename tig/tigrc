@@ -222,7 +222,7 @@ bind generic	2	view-diff
 bind generic	&	view-refs
 bind generic	é	view-grep
 bind generic	§	view-tree
-bind generic	£	view-pager
+bind generic	µ	view-pager
 bind generic	ù	view-stash
 bind generic	w	view-blame
 
@@ -378,7 +378,7 @@ bind generic	$	:toggle commit-title-overflow
 
 # Misc {{{2
 
-bind generic	µ	edit			# Open in editor
+bind generic	£	edit			# Open in editor
 
 bind generic	e	edit			# Open in editor
 bind generic	:	prompt			# Open the prompt
