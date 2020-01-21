@@ -155,6 +155,8 @@ set mouse-wheel-cursor		= no		# Prefer moving the cursor to scrolling the view?
 
 # Bindings {{{1
 
+# Documentation {{{2
+
 # User-defined commands
 # ---------------------
 # These commands allow to run shell commands directly from within Tig.
@@ -191,6 +193,8 @@ set mouse-wheel-cursor		= no		# Prefer moving the cursor to scrolling the view?
 #   %(cmdlineargs)	All other options passed on the command line.
 #   %(diffargs)		The diff options from `diff-options` or `TIG_DIFF_OPTS`
 #   %(prompt)		Prompt for the argument value.
+
+# }}}2
 
 # Commands {{{2
 
@@ -245,10 +249,10 @@ bind generic	<backspace>	parent			# Move to parent
 
 bind generic	<Enter>	enter			# Enter and open selected entry
 bind generic	<Lt>	back			# Go back to the previous view state
-bind generic	<Down>	next			# Move to next
+#bind generic	<Down>	next			# Move to next
 bind generic	<C-N>	next
 bind generic	J	next
-bind generic	<Up>	previous		# Move to previous
+#bind generic	<Up>	previous		# Move to previous
 bind generic	<C-P>	previous
 bind generic	K	previous
 bind generic	,	parent			# Move to parent
@@ -262,10 +266,35 @@ bind generic	<C-C>	quit			# Close all views and quit
 
 # }}}2
 
+# Cursor navigation {{{2
+
+bind generic	g	move-first-line
+bind generic	G	move-last-line
+bind main		G	move-last-line
+bind generic	<C-F>	move-page-down
+bind generic	<C-B>	move-page-up
+bind generic	b	move-page-up
+bind generic	<down>	move-down
+bind generic	k	move-up
+
+bind generic	j	move-down
+bind generic	k	move-up
+bind generic	<C-D>	move-half-page-down
+bind generic	<C-U>	move-half-page-up
+bind generic	<PgDown> move-page-down
+bind generic	<Space>	move-page-down
+bind generic	<PgUp>	move-page-up
+bind generic	-	move-page-up
+bind generic	<Home>	move-first-line
+bind generic	<End>	move-last-line
+
+# }}}2
+
 # View specific {{{2
 
 bind main	<Hash>	:toggle commit-title-graph # Toggle revision graph visualization
 bind status	R	status-revert		# Revert changes in file
+bind status	a	status-update		# Stage/unstage changes in file
 
 bind status	u	status-update		# Stage/unstage changes in file
 #bind status	!	status-revert		# Revert changes in file
@@ -284,28 +313,6 @@ bind diff	]	:toggle diff-context +1
 bind main	H	:goto HEAD
 #bind main	G	:toggle commit-title-graph # Toggle revision graph visualization
 bind main	F	:toggle commit-title-refs  # Toggle reference display (tags/branches)
-
-# }}}2
-
-# Cursor navigation {{{2
-
-bind generic	g	move-first-line
-bind generic	G	move-last-line
-bind main		G	move-last-line
-bind generic	<C-F>	move-page-down
-bind generic	<C-B>	move-page-up
-bind generic	b	move-page-up
-
-bind generic	j	move-down
-bind generic	k	move-up
-bind generic	<C-D>	move-half-page-down
-bind generic	<C-U>	move-half-page-up
-bind generic	<PgDown> move-page-down
-bind generic	<Space>	move-page-down
-bind generic	<PgUp>	move-page-up
-bind generic	-	move-page-up
-bind generic	<Home>	move-first-line
-bind generic	<End>	move-last-line
 
 # }}}2
 
