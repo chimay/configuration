@@ -483,7 +483,7 @@ color stat-none			default	default
 color stat-staged		default	default
 color stat-unstaged		default	default
 color stat-untracked	default	default
-color help-group		blue	default
+color help-group		red		default
 color help-action		yellow	default
 color diff-stat			default	default
 color diff-add-highlight	green	default	standout
