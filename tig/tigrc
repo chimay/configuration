@@ -75,7 +75,9 @@
 #    - commit-title-overflow (boolint)	: Highlight overflow in log and diff view?
 #
 
-set blame-view	= id:yes,color file-name:auto author:full date:default line-number:yes,interval=1 text
+set blame-view	= id:yes file-name:auto author:full date:default line-number:yes,interval=1 text
+
+#set blame-view	= id:yes,color file-name:auto author:full date:default line-number:yes,interval=1 text
 set grep-view	= file-name:no line-number:yes,interval=1 text
 set main-view	= line-number:no,interval=5 id:no date:default author:full commit-title:yes,graph,refs,overflow=no
 set reflog-view	= line-number:no,interval=5 id:yes date:no author:no commit-title:yes,refs,overflow=no
@@ -190,6 +192,8 @@ set mouse-wheel-cursor		= no		# Prefer moving the cursor to scrolling the view?
 #   %(diffargs)		The diff options from `diff-options` or `TIG_DIFF_OPTS`
 #   %(prompt)		Prompt for the argument value.
 
+# Commands {{{2
+
 bind main	C	?git cherry-pick %(commit)
 bind status	C	!git commit
 bind stash	A	?git stash apply %(stash)
@@ -200,27 +204,45 @@ bind refs	!	?git branch -D %(branch)
 bind reflog	C	?git checkout %(branch)
 bind reflog	!	?git reset --hard %(commit)
 
+# }}}2
+
 # Normal commands
 # ---------------
 
-# View switching
-bind generic	m	view-main
-bind generic	d	view-diff
+# View switching {{{2
+
+bind generic	h	view-help
+
+bind generic	0	view-main
+bind generic	2	view-diff
+bind generic	&	view-refs
+bind generic	é	view-grep
+bind generic	§	view-tree
+bind generic	£	view-pager
+bind generic	ù	view-stash
+bind generic	w	view-blame
+
+#bind generic	m	view-main
+#bind generic	d	view-diff
 bind generic	l	view-log
 bind generic	L	view-reflog
-bind generic	t	view-tree
+#bind generic	t	view-tree
 bind generic	f	view-blob
-bind generic	b	view-blame
-bind generic	r	view-refs
-bind generic	p	view-pager
-bind generic	h	view-help
+#bind generic	b	view-blame
+#bind generic	r	view-refs
+#bind generic	p	view-pager
 bind generic	s	view-status
 bind generic	S	view-status		# Compat binding to avoid going crazy!
 bind generic	c	view-stage
-bind generic	y	view-stash
-bind generic	g	view-grep
+#bind generic	y	view-stash
+#bind generic	g	view-grep
 
-# View manipulation
+# }}}2
+
+# View manipulation {{{2
+
+bind generic	<backspace>	parent			# Move to parent
+
 bind generic	<Enter>	enter			# Enter and open selected entry
 bind generic	<Lt>	back			# Go back to the previous view state
 bind generic	<Down>	next			# Move to next
@@ -231,16 +253,22 @@ bind generic	<C-P>	previous
 bind generic	K	previous
 bind generic	,	parent			# Move to parent
 bind generic	<Tab>	view-next		# Move focus to the next view
-bind generic	R	refresh			# Reload and refresh view
+bind generic	r	refresh			# Reload and refresh view
 bind generic	<F5>	refresh
 bind generic	O	maximize		# Maximize the current view
 bind generic	q	view-close		# Close the current view
 bind generic	Q	quit			# Close all views and quit
 bind generic	<C-C>	quit			# Close all views and quit
 
-# View specific
+# }}}2
+
+# View specific {{{2
+
+bind main	<Hash>	:toggle commit-title-graph # Toggle revision graph visualization
+bind status	R	status-revert		# Revert changes in file
+
 bind status	u	status-update		# Stage/unstage changes in file
-bind status	!	status-revert		# Revert changes in file
+#bind status	!	status-revert		# Revert changes in file
 bind status	M	status-merge		# Open git-mergetool(1)
 #bind status	???	:toggle status		# Show short or long status labels
 bind stage	u	status-update		# Stage/unstage current diff (c)hunk
@@ -254,10 +282,20 @@ bind diff	@	:/^@@			# Jump to next (c)hunk
 bind diff	[	:toggle diff-context -1
 bind diff	]	:toggle diff-context +1
 bind main	H	:goto HEAD
-bind main	G	:toggle commit-title-graph # Toggle revision graph visualization
+#bind main	G	:toggle commit-title-graph # Toggle revision graph visualization
 bind main	F	:toggle commit-title-refs  # Toggle reference display (tags/branches)
 
-# Cursor navigation
+# }}}2
+
+# Cursor navigation {{{2
+
+bind generic	g	move-first-line
+bind generic	G	move-last-line
+bind main		G	move-last-line
+bind generic	<C-F>	move-page-down
+bind generic	<C-B>	move-page-up
+bind generic	b	move-page-up
+
 bind generic	j	move-down
 bind generic	k	move-up
 bind generic	<C-D>	move-half-page-down
@@ -269,7 +307,10 @@ bind generic	-	move-page-up
 bind generic	<Home>	move-first-line
 bind generic	<End>	move-last-line
 
-# Scrolling
+# }}}2
+
+# Scrolling {{{2
+
 bind generic	|	scroll-first-col
 bind generic	<Left>	scroll-left
 bind generic	<Right>	scroll-right
@@ -280,7 +321,10 @@ bind generic	<C-E>	scroll-line-down
 bind generic	<SBack>	scroll-page-up
 bind generic	<SFwd>	scroll-page-down
 
-# Searching
+# }}}2
+
+# Searching {{{2
+
 bind generic	/	search
 bind generic	?	search-back
 bind generic	n	find-next
@@ -294,12 +338,18 @@ bind search	<C-P>	find-prev
 bind search	<C-K>	find-prev
 bind search	<C-C>	view-close
 
-# Option manipulation
+# }}}2
+
+# Option manipulation {{{2
+
+bind generic	è	:toggle file-filter
+bind generic	°	:toggle line-number	# Toggle line numbers
+
 bind generic	o	options			# Open the options menu
 # Bindings for toggling settings
 bind generic	I	:toggle sort-order	# Toggle ascending/descending sort order
 bind generic	i	:toggle sort-field	# Toggle field to sort by
-bind generic	<Hash>	:toggle line-number	# Toggle line numbers
+#bind generic	<Hash>	:toggle line-number	# Toggle line numbers
 bind generic	D	:toggle date		# Toggle date display
 bind generic	A	:toggle author		# Toggle author display
 bind generic	~	:toggle line-graphics	# Toggle (line) graphics mode
@@ -315,14 +365,21 @@ bind generic	$	:toggle commit-title-overflow
 # bind generic	???	:toggle status-show-untracked-dirs
 						# Toggle display of file in untracked directories
 # bind generic	???	:toggle vertical-split	# Toggle vertical split
-bind generic	%	:toggle file-filter
+#bind generic	%	:toggle file-filter
 
-# Misc
+# }}}2
+
+# Misc {{{2
+
+bind generic	£	edit			# Open in editor
+
 bind generic	e	edit			# Open in editor
 bind generic	:	prompt			# Open the prompt
 bind generic	<C-L>	screen-redraw		# Redraw the screen
 bind generic	z	stop-loading		# Stop all loading views
 bind generic	v	show-version		# Show Tig version
+
+# }}}2
 
 # }}}1
 
@@ -393,9 +450,9 @@ color default			default	default	normal
 color cursor			default	default	reverse
 color status			red	default
 color delimiter			magenta	default
-color date			default	default
-color mode			cyan	default
-color id			default	default
+color date				default	default
+color mode				default	default
+color id				default	default
 color overflow			red	default
 color header			yellow	default
 color section			default	default
@@ -416,9 +473,9 @@ color main-tracked		yellow	default	bold
 color main-ref			cyan	default
 color main-head			yellow	default	bold
 color stat-none			default	default
-color stat-staged		magenta	default
-color stat-unstaged		magenta	default
-color stat-untracked		magenta	default
+color stat-staged		default	default
+color stat-unstaged		default	default
+color stat-untracked	default	default
 color help-group		blue	default
 color help-action		yellow	default
 color diff-stat			default	default
@@ -441,7 +498,7 @@ color palette-12		magenta	default	bold
 color palette-13		blue	default	bold
 
 color graph-commit		default	default
-color search-result		black	yellow
+color search-result		yellow default
 
 # Mappings for colors read from git configuration.
 # Set to "no" to disable.
