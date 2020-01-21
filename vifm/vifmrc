@@ -595,7 +595,7 @@ qnoremap q <s-tab>
 
 nnoremap £ :!less %f<cr>
 
-nnoremap è :edit<cr>
+nnoremap <m-e> :edit<cr>
 
 " Toggle visibility of preview window
 
