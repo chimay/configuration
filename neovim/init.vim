@@ -814,10 +814,12 @@ set ttimeoutlen=50
 
 " Remarque : certains mapleaders causent des problèmes avec l’indentation <<
 
-let mapleader = "\<C-F12>\<C-F12>\<C-F12>"
-let maplocalleader = "\<C-F12>\<C-F12>\<C-F12>"
+let mapleader=","
 
-let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
+"let mapleader = "\<C-F12>\<C-F12>\<C-F12>"
+"let maplocalleader = "\<C-F12>\<C-F12>\<C-F12>"
+
+"let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
 
 " }}}2
 
@@ -862,6 +864,8 @@ nnoremap <D-z> :se fo-=a<cr>
 
 "  Fichiers {{{2
 
+nnoremap <cr> :wa<cr><cr>
+
 nnoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
 inoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
 
@@ -871,10 +875,7 @@ inoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
 nnoremap <F6> :e!<cr>
 nnoremap <F6> <esc>:e!<cr>
 
-nnoremap <F7> :wa<cr>
-inoremap <F7> <esc>:wa<cr>
-
-nnoremap <F8> :new <bar> only<cr>
+nnoremap <F7> :new <bar> only<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
@@ -893,6 +894,12 @@ nnoremap <m-d> :cd <C-R>=expand('%:p:h') . '/'<CR>
 
 nnoremap <m-w> :wa<cr>
 nnoremap <m-s-w> :w <C-R>=expand('%:p:h') . '/' <CR>
+
+command -nargs=? -complete=filetype EditSyntaxPlugin
+            \ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
+command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
+
+nnoremap <F7> :<c-u>EditSyntaxPlugin<cr>
 
 "nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR>
 
