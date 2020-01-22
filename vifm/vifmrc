@@ -114,6 +114,10 @@ set scrolloff=4
 "
 " set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 
+"set findprg="find %s %a -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
+
+set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
+
 " }}}1
 
 " Environnement {{{1
@@ -175,6 +179,8 @@ mark p ~/racine/pictura
 mark s ~/racine/shell
 
 mark P ~/racine/papier
+
+mark A ~/audio
 
 mark w ~/graphix/wallpaper
 
@@ -555,7 +561,9 @@ nnoremap <space> t
 
 " Recherche {{{2
 
-nnoremap ù :find . -name '**'
+"nnoremap * :find **
+
+nnoremap * :find<space>
 
 nnoremap é :filter<space>
 
@@ -593,7 +601,7 @@ qnoremap <C-^> <s-tab>
 qnoremap ° <s-tab>
 qnoremap q <s-tab>
 
-nnoremap £ :!less %f<cr>
+nnoremap £ :!LESS= less %f<cr>
 
 nnoremap <m-e> :edit<cr>
 
@@ -607,10 +615,11 @@ nnoremap <m-o> :file &<cr>
 
 " Répertoires {{{2
 
+nnoremap ù :history d<cr>
+nnoremap qd :history d<cr>
+
 nnoremap H :histprev<cr>
 nnoremap L :histnext<cr>
-
-nnoremap qd :history d<cr>
 
 " }}}2
 
