@@ -685,6 +685,13 @@ nnoremap ,m :media<cr>
 
 " }}}2
 
+" Contrôle de version {{{2
+
+nnoremap <m-t> :!tig<cr>
+nnoremap <m-p> :!git push origin master<cr>
+
+" }}}2
+
 " Shell {{{2
 
 " Start shell in current directory
