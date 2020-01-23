@@ -814,12 +814,8 @@ set ttimeoutlen=50
 
 " Remarque : certains mapleaders causent des problèmes avec l’indentation <<
 
-let mapleader=","
-
-"let mapleader = "\<C-F12>\<C-F12>\<C-F12>"
-"let maplocalleader = "\<C-F12>\<C-F12>\<C-F12>"
-
-"let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
+let mapleader="\<m-,>"
+let maplocalleader="\<m-,>"
 
 " }}}2
 
