@@ -82,76 +82,9 @@ nnoremap <C-F11>s :Subvert //<Left>
 
 " Alignement {{{1
 
-" Easy align (junegunn/vim-easy-align) {{{2
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-
-nmap ga <Plug>(EasyAlign)
-
-" Options
-
-let g:easy_align_ignores = ['Comment', 'String']
-
-" }}}2
-
-" Tabular (godlygeek/tabular) {{{2
-
-nnoremap <s-tab> :Tabularize /
-vnoremap <s-tab> :Tabularize /
-
-" }}}2
-
 " }}}1
 
 " Tableaux {{{1
-
-" Table-mode (dhruvasagar/vim-table-mode) {{{2
-
-let g:table_mode_always_active = 0
-
-let g:table_mode_border = 1
-
-" Mappings {{{3
-
-nnoremap <bar> :TableModeToggle<cr>
-
-let g:table_mode_map_prefix = '<bs>'
-
-nnoremap <bs>S :TableSort<cr>
-
-let g:table_mode_realign_map = '<bs>r'
-let g:table_mode_delete_row_map = '<bs>dd'
-let g:table_mode_delete_column_map = '<bs>dc'
-let g:table_mode_add_formula_map = '<bs>fa'
-let g:table_mode_eval_formula_map = '<bs>fe'
-let g:table_mode_echo_cell_map = '<bs>?'
-let g:table_mode_sort_map = '<bs>s'
-
-let g:table_mode_motion_up_map = '{<Bar>'
-let g:table_mode_motion_down_map = '}<Bar>'
-let g:table_mode_motion_left_map = '[<Bar>'
-let g:table_mode_motion_right_map = ']<Bar>'
-let g:table_mode_cell_text_object_a_map = 'a<Bar>'
-let g:table_mode_cell_text_object_i_map = 'i<Bar>'
-
-" }}}3
-
-" Caractères {{{3
-
-let g:table_mode_separator     = '|'
-let g:table_mode_corner        = '+'
-let g:table_mode_corner_corner = '|'
-let g:table_mode_fillchar      = '-'
-let g:table_mode_delimiter     = ','
-let g:table_mode_align_char    = ':'
-
-" }}}3
-
-" }}}2
 
 " }}}1
 
@@ -231,11 +164,11 @@ map <C-F11>cu <plug>NERDCommenterUncommentLine
 
 "  TComment (tomtom/tcomment_vim) {{{2
 
-let g:tcommentTextObjectInlineComment = '<C-F11>ic'
+let g:tcommentTextObject_inlineComment = '<C-F11>ic'
 
 let g:tcommentBlankLines = 0
 
-let g:tcommentOptions = {
+let g:tcomment#options = {
 	\ 'col': 1
 \}
 
@@ -655,11 +588,9 @@ let g:CtrlSpaceUseUnicode = 0
 
 nnoremap <c-space> :CtrlSpace<cr>
 
-nnoremap <M-Left> :CtrlSpaceGoUp<cr>
-nnoremap <M-Right> :CtrlSpaceGoDown<cr>
-
-nnoremap <M-PageUp> :CtrlSpaceGoUp<cr>
-nnoremap <M-PageDown> :CtrlSpaceGoDown<cr>
+" Ne marche pas
+" nnoremap <s-pageUp> :CtrlSpaceGoUp<cr>
+" nnoremap <s-pageDown> :CtrlSpaceGoDown<cr>
 
 " }}}3
 
@@ -778,8 +709,7 @@ nnoremap <s-bs> :UndotreeToggle<cr>
 
 "  Utl (utl.vim) {{{2
 
-nnoremap <m-cr> :Utl<cr>
-nnoremap <c-cr> :Utl<cr>
+nnoremap gf :Utl<cr>
 
 let g:utl_cfg_hdl_scm_http = "!qutebrowser '%u#%f' &"
 
@@ -904,6 +834,37 @@ xmap  ie  <Plug>(textobj-entire-i)
 
 " }}}2
 
+" Visual multi {{{2
+
+let g:VM_leader = '<F2>'
+
+let g:VM_set_statusline = 2
+let g:VM_silent_exit = 1
+
+let g:VM_maps = {}
+
+let g:VM_maps['Find Under']  = '<m-n>'
+
+" }}}2
+
+" Multiple cursors {{{2
+
+let g:multi_cursor_use_default_mapping=0
+
+let g:multi_cursor_start_word_key      = '<D-n>'
+let g:multi_cursor_select_all_word_key = '<S-D-n>'
+let g:multi_cursor_start_key           = 'g<D-n>'
+let g:multi_cursor_select_all_key      = 'g<S-D-n>'
+let g:multi_cursor_next_key            = '<D-n>'
+let g:multi_cursor_prev_key            = '<D-p>'
+let g:multi_cursor_skip_key            = '<D-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
+
+" }}}2
+
 " }}}1
 
 " Recherche & Remplacement {{{1
@@ -983,12 +944,12 @@ let g:increment_activator_filetype_candidates = {
 
 " Neoterm (kassio/neoterm) {{{2
 
-"nnoremap <D-$> :new \| Ttoggle<cr>
-
-"nnoremap <D-CR> :TREPLSendLine<cr>
-"vnoremap <D-CR> :TREPLSendSelection<cr>
-
-"nnoremap <D-x> :TREPLSendFile<cr>
+" nnoremap <C-!> :new \| Ttoggle<cr>
+"
+" nnoremap <C-CR> :TREPLSendLine<cr>
+" vnoremap <C-CR> :TREPLSendSelection<cr>
+"
+" nnoremap <S-C-CR> :TREPLSendFile<cr>
 
 " }}}2
 

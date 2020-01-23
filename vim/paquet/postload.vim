@@ -16,7 +16,7 @@ call deoplete#enable()
 
 " Mappings {{{3
 
-nnoremap <S-F1>     :<c-u>Denite<space>
+nnoremap <F1>     :<c-u>Denite help<cr>
 
 nnoremap é          :<c-u>Denite line:all line:buffers change jump<cr>
 nnoremap è          :<c-u>Denite grep<cr>
@@ -25,7 +25,7 @@ nnoremap §          :<c-u>Denite unite:outline:folding outline<cr>
 
 nnoremap °          :<c-u>Denite -mode=normal command help filetype output:!ls<cr>
 
-nnoremap ù          :<c-u>Denite buffer file_mru file/old file_rec<cr>
+nnoremap ù          :<c-u>Denite buffer file_mru file/old file/rec<cr>
 
 nnoremap µ          :<c-u>Denite register command_history <cr>
 nnoremap <s-µ>      :<c-u>Denite register command_history <cr>

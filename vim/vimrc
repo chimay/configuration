@@ -27,7 +27,7 @@ set nocompatible
 
 " Chemins de chargement {{{1
 
-set runtimepath+=~/racine/config/edit/vim
+" set runtimepath+=~/racine/config/edit/vim
 
 " }}}1
 
@@ -808,9 +808,9 @@ let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
 
 "  Aide {{{2
 
-nnoremap <M-a> :tab help<space>
-nnoremap <M-S-a> :tab helpgrep<space>
+nnoremap <M-h> :tab help<space>
 
+" Voir denite
 "nnoremap <F1> <nop>
 
 " }}}2
@@ -837,20 +837,19 @@ nnoremap [[ [z
 
 "  Fichiers {{{2
 
-nnoremap <F1> :new <bar> only<cr>
-inoremap <F1> :new <bar> only<cr>
+nnoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
 
-nnoremap <F2> :e!<cr>
-inoremap <F2> :e!<cr>
+nnoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
 
-nnoremap <F3> :wa<cr>
-inoremap <F3> :wa<cr>
+nnoremap <F6> :e!<cr>
+nnoremap <F6> <esc>:e!<cr>
 
-nnoremap <F5>e :e ~/racine/config/edit/vim/vimrc<cr>
-inoremap <F5>e :e ~/racine/config/edit/vim/vimrc<cr>
+nnoremap <F7> :wa<cr>
+inoremap <F7> <esc>:wa<cr>
 
-nnoremap <F5>r :so ~/racine/config/edit/vim/vimrc<cr>
-inoremap <F5>r :so ~/racine/config/edit/vim/vimrc<cr>
+nnoremap <F8> :new <bar> only<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
@@ -929,10 +928,12 @@ endfunc
 
 " Fenêtres {{{2
 
-nnoremap <S-Left>  <C-W><Left>
-nnoremap <S-Right> <C-W><Right>
-nnoremap <S-Up>    <C-W><Up>
-nnoremap <S-Down>  <C-W><Down>
+nnoremap <m-left>  <C-W><Left>
+nnoremap <m-right> <C-W><Right>
+nnoremap <m-up>    <C-W><Up>
+nnoremap <m-down>  <C-W><Down>
+
+nnoremap <s-tab>  <c-w>w
 
 " }}}2
 
@@ -1042,12 +1043,6 @@ inoremap <S-Down> <C-o>gj
 " Déplacement de lignes {{{3
 
 " Voir plugin textmanip
-
-" }}}3
-
-" Sauts {{{3
-
-nnoremap <BS> <C-O>
 
 " }}}3
 
@@ -1293,6 +1288,8 @@ nnoremap \ih :echo bibliotheque#highlightGroup()<cr>
 nnoremap <m-$> :terminal bash<cr>
 
 set termwinkey=<C-W>
+
+tnoremap <s-tab> <C-W>N<C-W>w
 
 tnoremap <m-v> <C-W>N
 tnoremap <m-i> <C-W>N

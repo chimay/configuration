@@ -14,24 +14,7 @@
 
 " Touches pour maps / préfixes de maps {{{1
 
-" <cr> = <enter>
-" <s-cr>
-" <c-cr>
-
-" <tab>
-" <s-tab>
-" <c-tab>
-
-" <bs> = backspace
-" <s-bs>
-" <c-bs>
-
-" <space>
-" <s-space>
-" <c-space>
-
-" <Bar> = |
-" <Bslash> = \
+" <d-...>
 
 " §
 " °
@@ -44,7 +27,6 @@
 " à
 " ù
 
-" Autres idées : Tab, C-_, C-Space, C-B
 
 " }}}1
 
@@ -74,36 +56,13 @@ let g:no_plugin_maps = 1
 
 let g:abolish_save_file = $HOME . '/racine/plugin/data/abolish/abreviations'
 
-nnoremap <C-F11>s :Subvert //<Left>
+nnoremap <F11>s :Subvert //<Left>
 
 " }}}2
 
 " }}}1
 
 " Alignement {{{1
-
-" Easy align (junegunn/vim-easy-align) {{{2
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-
-nmap ga <Plug>(EasyAlign)
-
-" Options
-
-let g:easy_align_ignores = ['Comment', 'String']
-
-" }}}2
-
-" Tabular (godlygeek/tabular) {{{2
-
-nnoremap <s-tab> :Tabularize /
-vnoremap <s-tab> :Tabularize /
-
-" }}}2
 
 " }}}1
 
@@ -112,56 +71,13 @@ vnoremap <s-tab> :Tabularize /
 " Backscratch {{{2
 
 nnoremap <D-s> :Scratch<space>
+nnoremap <D-lt> :Scratch<space>
 
 " }}}2
 
 " }}}1
 
 " Tableaux {{{1
-
-" Table-mode (dhruvasagar/vim-table-mode) {{{2
-
-let g:table_mode_always_active = 0
-
-let g:table_mode_border = 1
-
-" Mappings {{{3
-
-nnoremap <bar> :TableModeToggle<cr>
-
-let g:table_mode_map_prefix = '<C-F11><bar>'
-
-nnoremap <C-F11><bar>S :TableSort<cr>
-
-let g:table_mode_realign_map = '<C-F11><bar>r'
-let g:table_mode_delete_row_map = '<C-F11><bar>dd'
-let g:table_mode_delete_column_map = '<C-F11><bar>dc'
-let g:table_mode_add_formula_map = '<C-F11><bar>fa'
-let g:table_mode_eval_formula_map = '<C-F11><bar>fe'
-let g:table_mode_echo_cell_map = '<C-F11><bar>?'
-let g:table_mode_sort_map = '<C-F11><bar>s'
-
-let g:table_mode_motion_up_map = '{<Bar>'
-let g:table_mode_motion_down_map = '}<Bar>'
-let g:table_mode_motion_left_map = '[<Bar>'
-let g:table_mode_motion_right_map = ']<Bar>'
-let g:table_mode_cell_text_object_a_map = 'a<Bar>'
-let g:table_mode_cell_text_object_i_map = 'i<Bar>'
-
-" }}}3
-
-" Caractères {{{3
-
-let g:table_mode_separator     = '|'
-let g:table_mode_corner        = '+'
-let g:table_mode_corner_corner = '|'
-let g:table_mode_fillchar      = '-'
-let g:table_mode_delimiter     = ','
-let g:table_mode_align_char    = ':'
-
-" }}}3
-
-" }}}2
 
 " }}}1
 
@@ -176,9 +92,6 @@ let g:table_mode_align_char    = ':'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-"let g:UltiSnipsJumpForwardTrigger="<C-j>"
-"let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 
 let g:UltiSnipsListSnippets='<C-F5>l'
 
@@ -209,26 +122,26 @@ let NERDCreateDefaultMappings = 0
 
 map <s-cr> <plug>NERDCommenterToggle
 
-map <C-F11>cc <plug>NERDCommenterToggle
-map <C-F11>c<space> <plug>NERDCommenterComment
-map <C-F11>cn <plug>NERDCommenterNest
-map <C-F11>cm <plug>NERDCommenterMinimal
-map <C-F11>ci <plug>NERDCommenterInvert
-map <C-F11>cs <plug>NERDCommenterSexy
-map <C-F11>cy <plug>NERDCommenterYank
-map <C-F11>c$ <plug>NERDCommenterToEOL
-map <C-F11>cA <plug>NERDCommenterAppend
-map <C-F11>cI <plug>NERDCommenterInsert
-map <C-F11>ca <plug>NERDCommenterAltDelims
-map <C-F11>cl <plug>NERDCommenterAlignLeft
-map <C-F11>cb <plug>NERDCommenterAlignBoth
-map <C-F11>cu <plug>NERDCommenterUncommentLine
+map <F9>cc <plug>NERDCommenterToggle
+map <F9>c<space> <plug>NERDCommenterComment
+map <F9>cn <plug>NERDCommenterNest
+map <F9>cm <plug>NERDCommenterMinimal
+map <F9>ci <plug>NERDCommenterInvert
+map <F9>cs <plug>NERDCommenterSexy
+map <F9>cy <plug>NERDCommenterYank
+map <F9>c$ <plug>NERDCommenterToEOL
+map <F9>cA <plug>NERDCommenterAppend
+map <F9>cI <plug>NERDCommenterInsert
+map <F9>ca <plug>NERDCommenterAltDelims
+map <F9>cl <plug>NERDCommenterAlignLeft
+map <F9>cb <plug>NERDCommenterAlignBoth
+map <F9>cu <plug>NERDCommenterUncommentLine
 
 " }}}2
 
 "  TComment (tomtom/tcomment_vim) {{{2
 
-let g:tcomment_textobject_inlinecomment = '<C-F11>ic'
+let g:tcomment_textobject_inlinecomment = '<F10>ci'
 
 let g:tcommentBlankLines = 0
 
@@ -278,15 +191,11 @@ nnoremap <silent> ç :<C-U>YRShow<cr>
 
 " Maps ordinaires
 
-nnoremap <silent> <C-F11>y :<C-U>YRSearch<cr>
+nnoremap <silent> <F7><F7> :YRToggle<cr>
+nnoremap <silent> <F7>s :<C-U>YRSearch<cr>
 
-nnoremap <silent> <C-F11><C-F11>y :YRToggle<cr>
-
-let g:yankring_replace_n_pkey = '<C-p>'
-let g:yankring_replace_n_nkey = '<C-n>'
-
-" let g:yankring_replace_n_pkey = '<m-y>'
-" let g:yankring_replace_n_nkey = '<m-s-y>'
+let g:yankring_replace_n_pkey = '<m-p>'
+let g:yankring_replace_n_nkey = '<m-y>'
 
 " Y, pour compléter C et D
 
@@ -367,15 +276,15 @@ let g:AutoPairsShortcutJump = '<m-)>'
 
 let g:AutoPairsCenterLine = 1
 
-let g:AutoPairsMapBS = 1
-let g:AutoPairsMapCR = 1
+let g:AutoPairsMapBS = 0
+let g:AutoPairsMapCR = 0
 let g:AutoPairsMapSpace = 0
 
 " }}}3
 
 " Mappings {{{3
 
-let g:AutoPairsShortcutToggle = '<C-F11><C-F11>('
+let g:AutoPairsShortcutToggle = '<F11>('
 
 imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
@@ -605,6 +514,10 @@ let g:neomru#do_validate = 0
 
 " FZF (junegunn/fzf.vim) {{{2
 
+nnoremap <D-ù> :Buffers<cr>
+nnoremap <D-*> :Tags<cr>
+nnoremap <D-=> :Windows<cr>
+
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -657,7 +570,7 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 let g:CtrlSpaceSetDefaultMapping = 1
 
-let g:CtrlSpaceDefaultMappingKey = "<D-Space> "
+let g:CtrlSpaceDefaultMappingKey = "<C-Space> "
 
 let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 
@@ -862,14 +775,12 @@ let g:submode_timeout = 0
 
 " Cmdalias (coot/cmdalias_vim) {{{2
 
+nnoremap <F11>c :CmdAliasToggle<cr>
+
 augroup Cmdalias
-
 	au!
-
 	au VimEnter * CmdAlias ali\%[as] CmdAlias
-
 	au VimEnter * CmdAlias h\%[elp] tab\ help
-
 augroup END
 
 " }}}2
@@ -954,21 +865,44 @@ xmap  ie  <Plug>(textobj-entire-i)
 
 " }}}2
 
+" Visual multi {{{2
+
+let g:VM_leader = 'ù'
+"let g:VM_leader = {'default': '<F3>', 'visual': '<F3>', 'buffer': '<F3>'}
+
+let g:VM_set_statusline = 2
+let g:VM_silent_exit = 1
+
+let g:VM_default_mappings = 0
+
+let g:VM_maps = {}
+
+let g:VM_maps['Find Under']  = '<D-m>'
+let g:VM_maps["Select Cursor Down"] = '<D-n>'
+let g:VM_maps["Select Cursor Up"]   = '<D-p>'
+
+"let g:VM_maps["Select Operator"] = 'gs'
+
+let g:VM_maps["Undo"] = 'u'
+let g:VM_maps["Redo"] = '<C-r>'
+
+" }}}2
+
 " Multiple cursors {{{2
 
-let g:multi_cursor_use_default_mapping=0
-
-let g:multi_cursor_start_word_key      = '<D-n>'
-let g:multi_cursor_select_all_word_key = '<S-D-n>'
-let g:multi_cursor_start_key           = 'g<D-n>'
-let g:multi_cursor_select_all_key      = 'g<S-D-n>'
-let g:multi_cursor_next_key            = '<D-n>'
-let g:multi_cursor_prev_key            = '<D-p>'
-let g:multi_cursor_skip_key            = '<D-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-
-let g:multi_cursor_exit_from_visual_mode = 0
-let g:multi_cursor_exit_from_insert_mode = 0
+" let g:multi_cursor_use_default_mapping=0
+"
+" let g:multi_cursor_start_word_key      = '<D-n>'
+" let g:multi_cursor_select_all_word_key = '<S-D-n>'
+" let g:multi_cursor_start_key           = 'g<D-n>'
+" let g:multi_cursor_select_all_key      = 'g<S-D-n>'
+" let g:multi_cursor_next_key            = '<D-n>'
+" let g:multi_cursor_prev_key            = '<D-p>'
+" let g:multi_cursor_skip_key            = '<D-x>'
+" let g:multi_cursor_quit_key            = '<Esc>'
+"
+" let g:multi_cursor_exit_from_visual_mode = 0
+" let g:multi_cursor_exit_from_insert_mode = 0
 
 " }}}2
 
@@ -1022,7 +956,7 @@ let g:QFG_hi_error='guifg=#5B3C11 guibg=black ctermfg=3 ctermbg=NONE'
 
 " Crunch (arecarn/crunch.vim {{{2
 
-nnoremap <D-=> :Crunch<space>
+nnoremap <C-=> :Crunch<space>
 
 " }}}2
 
@@ -1051,12 +985,12 @@ let g:increment_activator_filetype_candidates = {
 
 " Neoterm (kassio/neoterm) {{{2
 
-nnoremap <C-!> :new \| Ttoggle<cr>
+nnoremap <d-!> :new \| Ttoggle<cr>
 
-nnoremap <C-CR> :TREPLSendLine<cr>
-vnoremap <C-CR> :TREPLSendSelection<cr>
+nnoremap <d-$> :TREPLSendLine<cr>
+vnoremap <d-$> :TREPLSendSelection<cr>
 
-nnoremap <S-C-CR> :TREPLSendFile<cr>
+nnoremap <d-cr> :TREPLSendFile<cr>
 
 " }}}2
 

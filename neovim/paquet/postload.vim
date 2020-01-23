@@ -6,29 +6,30 @@
 
 " Mappings de lancement {{{3
 
-nnoremap µ         :<c-u>Denite source<cr>
+nnoremap <space>    :<c-u>Denite source<cr>
+nnoremap <d-space>  :<c-u>Denite<space>
 
 nnoremap <F1>       :<c-u>Denite help<cr>
 
-nnoremap é          :<c-u>Denite line:all<cr>
+nnoremap é          :<c-u>Denite line:all:noempty<cr>
 nnoremap è          :<c-u>Denite grep<cr>
 
-nnoremap °          :<c-u>Denite buffer mark change jump register<cr>
-
-"nnoremap §          :<c-u>Denite unite:outline:folding<cr>
 nnoremap §          :<c-u>Denite outline<cr>
 
-nnoremap ù          :<c-u>Denite file_mru file/old file/rec<cr>
+nnoremap °          :<c-u>Denite buffer<cr>
+
+nnoremap ù          :<c-u>Denite file_mru file/rec<cr>
+
+nnoremap µ         :<c-u>Denite directory_rec<cr>
 
 nnoremap £          :<c-u>Denite tag<cr>
-
-"nnoremap è          :<c-u>Denite grep<cr>
 
 " }}}3
 
 " Options {{{3
 
 call denite#custom#option('default', {
+	  \ 'split' : 'floating',
 	  \ 'highlight_mode_normal' : 'Visual',
 	  \ 'highlight_mode_insert' : 'Visual',
 	  \ 'highlight_matched_char' : 'false',
@@ -40,7 +41,22 @@ call denite#custom#var(
 \ ['ag', '--nocolor', '--smart-case', '--vimgrep', '-g', ''])
 
 call denite#custom#source(
-\ 'file_mru', 'matchers', ['matcher_substring'])
+\ 'file_mru', 'matchers', ['matcher/substring'])
+
+call denite#custom#source(
+\ 'file/rec', 'matchers', ['matcher/substring'])
+
+" call denite#custom#source(
+" \ 'file/rec', 'matchers', ['matcher/cpsm'])
+
+call denite#custom#source(
+\ 'file/rec', 'sorters', ['sorter/rank'])
+
+call denite#custom#source(
+\ 'directory_rec', 'sorters', ['sorter/sublime'])
+
+call denite#custom#source(
+\ 'line', 'matchers', ['matcher/substring'])
 
 " }}}3
 

@@ -235,21 +235,16 @@ set sessionoptions+=winsize
 setglobal fileencoding=utf-8
 setglobal fileencodings=utf-8
 
-" Disponible avec <C-K> char1 char2
+" Digraph {{{2
 
-" Backspace {{{2
+" Disponible avec <C-K> char1 char2
 
 " Cette option active l’accès au digraph par char1 <BS> char2
 
 "set digraph
 
-" }}}2
-
-"  Définition {{{2
-
-" Convertir les codes hexadécimaux de wikipédia en codes décimaux
-" via par exemple :
-" python -c "print 0x<code>"
+" Convertir les codes hexadécimaux de wikipédia en codes décimaux via
+" par exemple : python -c "print 0x<code>"
 
 " Alphabet phonétique {{{3
 
@@ -769,9 +764,45 @@ set makeef=
 
 "  Maps {{{1
 
-" Idées {{{2
+" Touches pour maps / préfixes de maps {{{2
 
-" map <m-=> ...
+" <cr> = <enter>
+" <s-cr>
+" <m-cr>
+" <c-cr>
+
+" <m-!>
+" <c-!>
+
+" <m-$>
+" <c-$>
+
+" <m-=>
+" <c-=>
+
+" <space>
+" <s-space>
+" <m-space>
+" <c-space>
+
+" <tab>
+" <s-tab>
+" <m-tab>
+" <c-tab>
+
+" <bs> = backspace
+" <s-bs>
+" <m-bs>
+" <c-bs>
+
+" <Bar> = |
+" <Bslash> = \
+
+" <Bar> = |
+" <Bslash> = \
+
+" <m-_>
+" <c-_>
 
 " }}}2
 
@@ -814,18 +845,17 @@ set ttimeoutlen=50
 
 " Remarque : certains mapleaders causent des problèmes avec l’indentation <<
 
-let mapleader="\<m-,>"
-let maplocalleader="\<m-,>"
+let mapleader="\<d-,>"
+let maplocalleader="\<d-,>"
 
 " }}}2
 
 "  Aide {{{2
 
-nnoremap <M-a> :tab help<space>
-nnoremap <M-S-a> :tab helpgrep<space>
+nnoremap <m-a> :tab help<space>
+nnoremap <m-h> :tab help<space>
 
-nnoremap <M-h> :tab help<space>
-nnoremap <M-S-h> :tab helpgrep<space>
+" Voir <url:paquet/postload.vim#tn=Denite>
 
 "nnoremap <F1> <nop>
 
@@ -851,36 +881,34 @@ nnoremap [[ [z
 
 " }}}2
 
-" Édition {{{2
-
-nnoremap <D-a> :se fo+=a<cr>
-nnoremap <D-z> :se fo-=a<cr>
-
-" }}}2
-
 "  Fichiers {{{2
 
-nnoremap <cr> :wa<cr><cr>
+nnoremap <C-G> :let @" = expand("%:p")<cr><C-G>
 
-nnoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
-inoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
+nnoremap <c-cr> :wa<cr>
 
-nnoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
-inoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
+nnoremap <F2> :new <bar> only<cr>
 
-nnoremap <F6> :e!<cr>
-nnoremap <F6> <esc>:e!<cr>
+nnoremap <F3> :e!<cr>
+nnoremap <F3> <esc>:e!<cr>
 
-nnoremap <F7> :new <bar> only<cr>
+nnoremap <F4> :e ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <F4> :e ~/racine/config/edit/neovim/init.vim<cr>
+
+nnoremap <F5> :so ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <F5> :so ~/racine/config/edit/neovim/init.vim<cr>
+
+command -nargs=? -complete=filetype EditSyntaxPlugin
+\ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
+
+command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
+
+nnoremap <F6> :<c-u>EditSyntaxPlugin<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
 
 nnoremap <m-g> :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
-
-nnoremap \e :e!<cr>
-
-nnoremap <D-e> :e!<cr>
 
 nnoremap <m-f> :find<space>
 
@@ -890,12 +918,6 @@ nnoremap <m-d> :cd <C-R>=expand('%:p:h') . '/'<CR>
 
 nnoremap <m-w> :wa<cr>
 nnoremap <m-s-w> :w <C-R>=expand('%:p:h') . '/' <CR>
-
-command -nargs=? -complete=filetype EditSyntaxPlugin
-            \ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
-command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
-
-nnoremap <F7> :<c-u>EditSyntaxPlugin<cr>
 
 "nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR>
 
@@ -915,7 +937,10 @@ nnoremap ]A :last<cr>
 
 " Tampons (buffers) {{{2
 
-noremap <D-^> <C-^>
+" Remplacé par CtrlSpaceGo[Up/Down]
+
+"noremap <M-PageUp> :bp<cr>
+"noremap <M-PageDown> :bn<cr>
 
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
@@ -926,16 +951,6 @@ nnoremap ]B :blast<cr>
 nnoremap <m-b> :ls!<cr>:b<space>
 nnoremap <m-s-b> :ls!<cr>:tab sb<space>
 
-" Remplacé par Unite output
-
-"nnoremap <m-l> :ls!<cr>
-
-" Remplacé par CtrlSpaceGo[Up/Down]
-
-"noremap <M-PageUp> :bp<cr>
-"noremap <M-PageDown> :bn<cr>
-
-nnoremap <D-q> :ls!<cr>:silent bd!<space>
 nnoremap <m-q> :ls!<cr>:silent bw!<space>
 
 " Lecture seule {{{3
@@ -960,12 +975,13 @@ endfunc
 
 " Fenêtres {{{2
 
-nnoremap <S-Left>  <C-W><Left>
-nnoremap <S-Right> <C-W><Right>
-nnoremap <S-Up>    <C-W><Up>
-nnoremap <S-Down>  <C-W><Down>
+nnoremap <m-left>  <c-w><left>
+nnoremap <m-right> <c-w><right>
+nnoremap <m-up>    <c-w><up>
+nnoremap <m-down>  <c-w><down>
 
-nnoremap <D-w>  <C-W>w
+nnoremap <m-tab>  <c-w>w
+nnoremap <s-tab>  <c-w>p
 
 " }}}2
 
@@ -1050,14 +1066,6 @@ nnoremap <C-G> 2<C-G>
 
 " }}}2
 
-"  Redirection {{{2
-
-com! -nargs=* -complete=command BibliothequeRedirToBuffer call bibliotheque#redirToBuffer(<f-args>)
-
-nnoremap <D-lt> :BibliothequeRedirToBuffer<space>
-
-" }}}2
-
 "  Déplacements & Copie {{{2
 
 " Début & Fin de fichier {{{3
@@ -1083,12 +1091,6 @@ inoremap <S-Down> <C-o>gj
 
 " }}}3
 
-" Sauts {{{3
-
-nnoremap <BS> <C-O>
-
-" }}}3
-
 " Signets {{{3
 
 " ` = ' : plus pratique sur les claviers be, fr
@@ -1102,9 +1104,6 @@ nnoremap ' `
 "  Recherche & Remplacement {{{2
 
 " Recherche d’un mot {{{3
-
-nnoremap <D-,> /\<\><left><left>
-vnoremap <D-,> /\<\><left><left>
 
 nnoremap \, /\<\><left><left>
 vnoremap \, /\<\><left><left>
@@ -1127,18 +1126,7 @@ nnoremap \g :BibliothequeGrep<cr>
 
 " }}}3
 
-" Vimgrep {{{3
-
-com! -nargs=0 BibliothequeVimgrep call bibliotheque#vimgrep()
-
-nnoremap <D-G> :BibliothequeVimgrep<cr>
-
-" }}}3
-
 "  Remplacement {{{3
-
-nnoremap <D-;> :s:\<\>::<left><left><left><left>
-vnoremap <D-;> :s:\<\>::<left><left><left><left>
 
 nnoremap \; :s:\<\>::<left><left><left><left>
 vnoremap \; :s:\<\>::<left><left><left><left>
@@ -1193,9 +1181,6 @@ inoremap <S-Insert> <C-R>+
 " <C-G>u entame un nouvel atome d'undo {{{3
 
 inoremap <m-u> <c-g>u
-
-"inoremap <BS> <C-G>u<BS>
-"inoremap <Del> <C-G>u<Del>
 
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
@@ -1330,9 +1315,7 @@ nnoremap <m-!> :exec '!'.getline('.')<CR>
 
 "  Orthographe {{{2
 
-"nnoremap <silent> \o :setlocal spell!<cr>
-
-nnoremap <silent> <D-o> :setlocal spell!<cr>
+nnoremap <silent> \o :setlocal spell!<cr>
 
 " }}}2
 
@@ -1400,17 +1383,15 @@ set guicursor=
 
 set termguicolors
 
-"nnoremap \l :set cursorline!<cr>
-
-nnoremap <D-l> :set cursorline!<cr>
+nnoremap \l :set cursorline!<cr>
 
 " }}}2
 
 " Émulateur de terminal {{{2
 
-nnoremap <D-CR> :split \| :term $SHELL -l<cr>
+nnoremap <C-$> :split \| :term $SHELL -l<cr>
 
-nnoremap <D-!> :split \| :term<space>
+nnoremap <C-!> :split \| :term<space>
 
 " Passer en mode normal
 
@@ -1421,6 +1402,8 @@ tnoremap <D-v> <C-\><C-n>
 tnoremap <D-i> <C-\><C-n>
 
 tnoremap <D-^> <C-\><C-n><C-^>
+
+tnoremap <m-tab> <C-\><C-n><C-W>w
 
 tnoremap <D-w> <C-\><C-n><C-W>w
 
@@ -1435,7 +1418,7 @@ tnoremap <D-q> <C-\><C-n>:ls!<cr>:silent bd!<space>
 
 " Pages de manuel {{{2
 
-nnoremap <D-h> :e man://
+nnoremap <m-s-h> :e man://
 
 " }}}2
 
