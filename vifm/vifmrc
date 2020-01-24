@@ -90,6 +90,10 @@ set wildstyle=popup
 
 set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
 
+" Vue en 3
+
+set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"
+
 " Ignore case in search patterns unless it contains at least one uppercase
 " letter
 
@@ -126,7 +130,7 @@ set grepprg="rg --vimgrep --smart-case %i %a %s"
 
 set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
 
-set fusehome="~/racine/network/fuse"
+set fusehome="~/racine/filesys/fuse"
 
 " }}}1
 
@@ -145,7 +149,7 @@ set fusehome="~/racine/network/fuse"
 
 " This is how many directories to store in the directory history.
 
-set history=100
+set history=300
 
 " What should be saved automatically between vifm runs
 " Like in previous versions of vifm
@@ -260,6 +264,7 @@ filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        \ {Play using MPlayer}
        \ mplayer %f,
 
+fileviewer *.ogg ogginfo
 fileviewer *.mp3 mp3info
 fileviewer *.flac soxi
 
