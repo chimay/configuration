@@ -126,6 +126,8 @@ set grepprg="rg --vimgrep --smart-case %i %a %s"
 
 set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
 
+set fusehome="~/racine/network/fuse"
+
 " }}}1
 
 " Environnement {{{1
