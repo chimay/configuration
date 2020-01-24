@@ -2,6 +2,9 @@
 
 highlight Win             cterm=none ctermfg=default    ctermbg=none
 
+highlight TabLine         cterm=none    ctermfg=default    ctermbg=none
+highlight TabLineSel      cterm=reverse ctermfg=default    ctermbg=none
+
 highlight TopLine         cterm=reverse ctermfg=default    ctermbg=none
 highlight TopLineSel      cterm=reverse ctermfg=default    ctermbg=none
 highlight StatusLine      cterm=reverse ctermfg=default    ctermbg=none
