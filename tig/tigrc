@@ -268,25 +268,25 @@ bind generic	<C-C>	quit			# Close all views and quit
 
 # Cursor navigation {{{2
 
-bind generic	g	move-first-line
-bind generic	G	move-last-line
-bind main		G	move-last-line
+bind generic	g		move-first-line
+bind generic	G		move-last-line
+bind main		G		move-last-line
 bind generic	<C-F>	move-page-down
 bind generic	<C-B>	move-page-up
-bind generic	b	move-page-up
+bind generic	b		move-page-up
 bind generic	<down>	move-down
-bind generic	k	move-up
+bind generic	<up>	move-up
 
-bind generic	j	move-down
-bind generic	k	move-up
-bind generic	<C-D>	move-half-page-down
-bind generic	<C-U>	move-half-page-up
-bind generic	<PgDown> move-page-down
-bind generic	<Space>	move-page-down
-bind generic	<PgUp>	move-page-up
-bind generic	-	move-page-up
-bind generic	<Home>	move-first-line
-bind generic	<End>	move-last-line
+bind generic	j			move-down
+bind generic	k			move-up
+bind generic	<C-D>		move-half-page-down
+bind generic	<C-U>		move-half-page-up
+bind generic	<PgDown>	move-page-down
+bind generic	<Space>		move-page-down
+bind generic	<PgUp>		move-page-up
+bind generic	-			move-page-up
+bind generic	<Home>		move-first-line
+bind generic	<End>		move-last-line
 
 # }}}2
 
