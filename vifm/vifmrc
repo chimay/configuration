@@ -663,17 +663,18 @@ nnoremap cv :rename<cr>
 
 " Copier & Déplacer
 
-nnoremap çç :!cp %f %D<cr>
-nnoremap àà :!mv %f %D<cr>
+nnoremap àà :!cp %f %D<cr>
+
+nnoremap àm :!mv %f %D<cr>
 
 " Sync with Rsync
 
-nnoremap çs :!rsync -av %f %D<cr>
-nnoremap çr :!rsync -av %d/ %D<cr>
+nnoremap às :!rsync -av %f %D<cr>
+nnoremap àr :!rsync -av %d/ %D<cr>
 
 " Copier & Coller
 
-nnoremap çC :clone<cr>
+nnoremap àc :clone<cr>
 
 " Corbeille vifm
 
@@ -689,7 +690,7 @@ nnoremap dr :!trash-restore <cr>
 
 " Nom du chemin, fichier, répertoire -> clipboard
 
-map çp :!echo -n %d/%f | xsel -i; xsel -o | xsel -i -b<cr>
+map çç :!echo -n %d/%f | xsel -i; xsel -o | xsel -i -b<cr>
 map çf :!echo -n %f    | xsel -i; xsel -o | xsel -i -b<cr>
 map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
