@@ -2,7 +2,13 @@
 
 " Options {{{1
 
+" t doit être inclus sinon <tab> ne marche pas
+
 set cpoptions=st
+
+" ../ visible ?
+
+set dotdirs=rootparent
 
 " Important pour lancer les commandes externes
 
@@ -113,6 +119,8 @@ set scrolloff=4
 " Use ag (the silver searcher) instead of grep
 "
 " set grepprg=ag\ --line-numbers\ %i\ %a\ %s
+
+set grepprg="rg --vimgrep --smart-case %i %a %s"
 
 "set findprg="find %s %a -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
 
@@ -243,6 +251,8 @@ filextype *.djvu
 " Audio
 
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
+       \ {Play using mpv}
+       \ mpv %f,
        \ {Play using ffplay}
        \ ffplay -nodisp %c,
        \ {Play using MPlayer}
@@ -256,6 +266,8 @@ fileviewer *.flac soxi
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
          \*.as[fx]
+        \ {Play using mpv}
+        \ mpv %f,
         \ {View using ffplay}
         \ ffplay -fs %f,
         \ {View using Dragon}
@@ -484,6 +496,8 @@ set viewcolumns=*40%{name}.,25%{mtime}.,25%{perms}.,10%{size}.
 "
 " filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
 
+filter! /^.*\.(git|hg|bzr|o|py[co])$|.*~$/
+
 " }}}1
 
 " Commandes {{{1
@@ -540,9 +554,19 @@ nnoremap @ :write | edit $MYVIFMRC | restart<cr>
 
 nnoremap $ :sync! all<cr>
 
-nnoremap <C-w>1 <C-w>o
+nnoremap <C-w>0 <C-w>o
+nnoremap <C-w>1 <C-w>s
 nnoremap <C-w>2 <C-w>v
+
 nnoremap <C-w>3 :set millerview!<cr>
+nnoremap <C-w>4 :set lsview!<cr>
+
+nnoremap <F8> <C-w>o
+nnoremap <F9> <C-w>s
+nnoremap <F10> <C-w>v
+
+nnoremap <F11> :set millerview!<cr>
+nnoremap <F12> :set lsview!<cr>
 
 " }}}2
 
@@ -566,6 +590,8 @@ nnoremap <space> t
 nnoremap * :find<space>
 
 nnoremap é :filter<space>
+
+nnoremap è :grep<space>
 
 " }}}2
 
@@ -595,10 +621,10 @@ nnoremap µ :view<cr>
 vnoremap µ :view<cr>gv
 
 nnoremap <C-^> <s-tab>
-nnoremap ° <s-tab>
+nnoremap % <s-tab>
 
 qnoremap <C-^> <s-tab>
-qnoremap ° <s-tab>
+qnoremap % <s-tab>
 qnoremap q <s-tab>
 
 nnoremap £ :!LESS= less %f<cr>
@@ -681,7 +707,7 @@ nnoremap ,l :link<cr>
 
 " Medias amovibles
 
-nnoremap ,m :media<cr>
+nnoremap <m-m> :media<cr>
 
 " }}}2
 
