@@ -550,7 +550,13 @@ nnoremap @ :write | edit $MYVIFMRC | restart<cr>
 
 " }}}2
 
-" Présentation {{{2
+" Quiter {{{2
+
+nnoremap ZZ :qa<cr>
+
+" }}}2
+
+" Panneaux {{{2
 
 nnoremap $ :sync! all<cr>
 
@@ -567,6 +573,12 @@ nnoremap <F10> <C-w>v
 
 nnoremap <F11> :set millerview!<cr>
 nnoremap <F12> :set lsview!<cr>
+
+" }}}2
+
+" Onglets {{{2
+
+nnoremap <m-t> :tabnew<cr>
 
 " }}}2
 
@@ -722,7 +734,7 @@ nnoremap <m-m> :media<cr>
 
 " Contrôle de version {{{2
 
-nnoremap <m-t> :!tig<cr>
+nnoremap <m-r> :!tig<cr>
 nnoremap <m-p> :!git push origin master<cr>
 
 " }}}2
