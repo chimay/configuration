@@ -673,7 +673,14 @@ nnoremap çr :!rsync -av %d/ %D<cr>
 
 " Copier & Coller
 
-nnoremap çc :clone<cr>
+nnoremap çC :clone<cr>
+
+" Corbeille vifm
+
+" dd : envoie vers corbeille vifm
+"
+" restauration : yy les fichiers dans la corbeille et p dans le
+"                répertoire de destination
 
 " Corbeille générale
 
