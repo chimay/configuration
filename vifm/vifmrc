@@ -678,8 +678,7 @@ nnoremap çc :clone<cr>
 " Corbeille générale
 
 nnoremap <delete> :!trash-put %f<cr>
-nnoremap DD :!trash-put %f<cr>
-nnoremap DR :!trash-restore <cr>
+nnoremap dr :!trash-restore <cr>
 
 " Nom du chemin, fichier, répertoire -> clipboard
 
@@ -690,6 +689,8 @@ map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 " }}}2
 
 " Autres opérations sur fichiers {{{2
+
+nnoremap ;t :trashes<cr>
 
 nnoremap ,t :!touch %f<cr>
 
