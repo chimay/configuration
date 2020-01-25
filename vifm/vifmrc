@@ -4,7 +4,7 @@
 
 " t doit être inclus sinon <tab> ne marche pas
 
-set cpoptions=st
+set cpoptions=t
 
 " ../ visible ?
 
@@ -57,7 +57,7 @@ set fastrun
 
 " Tri
 
-set sort=+name,-mtime
+set sort=+dir,+ext,+name,-mtime
 
 " Natural sort of (version) numbers within text.
 
@@ -666,6 +666,9 @@ nnoremap qd :history d<cr>
 nnoremap H :histprev<cr>
 nnoremap L :histnext<cr>
 
+nnoremap gj :siblnext!<cr>
+nnoremap gk :siblprev!<cr>
+
 " }}}2
 
 " Renommer {{{2
@@ -688,8 +691,8 @@ nnoremap àm :!mv %f %D<cr>
 
 " Sync with Rsync
 
-nnoremap às :!rsync -av %f %D<cr>
-nnoremap àr :!rsync -av %d/ %D<cr>
+nnoremap àf :!rsync -av %f %D<cr>
+nnoremap àd :!rsync -av %d/ %D<cr>
 
 " Copier & Coller
 
@@ -717,25 +720,27 @@ map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
 " Autres opérations sur fichiers {{{2
 
-nnoremap ;t :trashes<cr>
+nnoremap <m-n> :!touch %f<cr>
 
-nnoremap ,t :!touch %f<cr>
+nnoremap <m-c> :trashes<cr>
 
-nnoremap ,d :!mkdir<space>
-
-nnoremap ,w :!feh --bg-max --no-fehbg %f<cr>
+nnoremap <m-d> :!mkdir<space>
 
 " Vimdiff
 
-nnoremap ,2 :vimdiff<cr>
+nnoremap <m-v> :vimdiff<cr>
 
 " Symlink
 
-nnoremap ,l :link<cr>
+nnoremap <m-l> :link<cr>
 
 " Medias amovibles
 
 nnoremap <m-m> :media<cr>
+
+" Papier peint
+
+nnoremap <m-w> :!feh --bg-max --no-fehbg %f<cr>
 
 " }}}2
 

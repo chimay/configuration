@@ -852,12 +852,15 @@ let maplocalleader="\<d-,>"
 
 "  Aide {{{2
 
-nnoremap <m-a> :tab help<space>
-nnoremap <m-h> :tab help<space>
-
 " Voir <url:paquet/postload.vim#tn=Denite>
 
 "nnoremap <F1> <nop>
+
+nnoremap <m-a> :tab help<space>
+nnoremap <m-h> :tab help<space>
+
+nnoremap <m-s-a> :tabe man://
+nnoremap <m-s-h> :tabe man://
 
 " }}}2
 
@@ -1413,12 +1416,6 @@ tnoremap <D-k> <C-\><C-n><C-W><Up>
 tnoremap <D-l> <C-\><C-n><C-W><Right>
 
 tnoremap <D-q> <C-\><C-n>:ls!<cr>:silent bd!<space>
-
-" }}}2
-
-" Pages de manuel {{{2
-
-nnoremap <m-s-h> :e man://
 
 " }}}2
 
