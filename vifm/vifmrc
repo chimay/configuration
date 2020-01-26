@@ -3,6 +3,7 @@
 " Options {{{1
 
 " t doit être inclus sinon <tab> ne marche pas
+" pas besoin de placer s : ys / yS le remplace
 
 set cpoptions=t
 
@@ -19,8 +20,6 @@ set shell=/bin/zsh
 " you will need to change this setting.
 
 set vicmd=vim
-" set vicmd=elvis\ -G\ termcap
-" set vicmd=vile
 
 " Mieux dans un terminal
 "set vixcmd=gvim
@@ -44,7 +43,7 @@ set confirm=permdelete
 
 set trash
 
-set trashdir=~/racine/trash/vifm
+set trashdir=~/racine/trash/vifm,%r/.vifm-Trash
 
 " Automatically resolve symbolic links on l or Enter.
 
@@ -130,6 +129,8 @@ set grepprg="rg --vimgrep --smart-case %i %a %s"
 
 set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
 
+set locateprg="locate -d ~/racine/index/locate/racine.db %a"
+
 set fusehome="~/racine/filesys/fuse"
 
 " }}}1
@@ -157,7 +158,7 @@ set history=300
 " Like in vi
 
 set vifminfo=
-			\bmarks
+			\bmarks,
 			\bookmarks,
 			\cs,
 			\chistory,
@@ -189,6 +190,7 @@ mark f ~/racine/fun
 mark i ~/racine/infoman
 mark l ~/racine/liber
 mark m ~/racine/mail
+mark n ~/racine/network
 mark p ~/racine/pictura
 mark s ~/racine/shell
 
@@ -549,6 +551,12 @@ command! link ln -s %d/%f %D
 "
 " % |
 
+" Aide {{{2
+
+nnoremap <m-h> :apropos<space>
+
+" }}}2
+
 " Recharger {{{2
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
@@ -557,15 +565,16 @@ nnoremap @ :write | edit $MYVIFMRC | restart<cr>
 
 " }}}2
 
-" Quiter {{{2
+" Quitter {{{2
 
 nnoremap ZZ :qa<cr>
+nnoremap ZQ :qa!<cr>
 
 " }}}2
 
-" Panneaux {{{2
+" Présentation {{{2
 
-nnoremap $ :sync! all<cr>
+nnoremap § :tree!<cr>
 
 nnoremap <C-w>0 <C-w>o
 nnoremap <C-w>1 <C-w>s
@@ -574,9 +583,8 @@ nnoremap <C-w>2 <C-w>v
 nnoremap <C-w>3 :set millerview!<cr>
 nnoremap <C-w>4 :set lsview!<cr>
 
-nnoremap <F8> <C-w>o
-nnoremap <F9> <C-w>s
-nnoremap <F10> <C-w>v
+nnoremap <F9> :split!<cr>
+nnoremap <F10> :vsplit!<cr>
 
 nnoremap <F11> :set millerview!<cr>
 nnoremap <F12> :set lsview!<cr>
@@ -596,9 +604,16 @@ nnoremap <PageDown> <C-F>
 
 " }}}2
 
-" Sélectionner, tags {{{2
+" Sélectionner {{{2
 
-nnoremap <space> t
+nnoremap <space> :select<space>
+
+" }}}2
+
+" Signets {{{2
+
+nnoremap <m-b> :bmarks<space>
+nnoremap <m-m> :marks<cr>
 
 " }}}2
 
@@ -611,6 +626,8 @@ nnoremap * :find<space>
 nnoremap é :filter<space>
 
 nnoremap è :grep<space>
+
+nnoremap ° :locate<space>
 
 " }}}2
 
@@ -634,17 +651,15 @@ nnoremap zh za
 
 " Visualiser & Éditer {{{2
 
-nnoremap § :tree!<cr>
-
 nnoremap µ :view<cr>
 vnoremap µ :view<cr>gv
 
-nnoremap <C-^> <s-tab>
 nnoremap % <s-tab>
+nnoremap <C-^> <s-tab>
 
-qnoremap <C-^> <s-tab>
 qnoremap % <s-tab>
 qnoremap q <s-tab>
+qnoremap <C-^> <s-tab>
 
 nnoremap £ :!LESS= less %f<cr>
 
@@ -669,6 +684,24 @@ nnoremap L :histnext<cr>
 nnoremap gj :siblnext!<cr>
 nnoremap gk :siblprev!<cr>
 
+nnoremap $ :sync! all<cr>
+
+" Navigation synchronisée relative
+
+nnoremap <m-c> :windo cd<space>
+
+" }}}2
+
+" Menus & Dialogs {{{2
+
+" Create virtual dir
+
+mnoremap v b
+
+" Quick fix dans vim
+
+mnoremap f v
+
 " }}}2
 
 " Renommer {{{2
@@ -678,6 +711,7 @@ nnoremap cc cw<c-u>
 nnoremap A cw
 
 nnoremap cv :rename<cr>
+nnoremap cr :rename!<cr>
 
 " }}}2
 
@@ -720,11 +754,16 @@ map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
 " Autres opérations sur fichiers {{{2
 
+nnoremap <m-f> :f<cr>
+
 nnoremap <m-n> :!touch %f<cr>
 
-nnoremap <m-c> :trashes<cr>
+"nnoremap <m-q> :trashes?<cr>
+nnoremap <m-q> :lstrash<cr>
 
-nnoremap <m-d> :!mkdir<space>
+nnoremap <m-d> :mkdir!<space>
+
+nnoremap <m-a> :!apack %c.txz %c<cr>
 
 " Vimdiff
 
@@ -736,7 +775,7 @@ nnoremap <m-l> :link<cr>
 
 " Medias amovibles
 
-nnoremap <m-m> :media<cr>
+nnoremap ,m :media<cr>
 
 " Papier peint
 
@@ -753,9 +792,9 @@ nnoremap <m-p> :!git push origin master<cr>
 
 " Shell {{{2
 
-" Start shell in current directory
-
 nnoremap <m-s> :shell<cr>
+
+nnoremap <m-j> :jobs<cr>
 
 " }}}2
 
