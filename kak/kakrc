@@ -1,1 +1,51 @@
 colorscheme ornuit
+
+set-option global scrolloff 5,0
+set-option global autowrap_column 80
+
+hook global WinCreate ^[^*]+$ %{ add-highlighter window/number-lines number-lines -relative }
+hook global WinCreate ^[^*]+$ %{ add-highlighter global/wrap wrap }
+
+map global normal <c-home> '<a-(>'
+map global normal <c-end> '<a-)>'
+
+map global normal <a-,> '<a-.>'
+
+map global normal <c-pagedown> ': buffer-next <ret>'
+map global normal <c-pageup> ': buffer-previous <ret>'
+
+map global normal = '|fmt -w $kak_opt_autowrap_column<ret>'
+
+define-command -override x wq
+
+hook global KakEnd .* %{ echo -to-file %sh{echo $HOME/racine/hist/kak/history } -quoting kakoune reg : %reg{:} }
+hook global KakEnd .* %sh{ tail -n 1000 $HOME/racine/hist/kak/history | sponge $HOME/racine/hist/kak/history }
+hook global KakBegin .* %{ try %{ source %sh{echo $HOME/racine/hist/kak/history } } }
+
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+# FZF
+
+plug "andreyorst/fzf.kak" config %{
+    map -docstring 'fzf mode' global normal 'ù' ': fzf-mode<ret>'
+    #map -docstring 'fzf file' global normal 'ù' ': fzf -kak-cmd edit -existing<ret>'
+} defer "fzf" %{
+    set-option global fzf_terminal_command 'terminal kak -c %val{session} -e "%arg{@}"'
+evaluate-commands %sh{
+    if [ -n "$(command -v ag)" ]; then
+        echo "set-option global fzf_file_command %{ag --no-color --smart-case}"
+    else
+        echo "set-option global fzf_file_command %{find . \( -path '*/.svn*' -o -path '*/.git*' \) -prune -o -type f -follow -print}"
+    fi
+    }
+}
+
+# Vertical-selection
+
+# dans autoload
+
+# Text objects
+
+plug 'delapouite/kakoune-text-objects' %{
+      text-object-map
+}
