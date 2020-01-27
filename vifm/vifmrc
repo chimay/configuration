@@ -181,6 +181,7 @@ set vifminfo=
 mark 0 ~/racine/plain
 mark 1 ~/racine/site/orgmode
 mark 2 ~/racine/public
+mark 9 ~/racine/archive
 
 mark r ~/racine
 
@@ -236,7 +237,6 @@ mark T ~/Téléchargements
 " Pdf
 
 filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
-fileviewer *.pdf pdftotext -nopgbrk %c -
 
 filextype *.epub zathura %c %i &, apvlv %c, xpdf %c
 
@@ -266,10 +266,6 @@ filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        \ {Play using MPlayer}
        \ mplayer %f,
 
-fileviewer *.ogg ogginfo
-fileviewer *.mp3 mp3info
-fileviewer *.flac soxi
-
 " Video
 
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
@@ -283,11 +279,6 @@ filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         \ dragon %f:p,
         \ {View using mplayer}
         \ mplayer %f,
-
-fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-          \*.as[fx]
-         \ ffprobe -pretty %c 2>&1
 
 " Web
 
@@ -308,8 +299,6 @@ filetype *.o nm %f | less
 
 filetype *.[1-8] man ./%c
 
-fileviewer *.[1-8] man ./%c | col -b
-
 " Images
 
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
@@ -319,9 +308,6 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
-
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-         \ convert -identify %f -verbose /dev/null
 
 filextype *.svg vimiv %f
 
@@ -371,8 +357,6 @@ filetype *.asc
 
 filetype *.torrent ktorrent %f &
 
-fileviewer *.torrent dumptorrent -v %c
-
 " FuseZipMount
 
 filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
@@ -383,26 +367,17 @@ filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ {Extract here}
        \ tar -xf %c,
 
-fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
-
 " ArchiveMount
 
 filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
 
-fileviewer *.tgz,*.tar.gz tar -tzf %c
-fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
-fileviewer *.tar.txz,*.txz xz --list %c
-fileviewer *.tar tar -tf %c
-
 " Rar2FsMount and rar archives
 
 filetype *.rar
        \ {Mount with rar2fs}
        \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
-
-fileviewer *.rar unrar v %c
 
 " IsoMount
 
@@ -428,14 +403,9 @@ filetype *.7z
        \ {Mount with fuse-7z}
        \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
 
-fileviewer *.7z 7z l %c
-
 " Office files
 
 filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
-
-fileviewer *.doc catdoc %c
-fileviewer *.docx, docx2txt.pl %f -
 
 " TuDu files
 
@@ -457,6 +427,20 @@ filextype */
 "
 " 256-color terminal
 
+" Open all other files with default system programs (you can also remove all
+" :file[x]type commands above to ensure they don't interfere with system-wide
+" settings).  By default all unknown files are opened with 'vi[x]cmd'
+" uncommenting one of lines below will result in ignoring 'vi[x]cmd' option
+" for unknown file types.
+" For *nix:
+" filetype * xdg-open
+" For OS X:
+" filetype * open
+" For Windows:
+" filetype * start, explorer
+
+" Viewers {{{2
+
 " fileviewer *.[ch],*.[ch]pp highlight -O xterm256 -s dante --syntax c %c
 " fileviewer Makefile,Makefile.* highlight -O xterm256 -s dante --syntax make %c
 "
@@ -471,17 +455,73 @@ filextype */
 "
 " fileviewer *.jpg,*.png shellpic %c
 
-" Open all other files with default system programs (you can also remove all
-" :file[x]type commands above to ensure they don't interfere with system-wide
-" settings).  By default all unknown files are opened with 'vi[x]cmd'
-" uncommenting one of lines below will result in ignoring 'vi[x]cmd' option
-" for unknown file types.
-" For *nix:
-" filetype * xdg-open
-" For OS X:
-" filetype * open
-" For Windows:
-" filetype * start, explorer
+fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
+fileviewer *.tgz,*.tar.gz tar -tzf %c
+fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
+fileviewer *.tar.txz,*.txz xz --list %c
+fileviewer *.tar tar -tf %c
+
+fileviewer *.rar unrar v %c
+
+fileviewer *.7z 7z l %c
+
+fileviewer *.doc catdoc %c
+fileviewer *.docx, docx2txt.pl %f -
+
+fileviewer *.ogg ogginfo
+fileviewer *.mp3 mp3info
+fileviewer *.flac soxi
+
+fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+          \*.as[fx]
+         \ ffprobe -pretty %c 2>&1
+
+fileviewer *.[1-8] man ./%c | col -b
+
+fileviewer *.torrent dumptorrent -v %c
+
+" Voir Vifmimg
+
+" fileviewer *.pdf pdftotext -nopgbrk %c -
+
+" fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+"          \ convert -identify %f -verbose /dev/null
+
+" Vifmimg
+
+fileviewer *.pdf
+	\ vifmimg pdfpreview %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+fileviewer *.epub
+	\ vifmimg epubpreview %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+	\*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+	\ vifmimg videopreview %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+	\ vifmimg draw %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+fileviewer *.gif
+	\ vifmimg gifpreview %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+fileviewer *.ico
+	\ vifmimg magickpreview %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+" }}}2
 
 " }}}1
 
@@ -553,7 +593,7 @@ command! link ln -s %d/%f %D
 
 " Aide {{{2
 
-nnoremap <m-h> :apropos<space>
+nnoremap <m-a> :apropos<space>
 
 " }}}2
 
@@ -694,13 +734,13 @@ nnoremap <m-c> :windo cd<space>
 
 " Menus & Dialogs {{{2
 
-" Create virtual dir
+" Create virtual folder
 
-mnoremap v b
+mnoremap f b
 
 " Quick fix dans vim
 
-mnoremap f v
+"mnoremap <m-v> v
 
 " }}}2
 
@@ -739,6 +779,10 @@ nnoremap àc :clone<cr>
 " restauration : yy les fichiers dans la corbeille et p dans le
 "                répertoire de destination
 
+nnoremap <lt> :lstrash<cr>
+nnoremap <m-q> :lstrash<cr>
+nnoremap <c-q> :trashes?<cr>
+
 " Corbeille générale
 
 nnoremap <delete> :!trash-put %f<cr>
@@ -756,14 +800,11 @@ map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
 nnoremap <m-f> :f<cr>
 
-nnoremap <m-n> :!touch %f<cr>
-
-"nnoremap <m-q> :trashes?<cr>
-nnoremap <m-q> :lstrash<cr>
-
 nnoremap <m-d> :mkdir!<space>
 
-nnoremap <m-a> :!apack %c.txz %c<cr>
+nnoremap <m-n> :!touch %f<cr>
+
+nnoremap <m-p> :!apack %c.txz %c<cr>
 
 " Vimdiff
 
@@ -785,8 +826,13 @@ nnoremap <m-w> :!feh --bg-max --no-fehbg %f<cr>
 
 " Contrôle de version {{{2
 
+" VCS repository
+
 nnoremap <m-r> :!tig<cr>
-nnoremap <m-p> :!git push origin master<cr>
+
+" Upload
+
+nnoremap <m-u> :!git push origin master<cr>
 
 " }}}2
 
