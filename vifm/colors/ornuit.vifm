@@ -3,14 +3,14 @@
 highlight Win             cterm=none ctermfg=default    ctermbg=none
 
 highlight TabLine         cterm=none    ctermfg=default    ctermbg=none
-highlight TabLineSel      cterm=reverse ctermfg=default    ctermbg=none
+highlight TabLineSel      cterm=reverse,bold	ctermfg=default    ctermbg=none
 
 highlight TopLine         cterm=reverse ctermfg=default    ctermbg=none
 highlight TopLineSel      cterm=reverse ctermfg=default    ctermbg=none
 highlight StatusLine      cterm=reverse ctermfg=default    ctermbg=none
 highlight Border          cterm=none ctermfg=default       ctermbg=none
 
-highlight Selected        cterm=bold      ctermfg=default ctermbg=default
+highlight Selected        cterm=none      ctermfg=9       ctermbg=default
 highlight CurrLine        cterm=reverse   ctermfg=default ctermbg=default
 highlight OtherLine       cterm=underline ctermfg=default ctermbg=default
 

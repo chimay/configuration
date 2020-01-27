@@ -1,0 +1,10 @@
+" vim: filetype=vim :
+
+" Depuis dircolors
+
+highlight Directory cterm=none ctermfg=9 ctermbg=default
+highlight BrokenLink cterm=none ctermfg=237 ctermbg=default
+highlight Executable cterm=none ctermfg=88 ctermbg=default
+highlight Fifo cterm=none ctermfg=22 ctermbg=default
+highlight Link cterm=none ctermfg=16 ctermbg=default
+highlight Socket cterm=none ctermfg=11 ctermbg=default
