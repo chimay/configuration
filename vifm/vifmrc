@@ -125,9 +125,9 @@ set scrolloff=4
 
 set grepprg="rg --vimgrep --smart-case %i %a %s"
 
-"set findprg="find %s %a -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
+"set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
 
-set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
+set findprg="ag -g %p"
 
 set locateprg="locate -d ~/racine/index/locate/racine.db %a"
 
@@ -798,6 +798,7 @@ map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
 " Autres opérations sur fichiers {{{2
 
+" Ouverture
 nnoremap <m-f> :f<cr>
 
 nnoremap <m-d> :mkdir!<space>
@@ -808,11 +809,11 @@ nnoremap <m-p> :!apack %c.txz %c<cr>
 
 " Vimdiff
 
-nnoremap <m-v> :vimdiff<cr>
+nnoremap ,2 :vimdiff<cr>
 
 " Symlink
 
-nnoremap <m-l> :link<cr>
+nnoremap ,l :link<cr>
 
 " Medias amovibles
 
@@ -820,7 +821,7 @@ nnoremap ,m :media<cr>
 
 " Papier peint
 
-nnoremap <m-w> :!feh --bg-max --no-fehbg %f<cr>
+nnoremap ,w :!feh --bg-max --no-fehbg %f<cr>
 
 " }}}2
 
@@ -838,9 +839,14 @@ nnoremap <m-u> :!git push origin master<cr>
 
 " Shell {{{2
 
-nnoremap <m-s> :shell<cr>
+"nnoremap <m-s> :shell<cr>
+"nnoremap <m-s> :!bash<cr>
+nnoremap <m-s> :!fish<cr>
 
 nnoremap <m-j> :jobs<cr>
+
+" Version qui supporte les images, pour utiliser après le raccourci i3
+nnoremap <m-i> :!zsh -l -c vifmrun<cr>
 
 " }}}2
 
