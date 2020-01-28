@@ -754,12 +754,6 @@ set makeef=
 
 "  Maps {{{1
 
-" Idées {{{2
-
-" map <m-=> ...
-
-" }}}2
-
 " Mapping with Meta/Alt key {{{2
 
 " Xterm, by default, sets eightBitInput to true, meaning that the eighth
@@ -1060,6 +1054,12 @@ nnoremap ' `
 " }}}2
 
 "  Recherche & Remplacement {{{2
+
+" Recherche {{{3
+
+nnoremap ’ /
+
+" }}}3
 
 " Recherche d’un mot {{{3
 

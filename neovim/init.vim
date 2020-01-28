@@ -770,6 +770,9 @@ set makeef=
 
 " Touches pour maps / préfixes de maps {{{2
 
+" ’ : non utilisé
+" ` : map ' = `
+
 " <cr> = <enter>
 " <s-cr>
 " <m-cr>
@@ -1111,11 +1114,7 @@ nnoremap ' `
 
 " Recherche {{{3
 
-" Bof
-
-"nnoremap = /
-"nnoremap / =
-"nnoremap // ==
+nnoremap ’ /
 
 " }}}3
 

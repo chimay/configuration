@@ -298,23 +298,22 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " Sneak (justinmk/vim-sneak) {{{2
 
-" ’ : non utilisé
-" ` : map ' = `
-
 " 2-character Sneak (default)
 
-nmap ’ <Plug>Sneak_s
-nmap ` <Plug>Sneak_S
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
 
 " visual-mode
 
-xmap ’ <Plug>Sneak_s
-xmap ` <Plug>Sneak_S
+xmap s <Plug>Sneak_s
+xmap S <Plug>Sneak_S
 
 " operator-pending-mode
 
-omap ’ <Plug>Sneak_s
-omap ` <Plug>Sneak_S
+omap s <Plug>Sneak_s
+omap S <Plug>Sneak_S
+
+" ; & ,
 
 map ; <Plug>Sneak_;
 map , <Plug>Sneak_,
