@@ -636,8 +636,8 @@ nnoremap <F12> :set lsview!<cr>
 " Onglets {{{2
 
 nnoremap <m-t> :tabnew<cr>
-nnoremap J gt
-nnoremap K gT
+nnoremap ^ gT
+nnoremap $ gt
 
 " }}}2
 
@@ -732,7 +732,7 @@ nnoremap <m-y> :sync! all<cr>
 
 " Navigation synchronisée relative
 
-nnoremap $ :windo cd<space>
+nnoremap <m-c> :windo cd<space>
 
 " }}}2
 
