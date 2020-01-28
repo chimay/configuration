@@ -127,7 +127,7 @@ set grepprg="rg --vimgrep --smart-case %i %a %s"
 
 "set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
 
-set findprg="ag -g %p"
+set findprg="ag --nocolor -g %p"
 
 set locateprg="locate -d ~/racine/index/locate/racine.db %a"
 
@@ -304,6 +304,8 @@ filetype *.[1-8] man ./%c
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in sxiv}
         \ sxiv %f,
+        \ {View in vimiv}
+        \ vimiv %f,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in shotwell}
@@ -634,6 +636,8 @@ nnoremap <F12> :set lsview!<cr>
 " Onglets {{{2
 
 nnoremap <m-t> :tabnew<cr>
+nnoremap J gt
+nnoremap K gT
 
 " }}}2
 
@@ -724,11 +728,11 @@ nnoremap L :histnext<cr>
 nnoremap gj :siblnext!<cr>
 nnoremap gk :siblprev!<cr>
 
-nnoremap $ :sync! all<cr>
+nnoremap <m-y> :sync! all<cr>
 
 " Navigation synchronisée relative
 
-nnoremap <m-c> :windo cd<space>
+nnoremap $ :windo cd<space>
 
 " }}}2
 
@@ -759,8 +763,9 @@ nnoremap cr :rename!<cr>
 
 " Copier & Déplacer
 
-nnoremap àà :!cp %f %D<cr>
+" Voir aussi :copy et :move
 
+nnoremap àà :!cp %f %D<cr>
 nnoremap àm :!mv %f %D<cr>
 
 " Sync with Rsync
@@ -776,7 +781,9 @@ nnoremap àc :clone<cr>
 
 " dd : envoie vers corbeille vifm
 "
-" restauration : yy les fichiers dans la corbeille et p dans le
+" restauration :
+"   * r dans :lstrash
+"   * yy les fichiers dans la corbeille et p dans le
 "                répertoire de destination
 
 nnoremap <lt> :lstrash<cr>
@@ -844,9 +851,6 @@ nnoremap <m-u> :!git push origin master<cr>
 nnoremap <m-s> :!fish<cr>
 
 nnoremap <m-j> :jobs<cr>
-
-" Version qui supporte les images, pour utiliser après le raccourci i3
-nnoremap <m-i> :!zsh -l -c vifmrun<cr>
 
 " }}}2
 
