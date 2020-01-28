@@ -16,19 +16,21 @@ call deoplete#enable()
 
 " Mappings {{{3
 
-nnoremap <F1>     :<c-u>Denite help<cr>
+nnoremap <space>    :<c-u>Denite source<cr>
+nnoremap <d-space>  :<c-u>Denite<space>
 
-nnoremap é          :<c-u>Denite line:all line:buffers change jump<cr>
+nnoremap <F1>       :<c-u>Denite help<cr>
+
+nnoremap é          :<c-u>Denite line:all:noempty<cr>
 nnoremap è          :<c-u>Denite grep<cr>
 
-nnoremap §          :<c-u>Denite unite:outline:folding outline<cr>
+nnoremap §          :<c-u>Denite outline<cr>
 
-nnoremap °          :<c-u>Denite -mode=normal command help filetype output:!ls<cr>
+nnoremap °          :<c-u>Denite buffer<cr>
 
-nnoremap ù          :<c-u>Denite buffer file_mru file/old file/rec<cr>
+nnoremap ù          :<c-u>Denite file_mru file/rec<cr>
 
-nnoremap µ          :<c-u>Denite register command_history <cr>
-nnoremap <s-µ>      :<c-u>Denite register command_history <cr>
+nnoremap µ         :<c-u>Denite directory_rec<cr>
 
 nnoremap £          :<c-u>Denite tag<cr>
 
@@ -413,9 +415,9 @@ call denite#custom#source(
 
 " Mappings {{{3
 
-nnoremap <C-F1>       :<c-u>Unite -prompt-direction=top<space>
+nnoremap <F11>u       :<c-u>Unite -prompt-direction=top<space>
 
-nnoremap <C-F2>       :<c-u>Unite -prompt-direction=top source<cr>
+nnoremap <S-F11>u    :<c-u>Unite -prompt-direction=top source<cr>
 
 "nnoremap z=         :<c-u>Unite -winheight=15 spell_suggest<cr>
 
@@ -519,22 +521,6 @@ call unite#custom#source('neomru/file', 'ignore_globs',
 " }}}1
 
 " Modes {{{1
-
-"  Submode (kana/vim-submode) {{{2
-
-call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
-call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
-call submode#leave_with('undo/redo', 'n', '', '<Esc>')
-call submode#map('undo/redo', 'n', '', '-', 'g-')
-call submode#map('undo/redo', 'n', '', '+', 'g+')
-
-call submode#enter_with('change-list', 'n', '', 'g;', 'g;')
-call submode#enter_with('change-list', 'n', '', 'g,', 'g,')
-call submode#leave_with('change-list', 'n', '', '<Esc>')
-call submode#map('change-list', 'n', '', ';', 'g;')
-call submode#map('change-list', 'n', '', ',', 'g,')
-
-" }}}2
 
 " }}}1
 

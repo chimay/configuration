@@ -321,6 +321,92 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " }}}1
 
+" Mouvement {{{1
+
+" Sneak (justinmk/vim-sneak) {{{2
+
+" ’ : non utilisé
+" ` : map ' = `
+
+" 2-character Sneak (default)
+
+nmap ’ <Plug>Sneak_s
+nmap ` <Plug>Sneak_S
+
+" visual-mode
+
+xmap ’ <Plug>Sneak_s
+xmap ` <Plug>Sneak_S
+
+" operator-pending-mode
+
+omap ’ <Plug>Sneak_s
+omap ` <Plug>Sneak_S
+
+map ; <Plug>Sneak_;
+map , <Plug>Sneak_,
+
+" 1-character enhanced 'f'
+
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+
+" visual-mode
+
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+
+" operator-pending-mode
+
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+
+" 1-character enhanced 't'
+
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+
+" visual-mode
+
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+
+" operator-pending-mode
+
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
+
+nmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : ';'
+nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : ','
+
+nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Tab>'
+nmap <expr> <Space> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Space>'
+
+let g:sneak#label = 1
+let g:sneak#label_esc = "\<space>"
+let g:sneak#target_labels = ",;’&é§èçàù*µ£@#!~`°¼½bwefthjklnu"
+let g:sneak#prompt = '/ 2 chars > '
+let g:sneak#f_reset      = 0
+let g:sneak#s_next       = 0
+let g:sneak#absolute_dir = 0
+let g:sneak#textobject_z = 1
+let g:sneak#use_ic_scs   = 1
+let g:sneak#map_netrw    = 1
+
+highlight Sneak guibg=black guifg=#7b3c11 gui=bold,underline,italic
+highlight SneakScope guibg=black guifg=#7b3c11 gui=bold,underline,italic
+
+highlight Sneak cterm=reverse
+highlight SneakScope cterm=reverse
+
+" highlight link Sneak None
+" " Needed if a plugin sets the colorscheme dynamically:
+" autocmd User SneakLeave highlight clear Sneak
+
+" }}}2
+
+" }}}1
+
 " Déplacement & Copie {{{1
 
 " Textmanip (t9md/vim-textmanip) {{{2
@@ -335,17 +421,6 @@ xmap z<S-Up> <Plug>(textmanip-duplicate-up)
 
 nmap z<S-Down> <Plug>(textmanip-duplicate-down)
 nmap z<S-Up> <Plug>(textmanip-duplicate-up)
-
-" }}}2
-
-" Exchange (tommcdo/vim-exchange) {{{2
-
-let g:exchange_no_mappings=1
-
-nmap cx <Plug>(Exchange)
-vmap X <Plug>(Exchange)
-nmap cxc <Plug>(ExchangeClear)
-nmap cxx <Plug>(ExchangeLine)
 
 " }}}2
 
@@ -732,13 +807,6 @@ cmap <m-t> <Plug>CmdlineCompleteForward
 " }}}1
 
 " Modes {{{1
-
-" Submode {{{2
-
-let g:submode_timeout = 0
-"let g:submode_timeout = 12000
-
-" }}}2
 
 " Cmdalias (coot/cmdalias_vim) {{{2
 

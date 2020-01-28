@@ -294,6 +294,92 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " }}}1
 
+" Mouvement {{{1
+
+" Sneak (justinmk/vim-sneak) {{{2
+
+" ’ : non utilisé
+" ` : map ' = `
+
+" 2-character Sneak (default)
+
+nmap ’ <Plug>Sneak_s
+nmap ` <Plug>Sneak_S
+
+" visual-mode
+
+xmap ’ <Plug>Sneak_s
+xmap ` <Plug>Sneak_S
+
+" operator-pending-mode
+
+omap ’ <Plug>Sneak_s
+omap ` <Plug>Sneak_S
+
+map ; <Plug>Sneak_;
+map , <Plug>Sneak_,
+
+" 1-character enhanced 'f'
+
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+
+" visual-mode
+
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+
+" operator-pending-mode
+
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+
+" 1-character enhanced 't'
+
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+
+" visual-mode
+
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+
+" operator-pending-mode
+
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
+
+nmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : ';'
+nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : ','
+
+nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Tab>'
+nmap <expr> <Space> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Space>'
+
+let g:sneak#label = 1
+let g:sneak#label_esc = "\<space>"
+let g:sneak#target_labels = ",;’&é§èçàù*µ£@#!~`°¼½bwefthjklnu"
+let g:sneak#prompt = '/ 2 chars > '
+let g:sneak#f_reset      = 0
+let g:sneak#s_next       = 0
+let g:sneak#absolute_dir = 0
+let g:sneak#textobject_z = 1
+let g:sneak#use_ic_scs   = 1
+let g:sneak#map_netrw    = 1
+
+highlight Sneak guibg=black guifg=#7b3c11 gui=bold,underline,italic
+highlight SneakScope guibg=black guifg=#7b3c11 gui=bold,underline,italic
+
+highlight Sneak cterm=reverse
+highlight SneakScope cterm=reverse
+
+" highlight link Sneak None
+" " Needed if a plugin sets the colorscheme dynamically:
+" autocmd User SneakLeave highlight clear Sneak
+
+" }}}2
+
+" }}}1
+
 " Déplacement & Copie {{{1
 
 " Textmanip (t9md/vim-textmanip) {{{2
@@ -308,17 +394,6 @@ xmap z<S-Up> <Plug>(textmanip-duplicate-up)
 
 nmap z<S-Down> <Plug>(textmanip-duplicate-down)
 nmap z<S-Up> <Plug>(textmanip-duplicate-up)
-
-" }}}2
-
-" Exchange (tommcdo/vim-exchange) {{{2
-
-let g:exchange_no_mappings=1
-
-nmap cx <Plug>(Exchange)
-vmap X <Plug>(Exchange)
-nmap cxc <Plug>(ExchangeClear)
-nmap cxx <Plug>(ExchangeLine)
 
 " }}}2
 
@@ -340,76 +415,6 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 " }}}1
 
 " Exploration de l’arborescence du système de fichiers {{{1
-
-"  Netrw (plugin standard) {{{2
-
-" Chargement {{{3
-
-"let g:loaded_netrw       = 0
-
-" Décommenter pour ne pas charcher automatiquement netrw lors de
-" l’ouverture d’un répertoire
-
-"let g:loaded_netrwPlugin = 0
-
-" }}}3
-
-let g:netrw_home           = $HOME . '/racine/plugin/data/netrw'
-
-let g:netrw_menu           = 1
-
-let g:netrw_dirhistmax     = 712
-
-let g:netrw_keepdir        = 0
-
-let g:netrw_liststyle      = 1
-let g:netrw_special_syntax = 1
-let g:netrw_banner         = 1
-let g:netrw_browse_split   = 0
-let g:netrw_preview        = 0
-let g:netrw_fastbrowse     = 1
-let g:netrw_silent         = 1
-
-let g:netrw_ctags          = 'ctags'
-let g:netrw_ssh_cmd        = 'ssh'
-let g:netrw_browsex_viewer = "kfmclient exec"
-
-" Tri {{{3
-
-let g:netrw_sort_by = 'name'
-let g:netrw_sort_direction = 'normal'
-"let g:netrw_sort_options='i'
-
-let g:netrw_sort_sequence ='[\/]$,\<core\%(\.\d\+\)\=\>'
-let g:netrw_sort_sequence .='\.otl$'
-let g:netrw_sort_sequence .=',\.p\?html\?$,\.php$,\.css$,\.js$'
-let g:netrw_sort_sequence .=',\.h$,\.c$,\.cpp$'
-let g:netrw_sort_sequence .=',\.py$,\.pyx$'
-let g:netrw_sort_sequence .='*,\~$'
-
-" }}}3
-
-" Masque {{{3
-
-let g:netrw_list_hide = '\.un\~$,\.renduHtml$,\.sessionvim$'
-let g:netrw_list_hide .= ',^tags$,^TAGS$,^cscope\.'
-
-let g:netrw_list_hide .= ',^\.tarexclude$,^\.directory$'
-
-let g:netrw_list_hide .= ',\.o$,\.so$'
-let g:netrw_list_hide .= ',\.pyc$,\.elc$,\.zwc$'
-let g:netrw_list_hide .= ',\.dll$,\.obj$,\.bak$,\.exe$'
-
-let g:netrw_list_hide .= ',^RCS[\/]$,^CVS[\/]$,^\.hg[\/]$,^\.bzr[\/]$,^\.git[\/]$,\.mtn$,^_darcs[\/]$'
-let g:netrw_list_hide .= ',^.hgignore$,^.bzrignore$,^.hgtags$'
-
-let g:netrw_list_hide .= ',\.aux$,,\.log$,\.maf$,\.toc$,\.ptc$,\.mtc$'
-
-let g:netrw_hide = 1
-
-" }}}3
-
-" }}}2
 
 " Vifm {{{2
 
@@ -514,19 +519,37 @@ let g:neomru#do_validate = 0
 
 " FZF (junegunn/fzf.vim) {{{2
 
+" Mappings {{{3
+
 nnoremap <D-ù> :Buffers<cr>
 nnoremap <D-*> :Tags<cr>
 nnoremap <D-=> :Windows<cr>
 
+" }}}3
+
+" Options {{{3
+
+" Enable per-command history.
+" CTRL-N and CTRL-P will be automatically bound to next-history and
+" previous-history instead of down and up. If you don't like the change,
+" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+let g:fzf_history_dir = '~/racine/hist/fzf'
+
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
+  \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
+
+let $FZF_DEFAULT_OPTS="--reverse " " top to bottom
+
+" }}}3
+
+" Présentation {{{3
 
 " Default fzf layout
 " - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
+"let g:fzf_layout = { 'down': '~40%' }
 
 " In Neovim, you can set up fzf window using a Vim command
 let g:fzf_layout = { 'window': 'new' }
@@ -546,12 +569,6 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-" Enable per-command history.
-" CTRL-N and CTRL-P will be automatically bound to next-history and
-" previous-history instead of down and up. If you don't like the change,
-" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-let g:fzf_history_dir = '~/racine/hist/fzf'
-
 function! s:fzf_statusline()
   " Override statusline as you like
   highlight fzf1 ctermfg=0 ctermbg=3
@@ -561,6 +578,8 @@ function! s:fzf_statusline()
 endfunction
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+" }}}3
 
 " }}}2
 
@@ -766,13 +785,6 @@ cmap <m-t> <Plug>CmdlineCompleteForward
 
 " Modes {{{1
 
-" Submode {{{2
-
-let g:submode_timeout = 0
-"let g:submode_timeout = 12000
-
-" }}}2
-
 " Cmdalias (coot/cmdalias_vim) {{{2
 
 nnoremap <F11>c :CmdAliasToggle<cr>
@@ -782,12 +794,6 @@ augroup Cmdalias
 	au VimEnter * CmdAlias ali\%[as] CmdAlias
 	au VimEnter * CmdAlias h\%[elp] tab\ help
 augroup END
-
-" }}}2
-
-" Cmdmatch (majkinetor/unite-cmdmatch) {{{2
-
-cmap <c-o> <Plug>(unite_cmdmatch_complete)
 
 " }}}2
 
@@ -1006,48 +1012,12 @@ let g:neomake_make_maker = {
 
 " }}}1
 
-" Sans distraction {{{1
-
-" Goyo (junegunn/goyo.vim) {{{2
-
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
-
-" }}}2
-
-" Limelight (junegunn/limelight.vim) {{{2
-
-" Color name (:help cterm-colors) or ANSI code
-"let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-
-" Color name (:help gui-colors) or RGB color
-"let g:limelight_conceal_guifg = 'DarkGray'
-let g:limelight_conceal_guifg = '#222222'
-
-" Default: 0.5
-let g:limelight_default_coefficient = 0.7
-
-" Number of preceding/following paragraphs to include (default: 0)
-let g:limelight_paragraph_span = 1
-
-" Beginning/end of paragraph
-"   When there's no empty line between the paragraphs
-"   and each paragraph starts with indentation
-let g:limelight_bop = '^\s'
-let g:limelight_eop = '\ze\n^\s'
-
-" Highlighting priority (default: 10)
-"   Set it to -1 not to overrule hlsearch
-let g:limelight_priority = -1
-
-" }}}2
-
-" }}}1
-
 " Divers {{{1
 
-" Unimpaired (tpope/vim-unimpaired) {{{2
+" LineJuggler  {{{2
+
+" (/)space pour ajouter une ligne
+" (/)e pour échanger deux lignes
 
 nmap ( [
 nmap ) ]

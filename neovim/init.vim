@@ -384,17 +384,21 @@ set smartcase
 
 " Grep {{{2
 
-set grepprg=grep\ --line-number\ --ignore-case\ --no-messages\ $*\ /dev/null
-
-"set grepprg=internal
-
-" if executable('ag')
-" 	set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
-" 	set grepformat=%f:%l:%c:%m
-" elseif executable('ack')
-" 	set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
-" 	set grepformat=%f:%l:%c:%m
-" endif
+if executable('rg')
+	set grepprg=rg\ --vimgrep\ --smart-case\ $*
+	set grepformat=%f:%l:%c:%m
+elseif executable('ag')
+	set grepprg=ag\ --nocolor\ --vimgrep\ --smart-case\ $*
+	set grepformat=%f:%l:%c:%m
+elseif executable('ack')
+	set grepprg=ack\ --nocolor\ --nogroup\ --column\ --smart-case\ $*
+	set grepformat=%f:%l:%c:%m
+elseif  executable('grep')
+	set grepprg=grep\ --line-number\ --ignore-case\ --no-messages\ $*\ /dev/null
+	set grepformat=%f:%l:%m
+else
+	set grepprg=internal
+endif
 
 " }}}2
 
@@ -911,20 +915,12 @@ nnoremap <F6> :<c-u>EditSyntaxPlugin<cr>
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
 
-nnoremap <m-g> :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
-
 nnoremap <m-f> :find<space>
-
-nnoremap <m-r> :r <C-R>=expand('%:p:h') . '/*' <CR><C-D>
+nnoremap <m-g> :silent grep!<space>
 
 nnoremap <m-d> :cd <C-R>=expand('%:p:h') . '/'<CR>
 
-nnoremap <m-w> :wa<cr>
-nnoremap <m-s-w> :w <C-R>=expand('%:p:h') . '/' <CR>
-
-"nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR>
-
-"nnoremap <m-s-v> :silent execute '! rotation.zsh ' . expand('%:p:h') . '/.neovim/backup &> ~/log/edit/rotation-backup.log'<cr>
+nnoremap <m-i> :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
 
 " }}}2
 
@@ -985,6 +981,13 @@ nnoremap <m-down>  <c-w><down>
 
 nnoremap <m-tab>  <c-w>w
 nnoremap <s-tab>  <c-w>p
+
+" Les mouvements directionnels sont aussi accessible via h j k l
+
+nnoremap <left>  <c-w><left>
+nnoremap <right> <c-w><right>
+nnoremap <up>    <c-w><up>
+nnoremap <down>  <c-w><down>
 
 " }}}2
 
@@ -1105,6 +1108,16 @@ nnoremap ' `
 " }}}2
 
 "  Recherche & Remplacement {{{2
+
+" Recherche {{{3
+
+" Bof
+
+"nnoremap = /
+"nnoremap / =
+"nnoremap // ==
+
+" }}}3
 
 " Recherche d’un mot {{{3
 

@@ -2,4 +2,4 @@
 
 GuiFont Monospace:h11
 
-GuiLineSpace 0
+"GuiLineSpace 0

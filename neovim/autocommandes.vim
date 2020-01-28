@@ -1,8 +1,10 @@
 " vim: set filetype=vim :
 
-if has("autocmd")
+if !has("autocmd")
+	finish
+endif
 
-" {{{ Démarrage
+" Démarrage {{{1
 
 augroup Demarrage
 
@@ -12,96 +14,110 @@ augroup Demarrage
 
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Tous les fichiers
-" ------------------------------------------------------------------------
+"  Tous les fichiers {{{1
 
 augroup TousLesFichiers
 
 	au!
 
-	" {{{ Restore le curseur
+	" Restore le curseur {{{2
 
 	autocmd BufReadPost *
 		\ if line("'\"") > 1 && line("'\"") <= line("$") |
 		\ 	exe "normal! g`\"" |
 		\ endif
 
-	" }}}
+	" }}}2
 
-	" {{{ Pliage et position du curseur dans la fenêtre
+	" Pliage et position du curseur dans la fenêtre {{{2
 
 	" Pas besoin de zz2<C-E> car zx est déjà mappé
 
 	au BufRead * normal zx
 
-	" }}}
+	" }}}2
 
-	" {{{ Crée le répertoire de backup s’il n’existe pas encore
+	" Crée le répertoire de backup s’il n’existe pas encore {{{2
 
 " 	autocmd BufReadPost *
 " 		\ if filewritable(expand('%:p:h')) && ! isdirectory(expand('%:p:h') . '/.neovim/backup/ancien') |
 " 		\	call mkdir(expand('%:p:h') . '/.neovim/backup/ancien', 'p') |
 " 		\ endif
 
-	" }}}
+	" }}}2
 
-	"  {{{ Ne déplace pas le curseur lorsque la fenêtre gagne le focus
+	"  Ne déplace pas le curseur lorsque la fenêtre gagne le focus {{{2
 
 	au FocusGained * call getchar(0)
 
-	" }}}
+	" }}}2
 
 augroup END
 
-" }}}
+" }}}1
 
-" {{{ Répertoires de travail
+" Répertoires de travail {{{1
 
 augroup RepertoiresDeTravail
 
 	au!
 
-	" {{{ Semblable à autochdir
+	" Semblable à autochdir {{{2
 
 	"au BufEnter * lcd %:p:h
 
-	" }}}
+	" }}}2
 
-	" {{{ Par projet
+	" Par projet {{{2
 
-	au BufEnter ~/racine/plain/**/*     set tags=~/racine/plain/tags
-	au BufEnter ~/racine/site/**/*     set tags=~/racine/site/tags
+	"au BufEnter ~/racine/plain/**/*     set tags=~/racine/plain/tags
+	"au BufEnter ~/racine/site/**/*     set tags=~/racine/site/tags
 
-	au BufEnter ~/racine/shell/**/*     set tags=~/racine/shell/tags
+	"au BufEnter ~/racine/shell/**/*     set tags=~/racine/shell/tags
 
-	au BufEnter ~/racine/config/cmdline/**/*     set tags=~/racine/config/cmdline/tags
-	au BufEnter ~/racine/config/edit/**/*     set tags=~/racine/config/edit/tags
+	"au BufEnter ~/racine/config/cmdline/**/*     set tags=~/racine/config/cmdline/tags
+	"au BufEnter ~/racine/config/edit/**/*     set tags=~/racine/config/edit/tags
 
-	" }}}
+	" }}}2
+
+	" Basé sur tab directory {{{2
+
+	" Interfère avec ctrlspace
+
+	"function! OnTabEnter(path)
+		"if isdirectory(a:path)
+			"let dirname = a:path
+		"else
+			"let dirname = fnamemodify(a:path, ":h")
+		"endif
+		"execute "tcd ". dirname
+	"endfunction
+
+	"autocmd TabNewEntered * call OnTabEnter(expand("<amatch>"))
+
+	" }}}2
 
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Configuration
-" ------------------------------------------------------------------------
+"  Configuration {{{1
 
 augroup RechargementConfiguration
 
 	au!
 
-	au bufwritepost ~/racine/config/edit/neovim/colors/personnel.vim colorscheme personnel
+	au bufwritepost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
 
 	au bufwritepost ~/racine/config/edit/neovim/after/syntax/** source %
 
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Shell
-" ------------------------------------------------------------------------
+"  Shell {{{1
 
 augroup ShellHistorique
 
@@ -111,10 +127,9 @@ augroup ShellHistorique
 
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Fenêtre quickfix
-" ------------------------------------------------------------------------
+"  Fenêtre quickfix {{{1
 
 augroup FenetreQuickFixNeovimGrep
 
@@ -124,10 +139,9 @@ augroup FenetreQuickFixNeovimGrep
 
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Fenêtre d’historique
-" ------------------------------------------------------------------------
+"  Fenêtre d’historique {{{1
 
 set cmdwinheight=18		" Hauteur de la fenêtre d'historique
 
@@ -144,9 +158,9 @@ augroup FenetreHistorique
 
 augroup END
 
-" }}}
+" }}}1
 
-" {{{ Fichiers temporaire
+" Fichiers temporaire {{{1
 
 augroup FichiersTemporaires
 
@@ -156,10 +170,9 @@ augroup FichiersTemporaires
 
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Newsrc
-" ------------------------------------------------------------------------
+"  Newsrc {{{1
 
 augroup Nouvelles
 	au!
@@ -168,10 +181,9 @@ augroup Nouvelles
 	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs$/ :&/
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Chat
-" ------------------------------------------------------------------------
+"  Chat {{{1
 
 augroup Chaton
 	au!
@@ -195,26 +207,24 @@ augroup Chaton
 
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Fichier de génération de listes de lecture m3u
-" ------------------------------------------------------------------------
+"  Fichier de génération de listes de lecture m3u {{{1
 
 augroup ListesDeLecture
 	au!
 
 	" Perturbe CtrlSpace
 
-	"au BufEnter ~/music/list/*.gen lcd ~/audio
+	au BufEnter ~/racine/musica/list/*.gen lcd ~/audio
 
 augroup END
 
-" }}}
+" }}}1
 
-" {{{ Types de fichiers
+" Types de fichiers {{{1
 
-"  {{{ Allocation des types
-" ------------------------------------------------------------------------
+"  Allocation des types {{{2
 
 augroup DetectionDesTypesDeFichiers
 
@@ -225,9 +235,9 @@ augroup DetectionDesTypesDeFichiers
 
 augroup END
 
-" }}}
+" }}}2
 
-" {{{ Tabulation
+" Tabulation {{{2
 
 " Syntax of these languages is fussy over tabs Vs spaces
 autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
@@ -238,11 +248,11 @@ autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 
-" }}}
+" }}}2
 
 " ------------------------------------
 
-" {{{ FichierVim
+" FichierVim {{{2
 
 augroup FichierVim
 
@@ -253,9 +263,9 @@ augroup FichierVim
 
 augroup END
 
-" }}}
+" }}}2
 
-" {{{ FichiersLisp
+" FichiersLisp {{{2
 
 augroup FichiersLisp
 
@@ -266,9 +276,9 @@ augroup FichiersLisp
 
 augroup END
 
-" }}}
+" }}}2
 
-" {{{ FichiersSlang
+" FichiersSlang {{{2
 
 augroup FichiersSlang
 
@@ -278,9 +288,21 @@ augroup FichiersSlang
 
 augroup END
 
-" }}}
+" }}}2
 
-" {{{ FichiersHtml
+" FichiersMarkdown {{{2
+
+augroup FichiersMarkdown
+
+	au!
+
+	au bufwritepost **.md !pandoc -t html % -o %:r.html
+
+augroup END
+
+" }}}2
+
+" FichiersHtml {{{2
 
 augroup FichiersHtml
 
@@ -294,9 +316,9 @@ augroup FichiersHtml
 
 augroup END
 
-" }}}
+" }}}2
 
-" {{{ Fichiers openDocument
+" Fichiers openDocument {{{2
 
 augroup FichiersOpenDoc
 
@@ -307,9 +329,9 @@ augroup FichiersOpenDoc
 
 augroup END
 
-" }}}
+" }}}2
 
-" {{{ FichiersImages
+" FichiersImages {{{2
 
 augroup FichiersImages
 
@@ -320,9 +342,9 @@ augroup FichiersImages
 
 augroup END
 
-" }}}
+" }}}2
 
-" {{{ FichiersAudio
+" FichiersAudio {{{2
 
 augroup FichiersAudio
 
@@ -334,9 +356,9 @@ augroup FichiersAudio
 
 augroup END
 
-" }}}
+" }}}2
 
-" {{{ FichiersDoc
+" FichiersDoc {{{2
 
 augroup FichiersDoc
 
@@ -347,9 +369,9 @@ augroup FichiersDoc
 
 augroup END
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
 " Man pager {{{1
 
@@ -370,5 +392,3 @@ augroup manlaunchtoc
 augroup end
 
 " }}}1
-
-endif

@@ -66,9 +66,9 @@ call denite#custom#source(
 
 " Mappings {{{3
 
-nnoremap <C-F1>       :<c-u>Unite -prompt-direction=top<space>
+nnoremap <F11>u       :<c-u>Unite -prompt-direction=top<space>
 
-nnoremap <C-F2>       :<c-u>Unite -prompt-direction=top source<cr>
+nnoremap <S-F11>u     :<c-u>Unite -prompt-direction=top source<cr>
 
 "nnoremap z=         :<c-u>Unite -winheight=15 spell_suggest<cr>
 
@@ -173,21 +173,5 @@ call unite#custom#source('neomru/file', 'ignore_globs',
 " }}}1
 
 " Modes {{{1
-
-"  Submode (kana/vim-submode) {{{2
-
-call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
-call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
-call submode#leave_with('undo/redo', 'n', '', '<Esc>')
-call submode#map('undo/redo', 'n', '', '-', 'g-')
-call submode#map('undo/redo', 'n', '', '+', 'g+')
-
-call submode#enter_with('change-list', 'n', '', 'g;', 'g;')
-call submode#enter_with('change-list', 'n', '', 'g,', 'g,')
-call submode#leave_with('change-list', 'n', '', '<Esc>')
-call submode#map('change-list', 'n', '', ';', 'g;')
-call submode#map('change-list', 'n', '', ',', 'g,')
-
-" }}}2
 
 " }}}1
