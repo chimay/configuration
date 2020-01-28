@@ -683,9 +683,9 @@ nnoremap ° :locate<space>
 
 " Display sorting dialog
 
-nnoremap o :sort<cr>
+nnoremap s :sort<cr>
 
-nnoremap O :invert o<cr>
+nnoremap S :invert o<cr>
 
 " }}}2
 
@@ -813,7 +813,7 @@ map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 " Autres opérations sur fichiers {{{2
 
 " Ouverture
-nnoremap <m-f> :f<cr>
+nnoremap o :f<cr>
 
 nnoremap <m-d> :mkdir!<space>
 
