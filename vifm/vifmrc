@@ -650,13 +650,17 @@ nnoremap <PageDown> <C-F>
 
 " Sélectionner {{{2
 
-nnoremap <space> :select<space>
+nnoremap <space> t
+
+nnoremap t :select<space>
 
 " }}}2
 
 " Signets {{{2
 
+nnoremap M :bmark<space>
 nnoremap <m-b> :bmarks<space>
+
 nnoremap <m-m> :marks<cr>
 
 " }}}2
@@ -782,11 +786,14 @@ nnoremap àc :clone<cr>
 " dd : envoie vers corbeille vifm
 "
 " restauration :
-"   * r dans :lstrash
-"   * yy les fichiers dans la corbeille et p dans le
-"                répertoire de destination
+"   * dans :lstrash : r
+"   * dans :trashes :
+"       yy les fichiers dans la corbeille et
+"       p dans le répertoire de destination
 
 nnoremap <lt> :lstrash<cr>
+nnoremap > :trashes<cr>
+
 nnoremap <m-q> :lstrash<cr>
 nnoremap <c-q> :trashes?<cr>
 
