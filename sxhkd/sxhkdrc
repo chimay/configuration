@@ -1,0 +1,248 @@
+#
+# wm independent hotkeys
+#
+
+# Applications {{{1
+
+super + colon
+	zshrun.sh
+
+hyper + colon
+	rofi-meta.zsh
+
+super + ctrl + x
+	xclock
+
+hyper + {dollar, exclam, Return}
+	{kitty, xterm, urxvtc}
+
+super + ctrl + section
+	kitty vifmrun
+
+super + ctrl + k
+	kitty kak
+
+super + ctrl + {e,n,v}
+	{lance-emacs-client.zsh,lance-neovim.zsh,lance-gvim.zsh}
+
+super + ctrl + {q,f,b}
+	{qutebrowser,firefox,brave}
+
+# }}}1
+
+# Bspwm {{{1
+
+# Restart
+hyper + shift + r
+	bspc wm -r
+
+# Déconnexion
+hyper + shift + d
+	rofi-prompt.zsh bspc quit
+
+# Éteindre
+hyper + shift + q
+	rofi-eteindre.zsh
+
+# Close
+hyper + shift + x
+	bspc node -c
+
+hyper + l
+	i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png
+
+# Rotate
+hyper + r
+	bspc node -R 90
+
+# Circulate ->
+hyper + n
+	bspc node @/ -C forward
+super + Next
+	bspc node @/ -C forward
+
+# Circulate <-
+hyper + p
+	bspc node @/ -C backward
+super + Prior
+	bspc node @/ -C backward
+
+# Fullscreen
+hyper + f
+	bspc node -t '~fullscreen' ; polybar-msg cmd toggle
+shift + F12
+	bspc node -t '~fullscreen' ; polybar-msg cmd toggle
+
+# Floating
+hyper + ampersand
+	bspc node -t '~floating'
+
+# Flip
+hyper + percent
+	bspc node -F
+
+# Equalize
+hyper + equal
+	bspc node -E
+
+# Balance
+hyper + b
+	bspc node -B
+
+# <- desktop ->
+super + {Home,End}
+	bspc desktop -f {prev,next}.local
+
+# <- window ->
+super + {Left,Up,Down,Right}
+	bspc node -f {west,north,south,east}
+
+# <- move window ->
+super + shift + {Left,Up,Down,Right}
+	bspc node -s {west,north,south,east}
+
+# alternate
+super + {Tab, BackSpace}
+	bspc {node,desktop} -f last
+
+# <- history ->
+hyper + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+super + {_,shift + }F{1-9,10}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+hyper + shift + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+hyper + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# }}}1
+
+# Examples {{{1
+
+# # terminal emulator
+# super + Return
+# 	urxvt
+#
+# # program launcher
+# super + @space
+# 	dmenu_run
+#
+# # make sxhkd reload its configuration files:
+# super + Escape
+# 	pkill -USR1 -x sxhkd
+#
+# #
+# # bspwm hotkeys
+# #
+#
+# # quit/restart bspwm
+# super + alt + {q,r}
+# 	bspc {quit,wm -r}
+#
+# # close and kill
+# super + {_,shift + }w
+# 	bspc node -{c,k}
+#
+# # alternate between the tiled and monocle layout
+# super + m
+# 	bspc desktop -l next
+#
+# # send the newest marked node to the newest preselected node
+# super + y
+# 	bspc node newest.marked.local -n newest.!automatic.local
+#
+# # swap the current node and the biggest node
+# super + g
+# 	bspc node -s biggest
+#
+# #
+# # state/flags
+# #
+#
+# # set the window state
+# super + {t,shift + t,s,f}
+# 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+#
+# # set the node flags
+# super + ctrl + {m,x,y,z}
+# 	bspc node -g {marked,locked,sticky,private}
+#
+# #
+# # focus/swap
+# #
+#
+# # focus the node in the given direction
+# super + {_,shift + }{h,j,k,l}
+# 	bspc node -{f,s} {west,south,north,east}
+#
+# # focus the node for the given path jump
+# super + {p,b,comma,period}
+# 	bspc node -f @{parent,brother,first,second}
+#
+# # focus the next/previous node in the current desktop
+# super + {_,shift + }c
+# 	bspc node -f {next,prev}.local
+#
+# # focus the next/previous desktop in the current monitor
+# super + bracket{left,right}
+# 	bspc desktop -f {prev,next}.local
+#
+# # focus the last node/desktop
+# super + {grave,Tab}
+# 	bspc {node,desktop} -f last
+#
+# # focus the older or newer node in the focus history
+# super + {o,i}
+# 	bspc wm -h off; \
+# 	bspc node {older,newer} -f; \
+# 	bspc wm -h on
+#
+# # focus or send to the given desktop
+# super + {_,shift + }{1-9,0}
+# 	bspc {desktop -f,node -d} '^{1-9,10}'
+#
+# #
+# # preselect
+# #
+#
+# # preselect the direction
+# super + ctrl + {h,j,k,l}
+# 	bspc node -p {west,south,north,east}
+#
+# # preselect the ratio
+# super + ctrl + {1-9}
+# 	bspc node -o 0.{1-9}
+#
+# # cancel the preselection for the focused node
+# super + ctrl + space
+# 	bspc node -p cancel
+#
+# # cancel the preselection for the focused desktop
+# super + ctrl + shift + space
+# 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+#
+# #
+# # move/resize
+# #
+#
+# # expand a window by moving one of its side outward
+# super + alt + {h,j,k,l}
+# 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+#
+# # contract a window by moving one of its side inward
+# super + alt + shift + {h,j,k,l}
+# 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+#
+# # move a floating window
+# super + {Left,Down,Up,Right}
+# 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# }}}1

@@ -1,0 +1,117 @@
+#! /bin/zsh
+
+# Autostart {{{1
+
+autostart.zsh
+
+alias psgrep='ps auxww | grep -v grep | grep --color=never'
+
+psgrep xterm || xterm &
+psgrep sxhkd || sxhkd >>&! ~/log/sxhkd.log &
+
+polybar.zsh
+#psgrep polybar || polybar example >>&! ~/log/polybar.log &
+
+# }}}1
+
+bspc rule -r "*"
+
+# Monitor {{{1
+
+bspc monitor -d term text browser office artisan entertain misc
+
+# }}}1
+
+# Desktops {{{1
+
+bspc desktop -f term
+
+# }}}1
+
+# Config {{{1
+
+bspc config automatic_scheme            spiral
+
+bspc config border_width         2
+bspc config window_gap           7
+
+bspc config split_ratio          0.618
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+# }}}1
+
+# Rules {{{1
+
+# Desktops {{{2
+
+bspc rule -a kitty desktop=term
+bspc rule -a XTerm desktop=term
+
+bspc rule -a Gvim desktop=text
+bspc rule -a nvim-qt desktop=text
+bspc rule -a Emacs desktop=text
+
+bspc rule -a qutebrowser desktop=browser
+bspc rule -a firefox desktop=browser
+bspc rule -a Brave-browser desktop=browser
+bspc rule -a Thunderbird desktop=browser
+
+bspc rule -a Zathura desktop=office
+
+bspc rule -a GeoGebra desktop=artisan
+bspc rule -a MuseScore3 desktop=artisan
+
+bspc rule -a vlc desktop=entertain
+
+bspc rule -a net-sourceforge-jnlp-runtime-Boot desktop=misc
+bspc rule -a sun-awt-X11-XFramePeer desktop=misc
+bspc rule -a java-lang-Thread desktop=misc
+
+# bspc rule -a kitty desktop='^1'
+#
+# bspc rule -a Gvim desktop='^2'
+# bspc rule -a nvim-qt desktop='^2'
+# bspc rule -a Emacs desktop='^2'
+#
+# bspc rule -a qutebrowser desktop='^3'
+# bspc rule -a firefox desktop='^3'
+# bspc rule -a Brave desktop='^3'
+# bspc rule -a Thunderbird desktop='^3'
+#
+# bspc rule -a Zathura desktop='^3'
+#
+# bspc rule -a GeoGebra desktop='^5'
+# bspc rule -a MuseScore3 desktop='^5'
+#
+# bspc rule -a vlc desktop='^6'
+#
+# bspc rule -a net-sourceforge-jnlp-runtime-Boot desktop='^7'
+# bspc rule -a sun-awt-X11-XFramePeer desktop='^7'
+# bspc rule -a java-lang-Thread desktop='^7'
+
+# }}}2
+
+# Tiled {{{2
+
+bspc rule -a Emacs  state=tiled
+
+# }}}2
+
+# Floating {{{2
+
+bspc rule -a XClock                     state=floating
+bspc rule -a URxvt                      state=floating
+bspc rule -a Vimiv                      state=floating
+bspc rule -a Sxiv                       state=floating
+bspc rule -a Pavucontrol                state=floating
+bspc rule -a Zenity                     state=floating
+bspc rule -a Xfce4-appfinder            state=floating
+bspc rule -a Pamac-manager              state=floating
+bspc rule -a Caja                       state=floating
+bspc rule -a "Manjaro Settings Manager" state=floating
+bspc rule -a Asunder                    state=floating
+
+# }}}2
+
+# }}}1
