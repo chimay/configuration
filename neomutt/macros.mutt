@@ -38,17 +38,23 @@
 #
 # et :
 #
-# 	~/racine/config/mail/neomutt/raccourcis.mutt
+# 	~/racine/config/mail/neomutt/bindings.mutt
+
+# }}}1
+
+# Nettoyage du préfixe {{{1
+
+bind index @ noop
+bind pager @ noop
 
 # }}}1
 
 # Recharge la configuration {{{1
-# ------------------------------------------------------------------------
 
 # enter-command accède à la ligne de commande de type ex ":"
 
-macro index @ '<enter-command>source $my_muttroot/neomuttrc<enter>'
-macro pager @ '<enter-command>source $my_muttroot/neomuttrc<enter>'
+macro index @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
+macro pager @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
 
 # }}}1
 
@@ -64,8 +70,8 @@ macro pager \c^ '<change-folder>-<enter>'
 
 # Nettoyage du cache {{{1
 
-macro index ,c '<enter-command>set message_cache_clean=yes<enter>'
-macro pager ,c '<enter-command>set message_cache_clean=yes<enter>'
+macro index @c '<enter-command>set message_cache_clean=yes<enter>'
+macro pager @c '<enter-command>set message_cache_clean=yes<enter>'
 
 # }}}1
 
@@ -76,7 +82,6 @@ macro pager L <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 # }}}1
 
 # Ouverture du mail dans un navigateur {{{1
-# ------------------------------------------------------------------------
 
 macro attach V \
 	"<pipe-entry>cat >| ~/racine/varia/cache/neomutt/html/mail.html \
@@ -96,7 +101,13 @@ macro index,pager  £ "<pipe-message>abook --add-email-quiet<return>" "Add this 
 macro pager + '<enter-command>source $my_muttroot/scripts/incremente-index-pager.sh|<enter>'
 macro pager - '<enter-command>source $my_muttroot/scripts/decremente-index-pager.sh|<enter>'
 
-macro pager ,= '<enter-command>set pager_index_lines='
+macro pager @= '<enter-command>set pager_index_lines='
+
+# }}}1
+
+# Impression {{{1
+
+macro index,pager @p '<pipe-message>lp -o number-up=2 -o Duplex=DuplexTumble'
 
 # }}}1
 
@@ -104,22 +115,22 @@ macro pager ,= '<enter-command>set pager_index_lines='
 
 # Affiche les messages non lus
 
-macro index ,n '<limit>~O | ~N<enter><enter-command>exec collapse-all<enter>'
-macro pager ,n '<limit>~O | ~N<enter><enter-command>exec collapse-all<enter>'
+macro index @n '<limit>~O | ~N<enter><enter-command>exec collapse-all<enter>'
+macro pager @n '<limit>~O | ~N<enter><enter-command>exec collapse-all<enter>'
 
 # Affiche les messages de moins de 7 jours
 
-macro index ,r '<limit>~d <7d<enter><enter-command>exec collapse-all<enter>'
-macro pager ,r '<limit>~d <7d<enter><enter-command>exec collapse-all<enter>'
+macro index @r '<limit>~d <7d<enter><enter-command>exec collapse-all<enter>'
+macro pager @r '<limit>~d <7d<enter><enter-command>exec collapse-all<enter>'
 
 # Affiche les messages importants
 
-macro index ,i '<limit>~F<enter><enter-command>exec collapse-all<enter>'
-macro pager ,i '<limit>~F<enter><enter-command>exec collapse-all<enter>'
+macro index @i '<limit>~F<enter><enter-command>exec collapse-all<enter>'
+macro pager @i '<limit>~F<enter><enter-command>exec collapse-all<enter>'
 
 # Macro qui affiche tous les messages
 
-macro index ,a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
-macro pager ,a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
+macro index @a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
+macro pager @a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
 
 # }}}1

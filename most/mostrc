@@ -1,0 +1,305 @@
+% vim: set filetype=most :
+
+% ------------------------------------------------------------------------
+%  Couleurs
+% ------------------------------------------------------------------------
+
+%color normal black white
+%color status yellow blue
+%color underline green white
+%color overstrike brightred white
+
+%color normal lightgray black
+%color status yellow blue
+%color underline yellow black
+%color overstrike brightblue black
+
+% ------------------------------------------------------------------------
+%  Commandes
+% ------------------------------------------------------------------------
+
+unsetkey "^K"
+unsetkey "g"
+unsetkey "G"
+unsetkey ":"
+
+setkey next_file ":n"
+setkey find_file ":e"
+setkey next_file ":p"
+setkey toggle_options ":o"
+setkey toggle_case ":c"
+setkey delete_file ":d"
+setkey exit ":q"
+
+setkey bob "g"
+setkey eob "G"
+setkey down "e"
+setkey down "E"
+setkey down "j"
+setkey down "^N"
+setkey up "y"
+setkey up "^Y"
+setkey up "k"
+setkey up "^P"
+setkey up "^K"
+setkey page_down "f"
+setkey page_down "^F"
+setkey page_up "b"
+setkey page_up "^B"
+setkey other_window "z"
+setkey other_window "w"
+setkey search_forward ";"
+setkey search_backward "?"
+setkey bob "p"
+setkey goto_mark "'"
+setkey find_file "E"
+setkey edit "v"
+
+% ------------------------------------------------------------------------
+% Defaut
+% ------------------------------------------------------------------------
+
+% Color settings
+
+%color normal lightgray black
+%color status yellow blue
+%color underline brightgreen black
+%color overstrike brightred black
+
+% Keybindings
+
+%setkey digit_arg		dig
+%setkey digit_arg		esc dig
+%setkey digit_arg		gold dig
+%setkey column_left	< Not Set >
+%setkey column_right	< Not Set >
+
+%setkey page_down		" "
+%setkey suspend			"$"
+%setkey goto_percent		"%"
+%setkey goto_mark		","
+%setkey search_forward		"/"
+%setkey extended_key		":"
+%setkey page_left		"<"
+%setkey page_right		">"
+%setkey search_backward		"?"
+%setkey eob			"B"
+%setkey page_down		"D"
+%setkey edit			"E"
+%setkey search_forward		"F"
+%setkey goto_line		"G"
+%setkey help			"H"
+%setkey goto_line		"J"
+%setkey toggle_lock		"L"
+%setkey set_mark			"M"
+%setkey find_next		"N"
+%setkey other_window		"O"
+%setkey exit			"Q"
+%setkey redraw			"R"
+%setkey search_forward		"S"
+%setkey bob			"T"
+%setkey page_up 			"U"
+%setkey down			"V"
+%setkey toggle_width		"W"
+%setkey exit			"X"
+%setkey suspend			"\033$"
+%setkey bob			"\033<"
+%setkey eob			"\033>"
+%setkey up			"\033OA"
+%setkey down			"\033OB"
+%setkey page_right		"\033OC"
+%setkey page_left		"\033OD"
+%setkey exit			"\033OPE"
+%setkey one_window		"\033OPO"
+%setkey exit			"\033OPQ"
+%setkey suspend			"\033OPS"
+%setkey delete_window		"\033OPV"
+%setkey two_windows		"\033OPX"
+%setkey edt_find			"\033OP\033OR"
+%setkey goto_mark		"\033OP\033On"
+%setkey eob			"\033OP\033Ot"
+%setkey bob			"\033OP\033Ou"
+%setkey other_window		"\033OP\033[A"
+%setkey other_window		"\033OP\033[B"
+%setkey page_right		"\033OP\033[C"
+%setkey page_left		"\033OP\033[D"
+%setkey help			"\033OQ"
+%setkey edt_find_next		"\033OR"
+%setkey set_mark			"\033On"
+%setkey edt_line			"\033Op"
+%setkey edt_forward		"\033Ot"
+%setkey edt_backward		"\033Ou"
+%setkey edt_page			"\033Ox"
+%setkey page_up 			"\033V"
+%setkey search_forward		"\033[1~"
+%setkey goto_mark		"\033[2~"
+%setkey help			"\033[28~"
+%setkey set_mark			"\033[4~"
+%setkey page_up    		"\033[5~"
+%setkey page_down		"\033[6~"
+%setkey up			"\033[A"
+%setkey down			"\033[B"
+%setkey page_right		"\033[C"
+%setkey page_left		"\033[D"
+%setkey page_right		"\t"
+%setkey up			"^"
+%setkey page_up 			"^?"
+%setkey set_mark			"^@"
+%setkey page_down		"^D"
+%setkey search_forward		"^F"
+%setkey help			"^H"
+%setkey exit			"^KE"
+%setkey find_file		"^KG"
+%setkey set_mark			"^K^B"
+%setkey goto_mark		"^K^J"
+%setkey goto_mark		"^K^M"
+%setkey redraw			"^L"
+%setkey down			"^M"
+%setkey down			"^N"
+%setkey up			"^P"
+%setkey redraw			"^R"
+%setkey show_time		"^T"
+%setkey page_up 			"^U"
+%setkey page_down		"^V"
+%setkey delete_window		"^W0"
+%setkey one_window		"^W1"
+%setkey two_windows		"^W2"
+%setkey other_window		"^WO"
+%setkey delete_window		"^X0"
+%setkey one_window		"^X1"
+%setkey two_windows		"^X2"
+%setkey other_window		"^XO"
+%setkey exit			"^X^C"
+%setkey find_file		"^X^F"
+%setkey suspend			"^Z"
+%setkey eob			"b"
+%setkey page_down		"d"
+%setkey edit			"e"
+%setkey search_forward		"f"
+%setkey goto_line		"g"
+%setkey goto_line		"j"
+%setkey toggle_lock		"l"
+%setkey set_mark			"m"
+%setkey find_next		"n"
+%setkey other_window		"o"
+%setkey exit			"q"
+%setkey redraw			"r"
+%setkey search_forward		"s"
+%setkey bob			"t"
+%setkey down			"v"
+%setkey toggle_width		"w"
+%setkey exit			"x"
+
+% ------------------------------------------------------------------------
+% Less emulation
+% ------------------------------------------------------------------------
+
+% This is an example configuration file that provides a `less' emulation
+% for MOST.
+%
+% The format is simple:
+%       setkey <function-name> <key-name>
+%       unsetkey <key-name>
+%       color <object-name> <fg> <bg>
+%
+% Here <key-name> must be enclosed in double quotes.  '^' represents Ctrl.
+% The function name is not in double quotes.
+%
+%
+% When MOST starts up, it looks for a keymap file given by the environment
+% variable MOST_INITFILE.  If that environment variable does not exist,
+% MOST will look in the users HOME directory for .mostrc on Unix systems
+% and MOST.RC on VMS systems.
+%
+% The file `most.rc' contains a listing of the default MOST keybindings.
+
+% Color settings
+
+%color normal lightgray black
+%color status yellow blue
+%color underline brightgreen black
+%color overstrike brightred black
+
+% Keybindings
+
+%unsetkey "^K"
+%setkey up "^K"
+
+%unsetkey ":"
+%setkey next_file ":n"
+%setkey find_file ":e"
+%setkey next_file ":p"
+%setkey toggle_options ":o"
+%setkey toggle_case ":c"
+%setkey delete_file ":d"
+%setkey exit ":q"
+
+%setkey down "e"
+%setkey down "E"
+%setkey down "j"
+%setkey down "^N"
+%setkey up "y"
+%setkey up "^Y"
+%setkey up "k"
+%setkey up "^P"
+%setkey page_down "f"
+%setkey page_down "^F"
+%setkey page_up "b"
+%setkey page_up "^B"
+%setkey other_window "z"
+%setkey other_window "w"
+%setkey search_backward "?"
+%setkey bob "p"
+%setkey goto_mark "'"
+%setkey find_file "E"
+%setkey edit "v"
+
+% ------------------------------------------------------------------------
+% Fonctions disponibles
+% ------------------------------------------------------------------------
+
+% The following functions may be used in custom keymaps:
+
+%edit
+%suspend
+%toggle_lock
+%next_file
+%toggle_options
+%extended_key
+%toggle_case
+%delete_file
+%bob
+%delete_window
+%digit_arg
+%down
+%edt_backward
+%edt_find
+%edt_find_next
+%edt_forward
+%edt_line
+%edt_page
+%eob
+%exit
+%find_file
+%find_next
+%goto_line
+%goto_mark
+%goto_percent
+%help
+%one_window
+%other_window
+%page_down
+%page_left
+%page_right
+%column_right
+%column_left
+%page_up
+%redraw
+%search_backward
+%search_forward
+%set_mark
+%show_time
+%tail_mode
+%toggle_width
+%two_windows
+%up

@@ -52,6 +52,8 @@ bind generic <pagedown> next-page
 bind generic / search
 bind generic ? search-reverse
 
+bind generic , search
+
 bind generic n search-next
 bind generic N search-opposite
 
@@ -108,7 +110,7 @@ bind index '#' break-thread
 bind index <return> display-message
 
 bind index H display-toggle-weed
-bind index @ display-address
+bind index \cg display-address
 
 bind index é limit
 bind index è show-limit
@@ -173,6 +175,8 @@ bind index - previous-subthread
 
 bind index / search
 bind index ? search-reverse
+
+bind index , search
 
 bind index n search-next
 bind index N search-opposite
@@ -308,7 +312,7 @@ bind pager '#' break-thread
 # Affichage {{{2
 
 bind pager H display-toggle-weed
-bind pager @ display-address
+bind pager \cg display-address
 
 bind pager o sort-mailbox
 bind pager O sort-reverse
@@ -367,6 +371,8 @@ bind index \> next-subthread
 bind pager / search
 bind pager ? search-reverse
 
+bind pager , search
+
 bind pager n search-next
 bind pager N search-opposite
 
@@ -377,6 +383,8 @@ bind pager N search-opposite
 bind pager m noop
 
 bind pager mm mail
+
+bind pager µ reply
 
 bind pager mb bounce-message
 bind pager mc recall-message
@@ -458,6 +466,8 @@ bind pager | pipe-message
 # }}}1
 
 # Attach {{{1
+
+bind attach h help
 
 # Affichage {{{2
 
@@ -574,52 +584,68 @@ bind query A query-append
 
 bind compose h help
 
-bind compose a attach-file
-bind compose A attach-message
-bind compose d detach-file
-bind compose r rename-file
+bind compose m noop
 
-bind compose i toggle-disposition
+bind compose µ edit-message
 
-bind compose e noop
+bind compose mb edit-bcc
+bind compose mc edit-cc
+bind compose md edit-description
+bind compose me edit-encoding
+bind compose mf edit-from
+bind compose mh edit-headers
+bind compose mm edit-message
+bind compose mr edit-reply-to
+bind compose ms edit-subject
+bind compose mt edit-to
 
-bind compose eb edit-bcc
-bind compose ec edit-cc
-bind compose ed edit-description
-bind compose ee edit-encoding
-bind compose ef edit-from
-bind compose eh edit-headers
-bind compose em edit-message
-bind compose er edit-reply-to
-bind compose es edit-subject
-bind compose et edit-to
+bind compose mF edit-file
+bind compose mM edit-mime
 
-bind compose eF edit-file
-bind compose eM edit-mime
-bind compose eT edit-type
+bind compose m\ef edit-fcc
 
-bind compose e\ef edit-fcc
+bind compose w copy-file
+bind compose ç write-fcc
+
+bind compose y send-message
+bind compose p postpone-message
+bind compose q exit
+
+bind compose a noop
+
+bind compose aa attach-file
+bind compose af attach-file
+bind compose ad detach-file
+bind compose am attach-message
+bind compose ar rename-file
+bind compose ai toggle-disposition
+bind compose ag group-alternatives
+bind compose a+ move-down
+bind compose a- move-up
+
+bind compose & group-alternatives
+bind compose + move-down
+bind compose - move-up
+bind compose J move-down
+bind compose K move-up
 
 bind compose é filter-entry
 bind compose | pipe-entry
 
 bind compose <return> view-attach
 
-bind compose H display-toggle-weed
-
-bind compose \cn new-mime
-
-bind compose p postpone-message
-bind compose q exit
-
-bind compose s copy-file
-bind compose ç write-fcc
-
 bind compose \cA get-attachment
 
-bind compose R toggle-unlink
+bind compose t noop
 
-bind compose y send-message
+bind compose tt edit-type
+bind compose tn new-mime
+bind compose tm edit-mime
+bind compose t= smime-menu
+
+bind compose H display-toggle-weed
+
+bind compose R toggle-unlink
 
 # }}}1
 
@@ -647,6 +673,8 @@ bind browser <pagedown> next-page
 bind browser / search
 bind browser ? search-reverse
 
+bind browser , search
+
 bind browser n search-next
 bind browser N search-opposite
 
@@ -655,7 +683,7 @@ bind browser § change-dir
 bind browser c change-dir
 bind browser d change-dir
 
-bind browser @ display-filename
+bind browser \cg display-filename
 
 bind browser é enter-mask
 
