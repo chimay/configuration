@@ -10,11 +10,23 @@ super + colon
 hyper + colon
 	rofi-meta.zsh
 
+hyper + semicolon
+	dmenu-apps.sh
+
+hyper + ugrave
+	rofi-buku.zsh
+
+hyper + ccedilla
+	rofi-greenclip.zsh
+
 super + ctrl + x
 	xclock
 
-hyper + {dollar, exclam, Return}
-	{kitty, xterm, urxvtc}
+hyper + {dollar, Return, exclam, asterisk}
+	{kitty, alacritty, xterm, urxvtc}
+
+hyper + t ; {x, u}
+	{tabbed -c xterm -into, tabbed -c urxvtc -embed}
 
 super + ctrl + section
 	kitty vifmrun
@@ -23,10 +35,22 @@ super + ctrl + k
 	kitty kak
 
 super + ctrl + {e,n,v}
-	{lance-emacs-client.zsh,lance-neovim.zsh,lance-gvim.zsh}
+	{lance-emacs-client.zsh, lance-neovim.zsh, lance-gvim.zsh}
 
 super + ctrl + {q,f,b}
 	{qutebrowser,firefox,brave}
+
+hyper + space ; space
+	mpc toggle
+
+hyper + space ; n
+	mpc next
+
+hyper + space ; p
+	mpc prev
+
+hyper + space ; m
+	urxvtc -e pulsemixer
 
 # }}}1
 
@@ -77,6 +101,14 @@ shift + F12
 hyper + ampersand
 	bspc node -t '~floating'
 
+# set the window state
+hyper + quotedbl
+	bspc node -t '~tiled'
+
+# alternate between the tiled and monocle layout
+hyper + m
+	bspc desktop -l next
+
 # Flip
 hyper + percent
 	bspc node -F
@@ -91,6 +123,8 @@ hyper + b
 
 # <- desktop ->
 super + {Home,End}
+	bspc desktop -f {prev,next}.local
+super + ctrl + {Left,Right}
 	bspc desktop -f {prev,next}.local
 
 # <- window ->
@@ -122,6 +156,16 @@ hyper + shift + {h,j,k,l}
 
 super + alt + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Add focused window to a tabbed instance in given direction
+hyper + t ; {Left,Down,Up,Right}
+    tabc.sh $(bspc query -N -n {west,south,north,east}) add $(bspc query -N -n focused)
+
+# Remove one tab from tabbed
+hyper + t ; r
+    tabbed=$(bspc query -N -n focused); \
+    child=$(tabc.sh $tabbed list | head -n1); \
+    tabc.sh $tabbed remove $child
 
 # }}}1
 

@@ -6,11 +6,9 @@ autostart.zsh
 
 alias psgrep='ps auxww | grep -v grep | grep --color=never'
 
-psgrep xterm || xterm &
 psgrep sxhkd || sxhkd >>&! ~/log/sxhkd.log &
 
 polybar.zsh
-#psgrep polybar || polybar example >>&! ~/log/polybar.log &
 
 # }}}1
 
@@ -68,28 +66,6 @@ bspc rule -a net-sourceforge-jnlp-runtime-Boot desktop=misc
 bspc rule -a sun-awt-X11-XFramePeer desktop=misc
 bspc rule -a java-lang-Thread desktop=misc
 
-# bspc rule -a kitty desktop='^1'
-#
-# bspc rule -a Gvim desktop='^2'
-# bspc rule -a nvim-qt desktop='^2'
-# bspc rule -a Emacs desktop='^2'
-#
-# bspc rule -a qutebrowser desktop='^3'
-# bspc rule -a firefox desktop='^3'
-# bspc rule -a Brave desktop='^3'
-# bspc rule -a Thunderbird desktop='^3'
-#
-# bspc rule -a Zathura desktop='^3'
-#
-# bspc rule -a GeoGebra desktop='^5'
-# bspc rule -a MuseScore3 desktop='^5'
-#
-# bspc rule -a vlc desktop='^6'
-#
-# bspc rule -a net-sourceforge-jnlp-runtime-Boot desktop='^7'
-# bspc rule -a sun-awt-X11-XFramePeer desktop='^7'
-# bspc rule -a java-lang-Thread desktop='^7'
-
 # }}}2
 
 # Tiled {{{2
@@ -101,16 +77,24 @@ bspc rule -a Emacs  state=tiled
 # Floating {{{2
 
 bspc rule -a XClock                     state=floating
+
 bspc rule -a URxvt                      state=floating
+
 bspc rule -a Vimiv                      state=floating
 bspc rule -a Sxiv                       state=floating
+
 bspc rule -a Pavucontrol                state=floating
+
 bspc rule -a Zenity                     state=floating
 bspc rule -a Xfce4-appfinder            state=floating
 bspc rule -a Pamac-manager              state=floating
 bspc rule -a Caja                       state=floating
 bspc rule -a "Manjaro Settings Manager" state=floating
 bspc rule -a Asunder                    state=floating
+
+bspc rule -a net-sourceforge-jnlp-runtime-Boot state=floating
+bspc rule -a sun-awt-X11-XFramePeer            state=floating
+bspc rule -a java-lang-Thread                  state=floating
 
 # }}}2
 
