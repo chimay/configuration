@@ -199,12 +199,17 @@ set mouse-wheel-cursor		= no		# Prefer moving the cursor to scrolling the view?
 # Commands {{{2
 
 bind main	C	?git cherry-pick %(commit)
+bind main	P	?git push origin master
+
 bind status	C	!git commit
+
 bind stash	A	?git stash apply %(stash)
 bind stash	P	?git stash pop %(stash)
 bind stash	!	?git stash drop %(stash)
+
 bind refs	C	?git checkout %(branch)
 bind refs	!	?git branch -D %(branch)
+
 bind reflog	C	?git checkout %(branch)
 bind reflog	!	?git reset --hard %(commit)
 
@@ -305,10 +310,10 @@ bind stage	u	status-update		# Stage/unstage current diff (c)hunk
 bind stage	1	stage-update-line	# Stage/unstage current line
 bind stage	!	status-revert		# Revert current diff (c)hunk
 bind stage	\	stage-split-chunk	# Split current diff (c)hunk
-bind stage	@	:/^@@			# Jump to next (c)hunk
+bind stage	@	:/^@@			# Jump to next hunk/chunk (c)hunk
 bind stage	[	:toggle diff-context -1	# Decrease the diff context
 bind stage	]	:toggle diff-context +1	# Increase the diff context
-bind diff	@	:/^@@			# Jump to next (c)hunk
+bind diff	@	:/^@@			# Jump to next hunk/chunk (c)hunk
 bind diff	[	:toggle diff-context -1
 bind diff	]	:toggle diff-context +1
 bind main	H	:goto HEAD
