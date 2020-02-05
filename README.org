@@ -163,7 +163,7 @@ Comparison of window managers
 
 Why i3 ?
 
-  - Tiling, Tabbed, Staking and floating modes
+  - Tiling, tabbed, staking and floating modes
 
     + Tiling means all screen space is available for apps
 
@@ -190,7 +190,11 @@ Why i3 ?
 
 Why BSP?
 
-  - Tiling, fullscreen and floating modes
+  - Tiling, monocle, fullscreen and floating modes
+
+  - Possibility to circulate windows clockwise or counterclockwise
+
+  - Configurable split ratio
 
   - Keybindings
 
@@ -204,7 +208,7 @@ Why BSP?
 
     + Custom scripts
 
-    + IPC
+    + IPC, polybar-msg to send commands, hooks
 
     + Good choice of internal modules
 
