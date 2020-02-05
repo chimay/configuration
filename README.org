@@ -156,6 +156,8 @@ To be as intuitive as possible, some conventions are applied :
 
 * Features
 
+Comparison of window managers
+
 
 ** I3 WM
 
@@ -181,7 +183,41 @@ Why i3 ?
   - You can add rofi scripts, or any script to the panel (called bar)
     via i3block ; see also i3status for information
 
-To be tested
+  - Multi monitors support
+
+
+** BSPWM
+
+Why BSP?
+
+  - Tiling, Fullscreen and floating modes
+
+    + Tiling means all screen space is available for apps
+
+    + Good support for floating window, so you can use it as an hybrid
+       WM if you want
+
+  - Keybindings
+
+    + Managed by sxhkd
+
+    + Support of Super and Hyper keys
+
+    + Keybinding chains
+
+  - Panels (bars) : polybar
+
+    + Custom scripts
+
+    + IPC
+
+    + Good choice of internal modules
+
+    + Menu
+
+  - Scriptable via bspc
+
+  - Automatic properties of windows : workspace, floating, ...
 
   - Multi monitors support
 
