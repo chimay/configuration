@@ -62,6 +62,8 @@ The following keys are reserved for Window Manager (i3) :
 
     + Home / End
 
+    + Tab, Backspace
+
     + F1 .. F12
 
   - Super (Mod4) with any modifier(s) and same keys as above
