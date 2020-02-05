@@ -2,7 +2,11 @@
 
 # Autostart {{{1
 
+# Générique
+
 autostart.zsh
+
+# Spécifique à bspwm
 
 alias psgrep='ps auxww | grep -v grep | grep --color=never'
 
@@ -17,6 +21,9 @@ bspc rule -r "*"
 # Monitor {{{1
 
 bspc monitor -d term text browser office artisan entertain misc
+
+# bspc monitor eDP1 -d term text browser office artisan entertain misc
+# bspc monitor HDMI1 -d movie cartoon sport
 
 # }}}1
 
@@ -59,6 +66,8 @@ bspc rule -a Zathura desktop=office
 
 bspc rule -a GeoGebra desktop=artisan
 bspc rule -a MuseScore3 desktop=artisan
+
+bspc rule -a libreoffice-startcenter desktop=office
 
 bspc rule -a vlc desktop=entertain
 

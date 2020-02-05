@@ -2,10 +2,7 @@
 # wm independent hotkeys
 #
 
-# Applications {{{1
-
-super + colon
-	zshrun.sh
+# Lanceurs {{{1
 
 hyper + colon
 	rofi-meta.zsh
@@ -13,11 +10,18 @@ hyper + colon
 hyper + semicolon
 	dmenu-apps.sh
 
+super + colon
+	zshrun.sh
+
 hyper + ugrave
 	rofi-buku.zsh
 
 hyper + ccedilla
 	rofi-greenclip.zsh
+
+# }}}1
+
+# Applications {{{1
 
 super + ctrl + x
 	xclock
@@ -39,6 +43,19 @@ super + ctrl + {e,n,v}
 
 super + ctrl + {q,f,b}
 	{qutebrowser,firefox,brave}
+
+super + ctrl + o
+	libreoffice
+
+super + ctrl + m
+	musescore
+
+super + ctrl + shift + v
+	vlc
+
+# }}}1
+
+# Multimédia {{{1
 
 hyper + space ; space
 	mpc toggle
@@ -62,7 +79,7 @@ hyper + shift + r
 
 # Déconnexion
 hyper + shift + d
-	rofi-prompt.zsh bspc quit
+	rofi-deconnexion.zsh
 
 # Éteindre
 hyper + shift + q
@@ -145,8 +162,9 @@ hyper + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-super + {_,shift + }F{1-9,10}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+# Move (window) to desktop
+super + {_,shift + }F{1-9,10-12}
+	bspc {desktop -f,node -d} '^{1-9,10-12}'
 
 hyper + shift + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}

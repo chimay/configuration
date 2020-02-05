@@ -1,12 +1,12 @@
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-#
+
 # La syntaxe du fichier xmodmap doit être respectée, y compris la casse de la première lettre
 #
 # Les noms des touches spéciales doivent commencer par une majuscule
 # Les noms des autres touches doivent commencer par une minuscule
-#
+
 # vim: set filetype=conf :
 
 # Variables {{{1
@@ -21,7 +21,8 @@
 # I choose Mod3 because Mod1 and Mod4 are used in neovim & emacs
 # bindings
 
-set $mod Mod3
+set $hyper Mod3
+set $super Mod4
 
 # }}}2
 
@@ -54,13 +55,19 @@ set $pave9=Mod2+KP_Prior
 # Bureaux {{{2
 
 set $bureau0 "0 Espace"
-set $bureau1 "1 Principal"
-set $bureau2 "2 Auxiliaire"
-set $bureau3 "3 Navigation"
-set $bureau4 "4 Graphique"
-set $bureau5 "5 Dessin"
-set $bureau6 "6 Musique"
-set $bureau7 "7 Cinema"
+set $bureau1 "1 Terminal"
+set $bureau2 "2 Edition"
+set $bureau3 "3 Dessin"
+set $bureau4 "4 Musique"
+set $bureau5 "5 Cinema"
+set $bureau6 "6 Navigation"
+set $bureau7 "7 Graphique"
+
+# }}}2
+
+# Logiciels {{{2
+
+#set $kitti3=$HOME/.local/bin/kitti3
 
 # }}}2
 
@@ -99,30 +106,50 @@ workspace_auto_back_and_forth yes
 
 # La flèche → est optionnelle
 
-assign [class="Gvim"]    $bureau1
-assign [class="nvim-qt"] $bureau1
+assign [class="kitty"]    $bureau1
+
+assign [class="Gvim"]    $bureau2
+assign [class="nvim-qt"] $bureau2
+
 assign [class="Emacs"]   $bureau2
 
-assign [class="qutebrowser"] $bureau3
-assign [class="Firefox"] $bureau3
+assign [class="GeoGebra"] $bureau3
 
-assign [class="net-sourceforge-jnlp-runtime-Boot"] $bureau4
-assign [class="sun-awt-X11-XFramePeer"] $bureau4
-assign [class="java-lang-Thread"] $bureau4
+assign [class="MuseScore3"] $bureau4
 
 assign [class="vlc"] $bureau5
+
+assign [class="qutebrowser"] $bureau6
+
+assign [class="Brave"] $bureau6
+
+assign [class="firefox"] $bureau6
+assign [class="Firefox"] $bureau6
+
+assign [class="Thunderbird"] $bureau6
+
+assign [class="net-sourceforge-jnlp-runtime-Boot"] $bureau7
+assign [class="sun-awt-X11-XFramePeer"] $bureau7
+assign [class="java-lang-Thread"] $bureau7
+
+# }}}2
+
+# Bordure {{{2
+
+for_window [class=".*"] border pixel 7
+
+for_window [class="net-sourceforge-jnlp-runtime-Boot"] border pixel 0
+for_window [class="sun-awt-X11-XFramePeer"] border pixel 0
+for_window [class="java-lang-Thread"] border pixel 0
 
 # }}}2
 
 # Mode flottant {{{2
 
-for_window [class="yakuake"] floating enable
 for_window [class="URxvt"] floating enable
 
 for_window [class="Vimiv"] floating enable
-
-for_window [class="qutebrowser"] layout tabbed
-for_window [class="Firefox"] layout tabbed
+for_window [class="Sxiv"] floating enable
 
 for_window [class="Pavucontrol"] floating enable
 
@@ -133,12 +160,33 @@ for_window [class="net-sourceforge-jnlp-runtime-Boot"] floating enable
 for_window [class="sun-awt-X11-XFramePeer"] floating enable
 for_window [class="java-lang-Thread"] floating enable
 
-for_window [class="XClock"]     floating enable
-for_window [class="Clock"]     floating enable
-
 for_window [class="Zenity"]     floating enable
 
 for_window [class="Xfce4-appfinder"]     floating enable
+
+for_window [class="Pamac-manager"]                floating enable
+for_window [class="Manjaro Settings Manager"]     floating enable
+for_window [class="Caja"]                         floating enable
+for_window [class="Asunder"]                      floating enable
+
+# }}}2
+
+# Mode tabbed {{{2
+
+for_window [class="nvim-qt"] layout tabbed
+for_window [class="Emacs"] layout tabbed
+
+for_window [class="qutebrowser"] layout tabbed
+
+for_window [class="firefox"] layout tabbed
+for_window [class="Firefox"] layout tabbed
+
+# }}}2
+
+# Centre {{{2
+
+for_window [class="XClock"] floating enable ; move position center
+for_window [class="Clock"]  floating enable ; move position center
 
 # }}}2
 
@@ -159,7 +207,25 @@ for_window [instance="calculatrice"] floating enable
 
 # Autostart {{{1
 
-exec --no-startup-id ~/racine/automat/autostart.zsh
+exec --no-startup-id autostart.zsh
+
+# }}}1
+
+# Gaps {{{1
+
+gaps inner 3
+gaps outer 0
+
+# gaps horizontal 1
+# gaps vertical 4
+
+# gaps inner all set 20
+# gaps outer current plus 5
+# gaps horizontal current plus 40
+# gaps outer current toggle 60
+
+#smart_gaps on
+#smart_gaps inverse_outer
 
 # }}}1
 
@@ -169,48 +235,55 @@ exec --no-startup-id ~/racine/automat/autostart.zsh
 
 # reload the configuration file
 
-bindsym $mod+Shift+C reload
+bindsym $hyper+Shift+C reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 
-bindsym $mod+Shift+R restart
+bindsym $hyper+Shift+R restart
 
-# exit i3 (logs you out of your X session)
+# }}}2
 
-bindsym $mod+Mod4+Q exit
+# Pages de manuel {{{2
+
+bindsym $hyper+semicolon exec --no-startup-id dmenu-man-pdf.zsh
 
 # }}}2
 
 # Fenêtres {{{2
 
-bindsym Mod4+Next focus right
-bindsym Mod4+Prior focus left
-bindsym Mod4+Home focus up
-bindsym Mod4+End focus down
+bindsym $super+Next focus right
+bindsym $super+Prior focus left
 
-bindsym Mod4+Left  focus left
-bindsym Mod4+Down  focus down
-bindsym Mod4+Up    focus up
-bindsym Mod4+Right focus right
+bindsym $super+Left  focus left
+bindsym $super+Down  focus down
+bindsym $super+Up    focus up
+bindsym $super+Right focus right
 
-bindsym Mod4+Tab focus right
+bindsym $super+Tab focus right
 
-bindsym Mod4+Shift+Left  move left
-bindsym Mod4+Shift+Down  move down
-bindsym Mod4+Shift+Up    move up
-bindsym Mod4+Shift+Right move right
+bindsym $super+Shift+Left  move left
+bindsym $super+Shift+Down  move down
+bindsym $super+Shift+Up    move up
+bindsym $super+Shift+Right move right
 
-bindsym $mod+Left  focus left
-bindsym $mod+Down  focus down
-bindsym $mod+Up    focus up
-bindsym $mod+Right focus right
+# bindsym $hyper+Left  focus left
+# bindsym $hyper+Down  focus down
+# bindsym $hyper+Up    focus up
+# bindsym $hyper+Right focus right
 
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
+# bindsym $hyper+Shift+Left  move left
+# bindsym $hyper+Shift+Down  move down
+# bindsym $hyper+Shift+Up    move up
+# bindsym $hyper+Shift+Right move right
 
-bindsym $mod+Shift+X kill
+bindsym $hyper+Shift+X kill
+
+# }}}2
+
+# Gaps {{{2
+
+bindsym $hyper+g gaps inner current plus 3
+bindsym $hyper+Shift+G gaps inner current minus 3
 
 # }}}2
 
@@ -218,32 +291,30 @@ bindsym $mod+Shift+X kill
 
 # Focus the parent container
 
-bindsym $mod+BackSpace focus parent
+bindsym $hyper+BackSpace focus parent
 
 # Focus the child container
 
-bindsym $mod+Tab focus child
+bindsym $hyper+Tab focus child
 
 # }}}2
 
 # Scission {{{2
 
-bindsym $mod+h split h
-bindsym $mod+v split v
+bindsym $hyper+h split h
+bindsym $hyper+v split v
 
 # }}}2
 
 # Layouts {{{2
 
-bindsym $mod+f fullscreen
+bindsym $hyper+f fullscreen
 
-bindsym $mod+F1 fullscreen
+bindsym $hyper+space layout toggle all
 
-bindsym $mod+space layout toggle all
-
-bindsym $mod+d layout default
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
+bindsym $hyper+d layout default
+bindsym $hyper+s layout stacking
+bindsym $hyper+t layout tabbed
 
 # }}}2
 
@@ -251,61 +322,61 @@ bindsym $mod+t layout tabbed
 
 # toggle tiling / floating
 
-bindsym $mod+Shift+F floating toggle
-
-bindsym $mod+F2 floating toggle
+bindsym $hyper+Shift+F floating toggle
 
 # change focus between tiling / floating windows
 
-bindsym $mod+Mod1+F focus mode_toggle
+bindsym $hyper+Mod1+F focus mode_toggle
 
-bindsym $mod+F3 focus mode_toggle
+bindsym $hyper+F1 focus mode_toggle
 
 # }}}2
 
 # Bureaux {{{2
 
-bindsym $mod+Prior workspace prev
-bindsym $mod+Next  workspace next
+bindsym $hyper+Prior workspace prev
+bindsym $hyper+Next  workspace next
 
-bindsym Mod4+Ctrl+Left workspace prev
-bindsym Mod4+Ctrl+Right  workspace next
+bindsym $hyper+Left  workspace prev
+bindsym $hyper+Right workspace next
 
-bindsym Mod4+F1 workspace $bureau0
-bindsym Mod4+F2 workspace $bureau1
-bindsym Mod4+F3 workspace $bureau2
-bindsym Mod4+F4 workspace $bureau3
-bindsym Mod4+F5 workspace $bureau4
-bindsym Mod4+F6 workspace $bureau5
-bindsym Mod4+F7 workspace $bureau6
-bindsym Mod4+F8 workspace $bureau7
+bindsym $super+Home workspace prev
+bindsym $super+End workspace next
 
-bindsym Mod4+Shift+F1 move workspace $bureau0
-bindsym Mod4+Shift+F2 move workspace $bureau1
-bindsym Mod4+Shift+F3 move workspace $bureau2
-bindsym Mod4+Shift+F4 move workspace $bureau3
-bindsym Mod4+Shift+F5 move workspace $bureau4
-bindsym Mod4+Shift+F6 move workspace $bureau5
-bindsym Mod4+Shift+F7 move workspace $bureau6
-bindsym Mod4+Shift+F8 move workspace $bureau7
+bindsym $super+Ctrl+Left workspace prev
+bindsym $super+Ctrl+Right  workspace next
 
-bindsym $mod+w       exec --no-startup-id ~/racine/shell/dialog/rofi-bureaux.zsh
-bindsym $mod+Shift+W exec --no-startup-id ~/racine/shell/dialog/rofi-deplace-vers-bureau.zsh
-bindsym $mod+Mod1+W  exec --no-startup-id ~/racine/shell/dialog/rofi-renomme-bureau.zsh
+bindsym $super+F1 workspace $bureau0
+bindsym $super+F2 workspace $bureau1
+bindsym $super+F3 workspace $bureau2
+bindsym $super+F4 workspace $bureau3
+bindsym $super+F5 workspace $bureau4
+bindsym $super+F6 workspace $bureau5
+bindsym $super+F7 workspace $bureau6
+bindsym $super+F8 workspace $bureau7
+
+bindsym $super+Shift+F1 move workspace $bureau0
+bindsym $super+Shift+F2 move workspace $bureau1
+bindsym $super+Shift+F3 move workspace $bureau2
+bindsym $super+Shift+F4 move workspace $bureau3
+bindsym $super+Shift+F5 move workspace $bureau4
+bindsym $super+Shift+F6 move workspace $bureau5
+bindsym $super+Shift+F7 move workspace $bureau6
+bindsym $super+Shift+F8 move workspace $bureau7
 
 # }}}2
 
 # Signets de fenêtres {{{2
 
-bindsym $mod+m exec i3-msg mark "$(zenity --entry --text 'Nom du signet')"
-bindsym $mod+apostrophe exec i3-msg [con_mark="$(zenity --entry --text 'Nom du signet')"] focus
+bindsym $hyper+m exec i3-msg mark "$(zenity --entry --text 'Nom du signet')"
+bindsym $hyper+apostrophe exec i3-msg [con_mark="$(zenity --entry --text 'Nom du signet')"] focus
 
-# bindsym $mod+m exec i3-input \
+# bindsym $hyper+m exec i3-input \
 # 	-F 'mark %s' \
 # 	-P 'Nom du signet: ' \
 # 	-f 'pango:DejaVu Sans Mono 11 Bold'
 
-# bindsym $mod+apostrophe exec i3-input \
+# bindsym $hyper+apostrophe exec i3-input \
 # 	-F '[con_mark="%s"] focus' \
 # 	-P 'Aller au signet: ' \
 # 	-f 'pango:DejaVu Sans Mono 11 Bold'
@@ -314,63 +385,96 @@ bindsym $mod+apostrophe exec i3-msg [con_mark="$(zenity --entry --text 'Nom du s
 
 # Système {{{2
 
-bindsym $mod+colon exec --no-startup-id ~/racine/shell/dialog/rofi-meta.zsh
+bindsym $super+colon exec --no-startup-id zshrun.sh
 
-bindsym Mod4+colon exec --no-startup-id ~/racine/shell/run/zshrun.sh
+bindsym $hyper+Return nop kitti3-dropdown
+bindsym Shift+F12 nop kitti3-dropdown
 
-# Voir aussi <url:~/racine/config/windenv/xbindkeysrc>
+bindsym $hyper+dollar exec kitty zsh -l
+bindsym $hyper+asterisk exec --no-startup-id lance-deroulant.zsh
 
-bindsym --whole-window ctrl+button3 exec --no-startup-id ~/racine/shell/dialog/rofi-meta.zsh
+bindsym $hyper+shift+sterling exec xterm -e zsh -l
 
-bindsym $mod+Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh
+bindsym $hyper+equal exec --no-startup-id lance-calculatrice.zsh
 
-bindsym $mod+Return exec yakuake
-bindsym $mod+dollar exec xterm -e zsh -l
-bindsym $mod+asterisk exec --no-startup-id ~/racine/shell/run/lance-deroulant.zsh ; mode "default"
-
-bindsym $mod+Shift+sterling exec tilix
-bindsym $mod+Shift+degree exec tilix -q -e zsh -l
-
-bindsym $mod+equal exec --no-startup-id ~/racine/shell/run/lance-calculatrice.zsh ; mode "default"
-
-bindsym $mod+z exec xset dpms force off
+bindsym $hyper+z exec xset dpms force off
 
 # Supporte les images png
 
-bindsym $mod+l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png
+bindsym $hyper+l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png
+
+# }}}2
+
+# Rofi {{{2
+
+bindsym $hyper+colon exec --no-startup-id rofi-meta.zsh
+
+# Voir aussi <url:~/racine/config/windenv/xbindkeysrc>
+
+bindsym --whole-window ctrl+button3 exec --no-startup-id rofi-meta.zsh
+
+bindsym $hyper+section exec --no-startup-id rofi-bureau.zsh
+bindsym $hyper+exclam exec --no-startup-id rofi-run.zsh
+bindsym $hyper+ccedilla exec --no-startup-id rofi-greenclip.zsh
+bindsym $hyper+ugrave exec --no-startup-id rofi-buku.zsh
+bindsym $hyper+dead_circumflex exec --no-startup-id rofi-fenetres.zsh
+bindsym $hyper+x exec --no-startup-id rofi-fermer.zsh
+
+bindsym $hyper+w       exec --no-startup-id rofi-bureau.zsh
+bindsym $hyper+Shift+W exec --no-startup-id rofi-deplace-vers-bureau.zsh
+bindsym $hyper+Mod1+W  exec --no-startup-id rofi-renomme-bureau.zsh
+
+bindsym $hyper+Shift+Q exec --no-startup-id rofi-eteindre.zsh
+
+# exit i3 (logs you out of your X session)
+
+bindsym $hyper+Shift+D exec --no-startup-id rofi-deconnexion.zsh
 
 # }}}2
 
 # Applications {{{2
 
-bindsym Mod4+Ctrl+V exec --no-startup-id ~/racine/shell/run/lance-gvim.zsh
+#bindsym $super+Ctrl+section exec --no-startup-id kitty vifm
+bindsym $super+Ctrl+section exec --no-startup-id kitty vifmrun
 
-#bindsym Mod4+Ctrl+N exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh
-#bindsym Mod4+Ctrl+Shift+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh
-bindsym Mod4+Ctrl+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh
+bindsym $super+Ctrl+V exec --no-startup-id lance-gvim.zsh
 
-bindsym Mod4+Ctrl+E exec --no-startup-id ~/racine/shell/run/lance-emacs-client.zsh
-bindsym Mod4+Ctrl+Shift+E exec --no-startup-id ~/racine/shell/run/lance-emacs.zsh
+#bindsym $super+Ctrl+N exec --no-startup-id lance-neovim-client.zsh
+bindsym $super+Ctrl+N exec --no-startup-id lance-neovim.zsh
 
-bindsym Mod4+Ctrl+C exec caja --no-desktop
-bindsym Mod4+Ctrl+F exec ~/racine/shell/run/lance-firefox.zsh
-bindsym Mod4+Ctrl+G exec geogebra
-bindsym Mod4+Ctrl+M exec musescore
-bindsym Mod4+Ctrl+O exec libreoffice
-bindsym Mod4+Ctrl+Q exec ~/racine/shell/run/lance-qutebrowser.zsh
-bindsym Mod4+Ctrl+S exec mp3splt-gtk
-bindsym Mod4+Ctrl+X exec xclock
-bindsym Mod4+Ctrl+Z exec zathura
+bindsym $super+Ctrl+E exec --no-startup-id lance-emacs-client.zsh
+bindsym $super+Ctrl+Shift+E exec --no-startup-id lance-emacs.zsh
 
-bindsym Mod4+Ctrl+Shift+F exec filezilla
-bindsym Mod4+Ctrl+Shift+V exec vlc
+bindsym $super+Ctrl+K exec --no-startup-id kitty kak -e 'cd ~/racine/plain'
+
+bindsym $super+Ctrl+B exec brave
+bindsym $super+Ctrl+C exec caja --no-desktop
+bindsym $super+Ctrl+F exec lance-firefox.zsh
+bindsym $super+Ctrl+G exec geogebra
+bindsym $super+Ctrl+M exec musescore
+bindsym $super+Ctrl+O exec libreoffice
+bindsym $super+Ctrl+Q exec lance-qutebrowser.zsh
+bindsym $super+Ctrl+S exec mp3splt-gtk
+bindsym $super+Ctrl+T exec thunderbird
+bindsym $super+Ctrl+X exec xclock
+bindsym $super+Ctrl+Z exec zathura
+
+bindsym $super+Ctrl+Shift+F exec filezilla
+bindsym $super+Ctrl+Shift+V exec vlc
 
 # }}}2
 
 # Scratchpad {{{2
 
-bindsym $mod+o move scratchpad
-bindsym $mod+p scratchpad show
+bindsym $hyper+o move scratchpad
+bindsym $hyper+p scratchpad show
+
+# }}}2
+
+# Multimedia {{{2
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -- set Master 2dB+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -- set Master 2dB-
 
 # }}}2
 
@@ -378,7 +482,7 @@ bindsym $mod+p scratchpad show
 
 # Mode préfixe {{{1
 
-bindsym $mod+F12 mode "prefixe"
+bindsym $hyper+F12 mode "prefixe"
 
 mode "prefixe" {
 
@@ -391,10 +495,6 @@ bindsym Shift+C reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 
 bindsym Shift+R restart
-
-# exit i3 (logs you out of your X session)
-
-bindsym Mod4+Q exit
 
 # }}}2
 
@@ -459,10 +559,6 @@ bindsym Mod1+F focus mode_toggle
 
 # Bureaux {{{2
 
-bindsym w exec --no-startup-id ~/racine/shell/dialog/rofi-bureaux.zsh ; mode "default"
-
-bindsym Shift+W exec --no-startup-id ~/racine/shell/dialog/rofi-renomme-bureau.zsh ; mode "default"
-
 bindsym Prior workspace prev
 bindsym Next  workspace next
 
@@ -488,21 +584,37 @@ bindsym Shift+F8 move workspace $bureau7
 
 # Système {{{2
 
-bindsym ampersand exec yakuake ; mode "default"
-bindsym dollar exec xterm -e zsh -l ; mode "default"
+bindsym dollar exec kitty zsh -l ; mode "default"
 bindsym asterisk exec urxvtc -e zsh -l ; mode "default"
-bindsym Shift+sterling exec tilix ; mode "default"
-bindsym equal exec tilix -q -e zsh -l ; mode "default"
-
-bindsym colon exec --no-startup-id ~/racine/shell/dialog/rofi-meta.zsh ; mode "default"
-
-bindsym Shift+Q exec --no-startup-id ~/racine/shell/dialog/rofi-eteindre.zsh ; mode "default"
+bindsym shift+sterling exec xterm -e zsh -l ; mode "default"
 
 bindsym z exec xset dpms force off
 
 # Supporte les images png
 
 bindsym l exec --no-startup-id i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png ; mode "default"
+
+# }}}2
+
+# Rofi {{{2
+
+bindsym colon exec --no-startup-id rofi-meta.zsh ; mode "default"
+
+bindsym section exec --no-startup-id rofi-bureau.zsh
+bindsym exclam exec --no-startup-id rofi-run.zsh ; mode "default"
+bindsym ccedilla exec --no-startup-id rofi-greenclip.zsh ; mode "default"
+bindsym ugrave exec --no-startup-id rofi-buku.zsh
+bindsym dead_circumflex exec --no-startup-id rofi-fenetres.zsh
+bindsym x exec --no-startup-id rofi-fermer.zsh
+
+bindsym w exec --no-startup-id rofi-bureaux.zsh ; mode "default"
+bindsym Shift+W exec --no-startup-id rofi-renomme-bureau.zsh ; mode "default"
+
+bindsym Shift+Q exec --no-startup-id rofi-eteindre.zsh ; mode "default"
+
+# exit i3 (logs you out of your X session)
+
+bindsym Shift+D exec --no-startup-id rofi-deconnexion.zsh ; mode "default"
 
 # }}}2
 
@@ -523,7 +635,7 @@ bindsym Escape mode "default"
 
 # resize window (you can also use the mouse for that)
 
-bindsym $mod+F11 mode "redimensionnement"
+bindsym $hyper+F11 mode "redimensionnement"
 
 mode "redimensionnement" {
 
@@ -576,7 +688,7 @@ bindsym Escape mode "default"
 
 # Mode déplacement pour fenêtres flottantes
 
-bindsym $mod+F10 mode "deplacement"
+bindsym $hyper+F10 mode "deplacement"
 
 mode "deplacement" {
 
@@ -615,34 +727,35 @@ bindsym Escape mode "default"
 
 # Mode applications {{{1
 
-bindsym Mod4+F12 mode "applications"
+bindsym $super+F12 mode "applications"
 
 mode "applications" {
 
-bindsym Ampersand exec yakuake ; mode "default"
-bindsym Dollar exec xterm -e zsh -l ; mode "default"
-bindsym Asterisk exec urxvtc -e zsh -l ; mode "default"
-bindsym Shift+sterling exec tilix ; mode "default"
-bindsym equal exec tilix ; mode "default"
+bindsym dollar exec kitty zsh -l ; mode "default"
+bindsym asterisk exec urxvtc -e zsh -l ; mode "default"
 
-bindsym v exec --no-startup-id ~/racine/shell/run/lance-gvim.zsh ; mode "default"
+#bindsym section exec --no-startup-id kitty vifm
+bindsym section exec --no-startup-id kitty vifmrun
 
-#bindsym n exec --no-startup-id ~/racine/shell/run/lance-neovim-client.zsh ; mode "default"
-#bindsym Shift+N exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh ; mode "default"
-bindsym n exec --no-startup-id ~/racine/shell/run/lance-neovim.zsh ; mode "default"
+bindsym v exec --no-startup-id lance-gvim.zsh ; mode "default"
+bindsym n exec --no-startup-id lance-neovim.zsh ; mode "default"
 
-bindsym e exec --no-startup-id ~/racine/shell/run/lance-emacs-client.zsh ; mode "default"
-bindsym Shift+E exec --no-startup-id ~/racine/shell/run/lance-emacs.zsh ; mode "default"
+bindsym e exec --no-startup-id lance-emacs-client.zsh ; mode "default"
+bindsym Shift+E exec --no-startup-id lance-emacs.zsh ; mode "default"
 
+bindsym k exec --no-startup-id kitty kak -e 'cd ~/racine/plain'
+
+bindsym b exec brave
 bindsym c exec caja --no-desktop
-bindsym f exec ~/racine/shell/run/lance-firefox.zsh ; mode "default"
+bindsym f exec lance-firefox.zsh ; mode "default"
 bindsym g exec geogebra ; mode "default"
 bindsym l exec lxterminal ; mode "default"
 bindsym m exec musescore ; mode "default"
 bindsym o exec libreoffice ; mode "default"
 bindsym p exec pcmanfm ; mode "default"
-bindsym q exec ~/racine/shell/run/lance-qutebrowser.zsh ; mode "default"
+bindsym q exec lance-qutebrowser.zsh ; mode "default"
 bindsym s exec mp3splt-gtk ; mode "default"
+bindsym t exec thunderbird
 bindsym x exec xclock ; mode "default"
 bindsym z exec zathura ; mode "default"
 
@@ -652,7 +765,7 @@ bindsym Shift+V exec vlc ; mode "default"
 
 # Back to normal {{{2
 
-bindsym Mod4+q mode "default"
+bindsym $super+q mode "default"
 bindsym Return mode "default"
 bindsym KP_Enter mode "default"
 bindsym Escape mode "default"
@@ -667,7 +780,7 @@ bindsym Escape mode "default"
 
 # Visibilité indépendante des workspaces
 
-bindsym Mod4+F11 mode "scratchpad"
+bindsym $super+F11 mode "scratchpad"
 
 mode "scratchpad" {
 
@@ -676,8 +789,8 @@ bindsym p scratchpad show
 
 # Lancement ou affichage des outils
 
-bindsym equal exec --no-startup-id ~/racine/shell/run/lance-deroulant.zsh ; mode "default"
-bindsym dollar exec --no-startup-id ~/racine/shell/run/lance-calculatrice.zsh ; mode "default"
+bindsym equal exec --no-startup-id lance-deroulant.zsh ; mode "default"
+bindsym dollar exec --no-startup-id lance-calculatrice.zsh ; mode "default"
 
 # Back to normal {{{2
 
@@ -694,15 +807,15 @@ bindsym Escape mode "default"
 
 # Mode multimedia {{{1
 
-bindsym Mod4+F9 mode "multimedia"
+bindsym $super+F9 mode "multimedia"
 
 mode "multimedia" {
 
 # Mixer {{{2
 
 bindsym M       exec urxvtc -e pulsemixer ; mode "default"
-bindsym Shift+M exec urxvtc -e alsamixer -c 0 ; mode "default"
-bindsym Mod1+M  exec pavucontrol ; mode "default"
+bindsym Shift+M  exec urxvtc -e ncpamixer ; mode "default"
+bindsym Mod1+M exec urxvtc -e alsamixer -c 0 ; mode "default"
 
 bindsym Up exec --no-startup-id amixer -c 0 -- set Master 2dB+
 bindsym Down exec --no-startup-id amixer -c 0 -- set Master 2dB-
@@ -713,18 +826,18 @@ bindsym End   exec --no-startup-id amixer -c 0 -- set Master 7dB-
 
 bindsym F10      exec --no-startup-id pamixer --increase 5
 bindsym F11      exec --no-startup-id pamixer --decrease 5
-bindsym Mod4+F10 exec --no-startup-id pamixer --increase 10
-bindsym Mod4+F11 exec --no-startup-id pamixer --decrease 10
+bindsym $super+F10 exec --no-startup-id pamixer --increase 10
+bindsym $super+F11 exec --no-startup-id pamixer --decrease 10
 
 # }}}2
 
 # MPC {{{2
 
-bindsym F9        exec --no-startup-id mpc --no-status toggle ; mode "default"
+bindsym F9        exec --no-startup-id mpc -q toggle ; mode "default"
 
-bindsym space     exec --no-startup-id mpc --no-status toggle
+bindsym space     exec --no-startup-id mpc -q toggle
 
-bindsym BackSpace exec --no-startup-id mpc --no-status seek 0:0
+bindsym BackSpace exec --no-startup-id mpc -q seek 0:0
 
 bindsym n         exec --no-startup-id mpc next
 bindsym p         exec --no-startup-id mpc prev
@@ -736,14 +849,14 @@ bindsym b   exec --no-startup-id mpc seek -1:00
 
 # CMUS {{{2
 
-bindsym Mod4+F9        exec --no-startup-id cmus-remote -C player-pause ; mode "default"
+bindsym $super+F9        exec --no-startup-id cmus-remote -C player-pause ; mode "default"
 
-bindsym Mod4+space     exec --no-startup-id cmus-remote -C player-pause
+bindsym $super+space     exec --no-startup-id cmus-remote -C player-pause
 
-bindsym Mod4+BackSpace exec --no-startup-id cmus-remote -C 'seek 0'
+bindsym $super+BackSpace exec --no-startup-id cmus-remote -C 'seek 0'
 
-bindsym Mod4+n         exec --no-startup-id cmus-remote -C player-next
-bindsym Mod4+p         exec --no-startup-id cmus-remote -C player-prev
+bindsym $super+n         exec --no-startup-id cmus-remote -C player-next
+bindsym $super+p         exec --no-startup-id cmus-remote -C player-prev
 
 # }}}2
 
@@ -764,9 +877,9 @@ bindsym Escape mode "default"
 
 focus_follows_mouse no
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# Use Mouse+$hyper to drag floating windows to their wanted position
 
-floating_modifier $mod
+floating_modifier $hyper
 
 # }}}1
 
