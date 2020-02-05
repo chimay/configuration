@@ -190,12 +190,7 @@ Why i3 ?
 
 Why BSP?
 
-  - Tiling, Fullscreen and floating modes
-
-    + Tiling means all screen space is available for apps
-
-    + Good support for floating window, so you can use it as an hybrid
-       WM if you want
+  - Tiling, fullscreen and floating modes
 
   - Keybindings
 
