@@ -156,7 +156,127 @@ To be as intuitive as possible, some conventions are applied :
 
 * Features
 
-Comparison of window managers
+Comments on applications.
+
+
+** The classics
+
+  - Vim & family : Neovim, Kakoune
+
+  - Emacs with Org mode and torus.el
+
+  - Zsh
+
+  - Tmux
+
+
+** Vifm
+
+  - Views
+
+    + Dual-pane, vertical or horizontal
+
+    + Tree view (like the tree command)
+
+    + Grid view (ls view)
+
+    + Miller view, like ranger
+
+    + Preview mode
+
+      * Also of images with cirala/vifmimg & seebye/ueberzug
+
+  - Cope well with external programs
+
+    + User commands :... and :!...
+
+  - Nice analogies with Vim keys
+
+  - Tools to select and modify selection
+
+
+** Tig
+
+  - Feature rich git repo browser
+
+  - Views
+
+    + Commits
+
+    + Diffs
+
+    + Log
+
+    + Tree
+
+  - Cope well with external programs
+
+    + User commands :... and :!...
+
+** Kitty
+
+  - Fast
+
+  - Scriptable, you can also open a Kitty shell to control the term
+
+  - Support keyboard shortcuts with super key
+
+  - Scrollback in pager
+
+  - Insert UTF-8 character with completion
+
+  - Good image support
+
+  - Quickly select url / file / line
+
+  - Plugins (kittens)
+
+  - Can be used as dropdown with kitti3 on i3
+
+And much more
+
+
+** BSPWM
+
+Why BSP?
+
+  - Scriptable via bspc
+
+    + You can litteraly juggle with windows
+
+    + Configurable split ratio
+
+    + Possibility to circulate windows clockwise or counterclockwise
+
+  - Modes
+
+    + Tiling and floating
+
+    + Monocle mode : one window
+
+    + Full screen
+
+  - Automatic properties of windows : workspace, floating, ...
+
+  - Multi monitors support
+
+  - Keybindings
+
+    + Managed by sxhkd
+
+    + Support of Super and Hyper keys
+
+    + Keybinding chains
+
+  - Panels (bars) : polybar
+
+    + Custom scripts
+
+    + IPC, polybar-msg to send commands, hooks
+
+    + Good choice of internal modules
+
+    + Menu
 
 
 ** I3 WM
@@ -182,41 +302,6 @@ Why i3 ?
 
   - You can add rofi scripts, or any script to the panel (called bar)
     via i3block ; see also i3status for information
-
-  - Multi monitors support
-
-
-** BSPWM
-
-Why BSP?
-
-  - Tiling, monocle, fullscreen and floating modes
-
-  - Possibility to circulate windows clockwise or counterclockwise
-
-  - Configurable split ratio
-
-  - Keybindings
-
-    + Managed by sxhkd
-
-    + Support of Super and Hyper keys
-
-    + Keybinding chains
-
-  - Panels (bars) : polybar
-
-    + Custom scripts
-
-    + IPC, polybar-msg to send commands, hooks
-
-    + Good choice of internal modules
-
-    + Menu
-
-  - Scriptable via bspc
-
-  - Automatic properties of windows : workspace, floating, ...
 
   - Multi monitors support
 
