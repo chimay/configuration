@@ -255,8 +255,6 @@ And much more
 
 ** BSPWM
 
-Why BSP?
-
   - Scriptable via bspc
 
     + You can litteraly juggle with windows
@@ -297,8 +295,6 @@ Why BSP?
 
 
 ** I3 WM
-
-Why i3 ?
 
   - Tiling, tabbed, staking and floating modes
 
