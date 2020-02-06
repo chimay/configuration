@@ -1,6 +1,23 @@
 
 #+STARTUP: showall
 
+#+TAGS: TOC(t)
+
+* Table of contents                                                     :TOC_2_gh:
+- [[#configuration-files][Configuration files]]
+- [[#keybindings][Keybindings]]
+  - [[#prefix--modes][Prefix & Modes]]
+  - [[#allocation][Allocation]]
+  - [[#coherence][Coherence]]
+- [[#features][Features]]
+  - [[#the-classics][The classics]]
+  - [[#vifm][Vifm]]
+  - [[#tig][Tig]]
+  - [[#kitty][Kitty]]
+  - [[#bspwm][BSPWM]]
+  - [[#i3-wm][I3 WM]]
+- [[#warning][Warning]]
+
 * Configuration files
 
 A coherent set of configuration files for my favorite apps.
