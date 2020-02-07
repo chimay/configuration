@@ -2,17 +2,7 @@
 
 # Autostart {{{1
 
-# Générique
-
 autostart.zsh
-
-# Spécifique à bspwm
-
-alias psgrep='ps auxww | grep -v grep | grep --color=never'
-
-psgrep sxhkd || sxhkd >>&! ~/log/sxhkd.log &
-
-polybar.zsh
 
 # }}}1
 
@@ -35,7 +25,15 @@ bspc desktop -f term
 
 # Config {{{1
 
-bspc config automatic_scheme            spiral
+bspc config automatic_scheme     spiral
+
+bspc config pointer_action1      move
+bspc config pointer_action2      resize_size
+bspc config pointer_action3      resize_corner
+
+bspc config pointer_modifier1    Mod4
+bspc config pointer_modifier2    Mod4
+bspc config pointer_modifier3    Mod4
 
 bspc config border_width         2
 bspc config window_gap           7
@@ -43,6 +41,10 @@ bspc config window_gap           7
 bspc config split_ratio          0.618
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
+
+bspc config normal_border_color  '#000000'
+bspc config active_border_color  '#7b3c11'
+bspc config focused_border_color  '#7b3c11'
 
 # }}}1
 
@@ -85,7 +87,7 @@ bspc rule -a Emacs  state=tiled
 
 # Floating {{{2
 
-bspc rule -a XClock                     state=floating
+bspc rule -a XClock                     state=floating rectangle=250x250+1630+50
 
 bspc rule -a URxvt                      state=floating
 
@@ -104,6 +106,15 @@ bspc rule -a Asunder                    state=floating
 bspc rule -a net-sourceforge-jnlp-runtime-Boot state=floating
 bspc rule -a sun-awt-X11-XFramePeer            state=floating
 bspc rule -a java-lang-Thread                  state=floating
+
+# }}}2
+
+# Dropdown {{{2
+
+# rectangle=width x height + Xoffset + Yoffset
+
+bspc rule -a kitty:dropdown sticky=on state=floating rectangle=1500x700+200+40
+bspc rule -a URxvt:dropdown sticky=on state=floating rectangle=1200x500+300+100
 
 # }}}2
 

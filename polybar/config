@@ -122,7 +122,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=12;1
 
 modules-left = bspwm
-modules-center = filesystem xbacklight xkeyboard cpu memory wlan eth batterie-script
+modules-center = filesystem xbacklight xkeyboard cpu memory batterie-script
 modules-right = date powermenu
 
 tray-position = right

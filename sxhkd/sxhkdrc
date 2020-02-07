@@ -26,8 +26,16 @@ hyper + ccedilla
 super + ctrl + x
 	xclock
 
-hyper + {dollar, Return, exclam, asterisk}
-	{kitty, alacritty, xterm, urxvtc}
+hyper + {dollar, Return, exclam}
+	{kitty, alacritty, xterm}
+
+hyper + s
+	kitty-dropdown.zsh
+shift + F12
+	kitty-dropdown.zsh
+
+hyper + asterisk
+	urxvtc-dropdown.zsh
 
 hyper + t ; {x, u}
 	{tabbed -c xterm -into, tabbed -c urxvtc -embed}
@@ -111,7 +119,7 @@ super + Prior
 # Fullscreen
 hyper + f
 	bspc node -t '~fullscreen' ; polybar-msg cmd toggle
-shift + F12
+ctrl + F12
 	bspc node -t '~fullscreen' ; polybar-msg cmd toggle
 
 # Floating
@@ -125,23 +133,27 @@ hyper + quotedbl
 # alternate between the tiled and monocle layout
 hyper + m
 	bspc desktop -l next
+hyper + z
+	bspc desktop -l next
 
 # Flip
 hyper + percent
 	bspc node -F
 
 # Equalize
-hyper + equal
-	bspc node -E
+hyper + eacute
+	bspc node @/ -E
 
 # Balance
-hyper + b
-	bspc node -B
+hyper + egrave
+	bspc node @/ -B
 
 # <- desktop ->
 super + {Home,End}
 	bspc desktop -f {prev,next}.local
 super + ctrl + {Left,Right}
+	bspc desktop -f {prev,next}.local
+hyper + {Left,Right}
 	bspc desktop -f {prev,next}.local
 
 # <- window ->
@@ -156,6 +168,11 @@ super + shift + {Left,Up,Down,Right}
 super + {Tab, BackSpace}
 	bspc {node,desktop} -f last
 
+# swap the current node and the biggest one on local desktop
+# swap the current node and the smallest one if already on biggest
+hyper + asciicircum
+	bspwm-swap.sh
+
 # <- history ->
 hyper + {o,i}
 	bspc wm -h off; \
@@ -166,24 +183,22 @@ hyper + {o,i}
 super + {_,shift + }F{1-9,10-12}
 	bspc {desktop -f,node -d} '^{1-9,10-12}'
 
+# Resize
 hyper + shift + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-hyper + shift + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-super + alt + shift + {Left,Down,Up,Right}
+# Move floating
+# easier with mouse, see /home/david/racine/config/windenv/bspwm/bspwmrc
+hyper + alt + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # Add focused window to a tabbed instance in given direction
 hyper + t ; {Left,Down,Up,Right}
-    tabc.sh $(bspc query -N -n {west,south,north,east}) add $(bspc query -N -n focused)
+    tabbed-client.sh $(bspc query -N -n {west,south,north,east}) add $(bspc query -N -n focused)
 
 # Remove one tab from tabbed
 hyper + t ; r
-    tabbed=$(bspc query -N -n focused); \
-    child=$(tabc.sh $tabbed list | head -n1); \
-    tabc.sh $tabbed remove $child
+	bspwm-tabbed.sh
 
 # }}}1
 
