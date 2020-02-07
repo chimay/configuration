@@ -15,7 +15,7 @@ fu mail#bibliotheque#envoieArchive()
 	"let sujet = "archives : " . expand('%:r:r')
 	let sujet = "archives : " . expand('%')
 	let attache = expand('%:p')
-	let destinataire = "your@mail"
+	let destinataire = "orduval@gmail.com"
 
 	exe '! mutt -a' attache '-s "' . sujet . '" --' destinataire '< ~/racine/common/mail/archive'
 

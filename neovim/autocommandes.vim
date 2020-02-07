@@ -10,7 +10,7 @@ augroup Demarrage
 
 	au!
 
-	"au VimEnter * cd ~/racine/notes
+	"au VimEnter * cd ~/racine/plain
 
 augroup END
 
@@ -103,7 +103,7 @@ augroup END
 
 " }}}1
 
-"  Configuration {{{1
+"  Rechargement de la configuration {{{1
 
 augroup RechargementConfiguration
 
@@ -112,6 +112,10 @@ augroup RechargementConfiguration
 	au bufwritepost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
 
 	au bufwritepost ~/racine/config/edit/neovim/after/syntax/** source %
+
+	au bufwritepost ~/racine/config/windenv/sxhkd/sxhkdrc !killall -10 sxhkd
+
+	au bufwritepost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
 
 augroup END
 
@@ -167,56 +171,6 @@ augroup FichiersTemporaires
 	au!
 
 	au BufNewFile,BufReadPre /tmp/*,*/tmp/* setlocal noundofile
-
-augroup END
-
-" }}}1
-
-"  Newsrc {{{1
-
-augroup Nouvelles
-	au!
-	"au BufWritePre newsrc silent! %s/[^:]$/&:/g
-	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs\s/ :&/
-	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs$/ :&/
-augroup END
-
-" }}}1
-
-"  Chat {{{1
-
-augroup Chaton
-	au!
-
-	au BufWritePost alias.conf.perso   w! ~/racine/config/chaton/weechat/alias.conf
-	au BufWritePost aspell.conf.perso  w! ~/racine/config/chaton/weechat/aspell.conf
-	au BufWritePost buffers.conf.perso w! ~/racine/config/chaton/weechat/buffers.conf
-	au BufWritePost cron.txt.perso     w! ~/racine/config/chaton/weechat/cron.txt
-	au BufWritePost irc.conf.perso     w! ~/racine/config/chaton/weechat/irc.conf
-	au BufWritePost iset.conf.perso    w! ~/racine/config/chaton/weechat/iset.conf
-	au BufWritePost jabber.conf.perso  w! ~/racine/config/chaton/weechat/jabber.conf
-	au BufWritePost logger.conf.perso  w! ~/racine/config/chaton/weechat/logger.conf
-	au BufWritePost plugins.conf.perso w! ~/racine/config/chaton/weechat/plugins.conf
-	au BufWritePost relay.conf.perso   w! ~/racine/config/chaton/weechat/relay.conf
-	au BufWritePost script.conf.perso  w! ~/racine/config/chaton/weechat/script.conf
-	au BufWritePost weechat.conf.perso w! ~/racine/config/chaton/weechat/weechat.conf
-	au BufWritePost xfer.conf.perso    w! ~/racine/config/chaton/weechat/xfer.conf
-
-	"au BufWritePost irssi.configuration w! config
-	"au BufWritePost irssi.theme         w! themes/personnel.theme
-
-augroup END
-
-" }}}1
-
-"  Fichier de génération de listes de lecture m3u {{{1
-
-augroup ListesDeLecture
-	au!
-
-	" Perturbe CtrlSpace
-
-	au BufEnter ~/racine/musica/list/*.gen lcd ~/audio
 
 augroup END
 
@@ -390,5 +344,55 @@ augroup manlaunchtoc
 
             " \ setlocal laststatus=0 nonumber norelativenumber |
 augroup end
+
+" }}}1
+
+"  Fichier de génération de listes de lecture m3u {{{1
+
+augroup ListesDeLecture
+	au!
+
+	" Perturbe CtrlSpace
+
+	au BufEnter ~/racine/musica/list/*.gen lcd ~/audio
+
+augroup END
+
+" }}}1
+
+"  Newsrc {{{1
+
+augroup Nouvelles
+	au!
+	"au BufWritePre newsrc silent! %s/[^:]$/&:/g
+	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs\s/ :&/
+	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs$/ :&/
+augroup END
+
+" }}}1
+
+"  Chat {{{1
+
+augroup Chaton
+	au!
+
+	au BufWritePost alias.conf.perso   w! ~/racine/config/chaton/weechat/alias.conf
+	au BufWritePost aspell.conf.perso  w! ~/racine/config/chaton/weechat/aspell.conf
+	au BufWritePost buffers.conf.perso w! ~/racine/config/chaton/weechat/buffers.conf
+	au BufWritePost cron.txt.perso     w! ~/racine/config/chaton/weechat/cron.txt
+	au BufWritePost irc.conf.perso     w! ~/racine/config/chaton/weechat/irc.conf
+	au BufWritePost iset.conf.perso    w! ~/racine/config/chaton/weechat/iset.conf
+	au BufWritePost jabber.conf.perso  w! ~/racine/config/chaton/weechat/jabber.conf
+	au BufWritePost logger.conf.perso  w! ~/racine/config/chaton/weechat/logger.conf
+	au BufWritePost plugins.conf.perso w! ~/racine/config/chaton/weechat/plugins.conf
+	au BufWritePost relay.conf.perso   w! ~/racine/config/chaton/weechat/relay.conf
+	au BufWritePost script.conf.perso  w! ~/racine/config/chaton/weechat/script.conf
+	au BufWritePost weechat.conf.perso w! ~/racine/config/chaton/weechat/weechat.conf
+	au BufWritePost xfer.conf.perso    w! ~/racine/config/chaton/weechat/xfer.conf
+
+	"au BufWritePost irssi.configuration w! config
+	"au BufWritePost irssi.theme         w! themes/personnel.theme
+
+augroup END
 
 " }}}1

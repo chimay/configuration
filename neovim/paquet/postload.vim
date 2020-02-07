@@ -7,7 +7,7 @@
 " Mappings de lancement {{{3
 
 nnoremap <space>    :<c-u>Denite source<cr>
-nnoremap <d-space>  :<c-u>Denite<space>
+nnoremap <s-space>  :<c-u>Denite<space>
 
 nnoremap <F1>       :<c-u>Denite help<cr>
 
@@ -35,6 +35,10 @@ call denite#custom#option('default', {
 	  \ 'highlight_matched_char' : 'false',
 	  \ 'highlight_matched_range' : 'false',
 	  \ })
+
+" call denite#custom#var(
+" \ 'file/rec', 'command',
+" \ ['ag', '--nocolor', '--smart-case', '--vimgrep', '-g', ''])
 
 call denite#custom#var(
 \ 'file/rec', 'command',
@@ -172,6 +176,22 @@ call unite#custom#source('neomru/file', 'ignore_globs',
 
 " }}}1
 
-" Modes {{{1
+" Recherche & Remplacement {{{1
+
+" Grepper {{{2
+
+nnoremap <D-g> :Grepper -tool rg<cr>
+nnoremap <D-q> :Grepper -tool rg<space>
+
+let g:grepper.tools =
+  \ ['rg', 'ag', 'pt', 'sift', 'ack-grep', 'grep', 'git']
+
+let g:grepper.rg = {
+	\ 'grepprg':    'rg --vimgrep --smart-case',
+	\ 'grepformat': '%f:%l:%c:%m',
+	\ 'escape':     '\^$.*[]',
+	\ }
+
+" }}}2
 
 " }}}1

@@ -468,7 +468,7 @@ endfu
 
 " ------------------------------------
 
-"  {{{ Texte des pliages
+"  {{{ Texte des pliages (fold)
 " ------------------------------------------------------------------------
 
 fun! bibliotheque#texteDuPliage()
@@ -480,10 +480,7 @@ fun! bibliotheque#texteDuPliage()
 	let texte = substitute(texte, '{{{[0-9]\?', '', '')				" }}}
 	let texte = substitute(texte, commentaire, '', 'g')
 
-	"let texte = substitute(texte, "[^[:alnum:][:space:]']*", '', 'g')
-	"let texte = substitute(texte, '	\{2,}'', '	', 'g')
-	"let texte = substitute(texte, '^\s\+', '', '')
-	"let texte = substitute(texte, '\s\+$', '', '')
+	let texte = substitute(texte, '	', '', 'g')
 
 	let texte = substitute(texte, '’', "'", 'g')
 	let texte = substitute(texte, '\C[[=A=]]', 'A', 'g')

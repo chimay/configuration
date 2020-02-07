@@ -356,11 +356,11 @@ nmap <expr> <Space> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Space>'
 
 let g:sneak#label = 1
 let g:sneak#label_esc = "\<space>"
-let g:sneak#target_labels = ",;’&é§èçàù*µ£@#!~`°¼½bwefthjklnu"
-let g:sneak#prompt = '/ 2 chars > '
+let g:sneak#target_labels = "&é§è!çàù*$µ£~@#bwefthjklnu"
+let g:sneak#prompt = 'sneak > '
 let g:sneak#f_reset      = 0
 let g:sneak#s_next       = 0
-let g:sneak#absolute_dir = 0
+let g:sneak#absolute_dir = 1
 let g:sneak#textobject_z = 1
 let g:sneak#use_ic_scs   = 1
 let g:sneak#map_netrw    = 1
@@ -582,6 +582,12 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 " }}}2
 
+" Fzf preview (yuki-ycino/fzf-preview.vim) {{{1
+
+let g:fzf_preview_command = 'bat --color=always --style=grid {-1}'
+
+" }}}1
+
 " CtrlSpace (szw/vim-ctrlspace) {{{2
 
 " Mappings {{{3
@@ -772,11 +778,8 @@ let g:utl_cfg_hdl_scm_http = "!qutebrowser '%u#%f' &"
 
 " CmdlineComplete (CmdlineComplete) {{{2
 
-cmap <m-right> <Plug>CmdlineCompleteBackward
-cmap <m-left> <Plug>CmdlineCompleteForward
-
-cmap <m-s-t> <Plug>CmdlineCompleteBackward
-cmap <m-t> <Plug>CmdlineCompleteForward
+cmap <m-tab> <Plug>CmdlineCompleteBackward
+cmap <s-tab> <Plug>CmdlineCompleteForward
 
 " }}}2
 
@@ -913,13 +916,32 @@ let g:VM_maps["Redo"] = '<C-r>'
 
 " }}}1
 
-" Recherche & Remplacement {{{1
+" Manipulation de lignes {{{1
 
-" Grepper {{{2
+" Exchange (tommcdo/vim-exchange) {{{2
 
-nnoremap <D-g> :Grepper<cr>
+let g:exchange_no_mappings=1
+
+nmap cx <Plug>(Exchange)
+vmap X <Plug>(Exchange)
+nmap cxc <Plug>(ExchangeClear)
+nmap cxx <Plug>(ExchangeLine)
 
 " }}}2
+
+" LineJuggler  {{{2
+
+" (/)space pour ajouter une ligne
+" (/)e pour échanger deux lignes
+
+nmap ( [
+nmap ) ]
+
+" }}}2
+
+" }}}1
+
+" Recherche & Remplacement {{{1
 
 " Esearch {{{2
 
@@ -1012,16 +1034,6 @@ let g:neomake_make_maker = {
 " }}}1
 
 " Divers {{{1
-
-" LineJuggler  {{{2
-
-" (/)space pour ajouter une ligne
-" (/)e pour échanger deux lignes
-
-nmap ( [
-nmap ) ]
-
-" }}}2
 
 " {{{ Open-pdf (rhysd/open-pdf.vim)
 

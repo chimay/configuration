@@ -12,9 +12,11 @@ function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
   nnoremap <silent><buffer><expr> <Tab> denite#do_map('choose_action')
 
+  nnoremap <silent><buffer><expr> ç denite#do_map('do_action', 'yank')
+
   nnoremap <silent><buffer><expr> s denite#do_map('do_action', 'splitswitch')
   nnoremap <silent><buffer><expr> v denite#do_map('do_action', 'vsplitswitch')
-  nnoremap <silent><buffer><expr> t denite#do_map('do_action', 'tabswitch')
+  nnoremap <silent><buffer><expr> t denite#do_map('do_action', 'tabopen')
 
   nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
   nnoremap <silent><buffer><expr> & denite#do_map('filter', '.vim')

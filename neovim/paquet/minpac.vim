@@ -12,18 +12,19 @@ if exists('*minpac#init')
 	" ------------------------------
 
 	call minpac#add('tpope/vim-repeat', { 'type' : 'start' })
+
 	call minpac#add('hauleth/vim-backscratch', { 'type' : 'start' })
 
 	call minpac#add('Shougo/denite.nvim', { 'type' : 'start' })
 	call minpac#add('Shougo/unite.vim', { 'type' : 'start' })
-	call minpac#add('Shougo/neomru.vim', { 'type' : 'start' })
 	call minpac#add('Shougo/unite-outline', { 'type' : 'start' })
+	call minpac#add('Shougo/neomru.vim', { 'type' : 'start' })
 	call minpac#add('vim-ctrlspace/vim-ctrlspace', { 'type' : 'start' })
 
 	call minpac#add('justinmk/vim-sneak', { 'type' : 'start' })
-
 	call minpac#add('mg979/vim-visual-multi', { 'type' : 'start' })
 
+	call minpac#add('mhinz/vim-grepper', { 'type' : 'start' })
 	call minpac#add('stefandtw/quickfix-reflector.vim', { 'type' : 'start' })
 	call minpac#add('chrisbra/NrrwRgn', { 'type' : 'start' })
 
@@ -35,6 +36,8 @@ if exists('*minpac#init')
 	call minpac#add('Shougo/neoyank.vim', { 'type' : 'start' })
 	call minpac#add('machakann/vim-highlightedyank', { 'type' : 'start' })
 
+	call minpac#add('tommcdo/vim-exchange', { 'type' : 'start' })
+	" requis par LineJuggler
 	call minpac#add('vim-scripts/ingo-library', { 'type' : 'start' })
 	call minpac#add('vim-scripts/LineJuggler', { 'type' : 'start' })
 	call minpac#add('vim-scripts/LineJugglerCommands', { 'type' : 'start' })
@@ -54,10 +57,10 @@ if exists('*minpac#init')
 	call minpac#add('tomtom/tcomment_vim', { 'type' : 'start' })
 	call minpac#add('scrooloose/nerdcommenter', { 'type' : 'start' })
 
-	call minpac#add('mhinz/vim-grepper', { 'type' : 'start' })
-
 	call minpac#add('vim-scripts/utl.vim', { 'type' : 'start' })
 
+	call minpac#add('vim-scripts/CmdlineComplete', { 'type' : 'start' })
+	" requis par cmdalias
 	call minpac#add('coot/CRDispatcher', { 'type' : 'start' })
 	call minpac#add('coot/cmdalias_vim', { 'type' : 'start' })
 
@@ -71,12 +74,8 @@ if exists('*minpac#init')
 	call minpac#add('arecarn/crunch.vim', { 'type' : 'start' })
 
 	call minpac#add('vifm/neovim-vifm', { 'type' : 'start' })
-	call minpac#add('rbgrouleff/bclose.vim', { 'type' : 'start' })
-	call minpac#add('francoiscabrol/ranger.vim', { 'type' : 'start' })
 
-	call minpac#add('mbbill/undotree', { 'type' : 'start' })
-
-	call minpac#add('masukomi/vim-markdown-folding', { 'type' : 'start' })
+	call minpac#add('tpope/vim-eunuch', { 'type' : 'start' })
 
 	" Plugins dans opt
 	" ------------------------------
@@ -92,6 +91,7 @@ if exists('*minpac#init')
 	call minpac#add('dhruvasagar/vim-table-mode', { 'type' : 'opt' })
 	call minpac#add('eugen0329/vim-esearch', { 'type' : 'opt' })
 	call minpac#add('flazz/vim-colorschemes', { 'type' : 'opt' })
+	call minpac#add('francoiscabrol/ranger.vim', { 'type' : 'opt' })
 	call minpac#add('godlygeek/tabular', { 'type' : 'opt' })
 	call minpac#add('hewes/unite-gtags', { 'type' : 'opt' })
 	call minpac#add('honza/vim-snippets', { 'type' : 'opt' })
@@ -102,9 +102,12 @@ if exists('*minpac#init')
 	call minpac#add('kmnk/vim-unite-giti', { 'type' : 'opt' })
 	call minpac#add('kopischke/unite-spell-suggest', { 'type' : 'opt' })
 	call minpac#add('maralla/completor.vim', { 'type' : 'opt' })
+	call minpac#add('masukomi/vim-markdown-folding', { 'type' : 'opt' })
+	call minpac#add('mbbill/undotree', { 'type' : 'opt' })
 	call minpac#add('neomake/neomake', { 'type' : 'opt' })
 	call minpac#add('nixprime/cpsm', { 'type' : 'opt' })
 	call minpac#add('osyo-manga/unite-quickfix', { 'type' : 'opt' })
+	call minpac#add('rbgrouleff/bclose.vim', { 'type' : 'opt' })
 	call minpac#add('rhysd/open-pdf.vim', { 'type' : 'opt' })
 	call minpac#add('sk1418/QFGrep', { 'type' : 'opt' })
 	call minpac#add('skywind3000/asyncrun.vim', { 'type' : 'opt' })
@@ -112,15 +115,12 @@ if exists('*minpac#init')
 	call minpac#add('tacroe/unite-mark', { 'type' : 'opt' })
 	call minpac#add('terryma/vim-multiple-cursors', { 'type' : 'opt' })
 	call minpac#add('thinca/vim-visualstar', { 'type' : 'opt' })
-	call minpac#add('tommcdo/vim-exchange', { 'type' : 'opt' })
 	call minpac#add('tomtom/tlib_vim', { 'type' : 'opt' })
 	call minpac#add('tpope/vim-abolish', { 'type' : 'opt' })
-	call minpac#add('tpope/vim-eunuch', { 'type' : 'opt' })
 	call minpac#add('tpope/vim-unimpaired', { 'type' : 'opt' })
 	call minpac#add('tsukkee/unite-help', { 'type' : 'opt' })
 	call minpac#add('tsukkee/unite-tag', { 'type' : 'opt' })
 	call minpac#add('ujihisa/unite-locate', { 'type' : 'opt' })
-	call minpac#add('vim-scripts/CmdlineComplete', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/LogiPat', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/rcs.vim', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/vcscommand.vim', { 'type' : 'opt' })
@@ -133,6 +133,7 @@ if exists('*minpac#init')
 	call minpac#add('vim-utils/vim-vertical-move', { 'type' : 'opt' })
 	call minpac#add('wellle/targets.vim', { 'type' : 'opt' })
 	call minpac#add('yaroot/vissort', { 'type' : 'opt' })
+	call minpac#add('yuki-ycino/fzf-preview.vim', { 'type' : 'opt' })
 
 endif
 

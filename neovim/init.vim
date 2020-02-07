@@ -893,7 +893,7 @@ nnoremap [[ [z
 
 "  Fichiers {{{2
 
-nnoremap <C-G> :let @" = expand("%:p")<cr><C-G>
+nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
 nnoremap <c-cr> :wa<cr>
 
@@ -976,6 +976,8 @@ endfunc
 " }}}2
 
 " Fenêtres {{{2
+
+nnoremap <D-^> <C-^>
 
 nnoremap <m-left>  <c-w><left>
 nnoremap <m-right> <c-w><right>
@@ -1066,12 +1068,6 @@ nnoremap ]<m-s-t> :tlast<cr>
 
 nnoremap <m-j> :tj /
 nnoremap <m-s-j> :tab tj /
-
-" }}}2
-
-"  Informations {{{2
-
-nnoremap <C-G> 2<C-G>
 
 " }}}2
 
