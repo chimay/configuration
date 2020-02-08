@@ -6,9 +6,19 @@
 
 # Pour recompiler :
 # voir make dans
-# ~/racine/dotdir/zsh/autoload/Makefile
+# ~/racine/fun/zsh/autoload/Makefile
 
 for fichier in ~/racine/fun/zsh/autoload/*/*(.:t)
+do
+	autoload $fichier
+done
+
+for fichier in ~/racine/fun/zsh/completion/*/*(.:t)
+do
+	autoload $fichier
+done
+
+for fichier in ~/racine/fun/zsh/zle/*(.:t)
 do
 	autoload $fichier
 done
@@ -166,7 +176,7 @@ search-ag () {
 
 # }}}2
 
-# find-command {{{2
+# grep-command {{{2
 
 grep-command () {
 	print -l $commands | command grep "$@"
@@ -242,9 +252,9 @@ lc () {
 
 # }}}2
 
-# pg : process grep {{{2
+# pgrep : process grep {{{2
 
-pg () {
+pgrep () {
 
 	local motif
 
@@ -294,20 +304,38 @@ pid () {
 
 psi () {
 
-	local motif identifiants reponse signal
+	local motif signal identifiants reponse
 
-	motif="$@"
+	reponse=n
+
+	while true
+	do
+		case $1 in
+			-y)
+				reponse=y
+				shift
+				;;
+			[0-9]##)
+				signal=$1
+				shift
+				;;
+			?*)
+				motif=$1
+				shift
+				;;
+			*)
+				break
+				;;
+		esac
+	done
 
 	(( $#motif > 0 )) || {
-
 		echo -n "Motif : "
 		read motif
 		echo
 	}
 
 	(( $#motif > 0 )) || return 1
-
-	reponse=n
 
 	command ps --no-headers -eo '%p %a' | command grep -v grep | command grep --color=never $motif
 	echo
@@ -324,50 +352,34 @@ psi () {
 
 	(( $#identifiants > 0 )) || return 2
 
-	echo -n "Voulez-vous envoyer un signal à ces processus ? (y/n, o/n) "
-	read reponse
-	echo
+	[ $reponse = y ] || {
+		echo -n "Voulez-vous envoyer un signal à ces processus ? (y/n, o/n) "
+		read reponse
+		echo
+	}
 
 	(( $#reponse > 0 )) || return 1
 
 	[ $reponse = y -o $reponse = o -o $reponse = yes -o $reponse = oui ] || return 0
 
-	echo -n "Signal [1 = TERM] (l=liste des signaux) : "
-	read signal
-	echo
+	(( $#signal > 0 )) || {
+		echo -n "Signal [15 = TERM] (l=liste des signaux) : "
+		read signal
+		echo
+	}
 
-	(( $#signal == 0 )) && signal=1
+	(( $#signal == 0 )) && signal=15
 
 	while [ $signal = l ]
 	do
-		echo "Signal		Valeur	Action	Commentaire"
-		echo "-----------------------------------------"
-		echo "HUP        1       Term    Hangup detected on controlling terminal or death of controlling process"
-		echo "INT        2       Term    Interrupt from keyboard"
-		echo "QUIT       3       Core    Quit from keyboard"
-		echo "ILL        4       Core    Illegal Instruction"
-		echo "ABRT       6       Core    Abort signal from abort(3)"
-		echo "FPE        8       Core    Floating-point exception"
-		echo "KILL       9       Term    Kill signal"
-		echo "SEGV      11       Core    Invalid memory reference"
-		echo "PIPE      13       Term    Broken pipe: write to pipe with no readers; see pipe(7)"
-		echo "ALRM      14       Term    Timer signal from alarm(2)"
-		echo "TERM      15       Term    Termination signal"
-		echo "USR1   30,10,16    Term    User-defined signal 1"
-		echo "USR2   31,12,17    Term    User-defined signal 2"
-		echo "CHLD   20,17,18    Ign     Child stopped or terminated"
-		echo "CONT   19,18,25    Cont    Continue if stopped"
-		echo "STOP   17,19,23    Stop    Stop process"
-		echo "TSTP   18,20,24    Stop    Stop typed at terminal"
-		echo "TTIN   21,21,26    Stop    Terminal input for background process"
-		echo "TTOU   22,22,27    Stop    Terminal output for background process"
+		bash -c 'kill -L'
 		echo
 
-		echo -n "Signal [1 = TERM] (l=liste des signaux) : "
+		echo -n "Signal [15 = TERM] (l=liste des signaux) : "
 		read signal
 		echo
 
-		(( $#signal == 0 )) && signal=1
+		(( $#signal == 0 )) && signal=15
 	done
 
 
@@ -501,7 +513,8 @@ ptree () {
 pageur () {
 	local less
 
-	less="less --lesskey-file=$HOME/racine/built/less/key.out"
+	#less="less --lesskey-file=$HOME/racine/built/less/key.out"
+	less="less"
 
 	(( $# == 0 )) && {
 
@@ -515,10 +528,19 @@ pageur () {
 
 # }}}2
 
+# yank-file {{{2
+
+yank-file () {
+
+	cat $1 | xclip -i -selection clipboard
+}
+
+# }}}2
+
 # vf : vim quick fix {{{2
 
 vf () {
-	vim +cope -q <(ag --nocolor --vimgrep --smart-case "$@")
+	vim +cope -q <(rg --vimgrep --smart-case "$@")
 }
 
 # }}}2
