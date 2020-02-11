@@ -19,7 +19,7 @@ bspc monitor -d term text browser office artisan entertain misc
 
 # Desktops {{{1
 
-bspc desktop -f term
+#bspc desktop -f term
 
 # }}}1
 
@@ -46,6 +46,12 @@ bspc config normal_border_color  '#000000'
 bspc config active_border_color  '#7b3c11'
 bspc config focused_border_color  '#7b3c11'
 
+bspc config presel_feedback_color "#301207"
+
+# Pas besoin avec picom
+# bspc config focused_frame_opacity 1.0
+# bspc config normal_frame_opacity 0.85
+
 # }}}1
 
 # Rules {{{1
@@ -53,7 +59,6 @@ bspc config focused_border_color  '#7b3c11'
 # Desktops {{{2
 
 bspc rule -a kitty desktop=term
-bspc rule -a XTerm desktop=term
 
 bspc rule -a Gvim desktop=text
 bspc rule -a nvim-qt desktop=text
@@ -89,7 +94,13 @@ bspc rule -a Emacs  state=tiled
 
 bspc rule -a XClock                     state=floating rectangle=250x250+1630+50
 
-bspc rule -a URxvt                      state=floating
+bspc rule -a URxvt:zshrun               state=floating
+bspc rule -a URxvt:zshrunterm           state=floating
+
+bspc rule -a URxvt:calculatrice         state=floating
+bspc rule -a URxvt:meteo                state=floating
+bspc rule -a URxvt:journal              state=floating rectangle=1200x500+350+50
+bspc rule -a URxvt:maintenance          state=floating rectangle=1200x500+350+50
 
 bspc rule -a Vimiv                      state=floating
 bspc rule -a Sxiv                       state=floating
@@ -114,7 +125,7 @@ bspc rule -a java-lang-Thread                  state=floating
 # rectangle=width x height + Xoffset + Yoffset
 
 bspc rule -a kitty:dropdown sticky=on state=floating rectangle=1500x700+200+40
-bspc rule -a URxvt:dropdown sticky=on state=floating rectangle=1200x500+300+100
+bspc rule -a URxvt:dropdown sticky=on state=floating rectangle=964x574+476+50
 
 # }}}2
 

@@ -71,7 +71,7 @@ font-2 = siji:pixelsize=12;1
 
 modules-left = menu-apps bspwm
 modules-center = mpd
-modules-right = alsa pulseaudio temperature battery
+modules-right = alsa pulseaudio minuterie temperature
 
 tray-position = right
 tray-padding = 2
@@ -122,8 +122,8 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=12;1
 
 modules-left = bspwm
-modules-center = filesystem xbacklight xkeyboard cpu memory batterie-script
-modules-right = date powermenu
+modules-center = xbacklight cpu memory batterie-script meteo
+modules-right = powermenu date
 
 tray-position = right
 tray-padding = 2
@@ -174,9 +174,9 @@ menu-0-3 = Browser
 menu-0-3-exec = menu-open-4
 
 menu-1-0 = Rofi
-menu-1-0-exec = rofi-meta.zsh &
+menu-1-0-exec = rofi-meta.zsh &>> ~/log/polybar/rofi-meta.log &
 menu-1-1 = Dmenu
-menu-1-1-exec = dmenu-apps.sh &
+menu-1-1-exec = dmenu-apps.sh &>> ~/log/polybar/dmenu-apps.log  &
 menu-1-2 = "<--"
 menu-1-2-exec = menu-open-0
 
@@ -194,11 +194,11 @@ menu-2-5 = "<--"
 menu-2-5-exec = menu-open-0
 
 menu-3-0 = Neovim
-menu-3-0-exec = lance-neovim.zsh &
+menu-3-0-exec = lance-neovim.zsh &>> ~/log/polybar/lance-neovim.log &
 menu-3-1 = Gvim
-menu-3-1-exec = lance-gvim.zsh &
+menu-3-1-exec = lance-gvim.zsh &>> ~/log/polybar/lance-gvim.log &
 menu-3-2 = Emacs client
-menu-3-2-exec = lance-emacs-client.zsh &
+menu-3-2-exec = lance-emacs-client.zsh  &>> ~/log/polybar/lance-emacs-client.log &
 menu-3-3 = "<--"
 menu-3-3-exec = menu-open-0
 
@@ -276,10 +276,12 @@ blacklist-0 = num lock
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+;format-prefix-underline = ${colors.secondary}
+format-prefix-underline = #000000
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+;label-layout-underline = ${colors.secondary}
+label-layout-underline = #000000
 
 label-indicator-padding = 2
 label-indicator-margin = 1
@@ -323,7 +325,8 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+;format-underline = #f90000
+format-underline = #000000
 label = Proc %percentage:2%%
 
 [module/memory]
@@ -331,7 +334,8 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+;format-underline = #4bffdc
+format-underline = #000000
 label = Mem %percentage_used%%
 
 [module/wlan]
@@ -372,22 +376,6 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/date]
-type = internal/date
-interval = 5
-
-date = " %A %d %B %Y"
-date-alt = " %Y-%m-%d"
-
-time = %H:%M
-time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
-
-label = %time% %date%
-
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -403,20 +391,23 @@ label-discharging = Battery %percentage%%
 label-full = Full
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+;format-charging-underline = #ffb52a
+format-charging-underline = #000000
 format-charging-foreground = ${colors.foreground}
 format-charging-background = ${colors.background}
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-foreground = ${colors.background}
 format-discharging-background = ${colors.foreground}
-format-discharging-underline = ${self.format-charging-underline}
+;format-discharging-underline = ${self.format-charging-underline}
+format-discharging-underline = #000000
 
 format-full =  <label-full>
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground}
 format-full-prefix-background = ${colors.background}
-format-full-underline = ${self.format-charging-underline}
+;format-full-underline = ${self.format-charging-underline}
+format-full-underline = #000000
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -440,8 +431,11 @@ animation-discharging-framerate = 750
 [module/batterie-script]
 
 type = custom/script
-exec = batterie.sh
+exec = polybar-batterie.sh
 tail = true
+
+click-left = less-log.sh ~/log/alarm-battery.log &>> ~/log/polybar/less-log-alarm-battery.log &
+click-right = urxvtc-top.sh  &>> ~/log/polybar/urxvtc-top.log &
 
 [module/batterie-acpi]
 
@@ -463,7 +457,8 @@ thermal-zone = 0
 warn-temperature = 70
 
 format = Temp <ramp> <label>
-format-underline = #f50a4d
+;format-underline = #f50a4d
+format-underline = #000000
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
@@ -476,6 +471,23 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = " %A %d %B %Y"
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #0a6cf5
+format-underline = #000000
+
+label = %time% %date%
 
 [module/mpd]
 type = internal/mpd
@@ -551,5 +563,20 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/minuterie]
+
+type = custom/text
+content = HH:MM:SS
+click-left = zen-minuteur.zsh &>> ~/log/polybar/minuterie.log &
+click-right = less-log.sh ~/log/minuterie.log &>> ~/log/polybar/less-log-minuterie.log &
+
+[module/meteo]
+
+type = custom/script
+exec = polybar-meteo.sh
+tail = true
+
+click-left = zen-wego.zsh &>> ~/log/polybar/zen-wego.log &
 
 ; vim:ft=dosini
