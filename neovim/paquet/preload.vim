@@ -171,12 +171,33 @@ let g:deoplete#enable_at_startup = 1
 
 " Neoyank (Shougo/neoyank.vim) {{{2
 
-let g:neoyank#limit = 420
-let g:neoyank#length = 10000
-let g:neoyank#save_registers = ['"', ':', '/']
-let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history-neovim'
+nnoremap ç :<c-u>Denite neoyank<cr>
 
-nnoremap <D-y> :<c-u>Unite -prompt-direction=top history/yank<cr>
+let g:neoyank#limit = 4200
+let g:neoyank#length = 10000
+
+let g:neoyank#save_registers = [
+			\'"',
+			\'+',
+			\'*',
+			\'-',
+			\'.',
+			\':',
+			\'/',
+			\'%',
+			\'0',
+			\'1',
+			\'2',
+			\'3',
+			\'4',
+			\'5',
+			\'6',
+			\'7',
+			\'8',
+			\'9',
+			\]
+
+let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history-neovim'
 
 autocmd BufWinEnter \(*.asc\|*.gpg\) let g:neoyank_disable_write = 1
 
@@ -235,7 +256,7 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 " nmap S <Plug>Sneak_S
 
 nmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
-nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Seak_S'
+nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Sneak_S'
 
 nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Tab>'
 nmap <expr> <Space> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Space>'
@@ -246,7 +267,7 @@ nmap <expr> <Space> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Space>'
 " xmap S <Plug>Sneak_S
 
 xmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
-xmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Seak_S'
+xmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Sneak_S'
 
 " operator-pending-mode
 
@@ -254,7 +275,7 @@ xmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Seak_S'
 " omap S <Plug>Sneak_S
 
 omap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
-omap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Seak_S'
+omap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Sneak_S'
 
 " ; & ,
 
@@ -685,9 +706,9 @@ let g:nrrw_rgn_update_orig_win = 1
 
 " Historique d’undo {{{1
 
-" Undotree (mbbill/undotree) {{{2
+" Mundo {{{2
 
-nnoremap <s-bs> :UndotreeToggle<cr>
+nnoremap <s-bs> :MundoToggle<cr>
 
 " }}}2
 
@@ -806,44 +827,112 @@ xmap  ie  <Plug>(textobj-entire-i)
 
 " }}}2
 
-" Visual multi {{{2
+" Visual multi (mg979/vim-visual-multi) {{{2
 
-let g:VM_leader = 'ù'
-"let g:VM_leader = {'default': '<F3>', 'visual': '<F3>', 'buffer': '<F3>'}
-
-let g:VM_set_statusline = 2
-let g:VM_silent_exit = 1
+" Mappings {{{3
 
 let g:VM_default_mappings = 0
+let g:VM_mouse_mappings = 0
+
+let g:VM_leader = {
+			\'default': 'µ',
+			\'visual': 'µ',
+			\'buffer': 'µ'
+			\}
 
 let g:VM_maps = {}
 
-let g:VM_maps['Find Under']  = '<D-m>'
-let g:VM_maps["Select Cursor Down"] = '<D-n>'
-let g:VM_maps["Select Cursor Up"]   = '<D-p>'
+let g:VM_maps['Find Under']          = '<d-c>'
+let g:VM_maps['Find Subword Under']  = '<d-c>'
+let g:VM_maps["Add Cursor Down"]     = '<d-n>'
+let g:VM_maps["Add Cursor Up"]       = '<d-p>'
+let g:VM_maps["Select All"]          = 'µA'
+let g:VM_maps["Start Regex Search"]  = 'µ/'
+let g:VM_maps["Add Cursor At Pos"]   = 'µµ'
+let g:VM_maps["Reselect Last"]       = 'µgv'
 
-"let g:VM_maps["Select Operator"] = 'gs'
+let g:VM_maps["Visual All"] = 'µA'
+let g:VM_maps["Visual Regex"] = 'µ/'
+let g:VM_maps["Visual Find"] = 'µf'
+let g:VM_maps["Visual Cursors"] = 'µc'
+let g:VM_maps["Visual Add"] = 'µa'
+
+let g:VM_maps["Visual Subtract"] = 'µs'
+let g:VM_maps["Visual Reduce"] = 'µr'
+
+let g:VM_maps["Find Next"] = 'n'
+let g:VM_maps["Find Prev"] = 'N'
+let g:VM_maps["Goto Next"] = ']'
+let g:VM_maps["Goto Prev"] = '['
+let g:VM_maps["Seek Next"] = '<C-f>'
+let g:VM_maps["Seek Prev"] = '<C-b>'
+let g:VM_maps["Skip Region"] = 'q'
+let g:VM_maps["Remove Region"] = 'Q'
+
+let g:VM_maps["Invert Direction"] = 'o'
+let g:VM_maps["Replace"] = 'R'
+let g:VM_maps["Surround"] = 'S'
+let g:VM_maps["Move Right"] = '<M-S-Right>'
+let g:VM_maps["Move Left"] = '<M-S-Left>'
+
+let g:VM_maps["I Next"] = '<tab>'
+let g:VM_maps["I Prev"] = '<s-tab>'
+
+let g:VM_maps["Select Operator"] = 's'
+let g:VM_maps["Find Operator"] = 'm'
+
+let g:VM_maps["Increase"] = '<c-a>'
+let g:VM_maps["Decrease"] = '<c-x>'
+let g:VM_maps["Alpha-Increase"] = 'µ<c-a>'
+let g:VM_maps["Alpha-Decrease"] = 'µ<c-x>'
+
+let g:VM_maps["Transpose"] = 'µt'
+let g:VM_maps["Align"] = 'µa'
+let g:VM_maps["Align Char"] = 'µ<'
+let g:VM_maps["Align Regex"] = 'µ>'
+let g:VM_maps["Split Regions"] = 'µs'
+let g:VM_maps["Filter Regions"] = 'µf'
+let g:VM_maps["Transform Regions"] = 'µe'
+let g:VM_maps["Rewrite Last Search"] = 'µr'
+let g:VM_maps["Merge Regions"] = 'µm'
+let g:VM_maps["Duplicate"] = 'µd'
+let g:VM_maps["Shrink"] = 'µ-'
+let g:VM_maps["Enlarge"] = 'µ+'
+let g:VM_maps["Numbers"] = 'µ0'
+let g:VM_maps["Numbers Append"] = 'µ1'
+
+let g:VM_maps["Run Normal"] = 'µn'
+let g:VM_maps["Run Visual"] = 'µv'
+let g:VM_maps["Run Ex"] = 'µ:'
+let g:VM_maps["Run Last Normal"] = 'µN'
+let g:VM_maps["Run Last Visual"] = 'µV'
+let g:VM_maps["Run Last Ex"] = 'µX'
+let g:VM_maps["Run Macro"] = 'µ@'
+
+let g:VM_maps["Select Cursor Down"] = '<C-Down>'
+let g:VM_maps["Select Cursor Up"]   = '<C-Up>'
 
 let g:VM_maps["Undo"] = 'u'
 let g:VM_maps["Redo"] = '<C-r>'
 
-" }}}2
+let g:VM_maps["Tools Menu"] = 'µ='
+let g:VM_maps["Case Conversion Menu"] = 'µC'
+let g:VM_maps["Show Registers"] = 'µ"'
+let g:VM_maps["Toggle Whole Word"] = 'µw'
+let g:VM_maps["Case Settings"] = 'µc'
+let g:VM_maps["Toggle Multiline"] = 'µM'
+let g:VM_maps["Toggle Mappings"] = 'µ<space>'
+let g:VM_maps["Toggle Block"] = 'µ<c-v>'
+let g:VM_maps["Toggle Single Region"] = 'µ<cr>'
 
-" Multiple cursors {{{2
+" }}}3
 
-" let g:multi_cursor_use_default_mapping=0
-"
-" let g:multi_cursor_start_word_key      = '<D-n>'
-" let g:multi_cursor_select_all_word_key = '<S-D-n>'
-" let g:multi_cursor_start_key           = 'g<D-n>'
-" let g:multi_cursor_select_all_key      = 'g<S-D-n>'
-" let g:multi_cursor_next_key            = '<D-n>'
-" let g:multi_cursor_prev_key            = '<D-p>'
-" let g:multi_cursor_skip_key            = '<D-x>'
-" let g:multi_cursor_quit_key            = '<Esc>'
-"
-" let g:multi_cursor_exit_from_visual_mode = 0
-" let g:multi_cursor_exit_from_insert_mode = 0
+" Options {{{3
+
+let g:VM_set_statusline = 2
+let g:VM_silent_exit = 1
+
+" }}}3
 
 " }}}2
 
@@ -951,16 +1040,6 @@ nnoremap <d-$> :TREPLSendLine<cr>
 vnoremap <d-$> :TREPLSendSelection<cr>
 
 nnoremap <d-cr> :TREPLSendFile<cr>
-
-" }}}2
-
-" Neomake {{{2
-
-nnoremap <D-m> :NeomakeSh<space>
-
-let g:neomake_make_maker = {
-	\ 'exe': 'make',
-\ }
 
 " }}}2
 

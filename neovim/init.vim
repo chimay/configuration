@@ -864,10 +864,7 @@ let maplocalleader="\<d-,>"
 "nnoremap <F1> <nop>
 
 nnoremap <m-a> :tab help<space>
-nnoremap <m-h> :tab help<space>
-
 nnoremap <m-s-a> :tabe man://
-nnoremap <m-s-h> :tabe man://
 
 " }}}2
 
@@ -879,6 +876,11 @@ nnoremap ZQ :qa!<cr>
 " }}}2
 
 " Déplacement {{{2
+
+nnoremap <m-h> h
+nnoremap <m-j> j
+nnoremap <m-k> k
+nnoremap <m-l> l
 
 nnoremap <PageUp> <C-B>
 nnoremap <PageDown> <C-F>
@@ -1002,12 +1004,6 @@ nnoremap <m-t> :tabnew<cr>
 
 nnoremap <m-s-t> :tabe <C-R>=expand("%:p:h") . "/*" <CR><C-D>
 
-nnoremap <C-Left> gT
-nnoremap <C-Right> gt
-
-nnoremap <C-Up> :tabm -1<cr>
-nnoremap <C-Down> :tabm +1<cr>
-
 nnoremap <C-Home> gT
 nnoremap <C-End> gt
 
@@ -1066,8 +1062,8 @@ nnoremap ]<m-t> :tnext<cr>
 nnoremap [<m-s-t> :tfirst<cr>
 nnoremap ]<m-s-t> :tlast<cr>
 
-nnoremap <m-j> :tj /
-nnoremap <m-s-j> :tab tj /
+nnoremap \j :tj /
+nnoremap \J :tab tj /
 
 " }}}2
 
@@ -1141,18 +1137,6 @@ nnoremap \g :BibliothequeGrep<cr>
 
 nnoremap \; :s:\<\>::<left><left><left><left>
 vnoremap \; :s:\<\>::<left><left><left><left>
-
-" Bibliotheque {{{4
-
-"com! -nargs=0 BibliothequeRemplacement call bibliotheque#remplacement()
-
-"nnoremap \R :BibliothequeRemplacement<cr>
-
-"com! -nargs=0 BibliothequeRemplacementSed call bibliotheque#remplacementSed()
-
-"nnoremap \S :BibliothequeRemplacementSed<cr>
-
-" }}}4
 
 " }}}3
 
@@ -1302,8 +1286,6 @@ endfunction
 " }}}3
 
 " Hauteur de la fenêtre de commande {{{3
-
-"nnoremap \c :silent call bibliotheque#alterneHauteurCommande()<cr>
 
 nnoremap \c :set cmdheight=
 

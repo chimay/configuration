@@ -20,7 +20,7 @@ nnoremap °          :<c-u>Denite buffer<cr>
 
 nnoremap ù          :<c-u>Denite file_mru file/rec<cr>
 
-nnoremap µ         :<c-u>Denite directory_rec<cr>
+"nnoremap <d-d>         :<c-u>Denite directory_rec<cr>
 
 nnoremap £          :<c-u>Denite tag<cr>
 

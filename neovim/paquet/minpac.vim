@@ -72,6 +72,8 @@ if exists('*minpac#init')
 
 	call minpac#add('arecarn/crunch.vim', { 'type' : 'start' })
 
+	call minpac#add('simnalamburt/vim-mundo', { 'type' : 'start' })
+
 	call minpac#add('vifm/neovim-vifm', { 'type' : 'start' })
 
 	call minpac#add('tpope/vim-eunuch', { 'type' : 'start' })
