@@ -171,85 +171,14 @@ let g:deoplete#enable_at_startup = 1
 
 " Neoyank (Shougo/neoyank.vim) {{{2
 
-let g:neoyank#limit = 120
-
+let g:neoyank#limit = 420
+let g:neoyank#length = 10000
+let g:neoyank#save_registers = ['"', ':', '/']
 let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history-neovim'
 
 nnoremap <D-y> :<c-u>Unite -prompt-direction=top history/yank<cr>
 
 autocmd BufWinEnter \(*.asc\|*.gpg\) let g:neoyank_disable_write = 1
-
-" }}}2
-
-"  YankRing (YankRing.vim) {{{2
-
-" Mappings {{{3
-
-" Map exceptionnel
-
-nnoremap <silent> ç :<C-U>YRShow<cr>
-
-" Maps ordinaires
-
-nnoremap <silent> <F7><F7> :YRToggle<cr>
-nnoremap <silent> <F7>s :<C-U>YRSearch<cr>
-
-let g:yankring_replace_n_pkey = '<m-p>'
-let g:yankring_replace_n_nkey = '<m-y>'
-
-" Y, pour compléter C et D
-
-function! YRRunAfterMaps()
-	nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-endfunction
-
-" }}}3
-
-" Options {{{3
-
-let g:yankring_max_history = 420
-
-let g:yankring_min_element_length = 2
-let g:yankring_max_element_length = 90000
-
-let g:yankring_warn_on_truncate = 1
-
-let g:yankring_window_use_separate = 1
-let g:yankring_window_auto_close   = 1
-let g:yankring_window_use_horiz    = 1
-let g:yankring_window_use_bottom = 1
-let g:yankring_window_height = 25
-
-let g:yankring_max_display = 120
-
-" Pas besoin du menu graphique de gvim
-let g:yankring_default_menu_mode = 0
-
-let g:yankring_persist = 1
-let g:yankring_share_between_instances = 1
-
-let g:yankring_history_dir = $HOME . '/racine/plugin/data/yankring-neovim'
-let g:yankring_history_file = 'yankring-hist'
-
-let g:yankring_ignore_duplicate = 1
-
-let g:yankring_ignore_operator = 'g~ gu gU ! = gq g? > < zf g@ @'
-let g:yankring_map_dot = 0
-let g:yankring_dot_repeat_yank = 0
-let g:yankring_paste_using_g = 1
-
-" Pris en charge par PrevInsertComplete
-let g:yankring_record_insert = 0
-
-" Désactivé car ralentit x,X, etc
-let g:yankring_manage_numbered_reg = 0
-
-let g:yankring_paste_check_default_buffer = 1
-let g:yankring_clipboard_monitor = 1
-let g:yankring_manual_clipboard_check = 1
-let g:yankring_paste_check_default_register = 1
-
-" }}}3
 
 " }}}2
 
@@ -298,25 +227,39 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " Sneak (justinmk/vim-sneak) {{{2
 
+" Mappings {{{3
+
 " 2-character Sneak (default)
 
-nmap s <Plug>Sneak_s
-nmap S <Plug>Sneak_S
+" nmap s <Plug>Sneak_s
+" nmap S <Plug>Sneak_S
+
+nmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
+nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Seak_S'
+
+nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Tab>'
+nmap <expr> <Space> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Space>'
 
 " visual-mode
 
-xmap s <Plug>Sneak_s
-xmap S <Plug>Sneak_S
+" xmap s <Plug>Sneak_s
+" xmap S <Plug>Sneak_S
+
+xmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
+xmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Seak_S'
 
 " operator-pending-mode
 
-omap s <Plug>Sneak_s
-omap S <Plug>Sneak_S
+" omap s <Plug>Sneak_s
+" omap S <Plug>Sneak_S
+
+omap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
+omap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Seak_S'
 
 " ; & ,
 
-map ; <Plug>Sneak_;
-map , <Plug>Sneak_,
+" map ; <Plug>Sneak_;
+" map , <Plug>Sneak_,
 
 " 1-character enhanced 'f'
 
@@ -348,11 +291,9 @@ xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 
-nmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : ';'
-nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : ','
+" }}}3
 
-nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Tab>'
-nmap <expr> <Space> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Space>'
+" Options {{{3
 
 let g:sneak#label = 1
 let g:sneak#label_esc = "\<space>"
@@ -374,6 +315,8 @@ highlight SneakScope cterm=reverse
 " highlight link Sneak None
 " " Needed if a plugin sets the colorscheme dynamically:
 " autocmd User SneakLeave highlight clear Sneak
+
+" }}}3
 
 " }}}2
 
@@ -582,12 +525,6 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 " }}}2
 
-" Fzf preview (yuki-ycino/fzf-preview.vim) {{{1
-
-let g:fzf_preview_command = 'bat --color=always --style=grid {-1}'
-
-" }}}1
-
 " CtrlSpace (szw/vim-ctrlspace) {{{2
 
 " Mappings {{{3
@@ -632,6 +569,7 @@ let g:CtrlSpaceKeys = {
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
 			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
 			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
+			\"w": "ctrlspace#keys#workspace#ToggleSubmode",
 		\},
 		\ "Bookmark": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
@@ -691,18 +629,13 @@ let g:CtrlSpaceUnicodeFont = 1
 
 " Workspaces {{{3
 
-let g:CtrlSpaceSaveWorkspaceOnExit = 0
-
-let g:CtrlSpaceSaveWorkspaceOnSwitch = 0
-
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 0
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
 
 " }}}3
 
 " Options {{{3
-
-let g:CtrlSpaceSaveWorkspaceOnExit = 0
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 0
 
 let g:CtrlSpaceCyclicList = 2
 let g:CtrlSpaceMaxJumps = 120

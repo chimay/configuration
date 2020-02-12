@@ -1830,6 +1830,6 @@ source ~/racine/config/edit/neovim/paquet/postload.vim
 "  {{{ Auto-commandes pour plugins
 " ------------------------------------------------------------------------
 
-source ~/racine/config/edit/neovim/autocmd_plugin.vim
+source ~/racine/config/edit/neovim/paquet/autocmd-plugin.vim
 
 " }}}

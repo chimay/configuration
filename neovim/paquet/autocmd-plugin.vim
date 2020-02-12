@@ -4,6 +4,24 @@ if !has("autocmd")
 	finish
 endif
 
+" Démarrage {{{1
+
+augroup Demarrage
+
+	au!
+
+	"au VimEnter * cd ~/racine
+
+	" Voir g:CtrlSpaceLoadLastWorkspaceOnStart
+
+" 	au VimEnter * cd ~/racine |
+" 				\ exe "CtrlSpaceLoadWorkspace tout" |
+" 				\ cd ~/racine/plain
+
+augroup END
+
+" }}}1
+
 " Denite {{{1
 
 autocmd FileType denite call s:denite_my_settings()

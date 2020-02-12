@@ -110,12 +110,11 @@ augroup RechargementConfiguration
 	au!
 
 	au bufwritepost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
-
 	au bufwritepost ~/racine/config/edit/neovim/after/syntax/** source %
 
 	au bufwritepost ~/racine/config/windenv/sxhkd/sxhkdrc !killall -10 sxhkd
-
 	au bufwritepost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
+	au bufwritepost ~/racine/config/windenv/picom.conf !restart-picom.zsh &
 
 augroup END
 
