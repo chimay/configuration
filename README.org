@@ -108,7 +108,7 @@ The following keys are reserved for applications :
 
     + Digits
 
-    + Insert, Delete, Return
+    + Insert, Delete, Space, Return
 
     + & @ ^ $ ! ( ) [ ] { } ...
 
