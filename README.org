@@ -57,6 +57,10 @@ Some applications :
 
     + tmux
 
+  - Can chain keys
+
+    + sxhkd
+
   - Can use independant keymap modes
 
     + i3, tmux, emacs, vim
