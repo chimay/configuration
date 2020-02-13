@@ -26,7 +26,7 @@
 " ç
 " à
 " ù
-
+" space, <.-space>
 
 " }}}1
 
@@ -252,35 +252,18 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " 2-character Sneak (default)
 
-" nmap s <Plug>Sneak_s
-" nmap S <Plug>Sneak_S
-
 nmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
 nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Sneak_S'
 
-nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Tab>'
-nmap <expr> <Space> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Space>'
-
 " visual-mode
-
-" xmap s <Plug>Sneak_s
-" xmap S <Plug>Sneak_S
 
 xmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
 xmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Sneak_S'
 
 " operator-pending-mode
 
-" omap s <Plug>Sneak_s
-" omap S <Plug>Sneak_S
-
 omap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
 omap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Sneak_S'
-
-" ; & ,
-
-" map ; <Plug>Sneak_;
-" map , <Plug>Sneak_,
 
 " 1-character enhanced 'f'
 
@@ -318,7 +301,7 @@ omap T <Plug>Sneak_T
 
 let g:sneak#label = 1
 let g:sneak#label_esc = "\<space>"
-let g:sneak#target_labels = "&é§è!çàù*$µ£~@#bwefthjklnu"
+let g:sneak#target_labels = "ù*$àç&é§è!µ£~@#bwefthjklnu"
 let g:sneak#prompt = 'sneak > '
 let g:sneak#f_reset      = 0
 let g:sneak#s_next       = 0
@@ -835,79 +818,79 @@ let g:VM_default_mappings = 0
 let g:VM_mouse_mappings = 0
 
 let g:VM_leader = {
-			\'default': 'µ',
-			\'visual': 'µ',
-			\'buffer': 'µ'
+			\'default': '<space>',
+			\'visual': '<space>',
+			\'buffer': '<space>'
 			\}
 
 let g:VM_maps = {}
 
-let g:VM_maps['Find Under']          = '<d-c>'
-let g:VM_maps['Find Subword Under']  = '<d-c>'
+let g:VM_maps['Find Under']          = '<d-m>'
+let g:VM_maps['Find Subword Under']  = '<d-m>'
 let g:VM_maps["Add Cursor Down"]     = '<d-n>'
 let g:VM_maps["Add Cursor Up"]       = '<d-p>'
-let g:VM_maps["Select All"]          = 'µA'
-let g:VM_maps["Start Regex Search"]  = 'µ/'
-let g:VM_maps["Add Cursor At Pos"]   = 'µµ'
-let g:VM_maps["Reselect Last"]       = 'µgv'
+let g:VM_maps["Select All"]          = '<space>A'
+let g:VM_maps["Start Regex Search"]  = '<space>/'
+let g:VM_maps["Add Cursor At Pos"]   = '<space><space>'
+let g:VM_maps["Reselect Last"]       = '<space>gv'
 
-let g:VM_maps["Visual All"] = 'µA'
-let g:VM_maps["Visual Regex"] = 'µ/'
-let g:VM_maps["Visual Find"] = 'µf'
-let g:VM_maps["Visual Cursors"] = 'µc'
-let g:VM_maps["Visual Add"] = 'µa'
+let g:VM_maps["Visual All"]     = '<space>A'
+let g:VM_maps["Visual Regex"]   = '<space>/'
+let g:VM_maps["Visual Find"]    = '<space>f'
+let g:VM_maps["Visual Cursors"] = '<space>c'
+let g:VM_maps["Visual Add"]     = '<space>a'
 
-let g:VM_maps["Visual Subtract"] = 'µs'
-let g:VM_maps["Visual Reduce"] = 'µr'
+let g:VM_maps["Visual Subtract"] = '<space>s'
+let g:VM_maps["Visual Reduce"]   = '<space>r'
 
-let g:VM_maps["Find Next"] = 'n'
-let g:VM_maps["Find Prev"] = 'N'
-let g:VM_maps["Goto Next"] = ']'
-let g:VM_maps["Goto Prev"] = '['
-let g:VM_maps["Seek Next"] = '<C-f>'
-let g:VM_maps["Seek Prev"] = '<C-b>'
-let g:VM_maps["Skip Region"] = 'q'
+let g:VM_maps["Find Next"]     = 'n'
+let g:VM_maps["Find Prev"]     = 'N'
+let g:VM_maps["Goto Next"]     = ']'
+let g:VM_maps["Goto Prev"]     = '['
+let g:VM_maps["Seek Next"]     = '<C-f>'
+let g:VM_maps["Seek Prev"]     = '<C-b>'
+let g:VM_maps["Skip Region"]   = 'q'
 let g:VM_maps["Remove Region"] = 'Q'
 
 let g:VM_maps["Invert Direction"] = 'o'
-let g:VM_maps["Replace"] = 'R'
-let g:VM_maps["Surround"] = 'S'
-let g:VM_maps["Move Right"] = '<M-S-Right>'
-let g:VM_maps["Move Left"] = '<M-S-Left>'
+let g:VM_maps["Replace"]          = 'R'
+let g:VM_maps["Surround"]         = 'S'
+let g:VM_maps["Move Right"]       = '<M-S-Right>'
+let g:VM_maps["Move Left"]        = '<M-S-Left>'
 
 let g:VM_maps["I Next"] = '<tab>'
 let g:VM_maps["I Prev"] = '<s-tab>'
 
 let g:VM_maps["Select Operator"] = 's'
-let g:VM_maps["Find Operator"] = 'm'
+let g:VM_maps["Find Operator"]   = 'm'
 
-let g:VM_maps["Increase"] = '<c-a>'
-let g:VM_maps["Decrease"] = '<c-x>'
-let g:VM_maps["Alpha-Increase"] = 'µ<c-a>'
-let g:VM_maps["Alpha-Decrease"] = 'µ<c-x>'
+let g:VM_maps["Increase"]       = '<c-a>'
+let g:VM_maps["Decrease"]       = '<c-x>'
+let g:VM_maps["Alpha-Increase"] = '<space><c-a>'
+let g:VM_maps["Alpha-Decrease"] = '<space><c-x>'
 
-let g:VM_maps["Transpose"] = 'µt'
-let g:VM_maps["Align"] = 'µa'
-let g:VM_maps["Align Char"] = 'µ<'
-let g:VM_maps["Align Regex"] = 'µ>'
-let g:VM_maps["Split Regions"] = 'µs'
-let g:VM_maps["Filter Regions"] = 'µf'
-let g:VM_maps["Transform Regions"] = 'µe'
-let g:VM_maps["Rewrite Last Search"] = 'µr'
-let g:VM_maps["Merge Regions"] = 'µm'
-let g:VM_maps["Duplicate"] = 'µd'
-let g:VM_maps["Shrink"] = 'µ-'
-let g:VM_maps["Enlarge"] = 'µ+'
-let g:VM_maps["Numbers"] = 'µ0'
-let g:VM_maps["Numbers Append"] = 'µ1'
+let g:VM_maps["Transpose"]           = '<space>t'
+let g:VM_maps["Align"]               = '<space>a'
+let g:VM_maps["Align Char"]          = '<space><'
+let g:VM_maps["Align Regex"]         = '<space>>'
+let g:VM_maps["Split Regions"]       = '<space>s'
+let g:VM_maps["Filter Regions"]      = '<space>f'
+let g:VM_maps["Transform Regions"]   = '<space>e'
+let g:VM_maps["Rewrite Last Search"] = '<space>r'
+let g:VM_maps["Merge Regions"]       = '<space>m'
+let g:VM_maps["Duplicate"]           = '<space>d'
+let g:VM_maps["Shrink"]              = '<space>-'
+let g:VM_maps["Enlarge"]             = '<space>+'
+let g:VM_maps["Numbers"]             = '<space>0'
+let g:VM_maps["Numbers Append"]      = '<space>1'
 
-let g:VM_maps["Run Normal"] = 'µn'
-let g:VM_maps["Run Visual"] = 'µv'
-let g:VM_maps["Run Ex"] = 'µ:'
-let g:VM_maps["Run Last Normal"] = 'µN'
-let g:VM_maps["Run Last Visual"] = 'µV'
-let g:VM_maps["Run Last Ex"] = 'µX'
-let g:VM_maps["Run Macro"] = 'µ@'
+let g:VM_maps["Run Normal"]      = '<space>n'
+let g:VM_maps["Run Visual"]      = '<space>v'
+let g:VM_maps["Run Ex"]          = '<space>:'
+let g:VM_maps["Run Last Normal"] = '<space>N'
+let g:VM_maps["Run Last Visual"] = '<space>V'
+let g:VM_maps["Run Last Ex"]     = '<space>X'
+let g:VM_maps["Run Macro"]       = '<space>@'
 
 let g:VM_maps["Select Cursor Down"] = '<C-Down>'
 let g:VM_maps["Select Cursor Up"]   = '<C-Up>'
@@ -915,15 +898,15 @@ let g:VM_maps["Select Cursor Up"]   = '<C-Up>'
 let g:VM_maps["Undo"] = 'u'
 let g:VM_maps["Redo"] = '<C-r>'
 
-let g:VM_maps["Tools Menu"] = 'µ='
-let g:VM_maps["Case Conversion Menu"] = 'µC'
-let g:VM_maps["Show Registers"] = 'µ"'
-let g:VM_maps["Toggle Whole Word"] = 'µw'
-let g:VM_maps["Case Settings"] = 'µc'
-let g:VM_maps["Toggle Multiline"] = 'µM'
-let g:VM_maps["Toggle Mappings"] = 'µ<space>'
-let g:VM_maps["Toggle Block"] = 'µ<c-v>'
-let g:VM_maps["Toggle Single Region"] = 'µ<cr>'
+let g:VM_maps["Tools Menu"]           = '<space>='
+let g:VM_maps["Case Conversion Menu"] = '<space>C'
+let g:VM_maps["Show Registers"]       = '<space>"'
+let g:VM_maps["Toggle Whole Word"]    = '<space>w'
+let g:VM_maps["Case Settings"]        = '<space>c'
+let g:VM_maps["Toggle Multiline"]     = '<space>M'
+let g:VM_maps["Toggle Mappings"]      = '<space><space>'
+let g:VM_maps["Toggle Block"]         = '<space><c-v>'
+let g:VM_maps["Toggle Single Region"] = '<space><cr>'
 
 " }}}3
 
@@ -931,6 +914,22 @@ let g:VM_maps["Toggle Single Region"] = 'µ<cr>'
 
 let g:VM_set_statusline = 2
 let g:VM_silent_exit = 1
+
+" }}}3
+
+" Couleurs {{{3
+
+" *g:VM_Mono_hl*    is the highlight in cursor mode
+" *g:VM_Extend_hl*  ,, in extend mode (the selections)
+" *g:VM_Cursor_hl*  ,, in extend mode (the cursors)
+" *g:VM_Insert_hl*  ,, in insert mode (the virtual cursors)
+
+let g:VM_Mono_hl   = 'DiffDelete'
+let g:VM_Extend_hl = 'DiffAdd'
+let g:VM_Cursor_hl = 'DiffAdd'
+let g:VM_Insert_hl = 'Underlined'
+
+let g:VM_highlight_matches = 'hi Search	guifg=#5B3C11 guibg=black gui=underline'
 
 " }}}3
 

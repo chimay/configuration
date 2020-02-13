@@ -6,8 +6,8 @@
 
 " Mappings de lancement {{{3
 
-nnoremap <space>    :<c-u>Denite source<cr>
-nnoremap <s-space>  :<c-u>Denite<space>
+nnoremap µ         :<c-u>Denite<space>
+nnoremap <s-space> :<c-u>Denite source<cr>
 
 nnoremap <F1>       :<c-u>Denite help<cr>
 
@@ -20,9 +20,9 @@ nnoremap °          :<c-u>Denite buffer<cr>
 
 nnoremap ù          :<c-u>Denite file_mru file/rec<cr>
 
-"nnoremap <d-d>         :<c-u>Denite directory_rec<cr>
-
 nnoremap £          :<c-u>Denite tag<cr>
+
+"nnoremap ...       :<c-u>Denite directory_rec<cr>
 
 " }}}3
 
