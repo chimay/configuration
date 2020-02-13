@@ -71,7 +71,7 @@ Some applications :
 
 *** Window Manager
 
-The following keys are reserved for Window Manager (i3) :
+The following keys are reserved for Window Manager (i3, bspwm, ...) :
 
   - Hyper (Mod3, I bind it to the Menu key) with any key(s)
 
