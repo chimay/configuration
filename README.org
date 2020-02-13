@@ -14,8 +14,8 @@
   - [[#vifm][Vifm]]
   - [[#tig][Tig]]
   - [[#kitty][Kitty]]
-  - [[#bspwm][BSPWM]]
-  - [[#i3-wm][I3 WM]]
+  - [[#bspwm][Bspwm]]
+  - [[#i3-wm][I3 wm]]
 - [[#warning][Warning]]
 
 * Configuration files
@@ -253,7 +253,7 @@ Comments on applications.
 And much more
 
 
-** BSPWM
+** Bspwm
 
   - Scriptable via bspc
 
@@ -267,7 +267,7 @@ And much more
 
     + Tiling and floating
 
-    + Monocle mode : one window
+    + Monocle mode : only one window visible
 
     + Full screen
 
@@ -294,7 +294,7 @@ And much more
     + Menu
 
 
-** I3 WM
+** I3 wm
 
   - Tiling, tabbed, staking and floating modes
 
