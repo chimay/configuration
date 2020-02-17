@@ -193,6 +193,8 @@ Comments on applications.
 
 ** Vifm
 
+  - Deep analogy with Vim keys
+
   - Views
 
     + Dual-pane, vertical or horizontal
@@ -224,8 +226,6 @@ Comments on applications.
   - Cope well with external programs
 
     + User commands :... and :!...
-
-  - Nice analogies with Vim keys
 
   - Tools to select and modify selection
 
