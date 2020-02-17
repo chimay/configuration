@@ -201,7 +201,7 @@ Comments on applications.
 
     + Grid view (ls view)
 
-    + Miller view, like ranger
+    + Miller view with 3 panes, like ranger
 
     + Preview mode
 
