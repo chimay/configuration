@@ -924,10 +924,10 @@ let g:VM_silent_exit = 1
 " *g:VM_Cursor_hl*  ,, in extend mode (the cursors)
 " *g:VM_Insert_hl*  ,, in insert mode (the virtual cursors)
 
-let g:VM_Mono_hl   = 'DiffDelete'
-let g:VM_Extend_hl = 'DiffAdd'
-let g:VM_Cursor_hl = 'DiffAdd'
-let g:VM_Insert_hl = 'Underlined'
+let g:VM_Mono_hl   = 'VisualMultiMono'
+let g:VM_Extend_hl = 'VisualMultiExtend'
+let g:VM_Cursor_hl = 'VisualMultiExtendCursors'
+let g:VM_Insert_hl = 'VisualMultiInsert'
 
 let g:VM_highlight_matches = 'hi Search	guifg=#5B3C11 guibg=black gui=underline'
 

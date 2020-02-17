@@ -895,6 +895,8 @@ nnoremap [[ [z
 
 "  Fichiers {{{2
 
+" Fichier courant aussi disponible dans le registre %
+" Fichier alternatif aussi disponible dans le registre #
 nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
 nnoremap <c-cr> :wa<cr>
