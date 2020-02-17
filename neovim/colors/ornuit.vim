@@ -36,6 +36,7 @@ let g:colors_name = "ornuit"
 hi Normal			guifg=#5B3C11		guibg=black			gui=NONE
 hi Visual			guifg=black			guibg=#5B3C11		gui=NONE
 
+hi Italic			guifg=#5B3C11		guibg=black			gui=italic
 hi Underlined		guifg=#5B3C11		guibg=black			gui=underline
 
 hi Comment			guifg=#754321		guibg=black			gui=italic
@@ -106,7 +107,7 @@ hi TabLineFill		guifg=NONE		guibg=#151515		gui=NONE
 " }}}2
 
 " Menu de complétion en mode insertion {{{2
-al
+
 hi Pmenu			guifg=#88421D		guibg=#070707		gui=NONE
 hi PmenuSbar		guifg=#88421D		guibg=#070707		gui=NONE
 hi PmenuSel			guifg=black			guibg=#5B3C11		gui=bold
@@ -211,10 +212,12 @@ hi HighlightedyankRegion		guifg=#921717		guibg=black			gui=NONE
 
 " }}}3
 
-" Multiple cursors {{{3
+" Visual multi {{{3
 
-highlight multiple_cursors_cursor gui=reverse
-highlight link multiple_cursors_visual Visual
+hi VisualMultiMono			guifg=black			guibg=#4a1c07		gui=bold
+hi VisualMultiExtend		guifg=darkgreen		guibg=#120705		gui=NONE
+hi VisualMultiExtendCursors	guifg=darkgreen		guibg=#120705		gui=italic,underline
+hi VisualMultiInsert		guifg=darkred		guibg=#120705		gui=italic,underline
 
 " }}}3
 
@@ -415,9 +418,9 @@ hi HighlightedyankRegion		ctermfg=darkred		ctermbg=NONE		cterm=NONE
 
 " }}}3
 
-" Multiple cursors {{{3
+" Visual multi {{{3
 
-highlight multiple_cursors_cursor term=reverse cterm=reverse
+
 
 " }}}3
 
