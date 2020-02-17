@@ -205,7 +205,7 @@ Comments on applications.
 
     + Preview mode
 
-      * Also of images with cirala/vifmimg & seebye/ueberzug
+      * Also of images with [[https://github.com/cirala/vifmimg][Vifmimg]] & [[https://github.com/seebye/ueberzug][Ueberzug]]
 
   - Mount
 
