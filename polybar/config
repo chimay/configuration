@@ -38,7 +38,7 @@ foreground-alt = #5b3c11
 foreground-underline = #872e30
 primary = #5b3c11
 secondary = #872e30
-alert = #bd2c40
+alert = #982e30
 
 [bar/superieur]
 enable-ipc = true
@@ -122,7 +122,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=12;1
 
 modules-left = bspwm
-modules-center = xbacklight cpu memory batterie-script meteo
+modules-center = cpu memory batterie-script meteo
 modules-right = powermenu date
 
 tray-position = right
@@ -255,7 +255,8 @@ label-occupied = %name%
 label-occupied-padding = 2
 
 label-urgent = %name%!
-label-urgent-background = ${colors.alert}
+;label-urgent-foreground = ${colors.alert}
+label-urgent-foreground = #5b3c11
 label-urgent-padding = 2
 label-urgent-underline = #754321
 
@@ -476,7 +477,7 @@ ramp-foreground = ${colors.foreground-alt}
 type = internal/date
 interval = 5
 
-date = " %A %d %B %Y"
+date = " %a %d %b %Y"
 date-alt = " %Y-%m-%d"
 
 time = %H:%M

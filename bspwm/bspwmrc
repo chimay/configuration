@@ -10,9 +10,9 @@ bspc rule -r "*"
 
 # Monitor {{{1
 
-bspc monitor -d term text browser office artisan entertain misc
+bspc monitor -d term edit browser office artisan entertain misc
 
-# bspc monitor eDP1 -d term text browser office artisan entertain misc
+# bspc monitor eDP1 -d term edit browser office artisan entertain misc
 # bspc monitor HDMI1 -d movie cartoon sport
 
 # }}}1
@@ -60,9 +60,9 @@ bspc config presel_feedback_color "#301207"
 
 bspc rule -a kitty desktop=term
 
-bspc rule -a Gvim desktop=text
-bspc rule -a nvim-qt desktop=text
-bspc rule -a Emacs desktop=text
+bspc rule -a Gvim desktop=edit
+bspc rule -a nvim-qt desktop=edit
+bspc rule -a Emacs desktop=edit
 
 bspc rule -a qutebrowser desktop=browser
 bspc rule -a firefox desktop=browser
@@ -101,6 +101,7 @@ bspc rule -a URxvt:calculatrice         state=floating
 bspc rule -a URxvt:meteo                state=floating
 bspc rule -a URxvt:journal              state=floating rectangle=1200x500+350+50
 bspc rule -a URxvt:maintenance          state=floating rectangle=1200x500+350+50
+bspc rule -a URxvt:multimedia           state=floating
 
 bspc rule -a Vimiv                      state=floating
 bspc rule -a Sxiv                       state=floating

@@ -84,6 +84,9 @@ super + ctrl + {e,n,v}
 super + ctrl + {q,f,b}
 	{lance-qutebrowser.sh,lance-firefox.sh,brave}
 
+super + ctrl + t
+	thunderbird
+
 super + ctrl + o
 	libreoffice
 
@@ -99,13 +102,46 @@ super + ctrl + shift + f
 super + ctrl + shift + v
 	vlc
 
-super + ctrl + t
-	zen-wego.zsh
+# }}}1
 
+# Écran {{{1
+
+super + alt + v
+	xbacklight -set 100
+
+hyper + v ; Up
+	xbacklight -inc 10
+
+hyper + v ; Down
+	xbacklight -dec 10
+
+hyper + v ; Right
+	xbacklight -inc 25
+
+hyper + v ; Left
+	xbacklight -dec 25
 
 # }}}1
 
 # Multimédia {{{1
+
+hyper + space ; Up
+	pamixer --increase 5
+
+hyper + space ; Down
+	pamixer --decrease 5
+
+hyper + space ; Right
+	pamixer --increase 10
+
+hyper + space ; Left
+	pamixer --decrease 10
+
+hyper + space ; Prior
+	pamixer --increase 10
+
+hyper + space ; Next
+	pamixer --decrease 10
 
 hyper + space ; space
 	mpc toggle
@@ -116,8 +152,23 @@ hyper + space ; n
 hyper + space ; p
 	mpc prev
 
+hyper + space ; BackSpace
+	mpc -q seek 0:0
+
+hyper + space ; f
+	mpc seek +1:00
+
+hyper + space ; b
+	mpc seek -1:00
+
 hyper + space ; m
-	urxvtc -e pulsemixer
+	urxvtc -name multimedia -e pulsemixer
+
+hyper + space ; M
+	urxvtc -name multimedia -e ncpamixer
+
+hyper + space ; c
+	urxvtc -name multimedia -e ncmpcpp
 
 # }}}1
 
@@ -145,6 +196,10 @@ hyper + shift + q
 # Close
 hyper + shift + x
 	bspc node -c
+
+# Really Close
+hyper + shift + k
+	bspc node -k
 
 hyper + l
 	i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png
@@ -176,8 +231,6 @@ hyper + quotedbl
 	bspc node -t '~tiled'
 
 # alternate between the tiled and monocle layout
-hyper + m
-	bspc desktop -l next
 hyper + z
 	bspc desktop -l next
 
@@ -229,8 +282,8 @@ hyper + {Next,Prior}
 	bspc wm -h on
 
 # Move (window) to desktop
-super + {_,shift + }F{1-9,10-12}
-	bspc {desktop -f, node -d} '^{1-9,10-12}'
+super + {_,shift + }F{1-9,10}
+	bspc {desktop -f, node -d} '^{1-9,10}'
 
 # Resize
 hyper + shift + {Left,Down,Up,Right}
@@ -253,10 +306,13 @@ hyper + t ; r
 
 # Polybar {{{1
 
+hyper + p ; t
+	polybar-msg cmd toggle
+
 hyper + b
 	polybar-msg cmd toggle
 
-hyper + p
+hyper + p ; r
 	polybar-msg cmd restart
 
 # }}}1
