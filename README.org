@@ -207,6 +207,20 @@ Comments on applications.
 
       * Also of images with cirala/vifmimg & seebye/ueberzug
 
+  - Mount
+
+    + Archives with archivemount
+
+      * Handy to quickly edit a file in it
+
+    + Iso images with fuseiso
+
+    + Ssh file systems with sshfs
+
+    + Ftp file systems with curlftpfs
+
+      * And you have a great ftp client
+
   - Cope well with external programs
 
     + User commands :... and :!...
