@@ -47,143 +47,7 @@ hyper + ccedilla
 
 # }}}1
 
-# Applications {{{1
-
-super + ctrl + x
-	xclock
-
-hyper + {dollar, Return, exclam, comma}
-	{kitty, alacritty, xterm, urxvtc}
-
-hyper + s
-	kitty-dropdown.zsh
-shift + F12
-	kitty-dropdown.zsh
-
-hyper + asterisk
-	urxvtc-dropdown.zsh
-
-hyper + equal
-	urxvtc-calculatrice.zsh
-
-hyper + t ; {x,u}
-	{tabbed -c xterm -into, tabbed -c urxvtc -embed}
-
-super + ctrl + section
-	kitty vifmrun
-
-super + ctrl + k
-	kitty kak
-
-super + ctrl + w
-	kitty elinks
-
-super + ctrl + {e,n,v}
-	{lance-emacs-client.zsh, lance-neovim.zsh, lance-gvim.zsh}
-
-super + ctrl + {q,f,b}
-	{lance-qutebrowser.sh,lance-firefox.sh,brave}
-
-super + ctrl + t
-	thunderbird
-
-super + ctrl + o
-	libreoffice
-
-super + ctrl + g
-	geogebra
-
-super + ctrl + m
-	musescore
-
-super + ctrl + shift + f
-	filezilla
-
-super + ctrl + shift + v
-	vlc
-
-# }}}1
-
-# Écran {{{1
-
-super + alt + v
-	xbacklight -set 100
-
-hyper + v ; Up
-	xbacklight -inc 10
-
-hyper + v ; Down
-	xbacklight -dec 10
-
-hyper + v ; Right
-	xbacklight -inc 25
-
-hyper + v ; Left
-	xbacklight -dec 25
-
-# }}}1
-
-# Multimédia {{{1
-
-hyper + space ; Up
-	pamixer --increase 5
-
-hyper + space ; Down
-	pamixer --decrease 5
-
-hyper + space ; Right
-	pamixer --increase 10
-
-hyper + space ; Left
-	pamixer --decrease 10
-
-hyper + space ; Prior
-	pamixer --increase 10
-
-hyper + space ; Next
-	pamixer --decrease 10
-
-hyper + space ; space
-	mpc toggle
-
-hyper + space ; n
-	mpc next
-
-hyper + space ; p
-	mpc prev
-
-hyper + space ; BackSpace
-	mpc -q seek 0:0
-
-hyper + space ; f
-	mpc seek +1:00
-
-hyper + space ; b
-	mpc seek -1:00
-
-hyper + space ; m
-	urxvtc -name multimedia -e pulsemixer
-
-hyper + space ; M
-	urxvtc -name multimedia -e ncpamixer
-
-hyper + space ; c
-	urxvtc -name multimedia -e ncmpcpp
-
-# }}}1
-
-# Informations {{{1
-
-alt + button3
-	less-log.sh ~/log/fond-ecran.log
-
-# }}}1
-
-# Bspwm {{{1
-
-# Restart
-hyper + shift + r
-	bspc wm -r
+# Environnement graphique {{{1
 
 # Déconnexion
 hyper + shift + d
@@ -193,6 +57,17 @@ hyper + shift + d
 hyper + shift + q
 	rofi-eteindre.zsh
 
+hyper + l
+	i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png
+
+# }}}1
+
+# Bspwm {{{1
+
+# Restart
+hyper + shift + r
+	bspc wm -r
+
 # Close
 hyper + shift + x
 	bspc node -c
@@ -200,9 +75,6 @@ hyper + shift + x
 # Really Close
 hyper + shift + k
 	bspc node -k
-
-hyper + l
-	i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png
 
 # Rotate
 hyper + r
@@ -314,6 +186,156 @@ hyper + b
 
 hyper + p ; r
 	polybar-msg cmd restart
+
+# }}}1
+
+# Transparence {{{1
+
+hyper + o ; Up
+	transset-df --inc 0.1
+
+hyper + o ; Down
+	transset-df --dec 0.1
+
+# }}}1
+
+# Écran {{{1
+
+# Recharge toute la liste d’images
+hyper + w ; r
+	pkill -10 -f fond-ecran
+
+# Passe au suivant
+hyper + w ; n
+	pkill -12 -f fond-ecran
+
+super + alt + v
+	xbacklight -set 100
+
+hyper + v ; Up
+	xbacklight -inc 10
+
+hyper + v ; Down
+	xbacklight -dec 10
+
+hyper + v ; Right
+	xbacklight -inc 25
+
+hyper + v ; Left
+	xbacklight -dec 25
+
+# }}}1
+
+# Applications {{{1
+
+super + ctrl + x
+	xclock
+
+hyper + {dollar, Return, exclam, comma}
+	{kitty, alacritty, xterm, urxvtc}
+
+hyper + s
+	kitty-dropdown.zsh
+shift + F12
+	kitty-dropdown.zsh
+
+hyper + asterisk
+	urxvtc-dropdown.zsh
+
+hyper + equal
+	urxvtc-calculatrice.zsh
+
+hyper + t ; {x,u}
+	{tabbed -c xterm -into, tabbed -c urxvtc -embed}
+
+super + ctrl + section
+	kitty vifmrun
+
+super + ctrl + k
+	kitty kak
+
+super + ctrl + w
+	kitty elinks
+
+super + ctrl + {e,n,v}
+	{lance-emacs-client.zsh, lance-neovim.zsh, lance-gvim.zsh}
+
+super + ctrl + {q,f,b}
+	{lance-qutebrowser.sh,lance-firefox.sh,brave}
+
+super + ctrl + t
+	thunderbird
+
+super + ctrl + o
+	libreoffice
+
+super + ctrl + g
+	geogebra
+
+super + ctrl + m
+	musescore
+
+super + ctrl + shift + f
+	filezilla
+
+super + ctrl + shift + v
+	vlc
+
+# }}}1
+
+# Multimédia {{{1
+
+hyper + space ; Up
+	pamixer --increase 5
+
+hyper + space ; Down
+	pamixer --decrease 5
+
+hyper + space ; Right
+	pamixer --increase 10
+
+hyper + space ; Left
+	pamixer --decrease 10
+
+hyper + space ; Prior
+	pamixer --increase 10
+
+hyper + space ; Next
+	pamixer --decrease 10
+
+hyper + space ; space
+	mpc toggle
+
+hyper + space ; n
+	mpc next
+
+hyper + space ; p
+	mpc prev
+
+hyper + space ; BackSpace
+	mpc -q seek 0:0
+
+hyper + space ; f
+	mpc seek +1:00
+
+hyper + space ; b
+	mpc seek -1:00
+
+hyper + space ; m
+	urxvtc -name multimedia -e pulsemixer
+
+hyper + space ; M
+	urxvtc -name multimedia -e ncpamixer
+
+hyper + space ; c
+	urxvtc -name multimedia -e ncmpcpp
+
+# }}}1
+
+# Informations {{{1
+
+alt + button3
+	less-log.sh ~/log/fond-ecran.log
 
 # }}}1
 
