@@ -680,9 +680,10 @@ set bufhidden=hide
 
 " Barre d'onglets {{{2
 
-set tabline=%!bibliotheque#myTabLine()
+" Remplacé par CtrlSpace
+"set tabline=%!bibliotheque#myTabLine()
 
-set guitablabel=%N\ %t\ %m
+"set guitablabel=%N\ %t\ %m
 
 " 0: never
 " 1: only if there are at least two tab pages
@@ -1183,10 +1184,6 @@ inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 
 " }}}3
-
-" Répétition en mode visuel
-
-vnoremap . :normal .<CR>
 
 " }}}2
 
