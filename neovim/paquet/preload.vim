@@ -252,18 +252,14 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " 2-character Sneak (default)
 
-nmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
-nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Sneak_S'
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
 
-" visual-mode
+xmap s <Plug>Sneak_s
+xmap S <Plug>Sneak_S
 
-xmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
-xmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Sneak_S'
-
-" operator-pending-mode
-
-omap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
-omap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Plug>Sneak_S'
+omap s <Plug>Sneak_s
+omap S <Plug>Sneak_S
 
 " 1-character enhanced 'f'
 
@@ -549,30 +545,37 @@ nnoremap <C-PageDown> :CtrlSpaceGoDown<cr>
 " Voir les fichiers dans
 " racine/plugin/manager/neovimpack/minpac/start/vim-ctrlspace/autoload/ctrlspace/keys
 
+" ’ = / ne marche pas
+
 let g:CtrlSpaceKeys = {
 		\ "Nop": {
 			\"h": "ctrlspace#keys#common#ToggleHelp",
+			\"’": "ctrlspace#keys#common#EnterSearchMode",
 		\},
 		\ "Help": {
 			\"h": "ctrlspace#keys#common#ToggleHelp",
+			\"’": "ctrlspace#keys#common#EnterSearchMode",
 		\},
 		\ "Buffer": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
 			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
 			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
+			\"’": "ctrlspace#keys#common#EnterSearchMode",
 		\},
 		\ "Tab": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
 			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
 			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
+			\"’": "ctrlspace#keys#common#EnterSearchMode",
 		\},
 		\ "Workspace": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
 			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
 			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
+			\"’": "ctrlspace#keys#common#EnterSearchMode",
 			\"w": "ctrlspace#keys#workspace#ToggleSubmode",
 		\},
 		\ "Bookmark": {
@@ -580,6 +583,7 @@ let g:CtrlSpaceKeys = {
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
 			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
 			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
+			\"’": "ctrlspace#keys#common#EnterSearchMode",
 		\},
 	\}
 
@@ -625,7 +629,7 @@ let g:CtrlSpaceMaxHeight = 0
 
 let g:CtrlSpaceShowUnnamed = 2
 
-let g:CtrlSpaceUseTabline = 0
+let g:CtrlSpaceUseTabline = 1
 
 let g:CtrlSpaceUnicodeFont = 1
 
