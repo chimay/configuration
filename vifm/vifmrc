@@ -655,9 +655,6 @@ nnoremap <m-t> :tabnew<cr>
 nnoremap ^ gT
 nnoremap $ gt
 
-" nnoremap J gT
-" nnoremap K gt
-
 " }}}2
 
 " Déplacement {{{2
@@ -754,6 +751,9 @@ nnoremap L :histnext<cr>
 
 nnoremap gj :siblnext!<cr>
 nnoremap gk :siblprev!<cr>
+
+nnoremap J :siblnext!<cr>
+nnoremap K :siblprev!<cr>
 
 nnoremap <m-y> :sync! all<cr>
 
