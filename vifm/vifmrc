@@ -43,7 +43,7 @@ set confirm=permdelete
 
 set trash
 
-set trashdir=~/racine/trash/vifm,%r/.vifm-Trash
+set trashdir=%r/.vifm-trash,$HOME/racine/trash/vifm
 
 " Automatically resolve symbolic links on l or Enter.
 
@@ -112,6 +112,8 @@ set incsearch
 set scrolloff=4
 
 " Don't do too many requests to slow file systems
+
+set slowfs=curlftpfs
 
 " if !has('win')
 "     set slowfs=curlftpfs
@@ -283,6 +285,10 @@ filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 " Web
 
 filextype *.html,*.htm
+        \ {Open with w3m}
+        \ w3m %f,
+        \ {Open with elinks}
+        \ elinks %f,
         \ {Open with dwb}
         \ dwb %f %i &,
         \ {Open with qutebrowser}
@@ -482,7 +488,7 @@ fileviewer *.[1-8] man ./%c | col -b
 
 fileviewer *.torrent dumptorrent -v %c
 
-" Voir Vifmimg
+" Remplace par vifmimg
 
 " fileviewer *.pdf pdftotext -nopgbrk %c -
 
@@ -490,6 +496,10 @@ fileviewer *.torrent dumptorrent -v %c
 "          \ convert -identify %f -verbose /dev/null
 
 " Vifmimg
+
+" Voir ~/racine/shell/fileman/vifmimg
+" Deps :
+" pip install --user --upgrade ueberzug
 
 fileviewer *.pdf
 	\ vifmimg pdfpreview %px %py %pw %ph %c
@@ -530,7 +540,7 @@ fileviewer *.ico
 
 colorscheme ornuit
 
-set fillchars=vborder:|
+"set fillchars=vborder:|
 
 set timefmt="%H:%M %d-%m-%y"
 
@@ -547,6 +557,10 @@ set viewcolumns=*40%{name}.,25%{mtime}.,25%{perms}.,10%{size}.
 " filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
 
 filter! /^.*\.(git|hg|bzr|o|py[co])$|.*~$/
+
+" Icones
+"source devicons.vifm
+"source ~/racine/config/fileman/vifm/devicons.vifm
 
 " }}}1
 
@@ -638,11 +652,11 @@ nnoremap <F12> :set lsview!<cr>
 
 nnoremap <m-t> :tabnew<cr>
 
-" nnoremap ^ gT
-" nnoremap $ gt
+nnoremap ^ gT
+nnoremap $ gt
 
-nnoremap J gT
-nnoremap K gt
+" nnoremap J gT
+" nnoremap K gt
 
 " }}}2
 
@@ -655,7 +669,7 @@ nnoremap <PageDown> <C-F>
 
 " Sélectionner {{{2
 
-nnoremap <space> t
+nnoremap <space> tj
 
 nnoremap t :select<space>
 
@@ -704,6 +718,8 @@ nnoremap zh za
 
 " Visualiser & Éditer {{{2
 
+" Toggle visibility of preview window
+
 nnoremap µ :view<cr>
 vnoremap µ :view<cr>gv
 
@@ -718,7 +734,9 @@ nnoremap £ :!LESS= less %f<cr>
 
 nnoremap <m-e> :edit<cr>
 
-" Toggle visibility of preview window
+" Ouverture
+
+nnoremap o :f<cr>
 
 " Open file in the background using its default program
 
@@ -741,8 +759,9 @@ nnoremap <m-y> :sync! all<cr>
 
 " Navigation synchronisée relative
 
-"nnoremap <m-c> :windo cd<space>
-nnoremap $ :windo cd<space>
+nnoremap & :cd %c<cr><tab>:cd %D:t<cr><tab>
+nnoremap <m-c> :windo cd<space>
+nnoremap <m-u> :windo cd ..<cr>
 
 " }}}2
 
@@ -775,13 +794,13 @@ nnoremap cr :rename!<cr>
 
 " Voir aussi :copy et :move
 
-nnoremap àà :!cp %f %D<cr>
-nnoremap àm :!mv %f %D<cr>
+nnoremap àà :!cp %f %D &<cr>
+nnoremap àm :!mv %f %D &<cr>
 
 " Sync with Rsync
 
-nnoremap àf :!rsync -av %f %D<cr>
-nnoremap àd :!rsync -av %d/ %D<cr>
+nnoremap àf :!rsync -av %f %D &<cr>
+nnoremap àd :!rsync -av %d/ %D &<cr>
 
 " Copier & Coller
 
@@ -810,16 +829,13 @@ nnoremap dr :!trash-restore <cr>
 
 " Nom du chemin, fichier, répertoire -> clipboard
 
-map çç :!echo -n %d/%f | xsel -i; xsel -o | xsel -i -b<cr>
+map çç :!echo -n %d/%c | xsel -i; xsel -o | xsel -i -b<cr>
 map çf :!echo -n %f    | xsel -i; xsel -o | xsel -i -b<cr>
 map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
 " }}}2
 
 " Autres opérations sur fichiers {{{2
-
-" Ouverture
-nnoremap o :f<cr>
 
 nnoremap <m-d> :mkdir!<space>
 
@@ -850,18 +866,13 @@ nnoremap ,w :!feh --bg-max --no-fehbg %f<cr>
 " VCS repository
 
 nnoremap <m-r> :!tig<cr>
-
-" Upload
-
-nnoremap <m-u> :!git push origin master<cr>
+nnoremap <m-l> :!lazygit<cr>
 
 " }}}2
 
 " Shell {{{2
 
-"nnoremap <m-s> :shell<cr>
-"nnoremap <m-s> :!bash<cr>
-nnoremap <m-s> :!fish<cr>
+nnoremap <m-s> :shell<cr>
 
 nnoremap <m-j> :jobs<cr>
 
