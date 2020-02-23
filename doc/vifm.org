@@ -14,8 +14,8 @@ First, define this map:
 nnoremap <m-c> :cd %c<cr><tab>:cd %D:t<cr><tab>
 #+end_src
 
-Let’s say the left pane directory is ~~/notes~ and the right pane is
-~~/public~. We assume both of them contains a ~banana~ subdir. If
+Let’s say the left pane directory is ~\~/notes~ and the right pane is
+~\~/public~. We assume both of them contains a ~banana~ subdir. If
 you’re currently in the left pane, with the cursor on ~banana~, you
-can go simultaneously in ~~/notes/banana~ and ~~/public/banana~ by
+can go simultaneously in ~\~/notes/banana~ and ~\~/public/banana~ by
 pressing ~<m-c>~.
