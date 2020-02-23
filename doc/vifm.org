@@ -5,6 +5,10 @@
 
 * Table of contents                                                     :TOC_2_gh:
 - [[#synced-subdir-navigation][Sync’ed subdir navigation]]
+- [[#version-control-system][Version Control System]]
+- [[#archives][Archives]]
+- [[#sshfs][SSHFS]]
+- [[#ftp][FTP]]
 
 * Sync’ed subdir navigation
 
@@ -19,3 +23,64 @@ Let’s say the left pane directory is =~/notes= and the right pane is on
 you’re currently in the left pane, with the cursor on ~banana~, you
 can go simultaneously in =~/notes/banana= and =~/public/banana= by
 pressing ~<m-c>~.
+
+
+* Version Control System
+
+You can easily launch a =git= TUI, like =tig= or =lazygit=, from
+within =vifm=:
+
+#+begin_src vim
+nnoremap <m-t> :!tig<cr>
+nnoremap <m-l> :!lazygit<cr>
+#+end_src
+
+
+* Archives
+
+You can mount archive files using =archivemount= if you add these
+lines in your =vifmrc=:
+
+#+begin_src vim
+filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
+       \ {Mount with archivemount}
+       \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+#+end_src
+
+
+* SSHFS
+
+You can mount filesystems through the network, using =sshfs=. With
+these lines on you =vifmrc=:
+
+#+begin_src vim
+filetype *.ssh
+       \ {Mount with sshfs}
+       \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND,
+#+end_src
+
+you can mount distant filesystems by pressing =<enter>= on file
+=host.ssh=, whose first line looks like:
+
+#+begin_src vim
+host:directory
+#+end_src
+
+
+* FTP
+
+You can mount ftp filesystems, using =curlftpfs=. With
+these lines on you =vifmrc=:
+
+#+begin_src vim
+filetype *.ftp
+       \ {Mount with curlftpfs}
+       \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
+#+end_src
+
+you can mount distant filesystems by pressing =<enter>= on file
+=host.ftp=, whose first line looks like:
+
+#+begin_src vim
+-o  user=<username>:<password> <hostname>:
+#+end_src
