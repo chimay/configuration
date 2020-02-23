@@ -10,6 +10,7 @@
 - [[#archives][Archives]]
 - [[#sshfs][SSHFS]]
 - [[#ftp][FTP]]
+- [[#rtfm][RTFM]]
 
 * Sync’ed subdir navigation
 
@@ -106,3 +107,10 @@ you can mount distant filesystems by pressing =<enter>= on a file
 #+begin_src vim
 -o  user=<username>:<password> <hostname>:
 #+end_src
+
+
+* RTFM
+
+There is a lot of pearls in it: different views (tree, 3 colums, ...),
+using dir history, apropos, create virtual folder (custom view) from
+search result, and so on.
