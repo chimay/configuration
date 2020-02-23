@@ -6,6 +6,7 @@
 * Table of contents                                                     :TOC_2_gh:
 - [[#synced-subdir-navigation][Sync’ed subdir navigation]]
 - [[#version-control-system][Version Control System]]
+- [[#find-files-in-tree][Find files in tree]]
 - [[#archives][Archives]]
 - [[#sshfs][SSHFS]]
 - [[#ftp][FTP]]
@@ -33,6 +34,21 @@ within =vifm=:
 #+begin_src vim
 nnoremap <m-t> :!tig<cr>
 nnoremap <m-l> :!lazygit<cr>
+#+end_src
+
+
+* Find files in tree
+
+With:
+
+#+begin_src vim
+set findprg="ag --nocolor --smart-case -g %p"
+#+end_src
+
+you can find files whose name contains a string by using:
+
+#+begin_src vim
+:find string
 #+end_src
 
 
