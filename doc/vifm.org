@@ -59,7 +59,7 @@ filetype *.ssh
        \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND,
 #+end_src
 
-you can mount distant filesystems by pressing =<enter>= on file
+you can mount distant filesystems by pressing =<enter>= on a file
 =host.ssh=, whose first line looks like:
 
 #+begin_src vim
@@ -78,7 +78,7 @@ filetype *.ftp
        \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
 #+end_src
 
-you can mount distant filesystems by pressing =<enter>= on file
+you can mount distant filesystems by pressing =<enter>= on a file
 =host.ftp=, whose first line looks like:
 
 #+begin_src vim
