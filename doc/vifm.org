@@ -25,6 +25,12 @@ you’re currently in the left pane, with the cursor on ~banana~, you
 can go simultaneously in =~/notes/banana= and =~/public/banana= by
 pressing ~<m-c>~.
 
+Similarly, you can go up one dir in both panes by using:
+
+#+begin_src vim
+nnoremap <m-u> :windo cd ..<cr>
+#+end_src
+
 
 * Version Control System
 
