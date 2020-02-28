@@ -181,8 +181,8 @@ set vifminfo=
 " :mark mark /full/directory/path [filename]
 
 mark 0 ~/racine/plain
-mark 1 ~/racine/site/orgmode
-mark 2 ~/racine/public
+mark 1 ~/racine/public
+mark 2 ~/racine/site/orgmode
 mark 9 ~/racine/archive
 
 mark r ~/racine
@@ -662,6 +662,8 @@ nnoremap $ gt
 nnoremap <PageUp> <C-B>
 nnoremap <PageDown> <C-F>
 
+nnoremap <c-^> gh
+
 " }}}2
 
 " Sélectionner {{{2
@@ -721,11 +723,12 @@ nnoremap µ :view<cr>
 vnoremap µ :view<cr>gv
 
 nnoremap % <s-tab>
-nnoremap <C-^> <s-tab>
+" Ne fonctionne pas avec <bs>
+nnoremap <bs> <s-tab>
 
 qnoremap % <s-tab>
 qnoremap q <s-tab>
-qnoremap <C-^> <s-tab>
+qnoremap <bs> <s-tab>
 
 nnoremap £ :!LESS= less %f<cr>
 
@@ -773,7 +776,7 @@ mnoremap f b
 
 " Quick fix dans vim
 
-"mnoremap <m-v> v
+"mnoremap ... v
 
 " }}}2
 
@@ -866,7 +869,7 @@ nnoremap ,w :!feh --bg-max --no-fehbg %f<cr>
 " VCS repository
 
 nnoremap <m-r> :!tig<cr>
-nnoremap <m-l> :!lazygit<cr>
+nnoremap <m-v> :!lazygit<cr>
 
 " }}}2
 
