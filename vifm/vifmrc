@@ -723,7 +723,6 @@ nnoremap µ :view<cr>
 vnoremap µ :view<cr>gv
 
 nnoremap % <s-tab>
-" Ne fonctionne pas avec <bs>
 nnoremap <bs> <s-tab>
 
 qnoremap % <s-tab>

@@ -235,6 +235,10 @@ Comments on applications.
 
       * And you have a great ftp client
 
+  - Can launch background programs
+
+    + You can cancel them in :jobs view
+
   - Cope well with external programs
 
     + User commands :... and :!...
