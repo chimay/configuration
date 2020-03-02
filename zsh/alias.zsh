@@ -16,9 +16,19 @@ alias faux=false
 
 alias mk='make -f ~/racine/bin/make/generique.make'
 
+# r remplacé par tig
+
+alias rr='builtin r'
+
 # }}}1
 
 # ------------------------------------
+
+# Documentation {{{1
+
+alias c=cheat
+
+# }}}1
 
 # Sudo {{{1
 
@@ -46,9 +56,10 @@ alias azer="setxkbmap be ; xmodmap ~/racine/config/windenv/xmodmap/belge-meta-su
 
 #  Contrôle de version {{{1
 
-alias g='git'
+alias g=git
 
-alias b='bzr'
+alias r=tig
+alias rp=lazygit
 
 #alias diff='diff -BN'
 
@@ -62,7 +73,7 @@ alias p=pageur
 
 alias pp='pageur +G'
 
-alias o='most -C'
+alias q='most -C'
 
 alias u=vimpager
 
@@ -76,9 +87,9 @@ alias d=zathura
 
 # Images
 
-alias i=vimiv
+alias i=sxiv
 
-alias ii=sxiv
+alias ii=vimiv
 
 alias iii=feh
 
@@ -89,18 +100,18 @@ alias iii=feh
 # Ed {{{2
 # ------------------------------------------------------------
 
-alias edi='ed -v -p " * ed : "'
+alias ed='rlwrap ed -v -p " * ed : "'
 
 # }}}2
 
 # Vim {{{2
 
-alias v='vim'
-alias vi='vim'
+alias v=vim
+alias vi=vim
 
-alias sv='sudoedit'
+alias vd=vimdiff
 
-alias 1='vimdiff'
+alias se=sudoedit
 
 # }}}2
 
@@ -131,17 +142,13 @@ alias em='emacsclient -t'
 
 alias emopen='emacsclient'
 
-# }}}2
-
-# Spacemacs {{{2
-
-alias spacemacs='HOME=~/racine/dotdir emacs'
+alias test-emacs='cd ~/Documents && HOME=~/Documents emacs'
 
 # }}}2
 
-# Spacevim {{{2
+# Kakoune {{{2
 
-alias spacevim='nvim-qt -- -u ~/racine/dotdir/spacevim/init.vim'
+alias k=kak
 
 # }}}2
 
@@ -221,7 +228,15 @@ alias du='du -sh'
 
 alias mv='mv -i'
 
-alias mm='qmv -f destination-only -d'
+alias mm='qmv -f destination-only -d -e kak'
+
+alias vr=vidir
+
+# }}}2
+
+# Copie {{{2
+
+alias mcp='qcp -d'
 
 # }}}2
 
@@ -312,12 +327,8 @@ alias snf='rsync --verbose --progress --stats --human-readable --itemize-changes
 
 # Gestionnaires de fichiers {{{2
 
-# Pas de LESS=...--quit-if-one-screen...
-
-alias 2='LESS= vifm'
-alias §='LESS= vifm .'
-
-alias 3='LESS= ranger'
+alias §='vifm'
+alias 2='vifmrun'
 
 # }}}2
 
@@ -325,11 +336,16 @@ alias 3='LESS= ranger'
 
 # Copier & Coller {{{1
 
-alias çy='xclip -i -selection clipboard'
-alias çp='xclip -selection clipboard -o'
+alias y=yank-file
 
-alias ç1='xclip -selection primary -o'
-alias ç2='xclip -selection secondary -o'
+alias çç='xclip -i -selection clipboard'
+alias àà='xclip -o -selection clipboard'
+
+alias çç1='xclip -i -selection primary'
+alias çç2='xclip -i -selection secondary'
+
+alias àà1='xclip -o -selection primary'
+alias àà2='xclip -o -selection secondary'
 
 # }}}1
 
@@ -343,11 +359,12 @@ alias pk='pack'
 
 alias j='jobs'
 
-alias top='htop'
+alias top=htop
+alias gl=glances
 
-alias k=kill
+alias s=kill
 
-alias fini='mpv ~/audio/Sonnerie/notification/fini.ogg'
+alias fini='mpv ~/audio/sonnerie/notification/fini.ogg'
 
 #  }}}1
 
@@ -359,17 +376,13 @@ alias he=w3mman
 
 alias hi=info
 
-# Arch Linux Wiki
-# offline, mode texte
-
-alias aw=wiki-search
-
 #  }}}1
 
 #  Recherche {{{1
 
-alias é=search-ag
-alias è=search-grep
+alias é='rg --color=never --heading --smart-case'
+alias è='rg --vimgrep --smart-case'
+alias à='grep --color=never'
 
 # }}}1
 
@@ -377,7 +390,7 @@ alias è=search-grep
 
 alias t=task
 
-alias agenda=calcurse
+alias clc=calcurse
 
 # }}}1
 
@@ -389,12 +402,17 @@ alias M=lance-neomutt.zsh
 
 alias n='newsboat -c ~/racine/index/newsboat/cache.db'
 
+alias µ=mua
+
+alias a=abook
+
 # }}}1
 
 # Navigateurs {{{1
 
-alias sr='surfraw'
-alias bm='BROWSER=w3m buku'
+alias sr=surfraw
+alias dg=ddgr
+alias b='BROWSER=w3m buku'
 
 alias w=w3m
 
@@ -404,9 +422,21 @@ alias www='lynx -cfg=~/racine/config/webrowser/lynx/lynx.cfg -lss=~/racine/confi
 
 # }}}1
 
+# Chat {{{1
+
+alias tw='oysttyer -newline=1 -urlopen=qutebrowser -doublespace -separator=------------------------------'
+
+# }}}1
+
 #  Date {{{1
 
 alias jour='date +" [=] %A %d %B %Y  (o) %H : %M : %S  | %:z | "'
+
+# }}}1
+
+# Réseau {{{1
+
+alias ftp=lftp
 
 # }}}1
 
@@ -420,14 +450,15 @@ alias rvm-bash='/bin/bash rvm'
 
 #  Musique, Vidéo {{{1
 
-alias ma='alsamixer -c 0'
-alias mp=pulsemixer
-alias mpp=ncpamixer
+alias am='alsamixer -c 0'
+alias pm=pulsemixer
+alias ncpm=ncpamixer
 
-alias y=joue
+alias mp=joue
 
-alias µ=ncmpcpp
-alias £=cmus
+alias o=mocp
+alias £=ncmpcpp
+alias °=cmus
 
 alias pc=playerctl
 
@@ -481,21 +512,49 @@ alias monte='mount | column -t'
 
 alias journeaux='tail /var/log/mail.* | ccze -A'
 
+alias sv=systemctl
+
 # }}}1
 
 # Utilitaires {{{1
 
-alias wo=w
+alias wo='command w'
 
 alias wh='which -a'
 
 alias vmstat='vmstat 1 4'
 
+# who, mesg, talk, write, wall
+
 # }}}1
 
 # Dictionnaires {{{1
 
-alias sd='sdcv'
+alias ds=sdcv
+alias dt=trans
+alias dy=synonym
+
+alias wk=wikicurses
+alias wa='wikicurses --wiki ArchWiki'
+alias wp=wikipedia2text
+alias wt=wptranslate
+
+# Arch Linux Wiki
+# offline, mode texte
+
+alias aw=wiki-search
+
+# }}}1
+
+# Bureautique {{{1
+
+alias 4=sc-im
+
+# }}}1
+
+# Météo {{{1
+
+alias we=wego
 
 # }}}1
 
@@ -515,6 +574,7 @@ alias mkdir='nocorrect mkdir -p'
 
 #  Globaux : alias -g {{{1
 
+alias -g C='| cat'
 alias -g R='| tac'
 
 alias -g N='| wc -l'
@@ -572,14 +632,17 @@ hash -d wallpaper=~/graphix/wallpaper
 # Dossiers dans racine {{{2
 
 hash -d archive=~/racine/archive
+hash -d artisan=~/racine/artisan
 hash -d automat=~/racine/automat
 hash -d bin=~/racine/bin
 hash -d built=~/racine/built
 hash -d common=~/racine/common
 hash -d config=~/racine/config
 hash -d dotdir=~/racine/dotdir
+hash -d example=~/racine/example
 hash -d feder=~/racine/feder
 hash -d fun=~/racine/fun
+hash -d filesys=~/racine/filesys
 hash -d hist=~/racine/hist
 hash -d hub=~/racine/hub
 hash -d humour=~/racine/humour
@@ -588,12 +651,14 @@ hash -d index=~/racine/index
 hash -d infoman=~/racine/infoman
 hash -d install=~/racine/install
 hash -d liber=~/racine/liber
+hash -d list=~/racine/list
 hash -d litera=~/racine/litera
 hash -d log=~/racine/log
 hash -d mail=~/racine/mail
 hash -d meta=~/racine/meta
 hash -d multics=~/racine/multics
 hash -d musica=~/racine/musica
+hash -d network=~/racine/network
 hash -d news=~/racine/news
 hash -d omni=~/racine/omni
 hash -d pack=~/racine/pack
@@ -647,13 +712,8 @@ hash -d zdot=~/racine/dotdir/zsh
 # ------------------------------------
 
 hash -d vimconf=~/racine/config/edit/vim
-
-# ------------
-
 hash -d neovimconf=~/racine/config/edit/neovim
-
-# ------------
-
+hash -d kakconf=~/racine/config/edit/kak
 hash -d emacsconf=~/racine/config/edit/emacs
 
 hash -d mdot=~/racine/dotdir/emacs.d
@@ -670,21 +730,21 @@ hash -d muttconf=~/racine/config/mail/neomutt
 
 hash -d pman=~/racine/plugin/manager
 
-hash -d antigen=~/racine/plugin/manager/antigen
 hash -d vimpack=~/racine/plugin/manager/vimpack
 hash -d neovimpack=~/racine/plugin/manager/neovimpack
 hash -d elget=~/racine/plugin/manager/el-get
+hash -d straight=~/racine/plugin/manager/straight
 
 # }}}2
 
 # Multimedia {{{2
 # ------------------------------------
 
-hash -d aartistes=~/audio/Artistes
+hash -d aartistes=~/audio/artistes
 
-hash -d aclassique=~/audio/Artistes/Classique
+hash -d classique=~/audio/artistes/classique
 
-hash -d mtrois=~/audio/musique-3
+hash -d jazz=~/audio/artistes/jazz
 
 # }}}2
 
