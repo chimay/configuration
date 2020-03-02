@@ -918,15 +918,20 @@ command -nargs=? -complete=filetype EditSyntaxPlugin
 
 command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
 
-nnoremap <F6> :<c-u>EditSyntaxPlugin<cr>
+nnoremap <F6>s :<c-u>EditSyntaxPlugin<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
 
+nnoremap <m-r> :r <C-R>=expand('%:p:h') . '/*' <CR><C-D>
+nnoremap <m-s-r> :r **/*
+
+nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR><C-D>
+
 nnoremap <m-f> :find<space>
 nnoremap <m-g> :silent grep!<space>
 
-nnoremap <m-d> :cd <C-R>=expand('%:p:h') . '/'<CR>
+nnoremap <m-d> :lcd <C-R>=expand('%:p:h') . '/'<CR>
 
 nnoremap <m-i> :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
 
@@ -1109,7 +1114,8 @@ nnoremap ' `
 
 " Recherche {{{3
 
-nnoremap ’ /
+" Plus besoin avec xcape
+"nnoremap ’ /
 
 " }}}3
 

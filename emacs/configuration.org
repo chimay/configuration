@@ -1023,6 +1023,23 @@ Pour les fonctionnelles
 #+end_src
 
 
+** Demi-pages
+
+Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v
+
+#+begin_src emacs-lisp
+  (defun biblio/demi-page-bas ()
+    "scroll down half the page"
+    (interactive)
+    (scroll-up (/ (window-body-height) 2)))
+
+  (defun biblio/demi-page-haut ()
+    "scroll up half the page"
+    (interactive)
+    (scroll-down (/ (window-body-height) 2)))
+#+end_src
+
+
 ** Efface le mot
 
 #+begin_src emacs-lisp
@@ -1269,6 +1286,15 @@ Pour les fonctionnelles
 #+end_src
 
 
+** Style du texte sous le curseur
+
+#+begin_src emacs-lisp
+  (defun biblio/style-sous-curseur ()
+    (interactive)
+    (what-cursor-position t))
+#+end_src
+
+
 ** Lignes vides simples
 
 #+begin_src emacs-lisp
@@ -1353,7 +1379,7 @@ H = Hyper
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<f11> e") 'biblio/edite-configuration-org)
+(global-set-key (kbd "<f5> e") 'biblio/edite-configuration-org)
 
 #+end_src
 
@@ -1362,7 +1388,7 @@ H = Hyper
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<f11> r") 'biblio/recharge-configuration-org)
+(global-set-key (kbd "<f5> r") 'biblio/recharge-configuration-org)
 
 #+end_src
 
@@ -1371,7 +1397,7 @@ H = Hyper
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<f5> e") 'eval-buffer)
+(global-set-key (kbd "<f6> e") 'eval-buffer)
 
 #+end_src
 
@@ -1380,7 +1406,7 @@ H = Hyper
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<f11> c") 'list-faces-display)
+(global-set-key (kbd "<f7> t") 'list-faces-display)
 
 #+end_src
 
@@ -1388,18 +1414,15 @@ H = Hyper
 ** Exécution de fonction intéractive
 
 #+begin_src emacs-lisp
-
-;;(global-set-key (kbd "M-:") 'execute-extended-command)
-;;(global-set-key (kbd "M-;") 'keyboard-quit)
-;;(define-key minibuffer-local-map (kbd "M-;") 'minibuffer-keyboard-quit)
-
+  ;;(global-set-key (kbd "M-:") 'execute-extended-command)
+  ;;(global-set-key (kbd "M-;") 'keyboard-quit)
+  ;;(define-key minibuffer-local-map (kbd "M-;") 'minibuffer-keyboard-quit)
 #+end_src
 
 
 ** Historique
 
 #+begin_src emacs-lisp
-
   ;; (global-set-key (kbd "s-R" ) 'recentf-open-files)
 
   ;; (define-key minibuffer-local-map (kbd "M-p") 'previous-history-element)
@@ -1436,18 +1459,19 @@ Client et serveur
 *** Navigation
 
 #+begin_src emacs-lisp
-  (global-set-key [kp-prior] 'scroll-down-command)
-  (global-set-key [prior]    'scroll-down-command)
+  (global-set-key [kp-prior] 'biblio/demi-page-haut)
+  (global-set-key [prior]    'biblio/demi-page-haut)
 
-  (global-set-key [kp-next]  'scroll-up-command)
-  (global-set-key [next]     'scroll-up-command)
+  (global-set-key [kp-next]  'biblio/demi-page-bas)
+  (global-set-key [next]     'biblio/demi-page-bas)
+
+  (global-set-key (kbd "C-v") 'scroll-up-command)
+  (global-set-key (kbd "M-v") 'scroll-down-command)
 
   (global-set-key (kbd "s-a") 'backward-paragraph)
   (global-set-key (kbd "s-e") 'forward-paragraph)
 
   (global-set-key (kbd "C-$")  'biblio/debut-fin-fichier)
-  (global-set-key (kbd "<f9>")  'beginning-of-buffer)
-  (global-set-key (kbd "<f10>")  'end-of-buffer)
 #+end_src
 
 
@@ -1597,10 +1621,10 @@ CUA mode est mieux
 
 #+begin_src emacs-lisp
 
-(global-set-key (kbd "<f6> o") 'flyspell-mode)
+(global-set-key (kbd "<f11> o") 'flyspell-mode)
 
 ; Espaces
-(global-set-key (kbd "<f6> s") 'whitespace-mode)
+(global-set-key (kbd "<f11> s") 'whitespace-mode)
 
 #+end_src
 
@@ -1633,7 +1657,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 (global-set-key (kbd "C-x _") 'shrink-window)
 
-(global-set-key (kbd "<f6> f") 'follow-mode)
+(global-set-key (kbd "<f11> f") 'follow-mode)
 
 #+end_src
 
@@ -1662,8 +1686,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Revert
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f5> r") 'revert-buffer)
-  (global-set-key (kbd "<f5> R") 'biblio/revert-all-buffers)
+  (global-set-key (kbd "<f6> r") 'revert-buffer)
+  (global-set-key (kbd "<f6> R") 'biblio/revert-all-buffers)
 #+end_src
 
 
@@ -1688,7 +1712,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Tampons inactifs
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "<f5> c") 'clean-buffer-list)
+(global-set-key (kbd "<f6> c") 'clean-buffer-list)
 #+end_src
 
 
@@ -1704,8 +1728,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Tampons souvent utilisés
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f5> s") 'biblio/aller-au-tampon-scratch)
-  (global-set-key (kbd "<f5> g") 'biblio/aller-au-tampon-grenier)
+  (global-set-key (kbd "<f6> s") 'biblio/aller-au-tampon-scratch)
+  (global-set-key (kbd "<f6> g") 'biblio/aller-au-tampon-grenier)
 #+end_src
 
 
@@ -1715,7 +1739,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   ;; Lancer et répondre "!" pour sauver tous les tampons modifiés
   ;; (global-set-key (kbd "C-x s") 'save-some-buffers)
 
-  (global-set-key (kbd "<f5> n") 'biblio/affiche-copie-nom-fichier)
+  (global-set-key (kbd "<f6> n") 'biblio/affiche-copie-nom-fichier)
 #+end_src
 
 
@@ -1783,9 +1807,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Compilation
 
 #+begin_src emacs-lisp
-
-(global-set-key [f7] 'compile)
-
+  (global-set-key (kbd "<f8>") 'compile)
 #+end_src
 
 
@@ -1819,7 +1841,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
   (define-prefix-command 'caracteres/map)
 
-  (global-set-key (kbd "<f8>") 'caracteres/map)
+  (global-set-key (kbd "<f9>") 'caracteres/map)
 
   (define-key caracteres/map (kbd "<") (lambda () (interactive) (insert "⟻")))
   (define-key caracteres/map (kbd ">") (lambda () (interactive) (insert "⟼")))
@@ -1848,14 +1870,14 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 ** Apparence
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f5> l") 'hl-line-mode)
+  (global-set-key (kbd "<f11> l") 'hl-line-mode)
   (global-set-key (kbd "s-l") 'hl-line-mode)
 #+end_src
 
 Infos sur les thèmes
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f5> f") (lambda () (interactive) (what-cursor-position t)))
+  (global-set-key (kbd "<f7> c") 'biblio/style-sous-curseur)
 #+end_src
 
 
@@ -2171,6 +2193,14 @@ Nécessite org-tempo
 #+end_src
 
 
+*** Org graph view
+
+#+begin_src emacs-lisp
+  (require 'org-graph-view)
+  (global-set-key (kbd "s-£") 'org-graph-view)
+#+end_src
+
+
 *** Alert
 
 #+begin_src emacs-lisp
@@ -2254,7 +2284,7 @@ heure.
 *** Ivy & Swiper
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f6> i") 'ivy-mode)
+  (global-set-key (kbd "<f11> i") 'ivy-mode)
 
   (eval-after-load "ivy"
    '(progn
@@ -2391,7 +2421,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "s-h :") 'helm-mini-buffer-history)
   (global-set-key (kbd "s-h '") 'helm-all-mark-rings)
 
-  (global-set-key (kbd "<f6> h") 'helm-mode)
+  (global-set-key (kbd "<f11> h") 'helm-mode)
 
 #+end_src
 
@@ -2425,36 +2455,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
-*** Helm gtags
-
-#+begin_src emacs-lisp
-
-(global-set-key (kbd "s-£") 'helm-gtags-find-pattern)
-
-(setq
- helm-gtags-ignore-case t
- helm-gtags-auto-update t
- helm-gtags-use-input-at-cursor t
- helm-gtags-pulse-at-cursor t
- helm-gtags-prefix-key "\C-cg"
- helm-gtags-suggested-key-mapping t
- )
-
-(require 'helm-gtags)
-
-#+end_src
-
-
-*** Ggtags
-
-#+begin_src emacs-lisp
-  (use-package ggtags
-    :bind (("<f6> g" . ggtags-mode)
-	   ("s-q" . ggtags-idutils-query))
-    :custom (ggtags-completing-read-function nil))
-#+end_src
-
-
 *** Torus
 
 #+begin_src emacs-lisp
@@ -2473,7 +2473,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 	   ("<C-end>" . torus-next-circle)
 	   ("s-SPC" . torus-switch-location)
 	   ("s-=" . torus-switch-circle)
-	   ("s-*" . torus-switch-torus)
+	   ("s-µ" . torus-switch-torus)
 	   ("s-s" . torus-search-location)
 	   ("s-?" . torus-search-location-in-torus)
 	   ("s-/" . torus-search-circle)
@@ -2559,6 +2559,13 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
+*** Emacs mini frame
+
+#+begin_src emacs-lisp
+  (use-package mini-frame
+    :bind (( "<f11> m" . 'mini-frame-mode)))
+#+end_src
+
 ** Recherche
 
 
@@ -2594,7 +2601,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   ;;(setq undo-tree-visualizer-timestamps t)
   (setq undo-tree-history-directory-alist '((".*" . "~/racine/varia/undo/")))
   (global-undo-tree-mode 1)
-  (global-set-key (kbd "<f6> u") 'global-undo-tree-mode)
+  (global-set-key (kbd "<f11> u") 'global-undo-tree-mode)
 #+end_src
 
 
@@ -2698,7 +2705,7 @@ Langages, parenthèses
   (sp-local-pair #'inferior-emacs-lisp-mode "'" nil :actions nil)
   (sp-local-pair #'inferior-emacs-lisp-mode "\`" nil :actions nil)
 
-  (global-set-key (kbd "<f6> p") 'smartparens-global-mode)
+  (global-set-key (kbd "<f11> p") 'smartparens-global-mode)
 
   (define-key sp-keymap (kbd "C-)") 'sp-forward-slurp-sexp)
   (define-key sp-keymap (kbd "C-(") 'sp-forward-barf-sexp)
@@ -2744,6 +2751,7 @@ Langages, parenthèses
 *** Pretty mode
 
 #+begin_src emacs-lisp
+  (use-package pretty-mode)
   (global-pretty-mode t)
 #+end_src
 
@@ -2756,9 +2764,11 @@ Langages, parenthèses
 Ralentit la frappe : activer seulement lorsque nécessaire
 
 #+begin_src emacs-lisp
+  (use-package key-chord)
+
   (setq key-chord-two-keys-delay 0.12)
   (setq key-chord-one-key-delay 0.12)
-  (global-set-key (kbd "<f6> c") 'key-chord-mode)
+  (global-set-key (kbd "<f11> c") 'key-chord-mode)
 #+end_src
 
 
@@ -2808,6 +2818,8 @@ Ralentit la frappe : activer seulement lorsque nécessaire
 Transposition (échange de caractères, mots, ...)
 
 #+begin_src emacs-lisp
+  (use-package hydra)
+
   (global-set-key
    (kbd "C-c t")
    (defhydra hydra-transpose ()
@@ -2827,6 +2839,7 @@ Transposition (échange de caractères, mots, ...)
 *** Region-bindings-mode
 
 #+begin_src emacs-lisp
+  (use-package region-bindings-mode)
   (region-bindings-mode-enable)
   (setq region-bindings-mode-disable-predicates ((lambda () buffer-read-only)))
   (define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
@@ -2837,7 +2850,7 @@ Transposition (échange de caractères, mots, ...)
 *** Evil
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f6> v") 'evil-mode)
+  (global-set-key (kbd "<f11> v") 'evil-mode)
 
   ;(define-key evil-normal-state-map (kbd "<s-z>") 'evil-emacs-state)
   ;(define-key evil-emacs-state-map (kbd "<s-z>") 'evil-normal-state)
@@ -2848,14 +2861,14 @@ Transposition (échange de caractères, mots, ...)
 
 #+begin_src emacs-lisp
   (require 'xah-math-input)
-  (global-set-key (kbd "<f6> x") 'xah-math-input-mode)
+  (global-set-key (kbd "<f11> x") 'xah-math-input-mode)
 #+end_src
 
 
 *** Which-key
 
 #+begin_src emacs-lisp
-  (require 'which-key)
+  (use-package which-key)
   (which-key-mode)
   (setq which-key-idle-delay 1.0)
 #+end_src

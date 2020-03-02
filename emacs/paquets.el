@@ -1,5 +1,55 @@
 ;;; -*- mode: emacs-lisp -*-
 
+;;; * Gestionnaire de paquets straight
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(setq straight-check-for-modifications '(check-on-save find-when-checking))
+
+;; (setq straight-check-for-modifications '(watch-files find-when-checking))
+
+;;; ** Liste de paquets installés
+
+(straight-use-package 'use-package)
+
+(straight-use-package 'auto-yasnippet)
+(straight-use-package 'auto-mark)
+(straight-use-package 'dired-hacks)
+(straight-use-package 'flycheck)
+(straight-use-package 'htmlize)
+(straight-use-package 'ibuffer-vc)
+(straight-use-package 'iy-go-to-char)
+(straight-use-package 'linum-relative)
+(straight-use-package 'key-chord)
+(straight-use-package 'magit)
+(straight-use-package 'multiple-cursors)
+(straight-use-package 'outline-magic)
+(straight-use-package 'package-lint)
+(straight-use-package 'pretty-mode)
+(straight-use-package 'register-list)
+(straight-use-package 'savekill)
+(straight-use-package 'ucs-cmds)
+(straight-use-package 'undo-tree)
+(straight-use-package 'yasnippet)
+(straight-use-package 'yasnippet-snippets)
+(straight-use-package 'wgrep)
+(straight-use-package 'which-key)
+
+(straight-use-package '(emacs-mini-frame :type git :host github :repo "muffinmad/emacs-mini-frame"))
+(straight-use-package '(eval-in-repl :type git :host github :repo "kaz-yos/eval-in-repl"))
+(straight-use-package '(xah-math-input :type git :host github :repo "xahlee/xah-math-input"))
+
 ;;; * Gestionnaire de paquets el-get
 
 (add-to-list 'load-path "~/racine/plugin/manager/el-get/el-get")
@@ -52,69 +102,42 @@
 ;;; *** Liste principale
 
 (el-get-bundle alert)
-(el-get-bundle auctex)
-(el-get-bundle auto-mark)
-(el-get-bundle auto-yasnippet)
-(el-get-bundle avy)
-(el-get-bundle command-log-mode)
 (el-get-bundle company-mode)
 (el-get-bundle counsel-projectile)
-(el-get-bundle dired-hacks)
 (el-get-bundle emacs-async)
 (el-get-bundle evil)
 (el-get-bundle evil-leader)
-(el-get-bundle expand-region)
-(el-get-bundle flycheck)
-(el-get-bundle ggtags)
 (el-get-bundle helm)
 (el-get-bundle helm-gtags)
 (el-get-bundle helm-projectile)
 (el-get-bundle helm-swoop)
-(el-get-bundle htmlize)
 (el-get-bundle hydra)
-(el-get-bundle ibuffer-vc)
-(el-get-bundle iy-go-to-char)
-(el-get-bundle key-chord)
-(el-get-bundle linum-relative)
-(el-get-bundle multiple-cursors)
 (el-get-bundle org-alert)
 (el-get-bundle org-bullets)
+(el-get-bundle org-graph-view)
 (el-get-bundle org-mode)
 (el-get-bundle org-publish)
-(el-get-bundle outline-magic)
 (el-get-bundle ox-pandoc)
-(el-get-bundle package-lint)
 (el-get-bundle powerline)
 (el-get-bundle powerline-evil)
-(el-get-bundle pretty-mode)
 (el-get-bundle projectile)
 (el-get-bundle region-bindings-mode)
-(el-get-bundle register-list)
-(el-get-bundle ruby-mode)
-(el-get-bundle savekill)
 (el-get-bundle smartparens)
 (el-get-bundle swiper)
 (el-get-bundle swiper-helm)
 (el-get-bundle switch-window)
 (el-get-bundle toc-org)
-(el-get-bundle ucs-cmds)
-(el-get-bundle undo-tree)
-(el-get-bundle vimish-fold)
-(el-get-bundle wgrep)
-(el-get-bundle which-key)
-(el-get-bundle yasnippet)
-(el-get-bundle yasnippet-snippets)
-(el-get-bundle ztree)
 
 ;;; *** Recettes personnelles
 
-(el-get-bundle eval-in-repl)
 (el-get-bundle evil-org-mode-somelauw)
 (el-get-bundle org-wild-notifier)
 (el-get-bundle ox-twbs)
-(el-get-bundle xah-math-input)
 
 ;;; *** Paquets Personnels
+
+;; As dep
+;; (el-get-bundle duo)
 
 (el-get-bundle torus)
 
@@ -127,21 +150,24 @@
 ;; This must come before configurations of installed packages.
 
 (require 'package)
-(setq package-enable-at-startup nil)
+
+(package-initialize)
+;; <- opposite ->
+;;(setq package-enable-at-startup nil)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 ;;; ** Use-package
 
-(unless (package-installed-p 'use-package)
-	(package-refresh-contents)
-	(package-install 'use-package))
+;; (unless (package-installed-p 'use-package)
+;; 	(package-refresh-contents)
+;; 	(package-install 'use-package))
 
 ;;; ** Liste de paquets
 
-(unless (package-installed-p 'magit)
-	(package-refresh-contents)
-	(package-install 'magit))
+;; (unless (package-installed-p 'magit)
+;; 	(package-refresh-contents)
+;; 	(package-install 'magit))
 
 ;;; * Provide
 
