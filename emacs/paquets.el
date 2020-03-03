@@ -25,10 +25,10 @@
 
 ;;; Nécessaires pour d’autres paquets
 
-;; ?
 (straight-use-package 'async)
 (straight-use-package 'dash-functional)
 (straight-use-package 'f)
+(straight-use-package 's)
 
 ;;; *** Paquets Personnels
 
@@ -39,9 +39,10 @@
 
 (straight-use-package '(emacs-mini-frame :type git :host github :repo "muffinmad/emacs-mini-frame"))
 (straight-use-package '(eval-in-repl :type git :host github :repo "kaz-yos/eval-in-repl"))
-(straight-use-package '(xah-math-input :type git :host github :repo "xahlee/xah-math-input"))
+(straight-use-package '(org-graph-view :type git :host github :repo "alphapapa/org-graph-view"))
 (straight-use-package '(org-wild-notifier :type git :host github :repo "akhramov/org-wild-notifier.el"))
 (straight-use-package '(ox-twbs :type git :host github :repo "marsmining/ox-twbs"))
+(straight-use-package '(xah-math-input :type git :host github :repo "xahlee/xah-math-input"))
 
 ;;; *** Liste principale
 
