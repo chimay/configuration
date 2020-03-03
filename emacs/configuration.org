@@ -174,19 +174,18 @@ Désactivé car induisant parfois en erreur.
 ** Démarrage
 
 #+begin_src emacs-lisp
+  (setq inhibit-startup-message t)
+  (setq inhibit-splash-screen t)
+  (setq inhibit-startup-screen t)
 
-(setq inhibit-startup-message t)
-(setq inhibit-splash-screen t)
-(setq inhibit-startup-screen t)
+  (setq initial-buffer-choice t)
 
-(setq initial-buffer-choice t)
+  (setq initial-scratch-message ";; Buffer for notes you don’t want to save.\n\n")
 
-(setq initial-scratch-message ";; Buffer for notes you don’t want to save.\n\n")
-
-(setq initial-buffer-choice (lambda ()
-    (org-agenda-list 30)
-    (get-buffer "*Org Agenda*")))
-
+  (use-package org)
+  (setq initial-buffer-choice (lambda ()
+      (org-agenda-list 30)
+      (get-buffer "*Org Agenda*")))
 #+end_src
 
 
@@ -946,17 +945,11 @@ Pour lire ses mails dans emacs : M-x rmail
 ** Python
 
 #+begin_src emacs-lisp
-
-(setq-default major-mode 'text-mode)
-
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-
-(setq python-shell-interpreter "python")
-
-(setq python-shell-completion-native nil)
-
+  (setq-default major-mode 'text-mode)
+  (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+  (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+  (setq python-shell-interpreter "python")
+  (setq python-shell-completion-native nil)
 #+end_src
 
 
@@ -1905,6 +1898,7 @@ Infos sur les thèmes
     (duo-init "duo-common" "duo-referen"))
 #+end_src
 
+
 ** Organisation
 
 
@@ -1961,9 +1955,7 @@ Infos sur les thèmes
 *** Org-mode
 
 #+begin_src emacs-lisp
-
-(require 'org)
-
+  (use-package org)
 #+end_src
 
 
@@ -2050,14 +2042,8 @@ Infos sur les thèmes
     (octave t)
     ))
 
-(require 'org-checklist)
-
+;;(require 'org-checklist)
 (require 'org-tempo)
-
-(require 'evil-org)
-
-(evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
-
 #+end_src
 
 
@@ -2065,22 +2051,10 @@ Infos sur les thèmes
 
 #+begin_src emacs-lisp
 
-(with-eval-after-load 'ox
-  (require 'ox-pandoc))
+  (with-eval-after-load 'ox
+    (require 'ox-pandoc))
 
-(setq org-publish-project-alist
-'(("eclats de vers"
- :base-directory "~/racine/site/orgmode"
- :base-extension "org"
- :publishing-directory "~/racine/site/publish"
- :recursive t
- :publishing-function org-twbs-publish-to-html
- :headline-levels 6             ; Just the default for this project.
- :auto-preamble t
- ))
-)
-
-;;  :publishing-function org-html-publish-to-html
+  ;;  :publishing-function org-html-publish-to-html
 
 #+end_src
 
@@ -2179,16 +2153,17 @@ Nécessite org-tempo
 
 #+begin_src emacs-lisp
 
-(setq org-list-demote-modify-bullet
-      '(("-" . "+") ("+" . "*") ("*" . "-")))
+  (setq org-list-demote-modify-bullet
+	'(("-" . "+") ("+" . "*") ("*" . "-")))
 
-(setq org-bullets-face-name (quote org-bullet-face))
+  (use-package org-bullets)
+  (setq org-bullets-face-name (quote org-bullet-face))
 
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-(setq org-bullets-bullet-list '("☯" "☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
+  (setq org-bullets-bullet-list '("☯" "☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
 
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 #+end_src
 
@@ -2196,7 +2171,7 @@ Nécessite org-tempo
 *** Org graph view
 
 #+begin_src emacs-lisp
-  (require 'org-graph-view)
+  (use-package org-graph-view)
   (global-set-key (kbd "s-£") 'org-graph-view)
 #+end_src
 
@@ -2204,13 +2179,10 @@ Nécessite org-tempo
 *** Alert
 
 #+begin_src emacs-lisp
-
-(setq alert-default-style 'libnotify)
-
-(setq alert-fade-time 30)
-
-(setq alert-persist-idle-time 900)
-
+  (use-package alert)
+  (setq alert-default-style 'libnotify)
+  (setq alert-fade-time 30)
+  (setq alert-persist-idle-time 900)
 #+end_src
 
 
@@ -2220,19 +2192,12 @@ Ne vérifie pas l’heure : on demande un intervalle long, au moins une
 heure.
 
 #+begin_src emacs-lisp
-
-(require 'org-alert)
-
+(use-package org-alert)
 ; Il semble que les variables doivent être modifiées avant org-alert-enable
-
 (setq org-alert-interval 3600)
-
 (setq org-alert-headline-regexp "\\(Sched.+:.+\\|Deadline:.+\\)")
-
 (org-alert-enable)
-
 ;;(org-alert-disable)
-
 #+end_src
 
 
@@ -2284,6 +2249,8 @@ heure.
 *** Ivy & Swiper
 
 #+begin_src emacs-lisp
+  (use-package swiper)
+
   (global-set-key (kbd "<f11> i") 'ivy-mode)
 
   (eval-after-load "ivy"
@@ -2310,21 +2277,18 @@ heure.
 #+end_src
 
 
-*** Counsel projectile
-
-#+begin_src emacs-lisp
-
-;;(global-set-key (kbd "s-%") 'counsel-projectile)
-
-#+end_src
-
-
 *** Helm
 
 
 **** Options
 
 #+begin_src emacs-lisp
+  (use-package helm)
+  (use-package helm-gtags)
+  (use-package helm-projectile)
+  (use-package helm-swoop)
+
+  (helm-mode 1)
 
   (setq helm-split-window-default-side 'other)
 
@@ -2370,9 +2334,6 @@ heure.
   (setq helm-locate-command "locate -d ~/racine/index/locate/racine.db %s -e -A %s")
 
   (setq helm-ack-grep-executable "/usr/bin/vendor_perl/ack")
-
-  ;; (helm-mode 1)
-
 #+end_src
 
 
@@ -2382,46 +2343,46 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
 
-  (global-set-key (kbd "s-h") 'helm-command-prefix)
+   (global-set-key (kbd "s-h") 'helm-command-prefix)
 
-  (global-unset-key (kbd "C-x c"))
+   ;; (global-set-key (kbd "s-h g") 'helm-gid)
+   ;; (global-set-key (kbd "s-h y") 'helm-show-kill-ring)
+   ;; (global-set-key (kbd "s-h :") 'helm-mini-buffer-history)
+   ;; (global-set-key (kbd "s-h '") 'helm-all-mark-rings)
 
-  (define-key global-map [remap find-file] 'helm-find-files)
-  (define-key global-map [remap occur] 'helm-multi-occur-from-isearch)
-  (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-  (define-key global-map [remap bookmark-bmenu-list] 'helm-filtered-bookmarks)
-  (define-key global-map [remap insert-register] 'helm-register)
+   (global-unset-key (kbd "C-x c"))
 
-  (global-set-key (kbd "s-ù") 'helm-mini)
+   (define-key global-map [remap find-file] 'helm-find-files)
+   (define-key global-map [remap occur] 'helm-multi-occur-from-isearch)
+   (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+   (define-key global-map [remap bookmark-bmenu-list] 'helm-filtered-bookmarks)
+   (define-key global-map [remap insert-register] 'helm-register)
 
-  (global-set-key (kbd "M-x") 'helm-M-x)
+   (global-set-key (kbd "s-ù") 'helm-mini)
 
-  ; Même idée qu’occur
+   (global-set-key (kbd "M-x") 'helm-M-x)
 
-  (global-set-key (kbd "s-é") 'helm-swoop)
-  (global-set-key (kbd "s-è") 'helm-multi-swoop)
+   ; Même idée qu’occur
 
-  (global-set-key (kbd "s-ç") 'helm-show-kill-ring)
+   (global-set-key (kbd "s-é") 'helm-swoop)
+   (global-set-key (kbd "s-è") 'helm-multi-swoop)
 
-  (global-set-key (kbd "M-s l") 'swiper-helm)
+   (global-set-key (kbd "s-ç") 'helm-show-kill-ring)
 
-  (global-set-key (kbd "s-$") 'helm-etags-select)
-  (global-set-key (kbd "s--") 'helm-locate)
+   ;; (global-set-key (kbd "M-s l") 'swiper-helm)
 
-  (global-set-key (kbd "s-<") 'helm-do-grep-ag)
-  (global-set-key (kbd "s-&") 'helm-projectile-grep)
+   (global-set-key (kbd "s-$") 'helm-etags-select)
+   (global-set-key (kbd "s--") 'helm-locate)
 
-  (global-set-key (kbd "s-'") 'helm-all-mark-rings)
+   (global-set-key (kbd "s-<") 'helm-do-grep-ag)
+   (global-set-key (kbd "s-&") 'helm-projectile-grep)
 
-  ;; To set and go to bookmarks
-  (global-set-key (kbd "s-m") 'helm-filtered-bookmarks)
+   (global-set-key (kbd "s-'") 'helm-all-mark-rings)
 
-  (global-set-key (kbd "s-h g") 'helm-gid)
-  (global-set-key (kbd "s-h y") 'helm-show-kill-ring)
-  (global-set-key (kbd "s-h :") 'helm-mini-buffer-history)
-  (global-set-key (kbd "s-h '") 'helm-all-mark-rings)
+   ;; To set and go to bookmarks
+   (global-set-key (kbd "s-m") 'helm-filtered-bookmarks)
 
-  (global-set-key (kbd "<f11> h") 'helm-mode)
+   (global-set-key (kbd "<f11> h") 'helm-mode)
 
 #+end_src
 
@@ -2439,19 +2400,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
-*** Helm projectile
+*** Counsel projectile
 
 #+begin_src emacs-lisp
-  (require 'helm-projectile)
-
-  ;; Inclu dans helm-mini
-  ;; (global-set-key (kbd "s-°") 'helm-projectile)
-
-  ;; (global-set-key (kbd "s-^") 'helm-projectile-find-file)
-  ;; (global-set-key (kbd "C-c s-°") 'helm-projectile-recentf)
-  ;; (global-set-key (kbd "s-p s-f") 'helm-projectile-find-file-in-known-projects)
-
-  (helm-projectile-on)
+  (use-package counsel-projectile)
+  (global-set-key (kbd "s-P") 'counsel-projectile)
 #+end_src
 
 
@@ -2515,6 +2468,22 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+end_src
 
 
+*** Helm projectile
+
+#+begin_src emacs-lisp
+  (require 'helm-projectile)
+
+  ;; Inclu dans helm-mini
+  ;; (global-set-key (kbd "s-°") 'helm-projectile)
+
+  ;; (global-set-key (kbd "s-^") 'helm-projectile-find-file)
+  ;; (global-set-key (kbd "C-c s-°") 'helm-projectile-recentf)
+  ;; (global-set-key (kbd "s-p s-f") 'helm-projectile-find-file-in-known-projects)
+
+  (helm-projectile-on)
+#+end_src
+
+
 *** Ibuffer-vc
 
 #+begin_src emacs-lisp
@@ -2550,6 +2519,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 ** Fenêtres
 
 #+begin_src emacs-lisp
+  (use-package switch-window)
   (setq switch-window-input-style 'minibuffer)
   (setq switch-window-increase 4)
   (setq switch-window-threshold 2)
@@ -2669,6 +2639,17 @@ Activer ou désactiver magit-auto-revert-mode ?
 ** Sélection
 
 
+*** Region-bindings-mode
+
+#+begin_src emacs-lisp
+  (use-package region-bindings-mode)
+  (region-bindings-mode-enable)
+  (setq region-bindings-mode-disable-predicates ((lambda () buffer-read-only)))
+  (define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
+  (global-set-key (kbd "C-w") 'backward-kill-word)
+#+end_src
+
+
 *** Multiple cursors (mc)
 
 #+begin_src emacs-lisp
@@ -2688,7 +2669,7 @@ Activer ou désactiver magit-auto-revert-mode ?
 Langages, parenthèses
 
 #+begin_src emacs-lisp
-  (require 'smartparens)
+  (use-package smartparens)
 
   (smartparens-global-mode nil)
 
@@ -2739,13 +2720,6 @@ Langages, parenthèses
 
 
 ** Présentation
-
-
-*** Powerline
-
-#+begin_src emacs-lisp
-  (powerline-evil-vim-theme)
-#+end_src
 
 
 *** Pretty mode
@@ -2815,45 +2789,71 @@ Ralentit la frappe : activer seulement lorsque nécessaire
 
 *** Hydra
 
-Transposition (échange de caractères, mots, ...)
-
 #+begin_src emacs-lisp
-  (use-package hydra)
-
-  (global-set-key
-   (kbd "C-c t")
-   (defhydra hydra-transpose ()
-     "Transpose"
-     ("c" transpose-chars "characters")
-     ("w" transpose-words "words")
-     ("o" org-transpose-words "Org mode words")
-     ("l" transpose-lines "lines")
-     ("s" transpose-sentences "sentences")
-     ("e" org-transpose-elements "Org mode elements")
-     ("p" transpose-paragraphs "paragraphs")
-     ("t" org-table-transpose-table-at-point "Org mode table")
-     ("q" nil "quit" :color red)))
+    (use-package hydra)
 #+end_src
 
-
-*** Region-bindings-mode
+Gestionnaire de paquet straight
 
 #+begin_src emacs-lisp
-  (use-package region-bindings-mode)
-  (region-bindings-mode-enable)
-  (setq region-bindings-mode-disable-predicates ((lambda () buffer-read-only)))
-  (define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
-  (global-set-key (kbd "C-w") 'backward-kill-word)
+  (defhydra hydra-straight-helper (:hint nil)
+    "
+  _c_heck all       |_f_etch all     |_m_erge all      |_n_ormalize all   |p_u_sh all
+  _C_heck package   |_F_etch package |_M_erge package  |_N_ormlize package|p_U_sh package
+  ----------------^^+--------------^^+---------------^^+----------------^^+------------||_q_uit||
+  _r_ebuild all     |_p_ull all      |_v_ersions freeze|_w_atcher start   |_g_et recipe
+  _R_ebuild package |_P_ull package  |_V_ersions thaw  |_W_atcher quit    |prun_e_ build"
+    ("c" straight-check-all)
+    ("C" straight-check-package)
+    ("r" straight-rebuild-all)
+    ("R" straight-rebuild-package)
+    ("f" straight-fetch-all)
+    ("F" straight-fetch-package)
+    ("p" straight-pull-all)
+    ("P" straight-pull-package)
+    ("m" straight-merge-all)
+    ("M" straight-merge-package)
+    ("n" straight-normalize-all)
+    ("N" straight-normalize-package)
+    ("u" straight-push-all)
+    ("U" straight-push-package)
+    ("v" straight-freeze-versions)
+    ("V" straight-thaw-versions)
+    ("w" straight-watcher-start)
+    ("W" straight-watcher-quit)
+    ("g" straight-get-recipe)
+    ("e" straight-prune-build)
+    ("q" nil))
+
+  (global-set-key (kbd "<f12> s") 'hydra-straight-helper/body)
 #+end_src
 
 
 *** Evil
 
 #+begin_src emacs-lisp
+  (use-package evil)
   (global-set-key (kbd "<f11> v") 'evil-mode)
 
   ;(define-key evil-normal-state-map (kbd "<s-z>") 'evil-emacs-state)
   ;(define-key evil-emacs-state-map (kbd "<s-z>") 'evil-normal-state)
+#+end_src
+
+**** Powerline
+
+#+begin_src emacs-lisp
+  (use-package powerline-evil)
+  (powerline-evil-vim-theme)
+#+end_src
+
+
+**** Org mode
+
+#+begin_src emacs-lisp
+  (use-package evil-org)
+  (require 'evil-org)
+  (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
+  (global-set-key (kbd "<f11> w") 'evil-org-mode)
 #+end_src
 
 

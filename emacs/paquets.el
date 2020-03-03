@@ -23,32 +23,72 @@
 
 (straight-use-package 'use-package)
 
-(straight-use-package 'auto-yasnippet)
-(straight-use-package 'auto-mark)
-(straight-use-package 'dired-hacks)
-(straight-use-package 'flycheck)
-(straight-use-package 'htmlize)
-(straight-use-package 'ibuffer-vc)
-(straight-use-package 'iy-go-to-char)
-(straight-use-package 'linum-relative)
-(straight-use-package 'key-chord)
-(straight-use-package 'magit)
-(straight-use-package 'multiple-cursors)
-(straight-use-package 'outline-magic)
-(straight-use-package 'package-lint)
-(straight-use-package 'pretty-mode)
-(straight-use-package 'register-list)
-(straight-use-package 'savekill)
-(straight-use-package 'ucs-cmds)
-(straight-use-package 'undo-tree)
-(straight-use-package 'yasnippet)
-(straight-use-package 'yasnippet-snippets)
-(straight-use-package 'wgrep)
-(straight-use-package 'which-key)
+;;; Nécessaires pour d’autres paquets
+
+;; ?
+(straight-use-package 'async)
+(straight-use-package 'dash-functional)
+(straight-use-package 'f)
+
+;;; *** Paquets Personnels
+
+(straight-use-package '(duo :type git :host github :repo "chimay/duo"))
+(straight-use-package '(torus :type git :host github :branch "version-2" :repo "chimay/torus"))
+
+;;; *** Recettes
 
 (straight-use-package '(emacs-mini-frame :type git :host github :repo "muffinmad/emacs-mini-frame"))
 (straight-use-package '(eval-in-repl :type git :host github :repo "kaz-yos/eval-in-repl"))
 (straight-use-package '(xah-math-input :type git :host github :repo "xahlee/xah-math-input"))
+
+;;; *** Liste principale
+
+(straight-use-package 'alert)
+(straight-use-package 'auto-mark)
+(straight-use-package 'auto-yasnippet)
+(straight-use-package 'company)
+(straight-use-package 'counsel-projectile)
+(straight-use-package 'dired-hacks)
+(straight-use-package 'evil)
+(straight-use-package 'evil-leader)
+(straight-use-package 'evil-org)
+(straight-use-package 'flycheck)
+(straight-use-package 'helm)
+(straight-use-package 'helm-gtags)
+(straight-use-package 'helm-projectile)
+(straight-use-package 'helm-swoop)
+(straight-use-package 'htmlize)
+(straight-use-package 'hydra)
+(straight-use-package 'ibuffer-vc)
+(straight-use-package 'iy-go-to-char)
+(straight-use-package 'key-chord)
+(straight-use-package 'linum-relative)
+(straight-use-package 'magit)
+(straight-use-package 'multiple-cursors)
+(straight-use-package 'org)
+(straight-use-package 'org-alert)
+(straight-use-package 'org-bullets)
+(straight-use-package 'outline-magic)
+(straight-use-package 'ox-pandoc)
+(straight-use-package 'package-lint)
+(straight-use-package 'powerline)
+(straight-use-package 'powerline-evil)
+(straight-use-package 'pretty-mode)
+(straight-use-package 'projectile)
+(straight-use-package 'region-bindings-mode)
+(straight-use-package 'register-list)
+(straight-use-package 'savekill)
+(straight-use-package 'smartparens)
+(straight-use-package 'swiper)
+(straight-use-package 'swiper-helm)
+(straight-use-package 'switch-window)
+(straight-use-package 'toc-org)
+(straight-use-package 'ucs-cmds)
+(straight-use-package 'undo-tree)
+(straight-use-package 'wgrep)
+(straight-use-package 'which-key)
+(straight-use-package 'yasnippet)
+(straight-use-package 'yasnippet-snippets)
 
 ;;; * Gestionnaire de paquets el-get
 
@@ -77,7 +117,7 @@
 (define-key elget/map (kbd "h") 'el-get-describe)
 (define-key elget/map (kbd "i") 'el-get-install)
 (define-key elget/map (kbd "R") 'el-get-remove)
-(define-key elget/map (kbd "s") 'el-get-self-update)
+(define-key elget/map (kbd "$") 'el-get-self-update)
 (define-key elget/map (kbd "u") 'el-get-update)
 (define-key elget/map (kbd "U") 'el-get-update-all)
 (define-key elget/map (kbd "r") 'el-get-reload)
@@ -86,60 +126,10 @@
 
 ;;; ** Liste de paquets installés
 
-;;; *** Nécessaire pour d’autres paquets
-
-(el-get-bundle paredit)
-(el-get-bundle ace-window)
-(el-get-bundle ht)
-(el-get-bundle htmlize)
-
-;;; *** Langages
-
-(el-get-bundle inf-perl)
-(el-get-bundle inf-ruby)
-(el-get-bundle python)
-
-;;; *** Liste principale
-
-(el-get-bundle alert)
-(el-get-bundle company-mode)
-(el-get-bundle counsel-projectile)
-(el-get-bundle emacs-async)
-(el-get-bundle evil)
-(el-get-bundle evil-leader)
-(el-get-bundle helm)
-(el-get-bundle helm-gtags)
-(el-get-bundle helm-projectile)
-(el-get-bundle helm-swoop)
-(el-get-bundle hydra)
-(el-get-bundle org-alert)
-(el-get-bundle org-bullets)
-(el-get-bundle org-graph-view)
-(el-get-bundle org-mode)
-(el-get-bundle org-publish)
-(el-get-bundle ox-pandoc)
-(el-get-bundle powerline)
-(el-get-bundle powerline-evil)
-(el-get-bundle projectile)
-(el-get-bundle region-bindings-mode)
-(el-get-bundle smartparens)
-(el-get-bundle swiper)
-(el-get-bundle swiper-helm)
-(el-get-bundle switch-window)
-(el-get-bundle toc-org)
-
 ;;; *** Recettes personnelles
 
-(el-get-bundle evil-org-mode-somelauw)
 (el-get-bundle org-wild-notifier)
 (el-get-bundle ox-twbs)
-
-;;; *** Paquets Personnels
-
-;; As dep
-;; (el-get-bundle duo)
-
-(el-get-bundle torus)
 
 ;;; Sync
 

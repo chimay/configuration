@@ -2,6 +2,7 @@
 
 ;;; * Chargement du fichier
 
+(require 'org)
 (org-babel-load-file "~/racine/config/edit/emacs/configuration.org")
 
 ;;; * Provide
