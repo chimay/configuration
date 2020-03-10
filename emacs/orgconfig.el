@@ -2,7 +2,11 @@
 
 ;;; * Chargement du fichier
 
-(require 'org)
+(setq use-package-verbose t)
+
+(use-package org)
+;; (require 'org)
+
 (org-babel-load-file "~/racine/config/edit/emacs/configuration.org")
 
 ;;; * Provide

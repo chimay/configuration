@@ -16,14 +16,20 @@
   (load bootstrap-file nil 'nomessage))
 
 (setq straight-check-for-modifications '(check-on-save find-when-checking))
+(setq straight-use-package-by-default t)
 
 ;; (setq straight-check-for-modifications '(watch-files find-when-checking))
 
 ;;; ** Liste de paquets installés
 
+;;; *** Nécessaire pour les déclarations & configurations de plugins
+
 (straight-use-package 'use-package)
 
-;;; Nécessaires pour d’autres paquets
+;; Doesn’t seem to work
+(straight-use-package 'use-package-hydra)
+
+;;; *** Nécessaires pour d’autres paquets
 
 (straight-use-package 'async)
 (straight-use-package 'dash-functional)
@@ -39,6 +45,7 @@
 
 (straight-use-package '(emacs-mini-frame :type git :host github :repo "muffinmad/emacs-mini-frame"))
 (straight-use-package '(eval-in-repl :type git :host github :repo "kaz-yos/eval-in-repl"))
+(straight-use-package '(mini-frame :type git :host github :repo "muffinmad/emacs-mini-frame"))
 (straight-use-package '(org-graph-view :type git :host github :repo "alphapapa/org-graph-view"))
 (straight-use-package '(org-wild-notifier :type git :host github :repo "akhramov/org-wild-notifier.el"))
 (straight-use-package '(ox-twbs :type git :host github :repo "marsmining/ox-twbs"))
@@ -137,13 +144,11 @@
 
 ;; This must come before configurations of installed packages.
 
-(require 'package)
+;;(require 'package)
 
-(package-initialize)
-;; <- opposite ->
-;;(setq package-enable-at-startup nil)
+;;(package-initialize)
 
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+;;(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 ;;; ** Use-package
 
@@ -152,10 +157,6 @@
 ;; 	(package-install 'use-package))
 
 ;;; ** Liste de paquets
-
-;; (unless (package-installed-p 'magit)
-;; 	(package-refresh-contents)
-;; 	(package-install 'magit))
 
 ;;; * Provide
 
