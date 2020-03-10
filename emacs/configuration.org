@@ -2064,6 +2064,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
   (use-package counsel-projectile
+    :commands (counsel-projectile)
     :bind (("s-P" . counsel-projectile)))
 #+end_src
 
@@ -2192,6 +2193,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
   (use-package mini-frame
+    :commands (mini-frame-mode)
     :bind (( "<f11> m" . 'mini-frame-mode)))
 #+end_src
 
@@ -2259,7 +2261,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
     :custom ((company-idle-delay 1)
 	     (company-minimum-prefix-length 3))
     :commands (company-mode)
-    :hook ((emacs-lisp-mode-hook . company-mode))
+    :hook ((emacs-lisp-mode . company-mode))
     :bind (:map company-active-map
 		("C-n" . company-select-next)
 		("C-p" . company-select-previous)
@@ -2271,6 +2273,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 #+begin_src emacs-lisp
   (use-package yasnippet
+    :commands (yas-minor-mode)
     :hook (emacs-lisp-mode . yas-minor-mode))
 #+end_src
 
@@ -2293,6 +2296,7 @@ Activer ou désactiver magit-auto-revert-mode ?
 
 #+begin_src emacs-lisp
   (use-package magit
+    :commands (magit-status)
     :bind ("C-x g" . magit-status))
 #+end_src
 
@@ -2316,6 +2320,9 @@ Activer ou désactiver magit-auto-revert-mode ?
 
 #+begin_src emacs-lisp
   (use-package multiple-cursors
+    :commands (mc/mark-next-like-this
+	       mc/mark-more-like-this-extended
+	       mc/edit-lines)
     :bind (:map region-bindings-mode-map
 		("s-n" . 'mc/mark-next-like-this)
 		("s-SPC" . 'mc/mark-more-like-this-extended)
@@ -2334,7 +2341,6 @@ Langages, parenthèses
   (use-package smartparens)
 
   (smartparens-global-mode nil)
-
   (show-smartparens-global-mode nil)
 
   ;;(require 'smartparens-config)
@@ -2518,6 +2524,7 @@ Gestionnaire de paquet straight
 
 #+begin_src emacs-lisp
   (use-package xah-math-input
+    :commands (xah-math-input-mode)
     :bind (("<f11> x" . xah-math-input-mode)))
 #+end_src
 
