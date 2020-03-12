@@ -2,7 +2,7 @@
 
 # Autostart {{{1
 
-autostart.zsh
+autostart.zsh >> ~/log/autostart.log 2>&1
 
 # }}}1
 
@@ -77,6 +77,7 @@ bspc rule -a MuseScore3 desktop=artisan
 bspc rule -a libreoffice-startcenter desktop=office
 
 bspc rule -a vlc desktop=entertain
+bspc rule -a wesnoth desktop=entertain
 
 bspc rule -a net-sourceforge-jnlp-runtime-Boot desktop=misc
 bspc rule -a sun-awt-X11-XFramePeer desktop=misc
@@ -129,5 +130,11 @@ bspc rule -a kitty:dropdown sticky=on state=floating rectangle=1500x700+200+40
 bspc rule -a URxvt:dropdown sticky=on state=floating rectangle=964x574+476+50
 
 # }}}2
+
+# }}}1
+
+# Événements {{{1
+
+bspwm-subscribe.zsh >> ~/log/bspwm-subscribe.log
 
 # }}}1

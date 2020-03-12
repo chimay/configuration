@@ -58,7 +58,7 @@ hyper + shift + q
 	rofi-eteindre.zsh
 
 hyper + l
-	i3lock -c "#341207" -i ~/graphix/wallpaper/geometry/A-chakras-02.png
+	i3lock -c "#341207" -i ~/racine/pictura/i3lock/default
 
 # }}}1
 
@@ -77,8 +77,8 @@ hyper + shift + k
 	bspc node -k
 
 # Rotate
-hyper + r
-	bspc node -R 90
+hyper + {Prior,Next}
+	bspc node @/ -R {270,90}
 
 # Circulate ->
 super + Next
@@ -123,8 +123,6 @@ super + {Home,End}
 	bspc desktop -f {prev,next}.local
 super + ctrl + {Left,Right}
 	bspc desktop -f {prev,next}.local
-hyper + {Home,End}
-	bspc desktop -f {prev,next}.local
 
 # move to window
 super + {Left,Up,Down,Right}
@@ -148,9 +146,9 @@ hyper + asciicircum
 	bspwm-swap.sh
 
 # <- history ->
-hyper + {Next,Prior}
+hyper + {Home,End}
 	bspc wm -h off; \
-	bspc node {older,newer} -f; \
+	bspc node {newer,older} -f; \
 	bspc wm -h on
 
 # Move (window) to desktop
@@ -201,13 +199,19 @@ hyper + o ; Down
 
 # Écran {{{1
 
+# Fond d’écran {{{2
+
 # Recharge toute la liste d’images
 hyper + w ; r
-	pkill -10 -f fond-ecran
+	pkill -10 -f wallpaper.zsh
 
 # Passe au suivant
 hyper + w ; n
-	pkill -12 -f fond-ecran
+	pkill -12 -f wallpaper.zsh
+
+# }}}2
+
+# Luminosité {{{2
 
 super + alt + v
 	xbacklight -set 100
@@ -224,6 +228,15 @@ hyper + v ; Right
 hyper + v ; Left
 	xbacklight -dec 25
 
+# }}}2
+
+# }}}1
+
+# Notifications {{{1
+
+hyper + n ; r
+	pkill -10 -f remind-server.zsh
+
 # }}}1
 
 # Applications {{{1
@@ -239,6 +252,8 @@ hyper + s
 shift + F12
 	kitty-dropdown.zsh
 
+hyper + mu
+	urxvtc-dropdown.zsh
 hyper + asterisk
 	urxvtc-dropdown.zsh
 
@@ -335,7 +350,7 @@ hyper + space ; c
 # Informations {{{1
 
 alt + button3
-	less-log.sh ~/log/fond-ecran.log
+	less-log.sh ~/log/wallpaper.log
 
 # }}}1
 
