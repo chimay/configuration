@@ -1,192 +1,248 @@
 " vim: set filetype=vim :
 
-if has("autocmd")
+if !has("autocmd")
+	finish
+endif
 
-" {{{ Démarrage
+" Démarrage {{{1
 
 augroup Demarrage
-
 	au!
-
-	"au VimEnter * cd ~/notes
-
+	"au VimEnter * cd ~/racine/plain
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Tous les fichiers
-" ------------------------------------------------------------------------
+"  Tous les fichiers {{{1
 
 augroup TousLesFichiers
-
 	au!
-
-	" {{{ Restore le curseur
-
-	autocmd BufReadPost *
-		\ if line("'\"") > 1 && line("'\"") <= line("$") |
-		\ 	exe "normal! g`\"" |
-		\ endif
-
-	" }}}
-
-	" {{{ Pliage et position du curseur dans la fenêtre
-
-	" Pas besoin de zz2<C-E> car zx est déjà mappé
-
 	au BufRead * normal zx
-
-	" }}}
-
-	" {{{ Backup
-
-	" Le plugin Ozzy essaie de faire setlocal nobackup,
-	" mais backup ne semble pas être une option locale
-
-	au BufEnter * set backup
-
-	" }}}
-
-	" {{{ Crée le répertoire de backup s’il n’existe pas encore
-
-" 	autocmd BufReadPost *
-" 		\ if filewritable(expand('%:p:h')) && ! isdirectory(expand('%:p:h') . '/.vim/backup/ancien') |
-" 		\	call mkdir(expand('%:p:h') . '/.vim/backup/ancien', 'p') |
-" 		\ endif
-
-	" }}}
-
-	"  {{{ Ne déplace pas le curseur lorsque la fenêtre gagne le focus
-
-	au FocusGained * call getchar(0)
-
-	" }}}
-
 augroup END
 
-" }}}
+" }}}1
 
-" {{{ Répertoires de travail
+" Répertoires de travail {{{1
 
 augroup RepertoiresDeTravail
-
 	au!
-
-	" {{{ Semblable à autochdir
-
-	"au BufEnter * lcd %:p:h
-
-	" }}}
-
-	" {{{ Par projet
-
-	au BufEnter ~/racine/plain/**/*     set tags=~/racine/plain/tags
-	au BufEnter ~/racine/site/**/*     set tags=~/racine/site/tags
-
-	au BufEnter ~/racine/shell/**/*     set tags=~/racine/shell/tags
-
-	au BufEnter ~/racine/config/cmdline/**/*     set tags=~/racine/config/cmdline/tags
-	au BufEnter ~/racine/config/edit/**/*     set tags=~/racine/config/edit/tags
-
-	" }}}
-
+	au BufEnter * call bibliotheque#repertoire_projet('.racine-projet')
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Configuration
-" ------------------------------------------------------------------------
+"  Rechargement de la configuration {{{1
 
 augroup RechargementConfiguration
-
 	au!
-
-	au bufwritepost ~/racine/config/edit/vim/colors/personnel.vim colorscheme personnel
-
-	au bufwritepost ~/racine/config/edit/vim/after/syntax/** source %
-
+	au bufwritepost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
+	au bufwritepost ~/racine/config/edit/neovim/after/syntax/** source %
+	au bufwritepost ~/racine/config/windenv/sxhkd/sxhkdrc !pkill -10 -f sxhkd
+	au bufwritepost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
+	au bufwritepost ~/racine/config/windenv/picom.conf !restart-picom.zsh &
+	au bufwritepost ~/racine/config/organizer/remind/* !pkill -10 -f remind-server
+	au bufwritepost ~/racine/public/wheel/autoload/** source %
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Shell
-" ------------------------------------------------------------------------
+"  Shell {{{1
 
 augroup ShellHistorique
-
 	au!
-
 	au BufEnter historique.zsh setlocal nofoldenable
-
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Fenêtre quickfix
-" ------------------------------------------------------------------------
+"  Fenêtre quickfix {{{1
 
-augroup FenetreQuickFixVimGrep
-
+augroup FenetreQuickFix
 	au!
-
 	au BufReadPost quickfix noremap <buffer> <tab> <cr>:cclose<cr>:lclose<cr>
-
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Fenêtre d’historique
-" ------------------------------------------------------------------------
-
-set cmdwinheight=18		" Hauteur de la fenêtre d'historique
+"  Fenêtre d’historique {{{1
 
 augroup FenetreHistorique
-
 	au!
-
 	"au CmdwinEnter [:/?]  startinsert
-
 	au CmdwinEnter * noremap <buffer> q :q<CR>
 	au CmdwinEnter * noremap <buffer> <space> ?
 	au CmdwinEnter * setlocal foldlevel=99
 	au CmdwinLeave * let @/=""
-
-	autocmd CmdwinEnter * let b:neocomplete_sources = ['vim']
-
 augroup END
 
-" }}}
+" }}}1
 
-" {{{ Fichiers temporaire
+" Fichiers temporaire {{{1
 
 augroup FichiersTemporaires
-
 	au!
-
 	au BufNewFile,BufReadPre /tmp/*,*/tmp/* setlocal noundofile
-
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Newsrc
-" ------------------------------------------------------------------------
+" Types de fichiers {{{1
+
+"  Allocation des types {{{2
+
+augroup DetectionDesTypesDeFichiers
+	au!
+	au BufNewFile,BufRead *.htm*,*.php,*.phtm* setfiletype html.php
+	au BufNewFile,BufRead *.rss,*.atom         setfiletype xml
+augroup END
+
+" }}}2
+
+" Tabulation {{{2
+
+" Syntax of these languages is fussy over tabs Vs spaces
+autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Customisations based on house-style (arbitrary)
+autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+
+" }}}2
+
+" ------------------------------------
+
+" FichierVim {{{2
+
+augroup FichierVim
+	au BufEnter *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'" }
+	au BufLeave *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
+augroup END
+
+" }}}2
+
+" FichiersLisp {{{2
+
+augroup FichiersLisp
+	au!
+	au BufEnter *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"' }
+	au BufLeave *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
+augroup END
+
+" }}}2
+
+" FichiersSlang {{{2
+
+augroup FichiersSlang
+	au!
+	au Filetype slang set commentstring=%\ %s
+augroup END
+
+" }}}2
+
+" FichiersMarkdown {{{2
+
+augroup FichiersMarkdown
+	au!
+	au bufwritepost **.md !pandoc -t html % -o %:r.html
+augroup END
+
+" }}}2
+
+" FichiersHtml {{{2
+
+augroup FichiersHtml
+	au!
+	au Filetype html,php nnoremap <silent> [h ?^<h[1-6]<cr>:noh<cr>
+	au Filetype html,php nnoremap <silent> ]h /^<h[1-6]<cr>:noh<cr>
+augroup END
+
+" }}}2
+
+" Fichiers openDocument {{{2
+
+augroup FichiersOpenDoc
+	au!
+	autocmd BufReadPre *.odt,*.ods set ro
+	autocmd BufReadPost *.odt,*.ods %!odt2txt "%"
+augroup END
+
+" }}}2
+
+" FichiersImages {{{2
+
+augroup FichiersImages
+	au!
+	"autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!identify -verbose "%"
+	autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!exiv2 pr "%"
+augroup END
+
+" }}}2
+
+" FichiersAudio {{{2
+
+augroup FichiersAudio
+	au!
+	autocmd BufReadPost *.flac %!metaflac --list "%"
+	autocmd BufReadPost *.ogg %!ogginfo "%"
+	autocmd BufReadPost *.mp3 %!mp3info -x "%"
+augroup END
+
+" }}}2
+
+" FichiersDoc {{{2
+
+augroup FichiersDoc
+	au!
+	autocmd BufReadPre *.doc set ro
+	autocmd BufReadPost *.doc %!antiword "%" | fmt
+augroup END
+
+" }}}2
+
+" }}}1
+
+" Man pager {{{1
+
+augroup manlaunchtoc
+    autocmd!
+    if has('nvim')
+        autocmd FileType man
+            \ call man#show_toc() |
+            \ nnoremap <buffer> l <Enter> |
+            \ wincmd H |
+            \ vert resize 35 |
+            \ wincmd p
+    endif
+augroup end
+
+" }}}1
+
+"  Fichier de génération de listes de lecture m3u {{{1
+
+augroup ListesDeLecture
+	au!
+	au BufEnter ~/racine/pictura/list/*.meta lcd ~/graphix
+	au BufEnter ~/racine/musica/list/*.meta lcd ~/audio
+augroup END
+
+" }}}1
+
+"  Newsrc {{{1
 
 augroup Nouvelles
 	au!
-	"au BufWritePre newsrc silent! %s/[^:]$/&:/g
 	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs\s/ :&/
 	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs$/ :&/
 augroup END
 
-" }}}
+" }}}1
 
-"  {{{ Chat
-" ------------------------------------------------------------------------
+"  Chat {{{1
 
 augroup Chaton
 	au!
-
 	au BufWritePost alias.conf.perso   w! ~/racine/config/chaton/weechat/alias.conf
 	au BufWritePost aspell.conf.perso  w! ~/racine/config/chaton/weechat/aspell.conf
 	au BufWritePost buffers.conf.perso w! ~/racine/config/chaton/weechat/buffers.conf
@@ -200,162 +256,6 @@ augroup Chaton
 	au BufWritePost script.conf.perso  w! ~/racine/config/chaton/weechat/script.conf
 	au BufWritePost weechat.conf.perso w! ~/racine/config/chaton/weechat/weechat.conf
 	au BufWritePost xfer.conf.perso    w! ~/racine/config/chaton/weechat/xfer.conf
-
-	"au BufWritePost irssi.configuration w! config
-	"au BufWritePost irssi.theme         w! themes/personnel.theme
-
 augroup END
 
-" }}}
-
-"  {{{ Fichier de génération de listes de lecture m3u
-" ------------------------------------------------------------------------
-
-augroup ListesDeLecture
-	au!
-	au BufEnter ~/music/list/*.gen lcd ~/audio
-augroup END
-
-" }}}
-
-" {{{ Types de fichiers
-
-"  {{{ Allocation des types
-" ------------------------------------------------------------------------
-
-augroup DetectionDesTypesDeFichiers
-
-	au!
-
-	au BufNewFile,BufRead *.htm*,*.php,*.phtm* setfiletype html.php
-	au BufNewFile,BufRead *.rss,*.atom         setfiletype xml
-
-augroup END
-
-" }}}
-
-" {{{ Tabulation
-
-" Syntax of these languages is fussy over tabs Vs spaces
-autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
-" Customisations based on house-style (arbitrary)
-autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
-autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
-autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
-
-" }}}
-
-" ------------------------------------
-
-" {{{ FichiersVim
-
-augroup FichiersVim
-
-	"au BufWritePre *.vim call bibliotheque#dateModification()
-
-	au BufEnter *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'" }
-	au BufLeave *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
-
-augroup END
-
-" }}}
-
-" {{{ FichiersLisp
-
-augroup FichiersLisp
-
-	au!
-
-	au BufEnter *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"' }
-	au BufLeave *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
-
-augroup END
-
-" }}}
-
-" {{{ FichiersSlang
-
-augroup FichiersSlang
-
-	au!
-
-	au Filetype slang set commentstring=%\ %s
-
-augroup END
-
-" }}}
-
-" {{{ FichiersHtml
-
-augroup FichiersHtml
-
-	au!
-
-	au Filetype html,php nnoremap <silent> [h ?^<h[1-6]<cr>:noh<cr>
-	au Filetype html,php nnoremap <silent> ]h /^<h[1-6]<cr>:noh<cr>
-
-	"au Filetype html,php command! PliageExpresso call bibliotheque#pliageParExpression()
-	"au Filetype html,php command! PliageMarqueurs call bibliotheque#pliageParMarqueurs()
-
-augroup END
-
-" }}}
-
-" {{{ Fichiers openDocument
-
-augroup FichiersOpenDoc
-
-	au!
-
-	autocmd BufReadPre *.odt,*.ods set ro
-	autocmd BufReadPost *.odt,*.ods %!odt2txt "%"
-
-augroup END
-
-" }}}
-
-" {{{ FichiersImages
-
-augroup FichiersImages
-
-	au!
-
-	"autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!identify -verbose "%"
-	autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!exiv2 pr "%"
-
-augroup END
-
-" }}}
-
-" {{{ FichiersAudio
-
-augroup FichiersAudio
-
-	au!
-
-	autocmd BufReadPost *.flac %!metaflac --list "%"
-	autocmd BufReadPost *.ogg %!ogginfo "%"
-	autocmd BufReadPost *.mp3 %!mp3info -x "%"
-
-augroup END
-
-" }}}
-
-" {{{ FichiersDoc
-
-augroup FichiersDoc
-
-	au!
-
-	autocmd BufReadPre *.doc set ro
-	autocmd BufReadPost *.doc %!antiword "%" | fmt
-
-augroup END
-
-" }}}
-
-" }}}
-
-endif
+" }}}1
