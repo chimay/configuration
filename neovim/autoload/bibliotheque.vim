@@ -9,46 +9,7 @@
 "               and/or modify it under the terms of the GNU General Public
 "               License.  See http://www.gnu.org/copyleft/gpl.txt
 
-" ------------------------------------
-
-" Exemples trouvés sur le net
-
-" {{{ Recherche parmi les résultats de la liste quickfix
-
-"	" Define a command to make it easier to use
-"	command! -nargs=+ QFDo call QFDo(<q-args>)
-"
-"	" Function that does the work
-"	function! QFDo(command)
-"	    " Create a dictionary so that we can
-"	    " get the list of buffers rather than the
-"	    " list of lines in buffers (easy way
-"	    " to get unique entries)
-"	    let buffer_numbers = {}
-"	    " For each entry, use the buffer number as
-"	    " a dictionary key (won't get repeats)
-"	    for fixlist_entry in getqflist()
-"	        let buffer_numbers[fixlist_entry['bufnr']] = 1
-"	    endfor
-"	    " Make it into a list as it seems cleaner
-"	    let buffer_number_list = keys(buffer_numbers)
-"
-"	    " For each buffer
-"	    for num in buffer_number_list
-"	        " Select the buffer
-"	        exe 'buffer' num
-"	        " Run the command that's passed as an argument
-"	        exe a:command
-"	        " Save if necessary
-"	        update
-"	    endfor
-"	endfunction
-
-" }}}
-
-" ------------------------------------
-
-" {{{ Variables
+" Variables {{{1
 
 let s:separateurs_de_motifs = [ '/', ':', '-', '_', ',', ';', '?', "'", '"' ]
 
@@ -56,69 +17,58 @@ let s:KB = 1024.0
 let s:MB = s:KB * s:KB
 let s:GB = s:KB * s:MB
 
-" }}}
+" }}}1
 
 " ------------------------------------
 
-" {{{ Hiérarchie highlight du mot sous le curseur
+" Répertoire de projet {{{1
+
+fun! bibliotheque#repertoire_projet (project_root)
+	" Change local directory to root of project
+	" where current buffer belongs
+	let dir = expand('%:p:h')
+	exe 'lcd ' . dir
+	while ! filereadable(a:project_root) && dir != '/'
+		lcd ..
+		let dir = getcwd()
+	endwhile
+endfun
+
+" }}}1
+
+" Hiérarchie highlight du mot sous le curseur {{{1
 
 fun! bibliotheque#highlightGroup()
-
 	if !exists("*synstack")
 		return
 	endif
-
 	return map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-
 endfun
 
-" }}}
+" }}}1
 
-" {{{ Url --> Lien
-
-fun! bibliotheque#url2link()
-
-	g_^https\?://_s:^\(.*\)$:<a href="\1">\1</a><br />:
-
-endfun
-
-" }}}
-
-"  {{{ Redirection vers le tampon courant
-" ------------------------------------------------------------------------
+"  Redirection vers le tampon courant {{{1
 
 fu! bibliotheque#redirToBuffer(commande)
-
 	redir => contenu
-
 	echo 'Commande :' a:commande
 	echo ''
-
 	exec 'silent ' . a:commande
-
 	redir END
-
 	new
-
 	put =contenu
-
 endfu
 
-" }}}
+" }}}1
 
-"  {{{ Recherche via grep
-" ------------------------------------------------------------------------
+"  Recherche via grep {{{1
 
 fu! bibliotheque#grep()
-
 	let motif = input('Motif ? ')
-
 	let fichiers = input('Fichiers ? ', expand('%:p:h') . '/*', 'file')
-
 	if fichiers == ''
 		let fichiers = expand('%:p:h') . '/**/*(.)'
 	endif
-
 	let chaine  = ''
 	let chaine .= 'silent grep!'
 	let chaine .= ' '
@@ -127,54 +77,34 @@ fu! bibliotheque#grep()
 	let chaine .= "'"
 	let chaine .= ' '
 	let chaine .= fichiers
-
 	echomsg chaine
-
 	exe chaine
-
 	silent! cope 13
-
 endfu
 
-" }}}
+" }}}1
 
-"  {{{ Recherche via vimgrep
-" ------------------------------------------------------------------------
+"  Recherche via vimgrep {{{1
 
 fu! bibliotheque#vimgrep()
-
 	let save_eventignore = &eventignore
-
 	set eventignore=all
-
 	let motif = input('Motif ? ')
-
 	let fichiers = input('Fichiers ? ', expand('%:p:h') . '/*', 'file')
-
 	if fichiers == ''
 		let fichiers = expand('%:p:h') . '/**'
 	endif
-
-" {{{ Séparateur
-
 	let separateur = ''
-
 	for candide in s:separateurs_de_motifs
 		if ! (motif =~ candide)
 			let separateur = candide
 			break
 		endif
 	endfor
-
 	if separateur == ''
 		echoe 'Impossible de trouver un séparateur pour la substitution'
 		return 1
 	endif
-
-" }}}
-
-" 	let chaine .= 'noautocmd'
-
 	let chaine  = ''
 	let chaine .= 'lvimgrep!'
 	let chaine .= ' '
@@ -184,59 +114,36 @@ fu! bibliotheque#vimgrep()
 	let chaine .= 'j'
 	let chaine .= ' '
 	let chaine .= fichiers
-
 	echomsg chaine
-
 	exe chaine
-
 	silent! lope 13
-
 	let &eventignore = save_eventignore
-
 endfu
 
-" }}}
+" }}}1
 
-"  {{{ Remplacement
-" ------------------------------------------------------------------------
-
-" TODO : ajouter système de backup
+"  Remplacement {{{1
 
 fu! bibliotheque#remplacement()
-
 	let save_eventignore = &eventignore
-
 	set eventignore=all
-
 	let motif = input('Motif ? ')
 	let remplace = input('Remplacement ? ')
-
 	let fichiers = input('Fichiers ? ', expand('%:p:h') . '/*', 'file')
-
 	if fichiers == ''
 		let fichiers = expand('%:p:h') . '/**/*(.)'
 	endif
-
-" {{{ Séparateur
-
 	let separateur = ''
-
 	for candide in s:separateurs_de_motifs
 		if ! (motif =~ candide)
 			let separateur = candide
 			break
 		endif
 	endfor
-
 	if separateur == ''
 		echoe 'Impossible de trouver un séparateur pour la substitution'
 		return 1
 	endif
-
-" }}}
-
-" {{{ Fichiers contenant le motif
-
 	let chaine  = ''
 	let chaine .= '! grep -l'
 	let chaine .= ' '
@@ -245,43 +152,22 @@ fu! bibliotheque#remplacement()
 	let chaine .= "'"
 	let chaine .= ' '
 	let chaine .= fichiers
-
 	echomsg chaine
-
 	let contenu = system(chaine)
-
 	let fichiers_filtres = substitute(contenu, '\n', ' ', 'g')
-
-" }}}
-
 	arglocal
-
 	let chaine  = ''
 	let chaine .= 'args'
 	let chaine .= ' '
 	let chaine .= fichiers_filtres
-
 	echomsg chaine
-
 	exe chaine
-
-" {{{ Backup
-
 	let chaine  = ''
 	let chaine .= 'argdo'
 	let chaine .= ' '
 	let chaine .= '! cp % %.pre-sub'
-
 	echomsg chaine
-
 	exe chaine
-
-" }}}
-
-" {{{ Substitution
-
-" 	let chaine .= 'noautocmd'
-
 	let chaine  = ''
 	let chaine .= 'argdo'
 	let chaine .= ' '
@@ -292,57 +178,34 @@ fu! bibliotheque#remplacement()
 	let chaine .= remplace
 	let chaine .= separateur
 	let chaine .= 'g'
-
 	echomsg chaine
-
 	exe chaine
-
-" }}}
-
 	argglobal
-
 	let &eventignore = save_eventignore
-
 endfu
 
-" }}}
+" }}}1
 
-"  {{{ Remplacement via sed
-" ------------------------------------------------------------------------
-
-" TODO : ajouter système de backup
+"  Remplacement via sed {{{1
 
 fu! bibliotheque#remplacementSed()
-
 	let motif = input('Motif ? ')
 	let remplace = input('Remplacement ? ')
-
 	let fichiers = input('Fichiers ? ', expand('%:p:h') . '/*', 'file')
-
 	if fichiers == ''
 		let fichiers = expand('%:p:h') . '/**/*(.)'
 	endif
-
-" {{{ Séparateur
-
 	let separateur = ''
-
 	for candide in s:separateurs_de_motifs
 		if ! (motif =~ candide)
 			let separateur = candide
 			break
 		endif
 	endfor
-
 	if separateur == ''
 		echoe 'Impossible de trouver un séparateur pour la substitution'
 		return 1
 	endif
-
-" }}}
-
-" {{{ Fichiers contenant le motif
-
 	let chaine  = ''
 	let chaine .= '! grep -l'
 	let chaine .= ' '
@@ -351,15 +214,9 @@ fu! bibliotheque#remplacementSed()
 	let chaine .= "'"
 	let chaine .= ' '
 	let chaine .= fichiers
-
 	echomsg chaine
-
 	let contenu = system(chaine)
-
 	let fichiers_filtres = substitute(contenu, '\n', ' ', 'g')
-
-" }}}
-
 	let chaine  = ''
 	let chaine .= '! sed --in-place=.pre-sed'
 	let chaine .= ' '
@@ -374,114 +231,21 @@ fu! bibliotheque#remplacementSed()
 	let chaine .= "'"
 	let chaine .= ' '
 	let chaine .= fichiers_filtres
-
 	echomsg chaine
-
 	"exe chaine
 	call system(chaine)
-
 endfu
 
-" }}}
+" }}}1
 
-" {{{ Sauvegarde
-
-" TODO
-
-fu! bibliotheque#sauvegarde(...)
-
-let sous_repertoire = ''
-let extension = ''
-
-if len(a:000) >= 1
-	let sous_repertoire = a:1
-endif
-
-if len(a:000) >= 2
-	let extension = a:2
-endif
-
-let chemin_fichier     = expand('%:p')
-let fichier            = expand('%:p:t')
-let repertoire_fichier = expand('%:p:h')
-
-let repertoire_sauvegarde = repertoire_fichier . '/.neovim/backup/' . sous_repertoire
-let sauvegarde = fichier . extension
-
-" echomsg chemin_fichier
-" echomsg fichier
-" echomsg repertoire_fichier
-" echomsg repertoire_sauvegarde
-" echomsg sauvegarde
-
-if ! filewritable(repertoire_fichier)
-	echoerr 'bibliotheque#sauvegarde : ' . repertoire_fichier . ' protégé en écriture'
-	return 1
-endif
-
-echomsg 'mkdir ' repertoire_sauvegarde
-
-if ! isdirectory(repertoire_sauvegarde)
-	call mkdir(repertoire_sauvegarde, 'p')
-endif
-
-let chaine  = ''
-
-let chaine .= '! cp'
-let chaine .= ' '
-let chaine .= chemin_fichier
-let chaine .= ' '
-let chaine .= repertoire_sauvegarde
-let chaine .= '/'
-let chaine .= sauvegarde
-
-echomsg chaine
-
-"exe chaine
-call system(chaine)
-
-endfu
-
-" }}}
-
-"  {{{ Taille d'un fichier
-" ------------------------------------------------------------------------
-
-fu! bibliotheque#tailleFichier()
-
-	let taille = getfsize(expand('%'))
-
-	let gigas = floor(taille / s:GB)
-	let taille -=  s:GB * gigas
-
-	let megas = floor(taille / s:MB)
-	let taille -=  s:MB * megas
-
-	let kas = floor(taille / s:KB)
-	let taille -=  s:KB * kas
-
-	return string(megas) . ' G  ' . string(megas) . ' M  ' . string(kas) . ' K  ' . string(taille) . ' B'
-
-endfu
-
-" }}}
-
-" ------------------------------------
-
-"  {{{ Texte des pliages (fold)
-" ------------------------------------------------------------------------
+"  Texte des pliages (fold) {{{1
 
 fun! bibliotheque#texteDuPliage()
-
 	let commentaire = substitute(&commentstring, '%s', '', '')
-
 	let texte = getline(v:foldstart)
-
 	let texte = substitute(texte, '{{{[0-9]\?', '', '')				" }}}
 	let texte = substitute(texte, commentaire, '', 'g')
-
 	let texte = substitute(texte, '	', '', 'g')
-
 	let texte = substitute(texte, '’', "'", 'g')
 	let texte = substitute(texte, '\C[[=A=]]', 'A', 'g')
 	let texte = substitute(texte, '\C[[=E=]]', 'E', 'g')
@@ -493,33 +257,23 @@ fun! bibliotheque#texteDuPliage()
 	let texte = substitute(texte, '\C[[=i=]]', 'i', 'g')
 	let texte = substitute(texte, '\C[[=o=]]', 'o', 'g')
 	let texte = substitute(texte, '\C[[=u=]]', 'u', 'g')
-
 	let Nlignes = v:foldend - v:foldstart
-
 	let texte = '+-- {{{ ' . texte . ' --> Niveau ' . v:foldlevel . ' :: ' . Nlignes . ' lignes' . ' }}} ' . v:folddashes
 	let texte = substitute(texte, ' \{2,}', ' ', 'g')
-
 	return texte
 endfunc
-
-" ------------------------------------
 
 fu! bibliotheque#pliageParExpression()
 	setlocal foldmethod=expr
 	setlocal foldexpr=bibliotheque#niveauDePliage(v:lnum)
 endfu
 
-" ------------------------------------
-
 fu! bibliotheque#pliageParMarqueurs()
 	setlocal foldmethod=marker
 	setlocal foldmarker={{{,}}}
 endfun
 
-" ------------------------------------
-
 fu! bibliotheque#niveauDePliage(noDeLigne)
-
 	let ligne = getline(a:noDeLigne)
 	for niveau in range(1,6)
 		let expresso = '<h' . niveau . '.*>'
@@ -527,7 +281,6 @@ fu! bibliotheque#niveauDePliage(noDeLigne)
 			return '>' . string(niveau)
 		endif
 	endfor
-
 	let ligne = getline(a:noDeLigne + 1)
 	for niveau in range(1,6)
 		let expresso = '<h' . niveau . '.*>'
@@ -535,99 +288,56 @@ fu! bibliotheque#niveauDePliage(noDeLigne)
 			return '<' . string(niveau)
 		endif
 	endfor
-
 	return -1
-
 endfu
 
-" }}}
+" }}}1
 
-"  {{{ Barre d’onglets en mode texte
-" ------------------------------------------------------------------------
-
-" {{{ Onglet
-" ------------------------------------
+"  Barre d’onglets en mode texte {{{1
 
 fu! bibliotheque#myTabLabel(onglet)
-
 	let buflist = tabpagebuflist(a:onglet)
 	let winnr = tabpagewinnr(a:onglet)
-
 	let buffernr = buflist[winnr - 1]
 	let buffername = bufname(buffernr)
-
 	let filename = fnamemodify(buffername, ':t')
-
 	let label = ''
-
 	for bufnr in buflist
-
 		if getbufvar(bufnr, "&modified")
-
 			let label .= '+'
 			break
-
 		endif
-
 	endfor
-
-	return a:onglet . ' ' . filename . ' ' . label
-
+	"return a:onglet . ' ' . filename . ' ' . label
+	"return filename . ' ' . label
+	return filename
 endfu
 
-" }}}
+" }}}1
 
-" {{{ Barre
-" ------------------------------------
+" Barre {{{1
 
 fu! bibliotheque#myTabLine()
-
 	let s = ''
-
 	for i in range(tabpagenr('$'))
-
 		" select the highlighting
 		if i + 1 == tabpagenr()
 			let s .= '%#TabLineSel#'
 		else
 			let s .= '%#TabLine#'
 		endif
-
 		" set the tab page number (for mouse clicks)
 		let s .= '%' . (i + 1) . 'T'
-
 		" the label is made by MyTabLabel()
 		let s .= ' %{bibliotheque#myTabLabel(' . (i + 1) . ')} '
-
 	endfor
-
 	" after the last tab fill with TabLineFill and reset tab page nr
 	let s .= '%#TabLineFill#%T'
-
 	" right-align the label to close the current tab page
 	if tabpagenr('$') > 1
-	let s .= '%=%#TabLine#%999Xclose'
+	let s .= '%=%#TabLine#%999X[X]'
 	endif
-
 	return s
-
 endfu
 
-" }}}
-
-" }}}
-
-"  {{{ Codes couleurs
-" ------------------------------------------------------------------------
-
-function! bibliotheque#codesCouleurs()
-
-	silent! s:\v(.+)\s+(#)\s+(\w{2})\s+(\w{2})\s+(\w{2})\s+(\w+)\s+(\w+)\s+(\w+)(.*)$:\1			\2\3\4\5			rgb(\6, \7, \8)\9:
-	silent! s:\v([^)])\)\s+(\w+)\s+(\w+)\s+(\w+)\s+(\w+)\s+(\w+)\s+(\w+)\s+(\w+):\1)			cmyk(\2, \3, \4, \5)			hsl(\6, \7%, \8%):
-	silent! s: \ze[^(].*#::g
-
-endfunction
-
-com! -range CodesCouleurs <line1>,<line2>call bibliotheque#codesCouleurs()
-
-" }}}
+" }}}1

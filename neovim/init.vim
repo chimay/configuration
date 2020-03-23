@@ -1121,8 +1121,8 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap \, /\<\><left><left>
-vnoremap \, /\<\><left><left>
+nnoremap \; /\<\><left><left>
+vnoremap \; /\<\><left><left>
 
 " }}}3
 
@@ -1144,8 +1144,8 @@ nnoremap \g :BibliothequeGrep<cr>
 
 "  Remplacement {{{3
 
-nnoremap \; :s:\<\>::<left><left><left><left>
-vnoremap \; :s:\<\>::<left><left><left><left>
+nnoremap \, :s:\<\>::<left><left><left><left>
+vnoremap \, :s:\<\>::<left><left><left><left>
 
 " }}}3
 
@@ -1694,6 +1694,9 @@ syntax sync maxlines=84
 " }}}1
 
 " Ligne de commande :ex {{{1
+
+" Hauteur de la fenêtre d'historique
+set cmdwinheight=15
 
 " Édition de la ligne de commande avec l’historique dans un tampon
 " Défaut = <C-F>
