@@ -11,14 +11,11 @@
 " ------------------------------------------------------------------------
 
 fu mail#bibliotheque#envoieArchive()
-
 	"let sujet = "archives : " . expand('%:r:r')
 	let sujet = "archives : " . expand('%')
 	let attache = expand('%:p')
 	let destinataire = "orduval@gmail.com"
-
 	exe '! mutt -a' attache '-s "' . sujet . '" --' destinataire '< ~/racine/common/mail/archive'
-
 endfu
 
 " }}}
@@ -27,13 +24,10 @@ endfu
 " ------------------------------------------------------------------------
 
 fu mail#bibliotheque#ligneEdition()
-
 	"norm gg
 	1
-
 	"exe "/^[\\s*>]*\\s*--\\s*$"
 	"exe "?^$"
-
 	if search('^\%(>\s*\)\+--\s*$')
 		call search('^\%(>\s*\)*$','b')
 	else
@@ -41,15 +35,12 @@ fu mail#bibliotheque#ligneEdition()
 		call search('^\s*--\s*$','b')
 		norm k
 	endif
-
 	norm 0D
 	norm o
 	norm o
 	norm k
 	norm zz
-
 	startinsert
-
 endfu
 
 " }}}
@@ -58,30 +49,20 @@ endfu
 " ------------------------------------------------------------------------
 
 fu mail#bibliotheque#supprimeSignaturesCitees()
-
 	let ligne = line('.')
 	let colonne = col('.')
-
 	1
-
 	while search('^\%(>\s*\)\+--\s*$')
-
 		let M = line('.')
-
 		if search('^\%(>\s*\)*$')
 			let N = line('.')
 		else
 			let N = line('$')
 		endif
-
 		exe string(M) . ',' . string(N)  . 'd'
-
 		1
-
 	endwhile
-
 	call cursor(ligne, colonne)
-
 endfu
 
 " }}}
