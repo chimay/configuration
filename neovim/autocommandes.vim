@@ -4,32 +4,8 @@ if !has("autocmd")
 	finish
 endif
 
-" Démarrage {{{1
-
-augroup Demarrage
-	au!
-	"au VimEnter * cd ~/racine/plain
-augroup END
-
-" }}}1
-
-"  Tous les fichiers {{{1
-
-augroup TousLesFichiers
-	au!
-	au BufRead * normal zx
-augroup END
-
-" }}}1
-
-" Répertoires de travail {{{1
-
-augroup RepertoiresDeTravail
-	au!
-	au BufEnter * call bibliotheque#repertoire_projet('.racine-projet')
-augroup END
-
-" }}}1
+au BufEnter * call bibliotheque#repertoire_projet('.racine-projet')
+au BufEnter * normal zx
 
 "  Rechargement de la configuration {{{1
 
@@ -41,7 +17,7 @@ augroup RechargementConfiguration
 	au bufwritepost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
 	au bufwritepost ~/racine/config/windenv/picom.conf !restart-picom.zsh &
 	au bufwritepost ~/racine/config/organizer/remind/* !pkill -10 -f remind-server
-	au bufwritepost ~/racine/public/wheel/autoload/** source %
+	au bufwritepost ~/racine/public/wheel/**.vim source %
 augroup END
 
 " }}}1
@@ -100,14 +76,17 @@ augroup END
 
 " Tabulation {{{2
 
-" Syntax of these languages is fussy over tabs Vs spaces
-autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup Tabulation
+	au!
+	" Syntax of these languages is fussy over tabs Vs spaces
+	autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" Customisations based on house-style (arbitrary)
-autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
-autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
-autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+	" Customisations based on house-style (arbitrary)
+	autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
+	autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
+	autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+augroup END
 
 " }}}2
 
@@ -201,6 +180,26 @@ augroup END
 
 " }}}2
 
+"  Newsrc {{{2
+
+augroup Nouvelles
+	au!
+	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs\s/ :&/
+	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs$/ :&/
+augroup END
+
+" }}}2
+
+"  Fichier de génération de listes de lecture m3u {{{2
+
+augroup ListesDeLecture
+	au!
+	au BufEnter ~/racine/pictura/list/*.meta lcd ~/graphix
+	au BufEnter ~/racine/musica/list/*.meta lcd ~/audio
+augroup END
+
+" }}}2
+
 " }}}1
 
 " Man pager {{{1
@@ -216,26 +215,6 @@ augroup manlaunchtoc
             \ wincmd p
     endif
 augroup end
-
-" }}}1
-
-"  Fichier de génération de listes de lecture m3u {{{1
-
-augroup ListesDeLecture
-	au!
-	au BufEnter ~/racine/pictura/list/*.meta lcd ~/graphix
-	au BufEnter ~/racine/musica/list/*.meta lcd ~/audio
-augroup END
-
-" }}}1
-
-"  Newsrc {{{1
-
-augroup Nouvelles
-	au!
-	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs\s/ :&/
-	au BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs$/ :&/
-augroup END
 
 " }}}1
 
