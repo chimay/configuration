@@ -47,7 +47,6 @@ if exists('*minpac#init')
 	call minpac#add('SirVer/ultisnips', { 'type' : 'start' })
 	call minpac#add('jiangmiao/auto-pairs', { 'type' : 'start' })
 
-	call minpac#add('vim-scripts/YankRing.vim', { 'type' : 'start' })
 	call minpac#add('Shougo/neoyank.vim', { 'type' : 'start' })
 	call minpac#add('machakann/vim-highlightedyank', { 'type' : 'start' })
 
@@ -73,23 +72,27 @@ if exists('*minpac#init')
 
 	call minpac#add('vim-scripts/utl.vim', { 'type' : 'start' })
 
-	call minpac#add('coot/CRDispatcher', { 'type' : 'start' })
-	call minpac#add('coot/cmdalias_vim', { 'type' : 'start' })
-
 	call minpac#add('vim-scripts/DeleteTrailingWhitespace', { 'type' : 'start' })
 
 	call minpac#add('vim-scripts/VisIncr', { 'type' : 'start' })
 	call minpac#add('tpope/vim-surround', { 'type' : 'start' })
 
-	call minpac#add('arecarn/crunch.vim', { 'type' : 'start' })
+	call minpac#add('justinmk/vim-dirvish', { 'type' : 'start' })
 
 	call minpac#add('jamessan/vim-gnupg', { 'type' : 'start' })
+
+	call minpac#add('masukomi/vim-markdown-folding', { 'type' : 'start' })
 
 	" Plugins dans opt
 	" ------------------------------
 
+	" Requis par cmdalias
+	call minpac#add('coot/CRDispatcher', { 'type' : 'opt' })
+	call minpac#add('coot/cmdalias_vim', { 'type' : 'opt' })
+
 	call minpac#add('Shougo/neobundle-vim-recipes', { 'type' : 'opt' })
 	call minpac#add('Shougo/vimfiler.vim', { 'type' : 'opt' })
+	call minpac#add('arecarn/crunch.vim', { 'type' : 'opt' })
 	call minpac#add('arecarn/selection.vim', { 'type' : 'opt' })
 	call minpac#add('chrisbra/vim_faq', { 'type' : 'opt' })
 	call minpac#add('dbeniamine/vim-mail', { 'type' : 'opt' })
@@ -122,6 +125,7 @@ if exists('*minpac#init')
 	call minpac#add('vifm/vifm.vim', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/CmdlineComplete', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/LogiPat', { 'type' : 'opt' })
+	call minpac#add('vim-scripts/YankRing.vim', { 'type' : 'start' })
 	call minpac#add('vim-scripts/rcs.vim', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/vcscommand.vim', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/vis', { 'type' : 'opt' })
@@ -170,3 +174,6 @@ endif
 
 command! PackUpdate call Pack_update()
 command! PackClean  call Pack_clean()
+
+nnoremap <F12>u :PackUpdate<cr>
+nnoremap <F12>c :PackClean<cr>

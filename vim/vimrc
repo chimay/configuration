@@ -627,7 +627,7 @@ set foldcolumn=7
 " Titre des textes pliés
 " ------------------------------------
 
-set foldtext=bibliotheque#texteDuPliage()
+set foldtext=biblio#folding_text()
 
 " }}}2
 
@@ -666,7 +666,7 @@ set bufhidden=hide
 
 " Barre d'onglets {{{2
 
-set tabline=%!bibliotheque#myTabLine()
+set tabline=%!biblio#tabline()
 
 set guitablabel=%N\ %t\ %m
 
@@ -832,47 +832,42 @@ nnoremap [[ [z
 
 "  Fichiers {{{2
 
-nnoremap <C-G> :let @" = expand("%:p")<cr><C-G>
+" Fichier courant aussi disponible dans le registre %
+" Fichier alternatif aussi disponible dans le registre #
+nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
 nnoremap <c-cr> :wa<cr>
 
-nnoremap <F2> :new <bar> only<cr>
+nnoremap <F4> :e ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <F4> :e ~/racine/config/edit/neovim/init.vim<cr>
 
-nnoremap <F3> :e!<cr>
-nnoremap <F3> <esc>:e!<cr>
-
-nnoremap <F4> :e ~/racine/config/edit/vim/vimrc<cr>
-inoremap <F4> :e ~/racine/config/edit/vim/vimrc<cr>
-
-nnoremap <F5> :so ~/racine/config/edit/vim/vimrc<cr>
-inoremap <F5> :so ~/racine/config/edit/vim/vimrc<cr>
+nnoremap <F5> :so ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <F5> :so ~/racine/config/edit/neovim/init.vim<cr>
 
 command -nargs=? -complete=filetype EditSyntaxPlugin
-\ exe 'keepjumps vsplit ~/racine/config/edit/vim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
+\ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
 command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
 
-nnoremap <F6> :<c-u>EditSyntaxPlugin<cr>
+nnoremap <F6>s :<c-u>EditSyntaxPlugin<cr>
+
+nnoremap \n :new <bar> only<cr>
+nnoremap \e :e!<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
 
-nnoremap <m-g> :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
-
-nnoremap \e :e!<cr>
-
-nnoremap <m-f> :find<space>
-
 nnoremap <m-r> :r <C-R>=expand('%:p:h') . '/*' <CR><C-D>
+nnoremap <m-s-r> :r **/*
 
-nnoremap <m-d> :cd <C-R>=expand('%:p:h') . '/'<CR>
+nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR><C-D>
 
-nnoremap <m-w> :wa<cr>
-nnoremap <m-s-w> :w <C-R>=expand('%:p:h') . '/' <CR>
+nnoremap <m-f> :find **
+nnoremap <m-g> :silent grep!<space>
 
-nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR>
+nnoremap <m-d> :lcd <C-R>=expand('%:p:h') . '/'<CR>
 
-"nnoremap <m-s-v> :silent execute '! rotation.zsh ' . expand('%:p:h') . '/.vim/backup &> ~/log/edit/rotation-backup.log'<cr>
+nnoremap \g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
 
 " }}}2
 
@@ -940,6 +935,13 @@ nnoremap <m-up>    <C-W><Up>
 nnoremap <m-down>  <C-W><Down>
 
 nnoremap <s-tab>  <c-w>w
+
+" Les mouvements directionnels sont aussi accessible via h j k l
+
+nnoremap <left>  <c-w><left>
+nnoremap <right> <c-w><right>
+nnoremap <up>    <c-w><up>
+nnoremap <down>  <c-w><down>
 
 " }}}2
 
@@ -1057,7 +1059,8 @@ nnoremap ' `
 
 " Recherche {{{3
 
-nnoremap ’ /
+" Plus besoin avec xcape
+"nnoremap ’ /
 
 " }}}3
 
@@ -1077,31 +1080,11 @@ nnoremap <silent> <M-u> :noh<CR>
 
 " }}}3
 
-" Grep {{{3
-
-com! -nargs=0 BibliothequeGrep call bibliotheque#grep()
-
-nnoremap \g :BibliothequeGrep<cr>
-
-" }}}3
-
 "  Remplacement {{{3
 
 nnoremap \: :s:\<\>::<left><left><left><left>
 
 vnoremap \: :s:\<\>::<left><left><left><left>
-
-" Bibliotheque {{{4
-
-"com! -nargs=0 BibliothequeRemplacement call bibliotheque#remplacement()
-
-"nnoremap \R :BibliothequeRemplacement<cr>
-
-"com! -nargs=0 BibliothequeRemplacementSed call bibliotheque#remplacementSed()
-
-"nnoremap \S :BibliothequeRemplacementSed<cr>
-
-" }}}4
 
 " }}}3
 
@@ -1251,8 +1234,6 @@ nnoremap QQ gQ
 
 " Hauteur de la fenêtre de commande {{{3
 
-"nnoremap \c :silent call bibliotheque#alterneHauteurCommande()<cr>
-
 nnoremap \c :set cmdheight=
 
 " }}}3
@@ -1279,8 +1260,6 @@ nnoremap \, :exec '!'.getline('.')<CR>
 " }}}2
 
 "  Informations {{{2
-
-nnoremap \it :echo bibliotheque#tailleFichier()<cr>
 
 nnoremap \ih :echo bibliotheque#highlightGroup()<cr>
 
@@ -1330,12 +1309,6 @@ nmap <k6> 6
 nmap <k7> 7
 nmap <k8> 8
 nmap <k9> 9
-
-" }}}2
-
-" Courriel {{{2
-
-nnoremap \m :call mail#bibliotheque#envoieArchive()<cr>
 
 " }}}2
 
@@ -1647,8 +1620,6 @@ filetype on
 filetype plugin on
 filetype indent on
 
-"call bibliotheque#sourceRepertoire('~/racine/config/edit/vim/types2fichiers')
-
 " }}}1
 
 "  Thèmes {{{1
@@ -1706,6 +1677,6 @@ source ~/racine/config/edit/vim/paquet/postload.vim
 
 "  {{{ Auto-commandes pour plugins
 
-source ~/racine/config/edit/vim/autocmd_plugin.vim
+source ~/racine/config/edit/vim/paquet/autocmd-plugin.vim
 
 " }}}

@@ -128,7 +128,6 @@ let g:terminal_scrollback_buffer_size = 50000
 "  Répertoire du fichier courant {{{2
 
 " Se place dans le répertoire du fichier courant
-" ------------------------------------------------------------
 
 " Voir aussi autocommandes
 
@@ -139,7 +138,6 @@ let g:terminal_scrollback_buffer_size = 50000
 "  Explorateur de fichier {{{2
 
 " Répertoire de départ
-" ------------------------------------
 
 set browsedir=current
 "set browsedir=buffer
@@ -185,7 +183,6 @@ set directory=~/racine/varia/autosave
 "set noswapfile
 
 " Fréquence de sauvegarde
-" ------------------------------------
 
 set updatecount=100			" Nombre de caractères
 set updatetime=1000			" Millisecondes
@@ -317,7 +314,6 @@ set selection=inclusive
 
 " Lignes d'instructionneovim dans
 " les fichiers édités
-" ------------------------------------
 
 set modeline
 set modelines=7
@@ -407,7 +403,6 @@ endif
 "  Complétion {{{1
 
 " Fichiers à ignorer {{{2
-" ------------------------------------
 
 set wildignore=
 
@@ -424,7 +419,6 @@ set suffixes=.bak,~,.o,.h,.info,.swp,.obj
 " }}}2
 
 " Casse {{{2
-" ------------------------------------
 
 set wildignorecase
 
@@ -606,19 +600,16 @@ set cindent
 set foldenable
 
 " Nombre minimum de lignes
-" ------------------------------------
 
 set foldminlines=1
 
 " Nombre de niveaux visibles
-" ------------------------------------
 
 set foldlevel=0
 
 "set foldlevelstart=0
 
 " Ouverture automatique
-" ------------------------------------
 
 " Commandes ouvrant automatiquement un pli
 
@@ -627,21 +618,18 @@ set foldlevel=0
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
 " Fermeture automatique
-" ------------------------------------
 
 " Si curseur en-dehors et > à foldlevel
 
 " set foldclose=all
 
 " Nombre de colonnes pour afficher l'arborescence
-" ------------------------------------
 
 set foldcolumn=7
 
 " Titre des textes pliés
-" ------------------------------------
 
-set foldtext=bibliotheque#texteDuPliage()
+set foldtext=biblio#folding_text()
 
 " }}}2
 
@@ -680,8 +668,7 @@ set bufhidden=hide
 
 " Barre d'onglets {{{2
 
-" Remplacé par CtrlSpace
-"set tabline=%!bibliotheque#myTabLine()
+set tabline=%!biblio#tabline()
 
 "set guitablabel=%N\ %t\ %m
 
@@ -902,11 +889,6 @@ nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
 nnoremap <c-cr> :wa<cr>
 
-nnoremap <F2> :new <bar> only<cr>
-
-nnoremap <F3> :e!<cr>
-nnoremap <F3> <esc>:e!<cr>
-
 nnoremap <F4> :e ~/racine/config/edit/neovim/init.vim<cr>
 inoremap <F4> :e ~/racine/config/edit/neovim/init.vim<cr>
 
@@ -920,6 +902,9 @@ command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
 
 nnoremap <F6>s :<c-u>EditSyntaxPlugin<cr>
 
+nnoremap \n :new <bar> only<cr>
+nnoremap \e :e!<cr>
+
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
 
@@ -928,12 +913,12 @@ nnoremap <m-s-r> :r **/*
 
 nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR><C-D>
 
-nnoremap <m-f> :find<space>
+nnoremap <m-f> :find **
 nnoremap <m-g> :silent grep!<space>
 
 nnoremap <m-d> :lcd <C-R>=expand('%:p:h') . '/'<CR>
 
-nnoremap <m-i> :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
+nnoremap \g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
 
 " }}}2
 
@@ -1134,14 +1119,6 @@ nnoremap <silent> <M-u> :noh<CR>
 
 " }}}3
 
-" Grep {{{3
-
-com! -nargs=0 BibliothequeGrep call bibliotheque#grep()
-
-nnoremap \g :BibliothequeGrep<cr>
-
-" }}}3
-
 "  Remplacement {{{3
 
 nnoremap \, :s:\<\>::<left><left><left><left>
@@ -1157,13 +1134,23 @@ vnoremap \, :s:\<\>::<left><left><left><left>
 
 nnoremap Y y$
 
+" Copie de toutes les lignes correspondant à un motif
+
+command! -nargs=1 GlobalYank :call biblio#global_yank(<q-args>, 'a')
+
+nnoremap \y :GlobalYank<space>
+
+" Couper toutes les lignes correspondant à un motif
+
+command! -nargs=1 GlobalDelete :call biblio#global_delete(<q-args>, 'a')
+
+nnoremap \d :GlobalDelete<space>
+
 "  Copies provenant d’un autre logiciel
 
 nnoremap \p :set paste!<cr>
 
-" Terminal {{{3
-
-" permet le shift-insert fonctionnel comme dans les Xterm
+" Permet le shift-insert fonctionnel comme dans les Xterm
 
 vnoremap <C-Insert> "+y
 nnoremap <C-Insert> "+yy
@@ -1175,8 +1162,6 @@ nnoremap <S-Insert> "+p
 inoremap <S-Insert> <C-R>+
 
 " noremap <S-Insert> <MiddleMouse>
-
-" }}}3
 
 " }}}2
 
@@ -1319,9 +1304,7 @@ nnoremap <silent> \o :setlocal spell!<cr>
 
 "  Informations {{{2
 
-nnoremap \it :echo bibliotheque#tailleFichier()<cr>
-
-nnoremap \ih :echo bibliotheque#highlightGroup()<cr>
+nnoremap \ih :echo biblio#highlight_group()<cr>
 
 " }}}2
 
@@ -1414,12 +1397,6 @@ tnoremap <D-q> <C-\><C-n>:ls!<cr>:silent bd!<space>
 
 " }}}2
 
-" Courriel {{{2
-
-nnoremap \m :call mail#bibliotheque#envoieArchive()<cr>
-
-" }}}2
-
 " }}}1
 
 "  Abréviations {{{1
@@ -1481,7 +1458,6 @@ set breakat=" ^I!@*-+;:,./?"
 "  Mise en évidence {{{2
 
 " Souligne une colonne après textwidth
-" ------------------------------------
 
 "if exists("&colorcolumn")
 	"set colorcolumn=+1
@@ -1555,12 +1531,10 @@ set listchars+=conceal:Δ
 set nostartofline
 
 " Mets en évidence la ligne courante
-" ------------------------------------
 
 "set cursorline
 
 " Mets en évidence la colonne courante
-" ------------------------------------
 
 "set cursorcolumn
 
@@ -1599,17 +1573,14 @@ set showmode
 "  Barre de statut {{{2
 
 " Affiche la position du curseur ligne, colonne
-" ------------------------------------
 
 set ruler
 
 " Affiche les commandes incomplètes
-" ------------------------------------
 
 set showcmd
 
 " Affiche une barre de statut en bas de l'écran
-" ------------------------------------
 
 if ! exists("g:colors_name")
 	let g:colors_name = ''
@@ -1648,7 +1619,6 @@ endif
 "  Zone de commande {{{2
 
 " Hauteur
-" ------------------------------------
 
 set cmdheight=5
 
@@ -1745,8 +1715,6 @@ filetype on
 filetype plugin on
 filetype indent on
 
-"call bibliotheque#sourceRepertoire('~/racine/config/edit/neovim/types2fichiers')
-
 " }}}1
 
 "  Thèmes {{{1
@@ -1756,7 +1724,6 @@ colo ornuit
 " }}}1
 
 "  {{{ Historique
-" ------------------------------------------------------------------------
 
 set shada=
 	\!,
@@ -1781,10 +1748,8 @@ set history=10000
 
 " }}}
 
-" ------------------------------------
 
 "  {{{ Plugins
-" ------------------------------------------------------------------------
 
 if $OPERASYS == 'archlinux'
 
@@ -1818,7 +1783,6 @@ source ~/racine/config/edit/neovim/paquet/postload.vim
 " }}}
 
 "  {{{ Auto-commandes pour plugins
-" ------------------------------------------------------------------------
 
 source ~/racine/config/edit/neovim/paquet/autocmd-plugin.vim
 

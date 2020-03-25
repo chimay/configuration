@@ -19,7 +19,7 @@ if exists('*minpac#init')
 	call minpac#add('Shougo/unite.vim', { 'type' : 'start' })
 	call minpac#add('Shougo/unite-outline', { 'type' : 'start' })
 	call minpac#add('Shougo/neomru.vim', { 'type' : 'start' })
-	call minpac#add('vim-ctrlspace/vim-ctrlspace', { 'type' : 'start' })
+	call minpac#add('chimay/wheel', { 'type' : 'start' })
 
 	call minpac#add('justinmk/vim-sneak', { 'type' : 'start' })
 	call minpac#add('mg979/vim-visual-multi', { 'type' : 'start' })
@@ -28,7 +28,6 @@ if exists('*minpac#init')
 	call minpac#add('stefandtw/quickfix-reflector.vim', { 'type' : 'start' })
 	call minpac#add('chrisbra/NrrwRgn', { 'type' : 'start' })
 
-	call minpac#add('Shougo/deoplete.nvim', { 'type' : 'start' })
 	call minpac#add('SirVer/ultisnips', { 'type' : 'start' })
 	call minpac#add('jiangmiao/auto-pairs', { 'type' : 'start' })
 
@@ -59,30 +58,30 @@ if exists('*minpac#init')
 	call minpac#add('vim-scripts/utl.vim', { 'type' : 'start' })
 
 	call minpac#add('vim-scripts/CmdlineComplete', { 'type' : 'start' })
-	" requis par cmdalias
-	call minpac#add('coot/CRDispatcher', { 'type' : 'start' })
-	call minpac#add('coot/cmdalias_vim', { 'type' : 'start' })
 
 	call minpac#add('vim-scripts/DeleteTrailingWhitespace', { 'type' : 'start' })
 
 	call minpac#add('vim-scripts/VisIncr', { 'type' : 'start' })
 	call minpac#add('tpope/vim-surround', { 'type' : 'start' })
 
-	call minpac#add('kassio/neoterm', { 'type' : 'start' })
-
 	call minpac#add('arecarn/crunch.vim', { 'type' : 'start' })
 
 	call minpac#add('simnalamburt/vim-mundo', { 'type' : 'start' })
 
-	call minpac#add('vifm/neovim-vifm', { 'type' : 'start' })
+	call minpac#add('justinmk/vim-dirvish', { 'type' : 'start' })
 
 	call minpac#add('tpope/vim-eunuch', { 'type' : 'start' })
 
 	" Plugins dans opt
 	" ------------------------------
 
+	" requis par cmdalias
+	call minpac#add('coot/CRDispatcher', { 'type' : 'opt' })
+	call minpac#add('coot/cmdalias_vim', { 'type' : 'opt' })
+
 	call minpac#add('Shougo/defx.nvim', { 'type' : 'opt' })
 	call minpac#add('Shougo/deol.nvim', { 'type' : 'opt' })
+	call minpac#add('Shougo/deoplete.nvim', { 'type' : 'opt' })
 	call minpac#add('Shougo/neobundle-vim-recipes', { 'type' : 'opt' })
 	call minpac#add('Shougo/vimfiler.vim', { 'type' : 'opt' })
 	call minpac#add('arecarn/selection.vim', { 'type' : 'opt' })
@@ -98,8 +97,8 @@ if exists('*minpac#init')
 	call minpac#add('honza/vim-snippets', { 'type' : 'opt' })
 	call minpac#add('jamessan/vim-gnupg', { 'type' : 'opt' })
 	call minpac#add('junegunn/vim-easy-align', { 'type' : 'opt' })
-	call minpac#add('justinmk/vim-dirvish', { 'type' : 'opt' })
 	call minpac#add('kana/vim-submode', { 'type' : 'opt' })
+	call minpac#add('kassio/neoterm', { 'type' : 'opt' })
 	call minpac#add('kmnk/vim-unite-giti', { 'type' : 'opt' })
 	call minpac#add('kopischke/unite-spell-suggest', { 'type' : 'opt' })
 	call minpac#add('maralla/completor.vim', { 'type' : 'opt' })
@@ -122,6 +121,8 @@ if exists('*minpac#init')
 	call minpac#add('tsukkee/unite-help', { 'type' : 'opt' })
 	call minpac#add('tsukkee/unite-tag', { 'type' : 'opt' })
 	call minpac#add('ujihisa/unite-locate', { 'type' : 'opt' })
+	call minpac#add('vifm/neovim-vifm', { 'type' : 'opt' })
+	call minpac#add('vim-ctrlspace/vim-ctrlspace', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/LogiPat', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/YankRing.vim', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/rcs.vim', { 'type' : 'opt' })
@@ -133,6 +134,7 @@ if exists('*minpac#init')
 	call minpac#add('vim-utils/vim-line', { 'type' : 'opt' })
 	call minpac#add('vim-utils/vim-space', { 'type' : 'opt' })
 	call minpac#add('vim-utils/vim-vertical-move', { 'type' : 'opt' })
+	call minpac#add('voldikss/vim-floaterm', { 'type' : 'opt' })
 	call minpac#add('wellle/targets.vim', { 'type' : 'opt' })
 	call minpac#add('yaroot/vissort', { 'type' : 'opt' })
 	call minpac#add('yuki-ycino/fzf-preview.vim', { 'type' : 'opt' })
@@ -173,3 +175,6 @@ endif
 
 command! PackUpdate call Pack_update()
 command! PackClean  call Pack_clean()
+
+nnoremap <F12>u :PackUpdate<cr>
+nnoremap <F12>c :PackClean<cr>

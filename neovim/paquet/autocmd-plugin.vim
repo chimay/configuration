@@ -4,21 +4,12 @@ if !has("autocmd")
 	finish
 endif
 
-" Démarrage {{{1
+" Wheel {{{1
 
-augroup Demarrage
+" Fait dans after/plugin/wheel.vim
+"au VimEnter * call wheel#void#init()
 
-	au!
-
-	"au VimEnter * cd ~/racine
-
-	" Voir g:CtrlSpaceLoadLastWorkspaceOnStart
-
-" 	au VimEnter * cd ~/racine |
-" 				\ exe "CtrlSpaceLoadWorkspace tout" |
-" 				\ cd ~/racine/plain
-
-augroup END
+au VimLeave * call wheel#void#exit()
 
 " }}}1
 
@@ -63,6 +54,22 @@ endfunction
 
 " }}}1
 
+" Unite {{{1
+
+autocmd FileType unite call s:unite_my_settings()
+
+function! s:unite_my_settings()
+	imap <silent><buffer><expr> <C-s>     unite#do_action('split')
+endfunction
+
+" }}}1
+
+" FZF {{{1
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+" }}}1
+
 " {{{ Neoyank
 
 autocmd BufWinEnter \(*.asc\|*.gpg\) let g:neoyank_disable = 1
@@ -82,8 +89,6 @@ autocmd ColorScheme * hi SneakScope
 " }}}1
 
 " Vim Markdown Folding {{{1
-
-au bufwritepost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
 
 au BufEnter *.md setlocal foldmethod=expr
 

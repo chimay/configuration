@@ -1,5 +1,43 @@
 " vim: set filetype=vim :
 
+" Copier & Coller {{{1
+
+" Neoyank (Shougo/neoyank.vim) {{{2
+
+nnoremap ç :<c-u>Denite neoyank<cr>
+
+let g:neoyank#limit = 4200
+let g:neoyank#length = 10000
+
+let g:neoyank#save_registers = [
+			\'"',
+			\'+',
+			\'*',
+			\'-',
+			\'.',
+			\':',
+			\'/',
+			\'%',
+			\'0',
+			\'1',
+			\'2',
+			\'3',
+			\'4',
+			\'5',
+			\'6',
+			\'7',
+			\'8',
+			\'9',
+			\]
+
+let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history-neovim'
+
+autocmd BufWinEnter \(*.asc\|*.gpg\) let g:neoyank_disable_write = 1
+
+" }}}2
+
+" }}}1
+
 " Exploration multiple {{{1
 
 " Denite {{{2
@@ -7,7 +45,7 @@
 " Mappings de lancement {{{3
 
 nnoremap µ         :<c-u>Denite<space>
-nnoremap <s-space> :<c-u>Denite source<cr>
+nnoremap <m-space> :<c-u>Denite source<cr>
 
 nnoremap <F1>       :<c-u>Denite help<cr>
 
@@ -36,6 +74,9 @@ call denite#custom#option('default', {
 	  \ 'highlight_matched_range' : 'false',
 	  \ })
 
+call denite#custom#source(
+\ 'file_mru', 'matchers', ['matcher/substring'])
+
 " call denite#custom#var(
 " \ 'file/rec', 'command',
 " \ ['ag', '--nocolor', '--smart-case', '--vimgrep', '-g', ''])
@@ -43,9 +84,6 @@ call denite#custom#option('default', {
 call denite#custom#var(
 \ 'file/rec', 'command',
 \ ['ag', '--nocolor', '--smart-case', '--vimgrep', '-g', ''])
-
-call denite#custom#source(
-\ 'file_mru', 'matchers', ['matcher/substring'])
 
 call denite#custom#source(
 \ 'file/rec', 'matchers', ['matcher/substring'])
@@ -61,6 +99,9 @@ call denite#custom#source(
 
 call denite#custom#source(
 \ 'line', 'matchers', ['matcher/substring'])
+
+call denite#custom#source(
+\ 'buffer', 'sorters', ['sorter/reverse'])
 
 " }}}3
 
@@ -148,16 +189,6 @@ call unite#custom#profile('default', 'context', {
 call unite#custom#profile('default', 'context', {
 \   'winwidth' : 20
 \ })
-
-" }}}3
-
-" Autocommandes {{{3
-
-autocmd FileType unite call s:unite_my_settings()
-
-function! s:unite_my_settings()
-	imap <silent><buffer><expr> <C-s>     unite#do_action('split')
-endfunction
 
 " }}}3
 

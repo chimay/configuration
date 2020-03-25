@@ -194,89 +194,35 @@ let g:deoplete#enable_at_startup = 1
 
 " Neoyank (Shougo/neoyank.vim) {{{2
 
-let g:neoyank#limit = 120
+nnoremap ç :<c-u>Denite neoyank<cr>
 
-let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history-vim'
+let g:neoyank#limit = 4200
+let g:neoyank#length = 10000
 
-"nnoremap <D-y> :<c-u>Unite -prompt-direction=top history/yank<cr>
+let g:neoyank#save_registers = [
+			\'"',
+			\'+',
+			\'*',
+			\'-',
+			\'.',
+			\':',
+			\'/',
+			\'%',
+			\'0',
+			\'1',
+			\'2',
+			\'3',
+			\'4',
+			\'5',
+			\'6',
+			\'7',
+			\'8',
+			\'9',
+			\]
+
+let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history-neovim'
 
 autocmd BufWinEnter \(*.asc\|*.gpg\) let g:neoyank_disable_write = 1
-
-" }}}2
-
-"  YankRing (YankRing.vim) {{{2
-
-" Mappings {{{3
-
-" Map exceptionnel
-
-nnoremap <silent> ç :<C-U>YRShow<cr>
-
-" Maps ordinaires
-
-nnoremap <silent> <C-F11>y :<C-U>YRSearch<cr>
-
-nnoremap <silent> <C-F11><C-F11>y :YRToggle<cr>
-
-let g:yankring_replace_n_pkey = '<C-p>'
-let g:yankring_replace_n_nkey = '<C-n>'
-
-" let g:yankring_replace_n_pkey = '<m-y>'
-" let g:yankring_replace_n_nkey = '<m-s-y>'
-
-" Y, pour compléter C et D
-
-function! YRRunAfterMaps()
-	nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-endfunction
-
-" }}}3
-
-" Options {{{3
-
-let g:yankring_max_history = 420
-
-let g:yankring_min_element_length = 2
-let g:yankring_max_element_length = 90000
-
-let g:yankring_warn_on_truncate = 1
-
-let g:yankring_window_use_separate = 1
-let g:yankring_window_auto_close   = 1
-let g:yankring_window_use_horiz    = 1
-let g:yankring_window_use_bottom = 1
-let g:yankring_window_height = 25
-
-let g:yankring_max_display = 120
-
-" Pas besoin du menu graphique de gvim
-let g:yankring_default_menu_mode = 0
-
-let g:yankring_persist = 1
-let g:yankring_share_between_instances = 1
-
-let g:yankring_history_dir = $HOME . '/racine/plugin/data/yankring-vim'
-let g:yankring_history_file = 'yankring-hist'
-
-let g:yankring_ignore_duplicate = 1
-
-let g:yankring_ignore_operator = 'g~ gu gU ! = gq g? > < zf g@ @'
-let g:yankring_map_dot = 0
-let g:yankring_dot_repeat_yank = 0
-let g:yankring_paste_using_g = 1
-
-" Pris en charge par PrevInsertComplete
-let g:yankring_record_insert = 0
-
-" Désactivé car ralentit x,X, etc
-let g:yankring_manage_numbered_reg = 0
-
-let g:yankring_paste_check_default_buffer = 1
-let g:yankring_clipboard_monitor = 1
-let g:yankring_manual_clipboard_check = 1
-let g:yankring_paste_check_default_register = 1
-
-" }}}3
 
 " }}}2
 
@@ -325,25 +271,18 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " Sneak (justinmk/vim-sneak) {{{2
 
+" Mappings {{{3
+
 " 2-character Sneak (default)
 
-nmap s <Plug>Sneak_s
-nmap S <Plug>Sneak_S
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
 
-" visual-mode
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
 
-xmap s <Plug>Sneak_s
-xmap S <Plug>Sneak_S
-
-" operator-pending-mode
-
-omap s <Plug>Sneak_s
-omap S <Plug>Sneak_S
-
-" ; & ,
-
-map ; <Plug>Sneak_;
-map , <Plug>Sneak_,
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
 
 " 1-character enhanced 'f'
 
@@ -375,25 +314,23 @@ xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 
-nmap <expr> ; sneak#is_sneaking() ? '<Plug>SneakNext' : ';'
-nmap <expr> , sneak#is_sneaking() ? '<Plug>SneakPrevious' : ','
+" }}}3
 
-nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Tab>'
-nmap <expr> <Space> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Space>'
+" Options {{{3
 
 let g:sneak#label = 1
 let g:sneak#label_esc = "\<space>"
-let g:sneak#target_labels = ",;’&é§èçàù*µ£@#!~`°¼½bwefthjklnu"
-let g:sneak#prompt = '/ 2 chars > '
+let g:sneak#target_labels = "ù*$àç&é§è!µ£~@#bwefthjklnu"
+let g:sneak#prompt = 'sneak > '
 let g:sneak#f_reset      = 0
 let g:sneak#s_next       = 0
-let g:sneak#absolute_dir = 0
+let g:sneak#absolute_dir = 1
 let g:sneak#textobject_z = 1
 let g:sneak#use_ic_scs   = 1
 let g:sneak#map_netrw    = 1
 
 highlight Sneak guibg=black guifg=#7b3c11 gui=bold,underline,italic
-highlight SneakScope guibg=black guifg=#7b3c11 gui=bold,underline,italic
+highlight SneakScope guibg=#7b3c11 guifg=black gui=bold,underline,italic
 
 highlight Sneak cterm=reverse
 highlight SneakScope cterm=reverse
@@ -401,6 +338,8 @@ highlight SneakScope cterm=reverse
 " highlight link Sneak None
 " " Needed if a plugin sets the colorscheme dynamically:
 " autocmd User SneakLeave highlight clear Sneak
+
+" }}}3
 
 " }}}2
 
@@ -807,20 +746,6 @@ cmap <m-t> <Plug>CmdlineCompleteForward
 
 " Modes {{{1
 
-" Cmdalias (coot/cmdalias_vim) {{{2
-
-augroup Cmdalias
-
-	au!
-
-	au VimEnter * CmdAlias ali\%[as] CmdAlias
-
-	au VimEnter * CmdAlias h\%[elp] tab\ help
-
-augroup END
-
-" }}}2
-
 " Cmdmatch (majkinetor/unite-cmdmatch) {{{2
 
 cmap <c-o> <Plug>(unite_cmdmatch_complete)
@@ -901,16 +826,128 @@ xmap  ie  <Plug>(textobj-entire-i)
 
 " }}}2
 
-" Visual multi {{{2
+" Visual multi (mg979/vim-visual-multi) {{{2
 
-let g:VM_leader = '<F2>'
+" Mappings {{{3
+
+let g:VM_default_mappings = 0
+let g:VM_mouse_mappings = 0
+
+let g:VM_leader = {
+			\'default': '<space>',
+			\'visual': '<space>',
+			\'buffer': '<space>'
+			\}
+
+let g:VM_maps = {}
+
+let g:VM_maps['Find Under']          = '<d-m>'
+let g:VM_maps['Find Subword Under']  = '<d-m>'
+let g:VM_maps["Add Cursor Down"]     = '<d-n>'
+let g:VM_maps["Add Cursor Up"]       = '<d-p>'
+let g:VM_maps["Select All"]          = '<space>A'
+let g:VM_maps["Start Regex Search"]  = '<space>/'
+let g:VM_maps["Add Cursor At Pos"]   = '<space><space>'
+let g:VM_maps["Reselect Last"]       = '<space>gv'
+
+let g:VM_maps["Visual All"]     = '<space>A'
+let g:VM_maps["Visual Regex"]   = '<space>/'
+let g:VM_maps["Visual Find"]    = '<space>f'
+let g:VM_maps["Visual Cursors"] = '<space>c'
+let g:VM_maps["Visual Add"]     = '<space>a'
+
+let g:VM_maps["Visual Subtract"] = '<space>s'
+let g:VM_maps["Visual Reduce"]   = '<space>r'
+
+let g:VM_maps["Find Next"]     = 'n'
+let g:VM_maps["Find Prev"]     = 'N'
+let g:VM_maps["Goto Next"]     = ']'
+let g:VM_maps["Goto Prev"]     = '['
+let g:VM_maps["Seek Next"]     = '<C-f>'
+let g:VM_maps["Seek Prev"]     = '<C-b>'
+let g:VM_maps["Skip Region"]   = 'q'
+let g:VM_maps["Remove Region"] = 'Q'
+
+let g:VM_maps["Invert Direction"] = 'o'
+let g:VM_maps["Replace"]          = 'R'
+let g:VM_maps["Surround"]         = 'S'
+let g:VM_maps["Move Right"]       = '<M-S-Right>'
+let g:VM_maps["Move Left"]        = '<M-S-Left>'
+
+let g:VM_maps["I Next"] = '<tab>'
+let g:VM_maps["I Prev"] = '<s-tab>'
+
+let g:VM_maps["Select Operator"] = 's'
+let g:VM_maps["Find Operator"]   = 'm'
+
+let g:VM_maps["Increase"]       = '<c-a>'
+let g:VM_maps["Decrease"]       = '<c-x>'
+let g:VM_maps["Alpha-Increase"] = '<space><c-a>'
+let g:VM_maps["Alpha-Decrease"] = '<space><c-x>'
+
+let g:VM_maps["Transpose"]           = '<space>t'
+let g:VM_maps["Align"]               = '<space>a'
+let g:VM_maps["Align Char"]          = '<space><'
+let g:VM_maps["Align Regex"]         = '<space>>'
+let g:VM_maps["Split Regions"]       = '<space>s'
+let g:VM_maps["Filter Regions"]      = '<space>f'
+let g:VM_maps["Transform Regions"]   = '<space>e'
+let g:VM_maps["Rewrite Last Search"] = '<space>r'
+let g:VM_maps["Merge Regions"]       = '<space>m'
+let g:VM_maps["Duplicate"]           = '<space>d'
+let g:VM_maps["Shrink"]              = '<space>-'
+let g:VM_maps["Enlarge"]             = '<space>+'
+let g:VM_maps["Numbers"]             = '<space>0'
+let g:VM_maps["Numbers Append"]      = '<space>1'
+
+let g:VM_maps["Run Normal"]      = '<space>n'
+let g:VM_maps["Run Visual"]      = '<space>v'
+let g:VM_maps["Run Ex"]          = '<space>:'
+let g:VM_maps["Run Last Normal"] = '<space>N'
+let g:VM_maps["Run Last Visual"] = '<space>V'
+let g:VM_maps["Run Last Ex"]     = '<space>X'
+let g:VM_maps["Run Macro"]       = '<space>@'
+
+let g:VM_maps["Select Cursor Down"] = '<C-Down>'
+let g:VM_maps["Select Cursor Up"]   = '<C-Up>'
+
+let g:VM_maps["Undo"] = 'u'
+let g:VM_maps["Redo"] = '<C-r>'
+
+let g:VM_maps["Tools Menu"]           = '<space>='
+let g:VM_maps["Case Conversion Menu"] = '<space>C'
+let g:VM_maps["Show Registers"]       = '<space>"'
+let g:VM_maps["Toggle Whole Word"]    = '<space>w'
+let g:VM_maps["Case Settings"]        = '<space>c'
+let g:VM_maps["Toggle Multiline"]     = '<space>M'
+let g:VM_maps["Toggle Mappings"]      = '<space><space>'
+let g:VM_maps["Toggle Block"]         = '<space><c-v>'
+let g:VM_maps["Toggle Single Region"] = '<space><cr>'
+
+" }}}3
+
+" Options {{{3
 
 let g:VM_set_statusline = 2
 let g:VM_silent_exit = 1
 
-let g:VM_maps = {}
+" }}}3
 
-let g:VM_maps['Find Under']  = '<m-n>'
+" Couleurs {{{3
+
+" *g:VM_Mono_hl*    is the highlight in cursor mode
+" *g:VM_Extend_hl*  ,, in extend mode (the selections)
+" *g:VM_Cursor_hl*  ,, in extend mode (the cursors)
+" *g:VM_Insert_hl*  ,, in insert mode (the virtual cursors)
+
+let g:VM_Mono_hl   = 'DiffDelete'
+let g:VM_Extend_hl = 'DiffAdd'
+let g:VM_Cursor_hl = 'DiffAdd'
+let g:VM_Insert_hl = 'Underlined'
+
+let g:VM_highlight_matches = 'hi Search	guifg=#5B3C11 guibg=black gui=underline'
+
+" }}}3
 
 " }}}2
 

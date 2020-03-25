@@ -4,9 +4,6 @@ if !has("autocmd")
 	finish
 endif
 
-au BufEnter * call bibliotheque#repertoire_projet('.racine-projet')
-au BufEnter * normal zx
-
 "  Rechargement de la configuration {{{1
 
 augroup RechargementConfiguration

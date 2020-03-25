@@ -4,9 +4,6 @@ if !has("autocmd")
 	finish
 endif
 
-au BufEnter * call bibliotheque#repertoire_projet('.racine-projet')
-au BufEnter * normal zx
-
 "  Rechargement de la configuration {{{1
 
 augroup RechargementConfiguration
@@ -53,7 +50,7 @@ augroup END
 
 " }}}1
 
-" Fichiers temporaire {{{1
+" Fichiers temporaires {{{1
 
 augroup FichiersTemporaires
 	au!

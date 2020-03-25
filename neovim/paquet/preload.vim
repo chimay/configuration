@@ -28,6 +28,8 @@
 " ù
 " space, <.-space>
 
+" ¶ = alt gr + r
+
 " }}}1
 
 " Éviter les mappings par défaut des plugins
@@ -93,10 +95,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-let g:UltiSnipsListSnippets='<C-F5>l'
+let g:UltiSnipsListSnippets='<F8>l'
 
-nnoremap <C-F5>e :UltiSnipsEdit<cr>
-nnoremap <C-F5>a :UltiSnipsAddFiletypes<space>
+nnoremap <F8>e :UltiSnipsEdit<cr>
+nnoremap <F8>a :UltiSnipsAddFiletypes<space>
 
 " }}}3
 
@@ -168,40 +170,6 @@ let g:deoplete#enable_at_startup = 1
 " }}}1
 
 " Copier & Coller {{{1
-
-" Neoyank (Shougo/neoyank.vim) {{{2
-
-nnoremap ç :<c-u>Denite neoyank<cr>
-
-let g:neoyank#limit = 4200
-let g:neoyank#length = 10000
-
-let g:neoyank#save_registers = [
-			\'"',
-			\'+',
-			\'*',
-			\'-',
-			\'.',
-			\':',
-			\'/',
-			\'%',
-			\'0',
-			\'1',
-			\'2',
-			\'3',
-			\'4',
-			\'5',
-			\'6',
-			\'7',
-			\'8',
-			\'9',
-			\]
-
-let g:neoyank#file = $HOME . '/racine/plugin/data/unite/neoyank/history-neovim'
-
-autocmd BufWinEnter \(*.asc\|*.gpg\) let g:neoyank_disable_write = 1
-
-" }}}2
 
 " Highlighted Yank {{{2
 
@@ -307,7 +275,7 @@ let g:sneak#use_ic_scs   = 1
 let g:sneak#map_netrw    = 1
 
 highlight Sneak guibg=black guifg=#7b3c11 gui=bold,underline,italic
-highlight SneakScope guibg=black guifg=#7b3c11 gui=bold,underline,italic
+highlight SneakScope guibg=#5b3c11 guifg=black gui=bold,underline,italic
 
 highlight Sneak cterm=reverse
 highlight SneakScope cterm=reverse
@@ -519,8 +487,6 @@ function! s:fzf_statusline()
   setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
 endfunction
 
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
-
 " }}}3
 
 " }}}2
@@ -539,8 +505,8 @@ let g:CtrlSpaceUseUnicode = 0
 
 nnoremap <c-space> :CtrlSpace<cr>
 
-nnoremap <C-PageUp> :CtrlSpaceGoUp<cr>
-nnoremap <C-PageDown> :CtrlSpaceGoDown<cr>
+" nnoremap <C-PageUp> :CtrlSpaceGoUp<cr>
+" nnoremap <C-PageDown> :CtrlSpaceGoDown<cr>
 
 " Voir les fichiers dans
 " racine/plugin/manager/neovimpack/minpac/start/vim-ctrlspace/autoload/ctrlspace/keys
@@ -550,32 +516,27 @@ nnoremap <C-PageDown> :CtrlSpaceGoDown<cr>
 let g:CtrlSpaceKeys = {
 		\ "Nop": {
 			\"h": "ctrlspace#keys#common#ToggleHelp",
-			\"’": "ctrlspace#keys#common#EnterSearchMode",
 		\},
 		\ "Help": {
 			\"h": "ctrlspace#keys#common#ToggleHelp",
-			\"’": "ctrlspace#keys#common#EnterSearchMode",
 		\},
 		\ "Buffer": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
 			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
 			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
-			\"’": "ctrlspace#keys#common#EnterSearchMode",
 		\},
 		\ "Tab": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
 			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
 			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
-			\"’": "ctrlspace#keys#common#EnterSearchMode",
 		\},
 		\ "Workspace": {
 			\"*": "ctrlspace#keys#common#ToggleTabMode",
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
 			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
 			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
-			\"’": "ctrlspace#keys#common#EnterSearchMode",
 			\"w": "ctrlspace#keys#workspace#ToggleSubmode",
 		\},
 		\ "Bookmark": {
@@ -583,7 +544,6 @@ let g:CtrlSpaceKeys = {
 			\"=": "ctrlspace#keys#common#ToggleBufferMode",
 			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
 			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
-			\"’": "ctrlspace#keys#common#EnterSearchMode",
 		\},
 	\}
 
@@ -639,7 +599,7 @@ let g:CtrlSpaceUnicodeFont = 1
 
 let g:CtrlSpaceSaveWorkspaceOnExit = 1
 let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 0
 
 " }}}3
 
@@ -655,9 +615,31 @@ let g:CtrlSpaceUseMouseAndArrows = 1
 
 " }}}2
 
-" Doughnut {{{2
+" Wheel {{{2
 
-set runtimepath+=~/racine/public/doughnut
+" Init
+let g:wheel_config={}
+" Auto read torus file on startup if > 0
+let g:wheel_config.autoread = 1
+" Auto write torus file on exit if > 0
+let g:wheel_config.autowrite = 1
+" The file where toruses and circles will be stored and read
+let g:wheel_config.file = '~/racine/plugin/data/wheel/wheel.vim'
+" Prefix for mappings
+let g:wheel_config.prefix = '<d-t>'
+" The bigger it is, the more mappings available
+let g:wheel_config.mappings = 11
+" Number of backups for the wheel file
+let g:wheel_config.backups = 7
+" Auto cd to project root if > 0
+let g:wheel_config.cd_project = 1
+" Marker of project root
+let g:wheel_config.project_marker = '.git'
+" Maximum number of elements in history
+let g:wheel_config.max_history = 70
+
+" Executed after jumping to a location
+autocmd User WheelAfterJump norm zx
 
 " }}}2
 
@@ -721,22 +703,6 @@ let g:utl_cfg_hdl_scm_http = "!qutebrowser '%u#%f' &"
 
 cmap <m-tab> <Plug>CmdlineCompleteBackward
 cmap <s-tab> <Plug>CmdlineCompleteForward
-
-" }}}2
-
-" }}}1
-
-" Modes {{{1
-
-" Cmdalias (coot/cmdalias_vim) {{{2
-
-nnoremap <F11>c :CmdAliasToggle<cr>
-
-augroup Cmdalias
-	au!
-	au VimEnter * CmdAlias ali\%[as] CmdAlias
-	au VimEnter * CmdAlias h\%[elp] tab\ help
-augroup END
 
 " }}}2
 
@@ -1028,21 +994,6 @@ let g:increment_activator_filetype_candidates = {
   \     ['pick', 'reword', 'edit', 'squash', 'fixup', 'exec'],
   \   ],
   \ }
-
-" }}}2
-
-" }}}1
-
-" Terminal {{{1
-
-" Neoterm (kassio/neoterm) {{{2
-
-nnoremap <d-!> :new \| Ttoggle<cr>
-
-nnoremap <d-$> :TREPLSendLine<cr>
-vnoremap <d-$> :TREPLSendSelection<cr>
-
-nnoremap <d-cr> :TREPLSendFile<cr>
 
 " }}}2
 
