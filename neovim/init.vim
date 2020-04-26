@@ -60,7 +60,7 @@
 
 " Debug {{{1
 
-" 	>= 1	When theneoviminfo file is read or written.
+" 	>= 1	When the shada file is read or written.
 " 	>= 2	When a file is ":source"'ed.
 " 	>= 5	Every searched tags file and include file.
 " 	>= 8	Files for which a group of autocommands is executed.
@@ -72,7 +72,7 @@
 
 "set verbose=9
 
-"set verbosefile=~/Documentsneovim.log
+"set verbosefile=~/Documents/neovim.log
 
 " }}}1
 
@@ -312,8 +312,7 @@ set virtualedit=block,onemore
 
 set selection=inclusive
 
-" Lignes d'instructionneovim dans
-" les fichiers édités
+" Lignes d'instruction neovim dans les fichiers édités
 
 set modeline
 set modelines=7
@@ -389,9 +388,9 @@ elseif executable('ag')
 elseif executable('ack')
 	set grepprg=ack\ --nocolor\ --nogroup\ --column\ --smart-case\ $*
 	set grepformat=%f:%l:%c:%m
-elseif  executable('grep')
+elseif executable('grep')
 	set grepprg=grep\ --line-number\ --ignore-case\ --no-messages\ $*\ /dev/null
-	set grepformat=%f:%l:%m
+	set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
 else
 	set grepprg=internal
 endif
@@ -518,7 +517,7 @@ set wildcharm=<C-Z>
 " 	"list:longest"	When more than one match, list all matches and
 " 					complete till longest common string.
 
-set wildmode=list:full,full
+set wildmode=list:longest,full
 
 " }}}3
 
@@ -756,7 +755,7 @@ set makeef=
 
 "  Maps {{{1
 
-" Touches pour maps / préfixes de maps {{{2
+" Idées de touches pour maps / préfixes de maps {{{2
 
 " ’ : non utilisé
 " ` : map ' = `
@@ -852,7 +851,9 @@ let maplocalleader="\<d-,>"
 "nnoremap <F1> <nop>
 
 nnoremap <m-a> :tab help<space>
-nnoremap <m-s-a> :tabe man://
+nnoremap <m-s-a> :tab helpgrep<space>
+
+"nnoremap <m-s-a> :tabe man://
 
 " }}}2
 
@@ -864,11 +865,6 @@ nnoremap ZQ :qa!<cr>
 " }}}2
 
 " Déplacement {{{2
-
-nnoremap <m-h> h
-nnoremap <m-j> j
-nnoremap <m-k> k
-nnoremap <m-l> l
 
 nnoremap <PageUp> <C-B>
 nnoremap <PageDown> <C-F>
@@ -905,20 +901,10 @@ nnoremap <F6>s :<c-u>EditSyntaxPlugin<cr>
 nnoremap \n :new <bar> only<cr>
 nnoremap \e :e!<cr>
 
-nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
+nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/*' <cr><c-d>
 nnoremap <m-s-e> :e **/*
 
-nnoremap <m-r> :r <C-R>=expand('%:p:h') . '/*' <CR><C-D>
-nnoremap <m-s-r> :r **/*
-
-nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR><C-D>
-
-nnoremap <m-f> :find **
-nnoremap <m-g> :silent grep!<space>
-
-nnoremap <m-d> :lcd <C-R>=expand('%:p:h') . '/'<CR>
-
-nnoremap \g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
+nnoremap \g :e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
 " }}}2
 
@@ -934,19 +920,11 @@ nnoremap ]A :last<cr>
 
 " Tampons (buffers) {{{2
 
-" Remplacé par CtrlSpaceGo[Up/Down]
-
-"noremap <M-PageUp> :bp<cr>
-"noremap <M-PageDown> :bn<cr>
-
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
 
 nnoremap [B :bfirst<cr>
 nnoremap ]B :blast<cr>
-
-nnoremap <m-b> :ls!<cr>:b<space>
-nnoremap <m-s-b> :ls!<cr>:tab sb<space>
 
 nnoremap <m-q> :ls!<cr>:silent bw!<space>
 
@@ -972,13 +950,6 @@ endfunc
 
 " Fenêtres {{{2
 
-nnoremap <D-^> <C-^>
-
-nnoremap <m-left>  <c-w><left>
-nnoremap <m-right> <c-w><right>
-nnoremap <m-up>    <c-w><up>
-nnoremap <m-down>  <c-w><down>
-
 nnoremap <m-tab>  <c-w>w
 nnoremap <s-tab>  <c-w>p
 
@@ -993,12 +964,11 @@ nnoremap <down>  <c-w><down>
 
 "  Onglets {{{2
 
-nnoremap <m-t> :tabnew<cr>
+nnoremap <m-left> gT
+nnoremap <m-right> gt
 
-nnoremap <m-s-t> :tabe <C-R>=expand("%:p:h") . "/*" <CR><C-D>
-
-nnoremap <C-Home> gT
-nnoremap <C-End> gt
+nnoremap <m-up> :tabedit<space>
+nnoremap <m-down> :tabnew<cr>
 
 nnoremap [t gT
 nnoremap ]t gt
@@ -1039,7 +1009,7 @@ nnoremap ]<c-l> :lnfile<cr>
 
 " Anciens fichiers {{{2
 
-" Fichiers dont une marque est présente dansneoviminfo
+" Fichiers dont une marque est présente dans shada
 
 " Voir la configuration de la librairie tlib
 
@@ -1111,18 +1081,10 @@ vnoremap \; /\<\><left><left>
 
 " }}}3
 
-" Désactiver la surbrillance du dernier motif recherché {{{3
-
-nnoremap <silent> <C-l> :noh<CR>zz
-
-nnoremap <silent> <M-u> :noh<CR>
-
-" }}}3
-
 "  Remplacement {{{3
 
-nnoremap \, :s:\<\>::<left><left><left><left>
-vnoremap \, :s:\<\>::<left><left><left><left>
+nnoremap \, :s/\<\>//<left><left><left><left>
+vnoremap \, :s/\<\>//<left><left><left><left>
 
 " }}}3
 
@@ -1152,14 +1114,16 @@ nnoremap \p :set paste!<cr>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
-vnoremap <C-Insert> "+y
 nnoremap <C-Insert> "+yy
-inoremap <C-Insert> <esc>"+yy
+vnoremap <C-Insert> "+y
+inoremap <C-Insert> <esc>"+yya
 
-snoremap <S-Insert> <C-R>+
-vnoremap <S-Insert> c<C-R>+
-nnoremap <S-Insert> "+p
-inoremap <S-Insert> <C-R>+
+nnoremap <silent> <S-Insert> "+p
+vnoremap <silent> <S-Insert> c<C-R>+
+inoremap <silent> <S-Insert> <C-R>+
+
+cnoremap <silent> <S-Insert> <C-R>+
+snoremap <silent> <S-Insert> <C-R>+
 
 " noremap <S-Insert> <MiddleMouse>
 
@@ -1226,9 +1190,6 @@ cnoremap <C-X><C-L> <C-L>
 
 " Déplacement {{{3
 
-cnoremap <C-B> <Left>
-cnoremap <C-F> <Right>
-
 " Mot suivant / précédent
 
 cnoremap <m-b> <C-Left>
@@ -1248,11 +1209,9 @@ cnoremap <C-A> <C-B>
 
 " Insérer un élément {{{3
 
-" to insert the directory of the current file and the current file to the command line.
+" Répertoire du fichier courant
 
-"cmap <lt>ff <c-r>=expand('%:t')<cr>
-"cmap <lt>fp <c-r>=expand('%:p')<cr>
-"cmap <lt>fd <c-r>=expand('%:p:h').'/'<cr>
+cnoremap <m-,> <c-r>=expand('%:p:h') . '/'<cr>
 
 " }}}3
 
@@ -1263,6 +1222,8 @@ cnoremap <C-BS> <C-\>e(<SID>RemoveLastPathComponent())<CR>
 function! s:RemoveLastPathComponent()
   return substitute(getcmdline(), '\%(\\ \|[\\/]\@!\f\)\+[\\/]\=$\|.$', '', '')
 endfunction
+
+cmap <m-d> <m-f><c-w>
 
 " }}}3
 
@@ -1290,7 +1251,7 @@ vnoremap <m-:> :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
 
 " Comme commande externe
 
-nnoremap <m-!> :exec '!'.getline('.')<CR>
+nnoremap <m-!> :exe '!'.getline('.')<CR>
 
 " }}}3
 
@@ -1488,17 +1449,17 @@ set scroll=12
 
 " Nombre minimal de colonnes qui défilent
 
-set sidescroll=7
+set sidescroll=3
 
 " Minimum de lignes visibles à l'écran
 " au-dessus et en-dessous du curseur
 
-set scrolloff=7
+set scrolloff=3
 
 " Minimum de colonnes visibles à l'écran
 " à gauche et à droite du curseur
 
-set sidescrolloff=84
+set sidescrolloff=15
 
 " Saut lorsque le curseur dépasse les limites hauts / bas
 
@@ -1549,7 +1510,6 @@ set nostartofline
 " Splits {{{2
 
 set splitbelow
-
 set splitright
 
 " }}}2
@@ -1630,7 +1590,7 @@ set cmdheight=5
 
 "set concealcursor=i
 
-" Voir aussi ~/racine/config/edit/neovim/after/syntax/html/concealneovim
+" Voir aussi ~/racine/config/edit/neovim/after/syntax/html/conceal/neovim
 
 " }}}2
 
@@ -1731,15 +1691,14 @@ set shada=
 	\h,
 	\<12,
 	\s12,
-	\%30,
 	\'60,
 	\:10000,
 	\/10000,
 	\@10000,
 	\n~/racine/hist/neovim/main.shada
 
-" Remplacé par neomru
-"	\%,
+" Remplacé par wheel mru
+" 	\%30,
 
 " Nombre par défaut pour lignes de commande,
 " recherches, nombre de lignes d’entrée
@@ -1748,21 +1707,16 @@ set history=10000
 
 " }}}
 
+" ------------------------------
 
 "  {{{ Plugins
 
 if $OPERASYS == 'archlinux'
-
 	let g:python3_host_prog = '/bin/python3'
-
 	let g:python_host_prog = '/bin/python2'
-
 elseif $OPERASYS == 'freebsd'
-
 	let g:python3_host_prog = '/usr/local/bin/python3'
-
 	let g:python_host_prog = '/usr/local/bin/python2'
-
 endif
 
 source ~/racine/config/edit/neovim/paquet/minpac.vim

@@ -103,7 +103,7 @@ set cdpath+=~
 " Se place dans le répertoire du fichier courant
 " ------------------------------------------------------------
 
-" Voir aussi autocommandesvim
+" Voir aussi autocommandes.vim
 
 "set autochdir
 
@@ -370,16 +370,20 @@ set smartcase
 
 " Grep {{{2
 
-set grepprg=grep\ --line-number\ --ignore-case\ --no-messages\ $*\ /dev/null
-
-"set grepprg=internal
-
-" if executable('ag')
-" 	set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+" if executable('rg')
+" 	set grepprg=rg\ --vimgrep\ --smart-case\ $*
+" 	set grepformat=%f:%l:%c:%m
+" elseif executable('ag')
+" 	set grepprg=ag\ --nocolor\ --vimgrep\ --smart-case\ $*
 " 	set grepformat=%f:%l:%c:%m
 " elseif executable('ack')
-" 	set grepprg=ack\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ $*
+" 	set grepprg=ack\ --nocolor\ --nogroup\ --column\ --smart-case\ $*
 " 	set grepformat=%f:%l:%c:%m
+" elseif executable('grep')
+" 	set grepprg=grep\ --line-number\ --ignore-case\ --no-messages\ $*\ /dev/null
+" 	set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
+" else
+" 	set grepprg=internal
 " endif
 
 " }}}2
@@ -508,7 +512,7 @@ set wildcharm=<C-Z>
 " 	"list:longest"	When more than one match, list all matches and
 " 					complete till longest common string.
 
-set wildmode=list:full,full
+set wildmode=list:longest,full
 
 " }}}3
 
@@ -802,8 +806,8 @@ let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
 
 "  Aide {{{2
 
-nnoremap <M-a> :tab help<space>
-nnoremap <M-h> :tab help<space>
+nnoremap <m-a> :tab help<space>
+nnoremap <m-s-a> :tab helpgrep<space>
 
 " Voir denite
 "nnoremap <F1> <nop>
@@ -838,14 +842,14 @@ nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
 nnoremap <c-cr> :wa<cr>
 
-nnoremap <F4> :e ~/racine/config/edit/neovim/init.vim<cr>
-inoremap <F4> :e ~/racine/config/edit/neovim/init.vim<cr>
+nnoremap <F4> :e ~/racine/config/edit/vim/vimrc<cr>
+inoremap <F4> :e ~/racine/config/edit/vim/vimrc<cr>
 
-nnoremap <F5> :so ~/racine/config/edit/neovim/init.vim<cr>
-inoremap <F5> :so ~/racine/config/edit/neovim/init.vim<cr>
+nnoremap <F5> :so ~/racine/config/edit/vim/vimrc<cr>
+inoremap <F5> :so ~/racine/config/edit/vim/vimrc<cr>
 
 command -nargs=? -complete=filetype EditSyntaxPlugin
-\ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
+\ exe 'keepjumps vsplit ~/racine/config/edit/vim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
 command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
 
@@ -857,17 +861,7 @@ nnoremap \e :e!<cr>
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
 
-nnoremap <m-r> :r <C-R>=expand('%:p:h') . '/*' <CR><C-D>
-nnoremap <m-s-r> :r **/*
-
-nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR><C-D>
-
-nnoremap <m-f> :find **
-nnoremap <m-g> :silent grep!<space>
-
-nnoremap <m-d> :lcd <C-R>=expand('%:p:h') . '/'<CR>
-
-nnoremap \g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
+nnoremap \g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
 " }}}2
 
@@ -892,20 +886,7 @@ nnoremap ]b :bnext<cr>
 nnoremap [B :bfirst<cr>
 nnoremap ]B :blast<cr>
 
-nnoremap <m-b> :ls!<cr>:b<space>
-nnoremap <m-s-b> :ls!<cr>:tab sb<space>
-
-" Remplacé par Unite output
-
-"nnoremap <m-l> :ls!<cr>
-
-" Remplacé par CtrlSpaceGo[Up/Down]
-
-"noremap <M-PageUp> :bp<cr>
-"noremap <M-PageDown> :bn<cr>
-
-nnoremap <m-q> :ls!<cr>:silent bd!<space>
-nnoremap <m-s-q> :ls!<cr>:silent bw!<space>
+nnoremap <m-q> :ls!<cr>:silent bw!<space>
 
 " Lecture seule {{{3
 
@@ -929,11 +910,6 @@ endfunc
 
 " Fenêtres {{{2
 
-nnoremap <m-left>  <C-W><Left>
-nnoremap <m-right> <C-W><Right>
-nnoremap <m-up>    <C-W><Up>
-nnoremap <m-down>  <C-W><Down>
-
 nnoremap <s-tab>  <c-w>w
 
 " Les mouvements directionnels sont aussi accessible via h j k l
@@ -947,12 +923,11 @@ nnoremap <down>  <c-w><down>
 
 "  Onglets {{{2
 
-nnoremap <m-t> :tabnew<cr>
+nnoremap <m-left> gT
+nnoremap <m-right> gt
 
-nnoremap <m-s-t> :tabe <C-R>=expand("%:p:h") . "/*" <CR><C-D>
-
-nnoremap <C-Home>  :tabNext<cr>
-nnoremap <C-End> :tabnext<cr>
+nnoremap <m-up> :tabedit<space>
+nnoremap <m-down> :tabnew<cr>
 
 nnoremap [t gT
 nnoremap ]t gt
@@ -1069,14 +1044,6 @@ nnoremap ' `
 nnoremap \; /\<\><left><left>
 
 vnoremap \; /\<\><left><left>
-
-" }}}3
-
-" Désactiver la surbrillance du dernier motif recherché {{{3
-
-nnoremap <silent> <C-l> :noh<CR>zz
-
-nnoremap <silent> <M-u> :noh<CR>
 
 " }}}3
 
@@ -1206,11 +1173,9 @@ cnoremap <C-A> <C-B>
 
 " Insérer un élément {{{3
 
-" to insert the directory of the current file and the current file to the command line.
+" Répertoire du fichier courant
 
-"cmap <lt>ff <c-r>=expand('%:t')<cr>
-"cmap <lt>fp <c-r>=expand('%:p')<cr>
-"cmap <lt>fd <c-r>=expand('%:p:h').'/'<cr>
+cnoremap <m-,> <c-r>=expand('%:p:h') . '/'<cr>
 
 " }}}3
 
@@ -1238,22 +1203,16 @@ nnoremap \c :set cmdheight=
 
 " }}}3
 
-" Exécuter la ligne courante comme commande ex {{{3
+" Ligne ou sélection courante {{{3
 
-nnoremap <M-:> :exe getline(".")<CR>
-vnoremap <M-:> :<C-U>exe getreg("*")<CR>
+" Comme commande ex
 
-"vnoremap <M-:> :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
+nnoremap <m-:> :exe getline(".")<CR>
+vnoremap <m-:> :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
 
-" }}}3
+" Comme commande externe
 
-" Commande externe {{{3
-
-nnoremap <m-!> :!<space>
-
-" Exécuter la ligne courante comme commande externe
-
-nnoremap \, :exec '!'.getline('.')<CR>
+nnoremap <m-!> :exe '!'.getline('.')<CR>
 
 " }}}3
 
@@ -1276,7 +1235,7 @@ tnoremap <s-tab> <C-W>N<C-W>w
 tnoremap <m-v> <C-W>N
 tnoremap <m-i> <C-W>N
 
-tnoremap <m-q> <C-W>N:ls!<cr>:silent bd!<space>
+tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
 
 " }}}2
 
@@ -1467,7 +1426,6 @@ set nostartofline
 " Splits {{{2
 
 set splitbelow
-
 set splitright
 
 " }}}2
@@ -1637,7 +1595,6 @@ set viminfo=
 	\h,
 	\<12,
 	\s12,
-	\%30,
 	\'60,
 	\:7543,
 	\/1234,
@@ -1645,7 +1602,7 @@ set viminfo=
 	\n~/racine/hist/vim/main.info
 
 " Remplacé par neomru
-"	\%,
+" 	\%30,
 
 " Nombre par défaut pour lignes de commande,
 " recherches, nombre de lignes d’entrée
