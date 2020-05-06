@@ -850,10 +850,8 @@ let maplocalleader="\<d-,>"
 
 "nnoremap <F1> <nop>
 
-nnoremap <m-a> :tab help<space>
-nnoremap <m-s-a> :tab helpgrep<space>
-
-"nnoremap <m-s-a> :tabe man://
+nnoremap <F1> :tab help<space>
+nnoremap <S-F1> :tab helpgrep<space>
 
 " }}}2
 
@@ -1223,7 +1221,7 @@ function! s:RemoveLastPathComponent()
   return substitute(getcmdline(), '\%(\\ \|[\\/]\@!\f\)\+[\\/]\=$\|.$', '', '')
 endfunction
 
-cmap <m-d> <m-f><c-w>
+cmap <m-d> <c-right><c-w>
 
 " }}}3
 
@@ -1331,9 +1329,9 @@ nnoremap \l :set cursorline!<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <C-$> :split \| :term $SHELL -l<cr>
+nnoremap <C-$> :term $SHELL -l<cr>
 
-nnoremap <C-!> :split \| :term<space>
+nnoremap <C-!> :term<space>
 
 " Passer en mode normal
 

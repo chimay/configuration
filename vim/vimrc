@@ -806,11 +806,10 @@ let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
 
 "  Aide {{{2
 
-nnoremap <m-a> :tab help<space>
-nnoremap <m-s-a> :tab helpgrep<space>
-
-" Voir denite
 "nnoremap <F1> <nop>
+
+nnoremap <F1> :tab help<space>
+nnoremap <S-F1> :tab helpgrep<space>
 
 " }}}2
 
@@ -1186,6 +1185,8 @@ cnoremap <C-BS> <C-\>e(<SID>RemoveLastPathComponent())<CR>
 function! s:RemoveLastPathComponent()
   return substitute(getcmdline(), '\%(\\ \|[\\/]\@!\f\)\+[\\/]\=$\|.$', '', '')
 endfunction
+
+cmap <m-d> <c-right><c-w>
 
 " }}}3
 

@@ -72,8 +72,7 @@ nnoremap <F11>s :Subvert //<Left>
 
 " Backscratch {{{2
 
-nnoremap <D-s> :Scratch<space>
-nnoremap <D-lt> :Scratch<space>
+nnoremap <F2> :Scratch<space>
 
 " }}}2
 
@@ -263,7 +262,7 @@ omap T <Plug>Sneak_T
 
 " Options {{{3
 
-let g:sneak#label = 1
+let g:sneak#label = 0
 let g:sneak#label_esc = "\<space>"
 let g:sneak#target_labels = "ù*$àç&é§è!µ£~@#bwefthjklnu"
 let g:sneak#prompt = 'sneak > '
@@ -344,81 +343,6 @@ nnoremap <S-D-F> :Ranger<cr>
 
 " Exploration multiple {{{1
 
-" Unite {{{2
-
-" Données {{{3
-
-let g:unite_data_directory = $HOME . '/racine/plugin/data/unite'
-
-let g:unite_source_file_mru_long_limit = 12743
-let g:unite_source_mru_update_interval = 900
-
-let g:unite_source_directory_mru_long_limit = 3600
-
-" }}}3
-
-" Répertoires {{{3
-
-let g:unite_kind_openable_cd_command = 'cd'
-let g:unite_kind_openable_lcd_command = 'lcd'
-
-" }}}3
-
-" Présentation {{{3
-
-let g:unite_split_rule = 'dynamicbottom'
-
-let g:unite_enable_split_vertically = 0
-
-let g:unite_prompt = 'unite> '
-
-" }}}3
-
-" Copie & Collage {{{3
-
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_history_yank_save_clipboard = 1
-
-let g:unite_source_history_yank_limit = 543
-
-" }}}3
-
-" Recherche grep {{{3
-
-let g:unite_source_grep_max_candidates = 570
-
-let g:unite_source_grep_command = 'grep'
-let g:unite_source_grep_default_opts = '--ignore-case --with-filename --line-number --context=0'
-let g:unite_source_grep_recursive_opt = '-r'
-
-" let g:unite_source_grep_command = 'ack'
-" let g:unite_source_grep_default_opts = '--no-heading --no-color --ignore-case --all --with-filename --context=0'
-" let g:unite_source_grep_recursive_opt = ''
-
-" let g:unite_source_grep_command = 'ag'
-" let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden --ignore-case -C 2'
-" let g:unite_source_grep_recursive_opt = ''
-
-let g:unite_source_find_max_candidates = 570
-
-" }}}3
-
-" }}}2
-
-" Neomru {{{2
-
-let g:neomru#file_mru_path = $HOME . '/racine/plugin/data/unite/neomru/file-neovim'
-
-let g:neomru#file_mru_limit = 900
-
-let g:neomru#directory_mru_path = $HOME . '/racine/plugin/data/unite/neomru/directory-neovim'
-
-let g:neomru#directory_mru_limit = 300
-
-let g:neomru#do_validate = 0
-
-" }}}2
-
 " Unite-outline (Shougo/unite-outline) {{{2
 
 " Pour compatibilité, variable dépréciée dans unite
@@ -431,9 +355,9 @@ let g:neomru#do_validate = 0
 
 " Mappings {{{3
 
-nnoremap <D-ù> :Buffers<cr>
-nnoremap <D-*> :Tags<cr>
-nnoremap <D-=> :Windows<cr>
+" nnoremap ... :Buffers<cr>
+" nnoremap ... :Tags<cr>
+" nnoremap ... :Windows<cr>
 
 " }}}3
 
@@ -491,155 +415,72 @@ endfunction
 
 " }}}2
 
-" CtrlSpace (szw/vim-ctrlspace) {{{2
-
-" Mappings {{{3
-
-let g:CtrlSpaceSetDefaultMapping = 1
-
-let g:CtrlSpaceDefaultMappingKey = "<C-Space> "
-
-let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
-
-let g:CtrlSpaceUseUnicode = 0
-
-nnoremap <c-space> :CtrlSpace<cr>
-
-" nnoremap <C-PageUp> :CtrlSpaceGoUp<cr>
-" nnoremap <C-PageDown> :CtrlSpaceGoDown<cr>
-
-" Voir les fichiers dans
-" racine/plugin/manager/neovimpack/minpac/start/vim-ctrlspace/autoload/ctrlspace/keys
-
-" ’ = / ne marche pas
-
-let g:CtrlSpaceKeys = {
-		\ "Nop": {
-			\"h": "ctrlspace#keys#common#ToggleHelp",
-		\},
-		\ "Help": {
-			\"h": "ctrlspace#keys#common#ToggleHelp",
-		\},
-		\ "Buffer": {
-			\"*": "ctrlspace#keys#common#ToggleTabMode",
-			\"=": "ctrlspace#keys#common#ToggleBufferMode",
-			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
-			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
-		\},
-		\ "Tab": {
-			\"*": "ctrlspace#keys#common#ToggleTabMode",
-			\"=": "ctrlspace#keys#common#ToggleBufferMode",
-			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
-			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
-		\},
-		\ "Workspace": {
-			\"*": "ctrlspace#keys#common#ToggleTabMode",
-			\"=": "ctrlspace#keys#common#ToggleBufferMode",
-			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
-			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
-			\"w": "ctrlspace#keys#workspace#ToggleSubmode",
-		\},
-		\ "Bookmark": {
-			\"*": "ctrlspace#keys#common#ToggleTabMode",
-			\"=": "ctrlspace#keys#common#ToggleBufferMode",
-			\"'": "ctrlspace#keys#common#ToggleBookmarkMode",
-			\"\"": "ctrlspace#keys#common#ToggleWorkspaceMode",
-		\},
-	\}
-
-" }}}3
-
-" Données {{{3
-
-let g:CtrlSpaceCacheDir = $HOME . '/racine/plugin/data/ctrlspace'
-
-let g:CtrlSpaceProjectRootMarkers = ['.racine-projet']
-
-let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp)[\/]'
-
-let g:CtrlSpaceSearchResonators = ['.', '/', '\', '_', '-']
-
-" }}}3
-
-" Limites {{{3
-
-let g:CtrlSpaceMaxFiles = 500
-let g:CtrlSpaceMaxSearchResults = 200
-
-let g:CtrlSpaceSearchTiming = [50, 500]
-
-" }}}3
-
-" Recherche de fichiers {{{3
-
-let g:CtrlSpaceFileEngine = "auto"
-
-if executable("ag")
-    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-endif
-
-" }}}3
-
-" Présentation {{{3
-
-let g:CtrlSpaceUseHorizontalSplits = 1
-
-let g:CtrlSpaceHeight = 1
-let g:CtrlSpaceMaxHeight = 0
-
-let g:CtrlSpaceShowUnnamed = 2
-
-let g:CtrlSpaceUseTabline = 1
-
-let g:CtrlSpaceUnicodeFont = 1
-
-" }}}3
-
-" Workspaces {{{3
-
-let g:CtrlSpaceSaveWorkspaceOnExit = 1
-let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 0
-
-" }}}3
-
-" Options {{{3
-
-let g:CtrlSpaceCyclicList = 2
-let g:CtrlSpaceMaxJumps = 120
-let g:CtrlSpaceMaxSearches = 120
-let g:CtrlSpaceDefaultSortOrder = 1
-let g:CtrlSpaceUseMouseAndArrows = 1
-
-" }}}3
-
-" }}}2
-
 " Wheel {{{2
 
 " Init
 let g:wheel_config={}
+let g:wheel_config.maxim={}
+
+" The file where toruses and circles will be stored and read
+let g:wheel_config.file = '~/racine/plugin/data/wheel/auto'
 " Auto read torus file on startup if > 0
 let g:wheel_config.autoread = 1
 " Auto write torus file on exit if > 0
 let g:wheel_config.autowrite = 1
-" The file where toruses and circles will be stored and read
-let g:wheel_config.file = '~/racine/plugin/data/wheel/wheel.vim'
-" Prefix for mappings
-let g:wheel_config.prefix = '<d-t>'
-" The bigger it is, the more mappings available
-let g:wheel_config.mappings = 11
 " Number of backups for the wheel file
 let g:wheel_config.backups = 7
+" The bigger it is, the more mappings available
+let g:wheel_config.mappings = 20
+" Prefix for mappings
+let g:wheel_config.prefix = '<d-w>'
 " Auto cd to project root if > 0
 let g:wheel_config.cd_project = 1
 " Marker of project root
-let g:wheel_config.project_marker = '.git'
-" Maximum number of elements in history
-let g:wheel_config.max_history = 70
+"let g:wheel_config.project_markers = '.git'
+"let g:wheel_config.project_markers = '.racine-projet'
+" List of markers
+" The project dir is found as soon as one marker is found in it
+let g:wheel_config.project_markers = ['.git', '.racine-projet']
+" Locate database ; default one if left empty
+let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
 
-" Executed after jumping to a location
-autocmd User WheelAfterJump norm zx
+" Maximum number of elements in history
+let g:wheel_config.maxim.history = 700
+" Maximum number of elements in input history
+let g:wheel_config.maxim.input = 700
+
+" Maximum number of elements in mru
+let g:wheel_config.maxim.mru = 700
+
+" Maximum number of elements in yank wheel
+let g:wheel_config.maxim.yanks = 700
+" Maximum size of elements in yank wheel
+let g:wheel_config.maxim.yank_size = 3000
+
+" Maximum number of tabs
+let g:wheel_config.maxim.tabs = 12
+" Maximum number of horizontal splits
+let g:wheel_config.maxim.horizontal = 3
+" Maximum number of vertical splits
+let g:wheel_config.maxim.vertical = 4
+
+"let g:wheel_config.debug = 1
+
+set tabline=%!wheel#status#tabline()
+
+nmap <silent> <c-l> :nohl<cr><plug>(wheel-spiral-cursor)
+imap <silent> <c-l> <esc>:nohl<cr><plug>(wheel-spiral-cursor)a
+
+nmap § <plug>(wheel-tree)
+nmap é <plug>(wheel-grep)
+nmap è <plug>(wheel-outline)
+nmap ù <plug>(wheel-mru)
+nmap £ <plug>(wheel-locate)
+nmap µ <plug>(wheel-tags)
+nmap ç <plug>(wheel-yank-list)
+nmap ° <plug>(wheel-yank-plain)
+
+nmap <d-h> <plug>(wheel-history)
 
 " }}}2
 
@@ -675,9 +516,9 @@ let g:nrrw_rgn_update_orig_win = 1
 
 " Historique d’undo {{{1
 
-" Mundo {{{2
+" Undotree (mbbill/undotree) {{{2
 
-nnoremap <s-bs> :MundoToggle<cr>
+nnoremap <s-bs> :UndotreeToggle<cr>
 
 " }}}2
 
@@ -780,131 +621,6 @@ xmap  ie  <Plug>(textobj-entire-i)
 
 " }}}2
 
-" Visual multi (mg979/vim-visual-multi) {{{2
-
-" Mappings {{{3
-
-let g:VM_default_mappings = 0
-let g:VM_mouse_mappings = 0
-
-let g:VM_leader = {
-			\'default': '<space>',
-			\'visual': '<space>',
-			\'buffer': '<space>'
-			\}
-
-let g:VM_maps = {}
-
-let g:VM_maps['Find Under']          = '<d-m>'
-let g:VM_maps['Find Subword Under']  = '<d-m>'
-let g:VM_maps["Add Cursor Down"]     = '<d-n>'
-let g:VM_maps["Add Cursor Up"]       = '<d-p>'
-let g:VM_maps["Select All"]          = '<space>A'
-let g:VM_maps["Start Regex Search"]  = '<space>/'
-let g:VM_maps["Add Cursor At Pos"]   = '<space><space>'
-let g:VM_maps["Reselect Last"]       = '<space>gv'
-
-let g:VM_maps["Visual All"]     = '<space>A'
-let g:VM_maps["Visual Regex"]   = '<space>/'
-let g:VM_maps["Visual Find"]    = '<space>f'
-let g:VM_maps["Visual Cursors"] = '<space>c'
-let g:VM_maps["Visual Add"]     = '<space>a'
-
-let g:VM_maps["Visual Subtract"] = '<space>s'
-let g:VM_maps["Visual Reduce"]   = '<space>r'
-
-let g:VM_maps["Find Next"]     = 'n'
-let g:VM_maps["Find Prev"]     = 'N'
-let g:VM_maps["Goto Next"]     = ']'
-let g:VM_maps["Goto Prev"]     = '['
-let g:VM_maps["Seek Next"]     = '<C-f>'
-let g:VM_maps["Seek Prev"]     = '<C-b>'
-let g:VM_maps["Skip Region"]   = 'q'
-let g:VM_maps["Remove Region"] = 'Q'
-
-let g:VM_maps["Invert Direction"] = 'o'
-let g:VM_maps["Replace"]          = 'R'
-let g:VM_maps["Surround"]         = 'S'
-let g:VM_maps["Move Right"]       = '<M-S-Right>'
-let g:VM_maps["Move Left"]        = '<M-S-Left>'
-
-let g:VM_maps["I Next"] = '<tab>'
-let g:VM_maps["I Prev"] = '<s-tab>'
-
-let g:VM_maps["Select Operator"] = 's'
-let g:VM_maps["Find Operator"]   = 'm'
-
-let g:VM_maps["Increase"]       = '<c-a>'
-let g:VM_maps["Decrease"]       = '<c-x>'
-let g:VM_maps["Alpha-Increase"] = '<space><c-a>'
-let g:VM_maps["Alpha-Decrease"] = '<space><c-x>'
-
-let g:VM_maps["Transpose"]           = '<space>t'
-let g:VM_maps["Align"]               = '<space>a'
-let g:VM_maps["Align Char"]          = '<space><'
-let g:VM_maps["Align Regex"]         = '<space>>'
-let g:VM_maps["Split Regions"]       = '<space>s'
-let g:VM_maps["Filter Regions"]      = '<space>f'
-let g:VM_maps["Transform Regions"]   = '<space>e'
-let g:VM_maps["Rewrite Last Search"] = '<space>r'
-let g:VM_maps["Merge Regions"]       = '<space>m'
-let g:VM_maps["Duplicate"]           = '<space>d'
-let g:VM_maps["Shrink"]              = '<space>-'
-let g:VM_maps["Enlarge"]             = '<space>+'
-let g:VM_maps["Numbers"]             = '<space>0'
-let g:VM_maps["Numbers Append"]      = '<space>1'
-
-let g:VM_maps["Run Normal"]      = '<space>n'
-let g:VM_maps["Run Visual"]      = '<space>v'
-let g:VM_maps["Run Ex"]          = '<space>:'
-let g:VM_maps["Run Last Normal"] = '<space>N'
-let g:VM_maps["Run Last Visual"] = '<space>V'
-let g:VM_maps["Run Last Ex"]     = '<space>X'
-let g:VM_maps["Run Macro"]       = '<space>@'
-
-let g:VM_maps["Select Cursor Down"] = '<C-Down>'
-let g:VM_maps["Select Cursor Up"]   = '<C-Up>'
-
-let g:VM_maps["Undo"] = 'u'
-let g:VM_maps["Redo"] = '<C-r>'
-
-let g:VM_maps["Tools Menu"]           = '<space>='
-let g:VM_maps["Case Conversion Menu"] = '<space>C'
-let g:VM_maps["Show Registers"]       = '<space>"'
-let g:VM_maps["Toggle Whole Word"]    = '<space>w'
-let g:VM_maps["Case Settings"]        = '<space>c'
-let g:VM_maps["Toggle Multiline"]     = '<space>M'
-let g:VM_maps["Toggle Mappings"]      = '<space><space>'
-let g:VM_maps["Toggle Block"]         = '<space><c-v>'
-let g:VM_maps["Toggle Single Region"] = '<space><cr>'
-
-" }}}3
-
-" Options {{{3
-
-let g:VM_set_statusline = 2
-let g:VM_silent_exit = 1
-
-" }}}3
-
-" Couleurs {{{3
-
-" *g:VM_Mono_hl*    is the highlight in cursor mode
-" *g:VM_Extend_hl*  ,, in extend mode (the selections)
-" *g:VM_Cursor_hl*  ,, in extend mode (the cursors)
-" *g:VM_Insert_hl*  ,, in insert mode (the virtual cursors)
-
-let g:VM_Mono_hl   = 'VisualMultiMono'
-let g:VM_Extend_hl = 'VisualMultiExtend'
-let g:VM_Cursor_hl = 'VisualMultiExtendCursors'
-let g:VM_Insert_hl = 'VisualMultiInsert'
-
-let g:VM_highlight_matches = 'hi Search	guifg=#5B3C11 guibg=black gui=underline'
-
-" }}}3
-
-" }}}2
-
 " }}}1
 
 " Manipulation de lignes {{{1
@@ -934,20 +650,6 @@ nmap ) ]
 
 " Recherche & Remplacement {{{1
 
-" Esearch {{{2
-
-let g:esearch = {
-	\ 'adapter':    'ag',
-	\ 'backend':    'nvim',
-	\ 'out':        'qflist',
-	\ 'batch_size': 1000,
-	\ 'use':        ['visual', 'hlsearch', 'last'],
-	\}
-
-nmap <D-r> <Plug>(esearch)
-
-" }}}2
-
 " Quickfix reflector (stefandtw/quickfix-reflector.vim) {{{2
 
 let g:qf_modifiable = 1
@@ -970,11 +672,19 @@ let g:QFG_hi_error='guifg=#5B3C11 guibg=black ctermfg=3 ctermbg=NONE'
 
 " }}}1
 
-" Calcul {{{1
+" Évaluation {{{1
 
-" Crunch (arecarn/crunch.vim {{{2
+" Ripple (urbainvaes/vim-ripple) {{{2
 
-nnoremap <C-=> :Crunch<space>
+" REPL
+
+let g:ripple_enable_mappings = 1
+
+let g:ripple_repls = {
+            \ "sh": "zsh",
+            \ "zsh": "zsh",
+            \ "bash": "bash",
+            \ }
 
 " }}}2
 

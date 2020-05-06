@@ -48,7 +48,7 @@ let g:plug_threads = 7
 
 " ------------------------------
 
-Plug 'junegunn/fzf', { 'do' : './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Add plugins to &runtimepath

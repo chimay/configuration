@@ -5,10 +5,8 @@
 " when .vimrc is found.
 
 if &compatible
-
   " `:set nocp` has many side effects. Therefore this should be done
   " only when 'compatible' is set.
-
   set nocompatible
 endif
 
@@ -23,16 +21,16 @@ if exists('*minpac#init')
 	" Plugins dans start
 	" ------------------------------
 
-	call minpac#add('tpope/vim-repeat', { 'type' : 'start' })
-	call minpac#add('hauleth/vim-backscratch', { 'type' : 'start' })
+	" Personnels
+	call minpac#add('chimay/wheel', { 'type' : 'start' })
 
+	" Vim specific
 	call minpac#add('drmikehenry/vim-fixkey', { 'type' : 'start' })
 
-	call minpac#add('Shougo/denite.nvim', { 'type' : 'start' })
-	call minpac#add('Shougo/unite.vim', { 'type' : 'start' })
-	call minpac#add('Shougo/neomru.vim', { 'type' : 'start' })
-	call minpac#add('Shougo/unite-outline', { 'type' : 'start' })
-	call minpac#add('vim-ctrlspace/vim-ctrlspace', { 'type' : 'start' })
+	call minpac#add('tpope/vim-repeat', { 'type' : 'start' })
+
+	call minpac#add('hauleth/vim-backscratch', { 'type' : 'start' })
+	call minpac#add('urbainvaes/vim-ripple', { 'type' : 'start' })
 
 	call minpac#add('justinmk/vim-sneak', { 'type' : 'start' })
 
@@ -47,7 +45,6 @@ if exists('*minpac#init')
 	call minpac#add('SirVer/ultisnips', { 'type' : 'start' })
 	call minpac#add('jiangmiao/auto-pairs', { 'type' : 'start' })
 
-	call minpac#add('Shougo/neoyank.vim', { 'type' : 'start' })
 	call minpac#add('machakann/vim-highlightedyank', { 'type' : 'start' })
 
 	call minpac#add('kana/vim-textobj-entire', { 'type' : 'start' })
@@ -90,7 +87,12 @@ if exists('*minpac#init')
 	call minpac#add('coot/CRDispatcher', { 'type' : 'opt' })
 	call minpac#add('coot/cmdalias_vim', { 'type' : 'opt' })
 
+	call minpac#add('Shougo/denite.nvim', { 'type' : 'opt' })
 	call minpac#add('Shougo/neobundle-vim-recipes', { 'type' : 'opt' })
+	call minpac#add('Shougo/neomru.vim', { 'type' : 'opt' })
+	call minpac#add('Shougo/neoyank.vim', { 'type' : 'opt' })
+	call minpac#add('Shougo/unite-outline', { 'type' : 'opt' })
+	call minpac#add('Shougo/unite.vim', { 'type' : 'opt' })
 	call minpac#add('Shougo/vimfiler.vim', { 'type' : 'opt' })
 	call minpac#add('arecarn/crunch.vim', { 'type' : 'opt' })
 	call minpac#add('arecarn/selection.vim', { 'type' : 'opt' })
@@ -102,6 +104,7 @@ if exists('*minpac#init')
 	call minpac#add('godlygeek/tabular', { 'type' : 'opt' })
 	call minpac#add('hewes/unite-gtags', { 'type' : 'opt' })
 	call minpac#add('honza/vim-snippets', { 'type' : 'opt' })
+	call minpac#add('jceb/vim-orgmode', { 'type' : 'opt' })
 	call minpac#add('junegunn/vim-easy-align', { 'type' : 'opt' })
 	call minpac#add('kana/vim-submode', { 'type' : 'opt' })
 	call minpac#add('kmnk/vim-unite-giti', { 'type' : 'opt' })
@@ -123,9 +126,10 @@ if exists('*minpac#init')
 	call minpac#add('tsukkee/unite-tag', { 'type' : 'opt' })
 	call minpac#add('ujihisa/unite-locate', { 'type' : 'opt' })
 	call minpac#add('vifm/vifm.vim', { 'type' : 'opt' })
+	call minpac#add('vim-ctrlspace/vim-ctrlspace', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/CmdlineComplete', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/LogiPat', { 'type' : 'opt' })
-	call minpac#add('vim-scripts/YankRing.vim', { 'type' : 'start' })
+	call minpac#add('vim-scripts/YankRing.vim', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/rcs.vim', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/vcscommand.vim', { 'type' : 'opt' })
 	call minpac#add('vim-scripts/vis', { 'type' : 'opt' })

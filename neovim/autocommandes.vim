@@ -32,7 +32,7 @@ augroup END
 
 augroup FenetreQuickFix
 	au!
-	au BufReadPost quickfix noremap <buffer> <tab> <cr>:cclose<cr>:lclose<cr>
+	au BufReadPost quickfix noremap <buffer> <backspace> <cr>:cclose<cr>
 augroup END
 
 " }}}1
@@ -65,6 +65,7 @@ augroup END
 
 augroup DetectionDesTypesDeFichiers
 	au!
+	au BufNewFile,BufRead *.org setfiletype org
 	au BufNewFile,BufRead *.htm*,*.php,*.phtm* setfiletype html.php
 	au BufNewFile,BufRead *.rss,*.atom         setfiletype xml
 augroup END
