@@ -342,85 +342,84 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " }}}1
 
-" Exploration de l’arborescence du système de fichiers {{{1
-
-"  Netrw (plugin standard) {{{2
-
-"let g:loaded_netrw       = 0
-"let g:loaded_netrwPlugin = 0
-
-let g:netrw_home           = $HOME . '/racine/plugin/data/netrw'
-
-let g:netrw_menu           = 1
-
-let g:netrw_dirhistmax     = 712
-
-let g:netrw_keepdir        = 0
-
-let g:netrw_liststyle      = 1
-let g:netrw_special_syntax = 1
-let g:netrw_banner         = 1
-let g:netrw_browse_split   = 0
-let g:netrw_preview        = 0
-let g:netrw_fastbrowse     = 1
-let g:netrw_silent         = 1
-
-let g:netrw_ctags          = 'ctags'
-let g:netrw_ssh_cmd        = 'ssh'
-let g:netrw_browsex_viewer = "kfmclient exec"
-
-" Tri {{{3
-
-let g:netrw_sort_by = 'name'
-let g:netrw_sort_direction = 'normal'
-"let g:netrw_sort_options='i'
-
-let g:netrw_sort_sequence ='[\/]$,\<core\%(\.\d\+\)\=\>'
-let g:netrw_sort_sequence .='\.otl$'
-let g:netrw_sort_sequence .=',\.p\?html\?$,\.php$,\.css$,\.js$'
-let g:netrw_sort_sequence .=',\.h$,\.c$,\.cpp$'
-let g:netrw_sort_sequence .=',\.py$,\.pyx$'
-let g:netrw_sort_sequence .='*,\~$'
-
-" }}}3
-
-" Masque {{{3
-
-let g:netrw_list_hide = '\.un\~$,\.renduHtml$,\.sessionvim$'
-let g:netrw_list_hide .= ',^tags$,^TAGS$,^cscope\.'
-
-let g:netrw_list_hide .= ',^\.tarexclude$,^\.directory$'
-
-let g:netrw_list_hide .= ',\.o$,\.so$'
-let g:netrw_list_hide .= ',\.pyc$,\.elc$,\.zwc$'
-let g:netrw_list_hide .= ',\.dll$,\.obj$,\.bak$,\.exe$'
-
-let g:netrw_list_hide .= ',^RCS[\/]$,^CVS[\/]$,^\.hg[\/]$,^\.bzr[\/]$,^\.git[\/]$,\.mtn$,^_darcs[\/]$'
-let g:netrw_list_hide .= ',^.hgignore$,^.bzrignore$,^.hgtags$'
-
-let g:netrw_list_hide .= ',\.aux$,,\.log$,\.maf$,\.toc$,\.ptc$,\.mtc$'
-
-let g:netrw_hide = 1
-
-" }}}3
-
-" }}}2
-
-" Dirvish {{{2
-
-"nnoremap <D-f> :Dirvish<cr>
-
-" }}}2
-
-" Vifm {{{2
-
-let g:vifm_term = 'urxvtc -e'
-
-" }}}2
-
-" }}}1
-
 " Exploration multiple {{{1
+
+" FZF (junegunn/fzf.vim) {{{2
+
+" Mappings {{{3
+
+nnoremap <M-S-f>a :Ag<cr>
+nnoremap <M-S-f>b :Buffers<cr>
+nnoremap <M-S-f>c :Commands<cr>
+nnoremap <M-S-f>C :Commits<cr>
+nnoremap <M-S-f>f :Files<cr>
+nnoremap <M-S-f>F :Filetypes<cr>
+nnoremap <M-S-f>g :GitFiles<cr>
+nnoremap <M-S-f>h :History<cr>
+nnoremap <M-S-f>H :Helptags<cr>
+nnoremap <M-S-f>l :Lines<cr>
+nnoremap <M-S-f>m :Marks<cr>
+nnoremap <M-S-f>M :Maps<cr>
+nnoremap <M-S-f>r :Rg<cr>
+nnoremap <M-S-f>s :Snippets<cr>
+nnoremap <M-S-f>t :Tags<cr>
+nnoremap <M-S-f>w :Windows<cr>
+
+" }}}3
+
+" Options {{{3
+
+" Enable per-command history.
+" CTRL-N and CTRL-P will be automatically bound to next-history and
+" previous-history instead of down and up. If you don't like the change,
+" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+let g:fzf_history_dir = '~/racine/hist/fzf'
+
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let $FZF_DEFAULT_OPTS="--reverse " " top to bottom
+
+" }}}3
+
+" Présentation {{{3
+
+" Default fzf layout
+" - down / up / left / right
+"let g:fzf_layout = { 'down': '~40%' }
+
+" In Neovim, you can set up fzf window using a Vim command
+let g:fzf_layout = { 'window': 'new' }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=0 ctermbg=3
+  highlight fzf2 ctermfg=0 ctermbg=3
+  highlight fzf3 ctermfg=0 ctermbg=3
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+
+" }}}3
+
+" }}}2
 
 " Wheel {{{2
 

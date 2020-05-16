@@ -225,8 +225,11 @@ nmap S <Plug>Sneak_S
 xmap s <Plug>Sneak_s
 xmap S <Plug>Sneak_S
 
-omap s <Plug>Sneak_s
-omap S <Plug>Sneak_S
+omap z <Plug>Sneak_s
+omap Z <Plug>Sneak_S
+
+omap ; <Plug>Sneak_;
+omap , <Plug>Sneak_,
 
 " 1-character enhanced 'f'
 
@@ -257,6 +260,11 @@ xmap T <Plug>Sneak_T
 
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
+
+" label-mode
+
+nmap <m-;> <Plug>SneakLabel_s
+nmap <m-,> <Plug>SneakLabel_S
 
 " }}}3
 
@@ -323,41 +331,28 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " }}}1
 
-" Exploration de l’arborescence du système de fichiers {{{1
-
-" Vifm {{{2
-
-nnoremap <D-f> :Vifm .<cr>
-
-let g:vifmSplitWidth = 300
-
-" }}}2
-
-" Ranger {{{2
-
-nnoremap <S-D-F> :Ranger<cr>
-
-" }}}2
-
-" }}}1
-
 " Exploration multiple {{{1
-
-" Unite-outline (Shougo/unite-outline) {{{2
-
-" Pour compatibilité, variable dépréciée dans unite
-" Réglé
-"let g:unite_abbr_highlight = 'Normal'
-
-" }}}2
 
 " FZF (junegunn/fzf.vim) {{{2
 
 " Mappings {{{3
 
-" nnoremap ... :Buffers<cr>
-" nnoremap ... :Tags<cr>
-" nnoremap ... :Windows<cr>
+nnoremap <D-f>a :Ag<cr>
+nnoremap <D-f>b :Buffers<cr>
+nnoremap <D-f>c :Commands<cr>
+nnoremap <D-f>C :Commits<cr>
+nnoremap <D-f>f :Files<cr>
+nnoremap <D-f>F :Filetypes<cr>
+nnoremap <D-f>g :GitFiles<cr>
+nnoremap <D-f>h :History<cr>
+nnoremap <D-f>H :Helptags<cr>
+nnoremap <D-f>l :Lines<cr>
+nnoremap <D-f>m :Marks<cr>
+nnoremap <D-f>M :Maps<cr>
+nnoremap <D-f>r :Rg<cr>
+nnoremap <D-f>s :Snippets<cr>
+nnoremap <D-f>t :Tags<cr>
+nnoremap <D-f>w :Windows<cr>
 
 " }}}3
 
