@@ -150,34 +150,40 @@ endif
 " Each of them loads minpac, reloads .vimrc to register the
 " information of plugins, then performs the task.
 
-if ! exists('*Pack_update')
-
-	fun Pack_update ()
-
+if ! exists('*Pack_init')
+	fun Pack_init ()
 		if ! exists('*minpac#init')
 			packadd minpac
 		endif
-		source ~/racine/config/edit/vim/paquet/minpac.vim
+		source ~/racine/config/edit/neovim/paquet/minpac.vim
+	endfu
+endif
+
+if ! exists('*Pack_update')
+	fun Pack_update ()
+		call Pack_init ()
 		call minpac#update()
 	endfu
-
 endif
 
 if ! exists('*Pack_clean')
-
 	fun Pack_clean ()
-
-		if ! exists('*minpac#init')
-			packadd minpac
-		endif
-		source ~/racine/config/edit/vim/paquet/minpac.vim
+		call Pack_init ()
 		call minpac#clean()
 	endfu
+endif
 
+if ! exists('*Pack_status')
+	fun Pack_status ()
+		call Pack_init ()
+		call minpac#status()
+	endfu
 endif
 
 command! PackUpdate call Pack_update()
 command! PackClean  call Pack_clean()
+command! PackStatus  call Pack_status()
 
 nnoremap <F12>u :PackUpdate<cr>
 nnoremap <F12>c :PackClean<cr>
+nnoremap <F12>s :PackStatus<cr>
