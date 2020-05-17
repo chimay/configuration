@@ -705,7 +705,7 @@ let g:increment_activator_filetype_candidates = {
 let wiki = {}
 let wiki.path = '~/racine/plain/vimwiki/wiki'
 let wiki.path_html = '~/racine/plain/vimwiki/html/wiki'
-let wiki.extension = '.wiki'
+let wiki.ext = '.wiki'
 
 let wiki.list_margin = -1
 
@@ -752,13 +752,11 @@ let g:vimwiki_hl_headers = 0
 let g:vimwiki_hl_cb_checked = 0
 let g:vimwiki_global_ext = 1
 let g:vimwiki_menu = 'Vimwiki'
-let g:vimwiki_listsyms = '✗○◐●✓'
-let g:vimwiki_listsym_rejected = '✗'
 let g:vimwiki_use_mouse = 0
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_list_ignore_newline = 1
 let g:vimwiki_text_ignore_newline = 1
-let g:vimwiki_user_calendar = 1
+let g:vimwiki_use_calendar = 1
 let g:vimwiki_table_mappings = 1
 let g:vimwiki_table_auto_fmt = 1
 let g:vimwiki_CJK_length = 1
