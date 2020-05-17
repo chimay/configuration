@@ -64,10 +64,6 @@ nnoremap <F11>s :Subvert //<Left>
 
 " }}}1
 
-" Alignement {{{1
-
-" }}}1
-
 " Brouillons {{{1
 
 " Backscratch {{{2
@@ -75,10 +71,6 @@ nnoremap <F11>s :Subvert //<Left>
 nnoremap <F2> :Scratch<space>
 
 " }}}2
-
-" }}}1
-
-" Tableaux {{{1
 
 " }}}1
 
@@ -699,6 +691,88 @@ let g:increment_activator_filetype_candidates = {
   \     ['pick', 'reword', 'edit', 'squash', 'fixup', 'exec'],
   \   ],
   \ }
+
+" }}}2
+
+" }}}1
+
+" Organisation {{{1
+
+" Vimwiki {{{2
+
+" Per wiki settings
+
+let wiki = {}
+let wiki.path = '~/racine/plain/vimwiki/wiki'
+let wiki.path_html = '~/racine/plain/vimwiki/html/wiki'
+let wiki.extension = '.wiki'
+
+let wiki.list_margin = -1
+
+let wiki.index = 'index'
+let wiki.diary_index = 'diary'
+let wiki.diary_header = 'Diary'
+let wiki.diary_sort = 'desc'
+
+let wiki.syntax = 'default'
+let wiki.automatic_nested_syntaxes = 1
+let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+
+let wiki.auto_export = 0
+let wiki.auto_toc = 1
+let wiki.auto_tags = 0
+let wiki.auto_diary_index = 0
+
+let wiki.custom_wiki2html = ''
+let wiki.custom_wiki2html_args = ''
+let wiki.template_path =  '~/racine/plain/vimwiki/template'
+let wiki.template_default =  'default'
+let wiki.template_ext = '.tpl'
+let wiki.css_name = 'style.css'
+let wiki.maxhi = 0
+
+" List of wikis
+
+let g:vimwiki_list = [wiki]
+
+" Global settings
+
+let g:vimwiki_ext2syntax = {'.md': 'markdown',
+			  \ '.mkd': 'markdown',
+			  \ '.wiki': 'media'}
+
+let g:vimwiki_diary_months = {
+      \ 1: 'January', 2: 'February', 3: 'March',
+      \ 4: 'April', 5: 'May', 6: 'June',
+      \ 7: 'July', 8: 'August', 9: 'September',
+      \ 10: 'October', 11: 'November', 12: 'December'
+      \ }
+
+let g:vimwiki_hl_headers = 0
+let g:vimwiki_hl_cb_checked = 0
+let g:vimwiki_global_ext = 1
+let g:vimwiki_menu = 'Vimwiki'
+let g:vimwiki_listsyms = '✗○◐●✓'
+let g:vimwiki_listsym_rejected = '✗'
+let g:vimwiki_use_mouse = 0
+let g:vimwiki_folding = 'expr'
+let g:vimwiki_list_ignore_newline = 1
+let g:vimwiki_text_ignore_newline = 1
+let g:vimwiki_user_calendar = 1
+let g:vimwiki_table_mappings = 1
+let g:vimwiki_table_auto_fmt = 1
+let g:vimwiki_CJK_length = 1
+let g:vimwiki_dir_link = ''
+let g:vimwiki_html_header_numbering = 1
+let g:vimwiki_html_header_numbering_sym = ''
+let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr'
+let g:vimwiki_user_htmls = '404.html,search.html'
+let g:vimwiki_conceallevel = 2
+let g:vimwiki_autowriteall = 1
+let g:vimwiki_url_maxsave = 15
+let g:vimwiki_toc_header = 'Contents'
+let g:vimwiki_map_prefix = '<Leader>w'
+let g:vimwiki_auto_chdir = 1
 
 " }}}2
 
