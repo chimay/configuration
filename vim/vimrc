@@ -797,10 +797,8 @@ set ttimeoutlen=50
 
 " Remarque : certains mapleaders causent des problèmes avec l’indentation <<
 
-let mapleader = "\<C-F12>\<C-F12>\<C-F12>"
-let maplocalleader = "\<C-F12>\<C-F12>\<C-F12>"
-
-let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
+let mapleader = "\<C-F12>"
+let maplocalleader = "\<C-F12>"
 
 " }}}2
 
@@ -841,11 +839,11 @@ nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
 nnoremap <c-cr> :wa<cr>
 
-nnoremap <F4> :e ~/racine/config/edit/vim/vimrc<cr>
-inoremap <F4> :e ~/racine/config/edit/vim/vimrc<cr>
+nnoremap <F5>e :e ~/racine/config/edit/vim/vimrc<cr>
+inoremap <F5>e :e ~/racine/config/edit/vim/vimrc<cr>
 
-nnoremap <F5> :so ~/racine/config/edit/vim/vimrc<cr>
-inoremap <F5> :so ~/racine/config/edit/vim/vimrc<cr>
+nnoremap <F5>r :so ~/racine/config/edit/vim/vimrc<cr>
+inoremap <F5>r :so ~/racine/config/edit/vim/vimrc<cr>
 
 command -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/vim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
@@ -854,13 +852,13 @@ command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
 
 nnoremap <F6>s :<c-u>EditSyntaxPlugin<cr>
 
-nnoremap \n :new <bar> only<cr>
-nnoremap \e :e!<cr>
+nnoremap <f4>n :new <bar> only<cr>
+nnoremap <f4>e :e!<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
 
-nnoremap \g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>G
+nnoremap <f4>g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
 " }}}2
 
@@ -889,7 +887,7 @@ nnoremap <m-q> :ls!<cr>:silent bw!<space>
 
 " Lecture seule {{{3
 
-nnoremap <m-v> :call InterrupteurLectureSeule()<cr>
+nnoremap <f4> :call InterrupteurLectureSeule()<cr>
 
 func! InterrupteurLectureSeule()
 
@@ -1040,17 +1038,17 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap \; /\<\><left><left>
+nnoremap <f4>; /\<\><left><left>
 
-vnoremap \; /\<\><left><left>
+vnoremap <f4>; /\<\><left><left>
 
 " }}}3
 
 "  Remplacement {{{3
 
-nnoremap \: :s:\<\>::<left><left><left><left>
+nnoremap <f4>: :s:\<\>::<left><left><left><left>
 
-vnoremap \: :s:\<\>::<left><left><left><left>
+vnoremap <f4>: :s:\<\>::<left><left><left><left>
 
 " }}}3
 
@@ -1064,7 +1062,7 @@ nnoremap Y y$
 
 "  Copies provenant d’un autre logiciel
 
-nnoremap \p :set paste!<cr>
+nnoremap <f4>p :set paste!<cr>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
@@ -1200,7 +1198,7 @@ nnoremap QQ gQ
 
 " Hauteur de la fenêtre de commande {{{3
 
-nnoremap \c :set cmdheight=
+nnoremap <f4>c :set cmdheight=
 
 " }}}3
 
@@ -1221,7 +1219,7 @@ nnoremap <m-!> :exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap \ih :echo bibliotheque#highlightGroup()<cr>
+nnoremap <f4>ih :echo bibliotheque#highlightGroup()<cr>
 
 " }}}2
 
@@ -1233,7 +1231,7 @@ set termwinkey=<C-W>
 
 tnoremap <s-tab> <C-W>N<C-W>w
 
-tnoremap <m-v> <C-W>N
+tnoremap <f4> <C-W>N
 tnoremap <m-i> <C-W>N
 
 tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
@@ -1242,16 +1240,16 @@ tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
 
 "  Shell {{{2
 
-nnoremap \s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap \w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f4>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f4>w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 
-nnoremap \h :tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f4>h :tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
 " Journal de bord {{{2
 
-nnoremap \l :tabe ~/racine/log/captain<cr>
+nnoremap <f4>l :tabe ~/racine/log/captain<cr>
 
 " }}}2
 
