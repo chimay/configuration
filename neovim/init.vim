@@ -896,13 +896,13 @@ command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
 
 nnoremap <F6>s :<c-u>EditSyntaxPlugin<cr>
 
-nnoremap <f4>n :new <bar> only<cr>
-nnoremap <f4>e :e!<cr>
+nnoremap <f9>n :new <bar> only<cr>
+nnoremap <f9>e :e!<cr>
 
 nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/*' <cr><c-d>
 nnoremap <m-s-e> :e **/*
 
-nnoremap <f4>g :e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
+nnoremap <f9>g :e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
 " }}}2
 
@@ -928,7 +928,7 @@ nnoremap <m-q> :ls!<cr>:silent bw!<space>
 
 " Lecture seule {{{3
 
-nnoremap <f4>r :call InterrupteurLectureSeule()<cr>
+nnoremap <f9>r :call InterrupteurLectureSeule()<cr>
 
 func! InterrupteurLectureSeule()
 
@@ -1023,8 +1023,8 @@ nnoremap ]<m-t> :tnext<cr>
 nnoremap [<m-s-t> :tfirst<cr>
 nnoremap ]<m-s-t> :tlast<cr>
 
-nnoremap <f4>j :tj /
-nnoremap <f4>J :tab tj /
+nnoremap <f9>j :tj /
+nnoremap <f9>J :tab tj /
 
 " }}}2
 
@@ -1074,15 +1074,15 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f4>; /\<\><left><left>
-vnoremap <f4>; /\<\><left><left>
+nnoremap <f9>; /\<\><left><left>
+vnoremap <f9>; /\<\><left><left>
 
 " }}}3
 
 "  Remplacement {{{3
 
-nnoremap <f4>, :s/\<\>//<left><left><left><left>
-vnoremap <f4>, :s/\<\>//<left><left><left><left>
+nnoremap <f9>, :%s/\<\>//<left><left><left><left>
+vnoremap <f9>, :%s/\<\>//<left><left><left><left>
 
 " }}}3
 
@@ -1098,17 +1098,17 @@ nnoremap Y y$
 
 command! -nargs=1 GlobalYank :call biblio#global_yank(<q-args>, 'a')
 
-nnoremap <f4>y :GlobalYank<space>
+nnoremap <f9>y :GlobalYank<space>
 
 " Couper toutes les lignes correspondant à un motif
 
 command! -nargs=1 GlobalDelete :call biblio#global_delete(<q-args>, 'a')
 
-nnoremap <f4>d :GlobalDelete<space>
+nnoremap <f9>d :GlobalDelete<space>
 
 "  Copies provenant d’un autre logiciel
 
-nnoremap <f4>p :set paste!<cr>
+nnoremap <f9>p :set paste!<cr>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
@@ -1236,7 +1236,7 @@ cmap <m-d> <c-right><c-w>
 
 " Hauteur de la fenêtre de commande {{{3
 
-nnoremap <f4>c :set cmdheight=
+nnoremap <f9>c :set cmdheight=
 
 " }}}3
 
@@ -1257,28 +1257,28 @@ nnoremap <m-!> :exe '!'.getline('.')<CR>
 
 "  Orthographe {{{2
 
-nnoremap <silent> <f4>o :setlocal spell!<cr>
+nnoremap <silent> <f9>o :setlocal spell!<cr>
 
 " }}}2
 
 "  Informations {{{2
 
-nnoremap <f4>ih :echo biblio#highlight_group()<cr>
+nnoremap <f9>ih :echo biblio#highlight_group()<cr>
 
 " }}}2
 
 "  Shell {{{2
 
-nnoremap <f4>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap <f4>w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f9>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f9>w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 
-nnoremap <f4>h :tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f9>h :tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
 " Journal de bord {{{2
 
-nnoremap <f4>l :tabe ~/racine/log/captain<cr>
+nnoremap <f9>l :tabe ~/racine/log/captain<cr>
 
 " }}}2
 
@@ -1323,7 +1323,7 @@ set guicursor=
 
 set termguicolors
 
-nnoremap <f4>l :set cursorline!<cr>
+nnoremap <f9>l :set cursorline!<cr>
 
 " }}}2
 

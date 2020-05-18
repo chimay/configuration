@@ -852,13 +852,13 @@ command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
 
 nnoremap <F6>s :<c-u>EditSyntaxPlugin<cr>
 
-nnoremap <f4>n :new <bar> only<cr>
-nnoremap <f4>e :e!<cr>
+nnoremap <f9>n :new <bar> only<cr>
+nnoremap <f9>e :e!<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
 
-nnoremap <f4>g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>G
+nnoremap <f9>g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
 " }}}2
 
@@ -887,7 +887,7 @@ nnoremap <m-q> :ls!<cr>:silent bw!<space>
 
 " Lecture seule {{{3
 
-nnoremap <f4> :call InterrupteurLectureSeule()<cr>
+nnoremap <f9> :call InterrupteurLectureSeule()<cr>
 
 func! InterrupteurLectureSeule()
 
@@ -1038,17 +1038,15 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f4>; /\<\><left><left>
-
-vnoremap <f4>; /\<\><left><left>
+nnoremap <f9>; /\<\><left><left>
+vnoremap <f9>; /\<\><left><left>
 
 " }}}3
 
 "  Remplacement {{{3
 
-nnoremap <f4>: :s:\<\>::<left><left><left><left>
-
-vnoremap <f4>: :s:\<\>::<left><left><left><left>
+nnoremap <f9>, :%s:\<\>::<left><left><left><left>
+vnoremap <f9>, :%s:\<\>::<left><left><left><left>
 
 " }}}3
 
@@ -1062,7 +1060,7 @@ nnoremap Y y$
 
 "  Copies provenant d’un autre logiciel
 
-nnoremap <f4>p :set paste!<cr>
+nnoremap <f9>p :set paste!<cr>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
@@ -1198,7 +1196,7 @@ nnoremap QQ gQ
 
 " Hauteur de la fenêtre de commande {{{3
 
-nnoremap <f4>c :set cmdheight=
+nnoremap <f9>c :set cmdheight=
 
 " }}}3
 
@@ -1219,7 +1217,7 @@ nnoremap <m-!> :exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap <f4>ih :echo bibliotheque#highlightGroup()<cr>
+nnoremap <f9>ih :echo bibliotheque#highlightGroup()<cr>
 
 " }}}2
 
@@ -1231,7 +1229,7 @@ set termwinkey=<C-W>
 
 tnoremap <s-tab> <C-W>N<C-W>w
 
-tnoremap <f4> <C-W>N
+tnoremap <f9> <C-W>N
 tnoremap <m-i> <C-W>N
 
 tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
@@ -1240,16 +1238,16 @@ tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
 
 "  Shell {{{2
 
-nnoremap <f4>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap <f4>w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f9>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f9>w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 
-nnoremap <f4>h :tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f9>h :tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
 " Journal de bord {{{2
 
-nnoremap <f4>l :tabe ~/racine/log/captain<cr>
+nnoremap <f9>l :tabe ~/racine/log/captain<cr>
 
 " }}}2
 

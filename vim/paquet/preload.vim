@@ -113,10 +113,10 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "let g:UltiSnipsJumpForwardTrigger="<C-j>"
 "let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 
-let g:UltiSnipsListSnippets='<C-F5>l'
+let g:UltiSnipsListSnippets='<f2>l'
 
-nnoremap <C-F5>e :UltiSnipsEdit<cr>
-nnoremap <C-F5>a :UltiSnipsAddFiletypes<space>
+nnoremap <f2>e :UltiSnipsEdit<cr>
+nnoremap <f2>a :UltiSnipsAddFiletypes<space>
 
 " }}}3
 

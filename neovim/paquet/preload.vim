@@ -52,23 +52,11 @@ let g:no_plugin_maps = 1
 
 " ------------------------------------
 
-" Abréviations {{{1
-
-" Abolish (tpope/vim-abolish) {{{2
-
-let g:abolish_save_file = $HOME . '/racine/plugin/data/abolish/abreviations'
-
-nnoremap <F11>s :Subvert //<Left>
-
-" }}}2
-
-" }}}1
-
 " Brouillons {{{1
 
 " Backscratch {{{2
 
-nnoremap <F2> :Scratch<space>
+nnoremap <F10> :Scratch<space>
 
 " }}}2
 
@@ -86,10 +74,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-let g:UltiSnipsListSnippets='<F8>l'
+let g:UltiSnipsListSnippets='<F2>l'
 
-nnoremap <F8>e :UltiSnipsEdit<cr>
-nnoremap <F8>a :UltiSnipsAddFiletypes<space>
+nnoremap <F2>e :UltiSnipsEdit<cr>
+nnoremap <F2>a :UltiSnipsAddFiletypes<space>
 
 " }}}3
 
@@ -115,26 +103,26 @@ let NERDCreateDefaultMappings = 0
 
 map <s-cr> <plug>NERDCommenterToggle
 
-map <F9>cc <plug>NERDCommenterToggle
-map <F9>c<space> <plug>NERDCommenterComment
-map <F9>cn <plug>NERDCommenterNest
-map <F9>cm <plug>NERDCommenterMinimal
-map <F9>ci <plug>NERDCommenterInvert
-map <F9>cs <plug>NERDCommenterSexy
-map <F9>cy <plug>NERDCommenterYank
-map <F9>c$ <plug>NERDCommenterToEOL
-map <F9>cA <plug>NERDCommenterAppend
-map <F9>cI <plug>NERDCommenterInsert
-map <F9>ca <plug>NERDCommenterAltDelims
-map <F9>cl <plug>NERDCommenterAlignLeft
-map <F9>cb <plug>NERDCommenterAlignBoth
-map <F9>cu <plug>NERDCommenterUncommentLine
+map \cc <plug>NERDCommenterToggle
+map \c<space> <plug>NERDCommenterComment
+map \cn <plug>NERDCommenterNest
+map \cm <plug>NERDCommenterMinimal
+map \ci <plug>NERDCommenterInvert
+map \cs <plug>NERDCommenterSexy
+map \cy <plug>NERDCommenterYank
+map \c$ <plug>NERDCommenterToEOL
+map \cA <plug>NERDCommenterAppend
+map \cI <plug>NERDCommenterInsert
+map \ca <plug>NERDCommenterAltDelims
+map \cl <plug>NERDCommenterAlignLeft
+map \cb <plug>NERDCommenterAlignBoth
+map \cu <plug>NERDCommenterUncommentLine
 
 " }}}2
 
 "  TComment (tomtom/tcomment_vim) {{{2
 
-let g:tcomment_textobject_inlinecomment = '<F10>ci'
+let g:tcomment_textobject_inlinecomment = '\tci'
 
 let g:tcommentBlankLines = 0
 
@@ -637,6 +625,15 @@ nmap ) ]
 
 " Recherche & Remplacement {{{1
 
+" Abolish (tpope/vim-abolish) {{{2
+
+let g:abolish_save_file = $HOME . '/racine/plugin/data/abolish/abreviations'
+
+nnoremap <F11>a :Abolish //<Left>
+nnoremap <F11>s :Subvert //<Left>
+
+" }}}2
+
 " Quickfix reflector (stefandtw/quickfix-reflector.vim) {{{2
 
 let g:qf_modifiable = 1
@@ -702,40 +699,62 @@ let g:increment_activator_filetype_candidates = {
 
 " Per wiki settings
 
-let wiki = {}
-let wiki.path = '~/racine/plain/vimwiki/wiki'
-let wiki.path_html = '~/racine/plain/vimwiki/html/wiki'
-let wiki.ext = '.wiki'
+" Common wiki {{{3
 
-let wiki.list_margin = -1
+let common_wiki = {}
 
-let wiki.index = 'index'
-let wiki.diary_index = 'diary'
-let wiki.diary_header = 'Diary'
-let wiki.diary_sort = 'desc'
+let common_wiki.ext = '.wiki'
+let common_wiki.list_margin = -1
 
-let wiki.syntax = 'default'
-let wiki.automatic_nested_syntaxes = 1
-let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+let common_wiki.index = 'index'
+let common_wiki.diary_index = 'diary'
+let common_wiki.diary_header = 'Diary'
+let common_wiki.diary_sort = 'desc'
 
-let wiki.auto_export = 0
-let wiki.auto_toc = 1
-let wiki.auto_tags = 0
-let wiki.auto_diary_index = 0
+let common_wiki.syntax = 'default'
+let common_wiki.automatic_nested_syntaxes = 1
+let common_wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
 
-let wiki.custom_wiki2html = ''
-let wiki.custom_wiki2html_args = ''
-let wiki.template_path =  '~/racine/plain/vimwiki/template'
-let wiki.template_default =  'default'
-let wiki.template_ext = '.tpl'
-let wiki.css_name = 'style.css'
-let wiki.maxhi = 0
+let common_wiki.auto_export = 0
+let common_wiki.auto_toc = 1
+let common_wiki.auto_tags = 0
+let common_wiki.auto_diary_index = 0
+
+let common_wiki.custom_wiki2html = ''
+let common_wiki.custom_wiki2html_args = ''
+let common_wiki.template_default =  'default'
+let common_wiki.template_ext = '.tpl'
+let common_wiki.css_name = 'style.css'
+let common_wiki.maxhi = 0
+
+
+" }}}3
+
+" Plain wiki {{{3
+
+let plain_wiki = deepcopy(common_wiki)
+
+let plain_wiki.path = '~/racine/plain/vimwiki/wiki'
+let plain_wiki.path_html = '~/racine/plain/vimwiki/html'
+let plain_wiki.template_path =  '~/racine/plain/vimwiki/template'
+
+" }}}3
+
+" Site wiki {{{3
+
+let site_wiki = deepcopy(common_wiki)
+
+let site_wiki.path = '~/racine/site/vimwiki/wiki'
+let site_wiki.path_html = '~/racine/site/vimwiki/html'
+let plain_wiki.template_path =  '~/racine/site/vimwiki/template'
+
+" }}}3
 
 " List of wikis
 
-let g:vimwiki_list = [wiki]
+let g:vimwiki_list = [plain_wiki, site_wiki]
 
-" Global settings
+" Global settings {{{3
 
 let g:vimwiki_ext2syntax = {'.md': 'markdown',
 			  \ '.mkd': 'markdown',
@@ -750,7 +769,7 @@ let g:vimwiki_diary_months = {
 
 let g:vimwiki_hl_headers = 0
 let g:vimwiki_hl_cb_checked = 0
-let g:vimwiki_global_ext = 1
+let g:vimwiki_global_ext = 0
 let g:vimwiki_menu = 'Vimwiki'
 let g:vimwiki_use_mouse = 0
 let g:vimwiki_folding = 'expr'
@@ -771,6 +790,8 @@ let g:vimwiki_url_maxsave = 15
 let g:vimwiki_toc_header = 'Contents'
 let g:vimwiki_map_prefix = '<Leader>w'
 let g:vimwiki_auto_chdir = 1
+
+" }}}3
 
 " }}}2
 
