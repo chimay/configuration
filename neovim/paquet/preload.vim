@@ -74,10 +74,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-let g:UltiSnipsListSnippets='<F2>l'
+let g:UltiSnipsListSnippets='<F3>l'
 
-nnoremap <F2>e :UltiSnipsEdit<cr>
-nnoremap <F2>a :UltiSnipsAddFiletypes<space>
+nnoremap <F3>e :UltiSnipsEdit<cr>
+nnoremap <F3>a :UltiSnipsAddFiletypes<space>
 
 " }}}3
 
@@ -317,22 +317,22 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " Mappings {{{3
 
-nnoremap <D-f>a :Ag<cr>
-nnoremap <D-f>b :Buffers<cr>
-nnoremap <D-f>c :Commands<cr>
-nnoremap <D-f>C :Commits<cr>
-nnoremap <D-f>f :Files<cr>
-nnoremap <D-f>F :Filetypes<cr>
-nnoremap <D-f>g :GitFiles<cr>
-nnoremap <D-f>h :History<cr>
-nnoremap <D-f>H :Helptags<cr>
-nnoremap <D-f>l :Lines<cr>
-nnoremap <D-f>m :Marks<cr>
-nnoremap <D-f>M :Maps<cr>
-nnoremap <D-f>r :Rg<cr>
-nnoremap <D-f>s :Snippets<cr>
-nnoremap <D-f>t :Tags<cr>
-nnoremap <D-f>w :Windows<cr>
+nnoremap <f2>a :Ag<cr>
+nnoremap <f2>b :Buffers<cr>
+nnoremap <f2>c :Commands<cr>
+nnoremap <f2>C :Commits<cr>
+nnoremap <f2>f :Files<cr>
+nnoremap <f2>F :Filetypes<cr>
+nnoremap <f2>g :GitFiles<cr>
+nnoremap <f2>h :History<cr>
+nnoremap <f2>H :Helptags<cr>
+nnoremap <f2>l :Lines<cr>
+nnoremap <f2>m :Marks<cr>
+nnoremap <f2>M :Maps<cr>
+nnoremap <f2>r :Rg<cr>
+nnoremap <f2>s :Snippets<cr>
+nnoremap <f2>t :Tags<cr>
+nnoremap <f2>w :Windows<cr>
 
 " }}}3
 

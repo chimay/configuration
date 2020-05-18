@@ -74,7 +74,8 @@ let g:no_plugin_maps = 1
 
 let g:abolish_save_file = $HOME . '/racine/plugin/data/abolish/abreviations'
 
-nnoremap <C-F11>s :Subvert //<Left>
+nnoremap <F11>a :Abolish //<Left>
+nnoremap <F11>s :Subvert //<Left>
 
 " }}}2
 
@@ -88,7 +89,7 @@ nnoremap <C-F11>s :Subvert //<Left>
 
 " Backscratch {{{2
 
-nnoremap <F2> :Scratch<space>
+nnoremap <F10> :Scratch<space>
 
 " }}}2
 
@@ -348,22 +349,22 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " Mappings {{{3
 
-nnoremap <M-S-f>a :Ag<cr>
-nnoremap <M-S-f>b :Buffers<cr>
-nnoremap <M-S-f>c :Commands<cr>
-nnoremap <M-S-f>C :Commits<cr>
-nnoremap <M-S-f>f :Files<cr>
-nnoremap <M-S-f>F :Filetypes<cr>
-nnoremap <M-S-f>g :GitFiles<cr>
-nnoremap <M-S-f>h :History<cr>
-nnoremap <M-S-f>H :Helptags<cr>
-nnoremap <M-S-f>l :Lines<cr>
-nnoremap <M-S-f>m :Marks<cr>
-nnoremap <M-S-f>M :Maps<cr>
-nnoremap <M-S-f>r :Rg<cr>
-nnoremap <M-S-f>s :Snippets<cr>
-nnoremap <M-S-f>t :Tags<cr>
-nnoremap <M-S-f>w :Windows<cr>
+nnoremap <f2>a :Ag<cr>
+nnoremap <f2>b :Buffers<cr>
+nnoremap <f2>c :Commands<cr>
+nnoremap <f2>C :Commits<cr>
+nnoremap <f2>f :Files<cr>
+nnoremap <f2>F :Filetypes<cr>
+nnoremap <f2>g :GitFiles<cr>
+nnoremap <f2>h :History<cr>
+nnoremap <f2>H :Helptags<cr>
+nnoremap <f2>l :Lines<cr>
+nnoremap <f2>m :Marks<cr>
+nnoremap <f2>M :Maps<cr>
+nnoremap <f2>r :Rg<cr>
+nnoremap <f2>s :Snippets<cr>
+nnoremap <f2>t :Tags<cr>
+nnoremap <f2>w :Windows<cr>
 
 " }}}3
 
