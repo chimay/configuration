@@ -3,13 +3,13 @@
 ##   qute://help/configuring.html
 ##   qute://help/settings.html
 
-# Configuration automatique
-# ==============================
+# Configuration automatique {{{1
 
 config.load_autoconfig()
 
+# }}}1
+
 # Configuration manuelle
-# ==============================
 
 # Configuration {{{1
 
@@ -456,7 +456,8 @@ c.fonts.statusbar = '12pt monospace'
 
 ## Font used in the tab bar.
 ## Type: QtFont
-c.fonts.tabs = '12pt monospace'
+c.fonts.tabs.selected = 'bold 12pt monospace'
+c.fonts.tabs.unselected = 'bold 12pt monospace'
 
 ## Font family for cursive fonts.
 ## Type: FontFamily
@@ -763,7 +764,7 @@ c.messages.timeout = 3000
 
 ## Padding for the statusbar.
 ## Type: Padding
-# c.statusbar.padding = {'top': 1, 'bottom': 1, 'left': 0, 'right': 0}
+c.statusbar.padding = {'top': 3, 'bottom': 3, 'left': 0, 'right': 0}
 
 ## The position of the status bar.
 ## Type: VerticalPosition
@@ -832,7 +833,7 @@ c.statusbar.position = 'bottom'
 
 ## Padding around text for tabs
 ## Type: Padding
-# c.tabs.padding = {'top': 0, 'bottom': 0, 'left': 5, 'right': 5}
+c.tabs.padding = {'top': 3, 'bottom': 3, 'left': 5, 'right': 5}
 
 ## The position of the tab bar.
 ## Type: Position
@@ -900,7 +901,7 @@ c.tabs.position = 'bottom'
 ## The width of the tab bar if it's vertical, in px or as percentage of
 ## the window.
 ## Type: PercOrInt
-# c.tabs.width = '20%'
+c.tabs.width = '10%'
 
 ## Whether to wrap when changing tabs.
 ## Type: Bool
@@ -940,6 +941,13 @@ c.tabs.position = 'bottom'
 ## `:open google qutebrowser`.
 ## Type: Dict
 # c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
+
+c.url.searchengines = {
+    "DEFAULT": 'https://duckduckgo.com/?q={}',
+    "searx": 'https://searx.tuxcloud.net/?q={}&categories=general&language=en-US',
+    "duckduckgo": 'https://duckduckgo.com/?q={}',
+    "youtube": 'https://www.youtube.com/results?search_query={}',
+}
 
 ## The page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
@@ -984,7 +992,9 @@ c.tabs.position = 'bottom'
 
 # }}}1
 
-# Couleurs {{{1
+# Thème, Couleurs {{{1
+
+config.set("colors.webpage.darkmode.enabled", True)
 
 ## Background color of the completion widget category headers.
 ## Type: QssColor
@@ -1146,7 +1156,7 @@ c.colors.messages.warning.bg = 'black'
 
 ## Border color of a warning message.
 ## Type: QssColor
-# c.colors.messages.warning.border = '#d47300'
+c.colors.messages.warning.border = '#872e30'
 
 ## Foreground color a warning message.
 ## Type: QssColor
@@ -1252,7 +1262,7 @@ c.colors.statusbar.url.success.https.fg = '#5b3c11'
 
 ## Foreground color of the URL in the statusbar when there's a warning.
 ## Type: QssColor
-# c.colors.statusbar.url.warn.fg = 'yellow'
+c.colors.statusbar.url.warn.fg = '#88421d'
 
 ## Background color of the tab bar.
 ## Type: QtColor
@@ -1270,7 +1280,7 @@ c.colors.tabs.even.fg = '#5b3c11'
 
 ## Color for the tab indicator on errors.
 ## Type: QtColor
-# c.colors.tabs.indicator.error = '#ff0000'
+c.colors.tabs.indicator.error = '#872e30'
 
 ## Color gradient start for the tab indicator.
 ## Type: QtColor
@@ -1320,28 +1330,45 @@ c.colors.tabs.selected.odd.fg = 'black'
 ## Background color for webpages if unset (or empty to use the theme's
 ## color)
 ## Type: QtColor
-c.colors.webpage.bg = 'white'
+# c.colors.webpage.bg = 'white'
 
 # }}}1
 
 # Bindings for normal mode {{{1
 
-# Meta = Super
+# Contrairement à la convention habituelle ou Meta = Alt,
+# ici Meta = Super
 
 config.bind("<F1>", 'help')
 config.bind("<F2>", 'set-cmd-text -s :help')
 
+config.bind("<F3>", 'set-cmd-text -s :set tabs.position')
+config.bind("<F4>", 'set-cmd-text -s :set tabs.width')
+
 config.bind('<F5>', 'reload')
 config.bind('<F6>', 'adblock-update')
 
-config.bind('O', 'set-cmd-text -s :open')
 config.bind('o', 'set-cmd-text -s :open -t')
+config.bind('O', 'set-cmd-text -s :open')
 
-config.bind('gO', 'set-cmd-text :open {url:pretty}')
-config.bind('go', 'set-cmd-text :open -t -r {url:pretty}')
+config.bind('go', 'set-cmd-text :open {url:pretty}')
+config.bind('gO', 'set-cmd-text :open -t -r {url:pretty}')
+
+config.bind('pP', 'open -t -- {primary}')
+config.bind('pp', 'open -t -- {clipboard}')
+
+config.bind('PP', 'open -- {primary}')
+config.bind('Pp', 'open -- {clipboard}')
 
 config.bind('s', 'stop')
 
+config.bind("’", 'set-cmd-text /')
+config.bind(",", 'set-cmd-text /')
+
+config.bind('u', 'scroll-page 0 -0.5')
+config.bind('d', 'scroll-page 0 0.5')
+config.bind('<Shift-space>', 'scroll-page 0 1')
+config.bind('b', 'scroll-page 0 -1')
 config.bind('gg', 'scroll-to-perc 0')
 config.bind('G', 'scroll-to-perc 100')
 
@@ -1355,55 +1382,32 @@ config.bind('M', 'bookmark-add')
 config.bind("ù", 'set-cmd-text -s :quickmark-load -t')
 config.bind('%', 'quickmark-save')
 
+config.bind("µ", 'set-cmd-text -s :session-load -c')
+config.bind("£", 'set-cmd-text -s :session-save -o')
+
+config.bind("ç", 'spawn -u qutedmenu tab')
+config.bind("à", 'spawn -u taskadd proj:lecture')
+
 config.bind("=", 'set-cmd-text -s :buffer')
 
+config.bind('t', 'hint links fill :open -t -r {hint-url}')
+config.bind('T', 'open -t')
+config.bind('x', 'tab-close')
+config.bind('D', 'tab-close')
+config.bind('U', 'undo')
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
-
 config.bind('^', 'tab-prev')
 config.bind('$', 'tab-next')
 
-config.bind("*", 'set-cmd-text -s :session-load -c')
-config.bind("µ", 'set-cmd-text -s :session-save -o')
-config.bind("<Shift-µ>", 'set-cmd-text -s :session-save -o')
+config.bind('<PgDown>', 'scroll-page 0 1')
+config.bind('<PgUp>', 'scroll-page 0 -1')
 
-config.bind("§", 'spawn -u qutedmenu tab')
-config.bind("à", 'spawn -u taskadd proj:lecture')
+config.bind(';o', 'hint links fill :open {hint-url}')
+config.bind(';O', 'hint links fill :open -t -r {hint-url}')
 
-config.bind("<Meta-b>", 'set-cmd-text -s :open -t http://duckduckgo.com/bang?q=')
-
-config.bind("<Meta-a>", 'set-cmd-text -s :open -t !arch')
-config.bind("<Meta-d>", 'set-cmd-text -s :open -t !distrowatch')
-config.bind("<Meta-f>", 'set-cmd-text -s :open -t !framabee')
-config.bind("<Meta-g>", 'set-cmd-text -s :open -t !github')
-config.bind("<Meta-i>", 'set-cmd-text -s :open -t !gi')
-config.bind("<Meta-l>", 'set-cmd-text -s :open -t !linuxfr')
-config.bind("<Meta-r>", 'set-cmd-text :open -t !reddit')
-config.bind("<Meta-s>", 'set-cmd-text -s :open -t !stackexchange')
-config.bind("<Meta-t>", 'set-cmd-text -s :open -t !gt')
-config.bind("<Meta-w>", 'set-cmd-text :open -t !w')
-config.bind("<Meta-y>", 'set-cmd-text -s :open -t !youtube')
-
-config.bind("<Alt-a>", 'open -t http://archlinux.org')
-config.bind("<Alt-d>", 'open -t http://distrowatch.com')
-config.bind("<Alt-g>", 'open -t http://github.com/chimay')
-config.bind("<Alt-l>", 'open -t http://linuxfr.org')
-config.bind("<Alt-m>", 'open -t http://www.rtbf.be/musiq3')
-config.bind("<Alt-r>", 'open -t http://www.reddit.com')
-config.bind("<Alt-s>", 'open -t http://stackexchange.com')
-config.bind("<Alt-w>", 'open -t http://wipipedia.org')
-config.bind("<Alt-y>", 'open -t http://youtube.com')
-
-config.bind("<Alt-d>", 'set-cmd-text -s :open -t !d')
-config.bind("<Alt-t>", 'set-cmd-text -s :open -t !t')
-
-# config.bind("<Alt-d>", 'open -t !drive')
-# config.bind("<Alt-m>", 'open -t !gmail')
-
-# config.bind("<F5>", 'spawn firefox {url:pretty}')
-
-config.bind(';o', 'hint links fill :open -t -r {hint-url}')
-config.bind(';O', 'hint links fill :open {hint-url}')
+config.bind('e', 'hint links spawn mpv {hint-url}')
+config.bind('<alt-e>', 'hint links spawn xterm -e youtube-dl {hint-url}')
 
 # config.bind("'", 'enter-mode jump_mark')
 # config.bind('+', 'zoom-in')
@@ -1560,6 +1564,65 @@ config.bind('xx', 'config-cycle statusbar.hide ;; config-cycle tabs.show always 
 # config.bind('{{', 'navigate prev -t')
 # config.bind('}}', 'navigate next -t')
 
+config.bind("<Alt-a>", 'open -t https://archlinux.org')
+config.bind("<Meta-a>", 'set-cmd-text -s :open -t !arch')
+
+config.bind("<Alt-b>", 'open -t https://www.bitchute.com')
+config.bind("<Meta-b>", 'open -t https://bittube.video/videos/subscriptions')
+config.bind("<Shift-Alt-b>", 'set-cmd-text :open -t https://duckduckgo.com/bang?q=')
+
+config.bind("<Alt-d>", 'open -t https://distrowatch.com')
+config.bind("<Meta-d>", 'set-cmd-text -s :open -t !distrowatch')
+
+config.bind("<Alt-f>", 'set-cmd-text -s :open -t !fblite')
+config.bind("<Meta-f>", 'set-cmd-text -s :open -t !facebook')
+
+config.bind("<Alt-g>", 'open -t https://gab.com/home')
+config.bind("<Shift-Alt-g>", 'set-cmd-text -s :open -t !gib')
+
+config.bind("<Alt-h>", 'open -t https://github.com/chimay')
+config.bind("<Meta-h>", 'set-cmd-text -s :open -t !github')
+
+config.bind("<Meta-i>", 'set-cmd-text -s :open -t !gi')
+
+config.bind("<Alt-l>", 'open -t https://lbry.tv')
+
+config.bind("<Meta-m>", 'set-cmd-text -s :open -t !mojeek')
+config.bind("<Alt-m>", 'set-cmd-text :open -t https://metager.org/meta/meta.ger3?eingabe=')
+
+config.bind("<alt-n>", 'open -t https://banned.video')
+config.bind("<meta-n>", 'open -t https://nitter.net')
+
+config.bind("<Alt-o>", 'open -t https://odysee.com/$/following')
+config.bind("<Meta-o>", 'set-cmd-text -s :open -t !osc')
+
+config.bind("<Meta-p>", 'set-cmd-text -s :open -t !peek')
+
+config.bind("<Alt-r>", 'open -t http://www.reddit.com')
+config.bind("<Meta-r>", 'set-cmd-text -s :open -t !reddit')
+
+config.bind("<Alt-s>", 'open -t https://www.spreely.com')
+config.bind("<Meta-s>", 'set-cmd-text -s :open -t !startpage')
+
+# config.bind("<Alt-t>", 'open -t !twitter')
+config.bind("<Alt-t>", 'open -t https://twitter.com/orduval/lists')
+config.bind("<Shift-Alt-t>", 'set-cmd-text -s :open -t !twitter')
+config.bind("<Meta-t>", 'set-cmd-text -s :open -t !gt')
+
+config.bind("<alt-u>", 'open -t https://rumble.com/subscriptions')
+config.bind("<Meta-u>", 'set-cmd-text -s :open -t !aur')
+
+config.bind("<alt-v>", 'open -t https://brandnewtube.com')
+
+config.bind("<Alt-w>", 'open -t https://wipipedia.org')
+config.bind("<Meta-w>", 'set-cmd-text :open -t !w')
+
+config.bind("<Alt-x>", 'set-cmd-text -s :open -t !encrypt')
+
+config.bind("<Alt-y>", 'open -t https://www.youtube.com/feed/subscriptions')
+config.bind("<Meta-y>", 'set-cmd-text -s :open -t !youtube')
+config.bind("<Shift-Alt-y>", 'set-cmd-text -s :open -t !yippy')
+
 # }}}1
 
 # Bindings for caret mode {{{1
@@ -1600,6 +1663,18 @@ config.bind('<Ctrl-I>', 'completion-item-focus next', mode='command')
 
 config.bind('<Up>', 'command-history-prev', mode='command')
 config.bind('<Down>', 'command-history-next', mode='command')
+
+config.bind('<Alt-P>', 'command-history-prev', mode='command')
+config.bind('<Alt-N>', 'command-history-next', mode='command')
+
+config.bind('<Tab>', 'completion-item-focus next', mode='command')
+config.bind('<Shift-Tab>', 'completion-item-focus prev', mode='command')
+
+config.bind('<PgDown>', 'completion-item-focus next', mode='command')
+config.bind('<PgUp>', 'completion-item-focus prev', mode='command')
+
+config.bind('<Ctrl-N>', 'completion-item-focus next', mode='command')
+config.bind('<Ctrl-P>', 'completion-item-focus prev', mode='command')
 
 # config.bind('<Alt-B>', 'rl-backward-word', mode='command')
 # config.bind('<Alt-Backspace>', 'rl-backward-kill-word', mode='command')
@@ -1643,7 +1718,8 @@ config.bind('<Down>', 'command-history-next', mode='command')
 # Bindings for insert mode {{{1
 
 config.bind("<F1>", 'spawn -u qute-pass', mode='insert')
-config.bind('<F2>', 'open-editor', mode='insert')
+config.bind("<F2>", 'spawn -u readability')
+config.bind('<F5>', 'open-editor', mode='insert')
 
 # config.bind('<Ctrl-E>', 'open-editor', mode='insert')
 # config.bind('<Escape>', 'leave-mode', mode='insert')
@@ -1653,12 +1729,17 @@ config.bind('<F2>', 'open-editor', mode='insert')
 
 # Bindings for passthrough mode {{{1
 
-##
-# config.bind('<Ctrl-V>', 'leave-mode', mode='passthrough')
+config.bind('<Ctrl-V>', 'leave-mode', mode='passthrough')
 
 # }}}1
 
 # Bindings for prompt mode {{{1
+
+config.bind('<Tab>', 'prompt-item-focus next', mode='prompt')
+config.bind('<Shift-Tab>', 'prompt-item-focus prev', mode='prompt')
+
+config.bind('<Ctrl-N>', 'prompt-item-focus next', mode='prompt')
+config.bind('<Ctrl-P>', 'prompt-item-focus prev', mode='prompt')
 
 # config.bind('<Alt-B>', 'rl-backward-word', mode='prompt')
 # config.bind('<Alt-Backspace>', 'rl-backward-kill-word', mode='prompt')

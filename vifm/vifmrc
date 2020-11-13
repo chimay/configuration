@@ -176,16 +176,15 @@ set vifminfo=
 
 " }}}1
 
-" Signets {{{1
+" Marques {{{1
 
 " :mark mark /full/directory/path [filename]
 
-mark 0 ~/racine/plain
-mark 1 ~/racine/public
-mark 2 ~/racine/site/orgmode
+mark 0 ~/racine
+mark 1 ~/racine/wiki/plain/wiki
+mark 2 ~/racine/public
+mark 3 ~/racine/site/orgmode
 mark 9 ~/racine/archive
-
-mark r ~/racine
 
 mark a ~/racine/automat
 mark c ~/racine/config
@@ -195,6 +194,7 @@ mark l ~/racine/liber
 mark m ~/racine/mail
 mark n ~/racine/network
 mark p ~/racine/pictura
+mark r ~/racine/run
 mark s ~/racine/shell
 
 mark P ~/racine/papier
@@ -246,7 +246,7 @@ filextype *.epub zathura %c %i &, apvlv %c, xpdf %c
 
 filextype *.ps,*.eps,*.ps.gz
         \ {View in zathura}
-        \ zathura %f,
+        \ zathura %f &,
         \ {View in gv}
         \ gv %c %i &,
 
@@ -254,7 +254,7 @@ filextype *.ps,*.eps,*.ps.gz
 
 filextype *.djvu
         \ {View in zathura}
-        \ zathura %f,
+        \ zathura %f &,
         \ {View in apvlv}
         \ apvlv %f,
 
@@ -309,15 +309,15 @@ filetype *.[1-8] man ./%c
 
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in sxiv}
-        \ sxiv %f,
+        \ sxiv %f &,
         \ {View in vimiv}
-        \ vimiv %f,
+        \ vimiv %f &,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
 
-filextype *.svg vimiv %f
+filextype *.svg vimiv %f &
 
 " OpenRaster
 
@@ -488,7 +488,7 @@ fileviewer *.[1-8] man ./%c | col -b
 
 fileviewer *.torrent dumptorrent -v %c
 
-" Remplace par vifmimg
+" Remplacé par vifmimg
 
 " fileviewer *.pdf pdftotext -nopgbrk %c -
 
@@ -841,7 +841,7 @@ map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
 nnoremap <m-d> :mkdir!<space>
 
-nnoremap <m-n> :!touch %f<cr>
+nnoremap <m-n> :!touch<space>
 
 nnoremap <m-p> :!apack %c.txz %c<cr>
 
