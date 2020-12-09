@@ -2,6 +2,19 @@
 
 " Options {{{1
 
+
+" - f - when  included, running :filter command results in not
+"       inverted (matching files  are  filtered  out)  and  :filter!  in
+"       inverted (matching files are left) filter, when omitted, meaning
+"       of the exclamation mark changes to the opposite;
+" - s - when included, yy, dd and DD normal mode commands act  on
+"       selection, otherwise they operate on current file only;
+" - t - when included, <tab> (thus <c-i>) behave as <space> and
+"       switches active pane, otherwise <tab> and <c-i>  go  forward  in
+"       the view history.  It's possible to make both <tab> and <c-i> to
+"       work as expected by setting up the terminal  to  emit  a  custom
+"       sequence when <c-i> is pressed; see :histnext for details.
+"
 " t doit être inclus sinon <tab> ne marche pas
 " pas besoin de placer s : ys / yS le remplace
 
@@ -188,6 +201,7 @@ mark 9 ~/racine/archive
 
 mark a ~/racine/automat
 mark c ~/racine/config
+mark d ~/racine/gate/download
 mark f ~/racine/fun
 mark i ~/racine/infoman
 mark l ~/racine/liber
@@ -197,6 +211,7 @@ mark p ~/racine/pictura
 mark r ~/racine/run
 mark s ~/racine/shell
 
+mark M ~/racine/musica/musescore
 mark P ~/racine/papier
 
 mark A ~/audio
@@ -204,7 +219,6 @@ mark A ~/audio
 mark w ~/graphix/wallpaper
 
 mark D ~/Documents
-mark T ~/Téléchargements
 
 " }}}1
 
@@ -588,7 +602,7 @@ filter! /^.*\.(git|hg|bzr|o|py[co])$|.*~$/
 
 "command! h help
 
-command! vimdiff vimdiff %f %F
+command! vimdiff vimdiff %c %C
 command! link ln -s %d/%f %D
 
 " }}}1
@@ -604,7 +618,7 @@ command! link ln -s %d/%f %D
 
 " Disponibles
 "
-" % |
+" |
 
 " Aide {{{2
 
@@ -722,6 +736,8 @@ nnoremap zh za
 nnoremap µ :view<cr>
 vnoremap µ :view<cr>gv
 
+" Focus sur les fichies <-> le panneau de visualisation
+
 nnoremap % <s-tab>
 nnoremap <bs> <s-tab>
 
@@ -794,6 +810,14 @@ nnoremap cr :rename!<cr>
 
 " Copier & Déplacer
 
+" Copier la sélection
+
+nnoremap Y ys
+
+" Couper la sélection
+
+nnoremap X ds
+
 " Voir aussi :copy et :move
 
 nnoremap àà :!cp %f %D &<cr>
@@ -839,11 +863,21 @@ map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
 " Autres opérations sur fichiers {{{2
 
-nnoremap <m-d> :mkdir!<space>
+" Make folder
+
+nnoremap <m-f> :mkdir!<space>
+
+" Touch
 
 nnoremap <m-n> :!touch<space>
 
+" Pack
+
 nnoremap <m-p> :!apack %c.txz %c<cr>
+
+" Drag & drop
+
+nnoremap <m-d> :!dragon.sh -a -x %f<cr>
 
 " Vimdiff
 
