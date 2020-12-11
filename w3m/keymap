@@ -10,18 +10,23 @@
 # Right : RIGHT, ^[[C
 # Left  : LEFT, ^[[D
 
-# Personnel {{{1
+# Principal {{{1
 
 keymap	h	HELP
 
 keymap	q	ABORT
 keymap	Q	QUIT
 
+keymap	m-m	MENU
+
 keymap	o	GOTO
 keymap	O	GOTO_RELATIVE
-keymap	f	LOAD
+
+# open file
+keymap	M-f	LOAD
 
 keymap	r	RELOAD
+keymap	R	RELOAD
 
 keymap	i	INFO
 keymap	C-g	LINE_INFO
@@ -34,18 +39,23 @@ keymap	C-f	MOVE_RIGHT1
 keymap	j	UP
 keymap	k	DOWN
 
-keymap	l	LIST
 keymap	M-l	LIST
 
 keymap	+	NEXT_LINK
 keymap	-	PREV_LINK
-keymap	*	LINK_BEGIN
+keymap	m	MOVE_LIST_MENU
+keymap	M	LIST_MENU
 keymap	[	LINK_BEGIN
 keymap	]	LINK_END
-keymap	m	LIST_MENU
+# preceded by link number : go to link
+# follow mode, like in qutebrowser
+keymap	f	LINK_BEGIN
+keymap	*	LINK_BEGIN
 
 keymap	SPC	NEXT_PAGE
 keymap	b	PREV_PAGE
+
+keymap	";"  SEARCH
 
 # DEL = BackSpace
 keymap	DEL	BACK
@@ -54,16 +64,15 @@ keymap	H	PREV
 keymap	L	NEXT
 keymap	=	SELECT_MENU
 
-keymap	s	HISTORY
 keymap	M-h	HISTORY
 
 keymap	a	ADD_BOOKMARK
 keymap	&	BOOKMARK
 keymap	M-b	BOOKMARK
 
-keymap	t	TAB_LINK
-keymap	T	NEW_TAB
-keymap	x	CLOSE_TAB
+keymap	t	NEW_TAB ; BOOKMARK
+keymap	l	TAB_LINK
+# voir aussi restore tabs
 keymap	D	CLOSE_TAB
 keymap	J	PREV_TAB
 keymap	K	NEXT_TAB
@@ -72,11 +81,47 @@ keymap	$	NEXT_TAB
 
 keymap	w	SAVE_SCREEN
 
+# Download
+keymap	d	SAVE
+
 keymap	u	  MARK_URL
+keymap	,     MARK_WORD
+
 keymap	<	  EXTERN
 keymap	>     EXTERN_LINK
 
 keymap	C-o	OPTIONS
+
+# Surfraw
+# ------------------------------
+
+# To enable cgi clipboard scripts :
+#
+# ln -s ~/.w3m/cgi-bin/*clipboard* /usr/lib/w3m/cgi-bin
+
+# for x sessions
+
+keymap  s  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; GOTO /usr/lib/w3m/cgi-bin/goto_clipboard_primary.cgi"
+keymap  \\\s  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; TAB_GOTO /usr/lib/w3m/cgi-bin/goto_clipboard_primary.cgi"
+
+# keymap  xs  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; GOTO /usr/lib/w3m/cgi-bin/goto_clipboard.cgi"
+# keymap  XS  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; TAB_GOTO /usr/lib/w3m/cgi-bin/goto_clipboard.cgi"
+
+# for tmux users
+
+# keymap  xs  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw_tmux.cgi ; GOTO /usr/lib/w3m/cgi-bin/goto_tmux_clipboard.cgi"
+# keymap  XS  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw_tmux.cgi ; TAB_GOTO /usr/lib/w3m/cgi-bin/goto_tmux_clipboard.cgi"
+
+# Readability-cli
+# ------------------------------
+
+keymap  C-R    COMMAND "SHELL 'readable $W3M_URL > /tmp/readable.html' ; LOAD /tmp/readable.html"
+
+# Restore tabs
+# ------------------------------
+
+keymap  x      COMMAND     "EXTERN 'echo %s >> ~/.w3m/restore-tab.txt' ; CLOSE_TAB"
+keymap  u      TAB_GOTO    /usr/lib/w3m/cgi-bin/restore_tab.cgi
 
 # }}}1
 
@@ -95,6 +140,7 @@ keymap	C-o	OPTIONS
 # Left  : LEFT, ^[[D
 
 # keymap	C-@	MARK
+# keymap	C-_	GOTO_HOME
 # keymap	C-a	LINE_BEGIN
 # keymap	C-b	MOVE_LEFT
 # keymap	C-e	LINE_END
