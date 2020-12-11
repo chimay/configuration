@@ -344,6 +344,8 @@ c.content.plugins = False
 ## A list of user stylesheet filenames to use.
 ## Type: List of File, or File
 # c.content.user_stylesheets = []
+# c.content.user_stylesheets = ['stylesheet/solarized-dark-all-sites.css']
+# c.content.user_stylesheets = ['stylesheet/solarized-dark-all-sites.css', 'stylesheet/custom_solarized.css']
 
 ## Enables or disables WebGL.
 ## Type: Bool
@@ -360,6 +362,7 @@ c.content.plugins = False
 ## default is used.
 ## Type: Directory
 # c.downloads.location.directory = None
+c.downloads.location.directory = '~/racine/gate/download'
 
 ## Prompt the user for the download location. If set to false,
 ## `downloads.location.directory` will be used.
@@ -842,8 +845,8 @@ c.tabs.padding = {'top': 3, 'bottom': 3, 'left': 5, 'right': 5}
 ##   - bottom
 ##   - left
 ##   - right
-# c.tabs.position = 'top'
-c.tabs.position = 'bottom'
+c.tabs.position = 'top'
+# c.tabs.position = 'bottom'
 # c.tabs.position = 'left'
 # c.tabs.position = 'right'
 
@@ -863,11 +866,14 @@ c.tabs.position = 'bottom'
 ##   - multiple: Hide the tab bar if only one tab is open.
 ##   - switching: Show the tab bar when switching tabs.
 # c.tabs.show = 'always'
+# c.tabs.show = 'never'
+c.tabs.show = 'switching'
 
 ## Time to show the tab bar before hiding it when tabs.show is set to
 ## 'switching'.
 ## Type: Int
 # c.tabs.show_switching_delay = 800
+c.tabs.show_switching_delay = 12000
 
 ## Open a new window for every tab.
 ## Type: Bool
@@ -1284,11 +1290,11 @@ c.colors.tabs.indicator.error = '#872e30'
 
 ## Color gradient start for the tab indicator.
 ## Type: QtColor
-# c.colors.tabs.indicator.start = '#0000aa'
+c.colors.tabs.indicator.start = '#5b3c11'
 
 ## Color gradient end for the tab indicator.
 ## Type: QtColor
-# c.colors.tabs.indicator.stop = '#00aa00'
+c.colors.tabs.indicator.stop = '#5b3c11'
 
 ## Color gradient interpolation system for the tab indicator.
 ## Type: ColorSystem
@@ -1339,14 +1345,20 @@ c.colors.tabs.selected.odd.fg = 'black'
 # Contrairement à la convention habituelle ou Meta = Alt,
 # ici Meta = Super
 
-config.bind("<F1>", 'help')
-config.bind("<F2>", 'set-cmd-text -s :help')
+config.bind("<F1>", 'help -t')
+config.bind("<F2>", 'set-cmd-text -s :help -t')
 
-config.bind("<F3>", 'set-cmd-text -s :set tabs.position')
-config.bind("<F4>", 'set-cmd-text -s :set tabs.width')
+config.bind('<F3>', "config-cycle content.user_stylesheets \
+        [] \
+        ['stylesheet/solarized-dark-all-sites.css'] \
+        ['stylesheet/solarized-dark-all-sites.css',\ 'stylesheet/custom_solarized.css'] \
+        ")
 
 config.bind('<F5>', 'reload')
 config.bind('<F6>', 'adblock-update')
+
+config.bind('r', 'reload')
+config.bind('<shift-r>', 'reload -f')
 
 config.bind('o', 'set-cmd-text -s :open -t')
 config.bind('O', 'set-cmd-text -s :open')
@@ -1361,6 +1373,8 @@ config.bind('PP', 'open -- {primary}')
 config.bind('Pp', 'open -- {clipboard}')
 
 config.bind('s', 'stop')
+
+config.bind("<ctrl-r>", 'spawn -u readability')
 
 config.bind("’", 'set-cmd-text /')
 config.bind(",", 'set-cmd-text /')
@@ -1399,6 +1413,8 @@ config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
 config.bind('^', 'tab-prev')
 config.bind('$', 'tab-next')
+config.bind('<Alt-^>', 'tab-move -')
+config.bind('<Alt-$>', 'tab-move +')
 
 config.bind('<PgDown>', 'scroll-page 0 1')
 config.bind('<PgUp>', 'scroll-page 0 -1')
@@ -1574,13 +1590,15 @@ config.bind("<Shift-Alt-b>", 'set-cmd-text :open -t https://duckduckgo.com/bang?
 config.bind("<Alt-d>", 'open -t https://distrowatch.com')
 config.bind("<Meta-d>", 'set-cmd-text -s :open -t !distrowatch')
 
+config.bind("<alt-e>", 'open -t https://brandnewtube.com')
+
 config.bind("<Alt-f>", 'set-cmd-text -s :open -t !fblite')
 config.bind("<Meta-f>", 'set-cmd-text -s :open -t !facebook')
 
 config.bind("<Alt-g>", 'open -t https://gab.com/home')
 config.bind("<Shift-Alt-g>", 'set-cmd-text -s :open -t !gib')
 
-config.bind("<Alt-h>", 'open -t https://github.com/chimay')
+config.bind("<Alt-h>", 'open -t https://github.com/')
 config.bind("<Meta-h>", 'set-cmd-text -s :open -t !github')
 
 config.bind("<Meta-i>", 'set-cmd-text -s :open -t !gi')
@@ -1605,14 +1623,12 @@ config.bind("<Alt-s>", 'open -t https://www.spreely.com')
 config.bind("<Meta-s>", 'set-cmd-text -s :open -t !startpage')
 
 # config.bind("<Alt-t>", 'open -t !twitter')
-config.bind("<Alt-t>", 'open -t https://twitter.com/orduval/lists')
+config.bind("<Alt-t>", 'open -t https://twitter.com/')
 config.bind("<Shift-Alt-t>", 'set-cmd-text -s :open -t !twitter')
 config.bind("<Meta-t>", 'set-cmd-text -s :open -t !gt')
 
 config.bind("<alt-u>", 'open -t https://rumble.com/subscriptions')
 config.bind("<Meta-u>", 'set-cmd-text -s :open -t !aur')
-
-config.bind("<alt-v>", 'open -t https://brandnewtube.com')
 
 config.bind("<Alt-w>", 'open -t https://wipipedia.org')
 config.bind("<Meta-w>", 'set-cmd-text :open -t !w')
@@ -1718,8 +1734,7 @@ config.bind('<Ctrl-P>', 'completion-item-focus prev', mode='command')
 # Bindings for insert mode {{{1
 
 config.bind("<F1>", 'spawn -u qute-pass', mode='insert')
-config.bind("<F2>", 'spawn -u readability')
-config.bind('<F5>', 'open-editor', mode='insert')
+config.bind('<F2>', 'open-editor', mode='insert')
 
 # config.bind('<Ctrl-E>', 'open-editor', mode='insert')
 # config.bind('<Escape>', 'leave-mode', mode='insert')

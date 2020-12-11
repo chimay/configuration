@@ -50,10 +50,11 @@ keymap	]	LINK_END
 # preceded by link number : go to link
 # follow mode, like in qutebrowser
 keymap	f	LINK_BEGIN
-keymap	*	LINK_BEGIN
 
 keymap	SPC	NEXT_PAGE
 keymap	b	PREV_PAGE
+keymap	d	NEXT_PAGE
+keymap	u	PREV_PAGE
 
 keymap	";"  SEARCH
 
@@ -78,13 +79,15 @@ keymap	J	PREV_TAB
 keymap	K	NEXT_TAB
 keymap	\^	PREV_TAB
 keymap	$	NEXT_TAB
+keymap M-\^ TAB_LEFT
+keymap M-$ TAB_RIGHT
 
 keymap	w	SAVE_SCREEN
 
 # Download
-keymap	d	SAVE
+keymap	Ctrl-D	SAVE
 
-keymap	u	  MARK_URL
+keymap	*	  MARK_URL
 keymap	,     MARK_WORD
 
 keymap	<	  EXTERN
@@ -121,7 +124,7 @@ keymap  C-R    COMMAND "SHELL 'readable $W3M_URL > /tmp/readable.html' ; LOAD /t
 # ------------------------------
 
 keymap  x      COMMAND     "EXTERN 'echo %s >> ~/.w3m/restore-tab.txt' ; CLOSE_TAB"
-keymap  u      TAB_GOTO    /usr/lib/w3m/cgi-bin/restore_tab.cgi
+keymap  U      TAB_GOTO    /usr/lib/w3m/cgi-bin/restore_tab.cgi
 
 # }}}1
 
