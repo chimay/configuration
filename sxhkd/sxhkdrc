@@ -117,7 +117,7 @@ hyper + shift + {Left,Down,Up,Right}
 	bspc node --presel-dir {west,south,north,east} -i
 
 # Recover space of empty receptacle
-hyper + r
+hyper + e
 	bspc node $(bspc query -N -n focused) -n $(bspc query -N -n '.leaf.!window' -d focused)
 
 # <- Move window ->
@@ -191,14 +191,40 @@ hyper + t ; r
 
 # Bsp-layout {{{2
 
+hyper + l ; m
+	bsp-layout set tall
+
+hyper + l ; w
+	bsp-layout set wide
+
+hyper + l ; g
+	bsp-layout set grid
+
+hyper + l ; e
+	bsp-layout set even
+
+hyper + l ; t
+	bsp-layout set tiled
+
+hyper + l ; o
+	bsp-layout set monocle
+
+hyper + l ; y
+	bsp-layout cycle
+
 hyper + l ; r
 	bsp-layout remove
+
+# Most common actions
 
 hyper + m
 	bsp-layout set tall
 
 hyper + y
 	bsp-layout cycle
+
+hyper + r
+	bsp-layout remove
 
 # }}}2
 
