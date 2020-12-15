@@ -18,25 +18,25 @@
 hyper + colon
 	rofi-meta.zsh
 
-alt + button1
+alt + button3
 	rofi-meta.zsh
 
 hyper + semicolon
 	dmenu-apps.sh
 
-ctrl + button1
+ctrl + button3
 	dmenu-apps.sh
 
 super + colon
 	zshrun.sh
 
-shift + button1
+shift + button3
 	zshrun.sh
 
 hyper + x
 	zshrunterm.sh
 
-shift + button3
+alt + shift + button3
 	zshrunterm.sh
 
 hyper + ugrave
@@ -57,7 +57,7 @@ hyper + shift + d
 hyper + shift + q
 	rofi-eteindre.zsh
 
-hyper + l
+hyper + k
 	i3lock -c "#341207" -i ~/racine/pictura/i3lock/default
 
 # }}}1
@@ -76,9 +76,62 @@ hyper + shift + x
 hyper + shift + k
 	bspc node -k
 
-# Rotate
+# Go to window
+super + {Left,Up,Down,Right}
+	bspc node -f {west,north,south,east}
+
+# Alternate
+super + {Tab,BackSpace}
+	bspc {node,desktop} -f last
+
+# Cycle through all windows
+hyper + {Tab,BackSpace}
+	bspc node -f {next,prev}
+
+# Window <- history ->
+hyper + {Home,End}
+	bspc wm -h off; \
+		bspc node {newer,older} -f; \
+		bspc wm -h on
+
+# Go to relative : Parent, Child, Brother
+hyper + {section,ampersand,eacute,egrave}
+ 	bspc node -f @{parent,brother,first,second}
+
+# <- Go to desktop ->
 hyper + {Prior,Next}
-	bspc node @/ -R {270,90}
+	bspc desktop -f {prev,next}.local
+super + ctrl + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+# Preselect direction for next new window
+hyper + {Left,Down,Up,Right}
+	bspc node --presel-dir {west,south,north,east}
+
+# Cancel preselection
+hyper + c
+	bspc node --presel-dir cancel
+
+# Create new receptacle (without window)
+hyper + shift + {Left,Down,Up,Right}
+	bspc node --presel-dir {west,south,north,east} -i
+
+# Recover space of empty receptacle
+hyper + r
+	bspc node $(bspc query -N -n focused) -n $(bspc query -N -n '.leaf.!window' -d focused)
+
+# <- Move window ->
+super + shift + {Left,Up,Down,Right}
+	bspc node -s {west,north,south,east}
+
+# Move floating
+# easier with mouse, see ~/racine/config/windenv/bspwm/bspwmrc
+hyper + alt + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0, 0 20, 0 -20, 20 0}
+
+# Move (window) to desktop
+super + {_,shift + }F{1-9,10}
+	bspc {desktop -f, node -d} '^{1-9,10}'
 
 # Circulate ->
 super + Next
@@ -88,98 +141,75 @@ super + Next
 super + Prior
 	bspc node @/ -C backward
 
-# Fullscreen
-hyper + f
-	bspc node -t '~fullscreen' ; polybar-msg cmd toggle
-ctrl + F12
-	bspc node -t '~fullscreen' ; polybar-msg cmd toggle
-
-# Floating
-hyper + ampersand
-	bspc node -t '~floating'
-
-# set the window state
-hyper + quotedbl
-	bspc node -t '~tiled'
-
-# alternate between the tiled and monocle layout
-hyper + z
-	bspc desktop -l next
-
-# Flip
-hyper + percent
-	bspc node -F
-
-# Equalize
-hyper + eacute
-	bspc node @/ -E
-
-# Balance
-hyper + egrave
-	bspc node @/ -B
-
-# <- move to desktop ->
+# Rotate
 super + {Home,End}
-	bspc desktop -f {prev,next}.local
-super + ctrl + {Left,Right}
-	bspc desktop -f {prev,next}.local
-
-# move to window
-super + {Left,Up,Down,Right}
-	bspc node -f {west,north,south,east}
-
-# preselect direction of next window
-hyper + {Left,Down,Up,Right}
-	bspc node -p {west,south,north,east}
-
-# <- move window ->
-super + shift + {Left,Up,Down,Right}
-	bspc node -s {west,north,south,east}
-
-# alternate
-super + {Tab,BackSpace}
-	bspc {node,desktop} -f last
+	bspc node @/ -R {90,270}
 
 # swap the current node and the biggest one on local desktop
 # swap the current node and the smallest one if already on biggest
 hyper + asciicircum
 	bspwm-swap.sh
 
-# <- history ->
-hyper + {Home,End}
-	bspc wm -h off; \
-	bspc node {newer,older} -f; \
-	bspc wm -h on
+# Equalize
+hyper + less
+	bspc node @/ -E
 
-# Move (window) to desktop
-super + {_,shift + }F{1-9,10}
-	bspc {desktop -f, node -d} '^{1-9,10}'
+# Balance
+hyper + shift + greater
+	bspc node @/ -B
 
 # Resize
+# easier with mouse, see ~/racine/config/windenv/bspwm/bspwmrc
 hyper + shift + {Left,Down,Up,Right}
-	bspc node -z {right -20 0, top 0 20, bottom 0 -20, left 20 0}
+	bspc node -z {right -20 0, top 0 -20, bottom 0 -20, left -20 0}
 
-# Move floating
-# easier with mouse, see /home/david/racine/config/windenv/bspwm/bspwmrc
-hyper + alt + shift + {Left,Down,Up,Right}
-	bspc node -v {-20 0, 0 20, 0 -20, 20 0}
+# Zoom : alternate between the tiled and monocle layout
+hyper + z
+	bspc desktop -l next
+
+# Fullscreen
+hyper + f
+	bspc node -t '~fullscreen' ; polybar-msg cmd toggle
+ctrl + F12
+	bspc node -t '~fullscreen' ; polybar-msg cmd toggle
+
+# Toggle Floating
+hyper + quotedbl
+	bspc node -t '~floating'
+
+# Toggle Tiled
+hyper + apostrophe
+	bspc node -t '~tiled'
 
 # Add focused window to a tabbed instance in given direction
 hyper + t ; {Left,Down,Up,Right}
-    tabbed-client.sh $(bspc query -N -n {west,south,north,east}) add $(bspc query -N -n focused)
+	tabbed-client.sh $(bspc query -N -n {west,south,north,east}) add $(bspc query -N -n focused)
 
 # Remove one tab from tabbed
 hyper + t ; r
 	bspwm-remove-from-tabbed.sh
 
+# Bsp-layout {{{2
+
+hyper + l ; r
+	bsp-layout remove
+
+hyper + m
+	bsp-layout set tall
+
+hyper + y
+	bsp-layout cycle
+
+# }}}2
+
 # }}}1
 
 # Polybar {{{1
 
-hyper + p ; t
+hyper + b
 	polybar-msg cmd toggle
 
-hyper + b
+hyper + p ; t
 	polybar-msg cmd toggle
 
 hyper + p ; r
@@ -213,19 +243,19 @@ hyper + w ; n
 
 # Luminosité {{{2
 
-super + alt + v
+hyper + s ; 0
 	xbacklight -set 100
 
-hyper + v ; Up
+hyper + s ; Up
 	xbacklight -inc 10
 
-hyper + v ; Down
+hyper + s ; Down
 	xbacklight -dec 10
 
-hyper + v ; Right
+hyper + s ; Right
 	xbacklight -inc 25
 
-hyper + v ; Left
+hyper + s ; Left
 	xbacklight -dec 25
 
 # }}}2
@@ -241,16 +271,11 @@ hyper + n ; r
 
 # Applications {{{1
 
-super + ctrl + x
-	xclock
+shift + F12
+	kitty-dropdown.zsh
 
 hyper + {dollar, Return, exclam, comma}
 	{kitty, alacritty, xterm, urxvtc}
-
-hyper + s
-	kitty-dropdown.zsh
-shift + F12
-	kitty-dropdown.zsh
 
 hyper + mu
 	urxvtc-dropdown.zsh
@@ -269,14 +294,17 @@ super + ctrl + section
 super + ctrl + k
 	kitty kak
 
-super + ctrl + w
-	kitty elinks
-
 super + ctrl + {e,n,v}
-	{lance-emacs-client.zsh, lance-neovim.zsh, lance-gvim.zsh}
+	{run-emacs-client.zsh, run-neovim.zsh, run-gvim.zsh}
 
 super + ctrl + {q,f,b}
-	{lance-qutebrowser.sh,lance-firefox.sh,brave}
+	{run-qutebrowser.sh,run-firefox.sh,brave}
+
+# super + ctrl + w
+# 	kitty elinks
+
+super + ctrl + w
+	kitty w3m
 
 super + ctrl + t
 	thunderbird
@@ -289,6 +317,9 @@ super + ctrl + g
 
 super + ctrl + m
 	musescore
+
+super + ctrl + x
+	xclock
 
 super + ctrl + shift + f
 	filezilla
@@ -349,7 +380,7 @@ hyper + space ; c
 
 # Informations {{{1
 
-alt + button3
+ctrl + alt + button3
 	less-log.sh ~/log/wallpaper.log
 
 # }}}1
@@ -444,7 +475,7 @@ alt + button3
 #
 # # preselect the direction
 # super + ctrl + {h,j,k,l}
-# 	bspc node -p {west,south,north,east}
+# 	bspc node --presel-dir {west,south,north,east}
 #
 # # preselect the ratio
 # super + ctrl + {1-9}
@@ -452,11 +483,11 @@ alt + button3
 #
 # # cancel the preselection for the focused node
 # super + ctrl + space
-# 	bspc node -p cancel
+# 	bspc node --presel-dir cancel
 #
 # # cancel the preselection for the focused desktop
 # super + ctrl + shift + space
-# 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+# 	bspc query -N -d | xargs -I id -n 1 bspc node id --presel-dir cancel
 #
 # #
 # # move/resize

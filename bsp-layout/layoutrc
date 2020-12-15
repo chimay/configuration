@@ -1,0 +1,4 @@
+# vim: set filetype=conf:
+
+TALL_RATIO=0.618;
+WIDE_RATIO=0.618;

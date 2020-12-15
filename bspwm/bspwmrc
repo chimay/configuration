@@ -2,11 +2,15 @@
 
 # Autostart {{{1
 
-autostart.zsh >> ~/log/autostart.log 2>&1
+autostart.zsh >>! ~/log/autostart.log 2>&1
 
 # }}}1
 
+# Reset all rules {{{1
+
 bspc rule -r "*"
+
+# }}}1
 
 # Monitor {{{1
 
@@ -27,9 +31,13 @@ bspc monitor -d term edit browser office artisan entertain misc
 
 bspc config automatic_scheme     spiral
 
+# Move & Resize with modifier + mouse
+
 bspc config pointer_action1      move
 bspc config pointer_action2      resize_size
 bspc config pointer_action3      resize_corner
+
+# super + mouse
 
 bspc config pointer_modifier1    Mod4
 bspc config pointer_modifier2    Mod4
@@ -65,6 +73,7 @@ bspc rule -a nvim-qt desktop=edit
 bspc rule -a Emacs desktop=edit
 
 bspc rule -a qutebrowser desktop=browser
+bspc rule -a Min desktop=browser
 bspc rule -a firefox desktop=browser
 bspc rule -a Brave-browser desktop=browser
 bspc rule -a Thunderbird desktop=browser
@@ -73,14 +82,17 @@ bspc rule -a Zathura desktop=office
 
 bspc rule -a GeoGebra desktop=artisan
 bspc rule -a MuseScore3 desktop=artisan
+bspc rule -a MuseScore3Development desktop=artisan
 
 bspc rule -a libreoffice-startcenter desktop=office
 
 bspc rule -a vlc desktop=entertain
 bspc rule -a wesnoth desktop=entertain
+bspc rule -a palapeli desktop=entertain
 
 bspc rule -a net-sourceforge-jnlp-runtime-Boot desktop=misc
 bspc rule -a sun-awt-X11-XFramePeer desktop=misc
+bspc rule -a com-itfinance-core-Starter desktop=misc
 bspc rule -a java-lang-Thread desktop=misc
 
 # }}}2
@@ -98,7 +110,7 @@ bspc rule -a XClock                     state=floating rectangle=250x250+1630+50
 bspc rule -a URxvt:zshrun               state=floating
 bspc rule -a URxvt:zshrunterm           state=floating
 
-bspc rule -a URxvt:calculatrice         state=floating
+bspc rule -a URxvt:calculatrice         state=floating rectangle=964x574+476+50
 bspc rule -a URxvt:meteo                state=floating
 bspc rule -a URxvt:journal              state=floating rectangle=1200x500+350+50
 bspc rule -a URxvt:maintenance          state=floating rectangle=1200x500+350+50
@@ -118,6 +130,7 @@ bspc rule -a Asunder                    state=floating
 
 bspc rule -a net-sourceforge-jnlp-runtime-Boot state=floating
 bspc rule -a sun-awt-X11-XFramePeer            state=floating
+bspc rule -a com-itfinance-core-Starter        state=floating
 bspc rule -a java-lang-Thread                  state=floating
 
 # }}}2
@@ -130,11 +143,5 @@ bspc rule -a kitty:dropdown sticky=on state=floating rectangle=1500x700+200+40
 bspc rule -a URxvt:dropdown sticky=on state=floating rectangle=964x574+476+50
 
 # }}}2
-
-# }}}1
-
-# Événements {{{1
-
-bspwm-subscribe.zsh >> ~/log/bspwm-subscribe.log
 
 # }}}1
