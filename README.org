@@ -29,23 +29,14 @@ The keybindings are essentially vim, less or emacs like, depending on
 the context. For example :
 
   - Vim
-
     + Neomutt index
-
   - Less
-
     + Elinks
-
     + W3m
-
     + Neomutt pager
-
     + Newsboat
-
   - Emacs
-
     + Zsh
-
     + Elinks edit mode
 
 
@@ -54,15 +45,10 @@ the context. For example :
 Some applications :
 
   - Can use an independant keymap introduced by a prefix key
-
     + tmux
-
   - Can chain keys
-
     + sxhkd
-
   - Can use independant keymap modes
-
     + i3, tmux, emacs, vim
 
 
@@ -74,27 +60,16 @@ Some applications :
 The following keys are reserved for Window Manager (i3, bspwm, ...) :
 
   - Hyper (Mod3, I bind it to the Menu key) with any key(s)
-
   - Super (Mod4) with
-
     + Arrows
-
     + Page Up / Down
-
     + Home / End
-
     + Tab, Backspace
-
     + F1 .. F12
-
   - Super (Mod4) with any modifier(s) and same keys as above
-
   - Super with Control and
-
     + Any key(s)
-
   - Prefix chosen among the previous keys
-
   - Sub mode entered with one or more of the previous keys
 
 
@@ -103,19 +78,12 @@ The following keys are reserved for Window Manager (i3, bspwm, ...) :
 The following keys are reserved for applications :
 
   - Super with all other keys
-
     + Letters
-
     + Digits
-
     + Insert, Delete, Space, Return
-
     + & @ ^ $ ! ( ) [ ] { } ...
-
   - Super with Shift and same keys as above
-
   - Prefix chosen among the previous keys
-
   - Sub mode entered with one or more of the previous keys
 
 
@@ -124,66 +92,36 @@ The following keys are reserved for applications :
 To be as intuitive as possible, some conventions are applied :
 
   - Move focus between desktops :
-
     + Super + home / end
-
   - Move focus between X windows :
-
     + Super + arrows
-
     + Super + prior (page up) / next (page down)
-
   - Move focus between tmux panes & vim :
-
     + Shift + arrows
-
     + Also in emacs, but not in org files (org-shift<arrows>)
-
   - In buffer oriented applications, move focus between buffers :
-
     + Ctrl + page up / down
-
   - In tab oriented applications, move focus between tabs :
-
     + Ctrl + page up / down
-
     + In pager context : ^ and $
-
   - In buffers & tabs oriented applications like vim with ctrlspace or
     emacs with mtorus :
-
     + Change buffer : Ctrl + page up / down
-
     + Change tab, or ring : Ctrl + home / end
-
     + Buffer / Tab (ring) manager : Super / Control + Space
-
   - Move in history
-
     + In pager context
-
       * Backspace = back
-
       * H = back
-
       * L = forward
-
     + In REPL context
-
       * Up, M-p  = back, with typed text as filter
-
       * Down, M-n = forward, with typed text as filter
-
   - Filters
-
     + &, é, è
-
   - Most Recently Used
-
     + ù
-
   - Tree / Structure exploration
-
     + §
 
 
@@ -195,93 +133,56 @@ Comments on applications.
 ** The classics
 
   - Vim & family : Neovim, Kakoune
-
   - Emacs with Org mode and torus.el
-
   - Zsh
-
   - Tmux
 
 
 ** Vifm
 
   - Deep analogy with Vim keys
-
   - Views
-
     + Dual-pane, vertical or horizontal
-
     + Tree view (like the tree command)
-
     + Grid view (ls view)
-
     + Miller view with 3 panes, like ranger
-
     + Preview mode
-
       * Also of images with [[https://github.com/cirala/vifmimg][Vifmimg]] & [[https://github.com/seebye/ueberzug][Ueberzug]]
-
   - Mount
-
     + Archives with archivemount
-
       * Handy to quickly edit a file in it
-
     + Iso images with fuseiso
-
     + Ssh file systems with sshfs
-
     + Ftp file systems with curlftpfs
-
       * And you have a great ftp client
-
   - Can launch background programs
-
     + You can cancel them in :jobs view
-
   - Cope well with external programs
-
     + User commands :... and :!...
-
   - Tools to select and modify selection
 
 
 ** Tig
 
   - Feature rich git repo browser
-
   - Views
-
     + Commits
-
     + Diffs
-
     + Log
-
     + Tree
-
   - Cope well with external programs
-
     + User commands :... and :!...
 
 ** Kitty
 
   - Fast
-
   - Scriptable, you can also open a Kitty shell to control the term
-
   - Support keyboard shortcuts with super key
-
   - Scrollback in pager
-
   - Insert UTF-8 character with completion
-
   - Good image support
-
   - Quickly select url / file / line
-
   - Plugins (kittens)
-
   - Can be used as dropdown with kitti3 on i3
 
 And much more
@@ -290,42 +191,25 @@ And much more
 ** Bspwm
 
   - Scriptable via bspc
-
     + You can litteraly juggle with windows
-
     + Configurable split ratio
-
     + Possibility to circulate windows clockwise or counterclockwise
-
   - Modes
-
     + Tiling and floating
-
     + Monocle mode : only one window visible
-
     + Full screen
-
   - Automatic properties of windows : workspace, floating, ...
-
   - Multi monitors support
-
   - Keybindings
-
     + Managed by sxhkd
-
     + Support of Super and Hyper keys
-
     + Keybinding chains
-
   - Panels (bars) : polybar
-
     + Custom scripts
-
     + IPC, polybar-msg to send commands, hooks
-
     + Good choice of internal modules
-
     + Menu
+  - Dynamic layouts with bsp-layout (in AUR)
 
 
 ** I3 wm
