@@ -10,7 +10,9 @@ augroup RechargementConfiguration
 	au!
 	au bufwritepost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
 	au bufwritepost ~/racine/config/edit/neovim/after/syntax/** source %
+	au bufwritepost ~/racine/config/system/dunst/dunstrc !restart-dunst.zsh &
 	au bufwritepost ~/racine/config/windenv/sxhkd/sxhkdrc !pkill -10 -f sxhkd
+	au bufwritepost ~/racine/config/windenv/keynav/keynavrc !pkill -1 -f keynav
 	au bufwritepost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
 	au bufwritepost ~/racine/config/windenv/picom.conf !restart-picom.zsh &
 	au bufwritepost ~/racine/config/organizer/remind/* !pkill -10 -f remind-server
@@ -218,21 +220,21 @@ augroup end
 
 "  Chat {{{1
 
-augroup Chaton
+augroup social
 	au!
-	au BufWritePost alias.conf.perso   w! ~/racine/config/chaton/weechat/alias.conf
-	au BufWritePost aspell.conf.perso  w! ~/racine/config/chaton/weechat/aspell.conf
-	au BufWritePost buffers.conf.perso w! ~/racine/config/chaton/weechat/buffers.conf
-	au BufWritePost cron.txt.perso     w! ~/racine/config/chaton/weechat/cron.txt
-	au BufWritePost irc.conf.perso     w! ~/racine/config/chaton/weechat/irc.conf
-	au BufWritePost iset.conf.perso    w! ~/racine/config/chaton/weechat/iset.conf
-	au BufWritePost jabber.conf.perso  w! ~/racine/config/chaton/weechat/jabber.conf
-	au BufWritePost logger.conf.perso  w! ~/racine/config/chaton/weechat/logger.conf
-	au BufWritePost plugins.conf.perso w! ~/racine/config/chaton/weechat/plugins.conf
-	au BufWritePost relay.conf.perso   w! ~/racine/config/chaton/weechat/relay.conf
-	au BufWritePost script.conf.perso  w! ~/racine/config/chaton/weechat/script.conf
-	au BufWritePost weechat.conf.perso w! ~/racine/config/chaton/weechat/weechat.conf
-	au BufWritePost xfer.conf.perso    w! ~/racine/config/chaton/weechat/xfer.conf
+	au BufWritePost alias.conf.perso   w! ~/racine/config/social/weechat/alias.conf
+	au BufWritePost aspell.conf.perso  w! ~/racine/config/social/weechat/aspell.conf
+	au BufWritePost buffers.conf.perso w! ~/racine/config/social/weechat/buffers.conf
+	au BufWritePost cron.txt.perso     w! ~/racine/config/social/weechat/cron.txt
+	au BufWritePost irc.conf.perso     w! ~/racine/config/social/weechat/irc.conf
+	au BufWritePost iset.conf.perso    w! ~/racine/config/social/weechat/iset.conf
+	au BufWritePost jabber.conf.perso  w! ~/racine/config/social/weechat/jabber.conf
+	au BufWritePost logger.conf.perso  w! ~/racine/config/social/weechat/logger.conf
+	au BufWritePost plugins.conf.perso w! ~/racine/config/social/weechat/plugins.conf
+	au BufWritePost relay.conf.perso   w! ~/racine/config/social/weechat/relay.conf
+	au BufWritePost script.conf.perso  w! ~/racine/config/social/weechat/script.conf
+	au BufWritePost weechat.conf.perso w! ~/racine/config/social/weechat/weechat.conf
+	au BufWritePost xfer.conf.perso    w! ~/racine/config/social/weechat/xfer.conf
 augroup END
 
 " }}}1

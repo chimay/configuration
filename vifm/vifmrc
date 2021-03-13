@@ -2,7 +2,6 @@
 
 " Options {{{1
 
-
 " - f - when  included, running :filter command results in not
 "       inverted (matching files  are  filtered  out)  and  :filter!  in
 "       inverted (matching files are left) filter, when omitted, meaning
@@ -22,7 +21,7 @@ set cpoptions=t
 
 " ../ visible ?
 
-set dotdirs=rootparent
+set dotdirs=rootparent,nonrootparent,treeleafsparent
 
 " Important pour lancer les commandes externes
 
@@ -60,7 +59,7 @@ set trashdir=%r/.vifm-trash,$HOME/racine/trash/vifm
 
 " Automatically resolve symbolic links on l or Enter.
 
-set nofollowlinks
+set followlinks
 
 " With this option turned on you can run partially entered commands with
 " unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
@@ -185,7 +184,30 @@ set vifminfo=
 			\savedirs,
 			\shistory,
 			\state,
-			\tui
+			\tabs,
+			\tui,
+			\options,
+			\filetypes,
+			\commands
+
+set sessionoptions=
+			\bmarks,
+			\bookmarks,
+			\cs,
+			\chistory,
+			\dhistory,
+			\dirstack,
+			\fhistory,
+			\phistory,
+			\registers,
+			\savedirs,
+			\shistory,
+			\state,
+			\tabs,
+			\tui,
+			\options,
+			\filetypes,
+			\commands
 
 " }}}1
 
@@ -560,11 +582,13 @@ set timefmt="%H:%M %d-%m-%y"
 
 set statusline="  %t %T %A %E / %a %u:%g %D %z"
 
+set tablabel="%p:t"
+
 " Examples of configuring both panels
 
-" Customize view columns a bit (enable ellipsis for truncated file names)
-"
-set viewcolumns=*40%{name}.,25%{mtime}.,25%{perms}.,10%{size}.
+" Customize view columns a bit
+
+set viewcolumns=-45%{root}.,5%{ext}.,20%{mtime}.,20%{perms}.,10%{size}.
 
 " Filter-out build and temporary files
 "
@@ -575,6 +599,25 @@ filter! /^.*\.(git|hg|bzr|o|py[co])$|.*~$/
 " Icones
 "source devicons.vifm
 "source ~/racine/config/fileman/vifm/devicons.vifm
+
+" }}}1
+
+" Icones {{{1
+
+" file types
+set classify=' :dir:/, :exe:, :reg:, :link:'
+" various file names
+set classify+=' ::../::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::'
+" archives
+set classify+=' ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
+" images
+set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
+" audio
+set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+" media
+set classify+=' ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
+
+source ~/racine/config/fileman/vifm/favicons.vifm
 
 " }}}1
 
@@ -602,8 +645,9 @@ filter! /^.*\.(git|hg|bzr|o|py[co])$|.*~$/
 
 "command! h help
 
-command! vimdiff vimdiff %c %C
-command! link ln -s %d/%f %D
+command! ln ln -s %D %d
+command! rln :rlink %D %d
+command! diff vimdiff %c %C
 
 " }}}1
 
@@ -624,13 +668,29 @@ command! link ln -s %d/%f %D
 
 nnoremap <m-a> :apropos<space>
 
+" List all normal maps
+" command mode
+nnoremap <F1>c :cmap<cr>
+" dialog mode
+nnoremap <F1>d :dmap<cr>
+" menu mode
+nnoremap <F1>m :mmap<cr>
+" normal mode
+nnoremap <F1>n :nmap<cr>
+" view mode
+nnoremap <F1>q :qmap<cr>
+" visual mode
+nnoremap <F1>v :vmap<cr>
+
 " }}}2
 
 " Recharger {{{2
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
 
-nnoremap @ :write | edit $MYVIFMRC | restart<cr>
+"nnoremap @ :write | edit $MYVIFMRC | restart<cr>
+
+nnoremap @ :source $MYVIFMRC<cr>
 
 " }}}2
 
@@ -652,8 +712,6 @@ nnoremap <C-w>2 <C-w>v
 nnoremap <C-w>3 :set millerview! | set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"<cr>
 nnoremap <C-w>4 :set lsview!<cr>
 
-nnoremap <F8> :compare<cr>
-
 nnoremap <F9> :split!<cr>
 nnoremap <F10> :vsplit!<cr>
 
@@ -664,7 +722,7 @@ nnoremap <F12> :set lsview!<cr>
 
 " Onglets {{{2
 
-nnoremap <m-t> :tabnew<cr>
+nnoremap t :tabnew<cr>
 
 nnoremap ^ gT
 nnoremap $ gt
@@ -678,13 +736,19 @@ nnoremap <PageDown> <C-F>
 
 nnoremap <c-^> gh
 
+nnoremap <c-l> :nohlsearch<cr>zz
+mnoremap <c-l> :nohlsearch<cr>zz
+
+nnoremap zz :nohlsearch<cr>zz
+mnoremap zz :nohlsearch<cr>zz
+
 " }}}2
 
 " Sélectionner {{{2
 
 nnoremap <space> tj
 
-nnoremap t :select<space>
+nnoremap zs :select<space>
 
 " }}}2
 
@@ -708,6 +772,9 @@ nnoremap é :filter<space>
 nnoremap è :grep<space>
 
 nnoremap ° :locate<space>
+
+nnoremap zg :grep<space>
+nnoremap zl :locate<space>
 
 " }}}2
 
@@ -742,12 +809,15 @@ nnoremap % <s-tab>
 nnoremap <bs> <s-tab>
 
 qnoremap % <s-tab>
-qnoremap q <s-tab>
 qnoremap <bs> <s-tab>
 
 nnoremap £ :!LESS= less %f<cr>
+" mc
+nnoremap <f3> :!bat --paging always %f<cr>
 
 nnoremap <m-e> :edit<cr>
+" mc
+nnoremap <f4> :edit<cr>
 
 " Ouverture
 
@@ -820,27 +890,37 @@ nnoremap X ds
 
 " Voir aussi :copy et :move
 
-nnoremap àà :!cp %f %D &<cr>
+nnoremap àc :!cp %f %D &<cr>
 nnoremap àm :!mv %f %D &<cr>
+" mc
+nnoremap <f5> :!cp %f %D &<cr>
+nnoremap <f6> :!mv %f %D &<cr>
 
 " Sync with Rsync
 
 nnoremap àf :!rsync -av %f %D &<cr>
 nnoremap àd :!rsync -av %d/ %D &<cr>
+" mc
+nnoremap <f2>f :!rsync -av %f %D &<cr>
+nnoremap <f2>d :!rsync -av %d/ %D &<cr>
 
 " Copier & Coller
 
-nnoremap àc :clone<cr>
+nnoremap àà :clone?<cr>
+" mc
+nnoremap <f2>c :clone?<cr>
 
 " Corbeille vifm
 
 " dd : envoie vers corbeille vifm
 "
 " restauration :
-"   * dans :lstrash : r
-"   * dans :trashes :
-"       yy les fichiers dans la corbeille et
-"       p dans le répertoire de destination
+"   - dans :lstrash : r
+"   - dans :trashes :
+"       - yy les fichiers dans la corbeille et
+"       - p dans le répertoire de destination
+
+nnoremap <f8> dd
 
 nnoremap <lt> :lstrash<cr>
 nnoremap > :trashes<cr>
@@ -856,20 +936,22 @@ nnoremap dr :!trash-restore <cr>
 " Nom du chemin, fichier, répertoire -> clipboard
 
 map çç :!echo -n %d/%c | xsel -i; xsel -o | xsel -i -b<cr>
-map çf :!echo -n %f    | xsel -i; xsel -o | xsel -i -b<cr>
+map çf :!echo -n %c    | xsel -i; xsel -o | xsel -i -b<cr>
 map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 
 " }}}2
 
 " Autres opérations sur fichiers {{{2
 
-" Make folder
-
-nnoremap <m-f> :mkdir!<space>
-
-" Touch
+" New file
 
 nnoremap <m-n> :!touch<space>
+
+" New dir
+
+nnoremap <m-d> :mkdir!<space>
+" mc
+nnoremap <f7> :mkdir!<space>
 
 " Pack
 
@@ -877,7 +959,7 @@ nnoremap <m-p> :!apack %c.txz %c<cr>
 
 " Drag & drop
 
-nnoremap <m-d> :!dragon.sh -a -x %f<cr>
+nnoremap <m-g> :!dragon.sh -a -x %f<cr>
 
 " Vimdiff
 

@@ -867,11 +867,15 @@ nnoremap ZQ :qa!<cr>
 nnoremap <PageUp> <C-B>
 nnoremap <PageDown> <C-F>
 
-nnoremap ]] ]z
-nnoremap [[ [z
+" }}}2
 
-"nnoremap ]z ]]
-"nnoremap [z [[
+" Phrases {{{2
+
+noremap (s (
+noremap )s )
+
+vnoremap (s (
+vnoremap )s )
 
 " }}}2
 
@@ -879,67 +883,67 @@ nnoremap [[ [z
 
 " Fichier courant aussi disponible dans le registre %
 " Fichier alternatif aussi disponible dans le registre #
-nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
+"nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
-nnoremap <c-cr> :wa<cr>
+nnoremap <C-G> 2<C-G>
 
-nnoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
-inoremap <F5>e :e ~/racine/config/edit/neovim/init.vim<cr>
+nnoremap <f5>e :tabe ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <f5>e :tabe ~/racine/config/edit/neovim/init.vim<cr>
 
-nnoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
-inoremap <F5>r :so ~/racine/config/edit/neovim/init.vim<cr>
+nnoremap <f5>r :so ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <f5>r :so ~/racine/config/edit/neovim/init.vim<cr>
 
-command -nargs=? -complete=filetype EditSyntaxPlugin
+command! -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
-command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
+nnoremap <f5>s :<c-u>EditSyntaxPlugin<cr>
 
-nnoremap <F6>s :<c-u>EditSyntaxPlugin<cr>
+nnoremap <f6> :wa<cr>
 
-nnoremap <f9>n :new <bar> only<cr>
-nnoremap <f9>e :e!<cr>
+nnoremap <f7>n :new <bar> only<cr>
+nnoremap <f7>! :e!<cr>
 
 nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/*' <cr><c-d>
 nnoremap <m-s-e> :e **/*
 
-nnoremap <f9>g :e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
+nnoremap <f7>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
 " }}}2
 
 " Arguments {{{2
 
-nnoremap [a :previous<cr>
-nnoremap ]a :next<cr>
+nnoremap (a :previous<cr>
+nnoremap )a :next<cr>
 
-nnoremap [A :first<cr>
-nnoremap ]A :last<cr>
+nnoremap (A :first<cr>
+nnoremap )A :last<cr>
 
 " }}}2
 
 " Tampons (buffers) {{{2
 
-nnoremap [b :bprevious<cr>
-nnoremap ]b :bnext<cr>
+nnoremap (b :bprevious<cr>
+nnoremap )b :bnext<cr>
 
-nnoremap [B :bfirst<cr>
-nnoremap ]B :blast<cr>
+nnoremap (B :bfirst<cr>
+nnoremap )B :blast<cr>
 
-nnoremap <m-q> :ls!<cr>:silent bw!<space>
+" Wipe current buffer
+nnoremap <m-q> :ls!<cr>:silent bwipe!<space>
+" Wipe all buffers
+nnoremap <m-s-q> :%bwipe<cr>
 
 " Lecture seule {{{3
 
-nnoremap <f9>r :call InterrupteurLectureSeule()<cr>
+nnoremap <f7>r :call InterrupteurLectureSeule()<cr>
 
 func! InterrupteurLectureSeule()
-
 	if &modifiable || ! &readonly
 		setlocal readonly nomodifiable
 	else
 		setlocal noreadonly modifiable
 	endif
-
 	setlocal readonly? modifiable?
-
 endfunc
 
 " }}}3
@@ -948,60 +952,60 @@ endfunc
 
 " Fenêtres {{{2
 
-nnoremap <m-tab>  <c-w>w
-nnoremap <s-tab>  <c-w>p
+nnoremap <s-tab>  <c-w>w
+nnoremap <m-s-tab>  <c-w>p
 
-" Les mouvements directionnels sont aussi accessible via h j k l
+nnoremap <m-left>  <c-w><left>
+nnoremap <m-right> <c-w><right>
+nnoremap <m-up>    <c-w><up>
+nnoremap <m-down>  <c-w><down>
 
-nnoremap <left>  <c-w><left>
-nnoremap <right> <c-w><right>
-nnoremap <up>    <c-w><up>
-nnoremap <down>  <c-w><down>
+nnoremap <s-left> <c-w><left>
+nnoremap <s-right> <c-w><right>
+nnoremap <s-up> <c-w><up>
+nnoremap <s-down> <c-w><down>
 
 " }}}2
 
 "  Onglets {{{2
 
-nnoremap <m-left> gT
-nnoremap <m-right> gt
+nnoremap <f7>e :tabedit<space>
+nnoremap <f7>t :tabnew<cr>
 
-nnoremap <m-up> :tabedit<space>
-nnoremap <m-down> :tabnew<cr>
+nnoremap <m-^> gT
+nnoremap <m-$> gt
 
-nnoremap [t gT
-nnoremap ]t gt
+nnoremap (T :tabfirst<cr>
+nnoremap )T :tablast<cr>
 
-nnoremap [T :tabm -1<cr>
-nnoremap ]T :tabm +1<cr>
-
-nnoremap [<c-t> :tabfirst<cr>
-nnoremap ]<c-t> :tablast<cr>
+nnoremap (t :tabm -1<cr>
+nnoremap )t :tabm +1<cr>
 
 " }}}2
 
 " Liste quickfix {{{2
 
-nnoremap [q :cprevious<cr>
-nnoremap ]q :cnext<cr>
+nnoremap (q :cprevious<cr>
+nnoremap )q :cnext<cr>
 
-nnoremap [Q :cfirst<cr>
-nnoremap ]Q :clast<cr>
+nnoremap (Q :cfirst<cr>
+nnoremap )Q :clast<cr>
 
-nnoremap [<c-q> :cpfile<cr>
-nnoremap ]<c-q> :cnfile<cr>
+nnoremap (<c-q> :cpfile<cr>
+nnoremap )<c-q> :cnfile<cr>
 
 " }}}2
 
 " Listes locales {{{2
 
-nnoremap [l :lprevious<cr>
-nnoremap ]l :lnext<cr>
+nnoremap (l :lprevious<cr>
+nnoremap )l :lnext<cr>
 
-nnoremap [L :lfirst<cr>
-nnoremap ]L :llast<cr>
+nnoremap (L :lfirst<cr>
+nnoremap )L :llast<cr>
 
-nnoremap [<c-l> :lpfile<cr>
-nnoremap ]<c-l> :lnfile<cr>
+nnoremap (<c-l> :lpfile<cr>
+nnoremap )<c-l> :lnfile<cr>
 
 " }}}2
 
@@ -1017,14 +1021,14 @@ nnoremap ]<c-l> :lnfile<cr>
 
 "  Tags {{{2
 
-nnoremap [<m-t> :tprevious<cr>
-nnoremap ]<m-t> :tnext<cr>
+nnoremap (<m-t> :tprevious<cr>
+nnoremap )<m-t> :tnext<cr>
 
-nnoremap [<m-s-t> :tfirst<cr>
-nnoremap ]<m-s-t> :tlast<cr>
+nnoremap (<m-s-t> :tfirst<cr>
+nnoremap )<m-s-t> :tlast<cr>
 
-nnoremap <f9>j :tj /
-nnoremap <f9>J :tab tj /
+nnoremap <f7>j :tj /
+nnoremap <f7>J :tab tj /
 
 " }}}2
 
@@ -1074,15 +1078,15 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f9>; /\<\><left><left>
-vnoremap <f9>; /\<\><left><left>
+nnoremap <f7>, /\<\><left><left>
+vnoremap <f7>, /\<\><left><left>
 
 " }}}3
 
 "  Remplacement {{{3
 
-nnoremap <f9>, :%s/\<\>//<left><left><left><left>
-vnoremap <f9>, :%s/\<\>//<left><left><left><left>
+nnoremap <f7>; :%s/\<\>//<left><left><left><left>
+vnoremap <f7>; :%s/\<\>//<left><left><left><left>
 
 " }}}3
 
@@ -1098,17 +1102,17 @@ nnoremap Y y$
 
 command! -nargs=1 GlobalYank :call biblio#global_yank(<q-args>, 'a')
 
-nnoremap <f9>y :GlobalYank<space>
+nnoremap <f7>y :GlobalYank<space>
 
 " Couper toutes les lignes correspondant à un motif
 
 command! -nargs=1 GlobalDelete :call biblio#global_delete(<q-args>, 'a')
 
-nnoremap <f9>d :GlobalDelete<space>
+nnoremap <f7>d :GlobalDelete<space>
 
 "  Copies provenant d’un autre logiciel
 
-nnoremap <f9>p :set paste!<cr>
+nnoremap <f7>p :set paste!<cr>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
@@ -1142,23 +1146,20 @@ inoremap <C-W> <C-G>u<C-W>
 
 "  Pliage {{{2
 
-nnoremap g( (
-nnoremap g) )
-
-vnoremap g( (
-vnoremap g) )
-
-nnoremap )) zjzx]z[z
-nnoremap (( zkzx[z
-
-vnoremap )) zjzx]z[z
-vnoremap (( zkzx[z
+nnoremap ]] ]z
+nnoremap [[ [z
 
 nnoremap )z ]z
 nnoremap (z [z
 
 vnoremap )z ]z
 vnoremap (z [z
+
+nnoremap )) zjzx]z[z
+nnoremap (( zkzx[z
+
+vnoremap )) zjzx]z[z
+vnoremap (( zkzx[z
 
 " }}}2
 
@@ -1169,6 +1170,10 @@ inoremap <PageDown> <C-N>
 
 "inoremap <C-Space> <C-X><C-O>
 "inoremap <M-Space> <C-X><C-L>
+
+" Date
+
+inoremap <m-d> <c-r>=strftime("%d %B %Y")<cr>
 
 " }}}2
 
@@ -1236,7 +1241,7 @@ cmap <m-d> <c-right><c-w>
 
 " Hauteur de la fenêtre de commande {{{3
 
-nnoremap <f9>c :set cmdheight=
+nnoremap <f7>c :set cmdheight=
 
 " }}}3
 
@@ -1257,28 +1262,28 @@ nnoremap <m-!> :exe '!'.getline('.')<CR>
 
 "  Orthographe {{{2
 
-nnoremap <silent> <f9>o :setlocal spell!<cr>
+nnoremap <silent> <f7>o :setlocal spell!<cr>
 
 " }}}2
 
 "  Informations {{{2
 
-nnoremap <f9>ih :echo biblio#highlight_group()<cr>
+nnoremap <f7>ih :echo biblio#highlight_group()<cr>
 
 " }}}2
 
 "  Shell {{{2
 
-nnoremap <f9>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap <f9>w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f7>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f7>w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 
-nnoremap <f9>h :tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f7>h :tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
 " Journal de bord {{{2
 
-nnoremap <f9>l :tabe ~/racine/log/captain<cr>
+nnoremap <f7>L :tabe ~/racine/log/captain<cr>
 
 " }}}2
 
@@ -1319,11 +1324,24 @@ nnoremap <silent> <M-n> :call InterrupteurNumerotationAbsolueRelative()<cr>
 
 " }}}3
 
+" Curseur {{{3
+
 set guicursor=
+			\n:block-Cursor/lCursor,
+			\v:block-vCursor,
+			\i:ver25-iCursor,
+			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
+			\r:hor15-iCursor,
+			\c:block-Cursor,
+			\ci:ver25,
+			\cr:hor25,
+			\sm:block
+
+" }}}3
 
 set termguicolors
 
-nnoremap <f9>l :set cursorline!<cr>
+nnoremap <f7>l :set cursorline!<cr>
 
 " }}}2
 
@@ -1362,8 +1380,9 @@ tnoremap <D-q> <C-\><C-n>:ls!<cr>:silent bd!<space>
 
 " Abréviations {{{2
 
-iab cad c’est-à-dire
-iab dd <c-r>=strftime("%H : %M %a %d %b %Y")<cr>
+"iab cad c’est-à-dire
+
+"iab dd <c-r>=strftime("%H : %M %a %d %b %Y")<cr>
 
 " Remplacé par le plugin cmdalias
 
@@ -1693,7 +1712,7 @@ set shada=
 	\:10000,
 	\/10000,
 	\@10000,
-	\n~/racine/hist/neovim/main.shada
+	\n~/racine/session/neovim/main.shada
 
 " Remplacé par wheel mru
 " 	\%30,

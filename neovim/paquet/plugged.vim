@@ -51,6 +51,11 @@ let g:plug_threads = 7
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" telescope
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+
 " Add plugins to &runtimepath
 
 call plug#end()

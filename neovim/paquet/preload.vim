@@ -52,16 +52,6 @@ let g:no_plugin_maps = 1
 
 " ------------------------------------
 
-" Brouillons {{{1
-
-" Backscratch {{{2
-
-nnoremap <F10> :Scratch<space>
-
-" }}}2
-
-" }}}1
-
 " Bouts de code (snippets, bits, modèles) {{{1
 
 "  UltiSnips (SirVer/ultisnips) {{{2
@@ -101,7 +91,7 @@ let g:UltiSnipsEditSplit = 'horizontal'
 
 let NERDCreateDefaultMappings = 0
 
-map <s-cr> <plug>NERDCommenterToggle
+map <f4> <plug>NERDCommenterToggle
 
 map \cc <plug>NERDCommenterToggle
 map \c<space> <plug>NERDCommenterComment
@@ -457,6 +447,10 @@ nmap ° <plug>(wheel-yank-plain)
 
 nmap <d-h> <plug>(wheel-history)
 
+nmap <m-cr> <plug>(wheel-switch-location)
+nmap <c-cr> <plug>(wheel-switch-circle)
+nmap <s-cr> <plug>(wheel-switch-torus)
+
 " }}}2
 
 " }}}1
@@ -621,6 +615,16 @@ nmap ) ]
 
 " }}}2
 
+" Easy align (junegunn/vim-easy-align) {{{1
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+"nmap ga <Plug>(EasyAlign)
+
+" }}}1
+
 " }}}1
 
 " Recherche & Remplacement {{{1
@@ -697,16 +701,14 @@ let g:increment_activator_filetype_candidates = {
 
 " Vimwiki {{{2
 
-" Per wiki settings
-
-" Common wiki {{{3
+" Common wiki settings {{{3
 
 let common_wiki = {}
 
 let common_wiki.ext = '.wiki'
 let common_wiki.list_margin = -1
 
-let common_wiki.index = 'index'
+let common_wiki.index = 'main'
 let common_wiki.diary_index = 'diary'
 let common_wiki.diary_header = 'Diary'
 let common_wiki.diary_sort = 'desc'
@@ -716,17 +718,15 @@ let common_wiki.automatic_nested_syntaxes = 1
 let common_wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
 
 let common_wiki.auto_export = 0
-let common_wiki.auto_toc = 1
-let common_wiki.auto_tags = 0
-let common_wiki.auto_diary_index = 0
+let common_wiki.auto_toc = 0
+let common_wiki.auto_tags = 1
+let common_wiki.auto_diary_index = 1
 
 let common_wiki.custom_wiki2html = ''
 let common_wiki.custom_wiki2html_args = ''
 let common_wiki.template_default =  'default'
 let common_wiki.template_ext = '.tpl'
-let common_wiki.css_name = 'style.css'
 let common_wiki.maxhi = 0
-
 
 " }}}3
 
@@ -734,9 +734,11 @@ let common_wiki.maxhi = 0
 
 let plain_wiki = deepcopy(common_wiki)
 
-let plain_wiki.path = '~/racine/plain/vimwiki/wiki'
-let plain_wiki.path_html = '~/racine/plain/vimwiki/html'
-let plain_wiki.template_path =  '~/racine/plain/vimwiki/template'
+let plain_wiki.path = '~/racine/wiki/plain/wiki'
+let plain_wiki.path_html = '~/racine/wiki/plain/html'
+let plain_wiki.template_path =  '~/racine/wiki/plain/template'
+let plain_wiki.index = 'main'
+let plain_wiki.css_name = 'style.css'
 
 " }}}3
 
@@ -744,9 +746,11 @@ let plain_wiki.template_path =  '~/racine/plain/vimwiki/template'
 
 let site_wiki = deepcopy(common_wiki)
 
-let site_wiki.path = '~/racine/site/vimwiki/wiki'
-let site_wiki.path_html = '~/racine/site/vimwiki/html'
-let plain_wiki.template_path =  '~/racine/site/vimwiki/template'
+let site_wiki.path = '~/racine/wiki/site/wiki'
+let site_wiki.path_html = '~/racine/wiki/site/html'
+let site_wiki.template_path =  '~/racine/wiki/site/template'
+let site_wiki.index = 'index'
+let site_wiki.css_name = 'style/defaut.css'
 
 " }}}3
 
@@ -771,7 +775,7 @@ let g:vimwiki_hl_headers = 0
 let g:vimwiki_hl_cb_checked = 0
 let g:vimwiki_global_ext = 0
 let g:vimwiki_menu = 'Vimwiki'
-let g:vimwiki_use_mouse = 0
+let g:vimwiki_use_mouse = 1
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_list_ignore_newline = 1
 let g:vimwiki_text_ignore_newline = 1

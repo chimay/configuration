@@ -1,8 +1,6 @@
 " vim: set filetype=vim:
 
-if exists('*minpac#init')
-
-	" Minpac is loaded.
+if exists('g:loaded_minpac')
 
 	call minpac#init()
 
@@ -18,7 +16,6 @@ if exists('*minpac#init')
 
 	call minpac#add('tpope/vim-repeat', { 'type' : 'start' })
 
-	call minpac#add('hauleth/vim-backscratch', { 'type' : 'start' })
 	call minpac#add('urbainvaes/vim-ripple', { 'type' : 'start' })
 
 	call minpac#add('vim-scripts/CmdlineComplete', { 'type' : 'start' })
@@ -37,6 +34,7 @@ if exists('*minpac#init')
 	call minpac#add('mbbill/undotree', { 'type' : 'start' })
 
 	call minpac#add('tommcdo/vim-exchange', { 'type' : 'start' })
+	call minpac#add('junegunn/vim-easy-align', { 'type' : 'start' })
 	" requis par LineJuggler
 	call minpac#add('vim-scripts/ingo-library', { 'type' : 'start' })
 	call minpac#add('vim-scripts/LineJuggler', { 'type' : 'start' })
@@ -64,15 +62,25 @@ if exists('*minpac#init')
 
 	call minpac#add('justinmk/vim-dirvish', { 'type' : 'start' })
 
+	call minpac#add('vimwiki/vimwiki', { 'type' : 'start' })
 	call minpac#add('masukomi/vim-markdown-folding', { 'type' : 'start' })
 	call minpac#add('mzlogin/vim-markdown-toc', { 'type' : 'start' })
+
+	" Calculatrice
+	call minpac#add('arecarn/crunch.vim', { 'type' : 'start' })
 
 	" Plugins dans opt
 	" ------------------------------
 
+	call minpac#add('nvim-lua/popup.nvim', { 'type' : 'opt' })
+	call minpac#add('nvim-lua/plenary.nvim', { 'type' : 'opt' })
+	call minpac#add('nvim-telescope/telescope.nvim', { 'type' : 'opt' })
+
 	" requis par cmdalias
 	call minpac#add('coot/CRDispatcher', { 'type' : 'opt' })
 	call minpac#add('coot/cmdalias_vim', { 'type' : 'opt' })
+
+	call minpac#add('hauleth/vim-backscratch', { 'type' : 'opt' })
 
 	call minpac#add('jceb/vim-orgmode', { 'type' : 'opt' })
 	call minpac#add('vimoutliner/vimoutliner', { 'type' : 'opt' })
@@ -87,7 +95,6 @@ if exists('*minpac#init')
 	call minpac#add('Shougo/unite-outline', { 'type' : 'opt' })
 	call minpac#add('Shougo/unite.vim', { 'type' : 'opt' })
 	call minpac#add('Shougo/vimfiler.vim', { 'type' : 'opt' })
-	call minpac#add('arecarn/crunch.vim', { 'type' : 'opt' })
 	call minpac#add('arecarn/selection.vim', { 'type' : 'opt' })
 	call minpac#add('brettanomyces/nvim-terminus', { 'type' : 'opt' })
 	call minpac#add('chrisbra/vim_faq', { 'type' : 'opt' })
@@ -95,12 +102,12 @@ if exists('*minpac#init')
 	call minpac#add('dhruvasagar/vim-table-mode', { 'type' : 'opt' })
 	call minpac#add('eugen0329/vim-esearch', { 'type' : 'opt' })
 	call minpac#add('flazz/vim-colorschemes', { 'type' : 'opt' })
+	call minpac#add('cideM/yui', { 'type' : 'opt' })
 	call minpac#add('francoiscabrol/ranger.vim', { 'type' : 'opt' })
 	call minpac#add('godlygeek/tabular', { 'type' : 'opt' })
 	call minpac#add('hewes/unite-gtags', { 'type' : 'opt' })
 	call minpac#add('honza/vim-snippets', { 'type' : 'opt' })
 	call minpac#add('jamessan/vim-gnupg', { 'type' : 'opt' })
-	call minpac#add('junegunn/vim-easy-align', { 'type' : 'opt' })
 	call minpac#add('kana/vim-submode', { 'type' : 'opt' })
 	call minpac#add('kassio/neoterm', { 'type' : 'opt' })
 	call minpac#add('kmnk/vim-unite-giti', { 'type' : 'opt' })
@@ -118,7 +125,6 @@ if exists('*minpac#init')
 	call minpac#add('sk1418/QFGrep', { 'type' : 'opt' })
 	call minpac#add('t9md/vim-textmanip', { 'type' : 'opt' })
 	call minpac#add('tacroe/unite-mark', { 'type' : 'opt' })
-	call minpac#add('terryma/vim-multiple-cursors', { 'type' : 'opt' })
 	call minpac#add('thinca/vim-visualstar', { 'type' : 'opt' })
 	call minpac#add('tomtom/tlib_vim', { 'type' : 'opt' })
 	call minpac#add('tpope/vim-abolish', { 'type' : 'opt' })
