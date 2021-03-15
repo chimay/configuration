@@ -29,12 +29,6 @@ autocmd TextYankPost * call wheel#codex#add()
 
 " }}}1
 
-" FZF {{{1
-
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
-
-" }}}1
-
 " Sneak {{{1
 
 autocmd ColorScheme * hi Sneak

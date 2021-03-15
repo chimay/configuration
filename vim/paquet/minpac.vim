@@ -10,7 +10,7 @@ if &compatible
   set nocompatible
 endif
 
-if exists('*minpac#init')
+if exists('g:loaded_minpac')
 
 	" Minpac is loaded.
 
@@ -27,65 +27,65 @@ if exists('*minpac#init')
 	" Vim specific
 	call minpac#add('drmikehenry/vim-fixkey', { 'type' : 'start' })
 
-	call minpac#add('tpope/vim-repeat', { 'type' : 'start' })
-
-	call minpac#add('hauleth/vim-backscratch', { 'type' : 'start' })
-	call minpac#add('urbainvaes/vim-ripple', { 'type' : 'start' })
-
-	call minpac#add('justinmk/vim-sneak', { 'type' : 'start' })
-
-	call minpac#add('mg979/vim-visual-multi', { 'type' : 'start' })
-
-	call minpac#add('stefandtw/quickfix-reflector.vim', { 'type' : 'start' })
-	call minpac#add('chrisbra/NrrwRgn', { 'type' : 'start' })
-
-	call minpac#add('roxma/vim-hug-neovim-rpc', { 'type' : 'start' })
-	call minpac#add('roxma/nvim-yarp', { 'type' : 'start' })
-	call minpac#add('Shougo/deoplete.nvim', { 'type' : 'start' })
-	call minpac#add('SirVer/ultisnips', { 'type' : 'start' })
-	call minpac#add('jiangmiao/auto-pairs', { 'type' : 'start' })
-
-	call minpac#add('machakann/vim-highlightedyank', { 'type' : 'start' })
-
-	call minpac#add('kana/vim-textobj-entire', { 'type' : 'start' })
-	call minpac#add('kana/vim-textobj-fold', { 'type' : 'start' })
-	call minpac#add('kana/vim-textobj-function', { 'type' : 'start' })
-	call minpac#add('kana/vim-textobj-indent', { 'type' : 'start' })
-	call minpac#add('kana/vim-textobj-line', { 'type' : 'start' })
-	call minpac#add('kana/vim-textobj-user', { 'type' : 'start' })
-	call minpac#add('machakann/vim-textobj-delimited', { 'type' : 'start' })
-	call minpac#add('thinca/vim-textobj-between', { 'type' : 'start' })
-	call minpac#add('thinca/vim-textobj-comment', { 'type' : 'start' })
-	call minpac#add('thinca/vim-visualstar', { 'type' : 'start' })
-
-	call minpac#add('vim-scripts/ingo-library', { 'type' : 'start' })
-	call minpac#add('vim-scripts/LineJuggler', { 'type' : 'start' })
-	call minpac#add('vim-scripts/LineJugglerCommands', { 'type' : 'start' })
-
-	call minpac#add('nishigori/increment-activator', { 'type' : 'start' })
-
-	call minpac#add('tomtom/tcomment_vim', { 'type' : 'start' })
-	call minpac#add('scrooloose/nerdcommenter', { 'type' : 'start' })
-
-	call minpac#add('vim-scripts/utl.vim', { 'type' : 'start' })
-
-	call minpac#add('vim-scripts/DeleteTrailingWhitespace', { 'type' : 'start' })
-
-	call minpac#add('vim-scripts/VisIncr', { 'type' : 'start' })
-	call minpac#add('tpope/vim-surround', { 'type' : 'start' })
-
-	call minpac#add('justinmk/vim-dirvish', { 'type' : 'start' })
-
 	call minpac#add('jamessan/vim-gnupg', { 'type' : 'start' })
-
-	call minpac#add('masukomi/vim-markdown-folding', { 'type' : 'start' })
+	call minpac#add('stefandtw/quickfix-reflector.vim', { 'type' : 'start' })
 
 	" Plugins dans opt
 	" ------------------------------
 
+	call minpac#add('tomtom/tcomment_vim', { 'type' : 'opt' })
+	call minpac#add('scrooloose/nerdcommenter', { 'type' : 'opt' })
+
+	call minpac#add('vim-scripts/ingo-library', { 'type' : 'opt' })
+	call minpac#add('vim-scripts/LineJuggler', { 'type' : 'opt' })
+	call minpac#add('vim-scripts/LineJugglerCommands', { 'type' : 'opt' })
+
 	" Requis par cmdalias
 	call minpac#add('coot/CRDispatcher', { 'type' : 'opt' })
 	call minpac#add('coot/cmdalias_vim', { 'type' : 'opt' })
+
+	call minpac#add('tpope/vim-repeat', { 'type' : 'opt' })
+
+	call minpac#add('hauleth/vim-backscratch', { 'type' : 'opt' })
+	call minpac#add('urbainvaes/vim-ripple', { 'type' : 'opt' })
+
+	call minpac#add('justinmk/vim-sneak', { 'type' : 'opt' })
+
+	call minpac#add('mg979/vim-visual-multi', { 'type' : 'opt' })
+
+	call minpac#add('chrisbra/NrrwRgn', { 'type' : 'opt' })
+
+	call minpac#add('roxma/vim-hug-neovim-rpc', { 'type' : 'opt' })
+	call minpac#add('roxma/nvim-yarp', { 'type' : 'opt' })
+	call minpac#add('Shougo/deoplete.nvim', { 'type' : 'opt' })
+	call minpac#add('SirVer/ultisnips', { 'type' : 'opt' })
+	call minpac#add('jiangmiao/auto-pairs', { 'type' : 'opt' })
+
+	call minpac#add('machakann/vim-highlightedyank', { 'type' : 'opt' })
+
+	call minpac#add('kana/vim-textobj-entire', { 'type' : 'opt' })
+	call minpac#add('kana/vim-textobj-fold', { 'type' : 'opt' })
+	call minpac#add('kana/vim-textobj-function', { 'type' : 'opt' })
+	call minpac#add('kana/vim-textobj-indent', { 'type' : 'opt' })
+	call minpac#add('kana/vim-textobj-line', { 'type' : 'opt' })
+	call minpac#add('kana/vim-textobj-user', { 'type' : 'opt' })
+	call minpac#add('machakann/vim-textobj-delimited', { 'type' : 'opt' })
+	call minpac#add('thinca/vim-textobj-between', { 'type' : 'opt' })
+	call minpac#add('thinca/vim-textobj-comment', { 'type' : 'opt' })
+	call minpac#add('thinca/vim-visualstar', { 'type' : 'opt' })
+
+	call minpac#add('nishigori/increment-activator', { 'type' : 'opt' })
+
+	call minpac#add('vim-scripts/utl.vim', { 'type' : 'opt' })
+
+	call minpac#add('vim-scripts/DeleteTrailingWhitespace', { 'type' : 'opt' })
+
+	call minpac#add('vim-scripts/VisIncr', { 'type' : 'opt' })
+	call minpac#add('tpope/vim-surround', { 'type' : 'opt' })
+
+	call minpac#add('justinmk/vim-dirvish', { 'type' : 'opt' })
+
+	call minpac#add('masukomi/vim-markdown-folding', { 'type' : 'opt' })
 
 	call minpac#add('Shougo/denite.nvim', { 'type' : 'opt' })
 	call minpac#add('Shougo/neobundle-vim-recipes', { 'type' : 'opt' })
@@ -155,7 +155,7 @@ if ! exists('*Pack_init')
 		if ! exists('*minpac#init')
 			packadd minpac
 		endif
-		source ~/racine/config/edit/neovim/paquet/minpac.vim
+		source ~/racine/config/edit/vim/paquet/minpac.vim
 	endfu
 endif
 

@@ -121,7 +121,7 @@ augroup END
 
 augroup FichiersMarkdown
 	au!
-	au bufwritepost **.md !pandoc -t html % -o %:r.html
+	"au bufwritepost **.md !pandoc -t html % -o %:r.html
 augroup END
 
 " }}}2

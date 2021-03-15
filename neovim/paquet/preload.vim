@@ -91,30 +91,14 @@ let g:UltiSnipsEditSplit = 'horizontal'
 
 let NERDCreateDefaultMappings = 0
 
-map <f4> <plug>NERDCommenterToggle
-
-map \cc <plug>NERDCommenterToggle
-map \c<space> <plug>NERDCommenterComment
-map \cn <plug>NERDCommenterNest
-map \cm <plug>NERDCommenterMinimal
-map \ci <plug>NERDCommenterInvert
-map \cs <plug>NERDCommenterSexy
-map \cy <plug>NERDCommenterYank
-map \c$ <plug>NERDCommenterToEOL
-map \cA <plug>NERDCommenterAppend
-map \cI <plug>NERDCommenterInsert
-map \ca <plug>NERDCommenterAltDelims
-map \cl <plug>NERDCommenterAlignLeft
-map \cb <plug>NERDCommenterAlignBoth
-map \cu <plug>NERDCommenterUncommentLine
+map <d-c> <plug>NERDCommenterToggle
 
 " }}}2
 
 "  TComment (tomtom/tcomment_vim) {{{2
 
 let g:tcomment_textobject_inlinecomment = '\tci'
-
-let g:tcommentBlankLines = 0
+let g:tcommentBlankLines                = 0
 
 let g:tcomment#options = {
 	\ 'col': 1

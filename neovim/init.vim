@@ -898,7 +898,7 @@ command! -nargs=? -complete=filetype EditSyntaxPlugin
 
 nnoremap <f5>s :<c-u>EditSyntaxPlugin<cr>
 
-nnoremap <f6> :wa<cr>
+nnoremap <d-cr> :wa<cr>
 
 nnoremap <f7>n :new <bar> only<cr>
 nnoremap <f7>! :e!<cr>

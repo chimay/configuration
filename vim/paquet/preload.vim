@@ -141,28 +141,13 @@ let g:UltiSnipsEditSplit = 'horizontal'
 
 let NERDCreateDefaultMappings = 0
 
-map <s-cr> <plug>NERDCommenterToggle
-
-map <C-F11>cc <plug>NERDCommenterToggle
-map <C-F11>c<space> <plug>NERDCommenterComment
-map <C-F11>cn <plug>NERDCommenterNest
-map <C-F11>cm <plug>NERDCommenterMinimal
-map <C-F11>ci <plug>NERDCommenterInvert
-map <C-F11>cs <plug>NERDCommenterSexy
-map <C-F11>cy <plug>NERDCommenterYank
-map <C-F11>c$ <plug>NERDCommenterToEOL
-map <C-F11>cA <plug>NERDCommenterAppend
-map <C-F11>cI <plug>NERDCommenterInsert
-map <C-F11>ca <plug>NERDCommenterAltDelims
-map <C-F11>cl <plug>NERDCommenterAlignLeft
-map <C-F11>cb <plug>NERDCommenterAlignBoth
-map <C-F11>cu <plug>NERDCommenterUncommentLine
+map <f4> <plug>NERDCommenterToggle
 
 " }}}2
 
 "  TComment (tomtom/tcomment_vim) {{{2
 
-let g:tcommentTextObject_inlineComment = '<C-F11>ic'
+let g:tcommentTextObject_inlineComment = '\tci'
 
 let g:tcommentBlankLines = 0
 
@@ -224,84 +209,6 @@ let g:AutoPairsMapSpace = 0
 let g:AutoPairsShortcutToggle = '<C-F11><C-F11>('
 
 imap <s-space>  <C-R>=AutoPairsSpace()<CR>
-
-" }}}3
-
-" }}}2
-
-" }}}1
-
-" Mouvement {{{1
-
-" Sneak (justinmk/vim-sneak) {{{2
-
-" Mappings {{{3
-
-" 2-character Sneak (default)
-
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-
-" 1-character enhanced 'f'
-
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-
-" visual-mode
-
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-
-" operator-pending-mode
-
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-
-" 1-character enhanced 't'
-
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-
-" visual-mode
-
-xmap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
-
-" operator-pending-mode
-
-omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
-
-" }}}3
-
-" Options {{{3
-
-let g:sneak#label = 0
-let g:sneak#label_esc = "\<space>"
-let g:sneak#target_labels = "ù*$àç&é§è!µ£~@#bwefthjklnu"
-let g:sneak#prompt = 'sneak > '
-let g:sneak#f_reset      = 0
-let g:sneak#s_next       = 0
-let g:sneak#absolute_dir = 1
-let g:sneak#textobject_z = 1
-let g:sneak#use_ic_scs   = 1
-let g:sneak#map_netrw    = 1
-
-highlight Sneak guibg=black guifg=#7b3c11 gui=bold,underline,italic
-highlight SneakScope guibg=#7b3c11 guifg=black gui=bold,underline,italic
-
-highlight Sneak cterm=reverse
-highlight SneakScope cterm=reverse
-
-" highlight link Sneak None
-" " Needed if a plugin sets the colorscheme dynamically:
-" autocmd User SneakLeave highlight clear Sneak
 
 " }}}3
 
@@ -429,7 +336,7 @@ let g:wheel_config={}
 let g:wheel_config.maxim={}
 
 " Auto read torus file on startup if > 0
-let g:wheel_config.autoread = 1
+let g:wheel_config.autoread = 0
 " Auto write torus file on exit if > 0
 let g:wheel_config.autowrite = 1
 " The file where toruses and circles will be stored and read
@@ -472,6 +379,10 @@ set tabline=%!wheel#status#tabline()
 
 nmap <silent> <c-l> :nohl<cr><plug>(wheel-spiral-cursor)
 imap <silent> <c-l> <esc>:nohl<cr><plug>(wheel-spiral-cursor)a
+
+nmap <m-cr> <plug>(wheel-switch-location)
+nmap <c-cr> <plug>(wheel-switch-circle)
+nmap <s-cr> <plug>(wheel-switch-torus)
 
 " }}}2
 
