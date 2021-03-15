@@ -104,6 +104,7 @@ To be as intuitive as possible, some conventions are applied :
   - In tab oriented applications, move focus between tabs :
     + Ctrl + page up / down
     + In pager context : ^ and $
+      * w3m, elinks, ...
     + In (neo)vim : <m-^> and <m-$> in normal mode
   - In buffers & tabs oriented applications like vim with wheel or emacs with torus :
     + Next / previous file in group : Ctrl + page up / down
