@@ -86,7 +86,7 @@
   <SC>
     <key>instruments</key>
     <seq>O</seq>
-    <seq>Alt+I</seq>
+    <seq>Alt+O</seq>
     </SC>
   <SC>
     <key>note-input</key>
@@ -102,7 +102,7 @@
     </SC>
   <SC>
     <key>note-input-rhythm</key>
-    <seq>U</seq>
+    <seq>Alt+I</seq>
     </SC>
   <SC>
     <key>note-input-realtime-auto</key>
