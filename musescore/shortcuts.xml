@@ -10,7 +10,8 @@
     </SC>
   <SC>
     <key>file-save</key>
-    <std>5</std>
+    <seq>Ctrl+S</seq>
+    <seq>W</seq>
     </SC>
   <SC>
     <key>file-save-online</key>
@@ -18,6 +19,7 @@
   <SC>
     <key>file-save-as</key>
     <seq>Ctrl+Shift+S</seq>
+    <seq>Shift+W</seq>
     </SC>
   <SC>
     <key>file-save-selection</key>
@@ -27,7 +29,7 @@
     </SC>
   <SC>
     <key>file-export</key>
-    <seq>Alt+X</seq>
+    <seq>Shift+O</seq>
     </SC>
   <SC>
     <key>file-import-pdf</key>
@@ -42,7 +44,6 @@
     </SC>
   <SC>
     <key>print</key>
-    <seq>Ctrl+P</seq>
     </SC>
   <SC>
     <key>undo</key>
@@ -54,15 +55,16 @@
     </SC>
   <SC>
     <key>cut</key>
-    <seq>Ctrl+X</seq>
+    <seq>Ctrl+D</seq>
     </SC>
   <SC>
     <key>copy</key>
     <seq>Ctrl+C</seq>
+    <seq>Y</seq>
+    <seq>Alt+Y</seq>
     </SC>
   <SC>
     <key>paste</key>
-    <seq>Ctrl+V</seq>
     </SC>
   <SC>
     <key>paste-half</key>
@@ -74,7 +76,8 @@
     </SC>
   <SC>
     <key>paste-special</key>
-    <seq>Ctrl+Shift+V</seq>
+    <seq>P</seq>
+    <seq>Ctrl+V</seq>
     </SC>
   <SC>
     <key>swap</key>
@@ -82,7 +85,8 @@
     </SC>
   <SC>
     <key>instruments</key>
-    <seq>Shift+I</seq>
+    <seq>O</seq>
+    <seq>Alt+I</seq>
     </SC>
   <SC>
     <key>note-input</key>
@@ -90,11 +94,11 @@
     </SC>
   <SC>
     <key>note-input-steptime</key>
-    <seq>O</seq>
+    <seq>I</seq>
     </SC>
   <SC>
     <key>note-input-repitch</key>
-    <seq>P</seq>
+    <seq>Ctrl+I</seq>
     </SC>
   <SC>
     <key>note-input-rhythm</key>
@@ -108,7 +112,7 @@
     </SC>
   <SC>
     <key>note-input-timewise</key>
-    <seq>I</seq>
+    <seq>Shift+I</seq>
     </SC>
   <SC>
     <key>pitch-spell</key>
@@ -232,6 +236,7 @@
   <SC>
     <key>chord-tie</key>
     <seq>Alt++</seq>
+    <seq>Alt+&amp;</seq>
     </SC>
   <SC>
     <key>insert-a</key>
@@ -287,7 +292,7 @@
     </SC>
   <SC>
     <key>add-marcato</key>
-    <seq>Shift+O</seq>
+    <seq>Ctrl+Shift+O</seq>
     </SC>
   <SC>
     <key>add-sforzato</key>
@@ -315,7 +320,6 @@
     </SC>
   <SC>
     <key>flip</key>
-    <seq>X</seq>
     </SC>
   <SC>
     <key>pitch-up</key>
@@ -335,6 +339,8 @@
   <SC>
     <key>up-chord</key>
     <seq>Alt+Up</seq>
+    <seq>Shift+K</seq>
+    <seq>Alt+K</seq>
     </SC>
   <SC>
     <key>top-chord</key>
@@ -362,6 +368,8 @@
   <SC>
     <key>down-chord</key>
     <seq>Alt+Down</seq>
+    <seq>Shift+J</seq>
+    <seq>Alt+J</seq>
     </SC>
   <SC>
     <key>next-segment-element</key>
@@ -412,7 +420,6 @@
   <SC>
     <key>prev-measure</key>
     <seq>Ctrl+Left</seq>
-    <seq>Shift+H</seq>
     </SC>
   <SC>
     <key>prev-system</key>
@@ -434,7 +441,6 @@
   <SC>
     <key>next-measure</key>
     <seq>Ctrl+Right</seq>
-    <seq>Shift+L</seq>
     </SC>
   <SC>
     <key>next-system</key>
@@ -460,6 +466,7 @@
   <SC>
     <key>select-prev-chord</key>
     <seq>Shift+Left</seq>
+    <seq>Shift+H</seq>
     </SC>
   <SC>
     <key>select-prev-measure</key>
@@ -468,6 +475,7 @@
   <SC>
     <key>select-next-chord</key>
     <seq>Shift+Right</seq>
+    <seq>Shift+L</seq>
     </SC>
   <SC>
     <key>select-section</key>
@@ -562,8 +570,7 @@
     </SC>
   <SC>
     <key>full-measure-rest</key>
-    <seq>Ctrl+Shift+Del</seq>
-    <seq>Ctrl+Shift+Backspace</seq>
+    <seq>Alt+Del</seq>
     </SC>
   <SC>
     <key>time-delete</key>
@@ -571,20 +578,18 @@
     </SC>
   <SC>
     <key>append-measure</key>
-    <seq>Ctrl+B</seq>
     </SC>
   <SC>
     <key>append-measures</key>
-    <seq>Alt+Shift+B</seq>
-    <seq>Alt+B</seq>
+    <seq>Shift+M</seq>
+    <seq>Alt+End</seq>
     </SC>
   <SC>
     <key>insert-measure</key>
-    <seq>Ins</seq>
     </SC>
   <SC>
     <key>insert-measures</key>
-    <seq>Ctrl+Ins</seq>
+    <seq>Ins</seq>
     </SC>
   <SC>
     <key>insert-hbox</key>
@@ -713,7 +718,6 @@
     </SC>
   <SC>
     <key>tie</key>
-    <seq>+</seq>
     <seq>&amp;</seq>
     </SC>
   <SC>
@@ -776,20 +780,22 @@
   <SC>
     <key>voice-1</key>
     <seq>Ctrl+Alt+1</seq>
-    <seq>Ç</seq>
+    <seq>È</seq>
     </SC>
   <SC>
     <key>voice-2</key>
     <seq>Ctrl+Alt+2</seq>
-    <seq>À</seq>
+    <seq>!</seq>
     </SC>
   <SC>
     <key>voice-3</key>
     <seq>Ctrl+Alt+3</seq>
+    <seq>Ç</seq>
     </SC>
   <SC>
     <key>voice-4</key>
     <seq>Ctrl+Alt+4</seq>
+    <seq>À</seq>
     </SC>
   <SC>
     <key>midi-on</key>
@@ -821,7 +827,7 @@
   <SC>
     <key>toggle-palette</key>
     <seq>F6</seq>
-    <seq>§</seq>
+    <seq>Ctrl+P</seq>
     </SC>
   <SC>
     <key>toggle-playpanel</key>
@@ -933,7 +939,7 @@
     </SC>
   <SC>
     <key>rehearsalmark-text</key>
-    <seq>Ctrl+M</seq>
+    <seq>M</seq>
     </SC>
   <SC>
     <key>instrument-change-text</key>
@@ -1010,15 +1016,19 @@
     </SC>
   <SC>
     <key>voice-x12</key>
+    <seq>X</seq>
     </SC>
   <SC>
     <key>voice-x13</key>
+    <seq>Ctrl+X</seq>
     </SC>
   <SC>
     <key>voice-x14</key>
+    <seq>Shift+X</seq>
     </SC>
   <SC>
     <key>voice-x23</key>
+    <seq>Alt+X</seq>
     </SC>
   <SC>
     <key>voice-x24</key>
@@ -1123,7 +1133,6 @@
     </SC>
   <SC>
     <key>mirror-note</key>
-    <seq>Shift+X</seq>
     </SC>
   <SC>
     <key>edit-style</key>
@@ -1146,18 +1155,19 @@
   <SC>
     <key>synth-control</key>
     <seq>F12</seq>
+    <seq>Alt+S</seq>
     </SC>
   <SC>
     <key>double-duration</key>
-    <seq>W</seq>
+    <seq>*</seq>
     </SC>
   <SC>
     <key>half-duration</key>
-    <seq>Q</seq>
+    <seq>-</seq>
     </SC>
   <SC>
     <key>inc-duration-dotted</key>
-    <seq>Shift+W</seq>
+    <seq>+</seq>
     </SC>
   <SC>
     <key>dec-duration-dotted</key>
@@ -1185,7 +1195,6 @@
     </SC>
   <SC>
     <key>enh-current</key>
-    <seq>Ctrl+J</seq>
     </SC>
   <SC>
     <key>revision</key>
@@ -1210,7 +1219,7 @@
     </SC>
   <SC>
     <key>toggle-piano</key>
-    <seq>Shift+P</seq>
+    <seq>Alt+C</seq>
     </SC>
   <SC>
     <key>toggle-scorecmp-tool</key>
@@ -1223,6 +1232,7 @@
     </SC>
   <SC>
     <key>join-measures</key>
+    <seq>Ctrl+J</seq>
     </SC>
   <SC>
     <key>page-settings</key>
@@ -1249,8 +1259,8 @@
     </SC>
   <SC>
     <key>inspector</key>
-    <seq>!</seq>
     <seq>F8</seq>
+    <seq>°</seq>
     </SC>
   <SC>
     <key>resource-manager</key>
@@ -1281,9 +1291,8 @@
     </SC>
   <SC>
     <key>figured-bass</key>
-    <seq>Ctrl+D</seq>
-    <seq></seq>
     <seq>F3</seq>
+    <seq>Alt+D</seq>
     </SC>
   <SC>
     <key>transpose-up</key>
@@ -1293,12 +1302,10 @@
     </SC>
   <SC>
     <key>masterpalette</key>
-    <seq>F7</seq>
-    <seq>È</seq>
+    <seq>§</seq>
     </SC>
   <SC>
     <key>key-signatures</key>
-    <seq>Shift+K</seq>
     </SC>
   <SC>
     <key>time-signatures</key>
@@ -1398,7 +1405,6 @@
     </SC>
   <SC>
     <key>pad-note-increase-TAB</key>
-    <seq>W</seq>
     </SC>
   <SC>
     <key>pad-note-decrease-TAB</key>
@@ -1406,7 +1412,6 @@
     </SC>
   <SC>
     <key>rest-TAB</key>
-    <seq>°</seq>
     </SC>
   <SC>
     <key>pad-rest-TAB</key>
@@ -1533,7 +1538,7 @@
     </SC>
   <SC>
     <key>toggle-mmrest</key>
-    <seq>Shift+M</seq>
+    <seq>Alt+M</seq>
     </SC>
   <SC>
     <key>toggle-hide-empty</key>
@@ -1591,13 +1596,13 @@
     </SC>
   <SC>
     <key>del-empty-measures</key>
+    <seq>Ctrl+Backspace</seq>
     </SC>
   <SC>
     <key>unroll-repeats</key>
     </SC>
   <SC>
     <key>toggle-insert-mode</key>
-    <seq>Ctrl+I</seq>
     </SC>
   <SC>
     <key>show-tours</key>
