@@ -27,6 +27,8 @@ let g:colors_name = "ornuit"
 " #434343
 " #120507
 
+" #947454
+
 " }}}1
 
 " Mode gui {{{1
@@ -54,6 +56,8 @@ hi Conditional		guifg=#872e30		guibg=black			gui=NONE
 hi Macro			guifg=#5B3C11		guibg=black			gui=NONE
 hi PreProc 			guifg=#5B3C11		guibg=black			gui=NONE
 
+hi Statement		guifg=#5B3C11		guibg=black			gui=NONE
+
 " }}}2
 
 " More prompt {{{2
@@ -65,8 +69,11 @@ hi Question			guifg=#872E30		guibg=black			gui=NONE
 
 " Erreurs {{{2
 
-hi Error 			guifg=darkred		guibg=black			gui=undercurl
-hi ErrorMsg			guifg=darkred		guibg=black			gui=undercurl
+" hi Error 			guifg=darkred		guibg=black			gui=undercurl
+" hi ErrorMsg			guifg=darkred		guibg=black			gui=undercurl
+
+hi Error 			guifg=darkred		guibg=black			gui=NONE
+hi ErrorMsg			guifg=darkred		guibg=black			gui=NONE
 
 " }}}2
 
@@ -75,12 +82,12 @@ hi ErrorMsg			guifg=darkred		guibg=black			gui=undercurl
 hi Cursor			guifg=NONE			guibg=NONE			gui=reverse
 hi Cursor2			guifg=NONE			guibg=NONE			gui=reverse
 
-hi iCursor			guifg=NONE			guibg=NONE	   		gui=reverse
+hi iCursor			guifg=#5b3c11		guibg=NONE	   		gui=reverse
 hi lCursor			guifg=NONE			guibg=NONE	   		gui=reverse
 hi vCursor			guifg=#5B3C11		guibg=#4E1609		gui=NONE
 
 hi CursorLineNr		guifg=#5B3C11		guibg=NONE			gui=NONE
-hi CursorLine		guifg=NONE			guibg=#120507		gui=NONE
+hi CursorLine		guifg=NONE			guibg=#120507		gui=reverse,bold
 hi CursorColumn		guifg=NONE			guibg=#120507		gui=NONE
 
 hi TermCursor		guifg=NONE			guibg=#5b3c11		gui=NONE
@@ -144,10 +151,8 @@ hi MatchParen		guifg=darkred		guibg=black			gui=NONE
 
 " Caractères spéciaux & invisibles {{{2
 
-highlight SpecialKey	guifg=#751212
-
-"highlight NonText		guifg=#230707
-highlight NonText		guifg=#751212
+highlight SpecialKey	guifg=#3b3c11
+highlight NonText		guifg=#3b3c11
 
 " }}}2
 
@@ -260,7 +265,7 @@ hi UtlUrl		guifg=NONE			guibg=NONE		gui=underline
 
 hi Normal			ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
-hi Comment			ctermfg=DarkGrey	ctermbg=NONE		cterm=NONE
+hi Comment			ctermfg=DarkGrey	ctermbg=NONE		cterm=italic
 hi Constant     	ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi Delimiter		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi Number			ctermfg=NONE		ctermbg=NONE		cterm=NONE
@@ -270,7 +275,7 @@ hi Conceal			ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi LineNr			ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi CursorLineNr		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
-hi CursorLine		ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi CursorLine		ctermfg=NONE		ctermbg=NONE		cterm=reverse
 hi CursorColumn		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
 hi Macro			ctermfg=NONE		ctermbg=NONE		cterm=NONE
