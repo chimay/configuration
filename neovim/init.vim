@@ -159,7 +159,7 @@ set browsedir=current
 
 set backup
 
-set backupdir=~/racine/varia/backup,.
+set backupdir=~/racine/varia/backup/neovim,.
 
 set backupext=~
 
@@ -178,7 +178,7 @@ set backupskip=/tmp/*,/etc/*,mutt-*-*-*-*
 "  Fichier de récupération en cas de crash {{{2
 
 set swapfile
-set directory=~/racine/varia/autosave
+set directory=~/racine/varia/autosave/neovim
 
 "set noswapfile
 
@@ -201,7 +201,7 @@ if exists("&undofile")
 
 	set undoreload=12743
 
-	set undodir=~/racine/varia/undo,.
+	set undodir=~/racine/varia/undo/neovim,.
 endif
 
 " }}}1
@@ -975,11 +975,17 @@ nnoremap <f7>t :tabnew<cr>
 nnoremap <m-^> gT
 nnoremap <m-$> gt
 
+nnoremap <c-left> gT
+nnoremap <c-right> gt
+
 nnoremap (T :tabfirst<cr>
 nnoremap )T :tablast<cr>
 
 nnoremap (t :tabm -1<cr>
 nnoremap )t :tabm +1<cr>
+
+nnoremap <c-up> :tabm -1<cr>
+nnoremap <c-down> :tabm +1<cr>
 
 " }}}2
 
@@ -1486,17 +1492,12 @@ set scrolljump=1
 
 "  Tabulation et espaces de fin de lignes {{{2
 
-"set listchars+=tab:>-,trail:-
+set list
 
-"set listchars+=tab:>─
-"set listchars+=eol:¬
+set listchars=
 
-set listchars=tab:▶\ ,eol:╋
-set listchars+=trail:•,nbsp:▒
-
-"set listchars+=precedes:←,extends:→
+set listchars+=tab:┆\ ,nbsp:▒
 set listchars+=precedes:❮,extends:❯
-
 set listchars+=conceal:Δ
 
 " }}}2
