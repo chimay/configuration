@@ -73,6 +73,10 @@ export ZDOTDIR=$HOME
 
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
+# Default command with redir
+export NULLCMD=cat
+export READNULLCMD=less
+
 export PROMPT RPROMPT
 
 #  Historique {{{2
@@ -148,8 +152,13 @@ typeset -U fpath
 
 # Voir aussi <url:~/racine/config/cmdline/zsh/fonction.zsh#tn=Autoload>
 
-fpath+=(~/racine/fun/zsh/autoload/*(F))
-fpath+=(~/racine/fun/zsh/completion/*(F))
+# fpath+=(~/racine/fun/zsh/autoload/*(F))
+# fpath+=(~/racine/fun/zsh/completion/*(F))
+# fpath+=(~/racine/fun/zsh/zle)
+
+fpath=(~/racine/fun/zsh/autoload/*(F) $fpath)
+fpath=(~/racine/fun/zsh/completion/*(F) $fpath)
+fpath=(~/racine/fun/zsh/zle $fpath)
 
 # }}}3
 
@@ -235,6 +244,13 @@ export HOSTNAME=$HOST
 
 # }}}1
 
+# Environnement graphique {{{1
+
+#export XCOMPOSEFILE=~/racine/config/windenv/XCompose
+#export GTK_IM_MODULE=xim
+
+# }}}1
+
 # Perso {{{1
 
 source $RACINE_ZSH/perso.zsh
@@ -298,25 +314,6 @@ export HOMEBREW_CC=gcc
 
 # }}}2
 
-# Compilation de vim {{{2
-
-# Pour vim
-#
-# export CONF_OPT_GUI='--enable-gnome-check'
-# export CONF_OPT_LUA='--enable-luainterp'
-# export CONF_OPT_PERL='--enable-perlinterp'
-# export CONF_OPT_PYTHON='--enable-pythoninterp'
-# export CONF_OPT_TCL='--enable-tclinterp'
-# export CONF_OPT_RUBY='--enable-rubyinterp'
-# export CONF_OPT_MZSCHEME='--disable-mzschemeinterp'
-# export CONF_OPT_CSCOPE='--enable-cscope'
-# export CONF_OPT_MULTIBYTE='--enable-multibyte'
-# export CONF_OPT_FEAT='--with-features=huge'
-# export CONF_OPT_COMPBY='"--with-compiledby=antoine.mechelynck@gmail.com"'
-# export CONF_ARGS=''
-
-# }}}2
-
 # }}}1
 
 # Réseau {{{1
@@ -336,12 +333,24 @@ export TMPDIR=/tmp
 
 export INPUTRC=~/racine/config/cmdline/inputrc
 
-export RLWRAP_HOME=~/racine/config/cmdline/rlwrap
+export RLWRAP_HOME=~/racine/hist/rlwrap
 
 # Édition de la ligne de commande readline dans un éditeur externe,
 # activé par Ctrl-^ par défaut
 
-export RLWRAP_EDITOR='vim -u ~/racine/config/edit/vim/minivim.vim +%L'
+export RLWRAP_EDITOR='vim +%L'
+
+export FZF_DEFAULT_OPTS='
+	--exact
+	--cycle
+	--height=40%
+	--layout=reverse
+	--hscroll-off=100
+	--color=bw
+	--border
+	--margin=5%
+	--padding=5%
+	'
 
 # }}}1
 
@@ -364,13 +373,12 @@ export PAGER=less
 
 export MANPAGER=less
 
-# Permet d’avoir une table des matières
-#export MANPAGER="nvim -c 'set ft=man' -"
+export BAT_PAGER=less
 
-export LESS="--no-init --quit-if-one-screen --raw-control-chars --ignore-case --buffers=360 --tabs=4 --jump-target=.36 --window=-4 --shift=.36 --max-forw-scroll=36 --max-back-scroll=36 --LONG-PROMPT --prompt=M?f%f:[Tube]. ?m (%x) No %i/%m:. ?ljLigne %l.?L/%L:. ?djPage %dj:.?D/%D:. ?pPct %pj:."
+export LESS="--no-init --raw-control-chars --ignore-case --buffers=360 --tabs=4 --jump-target=.36 --window=-4 --shift=.36 --max-forw-scroll=36 --max-back-scroll=36 --LONG-PROMPT --prompt=M?f%f:[Tube]. ?m (%x) No %i/%m:. ?ljLigne %l.?L/%L:. ?djPage %dj:.?D/%D:. ?pPct %pj:."
 
 # Voir ~/racine/config/visu/less/key
-
+#
 # export LESSOPEN="|| ~/bin/shell/visu/lesspipe.sh %s"
 # export LESSCLOSE="-"
 
@@ -383,7 +391,7 @@ export LESSECHO=lessecho
 
 # Couleurs {{{3
 
-# Voir <url:~/racine/snippet/shell.snip#tn=ANSI Codes>
+# Voir <url:~/racine/snippet/color.snip#tn=ANSI Codes>
 # pour les codes effets & couleurs
 
 # LESS_TERMCAP_md # begin bold
@@ -392,11 +400,8 @@ export LESSECHO=lessecho
 # LESS_TERMCAP_so # begin standout-mode - info box
 
 export LESS_TERMCAP_md=$'\E[0;31m'
-
 export LESS_TERMCAP_mb=$'\E[5m'
-
 export LESS_TERMCAP_us=$'\E[3;33m'
-
 export LESS_TERMCAP_so=$'\E[7m'
 
 # LESS_TERMCAP_me # end mode
@@ -404,10 +409,8 @@ export LESS_TERMCAP_so=$'\E[7m'
 # LESS_TERMCAP_se # end standout-mode
 
 export LESS_TERMCAP_me=$'\E[0m'
-
-export LESS_TERMCAP_se=$'\E[0m'
-
 export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
 
 # }}}3
 
@@ -459,7 +462,7 @@ export GTAGSLABEL=native
 
 #export RCSINIT=''
 
-export CVSROOT=:local:~/racine/repo/central/cvsroot
+export CVSROOT=:local:~/racine/repo/central/conversys
 
 #export CVSROOT=:ext:$USER@tixu.local:/home/$USER/racine/repo/cvs
 
@@ -515,11 +518,13 @@ export RUBYLIB=~/racine/ruby/lib
 
 #  Navigateurs {{{1
 
-#export BROWSER=w3m
-export BROWSER=elinks
-#export BROWSER=qutebrowser
+export BROWSER=w3m
 
-export WWW_HOME="https://start.duckduckgo.com"
+export WWW_HOME="file://$HOME/racine/site/orgmode/grimoire/index.html"
+
+# Gestionnaire de signets
+
+export BUKU_COLORS=xXxxx
 
 # }}}1
 
@@ -545,6 +550,8 @@ export MPD_PORT=6600
 # Nécessaire pour dvdauthor
 #export VIDEO_FORMAT=PAL
 
+export YTFZF_CACHE=~/racine/varia/cache/ytfzf
+
 # }}}1
 
 #  Nouvelles {{{1
@@ -552,19 +559,6 @@ export MPD_PORT=6600
 export NNTPSERVER=news.gmane.org
 
 export SLRN_ROOT=~/nouvelles/spool
-
-# }}}1
-
-#  Alphanumeriques {{{1
-
-# typeset -U chiffres alphabet_minuscule alphabet_majuscule alphanumerique
-#
-# chiffres=(0 1 2 3 4 5 6 7 8 9)
-#
-# alphabet_minuscule=(a b c d e f g h i j k l m n o p q r s t u v w x y z)
-# alphabet_majuscule=(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
-#
-# alphanumerique=($chiffres $alphabet_majuscule $alphabet_minuscule)
 
 # }}}1
 
