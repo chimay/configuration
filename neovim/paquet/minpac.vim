@@ -23,7 +23,6 @@ if exists('g:loaded_minpac')
 
 	call minpac#add('justinmk/vim-sneak', { 'type' : 'start' })
 
-	call minpac#add('stefandtw/quickfix-reflector.vim', { 'type' : 'start' })
 	call minpac#add('chrisbra/NrrwRgn', { 'type' : 'start' })
 
 	call minpac#add('SirVer/ultisnips', { 'type' : 'start' })
@@ -71,6 +70,10 @@ if exists('g:loaded_minpac')
 
 	" Plugins dans opt
 	" ------------------------------
+
+	call minpac#add('stefandtw/quickfix-reflector.vim', { 'type' : 'opt' })
+
+	call minpac#add('liuchengxu/vim-which-key', { 'type' : 'opt' })
 
 	call minpac#add('nvim-lua/popup.nvim', { 'type' : 'opt' })
 	call minpac#add('nvim-lua/plenary.nvim', { 'type' : 'opt' })

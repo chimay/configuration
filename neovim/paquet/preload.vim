@@ -97,8 +97,10 @@ map <d-c> <plug>NERDCommenterToggle
 
 "  TComment (tomtom/tcomment_vim) {{{2
 
+let g:tcomment#blank_lines = 0
 let g:tcomment_textobject_inlinecomment = '\tci'
-let g:tcommentBlankLines                = 0
+let g:tcomment_mapleader_comment_anyway = '\tcca'
+let g:tcomment_mapleader_uncomment_anyway = '\tcua'
 
 let g:tcomment#options = {
 	\ 'col': 1
@@ -332,10 +334,14 @@ let $FZF_DEFAULT_OPTS="--reverse " " top to bottom
 
 " Default fzf layout
 " - down / up / left / right
+
+" popup
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
 "let g:fzf_layout = { 'down': '~40%' }
 
 " In Neovim, you can set up fzf window using a Vim command
-let g:fzf_layout = { 'window': 'new' }
+"let g:fzf_layout = { 'window': 'new' }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -366,74 +372,91 @@ endfunction
 
 " Wheel {{{2
 
-" Init
-let g:wheel_config={}
-let g:wheel_config.maxim={}
+if ! exists("g:wheel_loaded")
 
-" The file where toruses and circles will be stored and read
-let g:wheel_config.file = '~/racine/plugin/data/wheel/auto'
-" Auto read torus file on startup if > 0
-let g:wheel_config.autoread = 1
-" Auto write torus file on exit if > 0
-let g:wheel_config.autowrite = 1
-" Number of backups for the wheel file
-let g:wheel_config.backups = 7
-" The bigger it is, the more mappings available
-let g:wheel_config.mappings = 20
-" Prefix for mappings
-let g:wheel_config.prefix = '<d-w>'
-" Auto cd to project root if > 0
-let g:wheel_config.cd_project = 1
-" Marker of project root
-"let g:wheel_config.project_markers = '.git'
-"let g:wheel_config.project_markers = '.racine-projet'
-" List of markers
-" The project dir is found as soon as one marker is found in it
-let g:wheel_config.project_markers = ['.git', '.racine-projet']
-" Locate database ; default one if left empty
-let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
+	" Init
+	let g:wheel_config={}
+	let g:wheel_config.maxim={}
 
-" Maximum number of elements in history
-let g:wheel_config.maxim.history = 700
-" Maximum number of elements in input history
-let g:wheel_config.maxim.input = 700
+	" The file where toruses and circles will be stored and read
+	let g:wheel_config.file = '~/racine/plugin/data/wheel/auto'
+	" Auto read torus file on startup if > 0
+	let g:wheel_config.autoread = 1
+	" Auto write torus file on exit if > 0
+	let g:wheel_config.autowrite = 1
+	" Number of backups for the wheel file
+	let g:wheel_config.backups = 7
+	" The bigger it is, the more mappings available
+	let g:wheel_config.mappings = 20
+	" Prefix for mappings
+	let g:wheel_config.prefix = '<d-w>'
+	" Auto cd to project root if > 0
+	let g:wheel_config.cd_project = 1
+	" Marker of project root
+	"let g:wheel_config.project_markers = '.git'
+	"let g:wheel_config.project_markers = '.racine-projet'
+	" List of markers
+	" The project dir is found as soon as one marker is found in it
+	let g:wheel_config.project_markers = ['.git', '.racine-projet']
+	" Locate database ; default one if left empty
+	let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
 
-" Maximum number of elements in mru
-let g:wheel_config.maxim.mru = 700
+	" Maximum number of elements in history
+	let g:wheel_config.maxim.history = 700
+	" Maximum number of elements in input history
+	let g:wheel_config.maxim.input = 700
 
-" Maximum number of elements in yank wheel
-let g:wheel_config.maxim.yanks = 700
-" Maximum size of elements in yank wheel
-let g:wheel_config.maxim.yank_size = 3000
+	" Maximum number of elements in mru
+	let g:wheel_config.maxim.mru = 700
 
-" Maximum number of tabs
-let g:wheel_config.maxim.tabs = 12
-" Maximum number of horizontal splits
-let g:wheel_config.maxim.horizontal = 3
-" Maximum number of vertical splits
-let g:wheel_config.maxim.vertical = 4
+	" Maximum number of elements in yank wheel
+	let g:wheel_config.maxim.yanks = 700
+	" Maximum size of elements in yank wheel
+	let g:wheel_config.maxim.yank_size = 3000
 
-"let g:wheel_config.debug = 1
+	" Maximum size of layer stack
+	let g:wheel_config.maxim.layers = 12
 
-set tabline=%!wheel#status#tabline()
+	" Maximum number of tabs
+	let g:wheel_config.maxim.tabs = 12
+	" Maximum number of horizontal splits
+	let g:wheel_config.maxim.horizontal = 3
+	" Maximum number of vertical splits
+	let g:wheel_config.maxim.vertical = 4
 
-nmap <silent> <c-l> :nohl<cr><plug>(wheel-spiral-cursor)
-imap <silent> <c-l> <esc>:nohl<cr><plug>(wheel-spiral-cursor)a
+	"let g:wheel_config.debug = 1
 
-nmap § <plug>(wheel-tree)
-nmap é <plug>(wheel-grep)
-nmap è <plug>(wheel-outline)
-nmap ù <plug>(wheel-mru)
-nmap £ <plug>(wheel-locate)
-nmap µ <plug>(wheel-tags)
-nmap ç <plug>(wheel-yank-list)
-nmap ° <plug>(wheel-yank-plain)
+	set tabline=%!wheel#status#tabline()
 
-nmap <d-h> <plug>(wheel-history)
+	nmap <silent> <c-l> :nohl<cr><plug>(wheel-spiral-cursor)
+	imap <silent> <c-l> <esc>:nohl<cr><plug>(wheel-spiral-cursor)a
 
-nmap <m-cr> <plug>(wheel-switch-location)
-nmap <c-cr> <plug>(wheel-switch-circle)
-nmap <s-cr> <plug>(wheel-switch-torus)
+	nmap <silent> k :call wheel#mandala#wrap_up()<cr>
+	nmap <silent> j :call wheel#mandala#wrap_down()<cr>
+
+	nmap <silent> <up> :call wheel#mandala#wrap_up()<cr>
+	nmap <silent> <down> :call wheel#mandala#wrap_down()<cr>
+
+	nmap <silent> <cr>   <plug>(wheel-switch-location)
+	nmap <silent> <c-cr> <plug>(wheel-switch-circle)
+	nmap <silent> <s-cr> <plug>(wheel-switch-torus)
+
+	nmap <silent> § <plug>(wheel-tree)
+	nmap <silent> é <plug>(wheel-grep)
+	nmap <silent> è <plug>(wheel-outline)
+	nmap <silent> ù <plug>(wheel-mru)
+	nmap <silent> £ <plug>(wheel-locate)
+	nmap <silent> µ <plug>(wheel-tags)
+	nmap <silent> ç <plug>(wheel-yank-plain)
+	nmap <silent> ° <plug>(wheel-yank-list)
+
+	nmap <silent> <d-^>     <plug>(wheel-alternate-same-torus-other-circle)
+	nmap <silent> <d-x>     <plug>(wheel-index-locations)
+	nmap <silent> <d-h>     <plug>(wheel-history)
+	nmap <silent> <d-§>     <plug>(wheel-tabwins-tree)
+	nmap <silent> <d-v>     <plug>(wheel-reorg-tabwins)
+	nmap <silent> <d-space> <plug>(wheel-mandala-backward)
+endif
 
 " }}}2
 
@@ -443,9 +466,9 @@ nmap <s-cr> <plug>(wheel-switch-torus)
 
 "  Narrow region (chrisbra/NrrwRgn) {{{2
 
-nnoremap à :NarrowRegion<cr>
+nnoremap à :NarrowRegion<cr><c-w>_zR
 
-vnoremap à :NarrowRegion<cr>
+vnoremap à :NarrowRegion<cr><c-w>_zR
 
 "xmap à <Plug>NrrwrgnDo
 
@@ -599,15 +622,15 @@ nmap ) ]
 
 " }}}2
 
-" Easy align (junegunn/vim-easy-align) {{{1
+" Easy align (junegunn/vim-easy-align) {{{2
 
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign in visual mode (e.g. vip|)
+vmap <bar> <Plug>(EasyAlign)
 
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-"nmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. g|ip)
+nmap g<bar> <Plug>(EasyAlign)
 
-" }}}1
+" }}}2
 
 " }}}1
 
@@ -624,9 +647,9 @@ nnoremap <F11>s :Subvert //<Left>
 
 " Quickfix reflector (stefandtw/quickfix-reflector.vim) {{{2
 
+let g:qf_join_changes = 0
 let g:qf_modifiable = 1
-let g:qf_write_changes = 1
-let g:qf_join_changes = 1
+let g:qf_write_changes = 0
 
 " }}}2
 
@@ -656,6 +679,7 @@ let g:ripple_repls = {
             \ "sh": "zsh",
             \ "zsh": "zsh",
             \ "bash": "bash",
+            \ "python": "python",
             \ }
 
 " }}}2

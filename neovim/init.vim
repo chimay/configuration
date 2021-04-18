@@ -517,7 +517,7 @@ set wildcharm=<C-Z>
 " 	"list:longest"	When more than one match, list all matches and
 " 					complete till longest common string.
 
-set wildmode=list:longest,full
+set wildmode=longest,full
 
 " }}}3
 
@@ -525,7 +525,7 @@ set wildmode=list:longest,full
 
 " }}}1
 
-"  Formattage du texte {{{1
+"  Formatage du texte {{{1
 
 set textwidth=72
 set wrapmargin=7
@@ -898,13 +898,16 @@ command! -nargs=? -complete=filetype EditSyntaxPlugin
 
 nnoremap <f5>s :<c-u>EditSyntaxPlugin<cr>
 
+nnoremap <m-cr> :wa<cr>
 nnoremap <d-cr> :wa<cr>
 
 nnoremap <f7>n :new <bar> only<cr>
 nnoremap <f7>! :e!<cr>
 
-nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/*' <cr><c-d>
-nnoremap <m-s-e> :e **/*
+" nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/*' <cr><c-d>
+" nnoremap <m-s-e> :e **/*
+
+nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/' <cr>
 
 nnoremap <f7>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
@@ -1161,11 +1164,13 @@ nnoremap (z [z
 vnoremap )z ]z
 vnoremap (z [z
 
-nnoremap )) zjzx]z[z
+nnoremap )) zjzx]z
 nnoremap (( zkzx[z
 
-vnoremap )) zjzx]z[z
+vnoremap )) zjzx]z
 vnoremap (( zkzx[z
+
+nnoremap zo zCzO
 
 " }}}2
 
@@ -1570,19 +1575,21 @@ if has('statusline')
 	set statusline+=\ %.43F
 	set statusline+=%(\ %m%)
 	set statusline+=%(\ %r%)
-	set statusline+=\ \ Tamp\ %n
+	set statusline+=\ \ buf\ %n
+	set statusline+=\ \ win\ %{winnr()}/%{win_getid()}
 	set statusline+=%(%a%)
-	set statusline+=\ \ %(%{(&filetype==\"\"?\"\":\"Type\")}\ %Y\ %)
-	set statusline+=\ \ Enc\ %{(&fenc==\"\"?&enc:&fenc)}
-	set statusline+=\ \ Pos
-	set statusline+=\ %P\ /\ %l\ x\ %v
-	set statusline+=%(%{(virtcol(\'.\')==col(\'.\')?\"\":\"\ /\ \".col(\'.\'))}%)
+	set statusline+=\ \ %(%{(&filetype==\"\"?\"\":\"ft\")}\ %Y\ %)
+	set statusline+=\ \ enc\ %{(&fenc==\"\"?&enc:&fenc)}
+	set statusline+=\ \ pos
+	set statusline+=\ %P\ %l\ x\ %c
+	set statusline+=%(%{(col(\'.\')==virtcol(\'.\')?\"\":\"/\".virtcol(\'.\'))}%)
 	set statusline+=\ %=
-	set statusline+=\ \ Color\ %{g:colors_name}
+	set statusline+=\ \ color\ %{g:colors_name}
 	set statusline+=\ \ \ \ |
 	set statusline+=%<
 endif
 
+" 	set statusline+=\ \ Color\ %{g:colors_name}
 " 	set statusline+=\ \ %{strftime('%H:%M\ %a\ %d\ %b\ %Y')}
 " 	set statusline+=\ \ %{strftime('%H:%M')}
 " 	set statusline+=\ \ Car\ %2.2B
