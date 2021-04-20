@@ -64,10 +64,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-let g:UltiSnipsListSnippets='<F3>l'
+let g:UltiSnipsListSnippets='<F8>l'
 
-nnoremap <F3>e :UltiSnipsEdit<cr>
-nnoremap <F3>a :UltiSnipsAddFiletypes<space>
+nnoremap <F8>e :UltiSnipsEdit<cr>
+nnoremap <F8>a :UltiSnipsAddFiletypes<space>
 
 " }}}3
 
@@ -293,22 +293,22 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " Mappings {{{3
 
-nnoremap <f2>a :Ag<cr>
-nnoremap <f2>b :Buffers<cr>
-nnoremap <f2>c :Commands<cr>
-nnoremap <f2>C :Commits<cr>
-nnoremap <f2>f :Files<cr>
-nnoremap <f2>F :Filetypes<cr>
-nnoremap <f2>g :GitFiles<cr>
-nnoremap <f2>h :History<cr>
-nnoremap <f2>H :Helptags<cr>
-nnoremap <f2>l :Lines<cr>
-nnoremap <f2>m :Marks<cr>
-nnoremap <f2>M :Maps<cr>
-nnoremap <f2>r :Rg<cr>
-nnoremap <f2>s :Snippets<cr>
-nnoremap <f2>t :Tags<cr>
-nnoremap <f2>w :Windows<cr>
+nnoremap <f7>a :Ag<cr>
+nnoremap <f7>b :Buffers<cr>
+nnoremap <f7>c :Commands<cr>
+nnoremap <f7>C :Commits<cr>
+nnoremap <f7>f :Files<cr>
+nnoremap <f7>F :Filetypes<cr>
+nnoremap <f7>g :GitFiles<cr>
+nnoremap <f7>h :History<cr>
+nnoremap <f7>H :Helptags<cr>
+nnoremap <f7>l :Lines<cr>
+nnoremap <f7>m :Marks<cr>
+nnoremap <f7>M :Maps<cr>
+nnoremap <f7>r :Rg<cr>
+nnoremap <f7>s :Snippets<cr>
+nnoremap <f7>t :Tags<cr>
+nnoremap <f7>w :Windows<cr>
 
 " }}}3
 
@@ -373,7 +373,6 @@ endfunction
 " Wheel {{{2
 
 if ! exists("g:wheel_loaded")
-
 	" Init
 	let g:wheel_config={}
 	let g:wheel_config.maxim={}
@@ -437,7 +436,8 @@ if ! exists("g:wheel_loaded")
 	nmap <silent> <up> :call wheel#mandala#wrap_up()<cr>
 	nmap <silent> <down> :call wheel#mandala#wrap_down()<cr>
 
-	nmap <silent> <cr>   <plug>(wheel-switch-location)
+	nmap <silent> g<cr>  <plug>(wheel-switch-location)
+	nmap <silent> <d-cr> <plug>(wheel-switch-location)
 	nmap <silent> <c-cr> <plug>(wheel-switch-circle)
 	nmap <silent> <s-cr> <plug>(wheel-switch-torus)
 
@@ -505,8 +505,6 @@ nnoremap <s-bs> :UndotreeToggle<cr>
 "  Utl (utl.vim) {{{2
 
 nnoremap gf :Utl<cr>
-
-"nnoremap <m-o> :Utl<cr>
 
 let g:utl_cfg_hdl_scm_http = "!qutebrowser '%u#%f' &"
 
@@ -706,6 +704,21 @@ let g:increment_activator_filetype_candidates = {
 " }}}1
 
 " Organisation {{{1
+
+" Markdown folding {{{2
+
+let g:markdown_fold_style = 'nested'
+let g:markdown_fold_override_foldtext = 1
+
+" }}}2
+
+" Markdown TOC {{{2
+
+let g:vmt_auto_update_on_save = 1
+let g:vmt_dont_insert_fence = 0
+let g:vmt_cycle_list_item_markers = 1
+
+" }}}2
 
 " Vimwiki {{{2
 

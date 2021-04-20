@@ -898,18 +898,18 @@ command! -nargs=? -complete=filetype EditSyntaxPlugin
 
 nnoremap <f5>s :<c-u>EditSyntaxPlugin<cr>
 
-nnoremap <m-cr> :wa<cr>
-nnoremap <d-cr> :wa<cr>
+nnoremap <f2>n :new <bar> only<cr>
+nnoremap <f2>r :e!<cr>
+nnoremap <f2>w :wa<cr>
 
-nnoremap <f7>n :new <bar> only<cr>
-nnoremap <f7>! :e!<cr>
+nnoremap <m-cr> :wa<cr>
 
 " nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/*' <cr><c-d>
 " nnoremap <m-s-e> :e **/*
 
 nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/' <cr>
 
-nnoremap <f7>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
+nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
 " }}}2
 
@@ -938,9 +938,9 @@ nnoremap <m-s-q> :%bwipe<cr>
 
 " Lecture seule {{{3
 
-nnoremap <f7>r :call InterrupteurLectureSeule()<cr>
+nnoremap <f2>o :call ToggleReadonly()<cr>
 
-func! InterrupteurLectureSeule()
+func! ToggleReadonly()
 	if &modifiable || ! &readonly
 		setlocal readonly nomodifiable
 	else
@@ -972,11 +972,8 @@ nnoremap <s-down> <c-w><down>
 
 "  Onglets {{{2
 
-nnoremap <f7>e :tabedit<space>
-nnoremap <f7>t :tabnew<cr>
-
-nnoremap <m-^> gT
-nnoremap <m-$> gt
+nnoremap <f2>e :tabedit<space>
+nnoremap <f2>t :tabnew<cr>
 
 nnoremap <c-left> gT
 nnoremap <c-right> gt
@@ -1036,8 +1033,8 @@ nnoremap )<m-t> :tnext<cr>
 nnoremap (<m-s-t> :tfirst<cr>
 nnoremap )<m-s-t> :tlast<cr>
 
-nnoremap <f7>j :tj /
-nnoremap <f7>J :tab tj /
+nnoremap <f2>j :tj /
+nnoremap <f2>J :tab tj /
 
 " }}}2
 
@@ -1087,15 +1084,15 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f7>, /\<\><left><left>
-vnoremap <f7>, /\<\><left><left>
+nnoremap <f2>, /\<\><left><left>
+vnoremap <f2>, /\<\><left><left>
 
 " }}}3
 
 "  Remplacement {{{3
 
-nnoremap <f7>; :%s/\<\>//<left><left><left><left>
-vnoremap <f7>; :%s/\<\>//<left><left><left><left>
+nnoremap <f2>; :%s/\<\>//<left><left><left><left>
+vnoremap <f2>; :%s/\<\>//<left><left><left><left>
 
 " }}}3
 
@@ -1111,30 +1108,29 @@ nnoremap Y y$
 
 command! -nargs=1 GlobalYank :call biblio#global_yank(<q-args>, 'a')
 
-nnoremap <f7>y :GlobalYank<space>
+nnoremap <f2>y :GlobalYank<space>
 
 " Couper toutes les lignes correspondant à un motif
 
 command! -nargs=1 GlobalDelete :call biblio#global_delete(<q-args>, 'a')
 
-nnoremap <f7>d :GlobalDelete<space>
+nnoremap <f2>d :GlobalDelete<space>
 
 "  Copies provenant d’un autre logiciel
 
-nnoremap <f7>p :set paste!<cr>
+nnoremap <f2>p :set paste!<cr>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
-nnoremap <C-Insert> "+yy
+nnoremap <C-Insert> ^"+y$
 vnoremap <C-Insert> "+y
-inoremap <C-Insert> <esc>"+yya
+inoremap <C-Insert> <esc>l"+y$ha
 
 nnoremap <silent> <S-Insert> "+p
 vnoremap <silent> <S-Insert> c<C-R>+
-inoremap <silent> <S-Insert> <C-R>+
-
-cnoremap <silent> <S-Insert> <C-R>+
 snoremap <silent> <S-Insert> <C-R>+
+inoremap <silent> <S-Insert> <C-R>+
+cnoremap <silent> <S-Insert> <C-R>+
 
 " noremap <S-Insert> <MiddleMouse>
 
@@ -1252,7 +1248,7 @@ cmap <m-d> <c-right><c-w>
 
 " Hauteur de la fenêtre de commande {{{3
 
-nnoremap <f7>c :set cmdheight=
+nnoremap <f2>c :set cmdheight=
 
 " }}}3
 
@@ -1273,28 +1269,29 @@ nnoremap <m-!> :exe '!'.getline('.')<CR>
 
 "  Orthographe {{{2
 
-nnoremap <silent> <f7>o :setlocal spell!<cr>
+" underline ~~~ wrong words
+nnoremap <silent> <f2>~ :setlocal spell!<cr>
 
 " }}}2
 
 "  Informations {{{2
 
-nnoremap <f7>ih :echo biblio#highlight_group()<cr>
+nnoremap <f2>ih :echo biblio#highlight_group()<cr>
 
 " }}}2
 
 "  Shell {{{2
 
-nnoremap <f7>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap <f7>w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f2>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f2>S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 
-nnoremap <f7>h :tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f2>h :tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
 " Journal de bord {{{2
 
-nnoremap <f7>L :tabe ~/racine/log/captain<cr>
+nnoremap <f2>L :tabe ~/racine/log/captain<cr>
 
 " }}}2
 
@@ -1352,7 +1349,7 @@ set guicursor=
 
 set termguicolors
 
-nnoremap <f7>l :set cursorline!<cr>
+nnoremap <f2>l :set cursorline!<cr>
 
 " }}}2
 
