@@ -136,7 +136,7 @@ set autoread
 
 set backup
 
-set backupdir=~/racine/varia/backup,.
+set backupdir=~/racine/varia/backup/vim,.
 
 set backupext=~
 
@@ -155,7 +155,7 @@ set backupskip=/tmp/*,/etc/*,neomutt-*-*-*-*
 "  Fichier de récupération en cas de crash {{{2
 
 set swapfile
-set directory=~/racine/varia/autosave
+set directory=~/racine/varia/autosave/vim
 
 "set noswapfile
 
@@ -179,7 +179,7 @@ if exists("&undofile")
 
 	set undoreload=12743
 
-	set undodir=~/racine/varia/undo,.
+	set undodir=~/racine/varia/undo/vim,.
 endif
 
 " }}}1
@@ -797,8 +797,8 @@ set ttimeoutlen=50
 
 " Remarque : certains mapleaders causent des problèmes avec l’indentation <<
 
-let mapleader = "\<C-F12>"
-let maplocalleader = "\<C-F12>"
+" let mapleader = "\<C-F12>"
+" let maplocalleader = "\<C-F12>"
 
 " }}}2
 
@@ -837,7 +837,11 @@ nnoremap [[ [z
 " Fichier alternatif aussi disponible dans le registre #
 nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
-nnoremap <f6> :wa<cr>
+nnoremap <f2>n :new <bar> only<cr>
+nnoremap <f2>r :e!<cr>
+nnoremap <f2>w :wa<cr>
+
+nnoremap <m-cr> :wa<cr>
 
 nnoremap <f5>e :tabe ~/racine/config/edit/vim/vimrc<cr>
 inoremap <f5>e :tabe ~/racine/config/edit/vim/vimrc<cr>
@@ -850,13 +854,13 @@ command -nargs=? -complete=filetype EditSyntaxPlugin
 
 nnoremap <f5>s :<c-u>EditSyntaxPlugin<cr>
 
-nnoremap <f7>n :new <bar> only<cr>
-nnoremap <f7>e :e!<cr>
+nnoremap <f2>n :new <bar> only<cr>
+nnoremap <f2>! :e!<cr>
 
 nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 nnoremap <m-s-e> :e **/*
 
-nnoremap <f7>g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>G
+nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
 " }}}2
 
@@ -885,9 +889,9 @@ nnoremap <m-q> :ls!<cr>:silent bw!<space>
 
 " Lecture seule {{{3
 
-nnoremap <f7> :call InterrupteurLectureSeule()<cr>
+nnoremap <f2>o :call ToggleReadonly()<cr>
 
-func! InterrupteurLectureSeule()
+func! ToggleReadonly()
 
 	if &modifiable || ! &readonly
 		setlocal readonly nomodifiable
@@ -924,11 +928,11 @@ nnoremap <s-down>  <c-w><down>
 
 "  Onglets {{{2
 
-nnoremap <f7>e :tabedit<space>
-nnoremap <f7>t :tabnew<cr>
+nnoremap <f2>e :tabedit<space>
+nnoremap <f2>t :tabnew<cr>
 
-nnoremap <m-^> gT
-nnoremap <m-$> gt
+nnoremap <c-left> gT
+nnoremap <c-right> gt
 
 nnoremap (t :tabm -1<cr>
 nnoremap )t :tabm +1<cr>
@@ -1039,15 +1043,15 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f7>; /\<\><left><left>
-vnoremap <f7>; /\<\><left><left>
+nnoremap <f2>; /\<\><left><left>
+vnoremap <f2>; /\<\><left><left>
 
 " }}}3
 
 "  Remplacement {{{3
 
-nnoremap <f7>, :%s:\<\>::<left><left><left><left>
-vnoremap <f7>, :%s:\<\>::<left><left><left><left>
+nnoremap <f2>, :%s:\<\>::<left><left><left><left>
+vnoremap <f2>, :%s:\<\>::<left><left><left><left>
 
 " }}}3
 
@@ -1061,7 +1065,7 @@ nnoremap Y y$
 
 "  Copies provenant d’un autre logiciel
 
-nnoremap <f7>p :set paste!<cr>
+nnoremap <f2>p :set paste!<cr>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
@@ -1197,7 +1201,7 @@ nnoremap QQ gQ
 
 " Hauteur de la fenêtre de commande {{{3
 
-nnoremap <f7>c :set cmdheight=
+nnoremap <f2>c :set cmdheight=
 
 " }}}3
 
@@ -1208,29 +1212,25 @@ nnoremap <f7>c :set cmdheight=
 nnoremap <m-:> :exe getline(".")<CR>
 vnoremap <m-:> :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
 
-" Comme commande externe
-
-nnoremap <m-!> :exe '!'.getline('.')<CR>
-
 " }}}3
 
 " }}}2
 
 "  Informations {{{2
 
-nnoremap <f7>ih :echo bibliotheque#highlightGroup()<cr>
+nnoremap <f2>ih :echo bibliotheque#highlightGroup()<cr>
 
 " }}}2
 
 " Émulateur de terminal {{{2
 
-nnoremap <f7>$ :terminal bash<cr>
+nnoremap <f2>$ :terminal bash<cr>
 
 set termwinkey=<C-W>
 
 tnoremap <s-tab> <C-W>N<C-W>w
 
-tnoremap <f7> <C-W>N
+tnoremap <f2> <C-W>N
 tnoremap <m-i> <C-W>N
 
 tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
@@ -1239,16 +1239,16 @@ tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
 
 "  Shell {{{2
 
-nnoremap <f7>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap <f7>w :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f2>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f2>S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 
-nnoremap <f7>h :tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f2>h :tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
 " Journal de bord {{{2
 
-nnoremap <f7>L :tabe ~/racine/log/captain<cr>
+nnoremap <f2>L :tabe ~/racine/log/captain<cr>
 
 " }}}2
 
@@ -1271,7 +1271,7 @@ nmap <k9> 9
 
 " Présentation {{{2
 
-nnoremap <F7>l :set cursorline!<cr>
+nnoremap <f2>l :set cursorline!<cr>
 
 " }}}2
 
@@ -1387,17 +1387,14 @@ set scrolljump=1
 
 "  Tabulation et espaces de fin de lignes {{{2
 
-"set listchars+=tab:>-,trail:-
+set list
 
-"set listchars+=tab:>─
-"set listchars+=eol:¬
+set listchars=
 
-set listchars=tab:▶\ ,eol:╋
-set listchars+=trail:•,nbsp:▒
-
-"set listchars+=precedes:←,extends:→
+set listchars+=tab:\|\ ,trail:•
+set listchars+=trail:•
+set listchars+=nbsp:▒
 set listchars+=precedes:❮,extends:❯
-
 set listchars+=conceal:Δ
 
 " }}}2

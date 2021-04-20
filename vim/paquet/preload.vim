@@ -114,10 +114,10 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "let g:UltiSnipsJumpForwardTrigger="<C-j>"
 "let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 
-let g:UltiSnipsListSnippets='<f2>l'
+let g:UltiSnipsListSnippets='<f7>l'
 
-nnoremap <f2>e :UltiSnipsEdit<cr>
-nnoremap <f2>a :UltiSnipsAddFiletypes<space>
+nnoremap <f7>e :UltiSnipsEdit<cr>
+nnoremap <f7>a :UltiSnipsAddFiletypes<space>
 
 " }}}3
 
@@ -141,7 +141,7 @@ let g:UltiSnipsEditSplit = 'horizontal'
 
 let NERDCreateDefaultMappings = 0
 
-map <f4> <plug>NERDCommenterToggle
+map <leader>c <plug>NERDCommenterToggle
 
 " }}}2
 
@@ -256,22 +256,22 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " Mappings {{{3
 
-nnoremap <f2>a :Ag<cr>
-nnoremap <f2>b :Buffers<cr>
-nnoremap <f2>c :Commands<cr>
-nnoremap <f2>C :Commits<cr>
-nnoremap <f2>f :Files<cr>
-nnoremap <f2>F :Filetypes<cr>
-nnoremap <f2>g :GitFiles<cr>
-nnoremap <f2>h :History<cr>
-nnoremap <f2>H :Helptags<cr>
-nnoremap <f2>l :Lines<cr>
-nnoremap <f2>m :Marks<cr>
-nnoremap <f2>M :Maps<cr>
-nnoremap <f2>r :Rg<cr>
-nnoremap <f2>s :Snippets<cr>
-nnoremap <f2>t :Tags<cr>
-nnoremap <f2>w :Windows<cr>
+nnoremap <f7>a :Ag<cr>
+nnoremap <f7>b :Buffers<cr>
+nnoremap <f7>c :Commands<cr>
+nnoremap <f7>C :Commits<cr>
+nnoremap <f7>f :Files<cr>
+nnoremap <f7>F :Filetypes<cr>
+nnoremap <f7>g :GitFiles<cr>
+nnoremap <f7>h :History<cr>
+nnoremap <f7>H :Helptags<cr>
+nnoremap <f7>l :Lines<cr>
+nnoremap <f7>m :Marks<cr>
+nnoremap <f7>M :Maps<cr>
+nnoremap <f7>r :Rg<cr>
+nnoremap <f7>s :Snippets<cr>
+nnoremap <f7>t :Tags<cr>
+nnoremap <f7>w :Windows<cr>
 
 " }}}3
 
@@ -331,58 +331,64 @@ endfunction
 
 " Wheel {{{2
 
-" Init
-let g:wheel_config={}
-let g:wheel_config.maxim={}
+if ! exists("g:wheel_loaded")
 
-" Auto read torus file on startup if > 0
-let g:wheel_config.autoread = 0
-" Auto write torus file on exit if > 0
-let g:wheel_config.autowrite = 1
-" The file where toruses and circles will be stored and read
-let g:wheel_config.file = '~/racine/plugin/data/wheel/roue.vim'
-" Number of backups for the wheel file
-let g:wheel_config.backups = 7
-" The bigger it is, the more mappings available
-let g:wheel_config.mappings = 10
-" Prefix for mappings
-let g:wheel_config.prefix = '<m-w>'
-" Auto cd to project root if > 0
-let g:wheel_config.cd_project = 1
-" Marker of project root
-"let g:wheel_config.project_markers = '.git'
-"let g:wheel_config.project_markers = '.racine-projet'
-" List of markers
-" The project dir is found as soon as one marker is found in it
-let g:wheel_config.project_markers = ['.git', '.racine-projet']
-" Locate database ; default one if left empty
-let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
+	" Init
+	let g:wheel_config={}
+	let g:wheel_config.maxim={}
 
-" Maximum number of elements in history
-let g:wheel_config.maxim.history = 70
-" Maximum number of elements in input history
-let g:wheel_config.maxim.input = 120
-" Maximum number of elements in yank wheel
-let g:wheel_config.maxim.yanks = 300
-" Maximum size of elements in yank wheel
-let g:wheel_config.maxim.yank_size = 3000
-" Maximum number of tabs
-let g:wheel_config.maxim.tabs = 12
-" Maximum number of horizontal splits
-let g:wheel_config.maxim.horizontal = 3
-" Maximum number of vertical splits
-let g:wheel_config.maxim.vertical = 4
+	" Auto read torus file on startup if > 0
+	let g:wheel_config.autoread = 0
+	" Auto write torus file on exit if > 0
+	let g:wheel_config.autowrite = 1
+	" The file where toruses and circles will be stored and read
+	let g:wheel_config.file = '~/racine/plugin/data/wheel/roue.vim'
+	" Number of backups for the wheel file
+	let g:wheel_config.backups = 7
+	" The bigger it is, the more mappings available
+	let g:wheel_config.mappings = 10
+	" Prefix for mappings
+	let g:wheel_config.prefix = '<m-w>'
+	" Auto cd to project root if > 0
+	let g:wheel_config.cd_project = 1
+	" Marker of project root
+	"let g:wheel_config.project_markers = '.git'
+	"let g:wheel_config.project_markers = '.racine-projet'
+	" List of markers
+	" The project dir is found as soon as one marker is found in it
+	let g:wheel_config.project_markers = ['.git', '.racine-projet']
+	" Locate database ; default one if left empty
+	let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
 
-"let g:wheel_config.debug = 1
+	" Maximum number of elements in history
+	let g:wheel_config.maxim.history = 70
+	" Maximum number of elements in input history
+	let g:wheel_config.maxim.input = 120
+	" Maximum number of elements in yank wheel
+	let g:wheel_config.maxim.yanks = 300
+	" Maximum size of elements in yank wheel
+	let g:wheel_config.maxim.yank_size = 3000
+	" Maximum number of tabs
+	let g:wheel_config.maxim.tabs = 12
+	" Maximum number of horizontal splits
+	let g:wheel_config.maxim.horizontal = 3
+	" Maximum number of vertical splits
+	let g:wheel_config.maxim.vertical = 4
 
-set tabline=%!wheel#status#tabline()
+	"let g:wheel_config.debug = 1
 
-nmap <silent> <c-l> :nohl<cr><plug>(wheel-spiral-cursor)
-imap <silent> <c-l> <esc>:nohl<cr><plug>(wheel-spiral-cursor)a
+	set tabline=%!wheel#status#tabline()
 
-nmap <m-cr> <plug>(wheel-switch-location)
-nmap <c-cr> <plug>(wheel-switch-circle)
-nmap <s-cr> <plug>(wheel-switch-torus)
+	nmap <silent> k :call wheel#mandala#wrap_up()<cr>
+	nmap <silent> j :call wheel#mandala#wrap_down()<cr>
+
+	nmap <silent> <c-l> :nohl<cr><plug>(wheel-spiral-cursor)
+	imap <silent> <c-l> <esc>:nohl<cr><plug>(wheel-spiral-cursor)a
+
+	nmap g<cr>  <plug>(wheel-switch-location)
+	nmap <c-cr> <plug>(wheel-switch-circle)
+	nmap <s-cr> <plug>(wheel-switch-torus)
+endif
 
 " }}}2
 
