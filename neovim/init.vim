@@ -196,11 +196,8 @@ set updatetime=1000			" Millisecondes
 set undolevels=1234
 
 if exists("&undofile")
-
 	set undofile
-
 	set undoreload=12743
-
 	set undodir=~/racine/varia/undo/neovim,.
 endif
 
@@ -371,7 +368,8 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up
 
 set ignorecase
 
-" Recherche intelligente : ignore la casse sauf si	des majuscules sont présentes dans le motif
+" Recherche intelligente : ignore la casse sauf si
+" des majuscules sont présentes dans le motif
 
 set smartcase
 
@@ -903,6 +901,7 @@ nnoremap <f2>r :e!<cr>
 nnoremap <f2>w :wa<cr>
 
 nnoremap <m-cr> :wa<cr>
+nnoremap <kEnter> :wa<cr>
 
 " nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/*' <cr><c-d>
 " nnoremap <m-s-e> :e **/*
@@ -1126,6 +1125,14 @@ nnoremap <C-Insert> ^"+y$
 vnoremap <C-Insert> "+y
 inoremap <C-Insert> <esc>l"+y$ha
 
+nnoremap <C-Delete> ^d$
+vnoremap <C-Delete> "+d
+inoremap <C-Delete> <esc>l"+d$ha
+
+nnoremap <C-S-Insert> ggyG''
+
+nnoremap <C-S-Delete> ggdG
+
 nnoremap <silent> <S-Insert> "+p
 vnoremap <silent> <S-Insert> c<C-R>+
 snoremap <silent> <S-Insert> <C-R>+
@@ -1170,6 +1177,13 @@ nnoremap zo zCzO
 
 " }}}2
 
+" Insertion {{{2
+
+" Date
+inoremap <m-d> <c-r>=strftime("%d %B %Y")<cr>
+
+" }}}2
+
 "  Complétion {{{2
 
 inoremap <PageUp> <C-P>
@@ -1178,9 +1192,8 @@ inoremap <PageDown> <C-N>
 "inoremap <C-Space> <C-X><C-O>
 "inoremap <M-Space> <C-X><C-L>
 
-" Date
-
-inoremap <m-d> <c-r>=strftime("%d %B %Y")<cr>
+cnoremap <PageUp> <C-P>
+cnoremap <PageDown> <C-N>
 
 " }}}2
 
@@ -1297,7 +1310,8 @@ nnoremap <f2>L :tabe ~/racine/log/captain<cr>
 
 " Pavé numérique {{{2
 
-nmap <kEnter> <Enter>
+" used for :wa
+" nmap <kEnter> <Enter>
 
 nmap <k0> 0
 nmap <k1> 1

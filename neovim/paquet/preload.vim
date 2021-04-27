@@ -399,6 +399,8 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.project_markers = ['.git', '.racine-projet']
 	" Locate database ; default one if left empty
 	let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
+	" Grep command : :grep or :vimpgrep
+	let g:wheel_config.grep = 'vimgrep'
 
 	" Maximum number of elements in history
 	let g:wheel_config.maxim.history = 700
@@ -414,7 +416,7 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.maxim.yank_size = 3000
 
 	" Maximum size of layer stack
-	let g:wheel_config.maxim.layers = 12
+	let g:wheel_config.maxim.layers = 7
 
 	" Maximum number of tabs
 	let g:wheel_config.maxim.tabs = 12
@@ -450,12 +452,14 @@ if ! exists("g:wheel_loaded")
 	nmap <silent> ç <plug>(wheel-yank-plain)
 	nmap <silent> ° <plug>(wheel-yank-list)
 
-	nmap <silent> <d-^>     <plug>(wheel-alternate-same-torus-other-circle)
-	nmap <silent> <d-x>     <plug>(wheel-index-locations)
-	nmap <silent> <d-h>     <plug>(wheel-history)
-	nmap <silent> <d-§>     <plug>(wheel-tabwins-tree)
-	nmap <silent> <d-v>     <plug>(wheel-reorg-tabwins)
-	nmap <silent> <d-space> <plug>(wheel-mandala-backward)
+	nmap <silent> <d-^>       <plug>(wheel-alternate-other-torus)
+	nmap <silent> <d-x>       <plug>(wheel-index-locations)
+	nmap <silent> <d-h>       <plug>(wheel-history)
+	nmap <silent> <d-§>       <plug>(wheel-tabwins-tree)
+	nmap <silent> <d-v>       <plug>(wheel-reorg-tabwins)
+	nmap <silent> <d-u>       <plug>(wheel-undo-list)
+	nmap <silent> <d-space>   <plug>(wheel-mandala-forward)
+	nmap <silent> <d-s-space> <plug>(wheel-mandala-backward)
 endif
 
 " }}}2
@@ -528,70 +532,10 @@ cmap <s-tab> <Plug>CmdlineCompleteForward
 " Targets (wellle/targets.vim) {{{2
 
 let g:targets_aiAI = 'aiAI'
-let g:targets_nlNL = 'jkJK'
-let g:targets_pairs = '()b {}B []r <>a'
-let g:targets_quotes = '" '' `'
-let g:targets_separators = ', . ; : + - = ~ _ * # / | \ & $'
-
-" }}}2
-
-" Textobj-user & dérivés (kana/vim-textobj-user) {{{2
-
-let g:textobj_between_no_default_key_mappings = 1
-
-omap  ai  <Plug>(textobj-between-a)
-xmap  ai  <Plug>(textobj-between-a)
-omap  ii  <Plug>(textobj-between-i)
-xmap  ii  <Plug>(textobj-between-i)
-
-let g:textobj_delimited_no_default_key_mappings = 1
-
-omap  ad  <Plug>(textobj-delimited-forward-a)
-xmap  ad  <Plug>(textobj-delimited-forward-a)
-omap  id  <Plug>(textobj-delimited-forward-i)
-xmap  id  <Plug>(textobj-delimited-forward-i)
-
-let g:textobj_line_no_default_key_mappings = 1
-
-omap  al  <Plug>(textobj-line-a)
-xmap  al  <Plug>(textobj-line-a)
-omap  il  <Plug>(textobj-line-i)
-xmap  il  <Plug>(textobj-line-i)
-
-let g:textobj_indent_no_default_key_mappings = 1
-
-omap  a<tab>  <Plug>(textobj-indent-a)
-xmap  a<tab>  <Plug>(textobj-indent-a)
-omap  i<tab>  <Plug>(textobj-indent-i)
-xmap  i<tab>  <Plug>(textobj-indent-i)
-
-let g:textobj_comment_no_default_key_mappings = 1
-
-omap  ac  <Plug>(textobj-comment-a)
-xmap  ac  <Plug>(textobj-comment-a)
-omap  ic  <Plug>(textobj-comment-i)
-xmap  ic  <Plug>(textobj-comment-i)
-
-let g:textobj_function_no_default_key_mappings = 1
-
-omap  af  <Plug>(textobj-function-a)
-xmap  af  <Plug>(textobj-function-a)
-omap  if  <Plug>(textobj-function-i)
-xmap  if  <Plug>(textobj-function-i)
-
-let g:textobj_fold_no_default_key_mappings = 1
-
-omap  az  <Plug>(textobj-fold-a)
-xmap  az  <Plug>(textobj-fold-a)
-omap  iz  <Plug>(textobj-fold-i)
-xmap  iz  <Plug>(textobj-fold-i)
-
-let g:textobj_entire_no_default_key_mappings = 1
-
-omap  ae  <Plug>(textobj-entire-a)
-xmap  ae  <Plug>(textobj-entire-a)
-omap  ie  <Plug>(textobj-entire-i)
-xmap  ie  <Plug>(textobj-entire-i)
+let g:targets_nl = 'nN'
+let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr rr ll lb ar ab lB Ar aB Ab AB rb al rB Al bb aa bB Aa BB AA'
+let g:targets_jumpRanges = 'bb bB BB aa Aa AA'
+let g:targets_gracious = 1
 
 " }}}2
 
@@ -627,6 +571,22 @@ vmap <bar> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. g|ip)
 nmap g<bar> <Plug>(EasyAlign)
+
+let g:easy_align_delimiters = {
+\  ' ': { 'pattern': ' ',  'left_margin': 0, 'right_margin': 0, 'stick_to_left': 0 },
+\  '=': { 'pattern': '===\|<=>\|\(&&\|||\|<<\|>>\)=\|=\~[#?]\?\|=>\|[:+/*!%^=><&|.-]\?=[#?]\?',
+\                          'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
+\  ':': { 'pattern': ':',  'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
+\  ',': { 'pattern': ',',  'left_margin': 0, 'right_margin': 1, 'stick_to_left': 1 },
+\  '|': { 'pattern': '|',  'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
+\  '.': { 'pattern': '\.', 'left_margin': 0, 'right_margin': 0, 'stick_to_left': 0 },
+\  '#': { 'pattern': '#\+', 'delimiter_align': 'l', 'ignore_groups': ['!Comment']  },
+\  '&': { 'pattern': '\\\@<!&\|\\\\',
+\                          'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
+\  '{': { 'pattern': '(\@<!{',
+\                          'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
+\  '}': { 'pattern': '}',  'left_margin': 1, 'right_margin': 0, 'stick_to_left': 0 }
+\ }
 
 " }}}2
 
