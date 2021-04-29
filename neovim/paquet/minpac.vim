@@ -39,15 +39,7 @@ if exists('g:loaded_minpac')
 	call minpac#add('vim-scripts/LineJuggler', { 'type' : 'start' })
 	call minpac#add('vim-scripts/LineJugglerCommands', { 'type' : 'start' })
 
-	call minpac#add('kana/vim-textobj-entire', { 'type' : 'start' })
-	call minpac#add('kana/vim-textobj-fold', { 'type' : 'start' })
-	call minpac#add('kana/vim-textobj-function', { 'type' : 'start' })
-	call minpac#add('kana/vim-textobj-indent', { 'type' : 'start' })
-	call minpac#add('kana/vim-textobj-line', { 'type' : 'start' })
-	call minpac#add('kana/vim-textobj-user', { 'type' : 'start' })
-	call minpac#add('machakann/vim-textobj-delimited', { 'type' : 'start' })
-	call minpac#add('thinca/vim-textobj-between', { 'type' : 'start' })
-	call minpac#add('thinca/vim-textobj-comment', { 'type' : 'start' })
+	call minpac#add('wellle/targets.vim', { 'type' : 'start' })
 
 	call minpac#add('nishigori/increment-activator', { 'type' : 'start' })
 
@@ -72,6 +64,16 @@ if exists('g:loaded_minpac')
 	" ------------------------------
 
 	call minpac#add('stefandtw/quickfix-reflector.vim', { 'type' : 'opt' })
+
+	call minpac#add('kana/vim-textobj-entire', { 'type' : 'opt' })
+	call minpac#add('kana/vim-textobj-fold', { 'type' : 'opt' })
+	call minpac#add('kana/vim-textobj-function', { 'type' : 'opt' })
+	call minpac#add('kana/vim-textobj-indent', { 'type' : 'opt' })
+	call minpac#add('kana/vim-textobj-line', { 'type' : 'opt' })
+	call minpac#add('kana/vim-textobj-user', { 'type' : 'opt' })
+	call minpac#add('machakann/vim-textobj-delimited', { 'type' : 'opt' })
+	call minpac#add('thinca/vim-textobj-between', { 'type' : 'opt' })
+	call minpac#add('thinca/vim-textobj-comment', { 'type' : 'opt' })
 
 	call minpac#add('liuchengxu/vim-which-key', { 'type' : 'opt' })
 
@@ -150,7 +152,6 @@ if exists('g:loaded_minpac')
 	call minpac#add('vim-utils/vim-space', { 'type' : 'opt' })
 	call minpac#add('vim-utils/vim-vertical-move', { 'type' : 'opt' })
 	call minpac#add('voldikss/vim-floaterm', { 'type' : 'opt' })
-	call minpac#add('wellle/targets.vim', { 'type' : 'opt' })
 	call minpac#add('yaroot/vissort', { 'type' : 'opt' })
 	call minpac#add('yuki-ycino/fzf-preview.vim', { 'type' : 'opt' })
 

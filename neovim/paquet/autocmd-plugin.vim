@@ -6,7 +6,7 @@ endif
 
 " Wheel {{{1
 
-augroup Wheel
+augroup wheel
 	autocmd!
 	autocmd VimEnter * call wheel#void#init()
 	autocmd VimLeave * call wheel#void#exit()

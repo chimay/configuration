@@ -900,7 +900,6 @@ nnoremap <f2>n :new <bar> only<cr>
 nnoremap <f2>r :e!<cr>
 nnoremap <f2>w :wa<cr>
 
-nnoremap <m-cr> :wa<cr>
 nnoremap <kEnter> :wa<cr>
 
 " nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/*' <cr><c-d>
@@ -1204,10 +1203,6 @@ cnoremap <PageDown> <C-N>
 cnoremap <C-X><C-A> <C-A>
 cnoremap <C-X><C-D> <C-D>
 cnoremap <C-X><C-L> <C-L>
-
-" C-D & wildcharm = C-Z
-
-"cnoremap <C-Z> <C-D><C-Z>
 
 " }}}3
 

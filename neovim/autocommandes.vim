@@ -123,7 +123,7 @@ augroup END
 
 augroup FichiersMarkdown
 	autocmd!
-	autocmd bufwritepost **.md !pandoc -t html % -o %:r.html
+	"autocmd bufwritepost **.md !pandoc -t html % -o %:r.html
 augroup END
 
 " }}}2

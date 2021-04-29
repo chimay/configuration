@@ -438,10 +438,7 @@ if ! exists("g:wheel_loaded")
 	nmap <silent> <up> :call wheel#mandala#wrap_up()<cr>
 	nmap <silent> <down> :call wheel#mandala#wrap_down()<cr>
 
-	nmap <silent> g<cr>  <plug>(wheel-switch-location)
 	nmap <silent> <d-cr> <plug>(wheel-switch-location)
-	nmap <silent> <c-cr> <plug>(wheel-switch-circle)
-	nmap <silent> <s-cr> <plug>(wheel-switch-torus)
 
 	nmap <silent> § <plug>(wheel-tree)
 	nmap <silent> é <plug>(wheel-grep)
