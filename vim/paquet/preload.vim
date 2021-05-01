@@ -332,7 +332,6 @@ endfunction
 " Wheel {{{2
 
 if ! exists("g:wheel_loaded")
-
 	" Init
 	let g:wheel_config={}
 	let g:wheel_config.maxim={}
@@ -360,6 +359,9 @@ if ! exists("g:wheel_loaded")
 	" Locate database ; default one if left empty
 	let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
 
+	" Grep command : :grep or :vimpgrep
+	let g:wheel_config.grep = 'vimgrep'
+
 	" Maximum number of elements in history
 	let g:wheel_config.maxim.history = 70
 	" Maximum number of elements in input history
@@ -368,6 +370,8 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.maxim.yanks = 300
 	" Maximum size of elements in yank wheel
 	let g:wheel_config.maxim.yank_size = 3000
+	" Maximum size of layer stack
+	let g:wheel_config.maxim.layers = 7
 	" Maximum number of tabs
 	let g:wheel_config.maxim.tabs = 12
 	" Maximum number of horizontal splits
@@ -379,15 +383,14 @@ if ! exists("g:wheel_loaded")
 
 	set tabline=%!wheel#status#tabline()
 
-	nmap <silent> k :call wheel#mandala#wrap_up()<cr>
-	nmap <silent> j :call wheel#mandala#wrap_down()<cr>
-
 	nmap <silent> <c-l> :nohl<cr><plug>(wheel-spiral-cursor)
 	imap <silent> <c-l> <esc>:nohl<cr><plug>(wheel-spiral-cursor)a
 
-	nmap g<cr>  <plug>(wheel-switch-location)
-	nmap <c-cr> <plug>(wheel-switch-circle)
-	nmap <s-cr> <plug>(wheel-switch-torus)
+	nmap <silent> k :call wheel#mandala#wrap_up()<cr>
+	nmap <silent> j :call wheel#mandala#wrap_down()<cr>
+
+	nmap <silent> <up> :call wheel#mandala#wrap_up()<cr>
+	nmap <silent> <down> :call wheel#mandala#wrap_down()<cr>
 endif
 
 " }}}2

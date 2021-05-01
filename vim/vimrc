@@ -841,7 +841,7 @@ nnoremap <f2>n :new <bar> only<cr>
 nnoremap <f2>r :e!<cr>
 nnoremap <f2>w :wa<cr>
 
-nnoremap <m-cr> :wa<cr>
+nnoremap <kenter> :wa<cr>
 
 nnoremap <f5>e :tabe ~/racine/config/edit/vim/vimrc<cr>
 inoremap <f5>e :tabe ~/racine/config/edit/vim/vimrc<cr>
@@ -1241,8 +1241,11 @@ tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
 
 nnoremap <f2>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 nnoremap <f2>S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-
 nnoremap <f2>h :tabe ~/racine/hist/zsh/$HOST<cr>
+
+nnoremap \s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \h :tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
