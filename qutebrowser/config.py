@@ -712,6 +712,8 @@ c.messages.timeout = 3000
 ## Type: SessionName
 # c.session_default_name = None
 
+# c.session_default_name = None
+
 ## Spell checking languages. You can check for available languages and
 ## install dictionaries using scripts/install_dict.py. Run the script
 ## with -h/--help for instructions.
@@ -950,9 +952,7 @@ c.tabs.width = '10%'
 
 c.url.searchengines = {
     "DEFAULT": 'https://duckduckgo.com/?q={}',
-    "searx": 'https://searx.tuxcloud.net/?q={}&categories=general&language=en-US',
-    "duckduckgo": 'https://duckduckgo.com/?q={}',
-    "youtube": 'https://www.youtube.com/results?search_query={}',
+    "ddg": 'https://duckduckgo.com/?q={}',
 }
 
 ## The page(s) to open at the start.
@@ -1342,46 +1342,46 @@ c.colors.tabs.selected.odd.fg = 'black'
 
 # Bindings for normal mode {{{1
 
-# Contrairement à la convention habituelle ou Meta = Alt,
-# ici Meta = Super
+# Contrairement à la convention habituelle ou meta = alt,
+# ici meta = super
 
 config.bind("<F1>", 'help -t')
 config.bind("<F2>", 'set-cmd-text -s :help -t')
 
-config.bind('<F3>', "config-cycle content.user_stylesheets \
-        [] \
-        ['stylesheet/solarized-dark-all-sites.css'] \
-        ['stylesheet/solarized-dark-all-sites.css',\ 'stylesheet/custom_solarized.css'] \
-        ")
+val_1 = '[]'
+val_2 = "['stylesheet/ornuit.css']"
+val_3 = "['stylesheet/solarized-dark-all-sites.css']"
+val_4 = "['stylesheet/custom_solarized.css']"
+values = val_1 + ' ' + val_2 + ' ' + val_3 + ' ' + val_4
 
-config.bind('<F5>', 'reload')
+config.bind('<F3>', "config-cycle content.user_stylesheets " + values)
+
+config.bind('<F5>', 'config-source')
 config.bind('<F6>', 'adblock-update')
 
-config.bind('r', 'reload')
-config.bind('<shift-r>', 'reload -f')
-
-config.bind('o', 'set-cmd-text -s :open -t')
-config.bind('O', 'set-cmd-text -s :open')
+config.bind('o', 'set-cmd-text -s :open -t -r')
+config.bind('O', 'set-cmd-text -s :open -w')
 
 config.bind('go', 'set-cmd-text :open {url:pretty}')
-config.bind('gO', 'set-cmd-text :open -t -r {url:pretty}')
+config.bind('gt', 'set-cmd-text :open -t -r {url:pretty}')
+config.bind('gw', 'set-cmd-text :open -w {url:pretty}')
 
-config.bind('pP', 'open -t -- {primary}')
-config.bind('pp', 'open -t -- {clipboard}')
+config.bind('pP', 'open -t -r -- {primary}')
+config.bind('pp', 'open -t -r -- {clipboard}')
 
 config.bind('PP', 'open -- {primary}')
 config.bind('Pp', 'open -- {clipboard}')
+
+config.bind('r', 'reload')
+config.bind('<shift-r>', 'reload -f')
 
 config.bind('s', 'stop')
 
 config.bind("<ctrl-r>", 'spawn -u readability')
 
-config.bind("’", 'set-cmd-text /')
-config.bind(",", 'set-cmd-text /')
-
 config.bind('u', 'scroll-page 0 -0.5')
 config.bind('d', 'scroll-page 0 0.5')
-config.bind('<Shift-space>', 'scroll-page 0 1')
+config.bind('<shift-space>', 'scroll-page 0 1')
 config.bind('b', 'scroll-page 0 -1')
 config.bind('gg', 'scroll-to-perc 0')
 config.bind('G', 'scroll-to-perc 100')
@@ -1396,16 +1396,22 @@ config.bind('M', 'bookmark-add')
 config.bind("ù", 'set-cmd-text -s :quickmark-load -t')
 config.bind('%', 'quickmark-save')
 
+config.bind("W", 'open -w')
+
 config.bind("µ", 'set-cmd-text -s :session-load -c')
-config.bind("£", 'set-cmd-text -s :session-save -o')
+config.bind("£", 'set-cmd-text -s :session-save')
 
-config.bind("ç", 'spawn -u qutedmenu tab')
-config.bind("à", 'spawn -u taskadd proj:lecture')
+config.bind("=", 'spawn -u qutedmenu tab')
 
-config.bind("=", 'set-cmd-text -s :buffer')
+config.bind("§", 'set-cmd-text -s :tab-select')
+config.bind("&", 'set-cmd-text -s :bookmark-load -t')
+config.bind("ç", 'bookmark-list -t')
+config.bind("à", 'history -t')
 
-config.bind('t', 'hint links fill :open -t -r {hint-url}')
-config.bind('T', 'open -t')
+config.bind('f', 'hint links')
+
+config.bind('t', 'hint links tab')
+config.bind('T', 'open -t -r')
 config.bind('x', 'tab-close')
 config.bind('D', 'tab-close')
 config.bind('U', 'undo')
@@ -1413,8 +1419,8 @@ config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
 config.bind('^', 'tab-prev')
 config.bind('$', 'tab-next')
-config.bind('<Alt-^>', 'tab-move -')
-config.bind('<Alt-$>', 'tab-move +')
+config.bind('<alt-^>', 'tab-move -')
+config.bind('<alt-$>', 'tab-move +')
 
 config.bind('<PgDown>', 'scroll-page 0 1')
 config.bind('<PgUp>', 'scroll-page 0 -1')
@@ -1444,17 +1450,17 @@ config.bind('<alt-e>', 'hint links spawn xterm -e youtube-dl {hint-url}')
 # config.bind(';r', 'hint --rapid links tab-bg')
 # config.bind(';t', 'hint inputs')
 # config.bind(';y', 'hint links yank')
-# config.bind('<Alt-1>', 'tab-focus 1')
-# config.bind('<Alt-2>', 'tab-focus 2')
-# config.bind('<Alt-3>', 'tab-focus 3')
-# config.bind('<Alt-4>', 'tab-focus 4')
-# config.bind('<Alt-5>', 'tab-focus 5')
-# config.bind('<Alt-6>', 'tab-focus 6')
-# config.bind('<Alt-7>', 'tab-focus 7')
-# config.bind('<Alt-8>', 'tab-focus 8')
-# config.bind('<Alt-9>', 'tab-focus -1')
+# config.bind('<alt-1>', 'tab-focus 1')
+# config.bind('<alt-2>', 'tab-focus 2')
+# config.bind('<alt-3>', 'tab-focus 3')
+# config.bind('<alt-4>', 'tab-focus 4')
+# config.bind('<alt-5>', 'tab-focus 5')
+# config.bind('<alt-6>', 'tab-focus 6')
+# config.bind('<alt-7>', 'tab-focus 7')
+# config.bind('<alt-8>', 'tab-focus 8')
+# config.bind('<alt-9>', 'tab-focus -1')
 # config.bind('<Ctrl-A>', 'navigate increment')
-# config.bind('<Ctrl-Alt-p>', 'print')
+# config.bind('<Ctrl-alt-p>', 'print')
 # config.bind('<Ctrl-B>', 'scroll-page 0 -1')
 # config.bind('<Ctrl-D>', 'scroll-page 0 0.5')
 # config.bind('<Ctrl-F5>', 'reload -f')
@@ -1464,9 +1470,9 @@ config.bind('<alt-e>', 'hint links spawn xterm -e youtube-dl {hint-url}')
 # config.bind('<Ctrl-PgUp>', 'tab-prev')
 # config.bind('<Ctrl-Q>', 'quit')
 # config.bind('<Ctrl-Return>', 'follow-selected -t')
-# config.bind('<Ctrl-Shift-N>', 'open -p')
-# config.bind('<Ctrl-Shift-T>', 'undo')
-# config.bind('<Ctrl-Shift-W>', 'close')
+# config.bind('<Ctrl-shift-N>', 'open -p')
+# config.bind('<Ctrl-shift-T>', 'undo')
+# config.bind('<Ctrl-shift-W>', 'close')
 # config.bind('<Ctrl-T>', 'open -t')
 # config.bind('<Ctrl-Tab>', 'tab-focus last')
 # config.bind('<Ctrl-U>', 'scroll-page 0 -0.5')
@@ -1580,64 +1586,21 @@ config.bind('xx', 'config-cycle statusbar.hide ;; config-cycle tabs.show always 
 # config.bind('{{', 'navigate prev -t')
 # config.bind('}}', 'navigate next -t')
 
-config.bind("<Alt-a>", 'open -t https://archlinux.org')
-config.bind("<Meta-a>", 'set-cmd-text -s :open -t !arch')
+# Sites
 
-config.bind("<Alt-b>", 'open -t https://www.bitchute.com')
-config.bind("<Meta-b>", 'open -t https://bittube.video/videos/subscriptions')
-config.bind("<Shift-Alt-b>", 'set-cmd-text :open -t https://duckduckgo.com/bang?q=')
+config.bind("<alt-k>", 'set-cmd-text :open -t -r https://duckduckgo.com/bang?q=')
 
-config.bind("<Alt-d>", 'open -t https://distrowatch.com')
-config.bind("<Meta-d>", 'set-cmd-text -s :open -t !distrowatch')
+config.bind("<alt-d>", 'set-cmd-text -s :open -t -r !wt')
+config.bind("<meta-d>", 'set-cmd-text -s :open -t -r !wtfr')
 
-config.bind("<alt-e>", 'open -t https://brandnewtube.com')
+config.bind("<meta-q>", 'set-cmd-text -s :open -t -r !qwant')
 
-config.bind("<Alt-f>", 'set-cmd-text -s :open -t !fblite')
-config.bind("<Meta-f>", 'set-cmd-text -s :open -t !facebook')
+config.bind("<alt-r>", 'open -t -r http://www.reddit.com')
 
-config.bind("<Alt-g>", 'open -t https://gab.com/home')
-config.bind("<Shift-Alt-g>", 'set-cmd-text -s :open -t !gib')
+config.bind("<alt-s>", 'set-cmd-text -s :open -t -r !startpage')
 
-config.bind("<Alt-h>", 'open -t https://github.com/')
-config.bind("<Meta-h>", 'set-cmd-text -s :open -t !github')
-
-config.bind("<Meta-i>", 'set-cmd-text -s :open -t !gi')
-
-config.bind("<Alt-l>", 'open -t https://lbry.tv')
-
-config.bind("<Meta-m>", 'set-cmd-text -s :open -t !mojeek')
-config.bind("<Alt-m>", 'set-cmd-text :open -t https://metager.org/meta/meta.ger3?eingabe=')
-
-config.bind("<alt-n>", 'open -t https://banned.video')
-config.bind("<meta-n>", 'open -t https://nitter.net')
-
-config.bind("<Alt-o>", 'open -t https://odysee.com/$/following')
-config.bind("<Meta-o>", 'set-cmd-text -s :open -t !osc')
-
-config.bind("<Meta-p>", 'set-cmd-text -s :open -t !peek')
-
-config.bind("<Alt-r>", 'open -t http://www.reddit.com')
-config.bind("<Meta-r>", 'set-cmd-text -s :open -t !reddit')
-
-config.bind("<Alt-s>", 'open -t https://www.spreely.com')
-config.bind("<Meta-s>", 'set-cmd-text -s :open -t !startpage')
-
-# config.bind("<Alt-t>", 'open -t !twitter')
-config.bind("<Alt-t>", 'open -t https://twitter.com/')
-config.bind("<Shift-Alt-t>", 'set-cmd-text -s :open -t !twitter')
-config.bind("<Meta-t>", 'set-cmd-text -s :open -t !gt')
-
-config.bind("<alt-u>", 'open -t https://rumble.com/subscriptions')
-config.bind("<Meta-u>", 'set-cmd-text -s :open -t !aur')
-
-config.bind("<Alt-w>", 'open -t https://wipipedia.org')
-config.bind("<Meta-w>", 'set-cmd-text :open -t !w')
-
-config.bind("<Alt-x>", 'set-cmd-text -s :open -t !encrypt')
-
-config.bind("<Alt-y>", 'open -t https://www.youtube.com/feed/subscriptions')
-config.bind("<Meta-y>", 'set-cmd-text -s :open -t !youtube')
-config.bind("<Shift-Alt-y>", 'set-cmd-text -s :open -t !yippy')
+config.bind("<alt-w>", 'set-cmd-text -s :open -t -r !w')
+config.bind("<meta-w>", 'set-cmd-text -s :open -t -r !wfr')
 
 # }}}1
 
