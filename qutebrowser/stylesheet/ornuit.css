@@ -1,11 +1,10 @@
 /* Theme for qutebrowser pages */
 
-/* Inspired by :
- * https://github.com/alphapapa/solarized-everything-css/blob/master/css/solarized-all-sites-dark.css */
-
 * {
   color: #5b3c11;
-/*   background-color: #000000; */
+}
+html {
+  background-color: #000000;
 }
 body {
   background-color: #000000;
@@ -18,63 +17,13 @@ a:visited {
   color: #88421d;
 }
 
-/* base blocks */
-header,
-div,
-li,
-p,
-span,
-td,
-/* content blocks */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-section,
-summary,
-#content,
-.section,
-.global,
-.u-backgroundWhite
- {
-  background-color: #000000 ;
-  color: #5b3c11 ;
+.vote .star-off {
+  filter: opacity(75%);
 }
-
-/* specific content (like quote) */
-strong {
-  background-color: #000000 !important;
-  color: #872e30 !important;
+.vote .star-on {
+  filter: opacity(50%) !important;
 }
-
-/* title */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  background-color: #000000 !important;
-}
-
-/* navigation */
-nav,
-#mainbar,
-#archnavbar,
- {
-  background-color: #000000 !important;
-}
-
-/* TODO not good, comment in git  */
-.blob-code span {
-  background-color: #000000 !important;
-}
-/* code in flask doc */
-.highlight span {
-  background-color: #000000 !important;
+.vote .vote-down-off,
+.vote .vote-up-off {
+  filter: opacity(50%);
 }
