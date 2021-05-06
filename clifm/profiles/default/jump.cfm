@@ -1,0 +1,5 @@
+4:1620285241:1620301040:/home/david/racine
+1:1620285283:1620285283:/home/david/racine/wiki
+1:1620285363:1620285363:/home/david
+1:1620301034:1620301034:/home/david/racine/network
+@2400
