@@ -9,13 +9,22 @@
 #
 # exemple : macro index \er '<enter-command>source $my_muttroot/neomuttrc<enter>'
 #
-# push : simule une frappe au clavier
+# enter-command
 # ------------------------------------
+#
+# accède à la ligne de commande de type ex ":"
+#
+# push
+# ------------------------------------
+#
+# simule une frappe au clavier
 #
 # exemple : push "T~d >360d !~F<enter>\;"
 #
-# exec : exécute une fonction
+# exec
 # ------------------------------------
+#
+# exécute une fonction
 #
 # exemples :
 #
@@ -51,20 +60,8 @@ bind pager @ noop
 
 # Recharge la configuration {{{1
 
-# enter-command accède à la ligne de commande de type ex ":"
-
 macro index @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
 macro pager @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
-
-# }}}1
-
-# Choix de la boîte aux lettres {{{1
-
-macro index ù '<change-folder>?'
-macro pager ù '<change-folder>?'
-
-macro index \c^ '<change-folder>-<enter>'
-macro pager \c^ '<change-folder>-<enter>'
 
 # }}}1
 
@@ -75,18 +72,110 @@ macro pager @c '<enter-command>set message_cache_clean=yes<enter>'
 
 # }}}1
 
-# Visualisation des liens {{{1
+# Impression {{{1
 
-macro pager L <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+macro index,pager @p '<pipe-message>lp -o number-up=2 -o Duplex=DuplexTumble'
 
 # }}}1
 
-# Ouverture du mail dans un navigateur {{{1
+# Exécution d’une fonction {{{1
 
-macro attach V \
-	"<pipe-entry>cat >| ~/racine/varia/cache/neomutt/html/mail.html \
-	&& qutebrowser ~/racine/varia/cache/neomutt/html/mail.html<enter>" \
-	'Voir dans qutebrowser'
+macro   generic "\ex"           ":exec "
+macro   pager   "\ex"           ":exec "
+
+macro   generic "\e:"           ":exec "
+macro   pager   "\e:"           ":exec "
+
+# }}}1
+
+# Choix de la boîte aux lettres {{{1
+
+macro index § '<change-folder>?'
+macro pager § '<change-folder>?'
+
+macro index \c^ '<change-folder>-<enter>'
+macro pager \c^ '<change-folder>-<enter>'
+
+macro index ^ '<change-folder>!<enter>'
+macro pager ^ '<change-folder>!<enter>'
+
+macro index $ '<change-folder>><enter>'
+macro pager $ '<change-folder>><enter>'
+
+# }}}1
+
+# Réception du courrier {{{1
+
+macro   index   \eg   "!getmail >> ~/log/getmail.log 2>> ~/log/getmail.err<return>"
+macro   pager   \eg   "!getmail >> ~/log/getmail.log 2>> ~/log/getmail.err<return>"
+
+# }}}1
+
+# Sélection (tag) {{{1
+
+# annuler la sélection
+
+macro index vc '<untag-pattern>all<enter>'
+
+# nouveaux messages non lus
+
+macro index vn '<tag-pattern>~O | ~N<enter>'
+
+# messages importants
+
+macro index vf '<tag-pattern>~F<enter>'
+
+# messages de moins de 7 jours
+
+macro index vù '<tag-pattern>~d <7d<enter>'
+
+# messages de plus de 30 jours
+
+macro index vo '<tag-pattern>~d >30d<enter>'
+
+# }}}1
+
+#  Filtrage {{{1
+
+# annuler le filtre
+
+macro index è '<limit>all<enter>'
+macro index &u '<limit>all<enter>'
+macro index &c '<limit>all<enter>'
+
+macro index &a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
+
+# nouveaux messages non lus
+
+macro index &n '<limit>~O | ~N<enter>'
+
+# messages importants
+
+macro index &f '<limit>~F<enter>'
+
+# messages de moins de 7 jours
+
+macro index &ù '<limit>~d <7d<enter>'
+
+# messages de plus de 30 jours
+
+macro index &o '<limit>~d >30d<enter>'
+
+# }}}1
+
+# Suppression {{{1
+
+# annuler la suppresion
+
+macro index ua '<undelete-pattern>all<enter>'
+
+# messages de plus de 7 jours
+
+macro index dO '<delete-pattern>~d >7d<enter>'
+
+# messages de plus de 30 jours
+
+macro index do '<delete-pattern>~d >30d<enter>'
 
 # }}}1
 
@@ -96,41 +185,29 @@ macro index,pager  £ "<pipe-message>abook --add-email-quiet<return>" "Add this 
 
 # }}}1
 
+# Visualisation des liens {{{1
+
+bind pager U noop
+
+macro index,pager U  "<pipe-message>run-urlscan.sh<enter>" 'follow links with urlscan'
+macro attach,compose U  "<pipe-entry>run-urlscan.sh<enter>" 'follow links with urlscan'
+
+# }}}1
+
+# Ouverture du mail dans un navigateur {{{1
+
+macro attach & \
+	"<pipe-entry>cat >| ~/racine/varia/cache/neomutt/html/mail.html \
+	&& vivaldi-stable ~/racine/varia/cache/neomutt/html/mail.html<enter>" \
+	'Voir dans vivaldi-stable'
+
+# }}}1
+
 # Nombre de lignes d’index dans le pager {{{1
 
-macro pager + '<enter-command>source $my_muttroot/scripts/incremente-index-pager.sh|<enter>'
-macro pager - '<enter-command>source $my_muttroot/scripts/decremente-index-pager.sh|<enter>'
+macro pager \> '<enter-command>source $my_muttroot/scripts/incremente-index-pager.sh|<enter>'
+macro pager \< '<enter-command>source $my_muttroot/scripts/decremente-index-pager.sh|<enter>'
 
 macro pager @= '<enter-command>set pager_index_lines='
-
-# }}}1
-
-# Impression {{{1
-
-macro index,pager @p '<pipe-message>lp -o number-up=2 -o Duplex=DuplexTumble'
-
-# }}}1
-
-#  Filtrage {{{1
-
-# Affiche les messages non lus
-
-macro index @n '<limit>~O | ~N<enter><enter-command>exec collapse-all<enter>'
-macro pager @n '<limit>~O | ~N<enter><enter-command>exec collapse-all<enter>'
-
-# Affiche les messages de moins de 7 jours
-
-macro index @r '<limit>~d <7d<enter><enter-command>exec collapse-all<enter>'
-macro pager @r '<limit>~d <7d<enter><enter-command>exec collapse-all<enter>'
-
-# Affiche les messages importants
-
-macro index @i '<limit>~F<enter><enter-command>exec collapse-all<enter>'
-macro pager @i '<limit>~F<enter><enter-command>exec collapse-all<enter>'
-
-# Macro qui affiche tous les messages
-
-macro index @a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
-macro pager @a '<limit>~A<enter><enter-command>exec collapse-all<enter>'
 
 # }}}1
