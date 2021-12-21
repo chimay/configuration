@@ -1,2 +1,0 @@
-[2021-5-6T9:14:1] CliFM created a new MIME list file (/home/david/.config/clifm/profiles/default/mimelist.cfm). It is recommended to edit this file (entering 'mm edit' or pressing F6) to add the programs you use and remove those you don't. This will make the process of opening files faster and smoother
-[2021-5-6T9:14:15] CliFM: Restart your terminal for changes to ~/.Xresources to take effect. Otherwise, CliFM keybindings might not work as expected.

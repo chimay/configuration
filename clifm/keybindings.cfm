@@ -1,9 +1,11 @@
-# CliFM keybindings file
+# vim: set filetype=conf:
 
-# Use the 'kbgen' plugin (compile it first: gcc -o kbgen kbgen.c) to 
-# find out the escape code for the key o key sequence you want. Use 
+# Keybindings file for CliFM
+
+# Use the 'kbgen' plugin (compile it first: gcc -o kbgen kbgen.c) to
+# find out the escape code for the key o key sequence you want. Use
 # either octal, hexadecimal codes or symbols.
-# Ex: For Alt-/ (in rxvt terminals) 'kbgen' will print the following 
+# Ex: For Alt-/ (in rxvt terminals) 'kbgen' will print the following
 # lines:
 # Hex  | Oct | Symbol
 # ---- | ---- | ------
@@ -19,8 +21,8 @@
 # You can also consult the terminfo database via the infocmp command.
 # See terminfo(5) and infocmp(1).
 
-# Alt-j
-previous-dir:\M-j
+# Alt-k
+previous-dir:\M-k
 # Shift-left (rxvt)
 previous-dir2:\e[d
 # Shift-left (xterm)
@@ -28,8 +30,8 @@ previous-dir3:\e[2D
 # Shift-left (others)
 previous-dir4:\e[1;2D
 
-# Alt-k
-next-dir:\M-k
+# Alt-j
+next-dir:\M-j
 # Shift-right (rxvt)
 next-dir2:\e[c
 # Shift-right (xterm)
@@ -49,57 +51,90 @@ parent-dir3:\e[2A
 parent-dir4:\e[1;2A
 
 # Alt-e
-home-dir:\M-e
+#home-dir:\M-e
+home-dir2:\e~
 # Home key (rxvt)
-home-dir2:\e[7~
+#home-dir2:\e[7~
 # Home key (xterm)
-home-dir3:\e[H
-home-dir4:
+#home-dir3:\e[H
+# Home key (Emacs term)
+#home-dir4:\e[1~
 
 # Alt-r
-root-dir:\M-r
+#root-dir:\M-r
 # Alt-/ (rxvt)
 root-dir2:\e/
 #root-dir3:
 
-pinned-dir:\M-p
+#pinned-dir:\M-p
+#pinned-dir:\M-'
+pinned-dir:\M-0
+
+workspace1:\M-1
+workspace2:\M-2
+workspace3:\M-3
+workspace4:\M-4
+workspace5:\M-5
+workspace6:\M-6
+workspace7:\M-7
+workspace8:\M-8
 
 # Help
 # F1-3
 show-manpage:\eOP
+show-manpage2:\e[11~
 show-cmds:\eOQ
+show-cmds2:\e[12~
 show-kbinds:\eOR
+show-kbinds2:\e[13~
 
-new-instance:\C-x
-previous-profile:\C-\M-o
-next-profile:\C-\M-p
-archive-sel:\C-\M-a
-rename-sel:\C-\M-r
-remove-sel:\C-\M-d
-trash-sel:\C-\M-t
-untrash-all:\C-\M-u
-paste-sel:\C-\M-v
-move-sel:\C-\M-n
-export-sel:\C-\M-e
-open-sel:\C-\M-g
+#archive-sel:\C-\M-a
+archive-sel:\M-a
 bookmark-sel:\C-\M-b
+bookmarks:\M-b
+#clear-line:\M-c
+clear-line:\C-g
+#clear-msgs:\M-t
+create-file:\M-n
+#deselect-all:\M-d
+deselect-all:\M--
+#export-sel:\C-\M-e
+export-sel:\M-e
+#folders-first:\M-g
+folders-first:\M-;
+#lock:\M-o
+mountpoints:\M-m
+#move-sel:\C-\M-n
+move-sel:\C-\M-m
+new-instance:\C-x
+#next-profile:\C-\M-p
+only-dirs:\M-,
+#open-sel:\C-\M-g
+open-sel:\M-o
+#paste-sel:\C-\M-v
+paste-sel:\M-p
+#prepend-sudo:\M-v
+#previous-profile:\C-\M-o
+#rename-sel:\C-\M-r
+rename-sel:\M-r
+remove-sel:\C-\M-d
 refresh-screen:\C-r
-clear-line:\M-c
-clear-msgs:\M-t
+#selbox:\M-s
+selbox:\M-y
+#select-all:\M-a
+select-all:\M-*
 show-dirhist:\M-h
+#sort-previous:\M-z
+sort-previous:\M-o
+#sort-next:\M-x
+sort-next:\M-s
 toggle-hidden:\M-i
 toggle-hidden2:\M-.
-toggle-light:\M-y
+#toggle-light:\M-y
 toggle-long:\M-l
-sort-previous:\M-z
-sort-next:\M-x
-bookmarks:\M-b
-select-all:\M-a
-deselect-all:\M-d
-mountpoints:\M-m
-folders-first:\M-f
-selbox:\M-s
-lock:\M-o
+trash-sel:\C-\M-t
+untrash-all:\C-\M-u
+
 # F6-12
 open-mime:\e[17~
 open-jump-db:\e[18~
@@ -113,7 +148,7 @@ quit:\e[24~
 # 1) Make sure your plugin is in the plugins directory (or use any of the
 # plugins in there)
 # 2) Link pluginx to your plugin using the 'actions edit' command. Ex:
-"plugin1=myplugin.sh"
+# "plugin1=myplugin.sh"
 # 3) Set a keybinding here for pluginx. Ex: "plugin1:\M-7"
 
 #plugin1:
