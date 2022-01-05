@@ -10,7 +10,7 @@ if exists("syntax_on")
     syntax reset
 endif
 
-let g:colors_name = "ornuit"
+let g:colors_name = "golden-night"
 
 " }}}1
 
@@ -50,6 +50,7 @@ hi Title			guifg=#872E30		guibg=NONE			gui=NONE
 hi Conceal			guifg=#5B3C11		guibg=black			gui=NONE
 
 hi LineNr			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi CursorLineNr		guifg=#7B3C11		guibg=NONE			gui=NONE
 
 hi Identifier		guifg=brown			guibg=black			gui=NONE
 hi Conditional		guifg=#872e30		guibg=black			gui=NONE
@@ -86,8 +87,8 @@ hi iCursor			guifg=#5b3c11		guibg=NONE	   		gui=reverse
 hi lCursor			guifg=NONE			guibg=NONE	   		gui=reverse
 hi vCursor			guifg=#5B3C11		guibg=#4E1609		gui=NONE
 
-hi CursorLineNr		guifg=#5B3C11		guibg=NONE			gui=NONE
-hi CursorLine		guifg=NONE			guibg=#120507		gui=reverse,bold
+hi CursorLine		guifg=NONE			guibg=#170507		gui=bold
+
 hi CursorColumn		guifg=NONE			guibg=#120507		gui=NONE
 
 hi TermCursor		guifg=NONE			guibg=#5b3c11		gui=NONE
@@ -97,8 +98,8 @@ hi TermCursorNC		guifg=NONE			guibg=#B21818		gui=NONE
 
 " Onglets {{{2
 
-hi TabLineSel		guifg=NONE		guibg=NONE			gui=NONE
-hi TabLine			guifg=NONE		guibg=#151515		gui=NONE
+hi TabLineSel		guifg=NONE		guibg=NONE			gui=bold
+hi TabLine			guifg=#000000	guibg=#403020		gui=bold
 hi TabLineFill		guifg=NONE		guibg=#151515		gui=NONE
 
 " }}}2
@@ -306,7 +307,6 @@ hi vCursor			ctermfg=NONE		ctermbg=NONE		cterm=reverse
 hi TermCursor		ctermfg=NONE		ctermbg=NONE		cterm=reverse
 hi TermCursorNC		ctermfg=NONE		ctermbg=NONE		cterm=reverse
 
-hi CursorLineNr		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi CursorLine		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi CursorColumn		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
