@@ -99,7 +99,7 @@ hi TermCursorNC		guifg=NONE			guibg=#B21818		gui=NONE
 " Onglets {{{2
 
 hi TabLineSel		guifg=NONE		guibg=NONE			gui=bold
-hi TabLine			guifg=#000000	guibg=#403020		gui=bold
+hi TabLine			guifg=#000000	guibg=#503020		gui=bold
 hi TabLineFill		guifg=NONE		guibg=#151515		gui=NONE
 
 " }}}2
