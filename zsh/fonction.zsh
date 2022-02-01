@@ -27,6 +27,124 @@ done
 
 # Fonctions ordinaires {{{1
 
+# ssh {{{2
+
+ssh() {
+
+	local options mots
+	local code=0
+	local ancien
+	local nom
+
+	options=()
+
+	while true
+	do
+		case $1 in
+			-*)
+				options+=$1
+				shift
+				;;
+			*)
+				break
+				;;
+		esac
+	done
+
+	mots=("$@")
+
+	nom=${mots[1]%.*}
+
+	echo nom = $nom
+	echo
+
+	ancien=$(tmux display-message -p '#{window_name}')
+
+	if [ $TERM = tmux -o $TERM = tmux-256color ]
+	then
+		tmux rename-window "$nom"
+
+		echo "command ssh $=options $=mots"
+		echo
+
+		command ssh $=options $=mots
+
+		code=$?
+
+		tmux rename-window $ancien
+    else
+		echo "command ssh $=options $=mots"
+		echo
+
+		command ssh $=options $=mots
+
+		code=$?
+    fi
+
+	return $code
+}
+
+# }}}2
+
+# sshx : ssh -X pour lancer des apps X Window {{{2
+
+sshx() {
+
+	local options mots
+	local code=0
+	local ancien
+	local nom
+
+	options=()
+
+	while true
+	do
+		case $1 in
+			-*)
+				options+=$1
+				shift
+				;;
+			*)
+				break
+				;;
+		esac
+	done
+
+	mots=("$@")
+
+	nom=${mots[1]%.*}
+
+	echo nom = $nom
+	echo
+
+	ancien=$(tmux display-message -p '#{window_name}')
+
+	if [ $TERM = tmux -o $TERM = tmux-256color ]
+	then
+		tmux rename-window "$nom"
+
+		echo "command ssh -X -C $=options $=mots"
+		echo
+
+		command ssh -X -C $=options $=mots
+
+		code=$?
+
+		tmux rename-window $ancien
+    else
+		echo "command ssh -X -C $=options $=mots"
+		echo
+
+		command ssh -X -C $=options $=mots
+
+		code=$?
+    fi
+
+	return $code
+}
+
+# }}}2
+
 # err : display to stderr {{{2
 
 err () {
@@ -36,16 +154,16 @@ err () {
 
 # }}}2
 
-# x : échange des noms de fichiers {{{2
+# swap-files : échange des noms de fichiers {{{2
 
-x () {
+swap-files () {
 	(( $# < 2 )) && {
 		echo "Usage : x <file-1> <file 2>"
 		echo
 		return 1
 	}
 
-	local TMPFILE=tmp-$1-$2.$$
+	local TMPFILE=$(mktemp)
 
 	mv "$1" $TMPFILE
 
@@ -56,9 +174,9 @@ x () {
 
 # }}}2
 
-# nf : nombre-de-fichiers {{{2
+# number-of-files {{{2
 
-nf () {
+number-of-files () {
 	local arguments
 	local repertoire
 
@@ -79,9 +197,9 @@ nf () {
 
 # }}}2
 
-# mrm : most recent modified files {{{2
+# most-recently-modified files {{{2
 
-mrm () {
+most-recently-modified () {
 
 	local vecteur=()
 
@@ -120,58 +238,44 @@ mrm () {
 
 # }}}2
 
-# search-grep {{{2
+# searcher : grep like search {{{2
 
-search-grep () {
-
+searcher () {
 	local motif fichiers
-
 	motif=${1:-''}
-
 	(( $# > 0 )) && shift
-
 	fichiers=(${*:-()})
-
 	(( $#motif > 0 )) || {
-
 		echo -n "Motif : "
 		read motif
 		echo
 	}
-
 	(( $#motif > 0 )) || return 1
-
-	(( $#fichiers > 0 )) || fichiers=(**/*(.))
-
-	command grep --color=never $motif $=fichiers | sed 's/^/  /'
-}
-
-# }}}2
-
-# search-ag {{{2
-
-search-ag () {
-
-	local motif fichiers
-
-	motif=${1:-''}
-
-	(( $# > 0 )) && shift
-
-	fichiers=(${*:-()})
-
-	(( $#motif > 0 )) || {
-
-		echo -n "Motif : "
-		read motif
+	if command -v rg &> /dev/null
+	then
+		echo Using ripgrep
 		echo
-	}
-
-	(( $#motif > 0 )) || return 1
-
-	(( $#fichiers > 0 )) || fichiers=(.)
-
-	command ag --nocolor --vimgrep --smart-case $motif $=fichiers | sed 's/^/  /'
+		(( $#fichiers > 0 )) || fichiers=(.)
+		command rg --color=never --heading --smart-case --line-number $motif $=fichiers | sed 's/^/  /'
+	elif command -v ag &> /dev/null
+	then
+		echo Using silver searcher
+		echo
+		(( $#fichiers > 0 )) || fichiers=(.)
+		command ag --nocolor --vimgrep --smart-case $motif $=fichiers | sed 's/^/  /'
+	elif command -v ack &> /dev/null
+	then
+		echo Using ack
+		echo
+		(( $#fichiers > 0 )) || fichiers=(.)
+		ack --nocolor --nogroup --column --smart-case $motif $=fichiers | sed 's/^/  /'
+	elif command -v grep &> /dev/null
+	then
+		echo Using grep
+		echo
+		(( $#fichiers > 0 )) || fichiers=(**/*(.))
+		command grep --color=never $motif $=fichiers | sed 's/^/  /'
+	fi
 }
 
 # }}}2
@@ -221,7 +325,6 @@ lc () {
 	fi
 
 	case $dossier in
-
 		r|ra|rac|raci|racin|racine)
 			echo "locate -d ~/racine/index/locate/racine.db -e -A $=options $=motifs"
 			echo
@@ -232,11 +335,6 @@ lc () {
 			echo
 			locate -d ~/racine/index/locate/usr-local.db -e -A $=options $=motifs
 			;;
-		p|pa|pac|pacman|pacmanlib)
-			echo "locate -d ~/racine/index/locate/pacman-lib.db -e -A $=options $=motifs"
-			echo
-			locate -d ~/racine/index/locate/pacman-lib.db -e -A $=options $=motifs
-			;;
 		a|au|aud|audi|audio)
 			echo "locate -d ~/racine/index/locate/audio.db -e -A $=options $=motifs"
 			echo
@@ -246,6 +344,21 @@ lc () {
 			echo "locate -d ~/racine/index/locate/photo.db -e -A $=options $=motifs"
 			echo
 			locate -d ~/racine/index/locate/photo.db -e -A $=options $=motifs
+			;;
+		dc|dotconfig)
+			echo "locate -d ~/racine/index/locate/dotconfig.db -e -A $=options $=motifs"
+			echo
+			locate -d ~/racine/index/locate/dotconfig.db -e -A $=options $=motifs
+			;;
+		dl|dotlocal)
+			echo "locate -d ~/racine/index/locate/dotlocal.db -e -A $=options $=motifs"
+			echo
+			locate -d ~/racine/index/locate/dotlocal.db -e -A $=options $=motifs
+			;;
+		p|pa|pac|pacman|pacmanlib)
+			echo "locate -d ~/racine/index/locate/pacman-lib.db -e -A $=options $=motifs"
+			echo
+			locate -d ~/racine/index/locate/pacman-lib.db -e -A $=options $=motifs
 			;;
 	esac
 }
@@ -508,9 +621,9 @@ ptree () {
 
 # }}}2
 
-# pageur {{{2
+# pager {{{2
 
-pageur () {
+pager () {
 	local less
 
 	#less="less --lesskey-file=$HOME/racine/built/less/key.out"
@@ -537,128 +650,111 @@ yank-file () {
 
 # }}}2
 
-# vf : vim quick fix {{{2
+# vim-quickfix {{{2
 
-vf () {
-	vim +cope -q <(rg --vimgrep --smart-case "$@")
+vim-quickfix () {
+	if command -v rg &> /dev/null
+	then
+		echo Using ripgrep
+		vim +cope -q <(rg --vimgrep --smart-case "$@")
+	elif command -v ag &> /dev/null
+	then
+		echo Using silver searcher
+		vim +cope -q <(ag --nocolor --vimgrep --smart-case "$@")
+	elif command -v ack &> /dev/null
+	then
+		echo Using ack
+		vim +cope -q <(ack --nocolor --nogroup --column --smart-case "$@")
+	elif command -v grep &> /dev/null
+	then
+		echo Using grep
+		vim +cope -q <(grep --line-number --ignore-case --no-messages "$@")
+	fi
 }
 
 # }}}2
 
-# ssh {{{2
+# webreader : using readable & w3m {{{2
 
-ssh() {
+webreader () {
 
-	local options mots
-	local code=0
-	local ancien
-	local nom
+	readable $1 | w3m -T text/html
 
-	options=()
-
-	while true
-	do
-		case $1 in
-			-*)
-				options+=$1
-				shift
-				;;
-			*)
-				break
-				;;
-		esac
-	done
-
-	mots=("$@")
-
-	nom=${mots[1]%.*}
-
-	echo nom = $nom
-	echo
-
-	ancien=$(tmux display-message -p '#{window_name}')
-
-	if [ $TERM = tmux -o $TERM = tmux-256color ]
-	then
-		tmux rename-window "$nom"
-
-		echo "command ssh $=options $=mots"
-		echo
-
-		command ssh $=options $=mots
-
-		code=$?
-
-		tmux rename-window $ancien
-    else
-		echo "command ssh $=options $=mots"
-		echo
-
-		command ssh $=options $=mots
-
-		code=$?
-    fi
-
-	return $code
+	#readable $1 -p html-title,html-content | w3m -T text/html
 }
 
 # }}}2
 
-# sshx : ssh -X pour lancer des apps X Window {{{2
+# mail {{{2
 
-sshx() {
+mua () {
 
-	local options mots
-	local code=0
-	local ancien
-	local nom
+	local executable
+	which mail && executable=mail
+	which s-nail && executable=s-nail
+	$executable
+}
 
-	options=()
+# }}}2
 
-	while true
-	do
-		case $1 in
-			-*)
-				options+=$1
-				shift
-				;;
-			*)
-				break
-				;;
-		esac
-	done
+# send-mail {{{2
 
-	mots=("$@")
+send-mail () {
+	local name=$1
+	local recipient=$(abook --mutt-query $name | fzf | cut -f 1)
+	echo "mail $recipient"
+	mail $recipient
+}
 
-	nom=${mots[1]%.*}
+# }}}2
 
-	echo nom = $nom
-	echo
+# translator {{{2
 
-	ancien=$(tmux display-message -p '#{window_name}')
-
-	if [ $TERM = tmux -o $TERM = tmux-256color ]
+translator () {
+	# translator from:to keywords
+	local fromto=$1
+	local file=~/racine/list/translation/$fromto
+	shift
+	local search=${@//\'/}
+	local words=($=search)
+	local pattern="^  $words"
+	if grep $pattern $file &>/dev/null
 	then
-		tmux rename-window "$nom"
-
-		echo "command ssh -X -C $=options $=mots"
+		less --pattern=$pattern -f $file
+	else
+		echo trans $fromto "$words"
 		echo
+		echo '------------------------------' >>! $file
+		echo "  $words" >>! $file
+		echo '------------------------------' >>! $file
+		echo >>! $file
+		trans $fromto "$words" | tee -a $file
+		echo >>! $file
+	fi
+}
 
-		command ssh -X -C $=options $=mots
+# }}}2
 
-		code=$?
+# synonym {{{2
 
-		tmux rename-window $ancien
-    else
-		echo "command ssh -X -C $=options $=mots"
+synonym () {
+	local search=${@//\'/}
+	local words=($=search)
+	local pattern="^  $words"
+	local file=~/racine/list/synonym/thesaurus
+	if grep $pattern $file &>/dev/null
+	then
+		less --pattern=$pattern -f $file
+	else
+		echo synonym "$words"
 		echo
-
-		command ssh -X -C $=options $=mots
-
-		code=$?
-    fi
-
-	return $code
+		echo '------------------------------' >>! $file
+		echo "  $words" >>! $file
+		echo '------------------------------' >>! $file
+		echo >>! $file
+		command synonym "$words" | tee -a $file
+		echo >>! $file
+	fi
 }
 
 # }}}2
@@ -677,6 +773,128 @@ cmd-mplayer () {
 cmd-mpv () {
 
 	echo $* > ~/racine/run/fifo/mpv
+}
+
+# }}}2
+
+# {{{ clifm
+
+# shellcheck shell=sh
+
+# CliFM CD on quit function
+
+# Description
+# Run CliFM and, after exit, read the .last file and cd into it
+
+# 1) Customize this function as you need and add copy it or source it from your shell configuration file (e.g., .bashrc, .zshrc, etc)
+# 2) Restart your shell (for changes to take effect)
+# 3) Run clifm using the name of the function below: clifm [ARGS ...]
+
+# CliFM CD on quit function
+
+clifm() {
+	command clifm "--cd-on-quit" "$@"
+	local dir="$(grep "^\*" "${XDG_CONFIG_HOME:=${HOME}/.config}/clifm/.last" 2>/dev/null | cut -d':' -f2)";
+	if [ -d "$dir" ]; then
+		cd -- "$dir" || return 1
+	else
+		printf "No directory specified\n" >&2
+	fi
+}
+
+# }}}
+
+# run-ed {{{2
+
+run-ed () {
+	local runme='BROWSER=w3m BUKU_COLORS=xXxxx '
+	runme=$runme'rlwrap --always-readline --history-no-dupes 2 --multi-line '
+	runme=$runme'-H ~/racine/hist/rlwrap/ed.history  '
+	runme=$runme'-f ~/racine/hist/rlwrap/ed.comp '
+	runme=$runme'-l ~/racine/hist/rlwrap/ed.comp '
+	runme=${runme}'ed -v -p " * ed : "'
+	echo $runme
+	echo
+	eval $runme
+}
+
+# }}}2
+
+# run-vifm {{{2
+
+run-vifm () {
+	local dir=$(pwd)
+	cd ~/racine/config/fileman/vifm
+	vifm-clean-matchers.sh vifminfo.json
+	cd sessions
+	vifm-clean-matchers.sh *.json
+	cd $dir
+	vifmrun
+}
+
+# }}}2
+
+# run-buku {{{2
+
+run-buku () {
+	local runme='BROWSER=w3m BUKU_COLORS=xXxxx '
+	runme=$runme'rlwrap --always-readline --history-no-dupes 2 --multi-line '
+	runme=$runme'-H ~/racine/hist/rlwrap/buku.history '
+	runme=$runme'-f ~/racine/hist/rlwrap/buku.comp '
+	runme=$runme'-l ~/racine/hist/rlwrap/buku.comp '
+	runme=${runme}"buku $@"
+	echo $runme
+	echo
+	eval $runme
+}
+
+# }}}2
+
+# listen-and-clean {{{2
+
+listen-and-clean () {
+	local pattern=${1:-"[U-Z]"}
+	local number_of_songs=${2:-1}
+	local songnumber=0
+	local donotremove=~/log/listen-and-clean-do-not-remove.log
+	echo number of songs : $number_of_songs
+	echo
+	while [ $songnumber -lt $number_of_songs ]
+	do
+		echo song number : $songnumber
+		echo
+		local glob="~/audio/$pattern"
+		local pack=($~glob)
+		local songlist=($(print -l $pack | shuf))
+		local index=1
+		local length=$#songlist
+		local song=$songlist[$index]
+		echo trying song index in list : $index
+		echo trying song : $song
+		echo
+		while grep $song $donotremove &>/dev/null && (( index < length ))
+		do
+			(( index ++ ))
+			song=$songlist[$index]
+			echo trying song index in list : $index
+			echo trying song : $song
+			echo
+		done
+		echo playing : $song
+		echo
+		mpv $song
+		echo
+		echo -n 'Remove ? (y/n) '
+		read answer
+		echo
+		if [ $answer = y ]
+		then
+			rm -f $song
+		else
+			echo $song >>! $donotremove
+		fi
+		(( songnumber ++ ))
+	done
 }
 
 # }}}2
@@ -745,31 +963,25 @@ fzf-greenclip () {
 
 # Fonctions mathématiques {{{1
 
-# Module {{{2
-
-zmodload -i zsh/mathfunc
-
-# }}}2
+#zmodload -i zsh/mathfunc
 
 # Gaussienne {{{2
 
-#function zmath_gauss () {
+# function zmath_gauss () {
+# 	local x mu sigma
+# 	x=$1
+# 	mu=$2
+# 	sigma=$3
+# 	(( exp( - (x - mu) * (x - mu) / sigma ** 2 ) ))
+# }
 
-	#local x mu sigma
-
-	#x=$1
-	#mu=$2
-	#sigma=$3
-	#(( exp( - (x - mu) * (x - mu) / sigma ** 2 ) ))
-#}
-
-#functions -M gauss 3 3 zmath_gauss
+# functions -M gauss 3 3 zmath_gauss
 
 # }}}2
 
 # }}}1
 
-# Crochets {{{1
+# Crochets (hooks) {{{1
 
 # Chpwd {{{2
 

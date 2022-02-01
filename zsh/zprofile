@@ -32,9 +32,17 @@ path+=(~/racine/pack/bin)
 
 path+=(~/racine/shell/*(F))
 
+path+=(~/racine/bin/perl)
 path+=(~/racine/bin/python)
+path+=(~/racine/bin/ruby)
+
+path+=(~/racine/bin/fzf-nova)
 
 path+=(~/racine/bin/local/bin)
+
+path+=(~/racine/bin/clang)
+path+=(~/racine/bin/rust)
+
 path+=(~/racine/bin/go/bin)
 
 path+=(~/racine/install/*(F))
@@ -55,6 +63,9 @@ path+=(/sbin)
 path+=(/usr/bin/core_perl)
 path+=(/usr/bin/site_perl)
 path+=(/usr/bin/vendor_perl)
+
+path+=(/snap/bin)
+path+=(/var/lib/flatpak/exports/bin)
 
 # }}}2
 

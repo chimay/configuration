@@ -10,8 +10,18 @@
 # 	bsdinfo
 # }
 
-task
+
+[[ -d $dirstack[1] ]] && cd $dirstack[1]
 
 echo
-
 evalue-ssh-agent
+
+echo
+task
+
+# echo
+# rem -c+
+# echo
+# rem -gaad -h
+
+#pkill -f 'rem -gaad -h'

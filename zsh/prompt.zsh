@@ -2,7 +2,7 @@
 
 # Remarque : il ne semble pas nécessaire d’exporter les variables de PROMPT
 
-# {{{ Options
+# Options {{{1
 
 setopt prompt_percent
 setopt prompt_subst
@@ -12,22 +12,24 @@ unsetopt prompt_bang
 setopt prompt_cr
 setopt prompt_sp
 
-# }}}
+# }}}1
 
-# {{{ Initialisation
+# Initialisation {{{1
 
 autoload -U promptinit
 promptinit
 
-# }}}
+# }}}1
 
-# {{{ Signe de fin de fichier sans passage à la ligne
+# Signe de fin de fichier sans passage à la ligne {{{1
 
 PROMPT_EOL_MARK='%F{red}<EOF>%f'
 
-# }}}
+# }}}1
 
-# {{{ Répétition du texte de remplissage
+# Fonctions {{{1
+
+# Répétition du texte de remplissage {{{2
 
 function repete_texte {
 
@@ -52,9 +54,11 @@ function repete_texte {
 	echo -n $resultat
 }
 
-# }}}
+# }}}2
 
-#  {{{ Choix
+# }}}1
+
+#  Choix {{{1
 # ------------------------------------------------------------------------
 
 # Simple prompt "%"
@@ -69,33 +73,36 @@ function repete_texte {
 # Personnel
 
 case $TERM in
-	tmux-256color)
-		source $RACINE_ZSH/prompt/default.zsh
-		;;
-	tmux)
-		source $RACINE_ZSH/prompt/default.zsh
-		;;
-	screen-256color)
-		source $RACINE_ZSH/prompt/default.zsh
-		;;
-	screen)
+	xterm)
 		source $RACINE_ZSH/prompt/default.zsh
 		;;
 	xterm-256color)
 		source $RACINE_ZSH/prompt/default.zsh
 		;;
-	xterm)
+	rxvt-unicode)
 		source $RACINE_ZSH/prompt/default.zsh
 		;;
-	vim)
-		prompt off
+	rxvt-unicode-256color)
+		source $RACINE_ZSH/prompt/default.zsh
 		;;
-	neovim)
-		prompt off
+	alacritty)
+		source $RACINE_ZSH/prompt/default.zsh
+		;;
+	tmux)
+		source $RACINE_ZSH/prompt/default.zsh
+		;;
+	tmux-256color)
+		source $RACINE_ZSH/prompt/default.zsh
+		;;
+	screen)
+		source $RACINE_ZSH/prompt/default.zsh
+		;;
+	screen-256color)
+		source $RACINE_ZSH/prompt/default.zsh
 		;;
 	?*)
 		source $RACINE_ZSH/prompt/zero.zsh
 		;;
 esac
 
-# }}}
+# }}}1

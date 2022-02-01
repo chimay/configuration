@@ -76,28 +76,6 @@ setopt auto_remove_slash
 
 unsetopt complete_aliases
 
-# Globbing
-
-setopt glob_complete
-
-# Ksh
-
-#	ksh-like Glob Operators
-#	If the KSH_GLOB option is set, the effects of parentheses can be modified by a preceding `@', `*', `+', `?' or `!'.
-#	This character need not be unquoted to have special effects, but the `(' must be.
-#
-#	@(...) Match the pattern in the parentheses.  (Like `(...)'.)
-#
-#	*(...) Match any number of occurrences.  (Like `(...)#'.)
-#
-#	+(...) Match at least one occurrence.  (Like `(...)##'.)
-#
-#	?(...) Match zero or one occurrence.  (Like `(|...)'.)
-#
-#	!(...) Match anything but the expression in parentheses.  (Like `(^(...))'.)
-
-setopt ksh_glob
-
 # }}}2
 
 #  Zstyle {{{2
@@ -222,7 +200,7 @@ zstyle ':completion:history-complete-word:*' remove-all-dups yes
 # comme la recherche d'un paquet
 
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/racine/dotdir/zsh/cache/completion
+zstyle ':completion:*' cache-path ~/racine/varia/cache/zsh/completion
 
 # }}}3
 
@@ -563,7 +541,7 @@ select-word-style bash
 
 # Désactive Ctrl-S et Ctrl-Q pendant l’édition
 
-unsetopt flowcontrol
+unsetopt flow_control
 
 # }}}2
 
@@ -692,7 +670,7 @@ bindkey '^X^P' predict-off
 # Plus nécessaire avec le ^R de fzf
 #bindkey '^R' history-incremental-pattern-search-backward
 
-# Pris par perso-repertoires
+# Pris par biblio-repertoires
 # Plus nécessaire avec le ^R de fzf
 #bindkey '^S' history-incremental-pattern-search-forward
 
@@ -957,7 +935,7 @@ bindkey -s '\e^' "!:0\t"
 
 # Dernière commande sans le dernier argument
 
-bindkey -s '\e:' "!:0-\t"
+bindkey -s '\e:' "!:0-$\t"
 
 # }}}2
 
@@ -965,25 +943,25 @@ bindkey -s '\e:' "!:0-\t"
 
 #  Alternance des répertoires {{{3
 
-autoload perso-alternate-dirs
+autoload biblio-alternate-dirs
 
-zle -N perso-alternate-dirs
+zle -N biblio-alternate-dirs
 
-bindkey '^\^' perso-alternate-dirs
+bindkey '^\^' biblio-alternate-dirs
 
 # }}}3
 
 # Trois points ... --> ../.. {{{3
 
-zle -N perso-three-dots
+zle -N biblio-three-dots
 
-bindkey "." perso-three-dots
+bindkey "." biblio-three-dots
 
 bindkey -M isearch "." self-insert
 
-zle -N perso-three-commas
+zle -N biblio-three-commas
 
-bindkey "," perso-three-commas
+bindkey "," biblio-three-commas
 
 bindkey -M isearch "," self-insert
 
@@ -991,9 +969,9 @@ bindkey -M isearch "," self-insert
 
 # Trois étoiles {{{3
 
-zle -N perso-three-stars
+zle -N biblio-three-stars
 
-bindkey "*" perso-three-stars
+bindkey "*" biblio-three-stars
 
 bindkey -M isearch "*" self-insert
 
@@ -1001,19 +979,21 @@ bindkey -M isearch "*" self-insert
 
 # Changement de répertoire avec fzf {{{3
 
-zle -N perso-repertoires
+zle -N biblio-repertoires
 
-bindkey "^S" perso-repertoires
+# folders stack
+
+bindkey "^F" biblio-repertoires
 
 # }}}3
 
 #  Éditeur externe {{{3
 
-autoload perso-edit-command-line
+autoload biblio-edit-command-line
 
-zle -N perso-edit-command-line
+zle -N biblio-edit-command-line
 
-bindkey '\ee' perso-edit-command-line
+bindkey '\ee' biblio-edit-command-line
 
 # }}}3
 
@@ -1023,38 +1003,9 @@ bindkey '\ee' perso-edit-command-line
 
 # ------------------------------------------------------------
 
-# Tilix : émulateur de terminal {{{1
+# fzf : fuzzy finder {{{1
 
-# Optionnel si login shell
-
-# if [ $TILIX_ID ] || [ $VTE_VERSION ]
-# then
-#         source /etc/profile.d/vte.sh
-# fi
-
-# }}}1
-
-# FASD : Fast search of files and directories {{{1
-
-# Complétion :
-#
-# Tout : ,<tab>
-# Fichiers : f,<tab>
-# Répertoires : d,<tab>
-#
-# Plusieurs ,... sont possibles, exemple :
-#
-# ,bla,bli<tab> --> /blanc/blink
-
-# /!\ empêche alias -g F='| fpp' de fonctionner
-
-#eval "$(fasd --init auto)"
-
-# }}}1
-
-# FZF : Fuzzy Finder {{{1
-
-# Lie :
+# Définit les raccourcis :
 #
 # **<tab> : complétion **/*
 #
@@ -1068,20 +1019,78 @@ bindkey '\ee' perso-edit-command-line
 #			remplace capitalize-word
 #			toujours disponible sur Alt Shift c
 
-[ -f ~/.fzf.zsh ] && source ~/racine/config/cmdline/shell/fzf.zsh
+source ~/racine/shell/source/fzf-key-bindings.zsh
+source ~/racine/shell/source/fzf-completion.zsh
 
 bindkey '\e^T' transpose-chars
 bindkey '\eC' capitalize-word
 
+# voir aussi <url:zshenv#tn=FZF_DEFAULT_OPTS>
+
 # }}}1
 
-# Z : changement de répertoire {{{1
+# fzf tab completion {{{1
 
-unsetopt warn_create_global
+#source ~/racine/shell/source/fzf-zsh-completion.sh
 
-source ~/racine/config/cmdline/shell/cd-with-z.sh
+#bindkey '^X^I' fzf_completion
 
-export _Z_DATA=~/racine/index/filesys/z-dirs
+# }}}1
+
+# git & fzf {{{1
+
+# credit : https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
+
+# source ~/racine/shell/source/git-fzf.sh
+#
+# join-lines() {
+#   local item
+#   while read item; do
+#     echo -n "${(q)item} "
+#   done
+# }
+#
+# bind-git-helper() {
+#   local c
+#   for c in $@; do
+#     eval "fzf-g$c-widget() { local result=\$(_g$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
+#     eval "zle -N fzf-g$c-widget"
+#     eval "bindkey '^g^$c' fzf-g$c-widget"
+#   done
+# }
+# bind-git-helper f b t r h s
+# unset -f bind-git-helper
+
+# }}}1
+
+# z : changement de répertoire {{{1
+
+source ~/racine/shell/source/zsh-z.plugin.zsh
+
+#alias zd='zshz 2>&1'
+
+# }}}1
+
+# autojump {{{1
+
+#source /usr/share/autojump/autojump.zsh
+
+# }}}1
+
+# fasd {{{1
+
+#eval "$(fasd --init auto)"
+
+# }}}1
+
+# fzf-z {{{1
+
+# aussi disponible en tant que commande fzfz
+
+# source ~/racine/shell/source/fzf-z.plugin.zsh
+
+# voir aussi <url:zshenv#tn=FZFZ_RECENT_DIRS_TOOL>
+# voir aussi <url:alias.zsh#tn=fzfz>
 
 # }}}1
 
@@ -1099,7 +1108,7 @@ setopt warn_create_global
 
 # Les variables d'environnement sont globales par défaut
 
-setopt globalexport
+setopt global_export
 
 # Fichier des fonctions
 
@@ -1127,11 +1136,15 @@ source ${RACINE_ZSH}/alias.zsh
 # normal dans un '...' Exemple :
 # '...l''apostrophe...'
 
-setopt rcquotes
+setopt rc_quotes
 
 # Pas d'expansion des "... ... ..."
+# S’active aussi sous la forme $=a
+# exemple :
+# a='un deux'
+# print -l $=a
 
-unsetopt shwordsplit
+unsetopt sh_word_split
 
 # }}}1
 
@@ -1153,7 +1166,7 @@ setopt hash_list_all
 
 # Commandes et arguments
 
-#setopt correctall
+#setopt correct_all
 
 # }}}1
 
@@ -1263,6 +1276,11 @@ unsetopt clobber
 
 setopt multios
 
+# Redirections sans commmande
+
+unsetopt sh_nullcmd
+unsetopt csh_nullcmd
+
 # }}}1
 
 #  Processus {{{1
@@ -1321,13 +1339,13 @@ source ${RACINE_ZSH}/prompt.zsh
 
 setopt glob
 
+# Globbing & completion
+
+setopt glob_complete
+
 # Globbing étendu
 
 setopt extended_glob
-
-# Globbing à la ksh
-
-setopt ksh_glob
 
 # Les glob vides ne provoquent pas d’erreur
 
@@ -1345,14 +1363,17 @@ setopt no_match
 
 setopt bare_glob_qual
 
-# Substitution du contenu d'une variable s'active aussi avec ${~var}
+# Substitution du contenu d'une variable
+# S'active aussi avec ${~var}
+# exemple :
+# a=*
+# b=($~a)
 
 unsetopt glob_subst
 
 # a=* est étendu en
 # a=( fichier1 fichier2 ... )
-# peut s'activer aussi sous la forme
-# a=(*)
+# S'active aussi avec a=(*)
 
 unsetopt glob_assign
 
@@ -1367,11 +1388,15 @@ unsetopt glob_dots
 
 #setopt numeric_glob_sort
 
-# Chaine$Tableau
-# donne
-# ChaineElement1 ChaineElement2 ...
-# Aussi accessible avec la forme
-# chaine${^tableau}
+# Chaine$Tableau -> ChaineElement1 ChaineElement2 ...
+#
+# S’active aussi sous la forme
+#
+# chaine$^tableau
+#
+# On a aussi le produit tensoriel
+#
+# $^tableau_a$^tableau_b
 
 unsetopt rc_expand_param
 
@@ -1385,15 +1410,33 @@ setopt brace_ccl
 
 #setopt mark_dirs
 
-# Complétion
+# Globbing à la ksh
+#
+#	ksh-like Glob Operators
+#	If the KSH_GLOB option is set, the effects of parentheses can be modified by a preceding `@', `*', `+', `?' or `!'.
+#	This character need not be unquoted to have special effects, but the `(' must be.
+#
+#	@(...) Match the pattern in the parentheses.  (Like `(...)'.) or @(abc|def)
+#
+#	*(...) Match any number of occurrences.  (Like `(...)#'.)
+#
+#	+(...) Match at least one occurrence.  (Like `(...)##'.)
+#
+#	?(...) Match zero or one occurrence.  (Like `(|...)'.)
+#
+#	!(...) Match anything but the expression in parentheses.  (Like `(^(...))'.)
 
-# voir completion, option glob_complete
+setopt ksh_glob
+
+# si activé, fait planter certaines complétions
+
+unsetopt sh_glob
 
 # }}}1
 
 #  Divers {{{1
 
-setopt MULTIBYTE
+setopt multibyte
 
 # Je ne veux JAMAIS de beeps
 
@@ -1526,8 +1569,6 @@ then
 	dirstack=(${(u)dirstack})
 
 	print -l ${(Oa)~dirstack} >! $REPERTOIRES_FICHIER
-
-	[[ -d $dirstack[1] ]] && cd $dirstack[1]
 fi
 
 # }}}2
@@ -1541,7 +1582,7 @@ fi
 # Basé sur base16, permet d’uniformiser le thème du terminal
 # indépendamment des émulateurs
 
-source ~/racine/config/terminal/theme/ornuit.sh
+source ~/racine/config/terminal/theme/golden-night.sh
 
 # }}}1
 
@@ -1564,5 +1605,11 @@ function _pip_completion {
              PIP_AUTO_COMPLETE=1 $words[1] ) )
 }
 compctl -K _pip_completion pip
+
+# }}}1
+
+# Kitty {{{1
+
+kitty + complete setup zsh | source /dev/stdin
 
 # }}}1

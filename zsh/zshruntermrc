@@ -126,7 +126,7 @@ function preexec {
 
     unset ZDOTDIR
     #sh -c "$1" &
-    konsole -e zsh -c "$1" &!
+    urxvtc -e zsh -c "$1" &!
     exit
 }
 

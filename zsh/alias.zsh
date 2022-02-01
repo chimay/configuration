@@ -1,5 +1,11 @@
 # vim: set ft=zsh :
 
+# Touches non utilisées {{{1
+
+# à
+
+# }}}1
+
 #  Généralités {{{1
 
 # Commande qui ne fait rien
@@ -26,7 +32,13 @@ alias rr='builtin r'
 
 # Documentation {{{1
 
-alias c=cheat
+# tldr, cheatsheets, ...
+
+# }}}1
+
+# Self {{{1
+
+alias cm='chezmoi -S ~/racine/self/chezmoi -D ~ -c ~/racine/self/chezmoi/dot_config/chezmoi/chezmoi.toml'
 
 # }}}1
 
@@ -57,9 +69,8 @@ alias azer="setxkbmap be ; xmodmap ~/racine/config/windenv/xmodmap/belge-meta-su
 #  Contrôle de version {{{1
 
 alias g=git
-
+alias 9=lazygit
 alias r=tig
-alias rp=lazygit
 
 #alias diff='diff -BN'
 
@@ -69,9 +80,9 @@ alias p1='patch -p1 < '
 
 #  Visualisation {{{1
 
-alias p=pageur
+alias p=pager
 
-alias pp='pageur +G'
+alias pp='pager +G'
 
 alias q='most -C'
 
@@ -87,11 +98,14 @@ alias d=zathura
 
 # Images
 
+alias 1=ucollage
 alias i=sxiv
-
 alias ii=vimiv
-
 alias iii=feh
+
+# Fontes
+
+alias fp='fontpreview-ueberzug -f "#5b3c11" -b "#000000"'
 
 # }}}1
 
@@ -100,7 +114,7 @@ alias iii=feh
 # Ed {{{2
 # ------------------------------------------------------------
 
-alias ed='rlwrap ed -v -p " * ed : "'
+alias ed=run-ed
 
 # }}}2
 
@@ -109,7 +123,9 @@ alias ed='rlwrap ed -v -p " * ed : "'
 alias v=vim
 alias vi=vim
 
-alias vd=vimdiff
+alias vid=vimdiff
+
+alias vq=vim-quickfix
 
 alias se=sudoedit
 
@@ -119,20 +135,20 @@ alias se=sudoedit
 
 alias nv=nvim
 
-alias nsrv='lance-neovim-serveur'
+alias nsrv=run-neovim-server
 
 #  }}}2
 
 # Emacs {{{2
 # ------------------------------------------------------------
 
-alias esrv='lance-emacs-serveur'
+alias esrv=run-emacs-server
 
 alias emx='emacs -nw'
 
 alias mx='emacs -nw -q -l ~/racine/config/edit/emacs/leger.el'
 
-# Emacs : client graphique, voir ~/racine/shell/run/lance-emacs-client.zsh
+# Emacs : client graphique, voir ~/racine/shell/run/run-emacs-client.zsh
 
 # Client terminal
 
@@ -142,7 +158,7 @@ alias em='emacsclient -t'
 
 alias emopen='emacsclient'
 
-alias test-emacs='cd ~/Documents && HOME=~/Documents emacs'
+alias test-emacs='cd ~/racine/test/emacs && HOME=~/racine/test/emacs emacs'
 
 # }}}2
 
@@ -158,54 +174,31 @@ alias k=kak
 
 # Liste {{{2
 
-[ $OPERASYS = freebsd ] && {
-
+if [ $OPERASYS = freebsd ]
+then
 	alias l=ls
 	alias la='ls -a'
 	alias ll='ls -l'
-}
-
-[ $OPERASYS = archlinux ] && {
-
+else
 	alias l='ls --color=auto --show-control-chars'
 	alias ls='ls --color=auto'
 	alias la='ls -a --color=auto'
 	alias ll='ls -l --color=auto'
-}
+	alias le=ls_extended
+fi
 
-[ $OPERASYS = linuxmint ] && {
-
-	alias l='ls --color=auto --show-control-chars'
-	alias ls='ls --color=auto'
-	alias la='ls -a --color=auto'
-	alias ll='ls -l --color=auto'
-}
-
-[ $OPERASYS = ubuntu ] && {
-
-	alias l='ls --color=auto --show-control-chars'
-	alias ls='ls --color=auto'
-	alias la='ls -a --color=auto'
-	alias ll='ls -l --color=auto'
-}
-
-[ $OPERASYS = linux ] && {
-
-	alias l='ls --color=auto --show-control-chars'
-	alias ls='ls --color=auto'
-	alias la='ls -a --color=auto'
-	alias ll='ls -l --color=auto'
-}
-
-alias ù=mrm
+alias ù=most-recently-modified
+alias nf=number-of-files
 
 # }}}2
 
 # Répertoires {{{2
 
-alias 0='cd ~/racine/plain'
+alias 0='cd ~/racine'
 
 alias pw='pwd'
+
+alias c='cd $(fzfz)'
 
 # }}}2
 
@@ -221,6 +214,7 @@ alias df='df -h'
 alias dfc='dfc -c never'
 
 alias du='du -sh'
+alias duc=ncdu
 
 # }}}2
 
@@ -230,7 +224,9 @@ alias mv='mv -i'
 
 alias mm='qmv -f destination-only -d -e kak'
 
-alias vr=vidir
+# vi folder
+
+alias vd=vidir
 
 # }}}2
 
@@ -273,6 +269,7 @@ alias rmv='rsync --verbose --progress --stats --human-readable --itemize-changes
 	--log-file="$HOME/log/rsync.log" \
 	--rsh=ssh \
 	--recursive \
+	--modify-window=1 \
 	--owner --group --times --perms --links \
 	--remove-source-files'
 
@@ -280,21 +277,26 @@ alias cp='rsync --verbose --progress --stats --human-readable --itemize-changes 
 	--log-file="$HOME/log/rsync.log" \
 	--rsh=ssh \
 	--recursive \
+	--modify-window=1 \
 	--owner --group --times --perms --links \
 	--update'
 
+# relative
 alias cpr='rsync --verbose --progress --stats --human-readable --itemize-changes \
 	--log-file="$HOME/log/rsync.log" \
 	--rsh=ssh \
 	--recursive \
+	--modify-window=1 \
 	--owner --group --times --perms --links \
 	--update \
 	--relative'
 
+# force
 alias cpf='rsync --verbose --progress --stats --human-readable --itemize-changes \
 	--log-file="$HOME/log/rsync.log" \
 	--rsh=ssh \
 	--recursive \
+	--modify-window=1 \
 	--owner --group --times --perms --links \
 	--ignore-times'
 
@@ -302,23 +304,28 @@ alias sn='rsync --verbose --progress --stats --human-readable --itemize-changes 
 	--log-file="$HOME/log/rsync.log" \
 	--rsh=ssh \
 	--recursive \
+	--modify-window=1 \
 	--delete-during \
 	--owner --group --times --perms --links \
 	--update'
 
+# relative
 alias snr='rsync --verbose --progress --stats --human-readable --itemize-changes \
 	--log-file="$HOME/log/rsync.log" \
 	--rsh=ssh \
 	--recursive \
+	--modify-window=1 \
 	--delete-during \
 	--owner --group --times --perms --links \
 	--update \
 	--relative'
 
+# force
 alias snf='rsync --verbose --progress --stats --human-readable --itemize-changes \
 	--log-file="$HOME/log/rsync.log" \
 	--rsh=ssh \
 	--recursive \
+	--modify-window=1 \
 	--delete-during \
 	--owner --group --times --perms --links \
 	--ignore-times'
@@ -327,8 +334,9 @@ alias snf='rsync --verbose --progress --stats --human-readable --itemize-changes
 
 # Gestionnaires de fichiers {{{2
 
-alias §='vifm'
-alias 2='vifmrun'
+alias §=run-vifm
+
+alias f='clifm --no-color'
 
 # }}}2
 
@@ -357,10 +365,13 @@ alias pk='pack'
 
 #  Processus {{{1
 
-alias j='jobs'
+alias jb='jobs'
 
-alias top=htop
-alias gl=glances
+alias t=htop
+alias bpt=bpytop
+
+alias ts=tsp
+alias stamp='command ts'
 
 alias s=kill
 
@@ -380,15 +391,14 @@ alias hi=info
 
 #  Recherche {{{1
 
-alias é='rg --color=never --heading --smart-case'
+alias é=searcher
 alias è='rg --vimgrep --smart-case'
-alias à='grep --color=never'
 
 # }}}1
 
 # Organisation {{{1
 
-alias t=task
+alias ta=task
 
 alias clc=calcurse
 
@@ -396,35 +406,51 @@ alias clc=calcurse
 
 # Courriel {{{1
 
-alias m=neomutt
+alias a="mail -Y 'h $'"
+alias à=send-mail
 
-alias M=lance-neomutt.zsh
+alias m=neomutt
+alias M=run-neomutt.zsh
+
+alias £=abook
 
 alias n='newsboat -c ~/racine/index/newsboat/cache.db'
 
-alias µ=mua
-
-alias a=abook
-
 # }}}1
 
-# Navigateurs {{{1
+# Navigation {{{1
+
+# Signets
+
+alias b=run-buku
+
+# Recherche
 
 alias sr=surfraw
-alias dg=ddgr
-alias b='BROWSER=w3m buku'
+
+# Navigateurs
 
 alias w=w3m
-
 alias ww=elinks
 
 alias www='lynx -cfg=~/racine/config/webrowser/lynx/lynx.cfg -lss=~/racine/config/webrowser/lynx/lynx.lss'
+
+# readable -> w3m
+alias wr=webreader
+
+# téléchargement
+
+alias dl=aria2p
+
+# gemini
+
+alias gg=amfora
 
 # }}}1
 
 # Chat {{{1
 
-alias tw='oysttyer -newline=1 -urlopen=qutebrowser -doublespace -separator=------------------------------'
+alias mrx=gomuks
 
 # }}}1
 
@@ -454,11 +480,9 @@ alias am='alsamixer -c 0'
 alias pm=pulsemixer
 alias ncpm=ncpamixer
 
-alias mp=joue
+alias µ=joue
 
-alias o=mocp
-alias £=ncmpcpp
-alias °=cmus
+alias ncmp=ncmpcpp
 
 alias pc=playerctl
 
@@ -531,7 +555,7 @@ alias vmstat='vmstat 1 4'
 # Dictionnaires {{{1
 
 alias ds=sdcv
-alias dt=trans
+alias dt=translator
 alias dy=synonym
 
 alias wk=wikicurses
@@ -636,6 +660,7 @@ hash -d artisan=~/racine/artisan
 hash -d automat=~/racine/automat
 hash -d bin=~/racine/bin
 hash -d built=~/racine/built
+hash -d cloud=~/racine/cloud
 hash -d common=~/racine/common
 hash -d config=~/racine/config
 hash -d dotdir=~/racine/dotdir
@@ -643,6 +668,8 @@ hash -d example=~/racine/example
 hash -d feder=~/racine/feder
 hash -d fun=~/racine/fun
 hash -d filesys=~/racine/filesys
+hash -d game=~/racine/game
+hash -d gate=~/racine/gate
 hash -d hist=~/racine/hist
 hash -d hub=~/racine/hub
 hash -d humour=~/racine/humour
@@ -661,6 +688,7 @@ hash -d musica=~/racine/musica
 hash -d network=~/racine/network
 hash -d news=~/racine/news
 hash -d omni=~/racine/omni
+hash -d organ=~/racine/organ
 hash -d pack=~/racine/pack
 hash -d papier=~/racine/papier
 hash -d pictura=~/racine/pictura
@@ -671,8 +699,11 @@ hash -d refer=~/racine/refer
 hash -d repo=~/racine/repo
 hash -d run=~/racine/run
 hash -d scien=~/racine/scien
+hash -d search=~/racine/search
 hash -d self=~/racine/self
+hash -d share=~/racine/share
 hash -d shell=~/racine/shell
+hash -d session=~/racine/session
 hash -d site=~/racine/site
 hash -d snippet=~/racine/snippet
 hash -d source=~/racine/source
@@ -683,6 +714,7 @@ hash -d test=~/racine/test
 hash -d trash=~/racine/trash
 hash -d varia=~/racine/varia
 hash -d void=~/racine/void
+hash -d wiki=~/racine/wiki
 
 # }}}2
 
@@ -730,8 +762,8 @@ hash -d muttconf=~/racine/config/mail/neomutt
 
 hash -d pman=~/racine/plugin/manager
 
-hash -d vimpack=~/racine/plugin/manager/vimpack
-hash -d neovimpack=~/racine/plugin/manager/neovimpack
+hash -d vimpac=~/racine/plugin/manager/vimpack/minpac
+hash -d neovimpac=~/racine/plugin/manager/neovimpack/minpac
 hash -d elget=~/racine/plugin/manager/el-get
 hash -d straight=~/racine/plugin/manager/straight
 
