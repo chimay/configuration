@@ -36,20 +36,6 @@
 
 let g:no_plugin_maps = 1
 
-" Configuration des plugins
-
-" Librairies : fonctions, utilitaires {{{1
-
-" Tlib (tomtom/tlib_vim) {{{2
-
-"nnoremap ...p :TBrowseOutput<space>
-
-"nnoremap ...o :exec 'e' fnameescape(tlib#input#List('s', 'Old file', v:oldfiles))<cr>
-
-" }}}2
-
-" }}}1
-
 " ------------------------------------
 
 " Bouts de code (snippets, bits, modèles) {{{1
@@ -62,12 +48,12 @@ let g:no_plugin_maps = 1
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpBackwardTrigger="<m-tab>"
 
 let g:UltiSnipsListSnippets='<F8>l'
 
-nnoremap <F8>e :UltiSnipsEdit<cr>
-nnoremap <F8>a :UltiSnipsAddFiletypes<space>
+nnoremap <F8>e <cmd>UltiSnipsEdit<cr>
+nnoremap <F8>a <cmd>UltiSnipsAddFiletypes<space>
 
 " }}}3
 
@@ -91,7 +77,7 @@ let g:UltiSnipsEditSplit = 'horizontal'
 
 let NERDCreateDefaultMappings = 0
 
-map <d-c> <plug>NERDCommenterToggle
+map <d-;> <plug>NERDCommenterToggle
 
 " }}}2
 
@@ -109,16 +95,6 @@ let g:tcomment#options = {
 let g:tcomment_types = {
 	\ 'vim': '" %s'
 \}
-
-" }}}2
-
-" }}}1
-
-" Complétion {{{1
-
-" Deoplete {{{2
-
-let g:deoplete#enable_at_startup = 1
 
 " }}}2
 
@@ -175,11 +151,11 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " 2-character Sneak (default)
 
-nmap s <Plug>Sneak_s
-nmap S <Plug>Sneak_S
+nmap <f4> <Plug>Sneak_s
+nmap <f3> <Plug>Sneak_S
 
-xmap s <Plug>Sneak_s
-xmap S <Plug>Sneak_S
+xmap <f4> <Plug>Sneak_s
+xmap <f3> <Plug>Sneak_S
 
 omap z <Plug>Sneak_s
 omap Z <Plug>Sneak_S
@@ -192,12 +168,8 @@ omap , <Plug>Sneak_,
 nmap f <Plug>Sneak_f
 nmap F <Plug>Sneak_F
 
-" visual-mode
-
 xmap f <Plug>Sneak_f
 xmap F <Plug>Sneak_F
-
-" operator-pending-mode
 
 omap f <Plug>Sneak_f
 omap F <Plug>Sneak_F
@@ -207,20 +179,16 @@ omap F <Plug>Sneak_F
 nmap t <Plug>Sneak_t
 nmap T <Plug>Sneak_T
 
-" visual-mode
-
 xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
-
-" operator-pending-mode
 
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 
 " label-mode
 
-nmap <m-;> <Plug>SneakLabel_s
-nmap <m-,> <Plug>SneakLabel_S
+nmap <f10> <Plug>SneakLabel_s
+nmap <f9>  <Plug>SneakLabel_S
 
 " }}}3
 
@@ -293,22 +261,22 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " Mappings {{{3
 
-nnoremap <f7>a :Ag<cr>
-nnoremap <f7>b :Buffers<cr>
-nnoremap <f7>c :Commands<cr>
-nnoremap <f7>C :Commits<cr>
-nnoremap <f7>f :Files<cr>
-nnoremap <f7>F :Filetypes<cr>
-nnoremap <f7>g :GitFiles<cr>
-nnoremap <f7>h :History<cr>
-nnoremap <f7>H :Helptags<cr>
-nnoremap <f7>l :Lines<cr>
-nnoremap <f7>m :Marks<cr>
-nnoremap <f7>M :Maps<cr>
-nnoremap <f7>r :Rg<cr>
-nnoremap <f7>s :Snippets<cr>
-nnoremap <f7>t :Tags<cr>
-nnoremap <f7>w :Windows<cr>
+nnoremap <f7>a <cmd>Ag<cr>
+nnoremap <f7>b <cmd>Buffers<cr>
+nnoremap <f7>c <cmd>Commands<cr>
+nnoremap <f7>C <cmd>Commits<cr>
+nnoremap <f7>f <cmd>Files<cr>
+nnoremap <f7>F <cmd>Filetypes<cr>
+nnoremap <f7>g <cmd>GitFiles<cr>
+nnoremap <f7>h <cmd>History<cr>
+nnoremap <f7>H <cmd>Helptags<cr>
+nnoremap <f7>l <cmd>Lines<cr>
+nnoremap <f7>m <cmd>Marks<cr>
+nnoremap <f7>M <cmd>Maps<cr>
+nnoremap <f7>r <cmd>Rg<cr>
+nnoremap <f7>s <cmd>Snippets<cr>
+nnoremap <f7>t <cmd>Tags<cr>
+nnoremap <f7>w <cmd>Windows<cr>
 
 " }}}3
 
@@ -374,8 +342,11 @@ endfunction
 
 if ! exists("g:wheel_loaded")
 	" Init
-	let g:wheel_config={}
-	let g:wheel_config.maxim={}
+	let g:wheel_config              = {}
+	let g:wheel_config.maxim        = {}
+    let g:wheel_config.frecency     = {}
+	let g:wheel_config.display      = {}
+	let g:wheel_config.display.sign = {}
 
 	" The file where toruses and circles will be stored and read
 	let g:wheel_config.file = '~/racine/plugin/data/wheel/auto'
@@ -383,14 +354,20 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.autoread = 1
 	" Auto write torus file on exit if > 0
 	let g:wheel_config.autowrite = 1
-	" Number of backups for the wheel file
-	let g:wheel_config.backups = 7
+    " The file where session will be stored and read
+    let g:wheel_config.session_file = '~/racine/plugin/data/wheel/layout'
+    " Auto read session file on startup if > 0
+    let g:wheel_config.autoread_session = 1
+    " Auto write session file on exit if > 0
+    let g:wheel_config.autowrite_session = 1
+	" Number of backups for the wheel or session file
+	let g:wheel_config.backups = 12
 	" The bigger it is, the more mappings available
 	let g:wheel_config.mappings = 20
 	" Prefix for mappings
 	let g:wheel_config.prefix = '<d-w>'
 	" Auto cd to project root if > 0
-	let g:wheel_config.cd_project = 1
+	let g:wheel_config.auto_chdir_project = 1
 	" Marker of project root
 	"let g:wheel_config.project_markers = '.git'
 	"let g:wheel_config.project_markers = '.racine-projet'
@@ -415,7 +392,7 @@ if ! exists("g:wheel_loaded")
 	" Maximum size of elements in yank wheel
 	let g:wheel_config.maxim.yank_size = 3000
 
-	" Maximum size of layer stack
+	" Maximum size of layer ring
 	let g:wheel_config.maxim.layers = 7
 
 	" Maximum number of tabs
@@ -425,67 +402,67 @@ if ! exists("g:wheel_loaded")
 	" Maximum number of vertical splits
 	let g:wheel_config.maxim.vertical = 4
 
+	" Frecency
+	let g:wheel_config.frecency.reward = 120
+	let g:wheel_config.frecency.penalty = 1
+
+	" Wheel message : one-line or multi-line
+	let g:wheel_config.display.message = 'multi-line'
+	" Filter prompt in dedicated buffers
+	"let g:wheel_config.display.prompt = 'wheel $ '
+	" Selection marker in dedicated buffers
+	"let g:wheel_config.display.selection = '-> '
+	" Sign text at wheel locations
+	"let g:wheel_config.display.sign.settings = { 'text' : '@' }
+
 	"let g:wheel_config.debug = 1
 
 	set tabline=%!wheel#status#tabline()
 
-	nmap <silent> <c-l> :nohl<cr><plug>(wheel-spiral-cursor)
-	imap <silent> <c-l> <esc>:nohl<cr><plug>(wheel-spiral-cursor)a
+	nmap <silent> <c-l> <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
+	imap <silent> <c-l> <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 
-	nmap <silent> k :call wheel#mandala#wrap_up()<cr>
-	nmap <silent> j :call wheel#mandala#wrap_down()<cr>
+	nmap <silent> k <cmd>call wheel#mandala#wrap_up()<cr>
+	nmap <silent> j <cmd>call wheel#mandala#wrap_down()<cr>
 
-	nmap <silent> <up> :call wheel#mandala#wrap_up()<cr>
-	nmap <silent> <down> :call wheel#mandala#wrap_down()<cr>
+	nmap <silent> <up> <cmd>call wheel#mandala#wrap_up()<cr>
+	nmap <silent> <down> <cmd>call wheel#mandala#wrap_down()<cr>
 
-	nmap <silent> <d-cr> <plug>(wheel-switch-location)
-
-	nmap <silent> § <plug>(wheel-tree)
-	nmap <silent> é <plug>(wheel-grep)
-	nmap <silent> è <plug>(wheel-outline)
-	nmap <silent> ù <plug>(wheel-mru)
-	nmap <silent> £ <plug>(wheel-locate)
-	nmap <silent> µ <plug>(wheel-tags)
-	nmap <silent> ç <plug>(wheel-yank-plain)
-	nmap <silent> ° <plug>(wheel-yank-list)
+	nmap <silent> § <plug>(wheel-dedibuf-index-tree)
+	nmap <silent> é <plug>(wheel-dedibuf-grep)
+	nmap <silent> à <plug>(wheel-dedibuf-narrow-operator)
+	vmap <silent> à <plug>(wheel-dedibuf-narrow)
+	nmap <silent> è <plug>(wheel-dedibuf-narrow-circle)
+	nmap <silent> ù <plug>(wheel-dedibuf-history)
+	nmap <silent> µ <plug>(wheel-dedibuf-buffer-all)
+	nmap <silent> £ <plug>(wheel-dedibuf-tabwin-tree)
+	nmap <silent> ç <plug>(wheel-dedibuf-yank-plain)
 
 	nmap <silent> <d-^>       <plug>(wheel-alternate-other-torus)
-	nmap <silent> <d-x>       <plug>(wheel-index-locations)
-	nmap <silent> <d-h>       <plug>(wheel-history)
-	nmap <silent> <d-§>       <plug>(wheel-tabwins-tree)
-	nmap <silent> <d-v>       <plug>(wheel-reorg-tabwins)
-	nmap <silent> <d-u>       <plug>(wheel-undo-list)
+	nmap <silent> <d-e>       <plug>(wheel-dedibuf-frecency)
+	nmap <silent> <d-cr>      <plug>(wheel-prompt-index)
+	nmap <silent> <d-x>       <plug>(wheel-prompt-index-circles)
+	nmap <silent> <d-v>       <plug>(wheel-dedibuf-tabwin)
+
+    nmap <silent> <d-o>       <plug>(wheel-dedibuf-occur)
+    nmap <silent> <d-b>       <plug>(wheel-dedibuf-buffer-all)
+	nmap <silent> <d-k>       <plug>(wheel-dedibuf-marker)
+	nmap <silent> <d-j>       <plug>(wheel-dedibuf-jump)
+	nmap <silent> <d-c>       <plug>(wheel-dedibuf-change)
+	nmap <silent> <d-t>       <plug>(wheel-dedibuf-tag)
+
+    nmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow-operator)
+    vmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow)
+
+    nmap <silent> <d-y>       <plug>(wheel-dedibuf-yank-list)
+    nmap <silent> <d-p>       <plug>(wheel-dedibuf-yank-plain)
+
+	nmap <silent> <d-u>       <plug>(wheel-dedibuf-undo-list)
+	nmap <silent> <d-r>       <plug>(wheel-dedibuf-reorg-tabwin)
+
 	nmap <silent> <d-space>   <plug>(wheel-mandala-forward)
 	nmap <silent> <d-s-space> <plug>(wheel-mandala-backward)
 endif
-
-" }}}2
-
-" }}}1
-
-" Filtres {{{1
-
-"  Narrow region (chrisbra/NrrwRgn) {{{2
-
-nnoremap à :NarrowRegion<cr><c-w>_zR
-
-vnoremap à :NarrowRegion<cr><c-w>_zR
-
-"xmap à <Plug>NrrwrgnDo
-
-nmap _ <Plug>NrrwrgnWinIncr
-
-let g:nrrw_rgn_vert = 0
-
-let g:nrrw_rgn_wdth = 20
-let g:nrrw_rgn_incr = 10
-
-let g:nrrw_topbot_leftright = 'aboveleft'
-"let g:nrrw_topbot_leftright = 'botright'
-
-let g:nrrw_rgn_nohl = 0
-
-let g:nrrw_rgn_update_orig_win = 1
 
 " }}}2
 
@@ -495,7 +472,7 @@ let g:nrrw_rgn_update_orig_win = 1
 
 " Undotree (mbbill/undotree) {{{2
 
-nnoremap <s-bs> :UndotreeToggle<cr>
+nnoremap <s-bs> <cmd>UndotreeToggle<cr>
 
 " }}}2
 
@@ -505,7 +482,7 @@ nnoremap <s-bs> :UndotreeToggle<cr>
 
 "  Utl (utl.vim) {{{2
 
-nnoremap gf :Utl<cr>
+nnoremap gf <cmd>Utl<cr>
 
 let g:utl_cfg_hdl_scm_http = "!qutebrowser '%u#%f' &"
 
@@ -589,55 +566,7 @@ let g:easy_align_delimiters = {
 
 " }}}1
 
-" Recherche & Remplacement {{{1
-
-" Abolish (tpope/vim-abolish) {{{2
-
-let g:abolish_save_file = $HOME . '/racine/plugin/data/abolish/abreviations'
-
-nnoremap <F11>a :Abolish //<Left>
-nnoremap <F11>s :Subvert //<Left>
-
-" }}}2
-
-" Quickfix reflector (stefandtw/quickfix-reflector.vim) {{{2
-
-let g:qf_join_changes = 0
-let g:qf_modifiable = 1
-let g:qf_write_changes = 0
-
-" }}}2
-
-" QFGrep {{{2
-
-" nmap <buffer> \r <Plug>QFRestore
-" nmap <buffer> \v <Plug>QFGrepV
-" nmap <buffer> \g <Plug>QFGrepG
-
-let g:QFG_hi_prompt='guifg=#5B3C11 guibg=black ctermfg=3 ctermbg=NONE'
-let g:QFG_hi_info='guifg=#5B3C11 guibg=black ctermfg=3 ctermbg=NONE'
-let g:QFG_hi_error='guifg=#5B3C11 guibg=black ctermfg=3 ctermbg=NONE'
-
-" }}}2
-
-" }}}1
-
 " Évaluation {{{1
-
-" Ripple (urbainvaes/vim-ripple) {{{2
-
-" REPL
-
-let g:ripple_enable_mappings = 1
-
-let g:ripple_repls = {
-            \ "sh": "zsh",
-            \ "zsh": "zsh",
-            \ "bash": "bash",
-            \ "python": "python",
-            \ }
-
-" }}}2
 
 " Increment activator (nishigori/increment-activator) {{{2
 
@@ -662,6 +591,19 @@ let g:increment_activator_filetype_candidates = {
 
 " Organisation {{{1
 
+" Table mode {{{2
+
+nnoremap <d-&> <cmd>TableModeToggle<cr>
+
+let g:table_mode_always_active = 0
+
+" table à la org mode
+let g:table_mode_corner = '+'
+" table à la markdown
+"let g:table_mode_corner = '|'
+
+" }}}2
+
 " Markdown folding {{{2
 
 let g:markdown_fold_style = 'nested'
@@ -677,103 +619,36 @@ let g:vmt_cycle_list_item_markers = 1
 
 " }}}2
 
-" Vimwiki {{{2
+" Orgmode.nvim {{{2
 
-" Common wiki settings {{{3
+lua << EOF
 
-let common_wiki = {}
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.org = {
+  install_info = {
+    url = 'https://github.com/milisims/tree-sitter-org',
+    revision = 'main',
+    files = {'src/parser.c', 'src/scanner.cc'},
+  },
+  filetype = 'org',
+}
 
-let common_wiki.ext = '.wiki'
-let common_wiki.list_margin = -1
+require'nvim-treesitter.configs'.setup {
+  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
+  highlight = {
+    enable = true,
+    disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+    additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
+  },
+  ensure_installed = {'org'}, -- Or run :TSUpdate org
+}
 
-let common_wiki.index = 'main'
-let common_wiki.diary_index = 'diary'
-let common_wiki.diary_header = 'Diary'
-let common_wiki.diary_sort = 'desc'
+require('orgmode').setup({
+  org_agenda_files = {'~/racine/organ/orgmode/agenda.org', '~/my-orgs/**/*'},
+  org_default_notes_file = '~/racine/organ/orgmode/notes.org',
+})
 
-let common_wiki.syntax = 'default'
-let common_wiki.automatic_nested_syntaxes = 1
-let common_wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
-
-let common_wiki.auto_export = 0
-let common_wiki.auto_toc = 0
-let common_wiki.auto_tags = 1
-let common_wiki.auto_diary_index = 1
-
-let common_wiki.custom_wiki2html = ''
-let common_wiki.custom_wiki2html_args = ''
-let common_wiki.template_default =  'default'
-let common_wiki.template_ext = '.tpl'
-let common_wiki.maxhi = 0
-
-" }}}3
-
-" Plain wiki {{{3
-
-let plain_wiki = deepcopy(common_wiki)
-
-let plain_wiki.path = '~/racine/wiki/plain/wiki'
-let plain_wiki.path_html = '~/racine/wiki/plain/html'
-let plain_wiki.template_path =  '~/racine/wiki/plain/template'
-let plain_wiki.index = 'main'
-let plain_wiki.css_name = 'style.css'
-
-" }}}3
-
-" Site wiki {{{3
-
-let site_wiki = deepcopy(common_wiki)
-
-let site_wiki.path = '~/racine/wiki/site/wiki'
-let site_wiki.path_html = '~/racine/wiki/site/html'
-let site_wiki.template_path =  '~/racine/wiki/site/template'
-let site_wiki.index = 'index'
-let site_wiki.css_name = 'style/defaut.css'
-
-" }}}3
-
-" List of wikis
-
-let g:vimwiki_list = [plain_wiki, site_wiki]
-
-" Global settings {{{3
-
-let g:vimwiki_ext2syntax = {'.md': 'markdown',
-			  \ '.mkd': 'markdown',
-			  \ '.wiki': 'media'}
-
-let g:vimwiki_diary_months = {
-      \ 1: 'January', 2: 'February', 3: 'March',
-      \ 4: 'April', 5: 'May', 6: 'June',
-      \ 7: 'July', 8: 'August', 9: 'September',
-      \ 10: 'October', 11: 'November', 12: 'December'
-      \ }
-
-let g:vimwiki_hl_headers = 0
-let g:vimwiki_hl_cb_checked = 0
-let g:vimwiki_global_ext = 0
-let g:vimwiki_menu = 'Vimwiki'
-let g:vimwiki_use_mouse = 1
-let g:vimwiki_folding = 'expr'
-let g:vimwiki_list_ignore_newline = 1
-let g:vimwiki_text_ignore_newline = 1
-let g:vimwiki_use_calendar = 1
-let g:vimwiki_table_mappings = 1
-let g:vimwiki_table_auto_fmt = 1
-let g:vimwiki_CJK_length = 1
-let g:vimwiki_dir_link = ''
-let g:vimwiki_html_header_numbering = 1
-let g:vimwiki_html_header_numbering_sym = ''
-let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr'
-let g:vimwiki_user_htmls = '404.html,search.html'
-let g:vimwiki_conceallevel = 2
-let g:vimwiki_autowriteall = 1
-let g:vimwiki_url_maxsave = 15
-let g:vimwiki_toc_header = 'Contents'
-let g:vimwiki_map_prefix = '<Leader>w'
-let g:vimwiki_auto_chdir = 1
-
-" }}}3
+EOF
 
 " }}}2
 

@@ -80,13 +80,23 @@
 
 "  Caractères utilisés dans les mots {{{1
 
-"set iskeyword=48-57, ,192-255,@,:,/,-,_
+"set iskeyword=48-57, ,192-255,@,:,/,-
+
+set iskeyword-=/,:,#,@,-
 
 " }}}1
 
 " Pageur interne {{{1
 
 set more
+
+" }}}1
+
+" Insertion {{{1
+
+" nostop = don’t stop at beginning of insert
+
+set backspace=indent,eol,start
 
 " }}}1
 
@@ -152,6 +162,8 @@ set browsedir=current
 							" ou quand un :buffer, ctrl-^, ^O, ^I ou une marque dirige vers un autre fichier
 
 "set autowriteall			" Sauvegarde automatique des fichiers aussi pour :e, :enew, :q, :qall, :x, :recover
+
+"set autoread
 
 " }}}2
 
@@ -488,9 +500,10 @@ set omnifunc=syntaxcomplete#Complete
 
 "  Complétion dans la ligne de commande {{{2
 
-set wildchar=<TAB>
+set wildchar=<tab>
 
-set wildcharm=<C-Z>
+" set wildcharm=<C-Z>
+set wildcharm=<tab>
 
 " Wildmode {{{3
 
@@ -515,7 +528,8 @@ set wildcharm=<C-Z>
 " 	"list:longest"	When more than one match, list all matches and
 " 					complete till longest common string.
 
-set wildmode=longest,full
+"set wildmode=longest,full
+set wildmode=full
 
 " }}}3
 
@@ -665,7 +679,8 @@ set bufhidden=hide
 
 " Barre d'onglets {{{2
 
-set tabline=%!biblio#tabline()
+" managed by wheel
+"set tabline=%!biblio#tabline()
 
 "set guitablabel=%N\ %t\ %m
 
@@ -850,13 +865,14 @@ set ttimeoutlen=50
 
 nnoremap <F1> :tab help<space>
 nnoremap <S-F1> :tab helpgrep<space>
+nnoremap <C-F1> <cmd>call biblio#toggle_help_filetype()<cr>
 
 " }}}2
 
 " Quitter {{{2
 
-nnoremap ZZ :qa<cr>
-nnoremap ZQ :qa!<cr>
+nnoremap ZZ <cmd>qa<cr>
+nnoremap ZQ <cmd>qa!<cr>
 
 " }}}2
 
@@ -881,31 +897,25 @@ vnoremap )s )
 
 " Fichier courant aussi disponible dans le registre %
 " Fichier alternatif aussi disponible dans le registre #
-"nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
+"nnoremap <C-G> <cmd>let @" = expand("%<cmd>p")<cr>2<C-G>
 
 nnoremap <C-G> 2<C-G>
 
-nnoremap <f5>e :tabe ~/racine/config/edit/neovim/init.vim<cr>
-inoremap <f5>e :tabe ~/racine/config/edit/neovim/init.vim<cr>
+nnoremap <f5>e <cmd>tabe ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <f5>e <cmd>tabe ~/racine/config/edit/neovim/init.vim<cr>
 
-nnoremap <f5>r :so ~/racine/config/edit/neovim/init.vim<cr>
-inoremap <f5>r :so ~/racine/config/edit/neovim/init.vim<cr>
+" not a good idea, strange effect
+" nnoremap <f5>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
+" inoremap <f5>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
 
 command! -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
-nnoremap <f5>s :<c-u>EditSyntaxPlugin<cr>
+nnoremap <f5>s <cmd>EditSyntaxPlugin<cr>
 
-nnoremap <f2>n :new <bar> only<cr>
-nnoremap <f2>r :e!<cr>
-nnoremap <f2>w :wa<cr>
+nnoremap <f2>n <cmd>new <bar> only<cr>
 
-nnoremap <kEnter> :wa<cr>
-
-" nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/*' <cr><c-d>
-" nnoremap <m-s-e> :e **/*
-
-nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/' <cr>
+nnoremap <kEnter> <cmd>wa<cr>
 
 nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
@@ -913,30 +923,32 @@ nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
 " Arguments {{{2
 
-nnoremap (a :previous<cr>
-nnoremap )a :next<cr>
+nnoremap (a <cmd>previous<cr>
+nnoremap )a <cmd>next<cr>
 
-nnoremap (A :first<cr>
-nnoremap )A :last<cr>
+nnoremap (A <cmd>first<cr>
+nnoremap )A <cmd>last<cr>
 
 " }}}2
 
 " Tampons (buffers) {{{2
 
-nnoremap (b :bprevious<cr>
-nnoremap )b :bnext<cr>
+nnoremap (b <cmd>bprevious<cr>
+nnoremap )b <cmd>bnext<cr>
 
-nnoremap (B :bfirst<cr>
-nnoremap )B :blast<cr>
+nnoremap (B <cmd>bfirst<cr>
+nnoremap )B <cmd>blast<cr>
 
-" Wipe current buffer
-nnoremap <m-q> :ls!<cr>:silent bwipe!<space>
-" Wipe all buffers
-nnoremap <m-s-q> :%bwipe<cr>
+" wipe buffer
+nnoremap <m-q> <cmd>bwipe!<cr>
+" wipe alternate buffer
+nnoremap <d-q> <cmd>bwipe! #<cr>
+" wipe all buffers
+nnoremap <m-s-q> <cmd>%bwipe<cr>
 
 " Lecture seule {{{3
 
-nnoremap <f2>o :call ToggleReadonly()<cr>
+nnoremap <f2>o <cmd>call ToggleReadonly()<cr>
 
 func! ToggleReadonly()
 	if &modifiable || ! &readonly
@@ -956,11 +968,6 @@ endfunc
 nnoremap <s-tab>  <c-w>w
 nnoremap <m-s-tab>  <c-w>p
 
-nnoremap <m-left>  <c-w><left>
-nnoremap <m-right> <c-w><right>
-nnoremap <m-up>    <c-w><up>
-nnoremap <m-down>  <c-w><down>
-
 nnoremap <s-left> <c-w><left>
 nnoremap <s-right> <c-w><right>
 nnoremap <s-up> <c-w><up>
@@ -970,46 +977,49 @@ nnoremap <s-down> <c-w><down>
 
 "  Onglets {{{2
 
-nnoremap <f2>e :tabedit<space>
-nnoremap <f2>t :tabnew<cr>
+nnoremap <f2>e <cmd>tabedit<space>
+nnoremap <f2>t <cmd>tabnew<cr>
 
 nnoremap <c-left> gT
 nnoremap <c-right> gt
 
-nnoremap (T :tabfirst<cr>
-nnoremap )T :tablast<cr>
+nnoremap (T <cmd>tabfirst<cr>
+nnoremap )T <cmd>tablast<cr>
 
-nnoremap (t :tabm -1<cr>
-nnoremap )t :tabm +1<cr>
+nnoremap (t <cmd>tabmove -1<cr>
+nnoremap )t <cmd>tabmove +1<cr>
 
-nnoremap <c-up> :tabm -1<cr>
-nnoremap <c-down> :tabm +1<cr>
+nnoremap <c-s-left> <cmd>tabmove -1<cr>
+nnoremap <c-s-right> <cmd>tabmove +1<cr>
+
+nnoremap <leader><left> <cmd>call biblio#win2prev_tab()<cr>
+nnoremap <leader><right> <cmd>call biblio#win2next_tab()<cr>
 
 " }}}2
 
 " Liste quickfix {{{2
 
-nnoremap (q :cprevious<cr>
-nnoremap )q :cnext<cr>
+nnoremap (q <cmd>cprevious<cr>
+nnoremap )q <cmd>cnext<cr>
 
-nnoremap (Q :cfirst<cr>
-nnoremap )Q :clast<cr>
+nnoremap (Q <cmd>cfirst<cr>
+nnoremap )Q <cmd>clast<cr>
 
-nnoremap (<c-q> :cpfile<cr>
-nnoremap )<c-q> :cnfile<cr>
+nnoremap (<c-q> <cmd>cpfile<cr>
+nnoremap )<c-q> <cmd>cnfile<cr>
 
 " }}}2
 
 " Listes locales {{{2
 
-nnoremap (l :lprevious<cr>
-nnoremap )l :lnext<cr>
+nnoremap (l <cmd>lprevious<cr>
+nnoremap )l <cmd>lnext<cr>
 
-nnoremap (L :lfirst<cr>
-nnoremap )L :llast<cr>
+nnoremap (L <cmd>lfirst<cr>
+nnoremap )L <cmd>llast<cr>
 
-nnoremap (<c-l> :lpfile<cr>
-nnoremap )<c-l> :lnfile<cr>
+nnoremap (<c-l> <cmd>lpfile<cr>
+nnoremap )<c-l> <cmd>lnfile<cr>
 
 " }}}2
 
@@ -1019,20 +1029,20 @@ nnoremap )<c-l> :lnfile<cr>
 
 " Voir la configuration de la librairie tlib
 
-"nnoremap <m-o> :browse oldfiles<cr>
+"nnoremap <m-o> <cmd>browse oldfiles<cr>
 
 " }}}2
 
 "  Tags {{{2
 
-nnoremap (<m-t> :tprevious<cr>
-nnoremap )<m-t> :tnext<cr>
+nnoremap (<m-t> <cmd>tprevious<cr>
+nnoremap )<m-t> <cmd>tnext<cr>
 
-nnoremap (<m-s-t> :tfirst<cr>
-nnoremap )<m-s-t> :tlast<cr>
+nnoremap (<m-s-t> <cmd>tfirst<cr>
+nnoremap )<m-s-t> <cmd>tlast<cr>
 
-nnoremap <f2>j :tj /
-nnoremap <f2>J :tab tj /
+nnoremap <f2>j <cmd>tj /
+nnoremap <f2>J <cmd>tab tj /
 
 " }}}2
 
@@ -1104,19 +1114,15 @@ nnoremap Y y$
 
 " Copie de toutes les lignes correspondant à un motif
 
-command! -nargs=1 GlobalYank :call biblio#global_yank(<q-args>, 'a')
+command! -nargs=1 GlobalYank <cmd>call biblio#global_yank(<q-args>, 'a')
 
-nnoremap <f2>y :GlobalYank<space>
+nnoremap <f2>y <cmd>GlobalYank<space>
 
 " Couper toutes les lignes correspondant à un motif
 
-command! -nargs=1 GlobalDelete :call biblio#global_delete(<q-args>, 'a')
+command! -nargs=1 GlobalDelete <cmd>call biblio#global_delete(<q-args>, 'a')
 
-nnoremap <f2>d :GlobalDelete<space>
-
-"  Copies provenant d’un autre logiciel
-
-nnoremap <f2>p :set paste!<cr>
+nnoremap <f2>d <cmd>GlobalDelete<space>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
@@ -1200,8 +1206,11 @@ cnoremap <PageDown> <C-N>
 
 " Complétion {{{3
 
+" insère tous
 cnoremap <C-X><C-A> <C-A>
+" affiche les candidats
 cnoremap <C-X><C-D> <C-D>
+" insère le plus long
 cnoremap <C-X><C-L> <C-L>
 
 " }}}3
@@ -1233,13 +1242,7 @@ cnoremap <m-,> <c-r>=expand('%:p:h') . '/'<cr>
 
 " }}}3
 
-" Enlever un élément dans le chemin d’un fichier {{{3
-
-cnoremap <C-BS> <C-\>e(<SID>RemoveLastPathComponent())<CR>
-
-function! s:RemoveLastPathComponent()
-  return substitute(getcmdline(), '\%(\\ \|[\\/]\@!\f\)\+[\\/]\=$\|.$', '', '')
-endfunction
+" Effacer {{{3
 
 cmap <m-d> <c-right><c-w>
 
@@ -1264,12 +1267,12 @@ nnoremap <f2>c :set cmdheight=
 
 " Comme commande ex
 
-nnoremap <m-:> :exe getline(".")<CR>
-vnoremap <m-:> :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
+nnoremap <m-:> <cmd>exe getline(".")<CR>
+vnoremap <m-:> <cmd>exe join(getline("'<","'>"),'<Bar>')<CR>
 
 " Comme commande externe
 
-nnoremap <m-!> :exe '!'.getline('.')<CR>
+nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 
 " }}}3
 
@@ -1278,28 +1281,28 @@ nnoremap <m-!> :exe '!'.getline('.')<CR>
 "  Orthographe {{{2
 
 " underline ~~~ wrong words
-nnoremap <silent> <f2>~ :setlocal spell!<cr>
+nnoremap <silent> <f2>~ <cmd>setlocal spell!<cr>
 
 " }}}2
 
 "  Informations {{{2
 
-nnoremap <f2>ih :echo biblio#highlight_group()<cr>
+nnoremap <f2>ih <cmd>echo biblio#highlight_group()<cr>
 
 " }}}2
 
 "  Shell {{{2
 
-nnoremap <f2>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap <f2>S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f2>s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f2>S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 
-nnoremap <f2>h :tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f2>h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
 " Journal de bord {{{2
 
-nnoremap <f2>L :tabe ~/racine/log/captain<cr>
+nnoremap <f2>L <cmd>tabe ~/racine/log/captain<cr>
 
 " }}}2
 
@@ -1337,7 +1340,7 @@ func! InterrupteurNumerotationAbsolueRelative()
 
 endfunc
 
-nnoremap <silent> <M-n> :call InterrupteurNumerotationAbsolueRelative()<cr>
+nnoremap <silent> <D-l> <cmd>call InterrupteurNumerotationAbsolueRelative()<cr>
 
 " }}}3
 
@@ -1358,13 +1361,13 @@ set guicursor=
 
 set termguicolors
 
-nnoremap <f2>l :set cursorline!<cr>
+nnoremap <f2>l <cmd>set cursorline!<cr>
 
 " }}}2
 
 " Émulateur de terminal {{{2
 
-nnoremap <C-$> :term $SHELL -l<cr>
+nnoremap <C-$> <cmd>term $SHELL -l<cr>
 
 nnoremap <C-!> :term<space>
 
@@ -1387,7 +1390,7 @@ tnoremap <D-j> <C-\><C-n><C-W><Down>
 tnoremap <D-k> <C-\><C-n><C-W><Up>
 tnoremap <D-l> <C-\><C-n><C-W><Right>
 
-tnoremap <D-q> <C-\><C-n>:ls!<cr>:silent bd!<space>
+tnoremap <D-q> <C-\><C-n>:ls!<cr>:bw!<cr>
 
 " }}}2
 
@@ -1503,6 +1506,8 @@ set scrolljump=1
 
 "  Tabulation et espaces de fin de lignes {{{2
 
+" non breakable space : ctrl-k puis <space><space>
+
 set list
 
 set listchars=
@@ -1588,14 +1593,13 @@ if has('statusline')
 	set statusline+=\ \ enc\ %{(&fenc==\"\"?&enc:&fenc)}
 	set statusline+=\ \ pos
 	set statusline+=\ %P\ %l\ x\ %c
-	set statusline+=%(%{(col(\'.\')==virtcol(\'.\')?\"\":\"/\".virtcol(\'.\'))}%)
 	set statusline+=\ %=
-	set statusline+=\ \ color\ %{g:colors_name}
+	set statusline+=\ \ col\ %{g:colors_name}
 	set statusline+=\ \ \ \ |
 	set statusline+=%<
 endif
 
-" 	set statusline+=\ \ Color\ %{g:colors_name}
+" 	set statusline+=%(%{(col(\'.\')==virtcol(\'.\')?\"\":\"/\".virtcol(\'.\'))}%)
 " 	set statusline+=\ \ %{strftime('%H:%M\ %a\ %d\ %b\ %Y')}
 " 	set statusline+=\ \ %{strftime('%H:%M')}
 " 	set statusline+=\ \ Car\ %2.2B
@@ -1611,7 +1615,7 @@ endif
 
 " Hauteur
 
-set cmdheight=5
+set cmdheight=3
 
 " }}}2
 
@@ -1710,7 +1714,7 @@ filetype indent on
 
 "  Thèmes {{{1
 
-colo ornuit
+colo golden-night
 
 " }}}1
 
@@ -1722,11 +1726,12 @@ set shada=
 	\h,
 	\<12,
 	\s12,
-	\'60,
+	\'120,
 	\:10000,
 	\/10000,
-	\@10000,
-	\n~/racine/session/neovim/main.shada
+	\@10000
+
+set shadafile=~/racine/session/neovim/main.shada
 
 " Remplacé par wheel mru
 " 	\%30,

@@ -10,6 +10,7 @@ augroup RechargementConfiguration
 	autocmd!
 	autocmd bufwritepost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
 	autocmd bufwritepost ~/racine/config/edit/neovim/after/syntax/** source %
+	autocmd bufwritepost ~/racine/config/edit/neovim/autoload/** source %
 	autocmd bufwritepost ~/racine/config/system/dunst/dunstrc !restart-dunst.zsh &
 	autocmd bufwritepost ~/racine/config/windenv/sxhkd/sxhkdrc !pkill -10 -f sxhkd
 	autocmd bufwritepost ~/racine/config/windenv/keynav/keynavrc !pkill -1 -f keynav
@@ -44,7 +45,7 @@ augroup END
 augroup FenetreHistorique
 	autocmd!
 	"autocmd CmdwinEnter [:/?]  startinsert
-	autocmd CmdwinEnter * noremap <buffer> q :q<CR>
+	autocmd CmdwinEnter * noremap <buffer> q <cmd>q<CR>
 	autocmd CmdwinEnter * noremap <buffer> <space> ?
 	autocmd CmdwinEnter * setlocal foldlevel=99
 	autocmd CmdwinLeave * let @/=""
@@ -132,8 +133,8 @@ augroup END
 
 augroup FichiersHtml
 	autocmd!
-	autocmd Filetype html,php nnoremap <silent> [h ?^<h[1-6]<cr>:noh<cr>
-	autocmd Filetype html,php nnoremap <silent> ]h /^<h[1-6]<cr>:noh<cr>
+	autocmd Filetype html,php nnoremap <silent> [h ?^<h[1-6]<cr>:nohlsearch<cr>
+	autocmd Filetype html,php nnoremap <silent> ]h /^<h[1-6]<cr>:nohlsearch<cr>
 augroup END
 
 " }}}2
