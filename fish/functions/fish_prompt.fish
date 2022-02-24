@@ -6,15 +6,14 @@ function fish_prompt --description 'Write out the prompt'
 
 	switch "$USER"
 		case root toor
-			set suffix ' #'
+			set suffix '#'
 		case '*'
-			set suffix ' $'
+			set suffix '$'
 	end
 
 	echo
-	echo -s " +---$USER @ " (prompt_hostname) " : " (pwd)
+	echo -s " +--- $USER @ " (prompt_hostname) " : " (pwd)
 	echo -s " |"
-	echo -n -s	' +--- ' (date +%H:%M) "$suffix "
+	echo -n -s	' +--- ' (date +%H:%M) " $suffix "
 
 end
-
