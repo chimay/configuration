@@ -1,0 +1,3 @@
+# vim: set ft=zsh :
+
+execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
