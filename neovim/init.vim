@@ -110,26 +110,19 @@ set clipboard=
 
 "  Chemins de recherche des fichiers {{{2
 
-" Permet une recherche récursive avec :find
-
-set path=**
+set path=.,,
+"set path=**
 
 " }}}2
 
 "  Chemins de recherche des répertoires {{{2
 
-set cdpath=,
+"set cdpath=,
 
-set cdpath+=~/racine
-set cdpath+=~
+"set cdpath+=~/racine
+"set cdpath+=~
 
 " }}}2
-
-" }}}1
-
-"  Shell {{{1
-
-let g:terminal_scrollback_buffer_size = 50000
 
 " }}}1
 
@@ -142,16 +135,6 @@ let g:terminal_scrollback_buffer_size = 50000
 " Voir aussi autocommandes
 
 "set autochdir
-
-" }}}2
-
-"  Explorateur de fichier {{{2
-
-" Répertoire de départ
-
-set browsedir=current
-"set browsedir=buffer
-"set browsedir=last
 
 " }}}2
 
@@ -652,16 +635,6 @@ set foldmarker={{{,}}}
 
 " }}}2
 
-"  Autocommandes {{{2
-
-augroup Pliage
-
-	au BufEnter,BufRead *.snippets set foldlevel=2
-
-augroup END
-
-" }}}2
-
 " }}}1
 
 "  Tampons (buffers) {{{1
@@ -670,6 +643,8 @@ augroup END
 
 set hidden
 set bufhidden=hide
+
+" Demande si il faut sauver un buffer avant de le cacher
 
 "set confirm
 
@@ -816,9 +791,9 @@ set makeef=
 " Mapping with Meta/Alt key {{{2
 
 " Xterm, by default, sets eightBitInput to true, meaning that the eighth
-"bit is set for meta characters (combinations with the Alt key, for
-"instance). Not all terminals have this feature enabled by default, and
-"therefore work differently (they send an Esc before the character key).
+" bit is set for meta characters (combinations with the Alt key, for
+" instance). Not all terminals have this feature enabled by default, and
+" therefore work differently (they send an Esc before the character key).
 "
 " So for the xterm, with enables the eight bit, you can just do
 "something like:
@@ -828,8 +803,8 @@ set makeef=
 " However, with a terminal that is in 7 bit mode, you have to do this:
 "
 " set <m-a> = ^[a map <m-a> ggVG " the ^[ is an Esc char that comes
-"before the 'a' In most default configs, ^[a may be typed by pressing
-"first <C-v>, then <M-a>
+" before the 'a' In most default configs, ^[a may be typed by pressing
+" first <C-v>, then <M-a>
 
 " }}}2
 
@@ -866,6 +841,9 @@ set ttimeoutlen=50
 nnoremap <F1> :tab help<space>
 nnoremap <S-F1> :tab helpgrep<space>
 nnoremap <C-F1> <cmd>call biblio#toggle_help_filetype()<cr>
+inoremap <C-F1> <cmd>call biblio#toggle_help_filetype()<cr>
+vnoremap <C-F1> <cmd>call biblio#toggle_help_filetype()<cr>
+nnoremap <M-F1> <cmd>call biblio#helptags()<cr>
 
 " }}}2
 
@@ -915,7 +893,7 @@ nnoremap <f5>s <cmd>EditSyntaxPlugin<cr>
 
 nnoremap <f2>n <cmd>new <bar> only<cr>
 
-nnoremap <kEnter> <cmd>wa<cr>
+nnoremap <kEnter> <cmd>call biblio#write_all()<cr>
 
 nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
@@ -948,16 +926,7 @@ nnoremap <m-s-q> <cmd>%bwipe<cr>
 
 " Lecture seule {{{3
 
-nnoremap <f2>o <cmd>call ToggleReadonly()<cr>
-
-func! ToggleReadonly()
-	if &modifiable || ! &readonly
-		setlocal readonly nomodifiable
-	else
-		setlocal noreadonly modifiable
-	endif
-	setlocal readonly? modifiable?
-endfunc
+nnoremap <f2>o <cmd>call biblio#toggle_readonly()<cr>
 
 " }}}3
 
@@ -977,7 +946,7 @@ nnoremap <s-down> <c-w><down>
 
 "  Onglets {{{2
 
-nnoremap <f2>e <cmd>tabedit<space>
+nnoremap <f2>e :tabedit<space>
 nnoremap <f2>t <cmd>tabnew<cr>
 
 nnoremap <c-left> gT
@@ -1253,7 +1222,7 @@ cmap <m-d> <c-right><c-w>
 " Q ou gQ : mode ex
 " On en sort par :vi
 
-"nnoremap QQ gQ
+nnoremap QQ gQ
 
 " }}}3
 
@@ -1268,7 +1237,6 @@ nnoremap <f2>c :set cmdheight=
 " Comme commande ex
 
 nnoremap <m-:> <cmd>exe getline(".")<CR>
-vnoremap <m-:> <cmd>exe join(getline("'<","'>"),'<Bar>')<CR>
 
 " Comme commande externe
 
@@ -1287,7 +1255,7 @@ nnoremap <silent> <f2>~ <cmd>setlocal spell!<cr>
 
 "  Informations {{{2
 
-nnoremap <f2>ih <cmd>echo biblio#highlight_group()<cr>
+nnoremap <f2>ih <cmd>call biblio#highlight_group()<cr>
 
 " }}}2
 
@@ -1328,19 +1296,7 @@ nmap <k9> 9
 
 " Numérotation des lignes {{{3
 
-func! InterrupteurNumerotationAbsolueRelative()
-
-	if &relativenumber
-		set number norelativenumber
-	else
-		set number relativenumber
-	endif
-
-	set relativenumber?
-
-endfunc
-
-nnoremap <silent> <D-l> <cmd>call InterrupteurNumerotationAbsolueRelative()<cr>
+nnoremap <silent> <D-l> <cmd>call biblio#line_number()<cr>
 
 " }}}3
 
@@ -1367,9 +1323,7 @@ nnoremap <f2>l <cmd>set cursorline!<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <C-$> <cmd>term $SHELL -l<cr>
-
-nnoremap <C-!> :term<space>
+nnoremap <C-!> <cmd>call biblio#terminal()<cr>
 
 " Passer en mode normal
 
@@ -1389,8 +1343,6 @@ tnoremap <D-h> <C-\><C-n><C-W><Left>
 tnoremap <D-j> <C-\><C-n><C-W><Down>
 tnoremap <D-k> <C-\><C-n><C-W><Up>
 tnoremap <D-l> <C-\><C-n><C-W><Right>
-
-tnoremap <D-q> <C-\><C-n>:ls!<cr>:bw!<cr>
 
 " }}}2
 
@@ -1599,16 +1551,6 @@ if has('statusline')
 	set statusline+=%<
 endif
 
-" 	set statusline+=%(%{(col(\'.\')==virtcol(\'.\')?\"\":\"/\".virtcol(\'.\'))}%)
-" 	set statusline+=\ \ %{strftime('%H:%M\ %a\ %d\ %b\ %Y')}
-" 	set statusline+=\ \ %{strftime('%H:%M')}
-" 	set statusline+=\ \ Car\ %2.2B
-" 	set statusline+=\ \ Car\ %3.3b\ x\ %2.2B
-
-"highlight statut ctermfg=green guifg=green
-"highlight statut ctermbg=black guibg=black
-"highlight statut cterm=bold gui=bold
-
 " }}}2
 
 "  Zone de commande {{{2
@@ -1729,9 +1671,10 @@ set shada=
 	\'120,
 	\:10000,
 	\/10000,
-	\@10000
+	\@10000,
+	\n~/racine/session/neovim/main.shada
 
-set shadafile=~/racine/session/neovim/main.shada
+"set shadafile=~/racine/session/neovim/main.shada
 
 " Remplacé par wheel mru
 " 	\%30,
@@ -1745,7 +1688,7 @@ set history=10000
 
 " ------------------------------
 
-"  {{{ Plugins
+" Python {{{1
 
 if $OPERASYS == 'archlinux'
 	let g:python3_host_prog = '/bin/python3'
@@ -1755,17 +1698,20 @@ elseif $OPERASYS == 'freebsd'
 	let g:python_host_prog = '/usr/local/bin/python2'
 endif
 
-source ~/racine/config/edit/neovim/paquet/minpac.vim
-source ~/racine/config/edit/neovim/paquet/plugged.vim
+" }}}1
+
+"  {{{ Plugins
+
+source ~/racine/config/edit/neovim/paquet/packager.vim
 
 source ~/racine/config/edit/neovim/paquet/preload.vim
 
-" On charge tout, pour pouvoir utiliser certaines fonctions
+" on charge tout dans start, pour pouvoir utiliser certaines fonctions
 " de configuration
 
 packloadall
 
-" Les appels aux fonctions autoload des plugins
+" les appels aux fonctions autoload des plugins
 " doivent se situer après packloadall
 
 source ~/racine/config/edit/neovim/paquet/postload.vim

@@ -17,7 +17,7 @@ augroup RechargementConfiguration
 	autocmd bufwritepost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
 	autocmd bufwritepost ~/racine/config/windenv/picom.conf !restart-picom.zsh &
 	autocmd bufwritepost ~/racine/config/organizer/remind/* !pkill -10 -f remind-server
-	autocmd bufwritepost ~/racine/public/wheel/**.vim source %
+	autocmd bufwritepost ~/racine/public/wheel/autoload/**.vim source %
 augroup END
 
 " }}}1
@@ -89,6 +89,18 @@ augroup Tabulation
 augroup END
 
 " }}}2
+
+" Pliage {{{2
+
+augroup Pliage
+	autocmd!
+	autocmd BufRead,BufEnter *.org setlocal foldmethod=expr foldexpr=biblio#org_folding_expr(v:lnum)
+	autocmd BufRead,BufEnter *.snippets setlocal nofoldenable
+augroup END
+
+" }}}2
+
+" }}}1
 
 " ------------------------------------
 

@@ -4,18 +4,33 @@ if !has("autocmd")
 	finish
 endif
 
+" Packager {{{1
+
+augroup packager_filetype
+  autocmd!
+  " ---- load optional plugin on given filetypes
+  autocmd FileType markdown packadd foltext_vim
+  autocmd FileType org packadd foltext_vim
+  autocmd FileType markdown packadd vim-markdown-toc
+augroup END
+
+" }}}1
+
 " Wheel {{{1
 
 augroup wheel
 	autocmd!
 	autocmd VimEnter * call wheel#void#init()
 	autocmd VimLeave * call wheel#void#exit()
-	autocmd User WheelUpdate call wheel#vortex#update()
+	autocmd User WheelBeforeJump call wheel#vortex#update()
+	autocmd User WheelBeforeOrganize call wheel#vortex#update()
+	autocmd User WheelBeforeWrite call wheel#vortex#update()
+	autocmd BufLeave * call wheel#vortex#update()
 	autocmd User WheelAfterJump silent! normal! zCzO
+	"autocmd User WheelAfterNative call wheel#projection#follow()
 	autocmd WinEnter * call wheel#projection#follow()
 	"autocmd BufRead * call wheel#projection#follow()
 	"autocmd BufEnter * call wheel#projection#follow()
-	autocmd BufLeave * call wheel#vortex#update()
 	autocmd BufRead * call wheel#attic#record()
 	autocmd TextYankPost * call wheel#codex#add()
 augroup END
@@ -41,3 +56,4 @@ augroup END
 au BufEnter *.md setlocal foldmethod=expr
 
 " }}}1
+

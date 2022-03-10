@@ -221,25 +221,6 @@ highlight SneakScope cterm=reverse
 
 " }}}1
 
-" Déplacement & Copie {{{1
-
-" Textmanip (t9md/vim-textmanip) {{{2
-
-xmap z<Down> <Plug>(textmanip-move-down)
-xmap z<Up> <Plug>(textmanip-move-up)
-xmap z<Left> <Plug>(textmanip-move-left)
-xmap z<Right> <Plug>(textmanip-move-right)
-
-xmap z<S-Down> <Plug>(textmanip-duplicate-down)
-xmap z<S-Up> <Plug>(textmanip-duplicate-up)
-
-nmap z<S-Down> <Plug>(textmanip-duplicate-down)
-nmap z<S-Up> <Plug>(textmanip-duplicate-up)
-
-" }}}2
-
-" }}}1
-
 " Espaces {{{1
 
 " DeleteTrailingWhitespace (DeleteTrailingWhitespace) {{{2
@@ -257,87 +238,6 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " Exploration multiple {{{1
 
-" FZF (junegunn/fzf.vim) {{{2
-
-" Mappings {{{3
-
-nnoremap <f7>a <cmd>Ag<cr>
-nnoremap <f7>b <cmd>Buffers<cr>
-nnoremap <f7>c <cmd>Commands<cr>
-nnoremap <f7>C <cmd>Commits<cr>
-nnoremap <f7>f <cmd>Files<cr>
-nnoremap <f7>F <cmd>Filetypes<cr>
-nnoremap <f7>g <cmd>GitFiles<cr>
-nnoremap <f7>h <cmd>History<cr>
-nnoremap <f7>H <cmd>Helptags<cr>
-nnoremap <f7>l <cmd>Lines<cr>
-nnoremap <f7>m <cmd>Marks<cr>
-nnoremap <f7>M <cmd>Maps<cr>
-nnoremap <f7>r <cmd>Rg<cr>
-nnoremap <f7>s <cmd>Snippets<cr>
-nnoremap <f7>t <cmd>Tags<cr>
-nnoremap <f7>w <cmd>Windows<cr>
-
-" }}}3
-
-" Options {{{3
-
-" Enable per-command history.
-" CTRL-N and CTRL-P will be automatically bound to next-history and
-" previous-history instead of down and up. If you don't like the change,
-" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-let g:fzf_history_dir = '~/racine/hist/fzf'
-
-" This is the default extra key bindings
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-let $FZF_DEFAULT_OPTS="--reverse " " top to bottom
-
-" }}}3
-
-" Présentation {{{3
-
-" Default fzf layout
-" - down / up / left / right
-
-" popup
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-
-"let g:fzf_layout = { 'down': '~40%' }
-
-" In Neovim, you can set up fzf window using a Vim command
-"let g:fzf_layout = { 'window': 'new' }
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-function! s:fzf_statusline()
-  " Override statusline as you like
-  highlight fzf1 ctermfg=0 ctermbg=3
-  highlight fzf2 ctermfg=0 ctermbg=3
-  highlight fzf3 ctermfg=0 ctermbg=3
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-endfunction
-
-" }}}3
-
-" }}}2
-
 " Wheel {{{2
 
 if ! exists("g:wheel_loaded")
@@ -350,16 +250,16 @@ if ! exists("g:wheel_loaded")
 
 	" The file where toruses and circles will be stored and read
 	let g:wheel_config.file = '~/racine/plugin/data/wheel/auto'
-	" Auto read torus file on startup if > 0
+	" Auto read wheel file on startup if > 0
 	let g:wheel_config.autoread = 1
-	" Auto write torus file on exit if > 0
+	" Auto write wheel file on exit if > 0
 	let g:wheel_config.autowrite = 1
-    " The file where session will be stored and read
-    let g:wheel_config.session_file = '~/racine/plugin/data/wheel/layout'
-    " Auto read session file on startup if > 0
-    let g:wheel_config.autoread_session = 1
-    " Auto write session file on exit if > 0
-    let g:wheel_config.autowrite_session = 1
+	" The file where session will be stored and read
+	let g:wheel_config.session_file = '~/racine/plugin/data/wheel/layout'
+	" Auto read session file on startup if > 0
+	let g:wheel_config.autoread_session = 1
+	" Auto write session file on exit if > 0
+	let g:wheel_config.autowrite_session = 1
 	" Number of backups for the wheel or session file
 	let g:wheel_config.backups = 12
 	" The bigger it is, the more mappings available
@@ -388,8 +288,11 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.maxim.mru = 700
 
 	" Maximum number of elements in yank wheel
-	let g:wheel_config.maxim.yanks = 700
-	" Maximum size of elements in yank wheel
+	let g:wheel_config.maxim.unnamed_yanks = 700
+	let g:wheel_config.maxim.other_yanks = 300
+	" Maximum lines of yank to add in yank ring
+	let g:wheel_config.maxim.yank_lines = 30
+	" Maximum size of yank to add in yank ring
 	let g:wheel_config.maxim.yank_size = 3000
 
 	" Maximum size of layer ring
@@ -406,42 +309,54 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.frecency.reward = 120
 	let g:wheel_config.frecency.penalty = 1
 
+	" Mandala & leaf status in statusline ?
+	"let g:wheel_config.display.statusline = 1
 	" Wheel message : one-line or multi-line
 	let g:wheel_config.display.message = 'multi-line'
 	" Filter prompt in dedicated buffers
 	"let g:wheel_config.display.prompt = 'wheel $ '
+	"let g:wheel_config.display.prompt_writable = 'wheel # '
 	" Selection marker in dedicated buffers
 	"let g:wheel_config.display.selection = '-> '
+	" Signs
+	let g:wheel_config.display.sign.switch = 1
 	" Sign text at wheel locations
 	"let g:wheel_config.display.sign.settings = { 'text' : '@' }
+	" Signs for native navigation
+	"let g:wheel_config.display.sign.native_settings = { 'text' : '*' }
 
 	"let g:wheel_config.debug = 1
 
 	set tabline=%!wheel#status#tabline()
 
+	nnoremap <space> :Wheel<space>
+
 	nmap <silent> <c-l> <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
 	imap <silent> <c-l> <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 
-	nmap <silent> k <cmd>call wheel#mandala#wrap_up()<cr>
 	nmap <silent> j <cmd>call wheel#mandala#wrap_down()<cr>
+	nmap <silent> k <cmd>call wheel#mandala#wrap_up()<cr>
 
 	nmap <silent> <up> <cmd>call wheel#mandala#wrap_up()<cr>
 	nmap <silent> <down> <cmd>call wheel#mandala#wrap_down()<cr>
 
 	nmap <silent> § <plug>(wheel-dedibuf-index-tree)
-	nmap <silent> é <plug>(wheel-dedibuf-grep)
-	nmap <silent> à <plug>(wheel-dedibuf-narrow-operator)
-	vmap <silent> à <plug>(wheel-dedibuf-narrow)
-	nmap <silent> è <plug>(wheel-dedibuf-narrow-circle)
-	nmap <silent> ù <plug>(wheel-dedibuf-history)
+	nmap <silent> ù <plug>(wheel-dedibuf-frecency)
 	nmap <silent> µ <plug>(wheel-dedibuf-buffer-all)
 	nmap <silent> £ <plug>(wheel-dedibuf-tabwin-tree)
+	nmap <silent> é <plug>(wheel-dedibuf-grep)
+	nmap <silent> è <plug>(wheel-dedibuf-narrow-circle)
+	nmap <silent> à <plug>(wheel-dedibuf-narrow-operator)
+	vmap <silent> à <plug>(wheel-dedibuf-narrow)
 	nmap <silent> ç <plug>(wheel-dedibuf-yank-plain)
 
 	nmap <silent> <d-^>       <plug>(wheel-alternate-other-torus)
 	nmap <silent> <d-e>       <plug>(wheel-dedibuf-frecency)
-	nmap <silent> <d-cr>      <plug>(wheel-prompt-index)
+    nmap <silent> <d-cr>      <cmd>call wheel#vortex#helix('tab')<cr>
 	nmap <silent> <d-x>       <plug>(wheel-prompt-index-circles)
+
+	nmap <silent> <d-h>       <plug>(wheel-dedibuf-history)
+
 	nmap <silent> <d-v>       <plug>(wheel-dedibuf-tabwin)
 
     nmap <silent> <d-o>       <plug>(wheel-dedibuf-occur)
@@ -451,11 +366,11 @@ if ! exists("g:wheel_loaded")
 	nmap <silent> <d-c>       <plug>(wheel-dedibuf-change)
 	nmap <silent> <d-t>       <plug>(wheel-dedibuf-tag)
 
-    nmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow-operator)
-    vmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow)
+	nmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow-operator)
+	vmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow)
 
-    nmap <silent> <d-y>       <plug>(wheel-dedibuf-yank-list)
-    nmap <silent> <d-p>       <plug>(wheel-dedibuf-yank-plain)
+	nmap <silent> <d-y>       <plug>(wheel-dedibuf-yank-plain)
+	nmap <silent> <d-p>       <plug>(wheel-dedibuf-yank-list)
 
 	nmap <silent> <d-u>       <plug>(wheel-dedibuf-undo-list)
 	nmap <silent> <d-r>       <plug>(wheel-dedibuf-reorg-tabwin)
@@ -463,16 +378,6 @@ if ! exists("g:wheel_loaded")
 	nmap <silent> <d-space>   <plug>(wheel-mandala-forward)
 	nmap <silent> <d-s-space> <plug>(wheel-mandala-backward)
 endif
-
-" }}}2
-
-" }}}1
-
-" Historique d’undo {{{1
-
-" Undotree (mbbill/undotree) {{{2
-
-nnoremap <s-bs> <cmd>UndotreeToggle<cr>
 
 " }}}2
 
@@ -604,71 +509,36 @@ let g:table_mode_corner = '+'
 
 " }}}2
 
-" Markdown folding {{{2
-
-let g:markdown_fold_style = 'nested'
-let g:markdown_fold_override_foldtext = 1
-
-" }}}2
-
-" Markdown TOC {{{2
-
-let g:vmt_auto_update_on_save = 1
-let g:vmt_dont_insert_fence = 0
-let g:vmt_cycle_list_item_markers = 1
-
-" }}}2
-
-" Orgmode.nvim {{{2
-
-lua << EOF
-
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.org = {
-  install_info = {
-    url = 'https://github.com/milisims/tree-sitter-org',
-    revision = 'main',
-    files = {'src/parser.c', 'src/scanner.cc'},
-  },
-  filetype = 'org',
-}
-
-require'nvim-treesitter.configs'.setup {
-  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
-  highlight = {
-    enable = true,
-    disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-    additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
-  },
-  ensure_installed = {'org'}, -- Or run :TSUpdate org
-}
-
-require('orgmode').setup({
-  org_agenda_files = {'~/racine/organ/orgmode/agenda.org', '~/my-orgs/**/*'},
-  org_default_notes_file = '~/racine/organ/orgmode/notes.org',
-})
-
-EOF
-
-" }}}2
-
 " }}}1
 
-" Divers {{{1
+" Terminal {{{1
 
-" {{{ Open-pdf (rhysd/open-pdf.vim)
+" Ripple (urbainvaes/vim-ripple) {{{2
 
-let g:pdf_cache_dir = $HOME . '/racine/plugin/data/addon/open-pdf'
+" REPL
 
-let g:pdf_open_cmd = 'tabnew | view'
-let g:pdf_edit_cmd = 'edit'
-let g:pdf_read_cmd = 'read'
+let g:ripple_enable_mappings = 0
+let g:ripple_winpos = ''
+let g:ripple_term_name = 'ripple-repl'
+let g:ripple_always_return = 0
+let g:ripple_repls = #{
+  \ sh     : 'sh',
+  \ zsh    : 'zsh',
+  \ bash   : 'bash',
+  \ fish   : 'fish',
+  \ elvish : 'elvish',
+  \ xonsh  : 'xonsh',
+  \ python : 'python',
+  \ }
+let g:ripple_highlight = 'DiffAdd'
 
-let g:pdf_convert_on_edit = 1
-let g:pdf_convert_on_read = 1
+nmap y<cr> <plug>(ripple_open_repl)
+nmap yr <plug>(ripple_send_motion)
+nmap yrr <plug>(ripple_send_line)
+nmap yr<cr> <plug>(ripple_send_buffer)
+nmap yp <plug>(ripple_send_previous)
+vmap R <plug>(ripple_send_selection)
 
-let g:unite_pdf_search_cmd = 'locate -l 30 "*%s*.pdf"'
-
-" }}}
+" }}}2
 
 " }}}1
