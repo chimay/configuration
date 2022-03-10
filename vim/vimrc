@@ -1,22 +1,5 @@
 " vim: set filetype=vim :
 
-" Titre {{{1
-
-" ab = abbreviation
-" au = autocmd
-
-" norm = normal
-" exe = execute
-
-" fu = function
-
-" setf = setfiletype
-
-" sy = syntax
-" hi = highlight
-
-" }}}1
-
 "  Compatibilité {{{1
 
 set nocompatible
@@ -25,41 +8,11 @@ set nocompatible
 
 " }}}1
 
-" Chemins de chargement {{{1
-
-" set runtimepath+=~/racine/config/edit/vim
-
-" }}}1
-
-" Debug {{{1
-
-" 	>= 1	When theviminfo file is read or written.
-" 	>= 2	When a file is ":source"'ed.
-" 	>= 5	Every searched tags file and include file.
-" 	>= 8	Files for which a group of autocommands is executed.
-" 	>= 9	Every executed autocommand.
-" 	>= 12	Every executed function.
-" 	>= 13	When an exception is thrown, caught, finished, or discarded.
-" 	>= 14	Anything pending in a ":finally" clause.
-" 	>= 15	Every executed Ex command (truncated at 200 characters).
-
-"set verbose=9
-
-"set verbosefile=~/Documentsvim.log
-
-" }}}1
-
 " ------------------------------------
 
 " Terminal {{{1
 
 set ttyfast
-
-" }}}1
-
-"  Caractères utilisés dans les mots {{{1
-
-"set iskeyword=48-57, ,192-255,@,:,/,-,_
 
 " }}}1
 
@@ -81,56 +34,14 @@ set clipboard=
 
 " Permet une recherche récursive avec :find
 
-set path=**
-
-" }}}2
-
-"  Chemins de recherche des répertoires {{{2
-
-set cdpath=.
-
-set cdpath+=~/racine
-set cdpath+=~
+set path=.,,
+"set path=**
 
 " }}}2
 
 " }}}1
 
 "  Système de fichier {{{1
-
-"  Répertoire du fichier courant {{{2
-
-" Se place dans le répertoire du fichier courant
-" ------------------------------------------------------------
-
-" Voir aussi autocommandes.vim
-
-"set autochdir
-
-" }}}2
-
-"  Explorateur de fichier {{{2
-
-" Répertoire de départ
-" ------------------------------------
-
-set browsedir=current
-"set browsedir=buffer
-"set browsedir=last
-
-" }}}2
-
-"  Lecture / Écriture {{{2
-
-set autoread
-
-"set autowrite				" Sauvegarde automatique des fichiers lors de navigation
-							" dans les arguments, :stop, :suspend, :tag, :!, :make, ^],
-							" ou quand un :buffer, ctrl-^, ^O, ^I ou une marque dirige vers un autre fichier
-
-"set autowriteall			" Sauvegarde automatique des fichiers aussi pour :e, :enew, :q, :qall, :x, :recover
-
-" }}}2
 
 "  Sauvegardes {{{2
 
@@ -143,12 +54,6 @@ set backupext=~
 set writebackup
 
 set backupskip=/tmp/*,/etc/*,neomutt-*-*-*-*
-
-" }}}2
-
-" Patchmode {{{2
-
-"set patchmode=.original
 
 " }}}2
 
@@ -174,11 +79,8 @@ set updatetime=1000			" Millisecondes
 set undolevels=1234
 
 if exists("&undofile")
-
 	set undofile
-
 	set undoreload=12743
-
 	set undodir=~/racine/varia/undo/vim,.
 endif
 
@@ -221,39 +123,6 @@ set backspace=indent,eol,start
 " Cette option active l’accès au digraph par char1 <BS> char2
 
 "set digraph
-
-" }}}2
-
-"  Définition {{{2
-
-" Convertir les codes hexadécimaux de wikipédia en codes décimaux
-" via par exemple :
-" python -c "print 0x<code>"
-
-" Alphabet phonétique {{{3
-
-"dig ia 0592			" ɐ
-"dig oo 0596			" ɔ
-"dig ee 0601			" ə
-"dig ep 0603			" ɛ
-"dig in 0643			" ʃ
-"dig zd 0658			" ʒ
-"dig ER 0640			" ʀ
-"dig Gn 0626			" ɲ
-"dig Ng 0627			" ɳ
-"dig uu 0613			" ɥ
-"dig ?? 0660			" ʔ
-
-" }}}3
-
-" Divers {{{3
-
-" dig -n 8208				" ‐
-" dig -m 8211				" –
-
-"dig ~~ 0771			" tilde supérieur
-
-" }}}3
 
 " }}}2
 
@@ -329,23 +198,10 @@ set noerrorbells
 set mouse=a
 
 set mousefocus
-
-set mousehide					" Cache le pointeur de souris lorsque l'on tape
-
+set mousehide					
 set mousemodel=extend				" Clic droit modifie sélection
 "set mousemodel=popup_setpos		" Clic droit menu
-
 set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up-arrow,v:rightup-arrow
-
-" }}}2
-
-" Sélection {{{2
-
-"set selectmode+=key
-"set selectmode+=mouse
-
-"set keymodel+=startsel
-"set keymodel+=stopsel
 
 " }}}2
 
@@ -365,26 +221,6 @@ set ignorecase
 " Recherche intelligente : ignore la casse sauf si	des majuscules sont présentes dans le motif
 
 set smartcase
-
-" }}}2
-
-" Grep {{{2
-
-" if executable('rg')
-" 	set grepprg=rg\ --vimgrep\ --smart-case\ $*
-" 	set grepformat=%f:%l:%c:%m
-" elseif executable('ag')
-" 	set grepprg=ag\ --nocolor\ --vimgrep\ --smart-case\ $*
-" 	set grepformat=%f:%l:%c:%m
-" elseif executable('ack')
-" 	set grepprg=ack\ --nocolor\ --nogroup\ --column\ --smart-case\ $*
-" 	set grepformat=%f:%l:%c:%m
-" elseif executable('grep')
-" 	set grepprg=grep\ --line-number\ --ignore-case\ --no-messages\ $*\ /dev/null
-" 	set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
-" else
-" 	set grepprg=internal
-" endif
 
 " }}}2
 
@@ -424,37 +260,11 @@ set completeopt=menuone,longest
 
 set pumheight=12
 
-" Compléter par quoi lors d'un ctrl-n/p ? {{{3
-
-"    This option specifies how keyword completion works
-"	when CTRL-P or CTRL-N are used.  It is also used for whole-line
-"	completion |i_CTRL-X_CTRL-L|.  It indicates the type of completion
-"	and the places to scan.  It is a comma separated list of flags:
-"
-"	.	scan the current buffer ('wrapscan' is ignored)
-"	w	scan buffers from other windows
-"	b	scan other loaded buffers that are in the buffer list
-"	u	scan the unloaded buffers that are in the buffer list
-"	U	scan the buffers that are not in the buffer list
-"	k	scan the files given with the 'dictionary' option
-"	kspell  use the currently active spell checking |spell|
-"	k{dict}	scan the file {dict}.  Several "k" flags can be given,
-"		patterns are valid too.  For example: :set cpt=k/usr/dict/*,k~/spanish
-"	s	scan the files given with the 'thesaurus' option
-"	s{tsr}	scan the file {tsr}.  Several "s" flags can be given, patterns
-"		are valid too.
-"	i	scan current and included files
-"	d	scan current and included files for defined name or macro
-"	]	tag completion
-"	t	same as "]"
-
 set complete=.,w,b,u,U,
 			\s~/racine/index/spell/synonymes.txt,
 			\k~/racine/index/spell/fr-classique+reforme1990.dic,
 			\k~/racine/index/spell/en_GB.dic,
 			\t,i,d
-
-" }}}3
 
 " Casse intelligente pour les complétions {{{3
 
@@ -466,18 +276,7 @@ set infercase
 
 set omnifunc=syntaxcomplete#Complete
 
-"if has("autocmd") && exists("+omnifunc")
-	"autocmd Filetype *
-	"\ if &omnifunc == "" |
-	"\ setlocal omnifunc=syntaxcomplete#Complete |
-	"\ endif
-"endif
-
 " }}}3
-
-" Complétion personalisée, gérée par certains plugins comme neocomplete
-
-"set completefunc=
 
 " }}}2
 
@@ -485,34 +284,12 @@ set omnifunc=syntaxcomplete#Complete
 
 set wildmenu
 
-set wildchar=<TAB>
-
-set wildcharm=<C-Z>
+set wildchar=<tab>
+set wildcharm=<tab>
 
 " Wildmode {{{3
 
-" 'wildmode' 'wim'	string	vim default: "full")
-" 			global
-" 			{not in Vi}
-" 	Completion mode that is used for the character specified with
-" 	'wildchar'.  It is a comma separated list of up to four parts.  Each
-" 	part specifies what to do for each consecutive use of 'wildchar'.  The
-" 	first part specifies the behavior for the first use of 'wildchar',
-" 	The second part for the second use, etc.
-" 	These are the possible values for each part:
-" 	""				Complete only the first match.
-" 	"full"			Complete the next full match.  After the last match,
-" 					the original string is used and then the first match again.
-" 	"longest"		Complete till longest common string.  If this doesn't
-" 					result in a longer string, use the next part.
-" 	"longest:full"	Like "longest", but also start 'wildmenu' if it is enabled.
-" 	"list"			When more than one match, list all matches.
-" 	"list:full"		When more than one match, list all matches and
-" 					complete first match.
-" 	"list:longest"	When more than one match, list all matches and
-" 					complete till longest common string.
-
-set wildmode=list:longest,full
+set wildmode=full
 
 " }}}3
 
@@ -577,12 +354,6 @@ set indentkeys=!^F,*<Return>,:,o,O,{,0=},0=#,e,=fi,=esac,=done
 
 set cindent
 
-"set cinkeys=0{,0},0),:,0#,!^F,o,O,e
-
-" Indentation basée sur l’évaluation d’une expression
-
-"set indentexpr=
-
 " }}}2
 
 " }}}1
@@ -595,41 +366,13 @@ set foldenable
 
 set foldenable
 
-" Nombre minimum de lignes
-" ------------------------------------
-
 set foldminlines=1
-
-" Nombre de niveaux visibles
-" ------------------------------------
 
 set foldlevel=0
 
-"set foldlevelstart=0
-
-" Ouverture automatique
-" ------------------------------------
-
-" Commandes ouvrant automatiquement un pli
-
-" set foldopen=all
-
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
-" Fermeture automatique
-" ------------------------------------
-
-" Si curseur en-dehors et > à foldlevel
-
-" set foldclose=all
-
-" Nombre de colonnes pour afficher l'arborescence
-" ------------------------------------
-
 set foldcolumn=7
-
-" Titre des textes pliés
-" ------------------------------------
 
 set foldtext=biblio#folding_text()
 
@@ -643,26 +386,12 @@ set foldmarker={{{,}}}
 
 " }}}2
 
-"  Autocommandes {{{2
-
-augroup Pliage
-
-	au BufEnter,BufRead *.snippets set foldlevel=2
-
-augroup END
-
-" }}}2
-
 " }}}1
 
 "  Tampons {{{1
 
-" Autorise les fichiers modifiés à être cachés
-
 set hidden
 set bufhidden=hide
-
-"set confirm
 
 " }}}1
 
@@ -673,10 +402,6 @@ set bufhidden=hide
 set tabline=%!biblio#tabline()
 
 set guitablabel=%N\ %t\ %m
-
-" 0: never
-" 1: only if there are at least two tab pages
-" 2: always
 
 set showtabline=1
 
@@ -700,51 +425,6 @@ set diffopt=filler,context:4,vertical,foldcolumn:2
 
 "  Labels, etiquettes {{{1
 
-"  Tags {{{2
-
-" Voir autocommandes.vim
-
-"set tags=./tags,tags
-
-"set tags=./tags,./TAGS,tags,TAGS
-
-" }}}2
-
-"  Cscope {{{2
-
-set cscopeverbose
-
-" Relatif au basename de cscope.out ?
-
-"set cscoperelative
-
-" Utilisation de la fenêtre quickfix
-
-set cscopequickfix=s-,c-,d-,i-,t-,e-
-
-" Tags ordinaires puis tags cscope
-
-set cscopetagorder=1
-
-" On utilise gtags pour remplacer cscope
-
-set cscopeprg=gtags-cscope
-
-" Nombre de répertoires à afficher
-
-set cscopepathcomp=0
-
-"cs add cscope.out %:p:h
-
-"cd ~/bin
-
-"cs add GTAGS
-"cs add GRTAGS
-"cs add GPATH
-"cs add GSYMS
-
-" }}}2
-
 " }}}1
 
 "  Compilation de fichiers {{{1
@@ -752,31 +432,10 @@ set cscopepathcomp=0
 set makeprg='make'
 
 set makeef=
-" set makeef='make-errors-##'
 
 " }}}1
 
 "  Maps {{{1
-
-" Mapping with Meta/Alt key {{{2
-
-" Xterm, by default, sets eightBitInput to true, meaning that the eighth
-"bit is set for meta characters (combinations with the Alt key, for
-"instance). Not all terminals have this feature enabled by default, and
-"therefore work differently (they send an Esc before the character key).
-"
-" So for the xterm, with enables the eight bit, you can just do
-"something like:
-"
-" map <m-a> ggVG
-"
-" However, with a terminal that is in 7 bit mode, you have to do this:
-"
-" set <m-a> = ^[a map <m-a> ggVG " the ^[ is an Esc char that comes
-"before the 'a' In most default configs, ^[a may be typed by pressing
-"first <C-v>, then <M-a>
-
-" }}}2
 
 "  Options {{{2
 
@@ -793,18 +452,7 @@ set ttimeoutlen=50
 
 " }}}2
 
-" Préfixe pour les plugins {{{2
-
-" Remarque : certains mapleaders causent des problèmes avec l’indentation <<
-
-" let mapleader = "\<C-F12>"
-" let maplocalleader = "\<C-F12>"
-
-" }}}2
-
 "  Aide {{{2
-
-"nnoremap <F1> <nop>
 
 nnoremap <F1> :tab help<space>
 nnoremap <S-F1> :tab helpgrep<space>
@@ -826,15 +474,10 @@ nnoremap <PageDown> <C-F>
 nnoremap ]] ]z
 nnoremap [[ [z
 
-"nnoremap ]z ]]
-"nnoremap [z [[
-
 " }}}2
 
 "  Fichiers {{{2
 
-" Fichier courant aussi disponible dans le registre %
-" Fichier alternatif aussi disponible dans le registre #
 nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
 nnoremap <f2>n :new <bar> only<cr>
@@ -885,25 +528,8 @@ nnoremap )b :bnext<cr>
 nnoremap (B :bfirst<cr>
 nnoremap )B :blast<cr>
 
-nnoremap <m-q> :ls!<cr>:silent bw!<space>
-
-" Lecture seule {{{3
-
-nnoremap <f2>o :call ToggleReadonly()<cr>
-
-func! ToggleReadonly()
-
-	if &modifiable || ! &readonly
-		setlocal readonly nomodifiable
-	else
-		setlocal noreadonly modifiable
-	endif
-
-	setlocal readonly? modifiable?
-
-endfunc
-
-" }}}3
+nnoremap <m-q> <cmd>bw!<cr>
+nnoremap <m-s-q> <cmd>bw! #<cr>
 
 " }}}2
 
@@ -1209,8 +835,8 @@ nnoremap <f2>c :set cmdheight=
 
 " Comme commande ex
 
-nnoremap <m-:> :exe getline(".")<CR>
-vnoremap <m-:> :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
+nnoremap <f2>: :exe getline(".")<CR>
+vnoremap <f2>: :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
 
 " }}}3
 
@@ -1224,16 +850,11 @@ nnoremap <f2>ih :echo bibliotheque#highlightGroup()<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <f2>$ :terminal bash<cr>
+nnoremap <f2>$ :call biblio#terminal()<cr>
 
 set termwinkey=<C-W>
 
-tnoremap <s-tab> <C-W>N<C-W>w
-
-tnoremap <f2> <C-W>N
-tnoremap <m-i> <C-W>N
-
-tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
+tnoremap <f2>n <c-\><c-n>
 
 " }}}2
 
@@ -1242,10 +863,6 @@ tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
 nnoremap <f2>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 nnoremap <f2>S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 nnoremap <f2>h :tabe ~/racine/hist/zsh/$HOST<cr>
-
-nnoremap \s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap \S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap \h :tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
@@ -1280,29 +897,6 @@ nnoremap <f2>l :set cursorline!<cr>
 
 " }}}1
 
-"  Abréviations {{{1
-
-" Abréviations {{{2
-
-iab cad c’est-à-dire
-iab dd <c-r>=strftime("%H : %M %a %d %b %Y")<cr>
-
-" Remplacé par le plugin cmdalias
-
-"cab hh tab help
-"cab dd <c-r>=strftime("[=] %A %d %B %Y  (o) %H : %M : %S  %z")<cr>
-
-" }}}2
-
-" Fautes de frappe courantes {{{2
-
-iab totu tout
-iab sosu sous
-
-" }}}2
-
-" }}}1
-
 "  Présentation {{{1
 
 "  Lignes {{{2
@@ -1310,18 +904,11 @@ iab sosu sous
 " Numérotation
 
 set number
-
 set relativenumber
-
-" Espacement
 
 set linespace=1
 
-" Longues lignes occupent plusieurs lignes (wrap) écran ou une seule (nowrap)
-
 set wrap
-
-" Coupe aux caractères donnés par breakat
 
 set linebreak
 set showbreak=┅
@@ -1394,9 +981,7 @@ set list
 
 set listchars=
 
-set listchars+=tab:\|\ ,trail:•
-set listchars+=trail:•
-set listchars+=nbsp:▒
+set listchars+=tab:┆\ ,nbsp:▒
 set listchars+=precedes:❮,extends:❯
 set listchars+=conceal:Δ
 
@@ -1408,16 +993,6 @@ set listchars+=conceal:Δ
 " quand on change de ligne
 
 set nostartofline
-
-" Mets en évidence la ligne courante
-" ------------------------------------
-
-"set cursorline
-
-" Mets en évidence la colonne courante
-" ------------------------------------
-
-"set cursorcolumn
 
 " }}}2
 
@@ -1497,7 +1072,7 @@ endif
 " Hauteur
 " ------------------------------------
 
-set cmdheight=5
+set cmdheight=3
 
 " }}}2
 
@@ -1553,19 +1128,6 @@ syntax sync maxlines=84
 "set cedit=<Esc>
 "set cedit=<Ins>
 
-" Commandes {{{2
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
-
-" }}}2
-
 " }}}1
 
 "  Auto-commandes {{{1
@@ -1586,7 +1148,7 @@ filetype indent on
 
 "  Thèmes {{{1
 
-colo ornuit
+colo golden-night
 
 " }}}1
 
@@ -1619,8 +1181,7 @@ set history=10000
 
 "  {{{ Plugins
 
-source ~/racine/config/edit/vim/paquet/minpac.vim
-source ~/racine/config/edit/vim/paquet/plugged.vim
+source ~/racine/config/edit/vim/paquet/packager.vim
 
 source ~/racine/config/edit/vim/paquet/preload.vim
 

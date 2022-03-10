@@ -59,7 +59,7 @@ endif
 " Curseur {{{1
 
 set guicursor=
-			\n:block-Cursor/lCursor,
+			\n:block-Cursor/lCursor-blinkon700-blinkoff700,
 			\v:block-vCursor,
 			\i:ver25-iCursor,
 			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
