@@ -7,11 +7,16 @@ hi link		vimContinue		Comment
 hi link		vimOper			Normal
 
 hi vimBracket		   	guifg=#872E30		guibg=default			gui=NONE
+hi vimCmplxRepeat	   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimCommand		   	guifg=brown			guibg=default			gui=NONE
 hi vimCommentTitle	   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimEnvVar		   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimEscape		   	guifg=#88421d		guibg=default			gui=NONE
+hi vimFuncBody		   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimFuncName			guifg=#88421D		guibg=default			gui=NONE
 hi vimFuncSID		   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimFuncVar		   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimGlobal			guifg=#5B3C11		guibg=default			gui=NONE
 hi vimGroup			   	guifg=#872E30		guibg=default			gui=NONE
 hi vimHiAttrib		   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimHiAttribList	   	guifg=#5B3C11		guibg=default			gui=NONE
@@ -22,24 +27,33 @@ hi vimHiGui			   	guifg=#872E30		guibg=default			gui=NONE
 hi vimHiGuiFgBg		   	guifg=#872E30		guibg=default			gui=NONE
 hi vimHiKeyList		   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimHiTerm		   	guifg=#872E30		guibg=default			gui=NONE
+hi vimLetHereDoc		guifg=#5b3c11		guibg=default			gui=NONE
+hi vimLetHereDocStart	guifg=#5b3c11		guibg=default			gui=NONE
+hi vimLetHereDocStop	guifg=#5b3c11		guibg=default			gui=NONE
+hi vimLuaRegion		   	guifg=#5b3c11		guibg=default			gui=NONE
 hi vimMapModKey		   	guifg=#872E30		guibg=default			gui=NONE
 hi vimNotation		   	guifg=#872E30		guibg=default			gui=NONE
 hi vimOption  			guifg=#88421D		guibg=default			gui=NONE
 hi vimParenSep		   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimPatSepZone	   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimPatSepZ		   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimRegister		   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimSep			   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimSetSep		   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimSpecFile		   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimSubstDelim	   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimSubstFlags	   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimSynCase		   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimSynCase		   	guifg=#88421D		guibg=default			gui=NONE
+hi vimSynContains	   	guifg=#88421D		guibg=default			gui=NONE
+hi vimSynMtchOpt	   	guifg=#88421D		guibg=default			gui=NONE
+hi vimSynReg		   	guifg=#88421D		guibg=default			gui=NONE
+hi vimSynRegOpt		   	guifg=#88421D		guibg=default			gui=NONE
 hi vimTodo				guifg=#88421D		guibg=default			gui=NONE
 hi vimUserAttrb		   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimUserAttrbCmplt   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimUserAttrbCmpltFunc guifg=#5B3C11		guibg=default			gui=NONE
 hi vimVar			   	guifg=#5B3C11		guibg=default			gui=NONE
-hi vimSynCase		   	guifg=#5B3C11		guibg=default			gui=NONE
-hi vimSynCase		   	guifg=#88421D		guibg=default			gui=NONE
-hi vimSynMtchOpt	   	guifg=#88421D		guibg=default			gui=NONE
-hi vimSynContains	   	guifg=#88421D		guibg=default			gui=NONE
-hi vimSynReg		   	guifg=#88421D		guibg=default			gui=NONE
-hi vimSynRegOpt		   	guifg=#88421D		guibg=default			gui=NONE
 
 hi vimBracket		   	ctermfg=NONE		ctermbg=black	   	cterm=NONE
 hi vimCommand		   	ctermfg=brown		ctermbg=black		cterm=NONE
@@ -54,6 +68,7 @@ hi vimHiCtermFgBg	   	ctermfg=NONE		ctermbg=black	 	cterm=NONE
 hi vimHiGroup		   	ctermfg=NONE		ctermbg=black	 	cterm=NONE
 hi vimHiGui			   	ctermfg=NONE		ctermbg=black	 	cterm=NONE
 hi vimHiGuiFgBg		   	ctermfg=NONE		ctermbg=black	 	cterm=NONE
+hi vimLuaRegion		   	ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi vimMapModKey		   	ctermfg=NONE		ctermbg=black	   	cterm=NONE
 hi vimNotation		   	ctermfg=NONE		ctermbg=black	   	cterm=NONE
 hi vimOption  			ctermfg=NONE		ctermbg=black	 	cterm=NONE
@@ -72,3 +87,7 @@ hi vimSynMtchOpt	   	ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi vimSynContains	   	ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi vimSynReg		   	ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi vimSynRegOpt		   	ctermfg=NONE		ctermbg=NONE		cterm=NONE
+
+hi luaTable		   	guifg=#5b3c11		guibg=default			gui=NONE
+
+hi luaTable		   	ctermfg=NONE		ctermbg=NONE		cterm=NONE

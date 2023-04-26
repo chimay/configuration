@@ -2,7 +2,7 @@
 
 hi htmlItalic			guifg=NONE			guibg=NONE			gui=italic
 hi htmlSpecialChar		guifg=NONE			guibg=NONE			gui=NONE
-hi htmlLink	 			guifg=NONE			guibg=NONE			gui=underline
+hi htmlLink				  guifg=#5B3C11		guibg=NONE			gui=NONE
 hi htmlEvent 			guifg=NONE			guibg=NONE			gui=underline
 hi htmlEventDQ 			guifg=NONE			guibg=NONE			gui=underline
 hi htmlTag				guifg=#88421D		guibg=default			gui=NONE

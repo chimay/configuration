@@ -488,6 +488,8 @@ set wildchar=<tab>
 " set wildcharm=<C-Z>
 set wildcharm=<tab>
 
+set wildoptions=pum,tagfile
+
 " Wildmode {{{3
 
 " 'wildmode' 'wim'	string	neovim default: "full")
@@ -695,41 +697,6 @@ set diffopt=filler,context:4,vertical,foldcolumn:2
 
 " }}}2
 
-"  Cscope {{{2
-
-set cscopeverbose
-
-" Relatif au basename de cscope.out ?
-
-"set cscoperelative
-
-" Utilisation de la fenêtre quickfix
-
-set cscopequickfix=s-,c-,d-,i-,t-,e-
-
-" Tags ordinaires puis tags cscope
-
-set cscopetagorder=1
-
-" On utilise gtags pour remplacer cscope
-
-set cscopeprg=gtags-cscope
-
-" Nombre de répertoires à afficher
-
-set cscopepathcomp=0
-
-"cs add cscope.out %:p:h
-
-"cd ~/bin
-
-"cs add GTAGS
-"cs add GRTAGS
-"cs add GPATH
-"cs add GSYMS
-
-" }}}2
-
 " }}}1
 
 "  Compilation de fichiers {{{1
@@ -863,11 +830,11 @@ nnoremap <PageDown> <C-F>
 
 " Phrases {{{2
 
-noremap (s (
-noremap )s )
+" noremap <f4>s (
+" noremap <f4>s )
 
-vnoremap (s (
-vnoremap )s )
+" vnoremap <f4>s (
+" vnoremap <f4>s )
 
 " }}}2
 
@@ -879,43 +846,46 @@ vnoremap )s )
 
 nnoremap <C-G> 2<C-G>
 
-nnoremap <f5>e <cmd>tabe ~/racine/config/edit/neovim/init.vim<cr>
-inoremap <f5>e <cmd>tabe ~/racine/config/edit/neovim/init.vim<cr>
+nnoremap <f2>i <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
+inoremap <f2>i <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
 
 " not a good idea, strange effect
-" nnoremap <f5>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
-" inoremap <f5>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
+" nnoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
+" inoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
 
 command! -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
-nnoremap <f5>s <cmd>EditSyntaxPlugin<cr>
+nnoremap <f2>s <cmd>EditSyntaxPlugin<cr>
 
-nnoremap <f2>n <cmd>new <bar> only<cr>
+nnoremap <f3>n <cmd>new <bar> only<cr>
 
 nnoremap <kEnter> <cmd>call biblio#write_all()<cr>
 
 nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
+nnoremap <f3>e :e <c-r>=expand('%:p:h') . '/' <cr>
+nnoremap <f3>r :r <c-r>=expand('%:p:h') . '/' <cr>
+
 " }}}2
 
 " Arguments {{{2
 
-nnoremap (a <cmd>previous<cr>
-nnoremap )a <cmd>next<cr>
+nnoremap <f4>a <cmd>previous<cr>
+nnoremap <f4>a <cmd>next<cr>
 
-nnoremap (A <cmd>first<cr>
-nnoremap )A <cmd>last<cr>
+nnoremap <f4>A <cmd>first<cr>
+nnoremap <f4>A <cmd>last<cr>
 
 " }}}2
 
 " Tampons (buffers) {{{2
 
-nnoremap (b <cmd>bprevious<cr>
-nnoremap )b <cmd>bnext<cr>
+nnoremap <f4>b <cmd>bprevious<cr>
+nnoremap <f4>b <cmd>bnext<cr>
 
-nnoremap (B <cmd>bfirst<cr>
-nnoremap )B <cmd>blast<cr>
+nnoremap <f4>B <cmd>bfirst<cr>
+nnoremap <f4>B <cmd>blast<cr>
 
 " wipe buffer
 nnoremap <m-q> <cmd>bwipe!<cr>
@@ -926,7 +896,7 @@ nnoremap <m-s-q> <cmd>%bwipe<cr>
 
 " Lecture seule {{{3
 
-nnoremap <f2>o <cmd>call biblio#toggle_readonly()<cr>
+nnoremap <f3>o <cmd>call biblio#toggle_readonly()<cr>
 
 " }}}3
 
@@ -946,17 +916,17 @@ nnoremap <s-down> <c-w><down>
 
 "  Onglets {{{2
 
-nnoremap <f2>e :tabedit<space>
-nnoremap <f2>t <cmd>tabnew<cr>
+nnoremap <f3>t <cmd>tabnew<cr>
+nnoremap <f3>T :tabedit<space>
 
 nnoremap <c-left> gT
 nnoremap <c-right> gt
 
-nnoremap (T <cmd>tabfirst<cr>
-nnoremap )T <cmd>tablast<cr>
+nnoremap <f4>T <cmd>tabfirst<cr>
+nnoremap <f4>T <cmd>tablast<cr>
 
-nnoremap (t <cmd>tabmove -1<cr>
-nnoremap )t <cmd>tabmove +1<cr>
+nnoremap <f4>t <cmd>tabmove -1<cr>
+nnoremap <f4>t <cmd>tabmove +1<cr>
 
 nnoremap <c-s-left> <cmd>tabmove -1<cr>
 nnoremap <c-s-right> <cmd>tabmove +1<cr>
@@ -968,27 +938,27 @@ nnoremap <leader><right> <cmd>call biblio#win2next_tab()<cr>
 
 " Liste quickfix {{{2
 
-nnoremap (q <cmd>cprevious<cr>
-nnoremap )q <cmd>cnext<cr>
+nnoremap <f4>q <cmd>cprevious<cr>
+nnoremap <f4>q <cmd>cnext<cr>
 
-nnoremap (Q <cmd>cfirst<cr>
-nnoremap )Q <cmd>clast<cr>
+nnoremap <f4>Q <cmd>cfirst<cr>
+nnoremap <f4>Q <cmd>clast<cr>
 
-nnoremap (<c-q> <cmd>cpfile<cr>
-nnoremap )<c-q> <cmd>cnfile<cr>
+nnoremap <f4><c-q> <cmd>cpfile<cr>
+nnoremap <f4><c-q> <cmd>cnfile<cr>
 
 " }}}2
 
 " Listes locales {{{2
 
-nnoremap (l <cmd>lprevious<cr>
-nnoremap )l <cmd>lnext<cr>
+nnoremap <f4>l <cmd>lprevious<cr>
+nnoremap <f4>l <cmd>lnext<cr>
 
-nnoremap (L <cmd>lfirst<cr>
-nnoremap )L <cmd>llast<cr>
+nnoremap <f4>L <cmd>lfirst<cr>
+nnoremap <f4>L <cmd>llast<cr>
 
-nnoremap (<c-l> <cmd>lpfile<cr>
-nnoremap )<c-l> <cmd>lnfile<cr>
+nnoremap <f4><c-l> <cmd>lpfile<cr>
+nnoremap <f4><c-l> <cmd>lnfile<cr>
 
 " }}}2
 
@@ -1004,14 +974,14 @@ nnoremap )<c-l> <cmd>lnfile<cr>
 
 "  Tags {{{2
 
-nnoremap (<m-t> <cmd>tprevious<cr>
-nnoremap )<m-t> <cmd>tnext<cr>
+nnoremap <f4><m-t> <cmd>tprevious<cr>
+nnoremap <f4><m-t> <cmd>tnext<cr>
 
-nnoremap (<m-s-t> <cmd>tfirst<cr>
-nnoremap )<m-s-t> <cmd>tlast<cr>
+nnoremap <f4><m-s-t> <cmd>tfirst<cr>
+nnoremap <f4><m-s-t> <cmd>tlast<cr>
 
-nnoremap <f2>j <cmd>tj /
-nnoremap <f2>J <cmd>tab tj /
+nnoremap <f3>j <cmd>tj /
+nnoremap <f3>J <cmd>tab tj /
 
 " }}}2
 
@@ -1020,7 +990,7 @@ nnoremap <f2>J <cmd>tab tj /
 " Début & Fin de fichier {{{3
 
 nnoremap gg gg0
-nnoremap G G$zt
+nnoremap G G$
 
 " }}}3
 
@@ -1061,15 +1031,15 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f2>, /\<\><left><left>
-vnoremap <f2>, /\<\><left><left>
+nnoremap <f3>, /\<\><left><left>
+vnoremap <f3>, /\<\><left><left>
 
 " }}}3
 
 "  Remplacement {{{3
 
-nnoremap <f2>; :%s/\<\>//<left><left><left><left>
-vnoremap <f2>; :%s/\<\>//<left><left><left><left>
+nnoremap <f3>; :%s/\<\>//<left><left><left><left>
+vnoremap <f3>; :%s/\<\>//<left><left><left><left>
 
 " }}}3
 
@@ -1085,13 +1055,13 @@ nnoremap Y y$
 
 command! -nargs=1 GlobalYank <cmd>call biblio#global_yank(<q-args>, 'a')
 
-nnoremap <f2>y <cmd>GlobalYank<space>
+nnoremap <f3>y <cmd>GlobalYank<space>
 
 " Couper toutes les lignes correspondant à un motif
 
 command! -nargs=1 GlobalDelete <cmd>call biblio#global_delete(<q-args>, 'a')
 
-nnoremap <f2>d <cmd>GlobalDelete<space>
+nnoremap <f3>d <cmd>GlobalDelete<space>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
@@ -1135,17 +1105,17 @@ inoremap <C-W> <C-G>u<C-W>
 nnoremap ]] ]z
 nnoremap [[ [z
 
-nnoremap )z ]z
-nnoremap (z [z
+nnoremap <f4>z ]z
+nnoremap <f4>z [z
 
-vnoremap )z ]z
-vnoremap (z [z
+vnoremap <f4>z ]z
+vnoremap <f4>z [z
 
-nnoremap )) zjzx]z
-nnoremap (( zkzx[z
+nnoremap <f4>) zjzx]z
+nnoremap <f4>( zkzx[z
 
-vnoremap )) zjzx]z
-vnoremap (( zkzx[z
+vnoremap <f4>) zjzx]z
+vnoremap <f4>( zkzx[z
 
 nnoremap zo zCzO
 
@@ -1228,7 +1198,7 @@ nnoremap QQ gQ
 
 " Hauteur de la fenêtre de commande {{{3
 
-nnoremap <f2>c :set cmdheight=
+nnoremap <f3>c :set cmdheight=
 
 " }}}3
 
@@ -1249,28 +1219,28 @@ nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 "  Orthographe {{{2
 
 " underline ~~~ wrong words
-nnoremap <silent> <f2>~ <cmd>setlocal spell!<cr>
+nnoremap <silent> <f3>~ <cmd>setlocal spell!<cr>
 
 " }}}2
 
 "  Informations {{{2
 
-nnoremap <f2>ih <cmd>call biblio#highlight_group()<cr>
+nnoremap <f3>ih <cmd>call biblio#highlight_group()<cr>
 
 " }}}2
 
 "  Shell {{{2
 
-nnoremap <f2>s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap <f2>S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f3>s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <f3>S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 
-nnoremap <f2>h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f3>h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
 " Journal de bord {{{2
 
-nnoremap <f2>L <cmd>tabe ~/racine/log/captain<cr>
+nnoremap <f3>L <cmd>tabe ~/racine/log/captain<cr>
 
 " }}}2
 
@@ -1296,7 +1266,7 @@ nmap <k9> 9
 
 " Numérotation des lignes {{{3
 
-nnoremap <silent> <D-l> <cmd>call biblio#line_number()<cr>
+nnoremap <silent> <D-l> <cmd>call biblio#toggle_relative_linum()<cr>
 
 " }}}3
 
@@ -1317,7 +1287,7 @@ set guicursor=
 
 set termguicolors
 
-nnoremap <f2>l <cmd>set cursorline!<cr>
+nnoremap <f3>l <cmd>set cursorline!<cr>
 
 " }}}2
 
@@ -1646,8 +1616,6 @@ source ~/racine/config/edit/neovim/autocommandes.vim
 
 "  Types de fichiers {{{1
 
-"filetype plugin indent on
-
 filetype on
 filetype plugin on
 filetype indent on
@@ -1700,6 +1668,17 @@ endif
 
 " }}}1
 
+" Add vim files {{{1
+
+" for lilypond
+
+filetype off
+set runtimepath+=/usr/share/vim/vimfiles
+filetype on
+syntax on
+
+" }}}1
+
 "  {{{ Plugins
 
 source ~/racine/config/edit/neovim/paquet/packager.vim
@@ -1723,3 +1702,9 @@ source ~/racine/config/edit/neovim/paquet/postload.vim
 source ~/racine/config/edit/neovim/paquet/autocmd-plugin.vim
 
 " }}}
+
+" Lua {{{1
+
+source ~/racine/config/edit/neovim/meta.lua
+
+" }}}1

@@ -50,10 +50,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<m-tab>"
 
-let g:UltiSnipsListSnippets='<F8>l'
+let g:UltiSnipsListSnippets='<F10>l'
 
-nnoremap <F8>e <cmd>UltiSnipsEdit<cr>
-nnoremap <F8>a <cmd>UltiSnipsAddFiletypes<space>
+nnoremap <F10>e <cmd>UltiSnipsEdit<cr>
+nnoremap <F10>a <cmd>UltiSnipsAddFiletypes<space>
 
 " }}}3
 
@@ -151,11 +151,12 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " 2-character Sneak (default)
 
-nmap <f4> <Plug>Sneak_s
-nmap <f3> <Plug>Sneak_S
+nmap zf <Plug>Sneak_s
+nmap zF <Plug>Sneak_S
+nmap ZF <Plug>Sneak_S
 
-xmap <f4> <Plug>Sneak_s
-xmap <f3> <Plug>Sneak_S
+xmap zf <Plug>Sneak_s
+xmap zF <Plug>Sneak_S
 
 omap z <Plug>Sneak_s
 omap Z <Plug>Sneak_S
@@ -187,8 +188,8 @@ omap T <Plug>Sneak_T
 
 " label-mode
 
-nmap <f10> <Plug>SneakLabel_s
-nmap <f9>  <Plug>SneakLabel_S
+nmap zl <Plug>SneakLabel_s
+nmap zL <Plug>SneakLabel_S
 
 " }}}3
 
@@ -360,6 +361,7 @@ if ! exists("g:wheel_loaded")
 	nmap <silent> <d-v>       <plug>(wheel-dedibuf-tabwin)
 
     nmap <silent> <d-o>       <plug>(wheel-dedibuf-occur)
+    nmap <silent> <d-§>       <plug>(wheel-prompt-outline)
     nmap <silent> <d-b>       <plug>(wheel-dedibuf-buffer-all)
 	nmap <silent> <d-k>       <plug>(wheel-dedibuf-marker)
 	nmap <silent> <d-j>       <plug>(wheel-dedibuf-jump)
@@ -438,8 +440,8 @@ nmap cxx <Plug>(ExchangeLine)
 " (/)space pour ajouter une ligne
 " (/)e pour échanger deux lignes
 
-nmap ( [
-nmap ) ]
+nmap z( [
+nmap z) ]
 
 " }}}2
 
@@ -495,6 +497,23 @@ let g:increment_activator_filetype_candidates = {
 " }}}1
 
 " Organisation {{{1
+
+" Organ {{{2
+
+if ! exists("g:organ_loaded")
+	let g:organ_config = {}
+	let g:organ_config.speedkeys = 1
+	let g:organ_config.prefix = '<m-ç>'
+	let g:organ_config.prefixless = 1
+	"let g:organ_config.prefixless_modes = ['normal', 'insert']
+	"let g:organ_config.prefixless_plugs = ['organ-previous', 'organ-next']
+	"let g:organ_config.list.unordered = #{ org : ['-', '+', '*'], markdown : ['-', '+']}
+	"let g:organ_config.list.ordered = #{ org : ['.', ')'], markdown : ['.']}
+endif
+
+au FileType org,markdown nnoremap <buffer> § :Organ<space>
+
+" }}}2
 
 " Table mode {{{2
 

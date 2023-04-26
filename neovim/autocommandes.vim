@@ -1,48 +1,35 @@
-" vim: set filetype=vim :
+" vim: set ft=vim fdm=indent iskeyword&:
 
-if !has("autocmd")
+if ! has("autocmd")
 	finish
 endif
 
-"  Rechargement de la configuration {{{1
-
-augroup RechargementConfiguration
+augroup reload-config
 	autocmd!
-	autocmd bufwritepost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
-	autocmd bufwritepost ~/racine/config/edit/neovim/after/syntax/** source %
-	autocmd bufwritepost ~/racine/config/edit/neovim/autoload/** source %
-	autocmd bufwritepost ~/racine/config/system/dunst/dunstrc !restart-dunst.zsh &
-	autocmd bufwritepost ~/racine/config/windenv/sxhkd/sxhkdrc !pkill -10 -f sxhkd
-	autocmd bufwritepost ~/racine/config/windenv/keynav/keynavrc !pkill -1 -f keynav
-	autocmd bufwritepost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
-	autocmd bufwritepost ~/racine/config/windenv/picom.conf !restart-picom.zsh &
-	autocmd bufwritepost ~/racine/config/organizer/remind/* !pkill -10 -f remind-server
-	autocmd bufwritepost ~/racine/public/wheel/autoload/**.vim source %
+	autocmd BufWritePost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
+	autocmd BufWritePost ~/racine/config/edit/neovim/after/syntax/** source %
+	autocmd BufWritePost ~/racine/config/edit/neovim/autoload/** source %
+	autocmd BufWritePost ~/racine/config/system/dunst/dunstrc !restart-dunst.zsh &
+	autocmd BufWritePost ~/racine/config/windenv/sxhkd/sxhkdrc !pkill -10 -f sxhkd
+	autocmd BufWritePost ~/racine/config/windenv/keynav/keynavrc !pkill -1 -f keynav
+	autocmd BufWritePost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
+	autocmd BufWritePost ~/racine/config/windenv/picom.conf !restart-picom.zsh &
+	autocmd BufWritePost ~/racine/config/organizer/remind/* !pkill -10 -f remind-server
+	autocmd BufWritePost ~/racine/public/wheel/autoload/**.vim source %
+	autocmd BufWritePost ~/racine/public/organ/autoload/**.vim source %
 augroup END
 
-" }}}1
-
-"  Shell {{{1
-
-augroup ShellHistorique
+augroup shell-history
 	autocmd!
 	autocmd BufEnter historique.zsh setlocal nofoldenable
 augroup END
 
-" }}}1
-
-"  Fenêtre quickfix {{{1
-
-augroup FenetreQuickFix
+augroup quickfix-window
 	autocmd!
 	autocmd BufReadPost quickfix noremap <buffer> <backspace> <cr>:cclose<cr>
 augroup END
 
-" }}}1
-
-"  Fenêtre d’historique {{{1
-
-augroup FenetreHistorique
+augroup command-window
 	autocmd!
 	"autocmd CmdwinEnter [:/?]  startinsert
 	autocmd CmdwinEnter * noremap <buffer> q <cmd>q<CR>
@@ -51,172 +38,64 @@ augroup FenetreHistorique
 	autocmd CmdwinLeave * let @/=""
 augroup END
 
-" }}}1
-
-" Fichiers temporaires {{{1
-
-augroup FichiersTemporaires
+augroup temporary-files
 	autocmd!
 	autocmd BufNewFile,BufReadPre /tmp/*,*/tmp/* setlocal noundofile
 augroup END
 
-" }}}1
-
-" Types de fichiers {{{1
-
-"  Allocation des types {{{2
-
-augroup DetectionDesTypesDeFichiers
+augroup tabulation
 	autocmd!
-	autocmd BufNewFile,BufRead *.org setfiletype org
-	autocmd BufNewFile,BufRead *.htm*,*.php,*.phtm* setfiletype html.php
-	autocmd BufNewFile,BufRead *.rss,*.atom         setfiletype xml
-augroup END
-
-" }}}2
-
-" Tabulation {{{2
-
-augroup Tabulation
-	autocmd!
-	" Syntax of these languages is fussy over tabs Vs spaces
+	" ---- syntax of these languages is fussy over tabs Vs spaces
 	autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
 	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-	" Customisations based on house-style (arbitrary)
-	autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
-	autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
-	autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 augroup END
 
-" }}}2
-
-" Pliage {{{2
-
-augroup Pliage
+augroup folding
 	autocmd!
-	autocmd BufRead,BufEnter *.org setlocal foldmethod=expr foldexpr=biblio#org_folding_expr(v:lnum)
-	autocmd BufRead,BufEnter *.snippets setlocal nofoldenable
+	autocmd BufReadPost ~/public/wheel/**.vim setlocal foldmethod=indent
+	autocmd BufReadPost ~/public/organ/**.vim setlocal foldmethod=indent
+	autocmd BufReadPost *.snippets setlocal nofoldenable
 augroup END
 
-" }}}2
-
-" }}}1
-
-" ------------------------------------
-
-" FichierVim {{{2
-
-augroup FichierVim
-	autocmd BufEnter *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'" }
-	autocmd BufLeave *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
-augroup END
-
-" }}}2
-
-" FichiersLisp {{{2
-
-augroup FichiersLisp
+augroup file-detection
 	autocmd!
-	autocmd BufEnter *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"' }
-	autocmd BufLeave *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
+	"autocmd BufNewFile,BufRead *.htm*,*.php,*.phtm* setfiletype html.php
+	autocmd BufNewFile,BufRead *.htm*			setfiletype html
+	autocmd BufNewFile,BufRead *.php,*.phtm*	setfiletype html.php
+	autocmd BufNewFile,BufRead *.rss,*.atom     setfiletype xml
 augroup END
 
-" }}}2
-
-" FichiersSlang {{{2
-
-augroup FichiersSlang
-	autocmd!
-	autocmd Filetype slang set commentstring=%\ %s
-augroup END
-
-" }}}2
-
-" FichiersMarkdown {{{2
-
-augroup FichiersMarkdown
+augroup file-markdown
 	autocmd!
 	"autocmd bufwritepost **.md !pandoc -t html % -o %:r.html
+	" convert links org -> markdown
+	autocmd bufwritepost bookmarks.md silent! %s:\[\[\([^]]*\)\]\]:[\1](\1):
+	autocmd bufwritepost bookmarks.md silent! %s:\[\[\([^]]*\)\]\[\([^]]*\)\]\]:[\2](\1):
 augroup END
 
-" }}}2
-
-" FichiersHtml {{{2
-
-augroup FichiersHtml
-	autocmd!
-	autocmd Filetype html,php nnoremap <silent> [h ?^<h[1-6]<cr>:nohlsearch<cr>
-	autocmd Filetype html,php nnoremap <silent> ]h /^<h[1-6]<cr>:nohlsearch<cr>
-augroup END
-
-" }}}2
-
-" Fichiers openDocument {{{2
-
-augroup FichiersOpenDoc
+augroup file-libreoffice
 	autocmd!
 	autocmd BufReadPre *.odt,*.ods set ro
 	autocmd BufReadPost *.odt,*.ods %!odt2txt "%"
 augroup END
 
-" }}}2
-
-" FichiersImages {{{2
-
-augroup FichiersImages
+augroup file-image
 	autocmd!
 	"autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!identify -verbose "%"
 	autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!exiv2 pr "%"
 augroup END
 
-" }}}2
-
-" FichiersAudio {{{2
-
-augroup FichiersAudio
+augroup file-audio
 	autocmd!
 	autocmd BufReadPost *.flac %!metaflac --list "%"
 	autocmd BufReadPost *.ogg %!ogginfo "%"
 	autocmd BufReadPost *.mp3 %!mp3info -x "%"
-augroup END
-
-" }}}2
-
-" FichiersDoc {{{2
-
-augroup FichiersDoc
-	autocmd!
-	autocmd BufReadPre *.doc set ro
-	autocmd BufReadPost *.doc %!antiword "%" | fmt
-augroup END
-
-" }}}2
-
-"  Newsrc {{{2
-
-augroup Nouvelles
-	autocmd!
-	autocmd BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs\s/ :&/
-	autocmd BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs$/ :&/
-augroup END
-
-" }}}2
-
-"  Fichier de génération de listes de lecture m3u {{{2
-
-augroup ListesDeLecture
-	autocmd!
+	" ---- playlists
 	autocmd BufEnter ~/racine/pictura/list/*.meta lcd ~/graphix
 	autocmd BufEnter ~/racine/musica/list/*.meta lcd ~/audio
 augroup END
 
-" }}}2
-
-" }}}1
-
-" Man pager {{{1
-
-augroup manlaunchtoc
+augroup man-pages
     autocmd!
     if has('nvim')
         autocmd FileType man
@@ -227,26 +106,3 @@ augroup manlaunchtoc
             \ wincmd p
     endif
 augroup end
-
-" }}}1
-
-"  Chat {{{1
-
-augroup social
-	autocmd!
-	autocmd BufWritePost alias.conf.perso   w! ~/racine/config/social/weechat/alias.conf
-	autocmd BufWritePost aspell.conf.perso  w! ~/racine/config/social/weechat/aspell.conf
-	autocmd BufWritePost buffers.conf.perso w! ~/racine/config/social/weechat/buffers.conf
-	autocmd BufWritePost cron.txt.perso     w! ~/racine/config/social/weechat/cron.txt
-	autocmd BufWritePost irc.conf.perso     w! ~/racine/config/social/weechat/irc.conf
-	autocmd BufWritePost iset.conf.perso    w! ~/racine/config/social/weechat/iset.conf
-	autocmd BufWritePost jabber.conf.perso  w! ~/racine/config/social/weechat/jabber.conf
-	autocmd BufWritePost logger.conf.perso  w! ~/racine/config/social/weechat/logger.conf
-	autocmd BufWritePost plugins.conf.perso w! ~/racine/config/social/weechat/plugins.conf
-	autocmd BufWritePost relay.conf.perso   w! ~/racine/config/social/weechat/relay.conf
-	autocmd BufWritePost script.conf.perso  w! ~/racine/config/social/weechat/script.conf
-	autocmd BufWritePost weechat.conf.perso w! ~/racine/config/social/weechat/weechat.conf
-	autocmd BufWritePost xfer.conf.perso    w! ~/racine/config/social/weechat/xfer.conf
-augroup END
-
-" }}}1

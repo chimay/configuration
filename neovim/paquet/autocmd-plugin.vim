@@ -1,22 +1,16 @@
-" vim: set filetype=vim :
+" vim: set ft=vim fdm=indent iskeyword&:
 
-if !has("autocmd")
+if ! has("autocmd")
 	finish
 endif
 
-" Packager {{{1
-
-augroup packager_filetype
-  autocmd!
-  " ---- load optional plugin on given filetypes
-  autocmd FileType markdown packadd foltext_vim
-  autocmd FileType org packadd foltext_vim
-  autocmd FileType markdown packadd vim-markdown-toc
+augroup filetype-packages
+	" ---- load optional plugin on given filetypes
+	autocmd!
+	"autocmd FileType markdown packadd vim-markdown-toc
+	autocmd BufReadPre **.md packadd vim-markdown-toc
+	autocmd BufReadPre **.tex packadd vim-latex
 augroup END
-
-" }}}1
-
-" Wheel {{{1
 
 augroup wheel
 	autocmd!
@@ -35,11 +29,7 @@ augroup wheel
 	autocmd TextYankPost * call wheel#codex#add()
 augroup END
 
-" }}}1
-
-" Sneak {{{1
-
-augroup Sneak
+augroup sneak
 	autocmd!
 	autocmd ColorScheme * hi Sneak
 				\ guifg=black guibg=#5B3C11 gui=NONE
@@ -49,11 +39,10 @@ augroup Sneak
 				\ ctermfg=NONE ctermbg=NONE cterm=reverse
 augroup END
 
-" }}}1
-
-" Vim Markdown Folding {{{1
-
-au BufEnter *.md setlocal foldmethod=expr
-
-" }}}1
-
+augroup autopairs
+	autocmd!
+	autocmd BufEnter *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'" }
+	autocmd BufLeave *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
+	autocmd BufEnter *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"' }
+	autocmd BufLeave *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
+augroup END

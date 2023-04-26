@@ -15,6 +15,7 @@ fun! PackagerInit ()
 	" ---- local
 	" adds a symlink ~/racine/public/wheel/wheel -> ~/racine/public/wheel, why ?
 	"call packager#local('~/racine/public/wheel', always)
+	"call packager#local('~/racine/public/organ', always)
 	" ---- auto loaded plugins
 	call packager#add('SirVer/ultisnips', always)
 	call packager#add('dhruvasagar/vim-table-mode', always)
@@ -42,6 +43,9 @@ fun! PackagerInit ()
 	call packager#add('vim-scripts/VisIncr', always)
 	call packager#add('vim-scripts/utl.vim', always)
 	call packager#add('wellle/targets.vim', always)
+	" freezes nvim with undo
+" 	call packager#add('nvim-treesitter/nvim-treesitter')
+" 	call packager#add('nvim-orgmode/orgmode')
 	" -- plugins with deps
 	call packager#add('vim-scripts/LineJuggler', {
 				\ 'type' : 'start',
@@ -49,11 +53,13 @@ fun! PackagerInit ()
 				\ })
 	" ---- optional plugins, loaded on some filetypes
 	call packager#add('mzlogin/vim-markdown-toc', optional)
+	call packager#add('vim-latex/vim-latex', optional)
 	" ---- optional plugins loaded manually
 	call packager#add('arecarn/crunch.vim', optional)
 	call packager#add('chrisbra/NrrwRgn', optional)
 	call packager#add('dstein64/vim-startuptime', optional)
 	call packager#add('flazz/vim-colorschemes', optional)
+	call packager#add('water-sucks/darkrose.nvim', optional)
 	call packager#add('justinmk/vim-dirvish', optional)
 	call packager#add('kana/vim-submode', optional)
 	call packager#add('liuchengxu/vim-which-key', optional)
@@ -63,6 +69,7 @@ fun! PackagerInit ()
 	call packager#add('thinca/vim-textobj-between', optional)
 	call packager#add('tpope/vim-fugitive', optional)
 	call packager#add('vim-scripts/YankRing.vim', optional)
+	call packager#add('mhinz/neovim-remote', optional)
 	" -- plugins with deps
 endfun
 

@@ -9,6 +9,7 @@ hi link		vimOper			Normal
 hi sedBranch		   	guifg=#5b3c11		guibg=default			gui=NONE
 hi sedAddress		   	guifg=#5b3c11		guibg=default			gui=NONE
 hi sedRegexpMeta	   	guifg=#5b3c11		guibg=default			gui=NONE
+hi sedReplacement47 	guifg=#5b3c11		guibg=default			gui=NONE
 hi sedSpecial		   	guifg=#5b3c11		guibg=default			gui=NONE
 hi sedLabel			   	guifg=#5b3c11		guibg=default			gui=NONE
 hi sedFunction		   	guifg=#5b3c11		guibg=default			gui=NONE

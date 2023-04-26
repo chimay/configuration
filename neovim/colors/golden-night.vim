@@ -99,18 +99,18 @@ hi TermCursorNC		guifg=NONE			guibg=#B21818		gui=NONE
 " Onglets {{{2
 
 hi TabLineSel		guifg=NONE		guibg=NONE			gui=bold
-hi TabLine			guifg=#000000	guibg=#503020		gui=bold
+hi TabLine			guifg=#000000	guibg=#503010		gui=bold
 hi TabLineFill		guifg=NONE		guibg=#151515		gui=NONE
 
 " }}}2
 
 " Barre de statut {{{2
 
-" Pas nécessaire et
-" cause un petit souci d’affichage avec CtrlSpace
+ "hi StatusLine		guifg=NONE		guibg=#150b05		gui=NONE
+ hi StatusLine		guifg=NONE		guibg=NONE			gui=reverse,bold
+ hi StatusLineNC	guifg=NONE		guibg=#120705		gui=NONE
 
- "hi StatusLine		guifg=NONE		guibg=NONE			gui=bold,reverse
- "hi StatusLineNC	guifg=NONE		guibg=NONE			gui=bold,reverse
+ hi WheelStatusLine		guifg=#5b3c11	guibg=NONE		gui=NONE
 
 " }}}2
 
@@ -140,7 +140,9 @@ hi FoldColumn		guifg=#5B3C11		guibg=black			gui=NONE
 
 " Recherche {{{2
 
-hi Search		guifg=#721919		guibg=NONE		gui=italic,underline
+hi Search		guifg=#721919		guibg=NONE		gui=italic
+hi Search		guifg=#841919		guibg=NONE		gui=italic
+"hi Search		guifg=#88421d		guibg=NONE		gui=italic
 
 " }}}2
 
@@ -324,6 +326,8 @@ hi TabLineFill		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
 hi StatusLine		ctermfg=NONE		ctermbg=NONE		cterm=reverse
 hi StatusLineNC		ctermfg=NONE		ctermbg=NONE		cterm=reverse
+
+hi WheelStatusLine	ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
 " }}}2
 

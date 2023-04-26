@@ -1,6 +1,7 @@
 " vim: set filetype=vim :
 
 hi pythonStatement	   	guifg=#872E30		guibg=default			gui=NONE
+hi pythonTodo		   	guifg=#872E30		guibg=default			gui=NONE
 hi pythonConditional   	guifg=#872E30		guibg=default			gui=NONE
 hi pythonRepeat		   	guifg=#872E30		guibg=default			gui=NONE
 hi pythonInclude	   	guifg=#872E30		guibg=default			gui=NONE
