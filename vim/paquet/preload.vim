@@ -102,6 +102,21 @@ endif
 
 " }}}1
 
+" organ {{{1
+
+if ! exists("g:organ_loaded")
+	let g:organ_config = {}
+	let g:organ_config.speedkeys = 1
+	let g:organ_config.prefix = '<m-ç>'
+	let g:organ_config.prefixless = 1
+	"let g:organ_config.prefixless_plugs = ['organ-previous', 'organ-next']
+endif
+
+" au FileType org nmap <buffer><silent> <c-p> <plug>(organ-previous)
+" au FileType markdown nmap <buffer><silent> <c-p> <plug>(organ-previous)
+
+" }}}1
+
 " fixkey (drmikehenry/vim-fixkey) {{{1
 
 let g:Fixkey_setupDelay = 500

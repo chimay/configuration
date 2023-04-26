@@ -287,6 +287,8 @@ set wildmenu
 set wildchar=<tab>
 set wildcharm=<tab>
 
+set wildoptions=pum,tagfile
+
 " Wildmode {{{3
 
 set wildmode=full
@@ -480,40 +482,39 @@ nnoremap [[ [z
 
 nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
-nnoremap <f2>n :new <bar> only<cr>
-nnoremap <f2>r :e!<cr>
-nnoremap <f2>w :wa<cr>
+nnoremap <f3>n :new <bar> only<cr>
+nnoremap <f3>r :e!<cr>
+nnoremap <f3>w :wa<cr>
 
 nnoremap <kenter> :wa<cr>
 
-nnoremap <f5>e :tabe ~/racine/config/edit/vim/vimrc<cr>
-inoremap <f5>e :tabe ~/racine/config/edit/vim/vimrc<cr>
+nnoremap \e :tabe ~/racine/config/edit/vim/vimrc<cr>
+inoremap \e :tabe ~/racine/config/edit/vim/vimrc<cr>
 
-nnoremap <f5>r :so ~/racine/config/edit/vim/vimrc<cr>
-inoremap <f5>r :so ~/racine/config/edit/vim/vimrc<cr>
+nnoremap \r :so ~/racine/config/edit/vim/vimrc<cr>
+inoremap \r :so ~/racine/config/edit/vim/vimrc<cr>
 
 command -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/vim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
-nnoremap <f5>s :<c-u>EditSyntaxPlugin<cr>
+nnoremap <f3>s :<c-u>EditSyntaxPlugin<cr>
 
-nnoremap <f2>n :new <bar> only<cr>
-nnoremap <f2>! :e!<cr>
+nnoremap <f3>n :new <bar> only<cr>
+nnoremap <f3>! :e!<cr>
 
-nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
-nnoremap <m-s-e> :e **/*
+nnoremap <f3>e :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
 
-nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
+nnoremap <f3>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
 " }}}2
 
 " Arguments {{{2
 
-nnoremap (a :previous<cr>
-nnoremap )a :next<cr>
+nnoremap <f4>a :previous<cr>
+nnoremap <f4>a :next<cr>
 
-nnoremap (A :first<cr>
-nnoremap )A :last<cr>
+nnoremap <f4>A :first<cr>
+nnoremap <f4>A :last<cr>
 
 " }}}2
 
@@ -522,11 +523,11 @@ nnoremap )A :last<cr>
 nnoremap <C-PageUp> :bprevious<cr>
 nnoremap <C-PageDown> :bnext<cr>
 
-nnoremap (b :bprevious<cr>
-nnoremap )b :bnext<cr>
+nnoremap <f4>b :bprevious<cr>
+nnoremap <f4>b :bnext<cr>
 
-nnoremap (B :bfirst<cr>
-nnoremap )B :blast<cr>
+nnoremap <f4>B :bfirst<cr>
+nnoremap <f4>B :blast<cr>
 
 nnoremap <m-q> <cmd>bw!<cr>
 nnoremap <m-s-q> <cmd>bw! #<cr>
@@ -554,43 +555,43 @@ nnoremap <s-down>  <c-w><down>
 
 "  Onglets {{{2
 
-nnoremap <f2>e :tabedit<space>
-nnoremap <f2>t :tabnew<cr>
+nnoremap <f3>t :tabedit<space>
+nnoremap <f3>T :tabnew<cr>
 
 nnoremap <c-left> gT
 nnoremap <c-right> gt
 
-nnoremap (t :tabm -1<cr>
-nnoremap )t :tabm +1<cr>
+nnoremap <f4>t :tabm -1<cr>
+nnoremap <f4>t :tabm +1<cr>
 
-nnoremap (T :tabfirst<cr>
-nnoremap )T :tablast<cr>
+nnoremap <f4>T :tabfirst<cr>
+nnoremap <f4>T :tablast<cr>
 
 " }}}2
 
 " Liste quickfix {{{2
 
-nnoremap (q :cprevious<cr>
-nnoremap )q :cnext<cr>
+nnoremap <f4>q :cprevious<cr>
+nnoremap <f4>q :cnext<cr>
 
-nnoremap (Q :cfirst<cr>
-nnoremap )Q :clast<cr>
+nnoremap <f4>Q :cfirst<cr>
+nnoremap <f4>Q :clast<cr>
 
-nnoremap (<c-q> :cpfile<cr>
-nnoremap )<c-q> :cnfile<cr>
+nnoremap <f4><c-q> :cpfile<cr>
+nnoremap <f4><c-q> :cnfile<cr>
 
 " }}}2
 
 " Listes locales {{{2
 
-nnoremap (l :lprevious<cr>
-nnoremap )l :lnext<cr>
+nnoremap <f4>l :lprevious<cr>
+nnoremap <f4>l :lnext<cr>
 
-nnoremap (L :lfirst<cr>
-nnoremap )L :llast<cr>
+nnoremap <f4>L :lfirst<cr>
+nnoremap <f4>L :llast<cr>
 
-nnoremap (<c-l> :lpfile<cr>
-nnoremap )<c-l> :lnfile<cr>
+nnoremap <f4><c-l> :lpfile<cr>
+nnoremap <f4><c-l> :lnfile<cr>
 
 " }}}2
 
@@ -606,11 +607,11 @@ nnoremap )<c-l> :lnfile<cr>
 
 "  Tags {{{2
 
-nnoremap (<m-t> :tprevious<cr>
-nnoremap )<m-t> :tnext<cr>
+nnoremap <f4><m-t> :tprevious<cr>
+nnoremap <f4><m-t> :tnext<cr>
 
-nnoremap (<m-s-t> :tfirst<cr>
-nnoremap )<m-s-t> :tlast<cr>
+nnoremap <f4><m-s-t> :tfirst<cr>
+nnoremap <f4><m-s-t> :tlast<cr>
 
 nnoremap <m-j> :tj /
 nnoremap <m-s-j> :tab tj /
@@ -669,15 +670,15 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f2>; /\<\><left><left>
-vnoremap <f2>; /\<\><left><left>
+nnoremap <f3>; /\<\><left><left>
+vnoremap <f3>; /\<\><left><left>
 
 " }}}3
 
 "  Remplacement {{{3
 
-nnoremap <f2>, :%s:\<\>::<left><left><left><left>
-vnoremap <f2>, :%s:\<\>::<left><left><left><left>
+nnoremap <f3>, :%s:\<\>::<left><left><left><left>
+vnoremap <f3>, :%s:\<\>::<left><left><left><left>
 
 " }}}3
 
@@ -691,7 +692,7 @@ nnoremap Y y$
 
 "  Copies provenant d’un autre logiciel
 
-nnoremap <f2>p :set paste!<cr>
+nnoremap <f3>p :set paste!<cr>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
@@ -734,17 +735,17 @@ nnoremap g) (
 vnoremap g( (
 vnoremap g) )
 
-nnoremap )) zjzx]z[z
-nnoremap (( zkzx[z
+nnoremap <f4>) zjzx]z[z
+nnoremap <f4>( zkzx[z
 
-vnoremap )) zjzx]z[z
-vnoremap (( zkzx[z
+vnoremap <f4>) zjzx]z[z
+vnoremap <f4>( zkzx[z
 
-nnoremap )z ]z
-nnoremap (z [z
+nnoremap <f4>z ]z
+nnoremap <f4>z [z
 
-vnoremap )z ]z
-vnoremap (z [z
+vnoremap <f4>z ]z
+vnoremap <f4>z [z
 
 " }}}2
 
@@ -827,7 +828,7 @@ nnoremap QQ gQ
 
 " Hauteur de la fenêtre de commande {{{3
 
-nnoremap <f2>c :set cmdheight=
+nnoremap <f3>c :set cmdheight=
 
 " }}}3
 
@@ -835,8 +836,8 @@ nnoremap <f2>c :set cmdheight=
 
 " Comme commande ex
 
-nnoremap <f2>: :exe getline(".")<CR>
-vnoremap <f2>: :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
+nnoremap <f3>: :exe getline(".")<CR>
+vnoremap <f3>: :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
 
 " }}}3
 
@@ -844,31 +845,31 @@ vnoremap <f2>: :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
 
 "  Informations {{{2
 
-nnoremap <f2>ih :echo bibliotheque#highlightGroup()<cr>
+nnoremap <f3>ih :echo bibliotheque#highlightGroup()<cr>
 
 " }}}2
 
 " Émulateur de terminal {{{2
 
-nnoremap <f2>$ :call biblio#terminal()<cr>
+nnoremap <f3>$ :call biblio#terminal()<cr>
 
 set termwinkey=<C-W>
 
-tnoremap <f2>n <c-\><c-n>
+tnoremap <f3>n <c-\><c-n>
 
 " }}}2
 
 "  Shell {{{2
 
-nnoremap <f2>s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap <f2>S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap <f2>h :tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap \s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \h :tabe ~/racine/hist/zsh/$HOST<cr>
 
 " }}}2
 
 " Journal de bord {{{2
 
-nnoremap <f2>L :tabe ~/racine/log/captain<cr>
+nnoremap <f3>L :tabe ~/racine/log/captain<cr>
 
 " }}}2
 
@@ -891,7 +892,7 @@ nmap <k9> 9
 
 " Présentation {{{2
 
-nnoremap <f2>l :set cursorline!<cr>
+nnoremap <f3>l :set cursorline!<cr>
 
 " }}}2
 

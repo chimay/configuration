@@ -4,6 +4,13 @@ if ! has("autocmd")
 	finish
 endif
 
+augroup filetype-packages
+	" ---- load optional plugin on given filetypes
+	autocmd!
+	"autocmd FileType markdown packadd vim-markdown-toc
+	autocmd FileType tex packadd vim-latex
+augroup END
+
 " Wheel {{{1
 
 augroup wheel

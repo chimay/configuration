@@ -15,20 +15,22 @@ fun! PackagerInit ()
 	" ---- local
 	" adds a symlink ~/racine/public/wheel/wheel -> ~/racine/public/wheel, why ?
 	"call packager#local('~/racine/public/wheel', always)
+	"call packager#local('~/racine/public/organ', always)
 	" ---- auto loaded plugins
 	call packager#add('SirVer/ultisnips', always)
 	call packager#add('drmikehenry/vim-fixkey', always)
 	call packager#add('jamessan/vim-gnupg', always)
 	call packager#add('nishigori/increment-activator', always)
+	call packager#add('vim-scripts/VisIncr', always)
 	" -- plugins with deps
 	call packager#add('vim-scripts/LineJuggler', {
 				\ 'type' : 'start',
 				\ 'requires' : ['vim-scripts/ingo-library', 'vim-scripts/LineJugglerCommands']
 				\ })
 	" ---- optional plugins, loaded on some filetypes
+	call packager#add('vim-latex/vim-latex', optional)
 	" ---- optional plugins loaded manually
 	call packager#add('dstein64/vim-startuptime', optional)
-	call packager#add('vim-scripts/VisIncr', optional)
 endfun
 
 " }}}1
