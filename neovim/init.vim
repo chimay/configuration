@@ -830,11 +830,11 @@ nnoremap <PageDown> <C-F>
 
 " Phrases {{{2
 
-" noremap <f4>s (
-" noremap <f4>s )
+" noremap <f7>s (
+" noremap <f8>s )
 
-" vnoremap <f4>s (
-" vnoremap <f4>s )
+" vnoremap <f7>s (
+" vnoremap <f8>s )
 
 " }}}2
 
@@ -871,21 +871,21 @@ nnoremap <f3>r :r <c-r>=expand('%:p:h') . '/' <cr>
 
 " Arguments {{{2
 
-nnoremap <f4>a <cmd>previous<cr>
-nnoremap <f4>a <cmd>next<cr>
+nnoremap <f7>a <cmd>previous<cr>
+nnoremap <f8>a <cmd>next<cr>
 
-nnoremap <f4>A <cmd>first<cr>
-nnoremap <f4>A <cmd>last<cr>
+nnoremap <f7>A <cmd>first<cr>
+nnoremap <f8>A <cmd>last<cr>
 
 " }}}2
 
 " Tampons (buffers) {{{2
 
-nnoremap <f4>b <cmd>bprevious<cr>
-nnoremap <f4>b <cmd>bnext<cr>
+nnoremap <f7>b <cmd>bprevious<cr>
+nnoremap <f8>b <cmd>bnext<cr>
 
-nnoremap <f4>B <cmd>bfirst<cr>
-nnoremap <f4>B <cmd>blast<cr>
+nnoremap <f7>B <cmd>bfirst<cr>
+nnoremap <f8>B <cmd>blast<cr>
 
 " wipe buffer
 nnoremap <m-q> <cmd>bwipe!<cr>
@@ -922,11 +922,11 @@ nnoremap <f3>T :tabedit<space>
 nnoremap <c-left> gT
 nnoremap <c-right> gt
 
-nnoremap <f4>T <cmd>tabfirst<cr>
-nnoremap <f4>T <cmd>tablast<cr>
+nnoremap <f7>T <cmd>tabfirst<cr>
+nnoremap <f8>T <cmd>tablast<cr>
 
-nnoremap <f4>t <cmd>tabmove -1<cr>
-nnoremap <f4>t <cmd>tabmove +1<cr>
+nnoremap <f7>t <cmd>tabmove -1<cr>
+nnoremap <f8>t <cmd>tabmove +1<cr>
 
 nnoremap <c-s-left> <cmd>tabmove -1<cr>
 nnoremap <c-s-right> <cmd>tabmove +1<cr>
@@ -938,27 +938,27 @@ nnoremap <leader><right> <cmd>call biblio#win2next_tab()<cr>
 
 " Liste quickfix {{{2
 
-nnoremap <f4>q <cmd>cprevious<cr>
-nnoremap <f4>q <cmd>cnext<cr>
+nnoremap <f7>q <cmd>cprevious<cr>
+nnoremap <f8>q <cmd>cnext<cr>
 
-nnoremap <f4>Q <cmd>cfirst<cr>
-nnoremap <f4>Q <cmd>clast<cr>
+nnoremap <f7>Q <cmd>cfirst<cr>
+nnoremap <f8>Q <cmd>clast<cr>
 
-nnoremap <f4><c-q> <cmd>cpfile<cr>
-nnoremap <f4><c-q> <cmd>cnfile<cr>
+nnoremap <f7><c-q> <cmd>cpfile<cr>
+nnoremap <f8><c-q> <cmd>cnfile<cr>
 
 " }}}2
 
 " Listes locales {{{2
 
-nnoremap <f4>l <cmd>lprevious<cr>
-nnoremap <f4>l <cmd>lnext<cr>
+nnoremap <f7>l <cmd>lprevious<cr>
+nnoremap <f8>l <cmd>lnext<cr>
 
-nnoremap <f4>L <cmd>lfirst<cr>
-nnoremap <f4>L <cmd>llast<cr>
+nnoremap <f7>L <cmd>lfirst<cr>
+nnoremap <f8>L <cmd>llast<cr>
 
-nnoremap <f4><c-l> <cmd>lpfile<cr>
-nnoremap <f4><c-l> <cmd>lnfile<cr>
+nnoremap <f7><c-l> <cmd>lpfile<cr>
+nnoremap <f8><c-l> <cmd>lnfile<cr>
 
 " }}}2
 
@@ -974,11 +974,11 @@ nnoremap <f4><c-l> <cmd>lnfile<cr>
 
 "  Tags {{{2
 
-nnoremap <f4><m-t> <cmd>tprevious<cr>
-nnoremap <f4><m-t> <cmd>tnext<cr>
+nnoremap <f7><m-t> <cmd>tprevious<cr>
+nnoremap <f8><m-t> <cmd>tnext<cr>
 
-nnoremap <f4><m-s-t> <cmd>tfirst<cr>
-nnoremap <f4><m-s-t> <cmd>tlast<cr>
+nnoremap <f7><m-s-t> <cmd>tfirst<cr>
+nnoremap <f8><m-s-t> <cmd>tlast<cr>
 
 nnoremap <f3>j <cmd>tj /
 nnoremap <f3>J <cmd>tab tj /
@@ -1105,17 +1105,17 @@ inoremap <C-W> <C-G>u<C-W>
 nnoremap ]] ]z
 nnoremap [[ [z
 
-nnoremap <f4>z ]z
-nnoremap <f4>z [z
+nnoremap <f7>z ]z
+nnoremap <f8>z [z
 
-vnoremap <f4>z ]z
-vnoremap <f4>z [z
+vnoremap <f7>z ]z
+vnoremap <f8>z [z
 
-nnoremap <f4>) zjzx]z
-nnoremap <f4>( zkzx[z
+nnoremap <f7>) zjzx]z
+nnoremap <f8>( zkzx[z
 
-vnoremap <f4>) zjzx]z
-vnoremap <f4>( zkzx[z
+vnoremap <f7>) zjzx]z
+vnoremap <f8>( zkzx[z
 
 nnoremap zo zCzO
 
