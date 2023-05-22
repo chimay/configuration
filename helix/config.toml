@@ -1,0 +1,114 @@
+theme = "onedark"
+
+[editor]
+auto-info = true
+bufferline = "multiple"
+color-modes = true
+line-number = "relative"
+text-width = 80
+scrolloff = 5
+shell = ["zsh", "-c"]
+auto-completion = true
+idle-timeout = 400
+completion-trigger-len = 2
+mouse = true
+middle-click-paste = true
+scroll-lines = 3
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+follow-symlinks = true
+deduplicate-links = true
+parents = true
+ignore = true
+git-ignore = true
+git-global = true
+git-exclude = true
+max-depth = 12
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+[editor.search]
+smart-case = true
+wrap-around = true
+
+[editor.whitespace.render]
+#space = "all"
+tab = "all"
+newline = "none"
+
+[editor.whitespace.characters]
+#space = "·"
+nbsp = "⍽"
+#tab = "→"
+#newline = "⏎"
+#tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+[editor.indent-guides]
+render = true
+character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+[editor.soft-wrap]
+enable = true
+max-wrap = 25 # increase value to reduce forced mid-word wrapping
+max-indent-retain = 0
+wrap-indicator = ""  # set wrap-indicator to "" to hide it
+
+[editor.lsp]
+enable = true
+auto-signature-help = true
+display-inlay-hints = true
+snippets = true
+
+[editor.statusline]
+left = ["mode", "spinner", "selections", "primary-selection-length"]
+center = ["file-name", "file-modification-indicator", "file-encoding", "file-type", "version-control"]
+right = ["diagnostics", "position", "position-percentage", "total-line-numbers", "file-line-ending"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "VISUAL"
+
+[keys.normal]
+V = ["extend_line_below", "select_mode"]
+
+[keys.normal.Z]
+j = "scroll_down"
+k = "scroll_up"
+u = "half_page_up"
+d = "half_page_down"
+b = "page_up"
+f = "page_down"
+
+[keys.normal.z]
+o = ":config-open"
+T = ":tutor"
+Z = ":write-quit-all"
+Q = ":quit-all!"
+
+[keys.normal.g]
+a = "code_action" # Maps `ga` to show possible code actions
+t = ":buffer-next" # Maps `ga` to show possible code actions
+T = ":buffer-previous" # Maps `ga` to show possible code actions
+
+# create a new minor mode bound to `+`
+#[keys.normal."+"]
+#m = ":run-shell-command make"
+#c = ":run-shell-command cargo build"
+#t = ":run-shell-command cargo test"
+
+[keys.insert.j]
+#k = "normal_mode" # Maps `jk` to exit insert mode
+#j = { k = "normal_mode" }
