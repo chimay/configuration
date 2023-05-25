@@ -1,4 +1,23 @@
-theme = "onedark"
+
+# theme = "adwaita-dark"
+# theme = "amberwood"
+# theme = "autumn"
+# theme = "autumn_night"
+# theme = "ayu_dark"
+# theme = "dark_high_contrast"
+# theme = "dark_plus"
+# theme = "everforest_dark"
+# theme = "fleet_dark"
+# theme = "gruvbox_dark_hard"
+# theme = "heisenberg"
+# theme = "hex_lavender"
+# theme = "jellybean"
+theme = "kanagawa"
+# theme = "mellow"
+# theme = "meliora"
+# theme = "monokai"
+# theme = "monokai_pro_spectrum"
+# theme = "noctis_bordo"
 
 [editor]
 auto-info = true
@@ -82,7 +101,28 @@ mode.insert = "INSERT"
 mode.select = "VISUAL"
 
 [keys.normal]
-V = ["extend_line_below", "select_mode"]
+esc = ["collapse_selection", "keep_primary_selection"]
+0 = "goto_line_start"
+"^" = "goto_first_nonwhitespace"
+"$" = "goto_line_end"
+# G = "goto_file_end"
+"{" = ["goto_prev_paragraph", "collapse_selection"]
+"}" = ["goto_next_paragraph", "collapse_selection"]
+# V = ["extend_line_below", "select_mode"]
+V = ["select_mode", "extend_to_line_bounds"]
+D = ["extend_to_line_end", "yank_main_selection_to_clipboard", "delete_selection"]
+"A-$" = "shell_keep_pipe"
+"ù" = "file_picker"
+"@" = "replay_macro"
+"µ" = "extend_line_below"
+"x" = "delete_selection"
+
+[keys.normal.space]
+e = ":reload"
+c = ":config-open"
+t = ":tutor"
+Z = ":write-quit-all"
+Q = ":quit-all!"
 
 [keys.normal.Z]
 j = "scroll_down"
@@ -91,24 +131,39 @@ u = "half_page_up"
 d = "half_page_down"
 b = "page_up"
 f = "page_down"
-
-[keys.normal.z]
-o = ":config-open"
-T = ":tutor"
 Z = ":write-quit-all"
 Q = ":quit-all!"
+
+[keys.normal.z]
+r = ":config-reload"
 
 [keys.normal.g]
 a = "code_action" # Maps `ga` to show possible code actions
 t = ":buffer-next" # Maps `ga` to show possible code actions
 T = ":buffer-previous" # Maps `ga` to show possible code actions
 
-# create a new minor mode bound to `+`
-#[keys.normal."+"]
-#m = ":run-shell-command make"
-#c = ":run-shell-command cargo build"
-#t = ":run-shell-command cargo test"
+[keys.select]
+# visual mode
+esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
+# k = ["extend_line_up", "extend_to_line_bounds"]
+# j = ["extend_line_down", "extend_to_line_bounds"]
+"{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
+"}" = ["extend_to_line_bounds", "goto_next_paragraph"]
+0 = "goto_line_start"
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+# G = "goto_file_end"
+"A-$" = "shell_keep_pipe"
 
-[keys.insert.j]
-#k = "normal_mode" # Maps `jk` to exit insert mode
-#j = { k = "normal_mode" }
+[keys.insert]
+esc = ["collapse_selection", "normal_mode"]
+
+# [keys.insert.j]
+# k = "normal_mode" # Maps `jk` to exit insert mode
+# j = { k = "normal_mode" }
+
+# create a new minor mode bound to `+`
+# [keys.normal."+"]
+# m = ":run-shell-command make"
+# c = ":run-shell-command cargo build"
+# t = ":run-shell-command cargo test"
