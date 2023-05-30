@@ -11,6 +11,12 @@
 # et la sortie de
 #     xev -event keyboard | grep keysym
 
+# Mouse
+# button1,2,3 = gauche, milieu, droit
+# button4,5 = molette haut/bas
+# button6,7 = molette gauche/droite
+# button8,9 = latéraux gauche/droit
+
 # }}}1
 
 # Lanceurs {{{1
@@ -18,11 +24,14 @@
 hyper + colon
 	rofi-meta.zsh
 
+hyper + semicolon
+	dmenu-apps.sh
+
 alt + button3
 	rofi-meta.zsh
 
-hyper + semicolon
-	dmenu-apps.sh
+button9
+	rofi-meta.zsh
 
 ctrl + button3
 	dmenu-apps.sh
@@ -33,17 +42,17 @@ super + colon
 shift + button3
 	zshrun.sh
 
-hyper + x
+hyper + comma
 	zshrunterm.sh
 
 alt + shift + button3
 	zshrunterm.sh
 
-hyper + ugrave
-	rofi-buku.zsh
-
 hyper + ccedilla
 	rofi-greenclip.zsh
+
+hyper + agrave
+	urxvtc -name fzf-nova -e ~/racine/bin/fzf-nova/fzf-nova
 
 # }}}1
 
@@ -60,6 +69,9 @@ hyper + shift + q
 hyper + k
 	i3lock -c "#341207" -i ~/racine/pictura/i3lock/default
 
+hyper + shift + @z
+	sleep 1 ; xset dpms force off
+
 # }}}1
 
 # Bspwm {{{1
@@ -72,7 +84,7 @@ hyper + shift + r
 hyper + shift + x
 	bspc node -c
 
-# Really Close
+# Force close
 hyper + shift + k
 	bspc node -k
 
@@ -80,32 +92,40 @@ hyper + shift + k
 super + {Left,Up,Down,Right}
 	bspc node -f {west,north,south,east}
 
-# Alternate
-super + {Tab,BackSpace}
-	bspc {node,desktop} -f last
+# Alternate windows
+super + Tab
+	bspc node -f last
+
+# Alternate desktops
+hyper + asciicircum
+	bspc desktop -f last
 
 # Cycle through all windows
 hyper + {Tab,BackSpace}
 	bspc node -f {next,prev}
 
 # Window <- history ->
-hyper + {Home,End}
+super + {Home,End}
 	bspc wm -h off; \
-		bspc node {newer,older} -f; \
-		bspc wm -h on
+	bspc node {newer,older} -f; \
+	bspc wm -h on
 
 # Go to relative : Parent, Child, Brother
 hyper + {section,ampersand,eacute,egrave}
  	bspc node -f @{parent,brother,first,second}
 
 # <- Go to desktop ->
-hyper + {Prior,Next}
-	bspc desktop -f {prev,next}.local
 super + ctrl + {Left,Right}
 	bspc desktop -f {prev,next}.local
+hyper + {Prior,Next}
+	bspc desktop -f {prev,next}.local
+
+# <- Go to monitor ->
+hyper + {Left,Down,Up,Right}
+	bspc node -m {west,south,north,east}
 
 # Preselect direction for next new window
-hyper + {Left,Down,Up,Right}
+hyper + shift + {Left,Down,Up,Right}
 	bspc node --presel-dir {west,south,north,east}
 
 # Cancel preselection
@@ -117,7 +137,7 @@ hyper + shift + {Left,Down,Up,Right}
 	bspc node --presel-dir {west,south,north,east} -i
 
 # Recover space of empty receptacle
-hyper + e
+hyper + shift + e
 	bspc node $(bspc query -N -n focused) -n $(bspc query -N -n '.leaf.!window' -d focused)
 
 # <- Move window ->
@@ -130,24 +150,20 @@ hyper + alt + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0, 0 20, 0 -20, 20 0}
 
 # Move (window) to desktop
-super + {_,shift + }F{1-9,10}
-	bspc {desktop -f, node -d} '^{1-9,10}'
+super + {_,shift + }F{1-9,10,11,12}
+	bspc {desktop -f, node -d} '^{1-9,10,11,12}'
 
-# Circulate ->
-super + Next
-	bspc node @/ -C forward
-
-# Circulate <-
-super + Prior
-	bspc node @/ -C backward
+# Circulate
+super + {Next,Prior}
+	bspc node @/ -C {forward,backward}
 
 # Rotate
-super + {Home,End}
+hyper + {Home,End}
 	bspc node @/ -R {90,270}
 
 # swap the current node and the biggest one on local desktop
 # swap the current node and the smallest one if already on biggest
-hyper + asciicircum
+super + BackSpace
 	bspwm-swap.sh
 
 # Equalize
@@ -170,8 +186,6 @@ hyper + z
 # Fullscreen
 hyper + f
 	bspc node -t '~fullscreen' ; polybar-msg cmd toggle
-ctrl + F12
-	bspc node -t '~fullscreen' ; polybar-msg cmd toggle
 
 # Toggle Floating
 hyper + quotedbl
@@ -189,18 +203,20 @@ hyper + t ; {Left,Down,Up,Right}
 hyper + t ; r
 	bspwm-remove-from-tabbed.sh
 
-# Bsp-layout {{{2
+# }}}1
 
-hyper + l ; m
+# Bsp-layout {{{1
+
+hyper + l ; e
 	bsp-layout set tall
 
-hyper + l ; w
+hyper + l ; m
 	bsp-layout set wide
 
 hyper + l ; g
 	bsp-layout set grid
 
-hyper + l ; e
+hyper + l ; equal
 	bsp-layout set even
 
 hyper + l ; t
@@ -217,8 +233,11 @@ hyper + l ; r
 
 # Most common actions
 
-hyper + m
+hyper + e
 	bsp-layout set tall
+
+hyper + m
+	bsp-layout set wide
 
 hyper + y
 	bsp-layout cycle
@@ -226,11 +245,9 @@ hyper + y
 hyper + r
 	bsp-layout remove
 
-# }}}2
-
 # }}}1
 
-# Polybar {{{1
+# Barres {{{1
 
 hyper + b
 	polybar-msg cmd toggle
@@ -243,13 +260,137 @@ hyper + p ; r
 
 # }}}1
 
-# Transparence {{{1
+# Dropdown {{{1
 
-hyper + o ; Up
-	transset-df --inc 0.1
+hyper + ugrave
+	kitty-dropdown.zsh
 
-hyper + o ; Down
-	transset-df --dec 0.1
+hyper + asterisk
+	kitty-dropdown.zsh
+
+hyper + mu
+	urxvtc-dropdown.zsh
+
+shift + F12
+	urxvtc-dropdown.zsh
+
+button8
+	urxvtc-dropdown.zsh
+
+hyper + equal
+	urxvtc-calculator.zsh
+
+# }}}1
+
+# Applications {{{1
+
+hyper + {dollar, Return, exclam, comma}
+	{kitty, alacritty, xterm, urxvtc}
+
+hyper + t ; {x,u}
+	{tabbed -c xterm -into, tabbed -c urxvtc -embed}
+
+super + ctrl + section
+	run-vifm.sh
+
+super + ctrl + g
+	run-gvim.sh -c "cd ~/racine/public"
+
+super + ctrl + n
+	run-neovim-qt-client.sh
+
+super + ctrl + v
+	kitty vis
+
+super + ctrl + k
+	run-kitty-kak-client.sh
+
+super + ctrl + h
+	run-within-kitty.sh helix ~/racine/public/python-misc
+
+super + ctrl + e
+	run-emacs-client.sh
+
+super + ctrl + i
+	vimiv ~/photo/numerique
+
+super + ctrl + {c,q,x,l}
+	goto-or-run.sh {chromium,qutebrowser,firefox,lagrange}
+
+super + ctrl + n
+	run-with-log.sh nyxt
+
+super + ctrl + t
+	torbrowser-launcher
+
+super + ctrl + y
+	goto-or-run.sh freetube
+
+super + ctrl + mu
+	element-desktop
+
+# super + ctrl + t
+# 	thunderbird
+
+super + ctrl + t
+	claws-mail
+
+super + ctrl + o
+	goto-or-run.sh libreoffice
+
+super + ctrl + m
+	goto-or-run.sh mscore
+
+super + ctrl + f
+	run-frescobaldi.sh
+
+super + ctrl + r
+	goto-or-run.sh rosegarden
+
+super + ctrl + shift + v
+	vlc
+
+# }}}1
+
+# Notifications {{{1
+
+hyper + minus ; x
+	dunstctl close
+
+hyper + minus ; X
+	dunstctl close-all
+
+hyper + minus ; h
+	dunstctl history-pop
+
+hyper + minus ; c
+	dunstctl context
+
+# ctrl + space
+# 	dunstctl close
+
+ctrl + shift + space
+	dunstctl close-all
+
+super + asciitilde
+	dunstctl history-pop
+
+super + shift + grave
+	dunstctl context
+
+# }}}1
+
+# Agenda {{{1
+
+hyper + a ; r
+	pkill -10 -f remind-server.zsh
+
+# }}}1
+
+# Réseau {{{1
+
+hyper + shift + n
+	toggle-wifi.zsh
 
 # }}}1
 
@@ -265,9 +406,35 @@ hyper + w ; r
 hyper + w ; n
 	pkill -12 -f wallpaper.zsh
 
+# stop waiting
+hyper + o ; s
+	pkill -10 -f clock.zsh
+
+# toggle active / pause
+hyper + o ; space
+	pkill -12 -f clock.zsh
+
+# }}}2
+
+# Transparence {{{2
+
+# diaphane
+
+hyper + d ; Up
+	transset-df --inc 0.1
+
+hyper + d ; Down
+	transset-df --dec 0.1
+
 # }}}2
 
 # Luminosité {{{2
+
+XF86MonBrightnessUp
+	xbacklight -inc 5
+
+XF86MonBrightnessDown
+	xbacklight -dec 5
 
 hyper + s ; 0
 	xbacklight -set 100
@@ -288,74 +455,29 @@ hyper + s ; Left
 
 # }}}1
 
-# Notifications {{{1
+# Souris {{{1
 
-hyper + n ; r
-	pkill -10 -f remind-server.zsh
+# aussi lancé par keynav
+# voir ~/racine/config/windenv/keynav/keynavrc
 
-# }}}1
-
-# Applications {{{1
-
-shift + F12
-	kitty-dropdown.zsh
-
-hyper + {dollar, Return, exclam, comma}
-	{kitty, alacritty, xterm, urxvtc}
-
-hyper + mu
-	urxvtc-dropdown.zsh
-hyper + asterisk
-	urxvtc-dropdown.zsh
-
-hyper + equal
-	urxvtc-calculatrice.zsh
-
-hyper + t ; {x,u}
-	{tabbed -c xterm -into, tabbed -c urxvtc -embed}
-
-super + ctrl + section
-	kitty vifmrun
-
-super + ctrl + k
-	kitty kak
-
-super + ctrl + {e,n,v}
-	{run-emacs-client.zsh, run-neovim.zsh, run-gvim.zsh}
-
-super + ctrl + {q,f,b}
-	{run-qutebrowser.sh,run-firefox.sh,brave}
-
-# super + ctrl + w
-# 	kitty elinks
-
-super + ctrl + w
-	kitty w3m
-
-super + ctrl + t
-	thunderbird
-
-super + ctrl + o
-	libreoffice
-
-super + ctrl + g
-	geogebra
-
-super + ctrl + m
-	musescore
-
-super + ctrl + x
-	xclock
-
-super + ctrl + shift + f
-	filezilla
-
-super + ctrl + shift + v
-	vlc
+hyper + x
+	xmouseless
 
 # }}}1
 
 # Multimédia {{{1
+
+XF86AudioRaiseVolume
+	pamixer --increase 5
+
+XF86AudioLowerVolume
+	pamixer --decrease 5
+
+XF86AudioMute
+	pamixer --toggle-mute
+
+XF86AudioPlay
+	mpc toggle
 
 hyper + space ; Up
 	pamixer --increase 5
@@ -399,7 +521,10 @@ hyper + space ; m
 hyper + space ; M
 	urxvtc -name multimedia -e ncpamixer
 
-hyper + space ; c
+hyper + space ; t
+	urxvtc -name multimedia -e ncmpcpp
+
+button6
 	urxvtc -name multimedia -e ncmpcpp
 
 # }}}1
@@ -407,6 +532,9 @@ hyper + space ; c
 # Informations {{{1
 
 ctrl + alt + button3
+	less-log.sh ~/log/wallpaper.log
+
+button7
 	less-log.sh ~/log/wallpaper.log
 
 # }}}1
