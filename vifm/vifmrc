@@ -675,7 +675,7 @@ nnoremap <m-a> :apropos<space>
 
 " Maps
 " normal mode
-nnoremap <F1><F1> :nmap<cr>
+nnoremap <F1><F1> :help<cr>
 nnoremap <F1>n :nmap<cr>
 " visual mode
 nnoremap <F1>v :vmap<cr>
@@ -836,7 +836,8 @@ nnoremap <m-f> :file<cr>
 
 " For neovim terminal, open file in new tab using neovim-remote
 
-nnoremap gl :!nvr -p %c<cr>
+nnoremap <cr> :!nvr -p %c<cr>:!xdotool search --class nvim-qt windowactivate<cr>
+nnoremap <m-v> :!nvr -p %c<cr>
 
 " Répertoires {{{2
 
@@ -974,7 +975,7 @@ nnoremap <m-p> :!apack %c.txz %c<cr>
 
 " Drag & drop
 
-nnoremap <m-g> :!dragon.sh -a -x %f<cr>
+nnoremap <m-x> :!dragon.sh -a -x %f<cr>
 
 " Vimdiff
 
@@ -998,7 +999,7 @@ nnoremap <m-w> :!feh --bg-max --no-fehbg %f<cr>
 " VCS repository
 
 nnoremap <m-r> :!lazygit<cr>
-nnoremap <m-v> :!tig<cr>
+nnoremap <m-g> :!tig<cr>
 
 
 " Shell {{{2
