@@ -140,15 +140,12 @@ set slowfs=curlftpfs
 
 set grepprg="rg --vimgrep --smart-case %i %a %s"
 
-"set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
-
-set findprg="ag --nocolor --smart-case -g %p"
+set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
 
 set locateprg="locate -d ~/racine/index/locate/racine.db %a"
 
 set fusehome="~/racine/filesys/fuse"
 
-" }}}1
 
 " Environnement {{{1
 
@@ -165,7 +162,6 @@ set fusehome="~/racine/filesys/fuse"
 
 let $VIFM_SERVER_NAME = v:servername
 
-" }}}1
 
 " Historique {{{1
 
@@ -216,7 +212,6 @@ set sessionoptions=
 			\filetypes,
 			\commands
 
-" }}}1
 
 " Marques {{{1
 
@@ -249,7 +244,6 @@ mark w ~/graphix/wallpaper
 
 mark D ~/Documents
 
-" }}}1
 
 " Types de fichiers {{{1
 
@@ -455,17 +449,17 @@ fileviewer <image/*>
 	\ %pc
 	\ vifmimg clear
 
-filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-        \ {View in vimiv}
-        \ vimiv %f &,
+filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
         \ {View in sxiv}
         \ sxiv %f &,
+        \ {View in vimiv}
+        \ vimiv %f &,
 
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-        \ {View in vimiv}
-        \ vimiv %f &,
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
         \ {View in sxiv}
         \ sxiv %f &,
+        \ {View in vimiv}
+        \ vimiv %f &,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in shotwell}
@@ -582,7 +576,6 @@ filetype *.ftp
 filetype * vim %c
 filextype * gvim %c &
 
-" }}}1
 
 " Thème {{{1
 
@@ -612,7 +605,6 @@ filter! /^.*\.(git|hg|bzr|o|py[co])$|.*~$/
 "source devicons.vifm
 "source ~/racine/config/fileman/vifm/devicons.vifm
 
-" }}}1
 
 " Icones {{{1
 
@@ -631,7 +623,6 @@ set classify+=' ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mk
 
 source ~/racine/config/fileman/vifm/favicons.vifm
 
-" }}}1
 
 " Commandes {{{1
 
@@ -664,7 +655,6 @@ command! print lp %f
 command! rln :rlink %D %d
 command! vgrep vim "+grep %a"
 
-" }}}1
 
 " Mappings {{{1
 
@@ -704,32 +694,27 @@ nnoremap <F1>s :session?<cr>
 " hide tui to see behind
 nnoremap <F1>h :hideui<cr>
 
-" }}}2
-
 " Recharger {{{2
-
-" Open editor to edit vifmrc and apply settings after returning to vifm
 
 nnoremap @@ :restart full<cr>
 nnoremap @r :restart<cr>
 
+" Open editor to edit vifmrc and apply settings after returning to vifm
+
 nnoremap @e :write | edit $MYVIFMRC | restart<cr>
 nnoremap @s :source $MYVIFMRC<cr>
 
-" }}}2
 
 " Quitter {{{2
 
 nnoremap ZZ :qa<cr>
 nnoremap ZQ :qa!<cr>
 
-" }}}2
 
 " Sessions {{{2
 
 nnoremap <m-s> :session<space>
 
-" }}}2
 
 " Présentation {{{2
 
@@ -748,7 +733,6 @@ nnoremap <F10> :vsplit!<cr>
 nnoremap <F11> :set millerview! | set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"<cr>
 nnoremap <F12> :set lsview!<cr>
 
-" }}}2
 
 " Onglets {{{2
 
@@ -757,7 +741,6 @@ nnoremap t :tabnew<cr>
 nnoremap ^ gT
 nnoremap $ gt
 
-" }}}2
 
 " Déplacement {{{2
 
@@ -772,7 +755,6 @@ mnoremap <c-l> :nohlsearch<cr>zz
 nnoremap zz :nohlsearch<cr>zz
 mnoremap zz :nohlsearch<cr>zz
 
-" }}}2
 
 " Sélectionner {{{2
 
@@ -780,7 +762,6 @@ nnoremap <space> tj
 
 nnoremap zs :select<space>
 
-" }}}2
 
 " Signets {{{2
 
@@ -789,7 +770,6 @@ nnoremap <m-b> :bmarks<space>
 
 nnoremap <m-m> :marks<cr>
 
-" }}}2
 
 " Recherche {{{2
 
@@ -804,7 +784,6 @@ nnoremap ° :locate<space>
 nnoremap zg :grep<space>
 nnoremap zl :locate<space>
 
-" }}}2
 
 " Tri {{{2
 
@@ -814,7 +793,6 @@ nnoremap s :sort<cr>
 
 nnoremap S :invert o<cr>
 
-" }}}2
 
 " Filtres {{{2
 
@@ -824,7 +802,6 @@ nnoremap S :invert o<cr>
 " nnoremap <m-.> za
 " nnoremap <m-;> za
 
-" }}}2
 
 " Visualiser & Éditer {{{2
 
@@ -857,7 +834,9 @@ nnoremap o :f<cr>
 
 nnoremap <m-f> :file<cr>
 
-" }}}2
+" For neovim terminal, open file in new tab using neovim-remote
+
+nnoremap gl :!nvr -p %c<cr>
 
 " Répertoires {{{2
 
@@ -883,7 +862,6 @@ nnoremap & :cd %c<cr><tab>:cd %D:t<cr><tab>
 nnoremap <m-c> :windo cd<space>
 nnoremap <m-u> :windo cd ..<cr>
 
-" }}}2
 
 " Menus & Dialogs {{{2
 
@@ -895,7 +873,6 @@ mnoremap f b
 
 "mnoremap ... v
 
-" }}}2
 
 " Renommer {{{2
 
@@ -906,7 +883,6 @@ nnoremap A cw
 nnoremap cv :rename<cr>
 nnoremap cr :rename!<cr>
 
-" }}}2
 
 " Copier, Coller, Supprimer {{{2
 
@@ -943,6 +919,9 @@ nnoremap àà :clone?<cr>
 " mc
 nnoremap <f2>c :clone?<cr>
 
+" mc
+nnoremap <f8> dd
+
 " Corbeille vifm
 
 " dd : envoie vers corbeille vifm
@@ -952,9 +931,6 @@ nnoremap <f2>c :clone?<cr>
 "   - dans :trashes :
 "       - yy les fichiers dans la corbeille et
 "       - p dans le répertoire de destination
-
-" mc
-nnoremap <f8> dd
 
 nnoremap <lt> :lstrash<cr>
 nnoremap > :trashes<cr>
@@ -979,7 +955,6 @@ elseif executable('xsel')
 	map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 endif
 
-" }}}2
 
 " Autres opérations sur fichiers {{{2
 
@@ -1003,7 +978,7 @@ nnoremap <m-g> :!dragon.sh -a -x %f<cr>
 
 " Vimdiff
 
-nnoremap <m-v> :vimdiff<cr>
+" nnoremap ???? :vimdiff<cr>
 
 " Symlink
 
@@ -1017,16 +992,14 @@ nnoremap <m-i> :media<cr>
 
 nnoremap <m-w> :!feh --bg-max --no-fehbg %f<cr>
 
-" }}}2
 
 " Contrôle de version {{{2
 
 " VCS repository
 
-nnoremap <m-r> :!tig<cr>
-nnoremap <m-v> :!lazygit<cr>
+nnoremap <m-r> :!lazygit<cr>
+nnoremap <m-v> :!tig<cr>
 
-" }}}2
 
 " Shell {{{2
 
@@ -1035,6 +1008,4 @@ nnoremap <insert> :shell<cr>
 
 nnoremap <m-j> :jobs<cr>
 
-" }}}2
 
-" }}}1
