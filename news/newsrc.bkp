@@ -1,0 +1,70 @@
+gmane.science.linguistics.wikipedia.english :
+
+gmane.comp.shells.zsh.user :
+gmane.comp.shells.zsh.devel :
+
+gmane.comp.shells.fish.user :
+
+gmane.network.openssh.general :
+
+gmane.editors.vim :
+gmane.editors.vim.devel :
+gmane.comp.editors.vim.outliner :
+
+gmane.emacs.devel :
+gmane.emacs.vim-emulation :
+
+gmane.comp.web.uzbl.devel :
+gmane.comp.web.elinks.user :
+
+gmane.comp.mozilla.firefox.vimperator :
+gmane.comp.mozilla.thunderbird.muttator :
+
+gmane.mail.mutt.user :
+gmane.mail.mutt.devel :
+
+gmane.network.irc.irssi.user :
+gmane.network.irc.irssi.devel :
+gmane.network.irc.irssi.scripts :
+
+gmane.comp.python.general :
+gmane.comp.python.devel :
+gmane.comp.python.scientific.user :
+
+gmane.comp.lang.ruby.general :
+gmane.comp.lang.ruby.core :
+
+gmane.network.unison.general :
+gmane.network.unison.devel :
+
+gmane.comp.version-control.cvs.general :
+gmane.comp.version-control.subversion.user :
+gmane.comp.version-control.mercurial.general :
+gmane.comp.version-control.bazaar-ng.general :
+gmane.comp.version-control.git.user :
+gmane.comp.version-control.darcs.user :
+
+gmane.linux.kernel :
+
+gmane.comp.kde.general :
+gmane.comp.kde.devel.core :
+
+gmane.linux.ubuntu.user.kubuntu :
+gmane.linux.ubuntu.user.ubuntu-studio :
+gmane.linux.arch.general :
+gmane.linux.arch.devel :
+gmane.linux.gentoo.user :
+gmane.linux.gentoo.devel :
+
+gmane.comp.gnu.lilypond.general :
+gmane.comp.gnu.lilypond.devel :
+
+gmane.comp.audio.rosegarden.user :
+gmane.comp.audio.rosegarden.devel :
+
+gmane.comp.audio.ardour.user :
+gmane.comp.audio.ardour.devel :
+
+gmane.comp.audio.jackit :
+
+gmane.test :

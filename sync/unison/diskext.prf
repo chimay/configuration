@@ -1,0 +1,14 @@
+# vim: set ft=conf :
+
+# Inclusions
+
+include prefer
+include prefer-uni
+
+include reper-villa
+
+include ignorer
+include ignorer-uni
+include uipref
+
+include sauvegarde

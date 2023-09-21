@@ -1,0 +1,13 @@
+" vim: set filetype=vim :
+
+set noloadplugins
+
+let vimpager_user_gvim = 0
+
+let vimpager_passthrough = 1
+
+let vimpager_disable_x11 = 1
+
+let vimpager_scrolloff = 7
+
+let vimpager_disable_ansiesc = 0

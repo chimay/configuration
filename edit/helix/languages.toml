@@ -1,0 +1,15 @@
+
+use-grammars = { only = [ "vim" ] }
+
+[[grammar]]
+name = "vim"
+source = { git = "https://github.com/neovim/tree-sitter-vim", rev = "26b1aea3b3a5dae31f784a1204205fd57f2b82b5" }
+
+[[language]]
+name = "vim"
+grammar = "vim"
+scope = "source.vim"
+file-types = ["vim"]
+roots = [".git"]
+auto-format = false
+indent = { tab-width = 4, unit = "    " }

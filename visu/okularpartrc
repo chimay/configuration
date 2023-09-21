@@ -1,0 +1,38 @@
+[$Version]
+update_info=okular.upd:sep_settings
+
+[Core General]
+ExternalEditor=Custom
+ExternalEditorCommand=frescobaldi --smart --line %l --column %c
+
+[Core Performance]
+MemoryLevel=Normal
+
+[Dlg Accessibility]
+ChangeColors[$d]
+RecolorBackground=247,247,231
+RecolorForeground=9,5,4
+RenderMode[$d]
+
+[Dlg Performance]
+EnableCompositing=false
+MemoryLevel[$d]
+
+[Dlg Presentation]
+SlidesBackgroundColor=255,255,255
+SlidesPencilColor=0,0,0
+
+[Document]
+ChangeColors=true
+RenderMode=Recolor
+
+[General]
+ExternalEditor[$d]
+ExternalEditorCommand[$d]
+
+[Main View]
+ShowLeftPanel=false
+SplitterSizes=342,1073
+
+[PageView]
+ViewContinuous=false

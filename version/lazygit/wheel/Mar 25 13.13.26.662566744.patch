@@ -1,0 +1,11 @@
+--- a/autoload/wheel/pendulum.vim
++++ b/autoload/wheel/pendulum.vim
+@@ -8,7 +8,8 @@ fun! wheel#pendulum#record ()
+ 	let [torus, circle, location] = wheel#referen#location('all')
+ 	let coordin = [torus.name, circle.name, location.name]
+ 	if index(history, coordin) >= 0
++		let g:wheel_history = wheel#chain#remove_element(coordin, history)
+ 	endif
+ 	let max = g:wheel_config.max_history
+ 	let g:wheel_history = g:wheel_history[:max - 1]
+ endfu

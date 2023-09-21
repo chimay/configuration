@@ -1,0 +1,1 @@
+/bin/jackd -r -dalsa -dhw:0 -r44100

@@ -1,0 +1,108 @@
+# vim: set filetype=conf:
+
+#  {{{ Démarrage
+# ------------------------------------------------------------------------
+
+startup_message off
+
+# }}}
+
+#  {{{ Environnement
+# ------------------------------------------------------------------------
+
+shell -zsh
+
+deflogin on
+
+term "screen-256color"
+
+# }}}
+
+#  {{{ Historique de la sortie
+# ------------------------------------------------------------------------
+
+defscrollback 10000
+
+# }}}
+
+#  {{{ Barre de statut
+# ------------------------------------------------------------------------
+
+# Affiche une étiquette en dessous, qui apparaît comme un onglet et
+# informe du nom de la fenêtre et de son numéro (par défaut)
+
+# caption always
+# caption string "%{kw}%-w%{wr}%n %t%{-}%+w"
+
+# caption always "%{= kw}%?%-Lw%?%{+b kw}%n*%t%f %?(%u)%?%{= kw}%?%+Lw%?"
+# caption always "%>%{wk}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw%?%<"
+# caption always "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
+# caption always "%?%F%{.RW}%?%4n %t%? [%h]%?"
+# caption always "%{rk}%H %{gk}%c %{yk}%M%d %{wk}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw%?"
+# caption always "%{kG}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{kG}%?%+Lw%?"
+
+# "push right border: current time with seconds and current date"
+
+# caption always "%=%c:%s %Y-%m-%d"
+
+# Prints the window names and highlight the current window in yellow.
+# On the right there is the time in green and the date in yellow.
+
+# caption always "%?%{+b kw}%-Lw%?%{yK}%n*%f %t%?(%u)%?%?%{wk}%+Lw%? %{gk}%=%c %{yk}%d/%M/%Y"
+
+# caption always "%3n %t%? (%u)%?%?: %h%?"
+
+caption always "%?%{+b kw}%-Lw%?%{RK}%n*%f %t%?(%u)%?%?%{wk}%+Lw%? %{gk}%=%c %{yk}%d/%M/%Y"
+
+# }}}
+
+#  {{{ Programmes lancés au démarrage
+# ------------------------------------------------------------------------
+
+screen -t 'Shell' zsh
+#screen -t 'Musique' 1 ncmpcpp
+
+#select 0
+
+# }}}
+
+#  {{{ Raccourcis
+# ------------------------------------------------------------------------
+
+bind s screen -t 'Shell' 0 zsh
+
+#bind v screen -t 'Vim' 1 vim
+#bind e screen -t 'Vim' 2 emacs -nw
+#bind f screen -t 'Vifm' 3 vifm
+#bind h screen -t 'Htop' 4 htop
+#bind m screen -t 'Musique' 5 ncmpcpp
+#bind & screen -t 'Navigateur' 6 elinks
+#bind @ screen -t 'Courriel' 7 /usr/bin/mutt
+#bind , screen -t 'Groupes' 8 slrn
+#bind ; screen -t 'IRC' 9 irssi
+
+#bind ? screen -t 'Jabber' 7 mcabber
+#bind ? screen -t 'Nouvelles' 8 tin -r
+#bind ? screen -t 'Agregats' 9 canto -u
+#bind ? screen -t 'Agregats' 9 newsbeuter
+
+# Raccourcis pour changer de fenêtre
+# ------------------------------------
+
+bind w focus
+
+# Tab -->|
+
+bind ^I next
+
+# Backspace |<--
+
+bind ^H prev
+
+# Raccourcis pour spliter ET lancer un terminal dans le split
+# ------------------------------------
+
+bind S eval "split" "focus down" "screen"
+bind | eval "split -v" "focus down" "screen"
+
+# }}}

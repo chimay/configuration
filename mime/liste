@@ -1,0 +1,6 @@
+[Added Associations]
+application/msword=libreoffice-writer.desktop;
+application/rtf=libreoffice-writer.desktop;
+image/jpeg=viewnior.desktop;
+application/zip=org.kde.ark.desktop;
+video/mp4=vlc.desktop;

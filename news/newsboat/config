@@ -1,0 +1,123 @@
+#auto-reload yes
+
+# Options {{{1
+
+save-path "~/racine/news/saved"
+
+browser w3m
+#browser elinks
+external-url-viewer "urlview"
+
+cleanup-on-quit yes
+delete-read-articles-on-quit no
+keep-articles-days 90
+max-items 300
+#scrolloff 12
+
+# Bindings {{{1
+
+# All contexts {{{2
+
+bind-key ? help
+
+bind-key ^E edit-urls
+bind-key ^R reload-urls
+
+bind-key j down
+bind-key k up
+
+bind-key NPAGE pagedown
+bind-key PPAGE pageup
+bind-key SPACE pagedown
+bind-key b pageup
+
+bind-key r reload
+bind-key R reload-all
+
+bind-key HOME home
+bind-key END end
+bind-key g home
+bind-key G end
+
+bind-key / open-search
+bind-key o sort
+bind-key O rev-sort
+
+bind-key é select-filter
+bind-key ù set-filter
+bind-key è clear-filter
+
+bind-key ENTER open
+bind-key q quit
+
+bind-key Q hard-quit
+
+bind-key f edit-flags
+
+bind-key | pipe-to
+bind-key l show-urls
+bind-key < open-in-browser
+bind-key > open-in-browser-and-mark-read
+
+bind-key ) next-unread
+bind-key ( prev-unread
+
+bind-key D delete-article
+bind-key w purge-deleted
+
+bind-key = view-dialogs
+bind-key § view-dialogs
+
+bind-key ^N next-dialog
+bind-key ^P prev-dialog
+
+# Feedlist {{{2
+
+#bind-key j next-feed feedlist
+#bind-key k prev-feed feedlist
+
+bind-key n mark-feed-read feedlist
+bind-key N mark-all-feeds-read feedlist
+
+# Articlelist {{{2
+
+#bind-key j next articlelist
+#bind-key k prev articlelist
+
+bind-key ^ prev-feed articlelist
+bind-key $ next-feed articlelist
+
+bind-key n toggle-article-read articlelist
+bind-key N mark-feed-read articlelist
+
+bind-key w save articlelist
+
+# Article {{{2
+
+bind-key n toggle-article-read article
+
+bind-key w save article
+
+bind-key ^ prev article
+bind-key $ next article
+
+# Macros {{{1
+
+macro k open ; reload ; quit
+
+# Filtres {{{1
+
+define-filter "non lus" "unread = \"yes\"""
+
+define-filter "tag reddit" "tags # \"reddit\""
+
+define-filter "tag nitter" "tags # \"nitter\""
+
+# Thème {{{1
+
+color listnormal default default
+color listfocus default default standout
+color listnormal_unread default default
+color listfocus_unread default default standout
+color info default default bold
+color article default default

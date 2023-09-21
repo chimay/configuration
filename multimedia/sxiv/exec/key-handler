@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# Commandes externes pour sxiv
+#
+# À appeler dans sxiv via C-x $1
+
+while read file
+do
+	case "$1" in
+		"w")
+			feh --bg-max --no-fehbg "$file"
+			;;
+		"r")
+			convert -rotate 90 "$file" "$file"
+			;;
+		"R")
+			convert -rotate -90 "$file" "$file"
+			;;
+		"h")
+			convert -flip "$file" "$file"
+			;;
+		"v")
+			convert -flop "$file" "$file"
+			;;
+		"y")
+			echo -n "$file" | xclip -selection clipboard
+			;;
+		"D")
+			mv "$file" ~/racine/trash/sxiv
+			;;
+	esac
+done

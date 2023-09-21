@@ -1,8 +1,0 @@
-#!/usr/bin/env /bin/zsh
-
-echo The
-
-if [ -n "$BLOCK_BUTTON" ]
-then
-	~/racine/shell/alarm/zen-the.zsh > /dev/null
-fi

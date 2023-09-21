@@ -1,0 +1,65 @@
+! vim: set filetype=xmodmap :
+
+! setxkbmap fr ; xmodmap <ce fichier>
+
+! {{{ Caps Lock <----> Escape
+
+remove Lock = Caps_Lock
+add Lock = Escape
+
+keysym Caps_Lock = Escape
+keysym Escape = Caps_Lock
+
+! }}}
+
+! {{{ Super, Menu, Print, Scroll, Pause
+
+keysym Menu = at asciitilde at asciitilde at
+
+keysym Print = Multi_key Sys_Req Multi_key Sys_Req
+keysym Scroll_Lock = numbersign exclam numbersign exclam at
+keysym Pause = dead_circumflex NoSymbol dead_circumflex
+
+! }}}
+
+! {{{ Droite des lettres
+
+keysym dead_circumflex = asciicircum dead_diaeresis asciicircum dead_diaeresis bracketleft dead_abovering
+
+! }}}
+
+! {{{ Chiffres
+
+keysym twosuperior = rightsinglequotemark grave rightsinglequotemark grave U2014
+
+! }}}
+
+! {{{ Pavé numérique
+
+keysym KP_Add = plus XF86_Next_VMode plus XF86_Next_VMode
+keysym KP_Subtract = minus XF86_Prev_VMode minus XF86_Prev_VMode
+
+keysym KP_Home  = braceleft KP_7 braceleft KP_7
+keysym KP_Up  = backslash KP_8 backslash KP_8
+keysym KP_Prior  = braceright KP_9 braceright KP_9
+
+keysym KP_Left = bracketleft KP_4 bracketleft KP_4
+keysym KP_Begin = numbersign KP_5 numbersign KP_5
+keysym KP_Right = bracketright KP_6 bracketright KP_6
+
+keysym KP_End = parenleft KP_1 parenleft KP_1
+keysym KP_Down = underscore KP_2 underscore KP_2
+keysym KP_Next = parenright KP_3 parenright KP_3
+
+keysym KP_Insert = less KP_0 less KP_0
+keysym KP_Delete = greater KP_Decimal greater KP_Decimal
+
+! }}}
+
+! {{{ Correction des keysyms
+
+keycode 35 = dollar sterling dollar sterling bracketright dead_macron
+keycode 51 = asterisk mu asterisk mu dead_grave dead_breve
+keycode 39 = s S s S ssharp section
+
+! }}}

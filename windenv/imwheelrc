@@ -1,0 +1,6 @@
+# vim: set filetype=conf:
+
+# Speed up scrolling for the document viewer
+"^qutebrowser$"
+    None, Up, Button4, 4
+    None, Down, Button5, 4

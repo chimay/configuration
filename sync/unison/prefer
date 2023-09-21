@@ -1,0 +1,123 @@
+# vim: set filetype=conf :
+
+#  {{{ Documentation
+
+# Voir :
+#
+# 	unison -doc topics
+#
+# et :
+#
+# 	unidon -doc running
+
+#  }}}
+
+# {{{ Ajout des nouvelles options
+
+# Ajouts d'options via l'interface d'unison
+# (en général des instructions ignore)
+# dans ce fichier
+
+addprefsto = uipref
+
+# }}}
+
+# {{{ Intéractivité
+
+# Mode sans questions, sauf en cas de conflit
+
+auto = true
+
+# Mode sans questions du tout
+
+#batch = true
+
+# Taciturne ?
+
+#silent = true
+
+# }}}
+
+# {{{ Conflits
+
+# -- Affichage des différences
+
+diff = diff -y -W 79 --suppress-common-lines
+
+# -- Fusion
+
+#merge = Name * -> diff3 -m CURRENT1 CURRENTARCH CURRENT2 > NEW || echo "differences detected"
+
+#merge = Regex .* -> gvimdiff --nofork CURRENT1 CURRENT2
+
+#merge = Name * -> emacs -q --eval '(ediff-merge-files-with-ancestor "CURRENT1" "CURRENT2" "CURRENTARCH" nil "NEW")'
+
+# }}}
+
+# {{{ Propriétés
+
+# Support amovible ne supportant pas les permissions ?
+
+#perms = 0
+
+# Propriétaire, groupe
+
+#owner = true
+#group = true
+
+# Synchronisation des dates
+
+times = true
+
+# }}}
+
+# {{{ Synchronisation
+
+# -- Si un fichier a été modifié sur plusieurs sources,
+# -- ne garder que la version la plus récente
+
+#force = newer
+
+# Nombre max de copies simultanées
+
+maxthreads = 4
+
+# Accélération en utilisant les éventuelles copies locales
+
+xferbycopying = true
+
+# Vérification rapide des fichiers modifiés
+
+fastcheck = yes
+
+# }}}
+
+# {{{ Journal
+
+log = true
+
+logfile = /home/david/log/unison.log
+
+# Ne marche pas
+
+#logfile = $HOME/log/$HOST/sync/unison.log
+#logfile = /home/david/log/`hostname`/sync/unison.log
+
+# }}}
+
+# {{{ Interface graphique
+
+# Taille de la fenêtre
+
+height=36
+
+# }}}
+
+# Fusion {{{1
+
+# Ne marche pas
+# merge = Name * -> diff3 -m CURRENT1 CURRENTARCHOPT CURRENT2 > NEW || echo "differences detected"
+
+#merge = Name * -> gvimdiff CURRENT1 CURRENTARCHOPT CURRENT2
+
+# }}}1

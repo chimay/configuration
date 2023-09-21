@@ -1,9 +1,0 @@
-#!/usr/bin/env /bin/zsh
-
-echo Navig
-
-if [ -n "$BLOCK_BUTTON" ]
-then
-	~/racine/shell/dialog/rofi-navigateur.zsh > /dev/null
-	#firefox > /dev/null
-fi

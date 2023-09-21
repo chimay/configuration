@@ -1,0 +1,5 @@
+# vim: set ft=sh :
+
+export RACINE_BASH=$HOME/racine/config/cmdline/bash
+
+source ${RACINE_BASH}/bashrc

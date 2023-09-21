@@ -1,0 +1,38 @@
+! vim: set filetype=xdefaults:
+! vim: set commentstring=!\ %s:
+
+! Pour prendre les modifications en compte :
+!
+! xrdb ~/.Xresources
+!
+! ou
+!
+! xrdb -load ~/.Xresources
+!
+! Pour mettre à jour les réglages :
+!
+! xrdb -merge ~/.Xresources
+!
+! Pour afficher les options activées :
+!
+! xrdb -query -all
+
+#include ".Xresources.d/generic"
+
+#include ".Xresources.d/xclock"
+
+#include ".Xresources.d/rofi"
+
+#include ".Xresources.d/xterm"
+#include ".Xresources.d/uxterm"
+#include ".Xresources.d/urxvt"
+#include ".Xresources.d/kitty"
+#include ".Xresources.d/st"
+
+#include ".Xresources.d/emacs"
+
+XTerm*eightBitInput: false
+
+XTerm*modifyCursorKeys: 1
+
+XTerm*modifyFunctionKeys: 1

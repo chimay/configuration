@@ -1,0 +1,45 @@
+# vim: set filetype=conf:
+
+[DEFAULT]
+jobs = 3
+git_gc = git gc "$@"
+# include = cat ~/racine/self/myrepos/applied/*
+
+[racine/public/wheel]
+checkout = git clone 'git@github.com:chimay/wheel.git' 'wheel'
+
+[racine/public/organ]
+checkout = git clone 'git@github.com:chimay/organ.git' 'organ'
+
+[racine/site/eclats2vers/generic]
+checkout = git clone 'git@gitlab.com:orduval/eclats2vers.git' 'eclats2vers'
+
+[racine/site/equa6on/public]
+checkout = git clone 'git@gitlab.com:orduval/equa6on.git' 'equa6on'
+
+[racine/public/bookmarks]
+checkout = git clone 'git@bitbucket.org:remidore/bookmarks.git' 'bookmarks'
+
+[racine/public/wheel-multimedia]
+checkout = git clone 'ssh://git@github.com/chimay/wheel-multimedia' 'wheel-multimedia'
+
+[racine/public/wheel.wiki]
+checkout = git clone 'ssh://git@github.com/chimay/wheel.wiki.git' 'wheel.wiki'
+
+[racine/public/configuration]
+checkout = git clone 'git@github.com:chimay/configuration.git' 'configuration'
+
+[racine/public/scripts]
+checkout = git clone 'git@github.com:chimay/scripts.git' 'scripts'
+
+[racine/public/golden-night]
+checkout = git clone 'git@github.com:chimay/golden-night.git' 'golden-night'
+
+[racine/public/snippets]
+checkout = git clone 'git@github.com:chimay/snippets.git' 'snippets'
+
+[racine/public/duo]
+checkout = git clone 'git@github.com:chimay/duo.git' 'duo'
+
+[racine/musica/lilypond]
+update = echo nothing to do

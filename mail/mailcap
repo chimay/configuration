@@ -1,0 +1,83 @@
+# vim: set filetype=mailcap:
+
+#  {{{ Texte simple
+# ------------------------------------------------------------------------
+
+text/plain; less %s; needsterminal;
+
+# }}}
+
+# {{{ Diff
+# ------------------------------------
+
+text/x-diff; less %s; needsterminal
+
+# }}}
+
+# {{{ Patchs
+# ------------------------------------
+
+text/x-patch; less %s; needsterminal
+text/x-darcs-patch; less %s; needsterminal
+text/x-csrc; less %s; needsterminal
+
+# }}}
+
+# {{{ Html
+# ------------------------------------
+
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+
+#text/html; links -dump %s -codepage utf-8; nametemplate=%s.html; copiousoutput
+#text/html; w3m -T text/html -dump %s; copiousoutput;
+#text/html; elinks -force-html -dump %s 2>&1; copiousoutput;
+
+application/javascript; cat %s; copiousoutput;
+
+# }}}
+
+# {{{ Documents
+# ------------------------------------
+
+application/postscript; ps2ascii %s; copiousoutput
+application/pdf;        pdftotext -layout '%s' -; copiousoutput
+
+application/msword; antiword '%s'; copiousoutput; description="Microsoft Word"; nametemplate=%s.doc
+
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; docx2txt '%s' -; copiousoutput; description="Microsoft Word Docx"; nametemplate=%s.doc
+
+# }}}
+
+# {{{ Archives
+# ------------------------------------
+
+application/x-shar; less %s; needsterminal
+application/x-gunzip; zcat; copiousoutput
+application/x-tar-gz; gunzip -c %s | tar -tf - ; copiousoutput
+
+# }}}
+
+# {{{ Images
+# ------------------------------------
+
+#image/*; display %s ; test=test -n "$DISPLAY"
+
+#image/*;  (anytopnm %s | pnmscale -width 120 | ppmtopgm | pgmnorm | pgmtopbm | pbmtoascii -1x2 ) 2>&1 ; copiousoutput
+
+image/*; exiv2 pr %s ; copiousoutput
+
+# }}}
+
+# {{{ Audio
+# ------------------------------------
+
+audio/*; mpv '%s'
+
+# }}}
+
+# {{{ Vidéo
+# ------------------------------------
+
+video/*; mpv %s
+
+# }}}

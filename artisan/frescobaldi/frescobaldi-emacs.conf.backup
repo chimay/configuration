@@ -1,0 +1,418 @@
+[General]
+allow_remote=true
+autocomplete=true
+backup_keep=false
+basedir=
+custom_default_filename=false
+default_filename_template={composer}-{title}
+editor_scheme=default
+experimental-features=false
+guistyle=Fusion
+language=C
+metainfo=true
+new_document=empty
+prefs_general_file_tab_index=2
+printer_scheme=default
+recent_files="@Variant(\0\0\0\x11\0\0\0=file:///home/david/racine/musica/lilypond/scores/clairiere.ly)", "@Variant(\0\0\0\x11\0\0\0;file:///home/david/racine/musica/lilypond/scores/grenier.ly)", @Variant(\0\0\0\x11\0\0\0>file:///home/david/racine/musica/lilypond/templates/chambre.ly), @Variant(\0\0\0\x11\0\0\0\x45\x66ile:///home/david/racine/musica/lilypond/templates/flut-cord-harp.ly), @Variant(\0\0\0\x11\0\0\0\x42\x66ile:///home/david/racine/musica/lilypond/scores/clairiere-cord.ly), @Variant(\0\0\0\x11\0\0\0>file:///home/david/racine/musica/lilypond/templates/org-pno.ly), @Variant(\0\0\0\x11\0\0\0?file:///home/david/racine/musica/lilypond/templates/cord-pno.ly), @Variant(\0\0\0\x11\0\0\0\x42\x66ile:///home/david/racine/musica/lilypond/scores/frag-clairiere.ly)
+settings_version=3
+shortcut_scheme=default
+splash_screen=true
+strip_trailing_whitespace=false
+system_icons=true
+tabs_closable=true
+verbose_toolbuttons=false
+
+[charmaptool]
+fontfamily=Cantarell
+fontsize=10
+last_block=Basic Latin
+
+[document_list]
+group_by_folder=false
+
+[editor_highlighting]
+match=1
+
+[engraving]
+autocompile=false
+
+[externalchanges]
+dialog\size=@Size(402 272)
+diff\dialog\size=@Size(600 300)
+
+[fontscolors]
+default\allstyles\lilypond\articulation\bold=true
+default\allstyles\lilypond\articulation\textColor=#ff8000
+default\allstyles\lilypond\context\bold=true
+default\allstyles\lilypond\duration\textColor=#008080
+default\allstyles\lilypond\dynamic\bold=true
+default\allstyles\lilypond\dynamic\textColor=#ff8000
+default\allstyles\lilypond\fingering\textColor=#ff8000
+default\allstyles\lilypond\grob\textColor=#c000c0
+default\allstyles\lilypond\lyricmode\textColor=#006000
+default\allstyles\lilypond\lyrictext\textColor=#006000
+default\allstyles\lilypond\markup\bold=false
+default\allstyles\lilypond\markup\textColor=#008000
+default\allstyles\lilypond\slur\bold=true
+default\allstyles\lilypond\stringnumber\textColor=#ff8000
+default\basecolors\background=#000000
+default\basecolors\current=#000000
+default\basecolors\error=#000000
+default\basecolors\mark=#000000
+default\basecolors\match=#00c0ff
+default\basecolors\musichighlight=#000000
+default\basecolors\paper=#5b3c11
+default\basecolors\search=#c0ffc0
+default\basecolors\selectionbackground=#000000
+default\basecolors\selectiontext=#87823c
+default\basecolors\text=#5b3c11
+default\defaultstyles\comment\italic=true
+default\defaultstyles\comment\textColor=#808080
+default\defaultstyles\error\bold=false
+default\defaultstyles\error\italic=false
+default\defaultstyles\error\textColor=#ff0000
+default\defaultstyles\error\underline=false
+default\defaultstyles\error\underlineColor=#ff0000
+default\defaultstyles\escape\bold=false
+default\defaultstyles\escape\italic=false
+default\defaultstyles\escape\textColor=#7b3c11
+default\defaultstyles\escape\underline=false
+default\defaultstyles\function\bold=false
+default\defaultstyles\function\italic=false
+default\defaultstyles\function\textColor=#872e30
+default\defaultstyles\function\underline=false
+default\defaultstyles\keyword\bold=false
+default\defaultstyles\keyword\italic=false
+default\defaultstyles\keyword\textColor=#9b3c11
+default\defaultstyles\keyword\underline=false
+default\defaultstyles\string\textColor=#c00000
+default\defaultstyles\value\textColor=#808000
+default\defaultstyles\variable\bold=false
+default\defaultstyles\variable\italic=false
+default\defaultstyles\variable\textColor=#5b3c11
+default\defaultstyles\variable\underline=false
+default\fontfamily=monospace
+default\fontsize=11
+
+[helpbrowser]
+size=@Size(1920 994)
+
+[helper_applications]
+browser=
+directory=caja $f
+email=
+git=
+image=vimiv $f
+midi=timidity $f
+pdf=zathura $f
+shell=zsh
+svg=
+
+[indent]
+document_spaces=8
+indent_spaces=2
+tab_width=4
+
+[lilypond_settings]
+autoversion=false
+default=lilypond
+default_output_target=pdf
+delete_intermediate_files=true
+embed_source_code=false
+include_path=@Invalid()
+no_translation=true
+open_default_view=true
+save_on_run=true
+
+[lilypondinfo]
+1\auto=true
+1\command=lilypond
+1\datadir=/usr/share/lilypond/2.24.0
+1\mtime=1671481377
+1\name=LilyPond
+1\version=2.24.0
+size=1
+
+[log]
+fontfamily=monospace
+fontsize=11
+hide_auto_engrave=false
+rawview=true
+show_on_start=false
+
+[mainwindow]
+maximized=false
+size=@Size(1896 970)
+state=@ByteArray(\0\0\0\xff\0\0\0\0\xfd\0\0\0\x3\0\0\0\0\0\0\x1\0\0\0\x3\x8e\xfc\x2\0\0\0\x6\xfb\0\0\0(\0l\0\x61\0y\0o\0u\0t\0\x63\0o\0n\0t\0r\0o\0l\0o\0p\0t\0i\0o\0n\0s\0\0\0\0\0\xff\xff\xff\xff\0\0\0\x13\0\xff\xff\xff\xfb\0\0\0 \0q\0u\0i\0\x63\0k\0i\0n\0s\0\x65\0r\0t\0p\0\x61\0n\0\x65\0l\0\0\0\0<\0\0\x1\xd0\0\0\0\x13\0\xff\xff\xff\xfb\0\0\0\xe\0\x63\0h\0\x61\0r\0m\0\x61\0p\0\0\0\0<\0\0\x3\xa6\0\0\0\x13\0\xff\xff\xff\xfb\0\0\0\x18\0\x64\0o\0\x63\0u\0m\0\x65\0n\0t\0l\0i\0s\0t\0\0\0\0<\0\0\x2\xde\0\0\0\x13\0\xff\xff\xff\xfb\0\0\0\x10\0m\0i\0\x64\0i\0t\0o\0o\0l\x1\0\0\0<\0\0\0\x91\0\0\0}\0\xff\xff\xff\xfb\0\0\0\x18\0o\0u\0t\0l\0i\0n\0\x65\0p\0\x61\0n\0\x65\0l\x1\0\0\0\xd3\0\0\x2\xf7\0\0\0Y\0\xff\xff\xff\0\0\0\x1\0\0\x3\xb4\0\0\x3\x8e\xfc\x2\0\0\0\x2\xfc\0\0\0<\0\0\x3\x8e\0\0\0O\0\xff\xff\xff\xfa\0\0\0\0\x2\0\0\0\x3\xfb\0\0\0\x1c\0m\0u\0s\0i\0\x63\0v\0i\0\x65\0w\0p\0\x61\0n\0\x65\0l\x1\0\0\0\0\xff\xff\xff\xff\0\0\0O\0\xff\xff\xff\xfb\0\0\0\x16\0h\0\x65\0l\0p\0\x62\0r\0o\0w\0s\0\x65\0r\0\0\0\0\0\xff\xff\xff\xff\0\0\0\x13\0\xff\xff\xff\xfb\0\0\0\x18\0s\0v\0g\0v\0i\0\x65\0w\0p\0\x61\0n\0\x65\0l\0\0\0\0\0\xff\xff\xff\xff\0\0\0\x13\0\xff\xff\xff\xfb\0\0\0&\0m\0\x61\0n\0u\0s\0\x63\0r\0i\0p\0t\0v\0i\0\x65\0w\0p\0\x61\0n\0\x65\0l\0\0\0\0\0\xff\xff\xff\xff\0\0\0\x13\0\xff\xff\xff\0\0\0\x3\0\0\x2\xa8\0\0\x1k\xfc\x1\0\0\0\x3\xfb\0\0\0\xe\0l\0o\0g\0t\0o\0o\0l\0\0\0\x1\x6\0\0\x2\xa8\0\0\0\x46\0\xff\xff\xff\xfb\0\0\0\x16\0s\0n\0i\0p\0p\0\x65\0t\0t\0o\0o\0l\0\0\0\x3\xc3\0\0\x3\xbd\0\0\0:\0\xff\xff\xff\xfb\0\0\0\x1a\0m\0i\0\x64\0i\0i\0n\0p\0u\0t\0t\0o\0o\0l\0\0\0\x1\x4\0\0\x1\xd5\0\0\0:\0\xff\xff\xff\0\0\x2\xa8\0\0\x3\x8e\0\0\0\x1\0\0\0\x2\0\0\0\x1\0\0\0\x2\xfc\0\0\0\x1\0\0\0\x2\0\0\0\x2\0\0\0\x18\0t\0o\0o\0l\0\x62\0\x61\0r\0_\0m\0\x61\0i\0n\x1\0\0\0\0\xff\xff\xff\xff\0\0\0\0\0\0\0\0\0\0\0\x1a\0t\0o\0o\0l\0\x62\0\x61\0r\0_\0m\0u\0s\0i\0\x63\x1\0\0\x1o\xff\xff\xff\xff\0\0\0\0\0\0\0\0)
+tabbar=true
+
+[metainfo]
+file%3A___home_david_racine_musica_lilypond_Demo-of-all-midi-sounds.ly\bookmarks="{\"mark\": [], \"error\": [0]}"
+file%3A___home_david_racine_musica_lilypond_Demo-of-all-midi-sounds.ly\buildtime=2.9508652687072754
+file%3A___home_david_racine_musica_lilypond_Demo-of-all-midi-sounds.ly\time=1671705724.2506833
+file%3A___home_david_racine_musica_lilypond_chambre.ly\bookmarks="{\"mark\": [], \"error\": [14]}"
+file%3A___home_david_racine_musica_lilypond_chambre.ly\buildtime=3.1868629455566406
+file%3A___home_david_racine_musica_lilypond_chambre.ly\position=1290
+file%3A___home_david_racine_musica_lilypond_chambre.ly\time=1671706933.9548318
+file%3A___home_david_racine_musica_lilypond_conversion_cpt-cordes-7.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_conversion_cpt-cordes-7.ly\position=729
+file%3A___home_david_racine_musica_lilypond_conversion_cpt-cordes-7.ly\time=1671802020.2481155
+file%3A___home_david_racine_musica_lilypond_conversion_forestiere.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_conversion_forestiere.ly\buildtime=1.6237499713897705
+file%3A___home_david_racine_musica_lilypond_conversion_forestiere.ly\position=2190
+file%3A___home_david_racine_musica_lilypond_conversion_forestiere.ly\time=1672078312.821783
+file%3A___home_david_racine_musica_lilypond_conversion_msc-clairiere.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_conversion_msc-clairiere.ly\time=1672160557.105434
+file%3A___home_david_racine_musica_lilypond_cpt-2-1.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_cpt-2-1.ly\time=1671700729.425241
+file%3A___home_david_racine_musica_lilypond_cpt-cordes-7.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_cpt-cordes-7.ly\buildtime=3.18363618850708
+file%3A___home_david_racine_musica_lilypond_cpt-cordes-7.ly\position=7595
+file%3A___home_david_racine_musica_lilypond_cpt-cordes-7.ly\time=1671706306.1752799
+file%3A___home_david_racine_musica_lilypond_scores_clairiere-cord.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_scores_clairiere-cord.ly\buildtime=1.8053884506225586
+file%3A___home_david_racine_musica_lilypond_scores_clairiere-cord.ly\position=1313
+file%3A___home_david_racine_musica_lilypond_scores_clairiere-cord.ly\time=1673171559.4507966
+file%3A___home_david_racine_musica_lilypond_scores_clairiere-transcript.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_scores_clairiere-transcript.ly\buildtime=1.8371310234069824
+file%3A___home_david_racine_musica_lilypond_scores_clairiere-transcript.ly\position=527
+file%3A___home_david_racine_musica_lilypond_scores_clairiere-transcript.ly\time=1672825992.22766
+file%3A___home_david_racine_musica_lilypond_scores_clairiere.ly\bookmarks="{\"mark\": [103, 156], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_scores_clairiere.ly\buildtime=2.144258499145508
+file%3A___home_david_racine_musica_lilypond_scores_clairiere.ly\position=2700
+file%3A___home_david_racine_musica_lilypond_scores_clairiere.ly\time=1673283134.1108966
+file%3A___home_david_racine_musica_lilypond_scores_clairi%E8re-cord.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_scores_clairi%E8re-cord.ly\position=4637
+file%3A___home_david_racine_musica_lilypond_scores_clairi%E8re-cord.ly\time=1673171160.741694
+file%3A___home_david_racine_musica_lilypond_scores_forestiere.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_scores_forestiere.ly\buildtime=2.8501815795898438
+file%3A___home_david_racine_musica_lilypond_scores_forestiere.ly\time=1672091799.5332093
+file%3A___home_david_racine_musica_lilypond_scores_frag-clairiere.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_scores_frag-clairiere.ly\buildtime=5.886320352554321
+file%3A___home_david_racine_musica_lilypond_scores_frag-clairiere.ly\position=5701
+file%3A___home_david_racine_musica_lilypond_scores_frag-clairiere.ly\time=1673283134.0410855
+file%3A___home_david_racine_musica_lilypond_scores_fragment.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_scores_fragment.ly\position=369
+file%3A___home_david_racine_musica_lilypond_scores_fragment.ly\time=1672160685.5593235
+file%3A___home_david_racine_musica_lilypond_scores_grenier.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_scores_grenier.ly\position=762
+file%3A___home_david_racine_musica_lilypond_scores_grenier.ly\time=1673283133.9720542
+file%3A___home_david_racine_musica_lilypond_templates_accordeon-cordes-clavecin.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_accordeon-cordes-clavecin.ly\buildtime=2.764160633087158
+file%3A___home_david_racine_musica_lilypond_templates_accordeon-cordes-clavecin.ly\position=5158
+file%3A___home_david_racine_musica_lilypond_templates_accordeon-cordes-clavecin.ly\time=1672568231.2556584
+file%3A___home_david_racine_musica_lilypond_templates_chambre.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_chambre.ly\buildtime=2.9799656867980957
+file%3A___home_david_racine_musica_lilypond_templates_chambre.ly\position=56
+file%3A___home_david_racine_musica_lilypond_templates_chambre.ly\time=1673281935.0567284
+file%3A___home_david_racine_musica_lilypond_templates_cord-clav.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_cord-clav.ly\buildtime=1.9978337287902832
+file%3A___home_david_racine_musica_lilypond_templates_cord-clav.ly\position=2992
+file%3A___home_david_racine_musica_lilypond_templates_cord-clav.ly\time=1673090174.1422212
+file%3A___home_david_racine_musica_lilypond_templates_cord-pno.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_cord-pno.ly\position=3122
+file%3A___home_david_racine_musica_lilypond_templates_cord-pno.ly\time=1673261797.3087256
+file%3A___home_david_racine_musica_lilypond_templates_cordes-clavecin-harpe.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_cordes-clavecin-harpe.ly\buildtime=2.495173215866089
+file%3A___home_david_racine_musica_lilypond_templates_cordes-clavecin-harpe.ly\position=82
+file%3A___home_david_racine_musica_lilypond_templates_cordes-clavecin-harpe.ly\time=1672477724.252157
+file%3A___home_david_racine_musica_lilypond_templates_cordes-clavecin.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_cordes-clavecin.ly\buildtime=2.1548523902893066
+file%3A___home_david_racine_musica_lilypond_templates_cordes-clavecin.ly\position=727
+file%3A___home_david_racine_musica_lilypond_templates_cordes-clavecin.ly\time=1672568112.935245
+file%3A___home_david_racine_musica_lilypond_templates_exemple.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_exemple.ly\position=69
+file%3A___home_david_racine_musica_lilypond_templates_exemple.ly\time=1671726928.3248568
+file%3A___home_david_racine_musica_lilypond_templates_flut-acc-cord-clav.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_flut-acc-cord-clav.ly\buildtime=2.7512900829315186
+file%3A___home_david_racine_musica_lilypond_templates_flut-acc-cord-clav.ly\time=1672568755.5243921
+file%3A___home_david_racine_musica_lilypond_templates_flut-cord-harp.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_flut-cord-harp.ly\buildtime=2.229973077774048
+file%3A___home_david_racine_musica_lilypond_templates_flut-cord-harp.ly\position=3072
+file%3A___home_david_racine_musica_lilypond_templates_flut-cord-harp.ly\time=1673281934.9863217
+file%3A___home_david_racine_musica_lilypond_templates_flute-cordes-clavecin.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_flute-cordes-clavecin.ly\buildtime=2.4111599922180176
+file%3A___home_david_racine_musica_lilypond_templates_flute-cordes-clavecin.ly\position=727
+file%3A___home_david_racine_musica_lilypond_templates_flute-cordes-clavecin.ly\time=1672568114.39974
+file%3A___home_david_racine_musica_lilypond_templates_grenier.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_grenier.ly\time=1672477706.3648067
+file%3A___home_david_racine_musica_lilypond_templates_misc.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_misc.ly\buildtime=2.7123827934265137
+file%3A___home_david_racine_musica_lilypond_templates_misc.ly\position=374
+file%3A___home_david_racine_musica_lilypond_templates_misc.ly\time=1671710518.5868464
+file%3A___home_david_racine_musica_lilypond_templates_org-clav.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_org-clav.ly\buildtime=1.8382980823516846
+file%3A___home_david_racine_musica_lilypond_templates_org-clav.ly\position=56
+file%3A___home_david_racine_musica_lilypond_templates_org-clav.ly\time=1673090174.2105072
+file%3A___home_david_racine_musica_lilypond_templates_org-pno.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_org-pno.ly\position=2646
+file%3A___home_david_racine_musica_lilypond_templates_org-pno.ly\time=1673261797.9330006
+file%3A___home_david_racine_musica_lilypond_templates_ven-cord-clav.ly\bookmarks="{\"mark\": [], \"error\": []}"
+file%3A___home_david_racine_musica_lilypond_templates_ven-cord-clav.ly\buildtime=2.60022234916687
+file%3A___home_david_racine_musica_lilypond_templates_ven-cord-clav.ly\position=2909
+file%3A___home_david_racine_musica_lilypond_templates_ven-cord-clav.ly\time=1672729935.325633
+file%3A___home_david_racine_musica_rosegarden_record-keyboard.ly\bookmarks="{\"mark\": [], \"error\": [22]}"
+file%3A___home_david_racine_musica_rosegarden_record-keyboard.ly\buildtime=2.7934205532073975
+file%3A___home_david_racine_musica_rosegarden_record-keyboard.ly\position=6404
+file%3A___home_david_racine_musica_rosegarden_record-keyboard.ly\time=1671813210.6124833
+
+[musicview]
+document_properties=true
+newer_files_only=true
+sync_cursor=true
+
+[pitch-menu]
+relative-first-pitch-absolute=false
+relative-write-startpitch=true
+
+[preferences]
+dialog\size=@Size(1103 603)
+
+[scorewiz]
+completion\header\composer=@Variant(\0\0\0\t\0\0\0\x1\0\0\0\n\0\0\0\f\0m\0y\0s\0\x65\0l\0\x66)
+completion\header\poet=@Variant(\0\0\0\t\0\0\0\x1\0\0\0\n\0\0\0\x4\0m\0\x65)
+completion\header\title=chambre, titre
+dialog\size=@Size(700 528)
+instrumentnames\enable=true
+instrumentnames\first=long
+instrumentnames\language=
+instrumentnames\other=none
+lilypond\pitch_language=
+preferences\metronome_mark=false
+preferences\midi=true
+preferences\paper_rotation=0
+preferences\paper_size=
+preferences\relative_pitch=true
+preferences\remove_barnumbers=false
+preferences\remove_tagline=false
+preferences\smart_neutral_direction=false
+preferences\typographical_quotes=true
+scoreproperties\round_metronome=true
+
+[session]
+custom=
+lastused=clairiere
+startup=lastused
+
+[sessions]
+session1\active=0
+session1\autosave=true
+session1\basedir=/home/david/racine/musica/lilypond/scores
+session1\include-path=@Invalid()
+session1\name=clairiere
+session1\repl-paths=false
+session1\set-paths=false
+session1\urls="@Variant(\0\0\0\x11\0\0\0=file:///home/david/racine/musica/lilypond/scores/clairiere.ly)", @Variant(\0\0\0\x11\0\0\0\x42\x66ile:///home/david/racine/musica/lilypond/scores/frag-clairiere.ly), "@Variant(\0\0\0\x11\0\0\0;file:///home/david/racine/musica/lilypond/scores/grenier.ly)"
+session2\active=0
+session2\autosave=true
+session2\basedir=/home/david/racine/musica/lilypond/templates
+session2\include-path=@Invalid()
+session2\name=templates
+session2\repl-paths=false
+session2\set-paths=false
+session2\urls=@Variant(\0\0\0\x11\0\0\0>file:///home/david/racine/musica/lilypond/templates/chambre.ly), @Variant(\0\0\0\x11\0\0\0\x45\x66ile:///home/david/racine/musica/lilypond/templates/flut-cord-harp.ly)
+
+[shortcuts]
+default\autocomplete\popup_completions=
+default\bookmarkmanager\view_clear_all_marks=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x6\0\0\x42)
+default\bookmarkmanager\view_clear_error_marks=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0&)
+default\bookmarkmanager\view_next_mark=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0')
+default\bookmarkmanager\view_previous_mark=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0\")
+default\browseriface\go_forward=
+default\documentactions\edit_cut_assign=
+default\documentactions\tools_indent_indent=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0!)
+default\documentactions\tools_remove_trailing_whitespace=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0<)
+default\engrave\engrave_custom=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\f\0\0M)
+default\engrave\engrave_publish=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x6\0\0M)
+default\file_export\export_audio=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\f\0\0\x41)
+default\file_export\export_musicxml=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\f\0\0X)
+default\logtool\log_next_error=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0\xc9)
+default\logtool\log_previous_error=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0\xc8)
+default\lyrics\lyrics_hyphenate=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x6\0\0L)
+default\main\edit_copy=Ctrl+W, Ctrl+Ins, Ctrl+C
+default\main\edit_cut=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x5\0\0\a)
+default\main\edit_find=Ctrl+F, Ctrl+/
+default\main\edit_find_next=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0$)
+default\main\edit_find_previous=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0^)
+default\main\edit_paste=Ctrl+Y, Ctrl+V
+default\main\edit_redo=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0R)
+default\main\edit_replace=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0\xd9)
+default\main\edit_select_all=
+default\main\edit_select_current_toplevel=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0))
+default\main\edit_select_none=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0()
+default\main\edit_undo=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0Z)
+default\main\file_close=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0Q)
+default\main\file_insert_file=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0I)
+default\main\file_quit=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x6\0\0Q)
+default\main\file_save_all=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x6\0\0S)
+default\main\view_goto_line=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0G)
+default\main\view_next_document=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x5\0\0\x17)
+default\main\view_previous_document=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x5\0\0\x16)
+default\matchingpair\view_matching_pair=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\b\0\0\xd9)
+default\miditool\midi_pause=F4, Pause
+default\miditool\midi_play=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x1\0\0\x32)
+default\musicview\music_document_select=
+default\musicview\music_fit_height=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0~)
+default\musicview\music_fit_width="@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0=)"
+default\musicview\music_rotate_left=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\b\0\0<)
+default\musicview\music_rotate_right=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\n\0\0>)
+default\musicview\music_sync_cursor=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\b\0\0$)
+default\panels\panel_charmap=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0\xc7)
+default\panels\panel_logtool=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0L)
+default\panels\panel_miditool=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x1\0\0\x31)
+default\panels\panel_musicview=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\x3\x9c)
+default\panels\panel_outline=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0\xa7)
+default\panels\panel_quickinsert=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0\xc0)
+default\panels\panel_snippettool=
+default\pitch\pitch_modal_transpose=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\f\0\0T)
+default\pitch\pitch_mode_shift=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\n\0\0T)
+default\pitch\pitch_simplify=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x6\0\0\x41)
+default\pitch\pitch_transpose=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x6\0\0T)
+default\quickinsert\spanner_slur=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\b\0\0))
+default\rest\rest_spacer2fmrest=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\t\0\0\a)
+default\rhythm\rhythm_dot=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0:)
+default\rhythm\rhythm_double=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0\x32)
+default\rhythm\rhythm_halve=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0\x31)
+default\rhythm\rhythm_undot="@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x4\0\0,)"
+default\sidebar\folding_fold_all=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\a\0\0\x1)
+default\sidebar\folding_fold_current=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x5\0\0\x1)
+default\sidebar\folding_unfold_all=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\r\0\0\x1)
+default\sidebar\folding_unfold_current=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x3\0\0\x1)
+default\snippets\ly_version=@Invalid()
+default\snippets\quotes_d=@Invalid()
+default\snippets\quotes_s=@Invalid()
+default\snippets\uppercase=@Invalid()
+default\view\window_close_others=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x6\0\0O)
+default\view\window_close_view=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x6\0\0X)
+default\view\window_next_view=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\t\0\0\x11)
+default\view\window_previous_view=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\t\0\0\x10)
+default\view\window_split_horizontal=@Variant(\0\0\0\t\0\0\0\x1\0\0\0L\0\0\0\x1\x6\0\0H)
+default\view\window_split_vertical=Ctrl+Shift+V, Ctrl+Alt+V, Alt+Shift+V
+
+[sidebar]
+folding=true
+line_numbers=true
+
+[source_export]
+copy_document_body_only=false
+copy_html_as_plain_text=false
+inline_copy=true
+inline_export=false
+number_lines=false
+wrap_attrib=id
+wrap_attrib_name=document
+wrap_tag=pre
+
+[typographical_quotes]
+language=current
+primary_left=\x201c
+primary_right=\x201d
+secondary_left=\x2018
+secondary_right=\x2019
+
+[view_preferences]
+context_lines=3
+keep_cursor_in_line=false
+smart_home_key=true
+smart_start_end=true
+wrap_lines=false

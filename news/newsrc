@@ -1,0 +1,75 @@
+gmane.science.linguistics.wikipedia.english :
+
+gmane.comp.shells.zsh.user :
+gmane.comp.shells.zsh.devel :
+
+gmane.comp.shells.bash.help :
+
+gmane.comp.terminal-emulators.tmux.user :
+
+gmane.network.openssh.general :
+
+gmane.network.unison.general :
+gmane.network.unison.devel :
+
+gmane.comp.version-control.git :
+gmane.comp.version-control.git.user :
+gmane.comp.version-control.mercurial.general :
+gmane.comp.version-control.bazaar-ng.general :
+gmane.comp.version-control.cvs.general :
+gmane.comp.version-control.subversion.user :
+gmane.comp.version-control.darcs.user :
+
+gmane.editors.vim :
+gmane.editors.vim.devel :
+
+gmane.emacs.devel :
+gmane.emacs.customize :
+gmane.emacs.elpa.scm :
+gmane.emacs.orgmode :
+gmane.emacs.package-managers.devel :
+gmane.emacs.sources :
+gmane.emacs.tramp :
+gmane.emacs.twmode.user :
+gmane.emacs.viewmail :
+gmane.emacs.vim-emulation :
+gmane.emacs.wiki.general :
+gmane.emacs.helm.user :
+
+gmane.mail.mutt.user :
+gmane.mail.mutt.devel :
+
+gmane.comp.web.elinks.user :
+
+gmane.comp.mozilla.firefox.vimperator :
+gmane.comp.mozilla.firefox.pentadactyl :
+
+gmane.comp.audio.musicpd.devel :
+gmane.comp.audio.jackit :
+
+gmane.comp.gnu.lilypond.general :
+gmane.comp.gnu.lilypond.devel :
+
+gmane.linux.kernel :
+gmane.linux.debian.user :
+gmane.linux.arch.general :
+gmane.linux.arch.devel :
+gmane.linux.arch.tur.user :
+gmane.linux.gentoo.user :
+gmane.linux.gentoo.devel :
+
+gmane.comp.window-managers.i3.general :
+gmane.comp.window-managers.pekwm.general :
+gmane.comp.window-managers.pekwm.devel :
+gmane.comp.window-managers.fluxbox.user :
+gmane.comp.window-managers.fluxbox.devel :
+gmane.comp.window-managers.ratpoison.devel :
+gmane.comp.window-managers.wmii :
+gmane.comp.window-managers.dwm :
+gmane.comp.window-managers.awesome :
+gmane.comp.window-managers.awesome.devel :
+
+gmane.comp.kde.general :
+gmane.comp.kde.devel.core :
+
+gmane.test :

@@ -1,0 +1,141 @@
+# vim: set filetype=muttrc :
+
+set score=yes
+
+#  {{{ Seuils
+# ------------------------------------------------------------------------
+
+set score_threshold_flag=12
+set score_threshold_read=2
+set score_threshold_delete=0
+
+# }}}
+
+#  {{{ Initialisation
+# ------------------------------------------------------------------------
+
+unscore *
+
+score ~A 4
+
+# }}}
+
+#  {{{ Expéditeurs
+# ------------------------------------------------------------------------
+
+score ~P 1
+
+score '%f Famille' 9
+
+score '%f Amis' 7
+
+score '~f \\<Bram\\>' 7
+
+score '=f zoomit' 12
+
+# }}}
+
+#  {{{ Sujets
+# ------------------------------------------------------------------------
+
+score '~s \\<litterature\\>' 1
+
+score '~s \\<poésie\\>' 1
+score '~s \\<poesie\\>' 1
+score '~s \\<poetry\\>' 1
+
+score '~s \\<musique\\>' 1
+score '~s \\<music\\>' 1
+score '~s \\<classique\\>' 1
+score '~s \\<classic\\>' 1
+
+score '~s \\<maths\\>' 1
+score '~s \\<mathématiques\\>' 1
+score '~s \\<mathematiques\\>' 1
+
+score '~s \\<finance\\>' 1
+
+score '~s \\<unix\\>' 1
+score '~s \\<linux\\>' 1
+score '~s \\<bsd\\>' 1
+
+score '~s \\<shell\\>' 1
+score '~s \\<zsh'\\> 1
+score '~s \\<ssh\\>' 1
+
+score '~s \\<tmux\\>' 1
+
+score '~s \\<sed\\>' 1
+score '~s \\<awk\\>' 1
+
+score '~s \\<vcs\\>' 1
+score '~s diff\\>' 1
+score '~s \\<patch\\>' 1
+score '~s merge\\>' 1
+score '~s \\<rcs\\>' 1
+score '~s \\<cvs\\>' 1
+score '~s \\<svn\\>' 1
+score '~s \\<subversion\\>' 1
+score '~s \\<hg\\>' 1
+score '~s \\<mercurial\\>' 1
+score '~s \\<git\\>' 1
+score '~s \\<bzr\\>' 1
+score '~s \\<bazaar\\>' 1
+
+score '~s \\<grep\\>' 1
+score '~s \\<cut\\>' 1
+score '~s \\<fold\\>' 1
+score '~s \\<fmt\\>' 1
+score '~s \\<tr\\>' 1
+score '~s \\<sort\\>' 1
+score '~s \\<uniq\\>' 1
+score '~s \\<comm\\>' 1
+score '~s \\<paste\\>' 1
+score '~s \\<tree\\>' 1
+score '~s \\<dd\\>' 1
+score '~s \\<shred\\>' 1
+score '~s \\<pstree\\>' 1
+score '~s \\<watch\\>' 1
+score '~s \\<cron\\>' 1
+score '~s \\<ping\\>' 1
+score '~s \\<telnet\\>' 1
+score '~s \\<wget\\>' 1
+score '~s \\<curl\\>' 1
+score '~s \\<ftp\\>' 1
+score '~s \\<tar\\>' 1
+score '~s \\<cpio\\>' 1
+score '~s \\<pax\\>' 1
+score '~s \\<shar\\>' 1
+score '~s \\<gzip\\>' 1
+score '~s \\<bzip2\\>' 1
+score '~s \\<lzma\\>' 1
+score '~s \\<zip\\>' 1
+score '~s \\<rsync\\>' 1
+score '~s \\<unison\\>' 1
+score '~s \\<duplicity\\>' 1
+
+score '~s \\<aspell\\>' 1
+score '~s \\<ispell\\>' 1
+
+score '~s \\<vim\\>' 1
+score '~s \\<gvim\\>' 1
+score '~s \\<emacs\\>' 1
+score '~s \\<ctags\\>' 1
+
+score '~s \\<tex\\>' 1
+score '~s \\<latex\\>' 1
+score '~s \\<html\\>' 1
+
+score '~s \\<lilypond\\>' 1
+
+score '~s \\<mutt\\>' 1
+score '~s \\<weechat\\>' 1
+score '~s \\<vimperator\\>' 1
+score '~s \\<pentadactyl\\>' 1
+
+score '~s \\<perl\\>' 1
+score '~s \\<python\\>' 1
+score '~s \\<ruby\\>' 1
+score '~s \\<postgresql\\>' 1
+
+# }}}

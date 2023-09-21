@@ -1,0 +1,234 @@
+# vim: set filetype=muttrc :
+
+# Documentation {{{1
+
+# Commandes importantes :
+#
+# macro : définit une macro
+# ------------------------------------
+#
+# exemple : macro index \er '<enter-command>source $my_muttroot/neomuttrc<enter>'
+#
+# enter-command
+# ------------------------------------
+#
+# accède à la ligne de commande de type ex ":"
+#
+# push
+# ------------------------------------
+#
+# simule une frappe au clavier
+#
+# exemple : push "T~d >360d !~F<enter>\;"
+#
+# exec
+# ------------------------------------
+#
+# exécute une fonction
+#
+# exemples :
+#
+# :exec help
+#
+# :exec first-entry
+#
+# Remarque :
+#
+# exec fonction
+#
+# est équivalent à :
+#
+# push <fonction>
+#
+# Liste des fonctions disponibles
+# ------------------------------------
+#
+# 	/usr/share/doc/neomutt/manual.txt
+#
+# et :
+#
+# 	~/racine/config/mail/neomutt/bindings.mutt
+
+
+# Nettoyage du préfixe {{{1
+
+bind index @ noop
+bind pager @ noop
+
+
+# Recharge la configuration {{{1
+
+macro index @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
+macro pager @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
+
+
+# Nettoyage du cache {{{1
+
+macro index @c '<enter-command>set message_cache_clean=yes<enter>'
+macro pager @c '<enter-command>set message_cache_clean=yes<enter>'
+
+
+# Impression {{{1
+
+macro index,pager @p '<pipe-message>lp -o number-up=2 -o Duplex=DuplexTumble'
+
+
+# Exécution d’une fonction {{{1
+
+macro   generic "\ex"           ":exec "
+macro   pager   "\ex"           ":exec "
+
+macro   generic "\e:"           ":exec "
+macro   pager   "\e:"           ":exec "
+
+
+# Choix de la boîte aux lettres {{{1
+
+# ┌────────┬────────────────────────────────────────────────────────────────────┐
+# │Shortcut│                            Refers to...                            │
+# ├────────┼────────────────────────────────────────────────────────────────────┤
+# │!       │your $spool_file (incoming) mailbox                                 │
+# ├────────┼────────────────────────────────────────────────────────────────────┤
+# │>       │your $mbox file                                                     │
+# ├────────┼────────────────────────────────────────────────────────────────────┤
+# │<       │your $record file                                                   │
+# ├────────┼────────────────────────────────────────────────────────────────────┤
+# │^       │the current mailbox                                                 │
+# ├────────┼────────────────────────────────────────────────────────────────────┤
+# │- or !! │the file you've last visited                                        │
+# ├────────┼────────────────────────────────────────────────────────────────────┤
+# │~       │your home directory                                                 │
+# ├────────┼────────────────────────────────────────────────────────────────────┤
+# │= or +  │your $folder directory                                              │
+# ├────────┼────────────────────────────────────────────────────────────────────┤
+# │@alias  │to the default save folder as determined by the address of the alias│
+# └────────┴────────────────────────────────────────────────────────────────────┘
+
+macro index § '<change-folder>?'
+macro pager § '<change-folder>?'
+
+macro index \c^ '<change-folder>-<enter>'
+macro pager \c^ '<change-folder>-<enter>'
+
+macro index ^ '<change-folder>!<enter>'
+macro pager ^ '<change-folder>!<enter>'
+
+macro index $ '<change-folder>><enter>'
+macro pager $ '<change-folder>><enter>'
+
+
+# Réception du courrier {{{1
+
+macro   index   \eg   "!getmail >> ~/log/getmail.log 2>> ~/log/getmail.err<return>"
+macro   pager   \eg   "!getmail >> ~/log/getmail.log 2>> ~/log/getmail.err<return>"
+
+
+# Sélection (tag) {{{1
+
+# annuler la sélection
+
+macro index vc '<untag-pattern>all<enter>'
+
+# nouveaux messages non lus
+
+macro index vn '<tag-pattern>~O | ~N<enter>'
+
+# messages importants
+
+macro index vf '<tag-pattern>~F<enter>'
+
+# messages de moins de 7 jours
+
+macro index vù '<tag-pattern>~d <7d<enter>'
+
+# messages de plus de 30 jours
+
+macro index vO '<tag-pattern>~d >30d<enter>'
+
+# messages de plus de 7 jours
+
+macro index vo '<tag-pattern>~d >7d<enter>'
+
+
+#  Filtrage {{{1
+
+# annuler le filtre
+
+macro index è '<limit>all<enter>'
+macro index éu '<limit>all<enter>'
+macro index éc '<limit>all<enter>'
+
+macro index éa '<limit>~A<enter><enter-command>exec collapse-all<enter>'
+
+# nouveaux messages non lus
+
+macro index én '<limit>~O | ~N<enter>'
+
+# messages importants
+
+macro index éf '<limit>~F<enter>'
+
+# messages de moins de 7 jours
+
+macro index éù '<limit>~d <7d<enter>'
+
+# messages de plus de 30 jours
+
+macro index éO '<limit>~d >30d<enter>'
+
+# messages de plus de 7 jours
+
+macro index éo '<limit>~d >30d<enter>'
+
+# messages de plus de 200 kb
+
+macro index éz '<limit>~z >200k<enter>'
+
+# messages de plus de 50 kb
+
+macro index éZ '<limit>~z >50k<enter>'
+
+
+# Suppression {{{1
+
+# messages de plus de 30 jours
+
+macro index dO '<delete-pattern>~d >30d<enter>'
+
+# messages de plus de 7 jours
+
+macro index do '<delete-pattern>~d >7d<enter>'
+
+# annuler la suppresion
+
+macro index ua '<undelete-pattern>all<enter>'
+
+
+# Ajout de l’expéditeur dans abook {{{1
+
+macro index,pager  £ "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+
+
+# Visualisation des liens {{{1
+
+bind pager U noop
+
+macro index,pager U  "<pipe-message>run-urlscan.sh<enter>" 'follow links with urlscan'
+macro attach,compose U  "<pipe-entry>run-urlscan.sh<enter>" 'follow links with urlscan'
+
+
+# Ouverture du mail dans un navigateur {{{1
+
+macro attach & \
+	"<pipe-entry>cat >| ~/racine/varia/cache/neomutt/html/mail.html \
+	&& qutebrowser ~/racine/varia/cache/neomutt/html/mail.html<enter>" \
+	'Open in qutebrowser'
+
+
+# Nombre de lignes d’index dans le pager {{{1
+
+macro pager \> '<enter-command>source $my_muttroot/scripts/incremente-index-pager.sh|<enter>'
+macro pager \< '<enter-command>source $my_muttroot/scripts/decremente-index-pager.sh|<enter>'
+
+macro pager @= '<enter-command>set pager_index_lines='
+

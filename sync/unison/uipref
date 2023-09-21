@@ -1,0 +1,30 @@
+# vim: set filetype=conf :
+
+# Via l'interface d’unison
+
+ignore = Path {racine/config/webrowser/vimperator/info/default/history-command}
+ignore = Path {racine/config/webrowser/vimperator/info/default/history-search}
+ignore = Path {racine/config/webrowser/vimperator/info/default/ignored-keys}
+ignore = Path {racine/config/webrowser/vimperator/info/default/local-marks}
+ignore = Path {racine/config/webrowser/vimperator/info/default/macros}
+ignore = Path {racine/config/webrowser/vimperator/info/default/quickmarks}
+
+ignore = Path {racine/config/windenv/xfce4/panel/battery-17.rc}
+ignore = Path {racine/config/windenv/xfce4/panel/cpugraph-13.rc}
+ignore = Path {racine/config/windenv/xfce4/panel/fsguard-19.rc}
+ignore = Path {racine/config/windenv/xfce4/panel/systemload-18.rc}
+ignore = Path {racine/config/windenv/xfce4/panel/weather-14.rc}
+ignore = Path {racine/config/windenv/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml}
+
+ignore = Path {racine/config/multimedia/vlc/vlc-qt-interface.conf}
+
+ignore = Path {racine/index/locate/racine.db}
+ignore = Path {racine/index/locate/usr-local.db}
+
+ignore = Path {racine/config/windenv/xfce4/panel/xfce4-mpc-plugin-12.rc}
+ignore = Path {racine/config/windenv/pekwm/history}
+ignore = Path {racine/config/windenv/xfce4/panel/whiskermenu-6.rc}
+ignore = Path {racine/index/mairix/database}
+ignore = Path {racine/config/cmdline/ssh/mandala/authorized_keys}
+ignore = Path {racine/config/cmdline/ssh/shari/authorized_keys}
+ignore = Path {racine/config/sync/unison/archive/taijitu}

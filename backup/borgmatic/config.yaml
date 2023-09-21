@@ -1,0 +1,967 @@
+# Constants to use in the configuration file. All occurrences of the
+# constant name within culy braces will be replaced with the value.
+# For example, if you have a constant named "hostname" with the value
+# "myhostname", then the string "{hostname}" will be replaced with
+# "myhostname" in the configuration file.
+# constants:
+    # hostname: myhostname
+    # prefix: myprefix
+
+constants:
+  home: /home/david
+  racine: /home/david/racine
+
+# List of source directories and files to backup. Globs and tildes are
+# expanded. Do not backslash spaces in path names.
+# source_directories:
+#    - /etc
+#    - /var/log/syslog*
+#    - /home/user/path with spaces
+
+source_directories:
+  - graphix
+  - racine/README.org
+  - racine/artisan
+  - racine/automat
+  - racine/bridge
+  - racine/common
+  - racine/config
+  - racine/dotdir/emacs.d
+  - racine/dotdir/nb
+  - racine/dotdir/neovim
+  - racine/example
+  - racine/feder
+  - racine/fun
+  - racine/hist
+  - racine/hub
+  - racine/index
+  - racine/infoman
+  - racine/litera
+  - racine/local
+  - racine/mail
+  - racine/multics
+  - racine/musica
+  - racine/network
+  - racine/news
+  - racine/omni
+  - racine/organ
+  - racine/pack/bin
+  - racine/pack/release
+  - racine/pack/shar
+  - racine/pack/system
+  - racine/papier
+  - racine/pictura
+  - racine/plain
+  - racine/plugin/manager/neovimpack
+  - racine/plugin/manager/vimpack
+  - racine/plugin/manager/lazy.nvim
+  - racine/plugin/manager/plug.kak
+  - racine/plugin/manager/tmux-plugins
+  - racine/plugin/data
+  - racine/prolang
+  - racine/public
+  - racine/refer
+  - racine/run
+  - racine/science
+  - racine/search
+  - racine/self
+  - racine/session
+  - racine/shell
+  - racine/site
+  - racine/snippet
+  - racine/template
+
+# A required list of local or remote repositories with paths and
+# optional labels (which can be used with the --repository flag to
+# select a repository). Tildes are expanded. Multiple repositories are
+# backed up to in sequence. Borg placeholders can be used. See the
+# output of "borg help placeholders" for details. See ssh_command for
+# SSH options like identity file or port. If systemd service is used,
+# then add local repository paths in the systemd service file to the
+# ReadWritePaths list. Prior to borgmatic 1.7.10, repositories was a
+# list of plain path strings.
+#repositories:
+#    - path: ssh://user@backupserver/./sourcehostname.borg
+#      label: backupserver
+#    - path: /mnt/backup
+#      label: local
+
+repositories:
+    - path: /home/david/backup/borg
+      label: taijitu-local
+    - path: /media/cleusb/borg
+      label: usb-key
+    - path: /media/diskext/david/backup/borg
+      label: usb-disc
+    - path: ssh://david@shari.local//home/david/backup/borg
+      label: shari-ssh
+
+# Working directory for the "borg create" command. Tildes are
+# expanded. Useful for backing up using relative paths. See
+# http://borgbackup.readthedocs.io/en/stable/usage/create.html for
+# details. Defaults to not set.
+# working_directory: /path/to/working/directory
+
+working_directory: /home/david
+
+# Stay in same file system; do not cross mount points beyond the given
+# source directories. Defaults to false. But when a database hook is
+# used, the setting here is ignored and one_file_system is considered
+# true.
+# one_file_system: true
+
+# Only store/extract numeric user and group identifiers. Defaults to
+# false.
+# numeric_ids: true
+
+# Store atime into archive. Defaults to true in Borg < 1.2, false in
+# Borg 1.2+.
+# atime: false
+
+# Store ctime into archive. Defaults to true.
+# ctime: false
+
+# Store birthtime (creation date) into archive. Defaults to true.
+# birthtime: false
+
+# Use Borg's --read-special flag to allow backup of block and other
+# special devices. Use with caution, as it will lead to problems if
+# used when backing up special devices such as /dev/zero. Defaults to
+# false. But when a database hook is used, the setting here is ignored
+# and read_special is considered true.
+# read_special: false
+
+# Record filesystem flags (e.g. NODUMP, IMMUTABLE) in archive.
+# Defaults to true.
+# flags: true
+
+# Mode in which to operate the files cache. See
+# http://borgbackup.readthedocs.io/en/stable/usage/create.html for
+# details. Defaults to "ctime,size,inode".
+# files_cache: ctime,size,inode
+
+# Alternate Borg local executable. Defaults to "borg".
+# local_path: borg1
+
+# Alternate Borg remote executable. Defaults to "borg".
+# remote_path: borg1
+
+# Any paths matching these patterns are included/excluded from
+# backups. Globs are expanded. (Tildes are not.) See the output of
+# "borg help patterns" for more details. Quote any value if it
+# contains leading punctuation, so it parses correctly. Note that only
+# one of "patterns" and "source_directories" may be used.
+# patterns:
+    # - R /
+    # - '- /home/*/.cache'
+    # - + /home/susan
+    # - '- /home/*'
+
+# Read include/exclude patterns from one or more separate named files,
+# one pattern per line. Note that Borg considers this option
+# experimental. See the output of "borg help patterns" for more
+# details.
+# patterns_from:
+    # - /etc/borgmatic/patterns
+
+# Any paths matching these patterns are excluded from backups. Globs
+# and tildes are expanded. Note that a glob pattern must either start
+# with a glob or be an absolute path. Do not backslash spaces in path
+# names. See the output of "borg help patterns" for more details.
+# exclude_patterns:
+    # - '*.pyc'
+    # - /home/*/.cache
+    # - '*/.vim*.tmp'
+    # - /etc/ssl
+    # - /home/user/path with spaces
+
+exclude_patterns:
+  - 'sh:**/tags'
+  - 'sh:**/TAGS'
+  - 'sh:**/gtags.file'
+  - 'sh:**/GTAGS'
+  - 'sh:**/GRTAGS'
+  - 'sh:**/GPATH'
+  - 'sh:**/ID'
+  - '*=+tags'
+  - '*,v'
+  - 'sh:**/RCS'
+  - 'sh:**/CVS'
+  - 'sh:**/.hg'
+  - 'sh:**/.bzr'
+  - 'sh:**/_MTN'
+  - 'sh:**/_darcs'
+  - '*.qfix'
+  - '*.o'
+  - '*.so'
+  - '*.elc'
+  - '*.pyc'
+  - '*.zwc'
+  - '*.dll'
+  - '*.obj'
+  - '*.bak'
+  - '*.exe'
+  - '*.run'
+  - '*.aux'
+  - '*.out'
+  - '*.maf'
+  - '*.toc'
+  - '*.ptc*'
+  - '*.mtc*'
+  - '*.dvi'
+  - '*.ps'
+  - '*.pdf'
+  - '*.PDF'
+  - '*.epub'
+  - '*.doc'
+  - '*.xls'
+  - '*.png'
+  - '*.jpg'
+  - '*.gif'
+  - '*.sf2'
+  - '*.SF2'
+  - '*.sf3'
+  - '*.mid'
+  - '*.aup3'
+  - '*.wav'
+  - '*.flac'
+  - '*.ogg'
+  - '*.mp3'
+  - '*.xz'
+  - '*.zip'
+  - '*.iso'
+  - '*.img'
+  - 'sh:**/.unison'
+  - racine/local/share/astronvim
+  - racine/local/share/lazyvim
+  - racine/local/share/lunarvim
+  - racine/local/share/lvim
+  - racine/local/share/nvchad
+  - racine/local/share/nvim-kickstarter
+
+# Read exclude patterns from one or more separate named files, one
+# pattern per line. See the output of "borg help patterns" for more
+# details.
+# exclude_from:
+    # - /etc/borgmatic/excludes
+
+# Exclude directories that contain a CACHEDIR.TAG file. See
+# http://www.brynosaurus.com/cachedir/spec.html for details. Defaults
+# to false.
+# exclude_caches: true
+
+# Exclude directories that contain a file with the given filenames.
+# Defaults to not set.
+exclude_if_present:
+    - .no-borg-backup
+
+# If true, the exclude_if_present filename is included in backups.
+# Defaults to false, meaning that the exclude_if_present filename is
+# omitted from backups.
+# keep_exclude_tags: true
+
+# Exclude files with the NODUMP flag. Defaults to false.
+# exclude_nodump: true
+
+# Path for additional source files used for temporary internal state
+# like borgmatic database dumps. Note that changing this path prevents
+# "borgmatic restore" from finding any database dumps created before
+# the change. Defaults to ~/.borgmatic
+# borgmatic_source_directory: /tmp/borgmatic
+
+# Store configuration files used to create a backup in the backup
+# itself. Defaults to true. Changing this to false prevents "borgmatic
+# bootstrap" from extracting configuration files from the backup.
+# store_config_files: true
+
+# If true, then source directories must exist, otherwise an error is
+# raised. Defaults to false.
+# source_directories_must_exist: true
+
+# The standard output of this command is used to unlock the encryption
+# key. Only use on repositories that were initialized with
+# passcommand/repokey/keyfile encryption. Note that if both
+# encryption_passcommand and encryption_passphrase are set, then
+# encryption_passphrase takes precedence. Defaults to not set.
+# encryption_passcommand: secret-tool lookup borg-repository repo-name
+
+encryption_passcommand: pass show backup/borg/main
+
+# Passphrase to unlock the encryption key with. Only use on
+# repositories that were initialized with passphrase/repokey/keyfile
+# encryption. Quote the value if it contains punctuation, so it parses
+# correctly. And backslash any quote or backslash literals as well.
+# Defaults to not set.
+# encryption_passphrase: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+
+# Number of seconds between each checkpoint during a long-running
+# backup. See https://borgbackup.readthedocs.io/en/stable/faq.html for
+# details. Defaults to checkpoints every 1800 seconds (30 minutes).
+# checkpoint_interval: 1800
+
+# Number of backed up bytes between each checkpoint during a
+# long-running backup. Only supported with Borg 2+. See
+# https://borgbackup.readthedocs.io/en/stable/faq.html for details.
+# Defaults to only time-based checkpointing (see
+# "checkpoint_interval") instead of volume-based checkpointing.
+# checkpoint_volume: 1048576
+
+# Specify the parameters passed to then chunker (CHUNK_MIN_EXP,
+# CHUNK_MAX_EXP, HASH_MASK_BITS, HASH_WINDOW_SIZE). See
+# https://borgbackup.readthedocs.io/en/stable/internals.html for
+# details. Defaults to "19,23,21,4095".
+# chunker_params: 19,23,21,4095
+
+# Type of compression to use when creating archives. See
+# http://borgbackup.readthedocs.io/en/stable/usage/create.html for
+# details. Defaults to "lz4".
+# compression: lz4
+
+# Remote network upload rate limit in kiBytes/second. Defaults to
+# unlimited.
+# upload_rate_limit: 100
+
+# Number of times to retry a failing backup before giving up. Defaults
+# to 0 (i.e., does not attempt retry).
+# retries: 3
+
+# Wait time between retries (in seconds) to allow transient issues to
+# pass. Increases after each retry as a form of backoff. Defaults to 0
+# (no wait).
+# retry_wait: 10
+
+# Directory where temporary files are stored. Defaults to $TMPDIR.
+# temporary_directory: /path/to/tmpdir
+
+# Command to use instead of "ssh". This can be used to specify ssh
+# options.  Defaults to not set.
+# ssh_command: ssh -i /path/to/private/key
+
+# Base path used for various Borg directories. Defaults to $HOME,
+# ~$USER, or ~.
+# borg_base_directory: /path/to/base
+
+# Path for Borg configuration files. Defaults to
+# $borg_base_directory/.config/borg
+# borg_config_directory: /path/to/base/config
+
+borg_config_directory: /home/david/racine/config/backup/borg
+
+# Path for Borg cache files. Defaults to
+# $borg_base_directory/.cache/borg
+# borg_cache_directory: /path/to/base/cache
+
+# Maximum time to live (ttl) for entries in the Borg files cache.
+# borg_files_cache_ttl: 20
+
+# Path for Borg security and encryption nonce files. Defaults to
+# $borg_base_directory/.config/borg/security
+# borg_security_directory: /path/to/base/config/security
+
+# Path for Borg encryption key files. Defaults to
+# $borg_base_directory/.config/borg/keys
+# borg_keys_directory: /path/to/base/config/keys
+
+# Umask used for when executing Borg or calling hooks. Defaults to
+# 0077 for Borg or the umask that borgmatic is run with for hooks.
+# umask: 0077
+
+# Maximum seconds to wait for acquiring a repository/cache lock.
+# Defaults to 1.
+# lock_wait: 5
+
+# Name of the archive. Borg placeholders can be used. See the output
+# of "borg help placeholders" for details. Defaults to
+# "{hostname}-{now:%Y-%m-%dT%H:%M:%S.%f}". When running actions like
+# rlist, info, or check, borgmatic automatically tries to match only
+# archives created with this name format.
+# archive_name_format: '{hostname}-documents-{now}'
+
+# A Borg pattern for filtering down the archives used by borgmatic
+# actions that operate on multiple archives. For Borg 1.x, use a shell
+# pattern here and see the output of "borg help placeholders" for
+# details. For Borg 2.x, see the output of "borg help match-archives".
+# If match_archives is not specified, borgmatic defaults to deriving
+# the match_archives value from archive_name_format.
+# match_archives: sh:{hostname}-*
+
+# Bypass Borg error about a repository that has been moved. Defaults
+# to not bypassing.
+# relocated_repo_access_is_ok: true
+
+# Bypass Borg error about a previously unknown unencrypted repository.
+# Defaults to not bypassing.
+# unknown_unencrypted_repo_access_is_ok: true
+
+# Bypass Borg confirmation about check with repair option. Defaults to
+# an interactive prompt from Borg.
+# check_i_know_what_i_am_doing: true
+
+# Additional options to pass directly to particular Borg commands,
+# handy for Borg options that borgmatic does not yet support natively.
+# Note that borgmatic does not perform any validation on these
+# options. Running borgmatic with "--verbosity 2" shows the exact Borg
+# command-line invocation.
+# extra_borg_options:
+    # Extra command-line options to pass to "borg init".
+    # init: --extra-option
+
+    # Extra command-line options to pass to "borg create".
+    # create: --extra-option
+
+    # Extra command-line options to pass to "borg prune".
+    # prune: --extra-option
+
+    # Extra command-line options to pass to "borg compact".
+    # compact: --extra-option
+
+    # Extra command-line options to pass to "borg check".
+    # check: --extra-option
+
+# keep_last = 3
+
+# Keep all archives within this time interval.
+# keep_within: 3H
+
+# Number of secondly archives to keep.
+# keep_secondly: 60
+
+# Number of minutely archives to keep.
+# keep_minutely: 60
+
+# Number of hourly archives to keep.
+# keep_hourly: 24
+
+# Number of daily archives to keep.
+keep_daily: 7
+
+# Number of weekly archives to keep.
+keep_weekly: 4
+
+# Number of monthly archives to keep.
+keep_monthly: 12
+
+# Number of yearly archives to keep.
+keep_yearly: 7
+
+# Deprecated. When pruning or checking archives, only consider archive
+# names starting with this prefix. Borg placeholders can be used. See
+# the output of "borg help placeholders" for details. If a prefix is
+# not specified, borgmatic defaults to matching archives based on the
+# archive_name_format (see above).
+# prefix: sourcehostname
+
+# List of one or more consistency checks to run on a periodic basis
+# (if "frequency" is set) or every time borgmatic runs checks (if
+# "frequency" is omitted).
+# checks:
+    # Name of consistency check to run: "repository",
+    # "archives", "data", and/or "extract". Set to "disabled"
+    # to disable all consistency checks. "repository" checks
+    # the consistency of the repository, "archives" checks all
+    # of the archives, "data" verifies the integrity of the
+    # data within the archives, and "extract" does an
+    # extraction dry-run of the most recent archive. Note that
+    # "data" implies "archives".
+    # - name: repository
+
+      # How frequently to run this type of consistency check (as
+      # a best effort). The value is a number followed by a unit
+      # of time. E.g., "2 weeks" to run this consistency check
+      # no more than every two weeks for a given repository or
+      # "1 month" to run it no more than monthly. Defaults to
+      # "always": running this check every time checks are run.
+      # frequency: 2 weeks
+
+# Paths or labels for a subset of the configured "repositories" (see
+# above) on which to run consistency checks. Handy in case some of
+# your repositories are very large, and so running consistency checks
+# on them would take too long. Defaults to running consistency checks
+# on all configured repositories.
+# check_repositories:
+    # - user@backupserver:sourcehostname.borg
+
+# Restrict the number of checked archives to the last n. Applies only
+# to the "archives" check. Defaults to checking all archives.
+# check_last: 3
+
+# Apply color to console output. Can be overridden with --no-color
+# command-line flag. Defaults to true.
+# color: false
+
+# List of one or more shell commands or scripts to execute before all
+# the actions for each repository.
+# before_actions:
+    # - echo Starting actions.
+
+# List of one or more shell commands or scripts to execute before
+# creating a backup, run once per repository.
+# before_backup:
+    # - echo Starting a backup.
+
+# List of one or more shell commands or scripts to execute before
+# pruning, run once per repository.
+# before_prune:
+    # - echo Starting pruning.
+
+# List of one or more shell commands or scripts to execute before
+# compaction, run once per repository.
+# before_compact:
+    # - echo Starting compaction.
+
+# List of one or more shell commands or scripts to execute before
+# consistency checks, run once per repository.
+# before_check:
+    # - echo Starting checks.
+
+# List of one or more shell commands or scripts to execute before
+# extracting a backup, run once per repository.
+# before_extract:
+    # - echo Starting extracting.
+
+# List of one or more shell commands or scripts to execute after
+# creating a backup, run once per repository.
+# after_backup:
+    # - echo Finished a backup.
+
+# List of one or more shell commands or scripts to execute after
+# compaction, run once per repository.
+# after_compact:
+    # - echo Finished compaction.
+
+# List of one or more shell commands or scripts to execute after
+# pruning, run once per repository.
+# after_prune:
+    # - echo Finished pruning.
+
+# List of one or more shell commands or scripts to execute after
+# consistency checks, run once per repository.
+# after_check:
+    # - echo Finished checks.
+
+# List of one or more shell commands or scripts to execute after
+# extracting a backup, run once per repository.
+# after_extract:
+    # - echo Finished extracting.
+
+# List of one or more shell commands or scripts to execute after all
+# actions for each repository.
+# after_actions:
+    # - echo Finished actions.
+
+# List of one or more shell commands or scripts to execute when an
+# exception occurs during a "create", "prune", "compact", or "check"
+# action or an associated before/after hook.
+# on_error:
+    # - echo Error during create/prune/compact/check.
+
+# List of one or more shell commands or scripts to execute before
+# running all actions (if one of them is "create"). These are
+# collected from all configuration files and then run once before all
+# of them (prior to all actions).
+# before_everything:
+    # - echo Starting actions.
+
+# List of one or more shell commands or scripts to execute after
+# running all actions (if one of them is "create"). These are
+# collected from all configuration files and then run once after all
+# of them (after any action).
+# after_everything:
+    # - echo Completed actions.
+
+# List of one or more PostgreSQL databases to dump before creating a
+# backup, run once per configuration file. The database dumps are
+# added to your source directories at runtime, backed up, and removed
+# afterwards. Requires pg_dump/pg_dumpall/pg_restore commands. See
+# https://www.postgresql.org/docs/current/app-pgdump.html and
+# https://www.postgresql.org/docs/current/libpq-ssl.html for details.
+# postgresql_databases:
+    # Database name (required if using this hook). Or "all" to
+    # dump all databases on the host. (Also set the "format"
+    # to dump each database to a separate file instead of one
+    # combined file.) Note that using this database hook
+    # implicitly enables both read_special and one_file_system
+    # (see above) to support dump and restore streaming.
+    # - name: users
+
+      # Database hostname to connect to. Defaults to connecting
+      # via local Unix socket.
+      # hostname: database.example.org
+
+      # Database hostname to restore to. Defaults to the
+      # "hostname" option.
+      # restore_hostname: database.example.org
+
+      # Port to connect to. Defaults to 5432.
+      # port: 5433
+
+      # Port to restore to. Defaults to the "port" option.
+      # restore_port: 5433
+
+      # Username with which to connect to the database. Defaults
+      # to the username of the current user. You probably want
+      # to specify the "postgres" superuser here when the
+      # database name is "all".
+      # username: dbuser
+
+      # Username with which to restore the database. Defaults to
+      # the "username" option.
+      # restore_username: dbuser
+
+      # Password with which to connect to the database. Omitting
+      # a password will only work if PostgreSQL is configured to
+      # trust the configured username without a password or you
+      # create a ~/.pgpass file.
+      # password: trustsome1
+
+      # Password with which to connect to the restore database.
+      # Defaults to the "password" option.
+      # restore_password: trustsome1
+
+      # Do not output commands to set ownership of objects to
+      # match the original database. By default, pg_dump and
+      # pg_restore issue ALTER OWNER or SET SESSION
+      # AUTHORIZATION statements to set ownership of created
+      # schema elements. These statements will fail unless the
+      # initial connection to the database is made by a
+      # superuser.
+      # no_owner: true
+
+      # Database dump output format. One of "plain", "custom",
+      # "directory", or "tar". Defaults to "custom" (unlike raw
+      # pg_dump) for a single database. Or, when database name
+      # is "all" and format is blank, dumps all databases to a
+      # single file. But if a format is specified with an "all"
+      # database name, dumps each database to a separate file of
+      # that format, allowing more convenient restores of
+      # individual databases. See the pg_dump documentation for
+      # more about formats.
+      # format: directory
+
+      # SSL mode to use to connect to the database server. One
+      # of "disable", "allow", "prefer", "require", "verify-ca"
+      # or "verify-full". Defaults to "disable".
+      # ssl_mode: require
+
+      # Path to a client certificate.
+      # ssl_cert: /root/.postgresql/postgresql.crt
+
+      # Path to a private client key.
+      # ssl_key: /root/.postgresql/postgresql.key
+
+      # Path to a root certificate containing a list of trusted
+      # certificate authorities.
+      # ssl_root_cert: /root/.postgresql/root.crt
+
+      # Path to a certificate revocation list.
+      # ssl_crl: /root/.postgresql/root.crl
+
+      # Command to use instead of "pg_dump" or "pg_dumpall".
+      # This can be used to run a specific pg_dump version
+      # (e.g., one inside a running container). Defaults to
+      # "pg_dump" for single database dump or "pg_dumpall" to
+      # dump all databases.
+      # pg_dump_command: docker exec my_pg_container pg_dump
+
+      # Command to use instead of "pg_restore". This can be used
+      # to run a specific pg_restore version (e.g., one inside a
+      # running container). Defaults to "pg_restore".
+      # pg_restore_command: docker exec my_pg_container pg_restore
+
+      # Command to use instead of "psql". This can be used to
+      # run a specific psql version (e.g., one inside a running
+      # container). Defaults to "psql".
+      # psql_command: docker exec my_pg_container psql
+
+      # Additional pg_dump/pg_dumpall options to pass directly
+      # to the dump command, without performing any validation
+      # on them. See pg_dump documentation for details.
+      # options: --role=someone
+
+      # Additional psql options to pass directly to the psql
+      # command that lists available databases, without
+      # performing any validation on them. See psql
+      # documentation for details.
+      # list_options: --role=someone
+
+      # Additional pg_restore/psql options to pass directly to
+      # the restore command, without performing any validation
+      # on them. See pg_restore/psql documentation for details.
+      # restore_options: --role=someone
+
+      # Additional psql options to pass directly to the analyze
+      # command run after a restore, without performing any
+      # validation on them. See psql documentation for details.
+      # analyze_options: --role=someone
+
+# List of one or more MySQL/MariaDB databases to dump before creating
+# a backup, run once per configuration file. The database dumps are
+# added to your source directories at runtime, backed up, and removed
+# afterwards. Requires mysqldump/mysql commands (from either MySQL or
+# MariaDB). See https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html
+# or https://mariadb.com/kb/en/library/mysqldump/ for details.
+# mysql_databases:
+    # Database name (required if using this hook). Or "all" to
+    # dump all databases on the host. Note that using this
+    # database hook implicitly enables both read_special and
+    # one_file_system (see above) to support dump and restore
+    # streaming.
+    # - name: users
+
+      # Database hostname to connect to. Defaults to connecting
+      # via local Unix socket.
+      # hostname: database.example.org
+
+      # Database hostname to restore to. Defaults to the
+      # "hostname" option.
+      # restore_hostname: database.example.org
+
+      # Port to connect to. Defaults to 3306.
+      # port: 3307
+
+      # Port to restore to. Defaults to the "port" option.
+      # restore_port: 5433
+
+      # Username with which to connect to the database. Defaults
+      # to the username of the current user.
+      # username: dbuser
+
+      # Username with which to restore the database. Defaults to
+      # the "username" option.
+      # restore_username: dbuser
+
+      # Password with which to connect to the database. Omitting
+      # a password will only work if MySQL is configured to
+      # trust the configured username without a password.
+      # password: trustsome1
+
+      # Password with which to connect to the restore database.
+      # Defaults to the "password" option.
+      # restore_password: trustsome1
+
+      # Database dump output format. Currently only "sql" is
+      # supported. Defaults to "sql" for a single database. Or,
+      # when database name is "all" and format is blank, dumps
+      # all databases to a single file. But if a format is
+      # specified with an "all" database name, dumps each
+      # database to a separate file of that format, allowing
+      # more convenient restores of individual databases.
+      # format: directory
+
+      # Use the "--add-drop-database" flag with mysqldump,
+      # causing the database to be dropped right before restore.
+      # Defaults to true.
+      # add_drop_database: false
+
+      # Additional mysqldump options to pass directly to the
+      # dump command, without performing any validation on them.
+      # See mysqldump documentation for details.
+      # options: --skip-comments
+
+      # Additional mysql options to pass directly to the mysql
+      # command that lists available databases, without
+      # performing any validation on them. See mysql
+      # documentation for details.
+      # list_options: --defaults-extra-file=my.cnf
+
+      # Additional mysql options to pass directly to the mysql
+      # command that restores database dumps, without performing
+      # any validation on them. See mysql documentation for
+      # details.
+      # restore_options: --defaults-extra-file=my.cnf
+
+# sqlite_databases:
+    # This is used to tag the database dump file with a name.
+    # It is not the path to the database file itself. The name
+    # "all" has no special meaning for SQLite databases.
+    # - name: users
+
+      # Path to the SQLite database file to dump. If relative,
+      # it is relative to the current working directory. Note
+      # that using this database hook implicitly enables both
+      # read_special and one_file_system (see above) to support
+      # dump and restore streaming.
+      # path: /var/lib/sqlite/users.db
+
+      # Path to the SQLite database file to restore to. Defaults
+      # to the "path" option.
+      # restore_path: /var/lib/sqlite/users.db
+
+# List of one or more MongoDB databases to dump before creating a
+# backup, run once per configuration file. The database dumps are
+# added to your source directories at runtime, backed up, and removed
+# afterwards. Requires mongodump/mongorestore commands. See
+# https://docs.mongodb.com/database-tools/mongodump/ and
+# https://docs.mongodb.com/database-tools/mongorestore/ for details.
+# mongodb_databases:
+    # Database name (required if using this hook). Or "all" to
+    # dump all databases on the host. Note that using this
+    # database hook implicitly enables both read_special and
+    # one_file_system (see above) to support dump and restore
+    # streaming.
+    # - name: users
+
+      # Database hostname to connect to. Defaults to connecting
+      # to localhost.
+      # hostname: database.example.org
+
+      # Database hostname to restore to. Defaults to the
+      # "hostname" option.
+      # restore_hostname: database.example.org
+
+      # Port to connect to. Defaults to 27017.
+      # port: 27018
+
+      # Port to restore to. Defaults to the "port" option.
+      # restore_port: 5433
+
+      # Username with which to connect to the database. Skip it
+      # if no authentication is needed.
+      # username: dbuser
+
+      # Username with which to restore the database. Defaults to
+      # the "username" option.
+      # restore_username: dbuser
+
+      # Password with which to connect to the database. Skip it
+      # if no authentication is needed.
+      # password: trustsome1
+
+      # Password with which to connect to the restore database.
+      # Defaults to the "password" option.
+      # restore_password: trustsome1
+
+      # Authentication database where the specified username
+      # exists. If no authentication database is specified, the
+      # database provided in "name" is used. If "name" is "all",
+      # the "admin" database is used.
+      # authentication_database: admin
+
+      # Database dump output format. One of "archive", or
+      # "directory". Defaults to "archive". See mongodump
+      # documentation for details. Note that format is ignored
+      # when the database name is "all".
+      # format: directory
+
+      # Additional mongodump options to pass directly to the
+      # dump command, without performing any validation on them.
+      # See mongodump documentation for details.
+      # options: --dumpDbUsersAndRoles
+
+      # Additional mongorestore options to pass directly to the
+      # dump command, without performing any validation on them.
+      # See mongorestore documentation for details.
+      # restore_options: --restoreDbUsersAndRoles
+
+# ntfy:
+    # The topic to publish to. See https://ntfy.sh/docs/publish/
+    # for details.
+    # topic: topic
+
+    # The address of your self-hosted ntfy.sh instance.
+    # server: https://ntfy.your-domain.com
+
+    # The username used for authentication.
+    # username: testuser
+
+    # The password used for authentication.
+    # password: fakepassword
+
+    # start:
+        # The title of the message.
+        # title: Ping!
+
+        # The message body to publish.
+        # message: Your backups have failed.
+
+        # The priority to set.
+        # priority: urgent
+
+        # Tags to attach to the message.
+        # tags: incoming_envelope
+
+    # finish:
+        # The title of the message.
+        # title: Ping!
+
+        # The message body to publish.
+        # message: Your backups have failed.
+
+        # The priority to set.
+        # priority: urgent
+
+        # Tags to attach to the message.
+        # tags: incoming_envelope
+
+    # fail:
+        # The title of the message.
+        # title: Ping!
+
+        # The message body to publish.
+        # message: Your backups have failed.
+
+        # The priority to set.
+        # priority: urgent
+
+        # Tags to attach to the message.
+        # tags: incoming_envelope
+
+    # List of one or more monitoring states to ping for: "start",
+    # "finish", and/or "fail". Defaults to pinging for failure
+    # only.
+    # states:
+        # - start
+        # - finish
+
+# Configuration for a monitoring integration with Healthchecks. Create
+# an account at https://healthchecks.io (or self-host Healthchecks) if
+# you'd like to use this service. See borgmatic monitoring
+# documentation for details.
+# healthchecks:
+    # Healthchecks ping URL or UUID to notify when a backup
+    # begins, ends, errors, or to send only logs.
+    # ping_url: https://hc-ping.com/your-uuid-here
+
+    # Verify the TLS certificate of the ping URL host. Defaults to
+    # true.
+    # verify_tls: false
+
+    # Send borgmatic logs to Healthchecks as part the "finish",
+    # "fail", and "log" states. Defaults to true.
+    # send_logs: false
+
+    # Number of bytes of borgmatic logs to send to Healthchecks,
+    # ideally the same as PING_BODY_LIMIT configured on the
+    # Healthchecks server. Set to 0 to send all logs and disable
+    # this truncation. Defaults to 100000.
+    # ping_body_limit: 200000
+
+    # List of one or more monitoring states to ping for: "start",
+    # "finish", "fail", and/or "log". Defaults to pinging for all
+    # states.
+    # states:
+        # - finish
+
+# Configuration for a monitoring integration with Cronitor. Create an
+# account at https://cronitor.io if you'd like to use this service.
+# See borgmatic monitoring documentation for details.
+# cronitor:
+    # Cronitor ping URL to notify when a backup begins,
+    # ends, or errors.
+    # ping_url: https://cronitor.link/d3x0c1
+
+# Configuration for a monitoring integration with PagerDuty. Create an
+# account at https://www.pagerduty.com/ if you'd like to use this
+# service. See borgmatic monitoring documentation for details.
+# pagerduty:
+    # PagerDuty integration key used to notify PagerDuty
+    # when a backup errors.
+    # integration_key: a177cad45bd374409f78906a810a3074
+
+# Configuration for a monitoring integration with Crunhub. Create an
+# account at https://cronhub.io if you'd like to use this service. See
+# borgmatic monitoring documentation for details.
+# cronhub:
+    # Cronhub ping URL to notify when a backup begins,
+    # ends, or errors.
+    # ping_url: https://cronhub.io/ping/1f5e3410-254c-5587

@@ -1,0 +1,6 @@
+# vim: set filetype=conf :
+
+*.png diff=image
+*.jpg diff=image
+
+*.doc diff=word

@@ -1,0 +1,23 @@
+/* Theme for qutebrowser pages */
+
+* {
+  color: #5b3c11;
+}
+html {
+  background-color: #000000;
+}
+body {
+  background-color: #000000;
+  color: #5b3c11;
+}
+a {
+  color: #58721d;
+}
+a:visited {
+  color: #88421d;
+}
+code {
+  color: #58721d;
+  background-color: #070503;
+	filter: opacity(95%);
+}

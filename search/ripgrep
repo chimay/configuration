@@ -1,0 +1,7 @@
+# vim: set filetype=conf:
+
+--pre
+ripgrep-pipe.zsh
+
+--pre-glob
+*.{pdf,html,odt,png,jpg,gif,ogg,mp3}

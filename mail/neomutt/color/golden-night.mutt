@@ -1,0 +1,197 @@
+# vim: syntax=muttrc
+
+# Documentation {{{1
+
+# black white
+# red green blue yellow
+# magenta cyan
+#
+# color0 ... color 255
+
+### Belles couleurs sur fond noir :
+#
+# Noir                : 0
+# Rouge               : 1
+# Vert                : 2
+# Orange              : 3, 94
+# Bleu                : 4
+# Magenta             : 5, 89, 126
+# Cyan                : 6
+# Blanc               : 7
+# Gris                : 8
+# Rouge clair         : 9
+# Vert                : 10
+# Jaune               : 11
+# Bleu clair          : 12
+#
+# Gris                : 240
+# Gris clair          : 241
+#
+# Rose                : 131
+# Rouge foncé         : 88
+# Magenta foncé       : 53
+#
+### Belles couleurs de fond :
+#
+# Gris très foncé     : 233
+
+# Ajouter bright en préfixe à la couleur de fond
+# pour obtenir un curseur clignotant
+
+# Vert 35 = defaut avant-plan
+
+# }}}1
+
+#  {{{ Générique
+# ------------------------------------------------------------------------
+
+color normal default default
+
+# }}}
+
+# {{{ Statut
+
+color status color3 color232
+
+color message color3 default
+
+color error color3 default
+
+# }}}
+
+#  {{{ Index
+# ------------------------------------------------------------------------
+
+# {{{ Flèches des files de discussion
+# ------------------------------------
+
+color tree default default
+
+# }}}
+
+# {{{ Messages lus
+# ------------------------------------
+
+color index default default ~R
+
+# }}}
+
+# {{{ Anciens messages non lus
+# ------------------------------------
+
+# ~0 : anciens messages non lus
+# ~U : messages non lus
+
+color index default default ~O
+
+# }}}
+
+# {{{ Nouveaux courriels
+# ------------------------------------
+
+color index default default ~N
+
+# }}}
+
+# {{{ Messages importants (flag)
+# ------------------------------------
+
+color index default default ~F
+
+# }}}
+
+# {{{ Messages sélectionnés (tag)
+# ------------------------------------
+
+color index default color233 ~T
+
+# }}}
+
+# {{{ Messages supprimés
+# ------------------------------------
+
+color index color240 default ~D
+
+# }}}
+
+# {{{ Message courant
+
+mono indicator reverse
+
+#mono indicator standout
+#mono indicator bold
+#mono indicator underline
+
+# }}}
+
+# {{{ Messages non lus à haut score
+# ------------------------------------
+
+color index color88 default '(~N | ~O) ~n 12-'
+
+# }}}
+
+# }}}
+
+#  {{{ Pager
+# ------------------------------------------------------------------------
+
+#color hdrdefault color241	black
+#color hdrdefault color95	color233
+#color hdrdefault color58	color232
+#color hdrdefault color131	color232
+color hdrdefault default	color232
+
+#color header     color106	color232 "^(from|to):"
+#color header     color106	color232 "^(date|subject):"
+
+color bold        color88   default			# bold on mails' body
+color underline   color94   default			# underlined
+
+color search      color0    color3
+
+color attachment  default   default			# attachments
+color signature   color131  default			# signature
+color tilde       default   default			# ~ at the end of messages
+color markers	  color52   default			# the + sign at the start of broken lines
+
+color quoted      color9  default			# quoted text
+color quoted1     color9  default
+color quoted2     color9  default
+color quoted3     color9  default
+color quoted4     color9  default
+color quoted5     color9  default
+color quoted6     color9  default
+color quoted7     color9  default
+color quoted8     color9  default
+#color quoted9     color9  default
+
+
+# {{{ Expressions régulières
+
+#color body       color23   default  "((ftp|http|https)://|(file|mailto|news):|www\\.)[-a-zA-Z0-9_.:]\
+#*[a-zA-Z0-9](/[^][{} \t\n\r\"<>()]*[^][{} \t\n\r\"<>().,:!])?/?"
+
+# Ronald J Kimball's url regexp. mutt-user 04/05/28
+
+color body default default "(https?|ftp|gopher|finger)://([^"'"'"' \t\r\n)>.,!?&]|[.,!?][^"'"'"' \t\r\n)>.,!?&]|&([^g]|$)|&g([^t]|$)|&gt([^;]|$))+"
+
+color body default default "[-a-zA-Z_0-9.+]+@[-a-zA-Z_0-9.]+"
+color body default default "(^| )_[-a-zA-Z0-9_]+_[,.?]?[ \n]"
+
+# emphasized text
+
+color body default default "[*][-[:alnum:]]+[*]"
+color body default default "[ ]_[-[:alnum:]]+_([ ]|\.)"
+
+# }}}
+
+# }}}
+
+#  {{{ Smilies
+# ------------------------------------------------------------------------
+
+#color body blue color154 "[;:]-*[)>(<|]"
+#color body brightblack color154 "[)>(<|]-*[;:]"
+
+# }}}

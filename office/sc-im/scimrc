@@ -1,0 +1,26 @@
+# vim: set filetype=conf:
+
+set autocalc
+
+nnoremap ";" "/"
+
+color "type=HEADINGS fg=DEFAULT_COLOR bg=DEFAULT_COLOR reverse=1"
+color "type=CELL_SELECTION fg=DEFAULT_COLOR bg=DEFAULT_COLOR bold=1"
+color "type=CELL_SELECTION_SC fg=DEFAULT_COLOR bg=DEFAULT_COLOR standout=1 bold=1"
+color "type=INPUT fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=NORMAL fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+
+color "type=WELCOME fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=INFO_MSG fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=ERROR_MSG fg=RED bg=DEFAULT_COLOR"
+
+color "type=MODE fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=NUMB fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=STRG fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=DATEF fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=EXPRESSION fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=CELL_ERROR fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=CELL_NEGATIVE fg=RED bg=DEFAULT_COLOR"
+color "type=CELL_ID fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=CELL_FORMAT fg=DEFAULT_COLOR bg=DEFAULT_COLOR"
+color "type=CELL_CONTENT fg=DEFAULT_COLOR bg=DEFAULT_COLOR"

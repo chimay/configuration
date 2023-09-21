@@ -1,0 +1,63 @@
+# vim: set ft=zsh :
+
+# Chemins des exécutables {{{1
+
+setopt null_glob
+
+typeset -U path
+
+path=()
+
+# Langages de script {{{2
+
+# perl
+
+path+=(~/perl5/bin)
+
+# python
+
+path+=(~/.pip/bin)
+
+# Racine dans $HOME {{{2
+
+# *(F) = répertoires non vides
+
+path+=(~/racine/self/bin/*(F))
+
+path+=(~/racine/automat)
+
+path+=(~/racine/pack/bin)
+
+path+=(~/racine/shell/*(F))
+
+path+=(~/racine/prolang/interpreted/perl)
+path+=(~/racine/prolang/interpreted/pip/bin)
+path+=(~/racine/prolang/interpreted/gem/ruby/*/bin)
+path+=(~/racine/prolang/compiled/clang)
+path+=(~/racine/prolang/compiled/rust)
+path+=(~/racine/prolang/compiled/go/bin)
+path+=(~/racine/prolang/compiled/misc)
+
+path+=(~/racine/bin/fzf-nova)
+
+path+=(~/racine/local/bin)
+
+path+=(~/racine/matemat/octave)
+
+# Système {{{2
+
+path+=(/usr/local/bin)
+path+=(/usr/local/sbin)
+
+path+=(/usr/bin)
+path+=(/usr/sbin)
+
+path+=(/bin)
+path+=(/sbin)
+
+path+=(/usr/bin/core_perl)
+path+=(/usr/bin/site_perl)
+path+=(/usr/bin/vendor_perl)
+
+path+=(/snap/bin)
+path+=(/var/lib/flatpak/exports/bin)

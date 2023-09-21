@@ -1,0 +1,12 @@
+# vim: set filetype=conf:
+
+--paging=always
+
+#--theme="Coldark-Cold"
+#--theme="GitHub"
+#--theme="Monokai Extended Light"
+#--theme="Solarized (dark)"
+--theme="ansi"
+#--theme="base16"
+#--theme="base16-256"
+#--theme="gruvbox-white"

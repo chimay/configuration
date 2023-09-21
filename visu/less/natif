@@ -1,0 +1,25 @@
+# vim: set filetype=conf :
+# vim: set nowrap :
+
+# La ligne #command est nécessaire.
+
+#command
+
+:q        quit
+
+# La ligne #line-edit est nécessaire.
+
+#line-edit
+
+^G        abort
+
+# La ligne #env est nécessaire.
+
+#env
+
+# La numérotation au moyen de l'option -N
+# provoque des problèmes d'affichage
+
+LESS =
+
+LESSOPEN = || zsh ~/racine/shell/visu/lesspipe.zsh %s

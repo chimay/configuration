@@ -1,0 +1,10 @@
+## System-wide startup file for Octave.
+##
+## If the environment variable OCTAVE_SITE_INITFILE is set when Octave
+## starts, then that file is executed instead of this file.
+
+octave_core_file_name ("/home/david/racine/varia/data/octave-workspace")
+
+## Begin savepath auto-created section, do not edit
+  addpath ('/home/david/racine/matemat/octave', '-begin');
+## End savepath auto-created section

@@ -1,0 +1,35 @@
+# vim: set filetype=conf :
+
+include reper-maison
+
+# {{{ Dot-dirs
+# ------------------------------------
+
+#path = .config
+#path = .fontconfig
+
+#path = .data
+#path = .local
+
+#path = .cache
+
+# path = .mozilla
+
+#path = .dvdcss
+
+#path = .gtk-bookmarks
+#path = .gtkrc-2.0
+#path = .gtkrc-2.0-kde4
+
+#path = .qt
+
+#path = .gnome2
+#path = .gnome2_private
+#path = .gstreamer-0.10
+
+#path = .kderc
+#path = .kde
+
+#path = .lv2
+
+# }}}

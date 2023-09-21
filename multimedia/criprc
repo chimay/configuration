@@ -1,0 +1,205 @@
+# Charlton's RIP, encode, and tag script rc file:
+#
+# Rename this file to .criprc and put in your home directory...
+#
+# If any of these are omitted or commented out, the defaults that are
+# used can be found set at the beginning of the crip script.
+
+
+# Default contact information (please put your e-mail address here)
+# Example:  contact = nobody@nowhere.com
+
+contact =
+
+# encoders supported are "vorbis" and "flac"
+
+encodeto = vorbis
+
+# Flags for oggenc (Ogg Vorbis encoder) command.  Only used only if
+#  $encodeto is set to "vorbis".
+# Default is "-q 5" which is generally considered the point at which the
+# current vorbis codecs attain transparency to source (according to):
+#   http://wiki.hydrogenaudio.org/index.php?title=Ogg_Vorbis
+# Make sure you are using the best vorbis codec (read this):
+#   http://wiki.hydrogenaudio.org/index.php?title=Recommended_Ogg_Vorbis
+# Note that "-q 4" is a quality setting roughly equal to 128kbps (average)
+# and that "-q 3" (roughly 110kbps) is better than even 128kbps VBR MP3.
+# Hint:  If you'd rather put these flags as a command-line option,
+#  use:  -o " -q 5"  (with a space as the first character within the
+#  quotes so as to not confuse the command-line parser)
+
+oggencflags = -q 7
+
+# flacflags:  Only used if encodeto is set to "flac".
+# Note: if you include --ogg as a flag and encode to an ogg-formatted
+# flac file,  crip will try to use metaflac to write the tags and that
+# seems to fail.  I'm not sure what the best way to handle this scenario is.
+# If anyone out there wants to make flac files within the .ogg framework,
+# please enlighten me as to 1) why,  and 2) what is one supposed to use to
+# modify comments in this .ogg file,  vorbiscomment?!
+
+flacflags = --best --replay-gain
+
+# Flags for cdparanoia (CD ripper) command.
+# I like to use "-v -z" here.
+# If you find the "-v" is too verbose and pointless,  feel free to take it
+# out.  That would significantly reduce the size of your terminal output.
+# I find that using "-z" is good because I like knowing that when the script
+# finishes cdparanoia did not encounter anything that could lead to an
+# audible defect.  However sometimes the script might hang indefinitely
+# because of the "-z".  If you find that is the case,  you can now ctrl-C
+# during the rip and set new options (say, to "-v --never-skip=40") so that
+# you can at least go back and listen to see if there were any audible
+# defects (most of the time there isn't even if the rip wasn't perfect).
+
+cdparanoiaflags = -v -z
+
+# The first comment field in the tag-info will default be:
+# "Produced using crip v3.6 (http://bach.dynet.com/crip) on <date/timestamp>"
+# (version subject to change accordingly)
+# If you want a 2nd comment line in your ogg tag,  uncomment and edit the
+# following line:
+#comment = <your comment here if you really want>
+
+# Get the title information that goes into the tag either from the
+# "filename" or the "cddb" info.
+# Default is "filename",  because sometimes the CDDB info is wrong.
+# Note that if you set this to "cddb" but there isn't any CDDB info,
+# it'll just set it based on the filename anyway.
+
+settitle = filename
+
+# editnames: "off" = Use the legacy command-line to edit filenames;
+# "on" = use an editor;  and "both" = use the command-line to edit the
+# filenames but also asks afterwards if you want to edit the filenames
+# with the editor.   default = "on".
+
+editnames = on
+
+# Your favorite editor for editing filenames and tag files
+
+editor = nvim -u ~/racine/config/edit/neovim/rc-vimzsh.vim
+
+# Normalization is not necessary with replaygain/vorbisgain tags, so
+# turn off normalization by default.
+# This option can either be "on" or "off".
+
+normalize = off
+
+# Volume threshold - if peak vol > 1/$volthresh don't bother normalizing
+# Default is 1.078.  If you set this value real high,  your songs probably
+# won't be normalized but you'll still get the "not normalized, peak=X.XXX"
+# in your comment (you won't get this in your comment if normalize is off,
+# but you'll still have peak and group-peak info in your replaygain (vorbisgain)
+# tags,  but these tags are not visible using xmms thru v1.2.7).
+# If normalize = "off" then $volthresh is ignored.
+
+volthresh = 1.078
+
+# trimsilence can either be "on" or "off",  depending on whether or not you
+#  want to trim silence off the beginning & end of your track/group.
+# Note that if you turn both trimsilence and normalize off,  you won't need
+#  sox-12.17.0 or wav_find_beginning or wav_find_end.
+# I personally always set this to "on",  but I'm defaulting it to "off" so
+# that the wav_find_X binaries aren't necessary.  It doesn't seem to make
+# much difference in the final file sizes anyway.
+
+trimsilence = off
+
+# trimsilargs are the arguments that sox will take to trim the silence
+# from your tracks (if trimsilence is on in the first place).
+# A very safe setting is "silence 1 0:0:0.01 -96d"
+
+trimsilargs = silence 1 0:0:0.01 -96d
+
+# (i.e. anything louder than -96db for more than one hundredth of a second
+#  will be considered the beginning of the sound.)
+
+# The type of media that the source comes from (default = "CD")
+# this just gets put in a comment
+
+sourcemedia = CD
+
+# Default genre:  set to "classical" as default:
+
+#genre = classical
+
+# Default device to rip from
+
+cddevice = /dev/sr0
+
+# Turn on/off deletion of wave and tag files.  "on" by default for
+# cleanup purposes.
+
+delfiles = on
+
+# Classical-style questioning defaults to "off" (because I'm assuming
+# most people will be ripping 'pop-style' CDs most of the time),
+
+askclassical = off
+
+# ...unless the genre ends up being "classical", or one of the
+# classicalgenres specified inside the crip script, which can only
+# be set inside the script itself.
+
+# Skip the album abbreviation question?
+# (turn this "on" if you never want to be asked for or have the album
+#  abbreviation.  If you rip a bunch of classical CDs and don't want
+#  to have to answer null to the album abbreviation question every
+#  time it's asked,  but otherwise for non-classical CDs you want to
+#  have the album abbreviation,  set to "classical".)
+# "off", "on", or "classical" - default should be "classical".
+
+skipalbumabv = off
+
+# Turn this on to skip the ripping process and create empty .wav files.
+# By turning this on you will automatically turn on $stopgap so that
+# you will have a chance to substitute the empty .wav files with the
+# .wav files that you presumably already have.
+
+skiprip = off
+
+# Add a 'stop-gap' for allowing user to edit the .wav files before
+# they are encoded?  This is done after the digital silence trimming.
+
+stopgap = off
+
+# Eject CD when done with it.  "off" by default.
+
+ejectcd = off
+
+# Map euro characters in the default filenames to American characters
+# (turn "on" if you are an American imperialist)
+
+mapeurochars = off
+
+# Allow spaces in filenames
+# I recommend leaving this off because it is bad form to have spaces in
+# filenames regardless of whether you are on UNIX or Windows.  I have included
+# the option because there are too many Windoze users out there who flooded
+# the internet with sorry-ass MP3s made with bad encoders, no tag information,
+# and inappropriate file naming conventions, and who are still too used to
+# putting spaces in their filenames.  I figure having this feature will
+# encourage them to use this script and make better quality files for
+# everyone.  (no offense to the person who suggested me this feature)
+# So if you absolutely must have spaces in your filenames,  turn
+# this to "on" (default is "off").
+
+allowspaces = off
+
+# This is the e-mail address used to submit new entries to the freedb
+#  CDDB database
+
+cddbsubmitaddr = freedb-submit@freedb.org
+
+# Directory to write the cddb submit entry file (need to have write
+#  permissions to this directory).
+cddbsubmitdir = /tmp
+
+# The following is the charset for the freedb-submit e-mail:
+
+#charset = iso-8859-1
+charset = utf-8
+
+
+

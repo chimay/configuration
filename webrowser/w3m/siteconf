@@ -1,0 +1,8 @@
+# vim: set filetype=conf:
+
+# url <url>|/<re-url>/|m@<re-url>@i [exact]
+# substitute_url "<destination-url>"
+# url_charset <charset>
+# no_referer_from on|off
+# no_referer_to on|off
+# user_agent "string"

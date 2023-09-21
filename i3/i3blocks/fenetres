@@ -1,8 +1,0 @@
-#!/usr/bin/env /bin/zsh
-
-echo Fenetre
-
-if [ -n "$BLOCK_BUTTON" ]
-then
-	~/racine/shell/dialog/rofi-fenetres.zsh > /dev/null
-fi

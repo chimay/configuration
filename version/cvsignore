@@ -1,0 +1,17 @@
+
+
+*,v
+RCS
+
+.git
+.gitignore
+
+.hg
+.hgignore
+
+.bzr
+.bzrignore
+
+_MTN
+
+_darcs

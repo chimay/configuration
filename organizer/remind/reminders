@@ -1,0 +1,10 @@
+# vim: set filetype=conf:
+
+BANNER Reminders for %w, %d%s %m, %y%o:
+
+SET basedir getenv("HOME") + "/racine/config/organizer/remind"
+
+include [basedir]/unique
+include [basedir]/recurrent
+include [basedir]/anniversaires
+include [basedir]/lune

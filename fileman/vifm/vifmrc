@@ -1,0 +1,1010 @@
+" vim: set filetype=vim:
+
+" Options {{{1
+
+" - f - when  included, running :filter command results in not
+"       inverted (matching files  are  filtered  out)  and  :filter!  in
+"       inverted (matching files are left) filter, when omitted, meaning
+"       of the exclamation mark changes to the opposite;
+" - s - when included, yy, dd and DD normal mode commands act  on
+"       selection, otherwise they operate on current file only;
+" - t - when included, <tab> (thus <c-i>) behave as <space> and
+"       switches active pane, otherwise <tab> and <c-i>  go  forward  in
+"       the view history.  It's possible to make both <tab> and <c-i> to
+"       work as expected by setting up the terminal  to  emit  a  custom
+"       sequence when <c-i> is pressed; see :histnext for details.
+"
+" t doit être inclus sinon <tab> ne marche pas
+"
+" pas besoin de placer s : ys / yS le remplace
+
+set cpoptions=t
+
+" ../ visible ?
+
+set dotdirs=rootparent,nonrootparent,treeleafsparent
+
+" Important pour lancer les commandes externes
+
+set shell=/bin/zsh
+
+" This is the actual command used to start vi.  The default is vim.
+" If you would like to use another vi clone such as Elvis or Vile
+" you will need to change this setting.
+
+set vicmd=vim
+
+" Mieux dans un terminal
+"set vixcmd=gvim
+
+" This makes vifm perform file operations on its own instead of relying on
+" standard utilities like `cp`.  While using `cp` and alike is a more universal
+" solution, it's also much slower and doesn't support progress measuring.
+
+set syscalls
+
+" Confirmation avant effacement définitif
+
+set confirm=permdelete
+
+" Trash Directory
+" The default is to move files that are deleted with dd or :d to
+" the trash directory.  If you change this you will not be able to move
+" files by deleting them and then using p to put the file in the new location.
+" I recommend not changing this until you are familiar with vifm.
+" This probably shouldn't be an option.
+
+set trash
+
+set trashdir=%r/.vifm-trash,$HOME/racine/trash/vifm
+
+" Automatically resolve symbolic links on l or Enter.
+
+set followlinks
+
+" With this option turned on you can run partially entered commands with
+" unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
+
+set fastrun
+
+" Tri
+
+set sort=+dir,+ext,+name,-mtime
+
+" Natural sort of (version) numbers within text.
+
+set sortnumbers
+
+" Maximum number of changes that can be undone.
+
+set undolevels=100
+
+" If you installed the vim.txt help file set vimhelp.
+" If would rather use a plain text help file set novimhelp.
+
+set vimhelp
+
+" If you would like to run an executable file when you
+" press return on the file name set this.
+
+set norunexec
+
+" Show list of matches on tab completion in command-line mode
+
+set wildmenu
+
+" Display completions in a form of popup with descriptions of the matches
+
+set wildstyle=popup
+
+" Display suggestions in normal, visual and view modes for keys, marks and
+" registers (at most 5 files).  In other view, when available.
+
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+
+" Vue en 3
+
+set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"
+
+" Ignore case in search patterns unless it contains at least one uppercase
+" letter
+
+set ignorecase
+set smartcase
+
+" Don't highlight search results automatically
+
+set nohlsearch
+
+" Use increment searching (search while typing)
+
+set incsearch
+
+" Try to leave some space from cursor to upper/lower border in lists
+
+set scrolloff=4
+
+" Don't do too many requests to slow file systems
+
+set slowfs=curlftpfs
+
+" if !has('win')
+"     set slowfs=curlftpfs
+" endif
+
+" Various customization examples
+
+" Use ag (the silver searcher) instead of grep
+"
+" set grepprg=ag\ --line-numbers\ %i\ %a\ %s
+
+set grepprg="rg --vimgrep --smart-case %i %a %s"
+
+set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
+
+set locateprg="locate -d ~/racine/index/locate/racine.db %a"
+
+set fusehome="~/racine/bridge/fuse"
+
+" Environnement {{{1
+
+" Add additional place to look for executables
+"
+" let $PATH=$HOME.'/bin/fuse:'.$PATH
+
+" Export IPC name of current instance as environment variable and use it to
+" communicate with the instance later.
+"
+" It can be used in some shell script that gets run from inside vifm, for
+" example, like this:
+"     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
+
+let $VIFM_SERVER_NAME = v:servername
+
+
+" Historique {{{1
+
+" This is how many directories to store in histories.
+
+set history=60000
+
+" What should be saved automatically between vifm runs
+" Like in previous versions of vifm
+" set vifminfo=options,filetypes,commands,bookmarks,dhistory,state,cs
+" Like in vi
+
+set vifminfo=
+			\bmarks,
+			\bookmarks,
+			\cs,
+			\chistory,
+			\dhistory,
+			\dirstack,
+			\fhistory,
+			\phistory,
+			\registers,
+			\savedirs,
+			\shistory,
+			\state,
+			\tabs,
+			\tui,
+			\options,
+			\filetypes,
+			\commands
+
+set sessionoptions=
+			\bmarks,
+			\bookmarks,
+			\cs,
+			\chistory,
+			\dhistory,
+			\dirstack,
+			\fhistory,
+			\phistory,
+			\registers,
+			\savedirs,
+			\shistory,
+			\state,
+			\tabs,
+			\tui,
+			\options,
+			\filetypes,
+			\commands
+
+
+" Marques {{{1
+
+" :mark mark /full/directory/path [filename]
+
+mark 0 ~/racine
+mark 1 ~/racine/wiki/plain/wiki
+mark 2 ~/racine/public
+mark 3 ~/racine/site/orgmode
+mark 9 ~/racine/archive
+
+mark a ~/racine/automat
+mark c ~/racine/config
+mark d ~/racine/gate/download
+mark f ~/racine/fun
+mark i ~/racine/infoman
+mark l ~/racine/liber
+mark m ~/racine/mail
+mark n ~/racine/network
+mark p ~/racine/pictura
+mark r ~/racine/run
+mark s ~/racine/shell
+
+mark M ~/racine/musica/musescore
+mark P ~/racine/papier
+
+mark A ~/audio
+
+mark w ~/graphix/wallpaper
+
+mark D ~/Documents
+
+
+" Types de fichiers {{{1
+
+" Documentation {{{2
+
+" Syntax highlighting in preview
+"
+" Explicitly set highlight type for some extensions
+"
+" 256-color terminal
+
+" Open all other files with default system programs (you can also remove all
+" :file[x]type commands above to ensure they don't interfere with system-wide
+" settings).  By default all unknown files are opened with 'vi[x]cmd'
+" uncommenting one of lines below will result in ignoring 'vi[x]cmd' option
+" for unknown file types.
+" For *nix:
+" filetype * xdg-open
+" For OS X:
+" filetype * open
+" For Windows:
+" filetype * start, explorer
+
+" fileviewer *.[ch],*.[ch]pp highlight -O xterm256 -s dante --syntax c %c
+" fileviewer Makefile,Makefile.* highlight -O xterm256 -s dante --syntax make %c
+"
+" 16-color terminal
+" fileviewer *.c,*.h highlight -O ansi -s dante %c
+"
+" Or leave it for automatic detection
+"
+" fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
+
+" Displaying pictures in terminal
+"
+" fileviewer *.jpg,*.png shellpic %c
+
+" The file type is for the default programs to be used with
+" a file extension.
+" :filetype pattern1,pattern2 defaultprogram,program2
+" :fileviewer pattern1,pattern2 consoleviewer
+" The other programs for the file type can be accessed with the :file command
+" The command macros %f, %F, %d, %F may be used in the commands.
+" The %a macro is ignored.  To use a % you must put %%.
+
+" For automated FUSE mounts, you must register an extension with :file[x]type
+" in one of following formats:
+"
+" :filetype extensions FUSE_MOUNT|some_mount_command using %SOURCE_FILE and %DESTINATION_DIR variables
+" %SOURCE_FILE and %DESTINATION_DIR are filled in by vifm at runtime.
+" A sample line might look like this:
+" :filetype *.zip,*.jar,*.war,*.ear FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR
+"
+" :filetype extensions FUSE_MOUNT2|some_mount_command using %PARAM and %DESTINATION_DIR variables
+" %PARAM and %DESTINATION_DIR are filled in by vifm at runtime.
+" A sample line might look like this:
+" :filetype *.ssh FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR
+" %PARAM value is filled from the first line of file (whole line).
+" Example first line for SshMount filetype: root@127.0.0.1:/
+"
+" You can also add %CLEAR if you want to clear screen before running FUSE
+" program.
+
+" Vifmimg
+"
+" Voir ~/racine/shell/fileman/vifmimg
+" Deps :
+" pip install --user --upgrade ueberzugpp
+
+" }}}
+
+" Org mode
+
+filetype *.org emacs -nw -q -l ~/racine/config/edit/emacs/leger.el %c
+
+" Man page
+
+fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
+filetype   {*.[1-8]},<text/troff> man ./%c
+
+" Web
+
+fileviewer {*.html,*.htm},<text/html>
+		\ w3m -dump %f,
+		\ elinks -dump %f
+
+filetype {*.html,*.htm},<text/html>
+		\ {Open with w3m}
+		\ w3m %f,
+		\ {Open with elinks}
+		\ elinks %f,
+		\ {Open with links}
+		\ links,
+		\ {Open with lynx}
+		\ lynx
+
+filextype {*.html,*.htm},<text/html>
+        \ {Open with qutebrowser}
+        \ qutebrowser %f &,
+        \ {Open with dwb}
+        \ dwb %f %i &,
+        \ {Open with uzbl}
+        \ uzbl-browser %f %i &,
+
+" PostScript
+
+filextype *.ps,*.eps,*.ps.gz
+        \ {View in zathura}
+        \ zathura %f &,
+        \ {View in gv}
+        \ gv %c %i &,
+
+" Pdf
+
+fileviewer *.pdf
+	\ vifmimg pdf %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+filextype *.pdf apvlv %c, zathura %c %i &, xpdf %c
+
+" Epub
+
+fileviewer *.epub
+	\ vifmimg epub %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+filextype *.epub zathura %c %i &, apvlv %c, xpdf %c
+
+" Djvu
+
+filextype *.djvu
+        \ {View in zathura}
+        \ zathura %f &,
+        \ {View in apvlv}
+        \ apvlv %f,
+
+" Office files
+
+fileviewer {*.doc},<application/msword> catdoc %c
+
+fileviewer {*.docx},
+          \<application/
+           \vnd.openxmlformats-officedocument.wordprocessingml.document>
+         \ docx2txt.pl %f -
+
+filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
+         \<application/vnd.openxmlformats-officedocument.*,
+          \application/msword,
+          \application/vnd.ms-excel>
+        \ libreoffice %f &
+
+" Object
+
+filetype *.o nm %f | less
+
+" MD5
+
+filetype *.md5
+       \ {Check MD5 hash sum}
+       \ md5sum -c %f %S,
+
+" SHA1
+filetype *.sha1
+       \ {Check SHA1 hash sum}
+       \ sha1sum -c %f %S,
+
+" SHA256
+filetype *.sha256
+       \ {Check SHA256 hash sum}
+       \ sha256sum -c %f %S,
+
+" SHA512
+filetype *.sha512
+       \ {Check SHA512 hash sum}
+       \ sha512sum -c %f %S,
+
+" GPG signature
+filetype {*.asc},<application/pgp-signature>
+       \ {Check signature}
+       \ !!gpg --verify %c,
+
+" Torrent
+
+filetype *.torrent ktorrent %f &
+
+" Torrent
+filetype {*.torrent},<application/x-bittorrent> ktorrent %f &
+fileviewer {*.torrent},<application/x-bittorrent> dumptorrent -v %c
+
+" Fontes
+
+fileviewer <font/*>
+	\ vifmimg font %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+" Images
+
+fileviewer <image/*>
+	\ vifmimg draw %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
+        \ {View in sxiv}
+        \ sxiv %f &,
+        \ {View in vimiv}
+        \ vimiv %f &,
+
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
+        \ {View in sxiv}
+        \ sxiv %f &,
+        \ {View in vimiv}
+        \ vimiv %f &,
+        \ {View in gpicview}
+        \ gpicview %c,
+        \ {View in shotwell}
+        \ shotwell,
+
+filextype *.svg vimiv %f &
+
+" Audio
+
+fileviewer <audio/*> mediainfo %c
+
+fileviewer <audio/*>
+	\ vifmimg audio %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
+       \ {Play using mpv}
+       \ mpv %f,
+       \ {Play using ffplay}
+       \ ffplay -nodisp %c,
+       \ {Play using MPlayer}
+       \ mplayer %f,
+
+" Video
+
+fileviewer <video/*> mediainfo %c
+
+fileviewer <video/*>
+	\*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+	\ vifmimg video %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
+filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+         \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+         \*.as[fx]
+        \ {Play using mpv}
+        \ mpv %f,
+        \ {View using ffplay}
+        \ ffplay -fs %f,
+        \ {View using Dragon}
+        \ dragon %f:p,
+        \ {View using mplayer}
+        \ mplayer %f,
+
+" Directories
+
+filextype */
+        \ {View in caja}
+        \ caja %f &,
+
+" Archives
+
+" FuseZipMount
+
+fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
+
+filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg,*.mpal
+       \ {Mount with fuse-zip}
+       \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
+       \ {View contents}
+       \ zip -sf %c | less,
+       \ {Extract here}
+       \ tar -xf %c,
+
+" ArchiveMount
+
+fileviewer *.tgz,*.tar.gz tar -tzf %c
+fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
+fileviewer *.tar.txz,*.txz xz --list %c
+fileviewer *.tar tar -tf %c
+
+filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
+       \ {Mount with archivemount}
+       \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+
+" Rar2FsMount and rar archives
+
+fileviewer *.rar unrar v %c
+
+filetype *.rar
+       \ {Mount with rar2fs}
+       \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
+
+" Fuse7z and 7z archives
+
+fileviewer *.7z 7z l %c
+
+filetype *.7z
+       \ {Mount with fuse-7z}
+       \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
+
+" IsoMount
+
+filetype *.iso
+       \ {Mount with fuseiso}
+       \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
+
+" SshMount
+
+filetype *.ssh
+       \ {Mount with sshfs}
+       \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND,
+
+" FtpMount
+
+filetype *.ftp
+       \ {Mount with curlftpfs}
+       \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
+
+" Default
+
+filetype * vim %c
+filextype * gvim %c &
+
+
+" Thème {{{1
+
+colorscheme golden-night
+
+"set fillchars=vborder:|
+
+set timefmt="%H:%M %d-%m-%y"
+
+set statusline="  %t %T %A %E / %a %u:%g %D %z"
+
+set tablabel="%p:t"
+
+" Examples of configuring both panels
+
+" Customize view columns a bit
+
+set viewcolumns=-45%{root}.,5%{ext}.,20%{mtime}.,20%{perms}.,10%{size}.
+
+" Filter-out build and temporary files
+"
+" filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
+
+filter! /^.*\.(git|hg|bzr|o|py[co])$|.*~$/
+
+" Icones
+"source devicons.vifm
+"source ~/racine/config/fileman/vifm/devicons.vifm
+
+
+" Icones {{{1
+
+" file types
+set classify=' :dir:/, :exe:, :reg:, :link:'
+" various file names
+set classify+=' ::../::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::'
+" archives
+set classify+=' ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
+" images
+set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
+" audio
+set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+" media
+set classify+=' ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
+
+source ~/racine/config/fileman/vifm/favicons.vifm
+
+
+" Commandes {{{1
+
+" :com[mand][!] command_name action
+" The following macros can be used in a command
+" %a is replaced with the user arguments.
+" %c the current file under the cursor.
+" %C the current file under the cursor in the other directory.
+" %f the current selected file, or files.
+" %F the current selected file, or files in the other directory.
+" %b same as %f %F.
+" %d the current directory name.
+" %D the other window directory name.
+" %m run the command in a menu window
+
+" command! df df -h %m 2> /dev/null
+" command! zip zip -r %f.zip %f
+" command! run !! ./%f
+" command! make !!make %a
+" command! mkcd :mkdir %a | cd %a
+" command! vgrep vim "+grep %a"
+" command! reload :write | restart full
+
+"command! h help
+
+command! diff vimdiff %c %C
+command! ln ln -s %D %d
+command! mkcd :mkdir %a | cd %a
+command! print lp %f
+command! rln :rlink %D %d
+command! vgrep vim "+grep %a"
+
+
+" Mappings {{{1
+
+" Concept
+"
+" Left ou h : répertoire parent
+" Down ou j : fichier suivant
+" Up ou j : fichier précédent
+" Right ou l : on entre dans le répertoire, ou on visualise le fichier
+
+" Disponibles
+"
+" |
+
+" Aide {{{2
+
+nnoremap <m-a> :apropos<space>
+
+" Maps
+" normal mode
+nnoremap <F1><F1> :help<cr>
+nnoremap <F1>n :nmap<cr>
+" visual mode
+nnoremap <F1>v :vmap<cr>
+" dialog mode
+nnoremap <F1>d :dmap<cr>
+" menu mode
+nnoremap <F1>m :mmap<cr>
+" view mode
+nnoremap <F1>q :qmap<cr>
+" command mode
+nnoremap <F1>c :cmap<cr>
+
+" current session
+nnoremap <F1>s :session?<cr>
+
+" hide tui to see behind
+nnoremap <F1>h :hideui<cr>
+
+" Recharger {{{2
+
+nnoremap @@ :restart full<cr>
+nnoremap @r :restart<cr>
+
+" Open editor to edit vifmrc and apply settings after returning to vifm
+
+nnoremap @e :write | edit $MYVIFMRC | restart<cr>
+nnoremap @s :source $MYVIFMRC<cr>
+
+
+" Quitter {{{2
+
+nnoremap ZZ :qa<cr>
+nnoremap ZQ :qa!<cr>
+
+
+" Sessions {{{2
+
+nnoremap <m-s> :session<space>
+
+
+" Présentation {{{2
+
+nnoremap § :tree!<cr>
+
+nnoremap <C-w>0 <C-w>o
+nnoremap <C-w>1 <C-w>s
+nnoremap <C-w>2 <C-w>v
+
+nnoremap <C-w>3 :set millerview! | set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"<cr>
+nnoremap <C-w>4 :set lsview!<cr>
+
+nnoremap <F9> :split!<cr>
+nnoremap <F10> :vsplit!<cr>
+
+nnoremap <F11> :set millerview! | set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"<cr>
+nnoremap <F12> :set lsview!<cr>
+
+
+" Onglets {{{2
+
+nnoremap t :tabnew<cr>
+
+nnoremap ^ gT
+nnoremap $ gt
+
+
+" Déplacement {{{2
+
+nnoremap <PageUp> <C-B>
+nnoremap <PageDown> <C-F>
+
+nnoremap <c-^> gh
+
+nnoremap <c-l> :nohlsearch<cr>zz
+mnoremap <c-l> :nohlsearch<cr>zz
+
+nnoremap zz :nohlsearch<cr>zz
+mnoremap zz :nohlsearch<cr>zz
+
+
+" Sélectionner {{{2
+
+nnoremap <space> tj
+
+nnoremap zs :select<space>
+
+
+" Signets {{{2
+
+nnoremap M :bmark<space>
+nnoremap <m-b> :bmarks<space>
+
+nnoremap <m-m> :marks<cr>
+
+
+" Recherche {{{2
+
+nnoremap * :find<space>
+
+nnoremap é :filter<space>
+
+nnoremap è :grep<space>
+
+nnoremap ° :locate<space>
+
+nnoremap zg :grep<space>
+nnoremap zl :locate<space>
+
+
+" Tri {{{2
+
+" Display sorting dialog
+
+nnoremap s :sort<cr>
+
+nnoremap S :invert o<cr>
+
+
+" Filtres {{{2
+
+" Fichiers cachés
+
+" ne marche pas
+" nnoremap <m-.> za
+" nnoremap <m-;> za
+
+
+" Visualiser & Éditer {{{2
+
+" Toggle visibility of preview window
+
+nnoremap µ :view<cr>
+vnoremap µ :view<cr>gv
+
+" Focus sur les fichies <-> le panneau de visualisation
+
+nnoremap % <s-tab>
+nnoremap <bs> <s-tab>
+
+qnoremap % <s-tab>
+qnoremap <bs> <s-tab>
+
+nnoremap £ :!LESS= less %f<cr>
+" mc
+nnoremap <f3> :!bat --paging always %f<cr>
+
+nnoremap <m-e> :edit<cr>
+" mc
+nnoremap <f4> :edit<cr>
+
+" Ouverture
+
+nnoremap o :f<cr>
+
+" Open file using its default program
+
+nnoremap <m-f> :file<cr>
+
+" For neovim terminal, open file in new tab using neovim-remote
+
+nnoremap g<cr> :!nvr -p %c<cr>:!xdotool search --class nvim-qt windowactivate<cr>
+
+" Répertoires {{{2
+
+nnoremap ù :history d<cr>
+nnoremap qd :history d<cr>
+
+nnoremap H :histprev<cr>
+nnoremap L :histnext<cr>
+
+nnoremap gj :siblnext!<cr>
+nnoremap gk :siblprev!<cr>
+
+nnoremap J :siblnext!<cr>
+nnoremap K :siblprev!<cr>
+
+nnoremap <c-y> :sync! all<cr>
+" Open directory under cursor in the other pane
+nnoremap <m-y> :sync %c<cr>
+
+" Navigation synchronisée relative
+
+nnoremap & :cd %c<cr><tab>:cd %D:t<cr><tab>
+nnoremap <m-c> :windo cd<space>
+nnoremap <m-u> :windo cd ..<cr>
+
+
+" Menus & Dialogs {{{2
+
+" Create virtual folder
+
+mnoremap f b
+
+" Quick fix dans vim
+
+"mnoremap ... v
+
+
+" Renommer {{{2
+
+nnoremap I cw<c-a>
+nnoremap cc cw<c-u>
+nnoremap A cw
+
+nnoremap cv :rename<cr>
+nnoremap cr :rename!<cr>
+
+
+" Copier, Coller, Supprimer {{{2
+
+" Copier & Déplacer
+
+" Copier la sélection
+
+nnoremap Y ys
+nnoremap yv ys
+
+" Couper la sélection
+
+nnoremap X ds
+
+" Voir aussi :copy et :move
+
+nnoremap àc :!cp %f %D &<cr>
+nnoremap àm :!mv %f %D &<cr>
+" mc
+nnoremap <f5> :!cp %f %D &<cr>
+nnoremap <f6> :!mv %f %D &<cr>
+
+" Sync with Rsync
+
+nnoremap àf :!rsync -av %f %D &<cr>
+nnoremap àd :!rsync -av %d/ %D &<cr>
+" mc
+nnoremap <f2>f :!rsync -av %f %D &<cr>
+nnoremap <f2>d :!rsync -av %d/ %D &<cr>
+
+" Copier & Coller
+
+nnoremap àà :clone?<cr>
+" mc
+nnoremap <f2>c :clone?<cr>
+
+" mc
+nnoremap <f8> dd
+
+" Corbeille vifm
+
+" dd : envoie vers corbeille vifm
+"
+" restauration :
+"   - dans :lstrash : r
+"   - dans :trashes :
+"       - yy les fichiers dans la corbeille et
+"       - p dans le répertoire de destination
+
+nnoremap <lt> :lstrash<cr>
+nnoremap > :trashes<cr>
+
+nnoremap <m-q> :lstrash<cr>
+nnoremap <c-q> :trashes?<cr>
+
+" Corbeille générale
+
+nnoremap <delete> :!trash-put %f<cr>
+nnoremap dr :!trash-restore <cr>
+
+" Nom du chemin, fichier, répertoire -> clipboard
+
+if executable('xclip')
+	map çç :!echo -n %d/%c | xclip ; xclip -o | xclip %i<cr>
+	map çf :!echo -n %c    | xclip ; xclip -o | xclip %i<cr>
+	map çd :!echo -n %d    | xclip ; xclip -o | xclip %i<cr>
+elseif executable('xsel')
+	map çç :!echo -n %d/%c | xsel -i; xsel -o | xsel -i -b<cr>
+	map çf :!echo -n %c    | xsel -i; xsel -o | xsel -i -b<cr>
+	map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
+endif
+
+
+" Autres opérations sur fichiers {{{2
+
+" New file
+
+nnoremap <m-n> :!touch<space>
+
+" New dir
+
+nnoremap <m-d> :mkdir!<space>
+" mc
+nnoremap <f7> :mkdir!<space>
+
+" Pack
+
+nnoremap <m-p> :!apack %c.txz %c<cr>
+
+" Drag & drop
+
+nnoremap <m-x> :!dragon.sh -a -x %f<cr>
+
+" Vimdiff
+
+" nnoremap ???? :vimdiff<cr>
+
+" Symlink
+
+nnoremap <m-l> :link<cr>
+
+" Medias amovibles
+
+nnoremap <m-i> :media<cr>
+
+" Papier peint
+
+nnoremap <m-w> :!feh --bg-max --no-fehbg %f<cr>
+
+
+" Contrôle de version {{{2
+
+" VCS repository
+
+nnoremap <m-r> :!lazygit<cr>
+nnoremap <m-v> :!tig<cr>
+
+
+" Shell {{{2
+
+nnoremap <c-s> :shell<cr>
+nnoremap <insert> :shell<cr>
+
+nnoremap <m-j> :jobs<cr>
+
+

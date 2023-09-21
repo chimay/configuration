@@ -1,0 +1,6 @@
+# vim: set filetype=muttrc :
+
+set my_muttroot = $HOME/racine/config/mail/neomutt
+set my_signature = $HOME/racine/config/mail/signatures
+
+source $my_muttroot/muttrc

@@ -1,0 +1,43 @@
+[General]
+SideBarPage=folders
+
+[MainWindow]
+Height 900=827
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAABj4AAAMXAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width 1600=1598
+
+[Recent Files]
+File1[$e]=$HOME/photo/numerique/cadre/2015-01-01/PC060022.JPG
+File10[$e]=$HOME/photo/numerique/cadre/2015-01-01/PC310043.JPG
+File2[$e]=$HOME/photo/numerique/cadre/2015-01-01/PC060027.JPG
+File3[$e]=$HOME/photo/numerique/cadre/2015-01-01/PC240012.JPG
+File4[$e]=$HOME/photo/numerique/cadre/2015-01-01/PC250013.JPG
+File5[$e]=$HOME/photo/numerique/cadre/2015-01-01/PC250015.JPG
+File6[$e]=$HOME/photo/numerique/cadre/2015-01-01/PC250019.JPG
+File7[$e]=$HOME/photo/numerique/cadre/2015-01-01/PC250020.JPG
+File8[$e]=$HOME/photo/numerique/cadre/2015-01-01/PC300037.JPG
+File9[$e]=$HOME/photo/numerique/cadre/2015-01-01/PC310042.JPG
+Name1[$e]=PC060022.JPG
+Name10[$e]=PC310043.JPG
+Name2[$e]=PC060027.JPG
+Name3[$e]=PC240012.JPG
+Name4[$e]=PC250013.JPG
+Name5[$e]=PC250015.JPG
+Name6[$e]=PC250019.JPG
+Name7[$e]=PC250020.JPG
+Name8[$e]=PC300037.JPG
+Name9[$e]=PC310042.JPG
+
+[SideBar-BrowseMode]
+CurrentPage=information
+IsVisible=false
+
+[SideBar-FullScreenMode]
+CurrentPage=information
+IsVisible=false
+
+[SideBar-ViewMode]
+CurrentPage=information
+IsVisible=true

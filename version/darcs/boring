@@ -1,0 +1,123 @@
+# vim: set filetype=conf
+
+# Vim backup
+
+\.vim$
+\.neovim$
+
+# Vim presub
+
+\.pre-sub$
+
+# Emacs backup
+
+~$
+
+# Unison backup
+
+\.unison$
+unison/archive/[^/]+/ar
+unison/archive/[^/]+/fp
+
+# Locate database
+
+locate-racine\.db$
+locate-usr-local\.db$
+
+# Exported Html files
+
+\.html$
+
+# Exported Ps / Pdf files
+
+\.ps$
+\.pdf$
+
+\.PDF$
+
+# Livres epub
+
+\.epub$
+
+# Images
+
+\.jpg$
+\.png$
+
+\.gif$
+
+# Audio
+
+\.wav$
+\.flac$
+
+\.ogg$
+\.mp3$
+
+# Archives
+
+\.gz$
+\.bz2$
+\.xz$
+
+\.7z$
+\.zip$
+
+\.tar$
+\.cpio$
+
+# Tags
+
+(^|/)tags$
+(^|/)TAGS$
+(^|/)gtags\.files$
+(^|/)GTAGS$
+(^|/)GRTAGS$
+(^|/)GPATH$
+(^|/)ID$
+
+# Autres VCS
+
+(^|/),v
+(^|/)RCS
+(^|/)CVS
+
+(^|/)\.git
+(^|/)\.hg
+(^|/)\.bzr
+(^|/)_darcs
+(^|/)_MTN
+
+(^|/)[^/]*=\+tags$
+
+# Compiled
+
+\.elc$
+
+\.pyc$
+\.zwc$
+
+\.dvi$
+
+\.o$
+\.so$
+
+\.dll$
+\.obj$
+\.bak$
+\.exe$
+
+\.aux$
+\.out$
+\.maf$
+\.toc$
+\.ptc$
+\.mtc$
+
+\.dvi$
+
+# Divers
+
+\.doc$
+\.xls$
+\.rtf$

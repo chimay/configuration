@@ -1,0 +1,16 @@
+# vim: set filetype=conf
+
+# Autres VCS
+
+*,v
+RCS
+
+CVS
+
+.hg
+
+.bzr
+
+_MTN
+
+_darcs

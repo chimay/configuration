@@ -1,0 +1,12 @@
+# vim: set filetype=conf :
+
+base=~/racine/mail
+
+mfolder=Recherches/Mairix
+mformat=mbox
+
+mbox=Systeme...:Themes...:Listes...:Archives...
+
+omit=Systeme/Pourriel...
+
+database=~/racine/index/mairix/database

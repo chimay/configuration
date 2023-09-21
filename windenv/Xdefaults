@@ -1,0 +1,62 @@
+! vim: set filetype=xdefaults :
+
+! THIS is the quintessential XResource
+
+Netscape*blinkingEnabled:       False
+
+!Mwm*keyboardFocusPolicy:        pointer
+!Mwm*frameBorderWidth:           3
+!Mwm*BoundaryWidth:              2
+!Mwm*showFeedback:               resize
+!Mwm*focusAutoRaise:             True
+!Mwm*autoRaiseDelay:             400
+
+
+!Mosaic*trackVisitedAnchors:     True
+!Mosaic*useGlobalHistory:        False
+!Mosaic*catchPriorAndNext:       True
+!Mosaic*homeDocument:            http://www.cen.uiuc.edu/
+!Mosaic*imageBorders:            False
+
+! I like to tile my xterms two-across, at least.  And I'm an old
+! monochrome monitor junkie.  Sue me, I grew up on an Apple ][
+
+!XTerm*font:                     7x14
+!XTerm*scrollbar:                True
+!XTerm*background:               Black
+!XTerm*foreground:               Green
+
+! Configuring xlock
+
+!XLock.mode:             	random
+! Use iso compliant font.
+!XLock.font:   -adobe-new century schoolbook-medium-r-normal-*-*-300-*-*-*-*-*-*
+!XLock.background:       	SteelBlue
+!XLock.foreground:       	Black
+!XLock.username:         	And you are?
+!XLock.password:         	And your problem is?
+!XLock.info:             	Which part of "bite me" don't you understand?
+!XLock.validate:         	*clickety-click*
+!XLock.invalid:          	Thank you.  YOUR account has been deleted.
+
+! xbuffy is a nifty version of xbiff that monitors multiple
+! mailboxes & newsgroups, executes commands (like starting mail
+! readers) by clicking, and bitchin' stuff like playing sounds when
+! new mail is recieved.
+
+!XBuffy.boxfile:         	.xbuffyrc
+!XBuffy.geometry:       		-74-0
+!XBuffy.horizontal:      	True
+
+! xdaliclock is a cool X-based clock.  I like it when I can get it.
+
+!xdaliclock.seconds:     	False
+!xdaliclock.geometry:    	70x64-0+0
+!xdaliclock.font:        	-adobe-helvetica-bold-*-*-*-16-*-*-*-*-*-*-*
+
+! xload ignores all of all of the color information.  It sucks that way.
+
+!XLoad.highlight:        	Green
+!XLoad.foreground:       	Green
+!XLoad.background:       	Black
+!XLoad.geometry:        		70x70-0+64

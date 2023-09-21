@@ -1,0 +1,139 @@
+# vim: set filetype=readline :
+
+#set bell-style audible
+
+# {{{ Vi / Emacs style
+
+# {{{ Vi
+
+# Attention !
+# Change aussi le mode d’édition de bash
+
+#set editing-mode vi
+
+#set keymap vi
+
+# }}}
+
+# {{{ Emacs
+
+set editing-mode emacs
+
+set keymap emacs
+
+#set keymap emacs-standard
+#set keymap emacs-meta
+#set keymap emacs-ctlx
+
+# }}}
+
+# }}}
+
+#  {{{ Edition
+# ------------------------------------------------------------------------
+
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
+
+set echo-control-characters On
+
+set enable-keypad On
+
+set comment-begin '#'
+
+# }}}
+
+#  {{{ Historique
+# ------------------------------------------------------------------------
+
+set history-size 84127
+
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+
+set skip-completed-text On
+
+set horizontal-scroll-mode Off
+set history-preserve-point On
+
+set revert-all-at-newline Off
+
+set visible-stats Off
+
+# }}}
+
+#  {{{ Complétion
+# ------------------------------------------------------------------------
+
+set disable-completion Off
+
+set page-completions On
+set print-completions-horizontally Off
+
+set completion-prefix-display-length 0
+set completion-query-items 84
+set completion-ignore-case On
+
+set expand-tilde Off
+
+set mark-directories On
+set mark-modified-lines On
+set mark-symlinked-directories Off
+
+set match-hidden-files On
+
+# }}}
+
+#  {{{ Recherche
+# ------------------------------------------------------------------------
+
+set isearch-terminators "C-[ C-J"
+
+# }}}
+
+# {{{ Méta
+
+set meta-flag on
+set input-meta on
+set convert-meta on
+set output-meta on
+
+# }}}
+
+#  {{{ Clavier
+# ------------------------------------------------------------------------
+
+Esc: prefix-meta
+
+Control-g: abort
+
+Meta-Control-u: universal-argument
+
+Del: forward-backward-delete-char
+Rubout: backward-delete-char
+
+Tab: menu-complete
+Meta-Tab: tab-insert
+Meta-?: possible-completions
+Meta-*: insert-completions
+
+Control-p: history-search-backward
+Control-n: history-search-forward
+
+"\eOA": history-search-backward
+"\eOB": history-search-forward
+
+Control-r: reverse-search-history
+
+Control-x (: start-kbd-macro
+Control-x ): end-kbd-macro
+Control-x e: call-last-kbd-macro
+
+Control-x f: dump-functions
+Control-x v: dump-variables
+
+Control-o: '> sortie'
+
+# }}}

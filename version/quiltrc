@@ -1,0 +1,11 @@
+# vim: set filetype=conf :
+
+QUILT_PATCHES='.quilt/patches'
+QUILT_PC='.quilt/pc'
+
+QUILT_DIFF_OPTS='-u'
+QUILT_DIFF_ARGS='--color=auto'
+
+QUILT_PATCH_OPTS=''
+
+QUILT_DIFFSTAT_OPTS=''

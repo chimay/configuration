@@ -1,0 +1,565 @@
+#@ /etc/mail.rc
+
+# Compatibilité {{{1
+
+set v15-compat
+
+# }}}1
+
+# Default {{{1
+
+#@ /etc/mail.rc
+#@ Configuration file for Mail v14.9.22.
+#@ The syntax of this file is interpreted as follows:
+#@ - Any leading and trailing whitespace (space, tabulator, newline: " \t\n"),
+#@   and all members of (the internal variable) *ifs-ws* are removed.
+#@ - Empty lines are ignored.
+#@ - Any other line is a command line.  Such lines may spread over multiple
+#@   lines if a reverse solidus character \ is placed as the last character of
+#@   all lines except the final one; any leading whitespace of follow lines is
+#@   removed, but trailing whitespace before "escaped newlines" is not.
+#@ - The number sign # is the comment-command and causes the (joined) line
+#@   (content) to be ignored.
+#@ S-nail v14.9.22 / 2021-02-24
+
+## Variables
+
+# The standard POSIX 2008/Cor 2-2016 mandates the following initial settings
+# which are established independendly from this file:
+# [a]   noallnet, noappend, asksub, noaskbcc, noaskcc, noautoprint,
+# [b-e] nobang, nocmd, nocrt, nodebug, nodot, escape="~",
+# [f-i] noflipr, nofolder, header, nohold, noignore, noignoreeof,
+# [j-o] nokeep, nokeepsave, nometoo, nooutfolder,
+# [p-r] nopage, prompt="? ", noquiet, norecord,
+# [s]   save, nosendwait, noshowto, nosign, noSign,
+# [t-z] toplines="5"
+#
+# Notes:
+# - In this implementation:
+#   + *sendwait* is set by default (and has extended meaning).
+#   + no*onehop* does not exist.
+#     (To pass options through to the MTA, either add them after a "--"
+#     separator on the command line or set the *mta-arguments* variable.)
+# - *hold, *keep*, and *keepsave* are deliberately set below.
+# (Keep in SYNC: mx/nail.h:okeys, ./nail.rc, ./nail.1:"Initial settings"!)
+
+# Adjustments of standard imposed default- as well as other settings follow.
+# - Some of the latter are not portable and may thus have no effect with
+#   other Mail(1) / mailx(1) / mail(1) programs.
+# - "wysh" is one of the "Command modifiers" and is not portable: before v15 it
+#   changes the syntax of some old-style commands to sh(1)ell style quoting,
+#   also see "COMMANDS" -> "Shell-style argument quoting" in the manual.
+# - Availability of entries marked [OPTION] is a compile-time decision.
+
+# If threaded mode is activated, automatically collapse thread.
+#set autocollapse
+
+# Enter threaded mode automatically.
+#set autosort=thread
+
+# Append rather than prepend when writing to mbox automatically.
+# Has no effect unless *hold* is unset (it is set below).
+# This is a traditional entry and should usually be set.
+# set append
+
+# Confirm sending of messages:
+# set asksend
+
+# Uncomment this in order to get coloured output in $PAGER (if possible).
+#set colour-pager
+# If your $PAGER is less(1) or lv(1) you will usually be served with
+#  ? wysh set PAGER=less; environ unset LESS
+#  ? wysh set PAGER=lv; environ unset LV
+
+# Assume a CRT-like terminal and invoke $PAGER if output does not fit on
+# the screen.  (Set crt=0 to always page; value treated as number of lines.)
+# set crt
+
+# When entering compose mode, directly startup into $EDITOR, as via `~e'.
+# If the value is "v", startup into $VISUAL instead, as via `~v'.
+#set editalong=v
+
+# When spawning an editor in compose mode (`~e', `~v', *editalong*), allow
+# editing of headers.
+# set editheaders
+
+# Startup into interactive mode even if the (given) mailbox is empty.
+# set emptystart
+
+# When `reply'ing etc. name parts and comments are stripped from receiver
+# addresses unless this variable is set.
+# set fullnames
+
+# [OPTION] Add more entries to the history as is done by default.
+# The latter will cause the built-in editor to save those entries, too.
+# (The *history-file* variable controls persistency of the history.)
+# set history-gabby=all history-gabby-persist
+
+# Do not move read messages of system mailboxes to MBOX by default since this
+# is likely to be irritating for most users today; also see *keepsave*.
+# set hold
+
+# Quote the original message in replies with "> " as usual on the Internet.
+# POSIX mandates tabulator ("wysh set indentprefix=$'\t'") as default.
+# set indentprefix="> "
+
+# Honour Mail-Followup-To: headers when replying etc.
+# set followup-to-honour=ask-yes
+
+# Mark messages that have been answered.
+# set markanswered
+
+# Try to circumvent false or missing MIME Content-Type descriptions.
+# Do set a value for extended behaviour (see the manual).
+#set mime-counter-evidence
+# set mime-counter-evidence=0b1111
+
+# Control loading of mime.types(5) file, "s"ystem and/or "u"ser, etc.
+# Builtin types exist and may be sufficient.  The default equals "us".
+#set mimetypes-load-control
+
+# Do not remove empty (MBOX) system mailboxes.  (_No_ empty (MBOX) mailbox
+# at all if $POSIXLY_CORRECT a.k.a. *posix* is set!)
+# This may be relevant for privacy since other users could otherwise create
+# them with different permissions.
+# set keep
+
+# Do not move `save'd or `write'n message to $MBOX by default since this is
+# likely to be irritating for most users today; also see *hold*.
+# set keepsave
+
+# An informational prompt (and see "Gimmicks" below).
+# Of interest may also be \${^ERRQUEUE-EXISTS} and \${^ERRQUEUE-COUNT}.
+# Note the _real_ evaluation occurs once used (see *prompt* manual entry).
+#wysh set prompt='?\$?!\$!/\$^ERRNAME[\${account-name}#\${mailbox-display}]? '
+
+# Automatically quote the text of the message that is responded to.
+# set quote
+
+# When replying, do not merge From: and To: of the original message
+# into To:.  Instead old From: -> new To:, old To: -> merge Cc:.
+# set recipients-in-cc
+
+# When responding to a message, try to answer in the same character set
+# (which is subject to `charsetalias' expansion, though).
+#set reply-in-same-charset
+
+# Honour Reply-To: headers when replying etc.
+set reply-to-honour=ask-yes
+
+# [OPTION] Outgoing messages are sent in UTF-8 if possible, otherwise LATIN1.
+# Note: it is highly advisable to read the section "Character sets" of the
+# manual in order to understand all the possibilities that exist to fine-tune
+# charset usage (variables also of interest: *ttycharset*, *charset-8bit*,
+# *sendcharsets-else-ttycharset*; and of course we inherit the $LC_CTYPE /
+# $LC_ALL / $LANG environment variables and react upon them).
+# set sendcharsets=utf-8,iso-8859-1
+
+# Display real sender names in header summaries instead of only addresses.
+# set showname
+
+# Show recipients of messages sent by the user himself in header summaries.
+# set showto
+
+## Commands
+
+# Most commands are not portable to other Mail(1) / mailx(1) / mail(1)
+# programs, which is why most commands are commented out.  To remain portable,
+# place anything specific in its own file, and then
+#   set mailx-extra-rc=~/.my-file"
+# in $MAILRC (usually ~/.mailrc).
+# The below use the \ command modifier to avoid `commandalias' checks
+
+# Map ISO-8859-1 to LATIN1, and LATIN1 to CP1252.
+# (These mappings are not applied to character sets specified by other
+# variables, e.g., *sendcharsets*).
+#\charsetalias iso-8859-1 latin1  latin1 cp1252
+
+# Only include the selected header fields when printing messages
+# (`headerpick' is not portable, so use the standard `retain')
+# retain date sender from to cc subject message-id mail-followup-to reply-to
+
+#\headerpick type retain from_ date sender from to cc subject \
+#   message-id mail-followup-to reply-to
+# - when forwarding messages
+#\headerpick forward retain subject date sender from to cc
+# - and do not include these when saving message, etc.
+#\if "$features" =@ ,+regex,
+#  \headerpick save ignore '^Original-.*$' '^X-.*$'
+#\end
+
+## Some pipe-TYPE/SUBTYPE entries
+
+# HTML as text, inline display via lynx(1).
+#\if "$features" !@ ,+filter-html-tagsoup,
+#   \set pipe-text/html='?* lynx -stdin -dump -force_html'
+#\endif
+
+# "External body", URL type supported only.
+#\wysh set pipe-message/external-body='?* echo $MAILX_EXTERNAL_BODY_URL'
+
+# PDF display, asynchronous display: via `mimeview' command only.
+#\wysh set pipe-application/pdf='?=&@\
+#   trap "rm -f \"${MAILX_FILENAME_TEMPORARY}\"" EXIT;\
+#   trap "trap \"\" INT QUIT TERM; exit 1" INT QUIT TERM;\
+#   mupdf "${MAILX_FILENAME_TEMPORARY}"'
+
+## Gimmicks
+
+# More key bindings for the Mailx-Line-Editor (when in interactive mode).
+#\if terminal && "$features" =@ +key-bindings
+#   \bind base $'\e',d mle-snarf-word-fwd
+#   \bind base $'\e',$'\c?' mle-snarf-word-bwd
+#   \bind base $'\e',f mle-go-word-fwd
+#   \bind base $'\e',b mle-go-word-bwd
+#   \bind base $'\cL' mle-clear-screen
+#   \bind compose :kf1 ~v
+#\endif
+
+# Coloured prompt for the Mailx-Line-Editor (when in interactive mode).
+#\if terminal && "$features" =@ +mle && "$features" =@ +colour
+#   \colour 256 mle-position fg=202
+#   \colour 256 mle-prompt fg=203
+#   \colour 256 mle-error bg=124
+#   \colour iso mle-position ft=bold
+#   \colour iso mle-prompt fg=brown
+#   \colour iso mle-error bg=red
+#   \colour mono mle-position ft=reverse
+#   \colour mono mle-prompt ft=bold
+#   \colour mono mle-error ft=reverse
+#\endif
+
+# Install file-extension handlers to handle MBOXes in various formats.
+#\filetype \
+#   bz2 'bzip2 -dc' 'bzip2 -zc' \
+#   gpg 'gpg -d' 'gpg -e' \
+#   gz 'gzip -dc' 'gzip -c' \
+#   xz 'xz -dc' 'xz -zc' \
+#   zst 'zstd -dc' 'zstd -19 -zc' \
+#   zst.pgp 'gpg -d | zstd -dc' 'zstd -19 -zc | gpg -e'
+
+# If mail is send from cron scripts and iconv(3) is compiled it, it could be
+# that sending fails because of invalid (according to locale) character input.
+# This undesired event can be prevented as follows, the (possibly) resulting
+# octet-stream message data can be read nonetheless via
+# *mime-counter-evidence*=0b1111:
+#\if ! terminal && "$LOGNAME" == root
+#   \set mime-force-sendout
+#\endif
+
+# s-it-mode
+
+# }}}1
+
+# Boîtes aux lettres {{{1
+
+# Default directory where we act in (relative to $HOME)
+
+set folder=racine/mail
+
+# A leading "+" (often) means: under folder
+# record is used to save copies of sent messages
+
+set inbox=+system/inbox
+set MBOX=/var/spool/mail/$USER
+
+set DEAD=+system/dead.letter
+
+set record=+system/sent
+
+wysh set prompt='mail \${account} \${mailbox-display} > '
+
+# display headers at start ?
+
+unset header
+
+# If threaded mode is activated, automatically collapse thread.
+
+set autosort=thread
+
+# Enter threaded mode automatically.
+
+unset autocollapse
+
+# Append rather than prepend when writing to mbox automatically.
+# Has no effect unless *hold* is unset (it is set below).
+# This is a traditional entry and should usually be set.
+
+set append
+
+# Display real sender names in header summaries instead of only addresses
+
+set showname
+
+# Confirm sending of messages:
+
+set asksend
+
+# Assume a CRT-like terminal and invoke $PAGER if output does not fit on
+# the screen.  (Set crt=0 to always page; value treated as number of lines.)
+
+set crt=
+
+# Uncomment this in order to get coloured output in $PAGER (if possible).
+
+set colour-pager
+
+# If your $PAGER is less(1) or lv(1) you will usually be served with
+#  ? wysh set PAGER=less; environ unset LESS
+#  ? wysh set PAGER=lv; environ unset LV
+
+wysh set PAGER=less; environ unset LESS
+
+# When entering compose mode, directly startup into $EDITOR, as via `~e'.
+# If the value is "v", startup into $VISUAL instead, as via `~v'.
+# Sinon, ~? donne les commandes de l’éditeur interne
+# Possibilité de passer alors à un éditeur externe si besoin
+
+#set editalong
+#set editalong=v
+
+# When spawning an editor in compose mode (`~e', `~v', *editalong*), allow
+# editing of headers.
+
+set editheaders
+
+# Startup into interactive mode even if the (given) mailbox is empty.
+
+set emptystart
+
+# When `reply'ing etc. name parts and comments are stripped from receiver
+# addresses unless this variable is set.
+
+set fullnames
+
+# Do not move read messages of system mailboxes to MBOX by default since this
+# is likely to be irritating for most users today; also see *keepsave*.
+
+set hold
+
+# Honour Mail-Followup-To: headers when replying etc.
+
+set followup-to-honour=ask-yes
+
+# Mark messages that have been answered.
+
+set markanswered
+
+# Try to circumvent false or missing MIME Content-Type descriptions.
+# Do set a value for extended behaviour (see the manual).
+#set mime-counter-evidence
+
+set mime-counter-evidence=0b1111
+
+# Do not remove empty (MBOX) system mailboxes.  (_No_ empty (MBOX) mailbox
+# at all if $POSIXLY_CORRECT a.k.a. *posix* is set!)
+# This may be relevant for privacy since other users could otherwise create
+# them with different permissions.
+
+set keep
+
+# Do not move `save'd or `write'n message to $MBOX by default since this is
+# likely to be irritating for most users today; also see *hold*.
+
+set keepsave
+
+# Show recipients of messages sent by the user himself in header summaries
+
+set showto
+
+# }}}1
+
+# Affichage de messages {{{1
+
+# Only include the selected header fields when printing messages
+
+# Only include the selected header fields when printing messages
+# (`headerpick' is not portable, so use the standard `retain')
+
+retain date sender from to cc subject message-id mail-followup-to reply-to
+
+#\headerpick type retain from_ date sender from to cc subject \
+#   message-id mail-followup-to reply-to
+# - when forwarding messages
+#\headerpick forward retain subject date sender from to cc
+# - and do not include these when saving message, etc.
+#\if "$features" =@ ,+regex,
+#  \headerpick save ignore '^Original-.*$' '^X-.*$'
+#\end
+
+# }}}1
+
+# Envoi de messages {{{1
+
+set from="user <user@mail.net>"
+
+# Serveur smtp ?
+# Commenter pour utiliser openSmtpd
+
+# set mta='smtp://relay.mail.net'
+# set smtp-auth=none
+
+# Ask for a message subject.
+
+set ask
+
+# When composing messages a line consisting of `.' finalizes a message
+
+set dot
+
+# [OPTION] Outgoing messages are sent in UTF-8 if possible, otherwise LATIN1.
+# Note: it is highly advisable to read the section "Character sets" of the
+# manual in order to understand all the possibilities that exist to fine-tune
+# charset usage (variables also of interest: *ttycharset*, *charset-8bit*,
+# *sendcharsets-else-ttycharset*; and of course we inherit the $LC_CTYPE /
+# $LC_ALL / $LANG environment variables and react upon them)
+
+set sendcharsets=utf-8,iso-8859-1
+
+# Automatically quote the text of the message that is responded to
+
+set quote
+
+# Quote the original message in replies by "> " as usual on the Internet
+
+set indentprefix="> "
+
+# When replying, do not merge From: and To: of the original message
+# into To:.  Instead old From: -> new To:, old To: -> merge Cc:.
+#
+# On group replies, specify only the sender of the original mail in  To: and
+# mention it's other recipients in the secondary Cc: instead of placing them
+# all together in To:
+
+set recipients-in-cc
+
+# When responding to a message, try to answer in the same character set
+
+set reply-in-same-charset
+
+# When replying to or forwarding a message the comment and name parts of email
+# addresses are removed unless this variable is set.
+
+set fullnames
+
+# When sending a message wait until the MTA (including the builtin SMTP one)
+# exits before accepting further commands.  Only with this variable set errors
+# reported by the MTA will be recognizable!
+
+set sendwait
+
+# Addresses -> fichier, commande
+
+set expandaddr
+
+# Only include these selected header fields when forwarding messages
+
+headerpick forward retain subject date from to
+
+# }}}1
+
+# Historique de commandes {{{1
+
+# [OPTION] Add more entries to the history as is done by default.
+# The latter will cause the built-in editor to save those entries, too.
+
+set history-gabby=all history-gabby-persist
+
+set history-file=+.s-nailhist
+
+# }}}1
+
+# Alias de commandes {{{1
+
+commandalias h headers
+commandalias ù newmail
+
+# f = find
+commandalias f from
+commandalias é search
+
+commandalias § file
+
+# }}}1
+
+# Mailing lists {{{1
+
+# Mailing-list specifics (manual: "Mailing lists"):
+
+set followup-to
+set followup-to-honour=ask-yes
+set reply-to-honour=ask-yes
+
+# }}}1
+
+# Mime Types {{{1
+
+# Control loading of mime.types(5) file: the value may be a combination of the
+# letters "s" and "u": if "u" is seen ~/.mime.types will be loaded if possible;
+# "s" adds /etc/mime.types, if available; setting this without any value uses
+# only a set of builtin mimetypes; the default behaviour equals "us".
+# An extended syntax that allows loading of other, specified files is available
+# if the value contains an equal sign "=", see the manual for more
+
+set mimetypes-load-control
+
+# Try to get around weird MIME attachment specifications
+# (This option can take a value, see the manual for more)
+
+set mime-counter-evidence
+
+## Some pipe-TYPE/SUBTYPE entries
+
+# Learn another mimetype
+
+mimetype 'model/vrml wrl vrml'
+
+# HTML as text, inline display via lynx(1)
+
+if "$features" !% ,+filter-html-tagsoup,
+	set pipe-text/html='?* w3m -dump -T text/html'
+	#set pipe-text/html='?* elinks -force-html -dump 1'
+	#set pipe-text/html='?* lynx -stdin -dump -force_html'
+	# Display HTML as plain text instead
+	#set pipe-text/html=?t
+endif
+
+mimetype ?t application/mathml+xml mathml
+
+# PDF display, asynchronous display: via `mimeview' command only.
+
+wysh set pipe-application/pdf='?&=? \
+   trap "rm -f \"${MAILX_FILENAME_TEMPORARY}\"" EXIT;\
+   trap "trap \"\" INT QUIT TERM; exit 1" INT QUIT TERM;\
+   zathura "${MAILX_FILENAME_TEMPORARY}"'
+
+# }}}1
+
+# SSL {{{1
+
+# ArchLinux-specific locations of certificates.
+# Since these are subject to the ArchLinux update mechanism,
+# use only those, do not try to load OpenSSL builtin ones.
+# And use the TLS specific set: see "man 8 update-ca-trust"
+#set ssl-ca-dir=/etc/ssl/certs
+# set ssl-ca-file=/etc/ssl/certs/ca-certificates.crt
+# set ssl-ca-no-defaults
+
+# Do not use protocols older than TLS v1.2.
+# Change this only when the remote server does not support it:
+# maybe use ssl-protocol-HOST (or -USER@HOST) syntax to define
+# such explicit exceptions, then, e.g.
+#     ssl-protocol-USER@archlinux.org="-ALL,+TLSv1.2"
+# set ssl-protocol=-ALL,+TLSv1.2
+
+# Explicitly define the list of ciphers, which may improve security,
+# especially with protocols older than TLS v1.2.  See ciphers(1).
+# This is an example: in reality it is possibly best to only use
+# ssl-cipher-list-HOST (or -USER@HOST), as necessary, again..
+# set ssl-cipher-list=TLSv1.2:!aNULL:!eNULL:@STRENGTH
+#set ssl-cipher-list="ALL:!aNULL:!eNULL:!MEDIUM:!LOW:!MD5:!RC4:!EXPORT"
+
+# Request strict transport security checks
+# set ssl-verify=strict
+
+# }}}1

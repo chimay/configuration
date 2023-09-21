@@ -1,0 +1,8 @@
+#
+# ~/.bash_profile
+#
+
+PATH="/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:$HOME/racine/shell/alarm"
+export PATH
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc

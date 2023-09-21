@@ -1,0 +1,44 @@
+<frescobaldi-theme name="dark">
+  <!--
+  Created by Frescobaldi 3.2.
+-->
+  <font fontFamily="monospace" fontSize="11.0" />
+  <baseColors>
+    <text color="#7c652a" />
+    <background color="#000000" />
+    <selectiontext color="#87823c" />
+    <selectionbackground color="#000000" />
+    <current color="#000000" />
+    <mark color="#000000" />
+    <error color="#000000" />
+    <search color="#c0ffc0" />
+    <match color="#00c0ff" />
+    <paper color="#5b3c11" />
+    <musichighlight color="#000000" />
+  </baseColors>
+  <defaultStyles>
+    <string textColor="#c00000" />
+    <function bold="False" italic="False" underline="False" textColor="#872e30" />
+    <value textColor="#808000" />
+    <comment italic="True" textColor="#808080" />
+    <escape bold="False" italic="False" underline="False" textColor="#7b3c11" />
+    <error bold="False" italic="False" underline="False" textColor="#ff0000" underlineColor="#ff0000" />
+    <variable bold="False" italic="False" underline="False" textColor="#944606" />
+    <keyword bold="False" italic="False" underline="False" textColor="#9b3c11" />
+  </defaultStyles>
+  <allStyles>
+    <lilypond>
+      <duration textColor="#008080" />
+      <dynamic bold="True" textColor="#ff8000" />
+      <articulation bold="True" textColor="#ff8000" />
+      <fingering textColor="#ff8000" />
+      <stringnumber textColor="#ff8000" />
+      <slur bold="True" />
+      <markup bold="False" textColor="#008000" />
+      <lyricmode textColor="#006000" />
+      <lyrictext textColor="#006000" />
+      <context bold="True" />
+      <grob textColor="#c000c0" />
+    </lilypond>
+  </allStyles>
+</frescobaldi-theme>

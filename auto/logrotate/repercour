@@ -1,0 +1,30 @@
+# vim: set filetype=conf :
+
+# Rotation des fichiers dans le répertoire courant
+
+"*" {
+	start 1
+	rotate 7
+
+	size 0
+	ifempty
+
+	olddir rotate
+
+	copy
+	nocopytruncate
+	noshred
+
+	nosharedscripts
+	nomissingok
+
+	nodateext
+
+	compress
+	nodelaycompress
+
+	compresscmd /usr/bin/xz
+	uncompresscmd /usr/bin/unxz
+	compressext .xz
+	compressoptions -6
+}

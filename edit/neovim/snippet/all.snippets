@@ -1,0 +1,49 @@
+# vim: set filetype=snippets.conf :
+
+# This file contains snippets that are always defined. I personally
+# have snippets for signatures and often needed texts
+
+# Bloc
+# ------------------------------
+
+snippet b "Bloc" b
+`!v substitute(&commentstring, '\s*%s.*', '', '')` {{{ ${1:Titre} `!v substitute(&commentstring, '.*%s', '', '')`
+
+${2:${VISUAL:contenu}}
+
+`!v substitute(&commentstring, '\s*%s.*', '', '')` }}} `!v substitute(&commentstring, '.*%s', '', '')`
+endsnippet
+
+# Fold, bloc avec niveau
+# ------------------------------
+
+snippet f "Bloc avec niveau" b
+`!v substitute(&commentstring, '\s*%s.*', '', '')` ${1:Titre} {{{${2:1}`!v substitute(&commentstring, '.*%s', '', '')`
+
+${3:${VISUAL:contenu}}
+
+`!v substitute(&commentstring, '\s*%s.*', '', '')` }}}$2 `!v substitute(&commentstring, '.*%s', '', '')`
+endsnippet
+
+# Vim filetype
+# ------------------------------
+
+snippet ft "Vim filetype modeline" b
+`!v substitute(&commentstring, '\s*%s.*', '', '')` vim: set filetype=`!v &filetype`:
+
+endsnippet
+
+# Shebang
+# ------------------------------
+
+snippet sb "Shebang du shell" b
+#!/usr/bin/env `!v &filetype`
+endsnippet
+
+# Todo
+# ------------------------------
+
+snippet af "afaire" b!
+# A faire : ${1:Description}  |  `echo $USER`  |  `!v strftime("[=] %a %d %b %Y  (o) %H:%M")`
+$0
+endsnippet

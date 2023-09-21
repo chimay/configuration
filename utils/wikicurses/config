@@ -1,0 +1,27 @@
+[general]
+default = Wikipedia
+mouse = False
+hide_references = False
+
+[keymap]
+a = help
+q = quit
+c = contents
+o = open
+h = back
+l = forward
+left = back
+right = forward
+m = bmark
+b = bmarks
+i = links
+u = iwlinks
+y = extlinks
+t = langs
+v = edit
+
+[Wikipedia]
+url = http://en.wikipedia.org/w/api.php
+
+[ArchWiki]
+url = https://wiki.archlinux.org/api.php

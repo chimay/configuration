@@ -1,0 +1,392 @@
+# Sample configuration for mrxvt-0.5.0. To use, copy it to ~/.mrxvtrc.
+#
+# This sets up a pseudo-transparent terminal with black tinted background, Xft
+# font, a transparent Firefox style tab-bar, and a next style scroll bar.
+#
+# Additionally, using the -name option you can get the following behaviour:
+#
+#   Full screen:
+#   	Start mrxvt with "mrxvt -name FullScreen". Produces a full screen
+#   	terminal.
+#
+#   Kitchen Sink:
+#   	Start mrxvt with "mrxvt -name KitchenSink". This produces an mrxvt
+#   	window with three tabs on startup. It loads your shell in the first tab,
+#   	and vim and mutt in the other two tabs. There aren't any other
+#   	applications you need to load anyway... ;)
+#
+#   FvwmConsole:
+#   	Produces a small blue tinted terminal, mainly for use as an fvwm
+#   	console. Just load the FvwmConsole module with
+#
+#   		FvwmConsole -terminal mrxvt
+#
+#   	and these settings will be used.
+#
+#   Root:
+#   	Start mrxvt with "mrxvt -name Root". This produces a green tinted mrxvt
+#   	windows which loads a root shell in the first tab. Ctrl+Shift+t opens a
+#   	new tab as root, and Ctrl+Shift+n opens a new tab as a regular user.
+#
+
+
+#
+# -----------------------------	TAB-BAR OPTIONS ------------------------------ #
+#
+
+Mrxvt.bottomTabbar:		True
+
+# Only show the tab bar if there is more than one tab.
+Mrxvt.autohideTabbar:		False
+
+# The number of tabs to attempt to keep visible. The width of tabs will shrink
+# to keep at least these many tabs visible.
+Mrxvt.minVisibleTabs:		7
+
+# The max width in chars for each tab (only used with x11 fonts, or if xftPFont
+# is not specified).
+# Mrxvt.maxTabWidth:		17
+
+# Hide left / right / close buttons in the tab bar.
+# Mrxvt.hideButtons:		True
+
+# Make the terminal title the same as the active tab title.
+Mrxvt.syncTabTitle:		True
+# Mrxvt.syncTabIcon:		true
+
+# Display the tab number in the title. Useful so that you can use Alt+digit to
+# quickly switch between tabs.
+Mrxvt.titleFormat:		%n. %t
+
+# Highlight inactive tabs only when they sound a bell (and not whenever they
+# produce output).
+Mrxvt.highlightTabOnBell:	True
+
+# Tab bar colors
+#Mrxvt.itabBackground:		#101010
+#Mrxvt.tabBackground:		#000000
+#Mrxvt.itabForeground:		#909090
+#Mrxvt.tabForeground:		#9a9a9a
+
+Mrxvt.tabBackground:		beige
+Mrxvt.tabForeground:		black
+Mrxvt.itabBackground:		beige
+Mrxvt.itabForeground:		black
+
+# Mrxvt.tabbarPixmap:		tabbarbg.png
+# Mrxvt.tabUsePixmap:		false
+
+# Monitor tabs for activity or inactivity
+# (alternate arguments for MonitorTab macro : "INACTIVITY" / "ACTIVITY")
+Mrxvt.macro.Ctrl+Shift+g:		MonitorTab AUTO
+#Mrxvt.monitorTimeout:		 2000
+#Mrxvt.monitorCommand:           play ~/.ding_sound.wav
+#Mrxvt.monitorCommand:           aosd_cat --fontdesc="Trebuchet 20" --ypos=50 --delay=4000 Alert on tab %n :: %t
+#Mrxvt.monitorCommand:           xmessage Monitor alert on tab %n
+
+#
+# ---------------------- SCROLLING / SCROLLBAR OPTIONS ----------------------- #
+#
+
+Mrxvt.geometry:		130x33
+
+Mrxvt.scrollBar:		true
+Mrxvt.scrollbarRight:		true
+#Mrxvt.scrollbarStyle:		rxvt
+Mrxvt.scrollbarStyle:		next
+
+# Number of lines to save in the scroll back buffer for all tabs
+Mrxvt.saveLines:		12784
+
+# Don't scroll to the bottom every time some output is produced.
+Mrxvt.scrollTtyOutputInhibit:	true
+
+# Scroll to the bottom when a key is pressed.
+Mrxvt.scrollTtyKeypress:	true
+
+# Scroll bar colors
+Mrxvt.scrollColor:		#808080
+Mrxvt.troughColor:		#202020
+
+# Mrxvt.scrollbarPixmap:	scrollbarbg.jpg
+
+#
+# ------------------------------- TRANSPARENCY ------------------------------- #
+#
+
+# True translucency (using Xorg's composite extension).
+# Mrxvt.opacity:		75
+# Mrxvt.opacityDegree:		5
+
+# Pseudo transparency. As long as you set the background using an esetroot
+# compatible program (e.g. feh), then the following will work. It is pretty
+# resource friendly too :).
+#Mrxvt.transparent:		True
+#Mrxvt.transparentScrollbar:	True
+#Mrxvt.transparentTabbar:	True
+#Mrxvt.transparentMenubar:	True
+
+# Color / degree to which the root background should be tinted.
+#Mrxvt.tintColor:		#000000
+#Mrxvt.shading:			75
+
+#
+# ---------------------------------- FONTS ----------------------------------- #
+#
+Mrxvt.xft:			1
+Mrxvt.xftFont:			DejaVu Sans Mono
+#Mrxvt.xftFont:			Monospace
+Mrxvt.xftSize:			12
+Mrxvt.xftAntialias:		1
+
+# The options below are better set using ~/.fonts.config. Mrxvt will use the
+# defaults passed to the fontconfig library.
+#
+
+Mrxvt.xftHinting:		1
+Mrxvt.xftAutoHint:		1
+Mrxvt.xftGlobalAdvance:	1
+Mrxvt.xftRGBA:		rgb
+Mrxvt.xftslow:		1
+
+# Don't load a multi-char font. This will reduce the line space if your multi
+# char font has different dimensions than the regular font. You might need to
+# comment it out if you want to use XIM and non-english fonts.
+#Mrxvt.xftNomFont:		1
+
+# Font to use for tab bar / menus. This need not be mono-spaced ;).
+Mrxvt.xftPFont:			Bitstream Vera Sans
+Mrxvt.xftPSize:			12
+
+# Shadow text
+# Mrxvt.textShadow:		red
+# Mrxvt.textShadowMode:		botright
+
+#
+# XIM input / multi char support. To use this, you should also comment out the
+# xftNomFont line above.
+#
+# Mrxvt.xftmFont:		SimSun
+# Mrxvt.multichar_encoding:	GB
+# Mrxvt.inputMethod:		SCIM
+
+Mrxvt.multichar_encoding:	fr_BE.UTF-8
+
+#
+# ---------------------------------- CURSOR ---------------------------------- #
+#
+Mrxvt.cursorBlink:		true
+Mrxvt.cursorColor:		#00ff00
+Mrxvt.cursorColor2:		#000000
+
+#
+# ---------------------------------- COLORS ---------------------------------- #
+#
+
+# Setup colors for a black background.
+#Mrxvt.background:		#000000
+#Mrxvt.foreground:		#9a9a9a
+
+Mrxvt.background:		beige
+Mrxvt.foreground:		black
+
+Mrxvt.color0:			#000000
+Mrxvt.color1:			#af0000
+Mrxvt.color2:			#00af00
+Mrxvt.color3:			#afaf00
+Mrxvt.color4:			#0000af
+Mrxvt.color5:			#af00af
+Mrxvt.color6:			#00afaf
+Mrxvt.color7:			#9a9a9a
+Mrxvt.color8:			#5f5f5f
+Mrxvt.color9:			#d70000
+Mrxvt.color10:			#00d700
+Mrxvt.color11:			#d7d700
+Mrxvt.color12:			#0000d7
+Mrxvt.color13:			#d700d7
+Mrxvt.color14:			#00d7d7
+Mrxvt.color15:			#d7d7d7
+
+# Display bold and underlined text in color, rather than using the terminal
+# attributes. This makes reading man pages a little easier.
+Mrxvt.colorBD:			#00afaf
+Mrxvt.colorUL:			#00af00
+# Mrxvt.colorRV:		#000040
+
+# Display the X selection as highlighted instead of using reverse video.
+Mrxvt.highlightColor:		#303060
+
+# Colors when terminal window looses focus. (Does not work well with Xft).
+# Mrxvt.ufBackground:		yellow
+# Mrxvt.backgroundFade:		50
+
+#
+# ------------------------------- MISC OPTIONS ------------------------------- #
+#
+
+# Display menu
+Mrxvt.showMenu:     False
+
+# The value of the TERM environment variable. Default is rxvt. If you have
+# trouble, try uncommenting the following line.
+# Mrxvt.termName:		xterm
+
+# Default title of each tab.
+Mrxvt.tabTitle:			mrxvt
+
+# Border to leave around terminal text
+Mrxvt.internalBorder:		2
+
+# Make double click select whole URL's
+Mrxvt.cutChars:			:=/~#@?%&_-.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0abcdefghijklmnopqrstuvwxyz
+
+# Blank the mouse pointer on keystrokes or after N seconds of inactivity.
+Mrxvt.pointerBlank:		True
+Mrxvt.pointerBlankDelay:	4
+
+# Don't close the tab if the secondary screen is displayed (e.g. when running
+# vim).
+Mrxvt.protectSecondary:		True
+
+# Run as a login shell.
+#Mrxvt.loginShell:		True
+
+# Enable session management
+Mrxvt.sessionMgt:		true
+
+#
+# --------------------------------- PROFILES --------------------------------- #
+#
+
+Mrxvt.profile0.command:		!zsh
+Mrxvt.profile0.workingDirectory:/home/david/art/eclats2vers
+
+# Root console on profile 1. Matrix like green font for root :).
+Mrxvt.profile1.foreground:	#809a70
+Mrxvt.profile1.background:	#002000
+Mrxvt.profile1.command:		su
+Mrxvt.profile1.tabTitle:	su
+
+# Better to start root consoles in root's home directory (and not the current
+# directory).
+Mrxvt.profile1.workingDirectory:/root
+# Mrxvt.profile1.Pixmap:	matrix.jpg
+
+# Vim on profile 2. Vim is run in a shell, so after Vim exits, you'll get the
+# shell prompt.
+Mrxvt.profile2.command:		!vim
+# Mrxvt.profile2.Pixmap:	vim.png
+
+# Mutt on profile 3. Kill the scroll back buffer, to save a little memory.
+# Mrxvt.profile3.Pixmap:	email.jpg
+Mrxvt.profile3.saveLines:	0
+Mrxvt.profile3.command:		mutt
+Mrxvt.profile3.workingDirectory:
+
+#
+# ---------------------------- KEYBOARD SHORTCUTS ---------------------------- #
+#
+
+# Open profiles 1 -- 4 on Ctrl+Shift+F1 -- F4.
+Mrxvt.macro.Ctrl+Shift+F1:	NewTab -1
+Mrxvt.macro.Ctrl+Shift+F2:	NewTab -2
+Mrxvt.macro.Ctrl+Shift+F3:	NewTab -3
+Mrxvt.macro.Ctrl+Shift+F4:	NewTab -4
+
+#
+# Save the scroll back buffer to a file, and open it (in less / vim) in a new
+# tab. Useful for searching, or cut/paste from the scroll back buffer.
+#
+Mrxvt.macro.Primary+Ctrl+Shift+question: PrintScreen -ps perl -e '$_=join("",<STDIN>); s/\n+$/\n/g; print' > /tmp/%p-scrollback
+Mrxvt.macro.Primary+Add+Ctrl+Shift+question: NewTab "(Tab %n scrollback)" \!less -ifLR +G /tmp/%p-scrollback; rm /tmp/%p-scrollback
+
+Mrxvt.macro.Primary+Ctrl+Shift+slash: PrintScreen -s perl -e '$_=join("",<STDIN>); s/\n+$/\n/g; print' > /tmp/%p-scrollback
+Mrxvt.macro.Primary+Add+Shift+Ctrl+slash: NewTab "(Tab %n scrollback)" \!view +"syn off| set nospell notitle noreadonly modifiable buftype=nofile |normal G" /tmp/%p-scrollback; rm /tmp/%p-scrollback
+
+
+#
+# When running a shell, this clears the scroll back buffer and executes the
+# current command. Useful if you're going to (or have just) run a command that
+# produces a lot of output. (Primary screen only).
+#
+Mrxvt.macro.Primary+Shift+Return:	Esc \ec
+Mrxvt.macro.Primary+Add+Shift+Return:	Str ^M
+
+
+# ---------------------------------------------------------------------------- #
+
+#
+#				CLASS SETTINGS
+#
+
+#
+# ------------------------------- TRANSPARENT -------------------------------- #
+#
+
+Transparent.transparent:		True
+Transparent.transparentScrollbar:	True
+Transparent.transparentTabbar:		True
+Transparent.transparentMenubar:		True
+
+Transparent.foreground:		beige
+
+#
+# ------------------------------- FULL SCREEN -------------------------------- #
+#
+
+FullScreen.bottomTabbar:	False
+
+FullScreen.transparent:		True
+FullScreen.transparentScrollbar:	True
+FullScreen.transparentTabbar:		True
+FullScreen.transparentMenubar:		True
+
+FullScreen.foreground:		beige
+
+# Set a large font ;)
+FullScreen.xftSize:		12
+FullScreen.xftPSize:		12
+
+# Keep as many tabs as possible on screen
+FullScreen.minVisibleTabs:	12
+
+# Set the window size increment to 1, so that the X server can resize our window
+# to the screen size without leaving any border.
+FullScreen.smoothResize:	True
+
+# Request a full screen window from the window manager. Requires a EWMH
+# compatible window manager. This certainly works on OpenBox, Fvwm, KDE, and
+# possibly many others.
+FullScreen.fullscreen:		True
+
+
+#
+# ------------------------------- KITCHEN SINK ------------------------------- #
+#
+# Number of tabs to launch initially
+KitchenSink.initProfileList:	    0,2,3
+
+
+#
+# ------------------------------- FVWM CONSOLE ------------------------------- #
+#
+FvwmConsole.initProfileList:	    4
+FvwmConsole.profile4.tabTitle:	    FvwmConsole
+FvwmConsole.profile4.background:    #101020
+FvwmConsole.profile4.holdExit:	    4
+
+FvwmConsole.xftSize:		    12
+FvwmConsole.tintColor:		    #181830
+FvwmConsole.geometry:		    60x15
+FvwmConsole.scrollBar:		    False
+
+#
+# ------------------------------- ROOT CONSOLE ------------------------------- #
+#
+
+Root.initProfileList:		    1
+Root.tintColor:			    #002000
+Root.itabBackground:		    #002000
+
+# ---------------------------------------------------------------------------- #
+# vim: set ft=mrxvtrc ts=8 sts=4:

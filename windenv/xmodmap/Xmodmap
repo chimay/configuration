@@ -1,0 +1,19 @@
+! vim: set filetype=xmodmap :
+
+! setxkbmap fr ; xmodmap <ce fichier>
+
+remove Lock = Caps_Lock
+add Lock = Escape
+
+keysym Caps_Lock = Escape
+keysym Escape = Caps_Lock
+
+keysym Menu = at asciitilde at asciitilde at
+
+keysym twosuperior = grave asciicircum grave asciicircum U2014
+
+keysym Print = Multi_key Sys_Req Multi_key Sys_Req
+keysym Pause = asciitilde at asciitilde at at
+
+keysym KP_Subtract = minus XF86_Prev_VMode minus XF86_Prev_VMode
+keysym KP_Add = plus XF86_Next_VMode plus XF86_Next_VMode

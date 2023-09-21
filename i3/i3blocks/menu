@@ -1,8 +1,0 @@
-#!/usr/bin/env /bin/zsh
-
-echo Menu
-
-if [ -n "$BLOCK_BUTTON" ]
-then
-	xfce4-appfinder > /dev/null
-fi

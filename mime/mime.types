@@ -1,0 +1,21 @@
+text/plain=gvim.desktop
+text/html html htm php phtm phtml
+
+application/postscript ps eps
+application/pdf pdf
+
+application/pgp pgp
+
+application/x-shar shar
+application/x-gunzip gz
+application/x-tar-gz tar.gz
+
+image/jpg jpg
+image/png png
+image/gif gif
+image/tiff tiff
+
+audio/ogg ogg
+audio/mp3 mp3
+audio/wav wav
+audio/flac flac

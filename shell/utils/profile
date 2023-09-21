@@ -1,0 +1,63 @@
+# vim: set ft=sh :
+
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# Ssh-agent {{{1
+
+export SSH_AUTH_SOCK SSH_AGENT_PID
+
+repertoire=$HOME/racine/run/ssh
+fichier=$repertoire/agent
+
+[[ -d $repertoire ]] || mkdir -p $repertoire
+
+if ! ps auxww | grep -v grep | grep --color=never ssh-agent &>> ~/log/psgrep.log
+then
+	echo "On lance ssh-agent" &> ~/log/profile.log
+	echo &> ~/log/profile.log
+
+	ssh-agent > $fichier 2> ~/log/profile.log
+else
+	echo "ssh-agent tourne déjà" &> ~/log/profile.log
+	echo &> ~/log/profile.log
+fi
+
+while read ligne
+do
+	eval $ligne
+
+done < $fichier
+
+echo &> ~/log/profile.log
+echo "SSH_AUTH_SOCK = $SSH_AUTH_SOCK" &> ~/log/profile.log
+echo &> ~/log/profile.log
+echo "SSH_AGENT_PID = $SSH_AGENT_PID" &> ~/log/profile.log
+
+# Path {{{1
+
+#PATH="/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:$HOME/racine/shell/alarm"
+
+PATH="
+/usr/local/sbin:\
+/usr/local/bin:\
+/usr/sbin:\
+/usr/bin:\
+$HOME/.local/bin:\
+$HOME/.pip/bin:\
+$HOME/racine/automat:\
+$HOME/racine/shell/alarm:\
+$HOME/racine/shell/dialog:\
+$HOME/racine/shell/fileman:\
+$HOME/racine/shell/run:\
+$HOME/racine/shell/windenv:\
+"
+
+export PATH

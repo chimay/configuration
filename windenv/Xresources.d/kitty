@@ -1,0 +1,28 @@
+! vim: set filetype=xdefaults:
+! vim: set commentstring=!\ %s :
+
+! Options valables partout par défaut
+
+! Couleurs {{{1
+
+kitty.foreground:    #5b3c11
+kitty.background:    #000000
+
+kitty.cursorColor:  #5b3c11
+
+kitty.color0: #000000
+kitty.color1: #b21818
+kitty.color2: #118011
+kitty.color3: #965724
+kitty.color4: #1818b2
+kitty.color5: #b218b2
+kitty.color6: #149696
+kitty.color7: #745434
+kitty.color8: #434343
+kitty.color9: #c74141
+kitty.color10: #36a636
+kitty.color11: #988404
+kitty.color12: #5454ff
+kitty.color13: #c842c8
+kitty.color14: #309494
+kitty.color15: #ffffff

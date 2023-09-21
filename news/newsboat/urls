@@ -1,0 +1,55 @@
+# vim: set filetype=conf:
+
+# Queries {{{1
+
+"query:Favoris:flags # \"f\""
+
+# "query:Articles non lus:unread = \"yes\""
+#
+# "query:Tag news:tags # \"news\""
+# "query:Tag multics:tags # \"multics\""
+# "query:Tag unix:tags # \"unix\""
+#
+# "query:Contient release:(title =~ \"release\" or content =~ \"release\")"
+
+# }}}1
+
+# Linuxfr {{{1
+
+https://www.reddit.com/domain/linuxfr.org/.rss linuxrf reddit
+
+# }}}1
+
+# Reddit {{{1
+
+http://www.reddit.com/r/BSD+freebsd+netbsd+openbsd+dragonflybsd+trueos+ghostbsd+bsdnow.rss "~BSD" reddit
+http://www.reddit.com/r/illumos+OpenIndiana.rss "~Illumos" reddit
+http://www.reddit.com/r/archlinux+ManjaroLinux.rss "~Arch based" reddit
+http://www.reddit.com/r/debian+linuxmint.rss "~Debian based" reddit
+http://www.reddit.com/r/gentoo+NixOS+voidlinux.rss "~Other Linux dist" reddit
+http://www.reddit.com/r/unix+plan9.rss "~Other Unix dist" reddit
+http://www.reddit.com/r/bash+commandline+fishshell+openssh+terminal+tmux+zsh.rss "~Terminal" reddit
+qttp://www.reddit.com/r/vim+vimplugins+neovim+emacs+kakoune.rss "~Editors" reddit
+http://www.reddit.com/r/mutt+opensource+pkgsrc+qutebrowser+suckless+sysadmin.rss "~Unix" reddit
+http://www.reddit.com/r/C_Programming+coding+cpp+haskell+lisp+lua+ocaml+programming+python+ruby+rust.rss "~Programming" reddit
+http://www.reddit.com/r/storage+zfs.rss "~File Systems" reddit
+http://www.reddit.com/r/bspwm+herbstluftwm+i3wm+swaywm.rss "~Graphical environment" reddit
+http://www.reddit.com/r/AlternativeHistory+Archeology+atlantis+CulturalLayer+Symbology+tartaria+tartarianarchitecture+Urbex.rss "~Archeos" reddit
+http://www.reddit.com/r/mandalas+SacredGeometry.rss "~Artisan" reddit
+
+# }}}1
+
+# Nitter {{{1
+
+https://nitter.42l.fr/antoinegigal/rss "~antoinegigal" nitter
+https://nitter.42l.fr/gotbletu/rss "~gotbletu" nitter
+https://nitter.42l.fr/graham__hancock/rss "~graham__hancock" nitter
+https://nitter.42l.fr/molinaroumberto/rss "~molinaroumberto" nitter
+
+# }}}1
+
+# Miscellaneous {{{1
+
+https://www.auboutdufil.com/podcast.php "~auboutdufil" misc
+
+# }}}1

@@ -1,0 +1,556 @@
+# vim: set ft=zsh :
+
+setopt nullglob
+
+# Système d’exploitation {{{1
+
+OPERASYS=inconnu
+
+case $(uname -a) in
+
+	*Linux*ARCH*)
+		OPERASYS=archlinux
+		;;
+	*Linux*Ubuntu*)
+		OPERASYS=ubuntu
+		;;
+	*FreeBSD*)
+		OPERASYS=freebsd
+		;;
+	*Linux*|*linux*)
+		OPERASYS=linux
+		;;
+esac
+
+if [ -f /etc/arch-release ]
+then
+	OPERASYS=archlinux
+fi
+
+export OPERASYS
+
+#  Type de terminal {{{1
+
+# Nécessaire pour une bonne gestion des couleurs dans tmux, mutt
+
+case "$TERM" in
+	linux*) TERM=linux;;
+	xterm*) TERM=xterm-256color;;
+	tmux*) TERM=tmux-256color;;
+	screen*) TERM=screen-256color;;
+esac
+
+export TERM
+
+# Pour i3
+# Prendre un terminal qui supporte les bonnes options pour visualiser le
+# journal d’erreur
+
+export TERMINAL=xterm
+
+
+#  Self (zsh configure zsh) {{{1
+
+export RACINE_ZSH=~/racine/config/shell/zsh
+
+export SHELL=zsh
+
+export ZDOTDIR=$HOME
+
+export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+
+# Default command with redir
+export NULLCMD=cat
+export READNULLCMD=less
+
+export PROMPT RPROMPT
+
+#  Historique {{{2
+
+export HISTFILE=~/racine/hist/zsh/$HOST
+
+export SAVEHIST=60000
+
+export HISTSIZE=$SAVEHIST
+
+export HISTFILESIZE=$HISTSIZE
+
+
+# Piles de répertoires {{{2
+
+# Voir aussi
+# <url:zshrc#tn=REPERTOIRES_FICHIER>
+# <url:fonction.zsh#tn=chpwd ()>
+# <url:zlogout>
+
+export DIRSTACKSIZE=300
+
+export REPERTOIRES_FICHIER="$HOME/racine/hist/zsh/dirs-$HOST"
+
+
+#  Chemins {{{2
+
+# Documentation (man) {{{3
+
+typeset -U manpath
+
+manpath=()
+
+manpath+=(~/racine/bin/local/man)
+
+manpath+=(/usr/local/share/man)
+manpath+=(/usr/share/man)
+manpath+=(/usr/local/man)
+
+
+#  Documentation (info) {{{3
+
+#export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+
+#  }}}3
+
+#  Fichiers indexés (locate) {{{3
+
+# Désactivé pour ne pas que la base de donnée soit reprise 2 x
+# Voir :
+#   - alias.zsh : alias à locate
+#   - emacs : helm-locate
+
+#export LOCATE_PATH=~/racine/self/locate.db
+
+#  }}}3
+
+# Exécutables {{{3
+
+# Déplacé dans <url:~/racine/config/cmdline/zsh/zprofile>
+
+# Nécessaire car zsh source /etc/profile
+# (qui réécrit PATH) après ~/.zshenv
+
+
+# Fonctions {{{3
+
+typeset -U fpath
+
+# Voir aussi <url:~/racine/config/cmdline/zsh/fonction.zsh#tn=Autoload>
+
+# fpath+=(~/racine/fun/zsh/autoload/*(F))
+# fpath+=(~/racine/fun/zsh/completion/*(F))
+# fpath+=(~/racine/fun/zsh/zle)
+
+fpath=(~/racine/fun/zsh/autoload/*(F) $fpath)
+fpath=(~/racine/fun/zsh/completion/*(F) $fpath)
+fpath=(~/racine/fun/zsh/zle $fpath)
+
+
+# Répertoires {{{3
+
+typeset -U cdpath
+
+#cdpath=($cdpath ~)
+#cdpath=($cdpath ~/racine/data ~/racine/var ~/log)
+
+
+# Personnalisés {{{3
+
+#typeset -TU CHEMINS_PERSONNELS chemins_personnels
+
+#  Tâches {{{2
+
+# Tâches périodiques
+#
+# Temps en secondes
+
+export PERIOD=300
+
+# Affiche le temps utilisé par
+# une commande au-dessus d'un
+# certain seuil
+#
+# Temps en secondes
+
+export REPORTTIME=300
+
+# Temps d'attente avant de considérer
+# une combinaison clavier ambiguë comme terminée
+#
+# Temps en centièmes de secondes
+
+export KEYTIMEOUT=127
+
+
+#  Courriel {{{2
+
+typeset -U mailpath
+
+repertoires=(\
+	~/racine/mail/Systeme/Reception \
+	~/racine/mail/Themes/Finance/*(.) \
+	/var/spool/mail/$USER \
+)
+
+for boite in $repertoires
+do
+	mailpath[$#mailpath+1]="${boite}?Nouveau courrier dans ${boite:t:r}."
+done
+
+export MAIL=/var/spool/mail/$USER
+
+export MAILCHECK=36
+
+
+# Autosuggestions {{{2
+
+#export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=2"
+
+
+
+#  Nom de l'ordinateur {{{1
+
+export HOST=`hostname -s`
+export HOSTNAME=$HOST
+
+
+# Environnement graphique {{{1
+
+#export XCOMPOSEFILE=~/racine/config/windenv/XCompose
+#export GTK_IM_MODULE=xim
+
+
+# Perso {{{1
+
+source $RACINE_ZSH/perso.zsh
+
+#  Masque {{{1
+
+umask 0022
+
+
+#  Couleurs & Effets {{{1
+
+source $RACINE_ZSH/couleurs.zsh
+
+#  Compilation {{{1
+
+# C / C++ ... {{{2
+
+#   CC          C compiler command
+#   CFLAGS      C compiler flags
+#   LDFLAGS     linker flags, e.g. -L<lib dir> if you have libraries in a
+#               nonstandard directory <lib dir>
+#   LIBS        libraries to pass to the linker, e.g. -l<library>
+#   CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
+#               you have headers in a nonstandard directory <include dir>
+#   CPP         C preprocessor
+#   XMKMF       Path to xmkmf, Makefile generator for X Window System
+
+#export CC=gcc
+
+#CFLAGS="-O2 -march=native -mtune=native"
+#CFLAGS="$CFLAGS -Wall -Wstrict-prototypes"
+#CFLAGS="$CFLAGS -Wno-error=strict-prototypes -Wno-error=deprecated-declarations"
+#CFLAGS="$CFLAGS -v"
+
+#CFLAGS="$CFLAGS -pthread -fPIC -fwrapv -fno-strict-aliasing"
+
+#export CFLAGS
+
+
+# Lisp {{{2
+
+#export LISP=sbcl
+
+
+# Go {{{2
+
+export GOPATH=~/racine/bin/go
+
+
+# Linuxbrew {{{2
+
+export HOMEBREW_CC=gcc
+
+
+
+# Réseau {{{1
+
+#export RSH=ssh
+
+#export NETRC=~/.netrc
+
+
+# Répertoire temporaire {{{1
+
+export TMPDIR=/tmp
+#export TMPDIR=~/tmp
+
+
+#  Cmdline {{{1
+
+export INPUTRC=~/racine/config/cmdline/inputrc
+
+export RLWRAP_HOME=~/racine/hist/rlwrap
+
+# Édition de la ligne de commande readline dans un éditeur externe,
+# activé par Ctrl-^ par défaut
+
+export RLWRAP_EDITOR='vim "+call cursor(%L,%C)" %F'
+
+export FZF_DEFAULT_OPTS='
+	--exact
+	--cycle
+	--height=50%
+	--min-height=10
+	--layout=reverse
+	--scroll-off=5
+	--hscroll-off=100
+	--border
+	--margin=5%
+	--padding=5%
+	--color=bw
+	--bind=home:first,end:last
+	--bind=alt-j:preview-down,alt-k:preview-up
+	--bind=insert:print-query
+	--bind=tab:replace-query
+	--multi
+	--marker=*
+	--bind=alt-space:toggle+down,shift-tab:toggle+down
+	--bind=alt-a:toggle-all
+	--bind=ctrl-s:toggle-sort
+	--bind=ctrl-u:end-of-line+unix-line-discard
+	'
+
+export FZFZ_RECENT_DIRS_TOOL=z
+# export FZFZ_RECENT_DIRS_TOOL=autojump
+# export FZFZ_RECENT_DIRS_TOOL=fasd
+
+export CLIFM_FZF_HEIGHT=70
+
+
+#  Utilitaires {{{1
+
+[ $OPERASYS != freebsd ] && {
+	eval $(dircolors -b $RACINE_ZSH/../utils/dircolors.conf)
+}
+
+# Recherche {{{1
+
+export GREP_COLORS='ms=01;31:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36'
+
+export RIPGREP_CONFIG_PATH=~/racine/config/search/ripgrep
+
+
+#  Pageurs {{{1
+
+# Less {{{2
+
+export LESSKEYIN=~/racine/config/visu/less/lesskey
+
+export PAGER=less
+
+export MANPAGER=less
+
+export BAT_PAGER=less
+
+export LESS="--no-init --raw-control-chars --ignore-case --buffers=360 --tabs=4 --jump-target=.36 --window=-4 --shift=.36 --max-forw-scroll=36 --max-back-scroll=36 --LONG-PROMPT --prompt=M?f%f:[Tube]. ?m (%x) No %i/%m:. ?ljLigne %l.?L/%L:. ?djPage %dj:.?D/%D:. ?pPct %pj:."
+
+# Voir ~/racine/config/visu/less/lesskey
+#
+# export LESSOPEN="|| ~/bin/shell/visu/lesspipe.sh %s"
+# export LESSCLOSE="-"
+
+export LESSHISTFILE=~/racine/hist/less/lesshst
+export LESSHISTSIZE=12347
+
+export LESSEDIT='%E ?lm+%lm. %f'
+
+export LESSECHO=lessecho
+
+# Couleurs {{{3
+
+# Voir <url:~/racine/snippet/color.snip#tn=ANSI Codes>
+# pour les codes effets & couleurs
+
+# LESS_TERMCAP_md # begin bold
+# LESS_TERMCAP_mb # begin blinking
+# LESS_TERMCAP_us # begin underline
+# LESS_TERMCAP_so # begin standout-mode - info box
+
+export LESS_TERMCAP_md=$'\E[0;31m'
+export LESS_TERMCAP_mb=$'\E[5m'
+export LESS_TERMCAP_us=$'\E[3;33m'
+export LESS_TERMCAP_so=$'\E[7m'
+
+# LESS_TERMCAP_me # end mode
+# LESS_TERMCAP_ue # end underline
+# LESS_TERMCAP_se # end standout-mode
+
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+
+# Most {{{2
+
+export MOST_EDITOR='vim'
+export MOST_SWITCHES='-s'
+
+#  Editeurs {{{1
+
+# un VRAI éditeur de texte ;)
+
+export VISUAL=vim
+
+export EDITOR=vim
+
+export DIFFPROG=vimdiff
+
+export FCEDIT=vim
+
+export SUDO_EDITOR=vim
+
+# Pour nvr, neovim-remote
+
+export NVIM_LISTEN_ADDRESS=~/racine/run/socket/neovim
+
+# Pour edir
+
+export EDIR_EDITOR=vim
+
+# Pour helm
+
+export EMACSLOADPATH="~/racine/plugin/manager/el-get/emacs-async:"
+
+# Eshell
+
+export ESHELL=zsh
+
+# Tags
+
+export GTAGSCONF=~/racine/config/edit/labels/gtags.conf
+
+export GTAGSLABEL=native
+#export GTAGSLABEL=ctags
+
+
+# Gestionnaires de fichiers {{{1
+
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+#  VCS {{{1
+
+#export RCSINIT=''
+
+export CVSROOT=:local:~/racine/repo/central/conversys
+
+#export CVSROOT=:ext:$USER@tixu.local:/home/$USER/racine/repo/cvs
+
+#export CVS_RSH=ssh
+
+#export GIT_DIR=./.git
+
+export VCSH_REPO_D=~/racine/self/vcsh/repo.d
+export VCSH_HOOK_D=~/racine/self/vcsh/hooks-enabled
+
+
+#  Synchronisation {{{1
+
+export RSYNC_RSH=ssh
+
+export UNISON=~/racine/config/sync/unison/archive/$HOST
+
+#export UNISONLOCALHOSTNAME=$HOST
+
+#  Backup {{{1
+
+# export BORG_REPO=ssh://user@host.tld:23/./borg
+# export BORG_BASE_DIR=/mnt/nvme/borgdata
+export BORG_PASSCOMMAND='pass show backup/borg/main'
+
+export RESTIC_REPOSITORY=~/backup/restic
+export RESTIC_PASSWORD_COMMAND='pass show backup/restic/main'
+
+# Calcul scientifique {{{1
+
+# Octave
+
+export OCTAVE_HISTFILE=~/racine/hist/octave/octave_hist
+export OCTAVE_HISTSIZE=34712
+
+
+#  Bases de données {{{1
+
+export PGDATA=~/db/postgresql
+#export PGUSER=$USER
+#export PGHOST=localhost
+#export PGPORT=5432
+
+
+#  Langages de script (perl, python, ruby, ...) {{{1
+
+# Perl
+
+PERL5LIB="/home/david/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/david/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/david/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/david/perl5"; export PERL_MM_OPT;
+
+# Python
+
+export PYTHONPATH=~/racine/bin/python:$PYTHONPATH
+
+# Ruby
+
+export RUBYPATH=~/racine/bin/ruby
+export RUBYLIB=~/racine/ruby/lib
+#export RUBYOPT=
+
+
+#  Navigateurs {{{1
+
+export BROWSER=w3m
+
+#export WWW_HOME="file://$HOME/racine/site/orgmode/grimoire/index.html"
+export WWW_HOME="file://$HOME/racine/refer/orgmode/bookmarks.html"
+
+# Gestionnaire de signets
+
+export BUKU_COLORS=xXxxx
+
+
+#  Java {{{1
+
+# export JAVA_HOME=~/soft/mach/jre1.7.0_21
+
+# export JAVA_ARGS="-Xms256m -Xmx512m"
+# export JAVA_OPTS="-Xms256m -Xmx512m"
+
+# export _JAVA_OPTIONS="-Xms256m -Xmx512m"
+
+
+#  Multimedia {{{1
+
+export MPLAYER_VERBOSE=0
+
+# Voir aussi mpd.conf
+
+export MPD_PORT=6600
+
+# Nécessaire pour dvdauthor
+#export VIDEO_FORMAT=PAL
+
+export YTFZF_CACHE=~/racine/varia/cache/ytfzf
+
+
+#  Nouvelles {{{1
+
+export NNTPSERVER=news.eternal-september.org
+
+export SLRN_ROOT=~/racine/news/spool
+
+
+#  Jeux {{{1
+
+#export FREECIV_PATH=${HOME}/data/alter/jeux/freeciv:${HOME}/config/jeux/freeciv:/usr/share/games/freeciv
+#export FREECIV_DATA_PATH=${HOME}/data/alter/jeux/freeciv
+#export FREECIV_SAVE_PATH=${HOME}/data/alter/jeux/freeciv/saves
+

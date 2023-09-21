@@ -1,0 +1,38 @@
+# vim: set filetype=conf:
+
+set autosave=true
+set preserve_fields=all
+set add_email_prevent_duplicates=true
+
+set mutt_return_all_emails=true
+
+set mutt_command=mail
+#set mutt_command=mutt
+
+set www_command=w3m
+set print_command=lp
+
+set address_style=eu
+set use_ascii_only=false
+
+set sort_field=nick
+set show_all_emails=true
+
+set show_cursor=true
+set use_colors=false
+set index_format=" {name:22} {email:40} {phone:12|workphone|mobile}"
+
+set use_mouse=true
+
+ # Declare a few custom fields
+
+field pager = Pager
+field address_lines = Address, list
+field birthday = Birthday, date
+
+# Define how fields should be displayed in tabs
+
+view CONTACT = name, email
+view ADDRESS = address_lines, city, state, zip, country
+view PHONE = phone, workphone, pager, mobile, fax
+view OTHER = url, birthday

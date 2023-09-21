@@ -1,0 +1,573 @@
+" vim: set filetype=vim :
+" vim: set nowrap :
+
+" Duck Duck Bangs {{{1
+
+" !g    : google
+" !iq   : ixquick
+
+" !w    : wikipedia
+" !wt    : wiktionary
+" !wb   : wikibooks
+" !ws   : wikisource
+
+" !wfr    : wikipedia français
+" !wtfr    : wiktionary français
+
+" !arch : archlinux
+
+" }}}1
+
+" Options {{{1
+
+command! helpindex tabopen dactyl://help/index
+
+set runtimepath=~/racine/config/webrowser/vimperator
+
+set gui=tabs
+
+set shell=/usr/bin/zsh
+
+set editor="~/racine/shell/run/lance-neovim.zsh"
+
+set cdpath=
+set cdpath+=~/racine
+set cdpath+=~
+
+set history=7000
+
+colorscheme personnel
+
+" Complétion de la ligne de commande {{{2
+
+set complete=
+
+" Favoris
+
+set complete+=b
+
+" Historique
+
+set complete+=h
+
+" Fichiers locaux
+
+set complete+=f
+
+" Moteurs de recherche
+
+"set complete+=s
+
+" Suggestions
+
+"set complete+=S
+
+" Favoris et historique
+
+"set complete+=l
+
+" }}}2
+
+" set encoding='UTF-8'
+" set fileencoding='UTF-8'
+
+" }}}1
+
+" Mappings {{{1
+
+nnoremap & :tabgroups switch<space>
+nnoremap é :tabgroups pushtab!<space>
+nnoremap § :tabgroups<space>
+nnoremap è :tabgroups pulltab<space>
+nnoremap ç :tabgroups add<space>
+nnoremap à :tabgroups remove<space>
+
+nnoremap t :tabopen about:newtab<cr>
+
+nnoremap <c-left> gT
+nnoremap <c-right> gt
+
+nnoremap <S-J> gT
+nnoremap <S-K> gt
+
+nnoremap <C-PageUp> gT
+nnoremap <C-PageDown> gt
+
+nnoremap <S-H> :tabm -1<cr>
+nnoremap <S-L> :tabm +1<cr>
+
+nnoremap <C-Home> :tabmove 0<cr>
+nnoremap <C-End> :tabm 100<cr>
+
+nnoremap ,m+ :set gui+=menu<cr>
+nnoremap ,m- :set gui+=nomenu<cr>
+
+nnoremap ,t+ :set gui+=tabs<cr>
+nnoremap ,t- :set gui+=notabs<cr>
+
+nnoremap ,a+ :set gui+=navigation<cr>
+nnoremap ,a- :set gui+=nonavigation<cr>
+
+nnoremap ,b+ :set gui+=bookmarks<cr>
+nnoremap ,b- :set gui+=nobookmarks<cr>
+
+nnoremap ,p+ :set gui+=addons<cr>
+nnoremap ,p- :set gui+=noaddons<cr>
+
+set defsearch=duckduckgo
+
+nnoremap <A-E> :open !w<space>
+
+nnoremap <A-A> :open !aw<space>
+
+nnoremap <A-G> :open !g<space>
+
+nnoremap <A-I> :open !gi<space>
+
+nnoremap <A-H> :open !gh<space>
+
+nnoremap <A-Q> :open !iq<space>
+
+nnoremap <A-Y> :open !yt<space>
+
+nnoremap <A-U> :noh<cr>
+
+" }}}1
+
+" Sites {{{1
+
+" Firefox {{{2
+
+command! abab tabopen about:about
+
+command! sy tabopen about:sync-tabs
+
+" }}}2
+
+" Localhost {{{2
+
+command! routeur tabopen 192.168.1.1
+
+command! cups tabopen http://localhost:631
+
+" }}}2
+
+" Recherche {{{2
+
+command! ddgBang tabopen https://duckduckgo.com/bang
+
+command! searx tabopen https://www.searx.me
+
+" }}}2
+
+" Site personnel {{{2
+
+command! eclats2versFileOrgmode tabopen file:///home/david/racine/site/orgmode/index.html
+command! eclats2versFileHtml tabopen file:///home/david/racine/site/html/index.html
+
+" command! eclats2versLocalhostOrgmode tabopen http://localhost/eclats2vers/orgmode/index.html
+" command! eclats2versLocalhostHtml tabopen http://localhost/eclats2vers/html/index.html
+
+"command! eclats2versGithub tabopen https://github.com/chimay/eclats2vers/
+
+command! eclats2versPhpnet tabopen http://chimay.phpnet.us/
+
+command! phpnetCpanel tabopen http://cpanel.phpnet.us/
+command! phpnetFtp tabopen ftp://ftp.phpnet.us/
+
+" }}}2
+
+" Réseaux sociaux {{{2
+
+command! fedinfo   tabopen https://the-federation.info/
+command! fednets   tabopen http://skilledtests.com/wiki/List_of_Federated_Communication_Platforms
+
+" Diaspora
+
+command! dsfoundation   tabopen https://diasporafoundation.org/
+command! dspoduptime    tabopen https://podupti.me/
+
+command! dsbookmarklet  tabopen https://joindiaspora.com/bookmarklet?url=https://joindiaspora.com/stream&title=JoinDiaspora*&notes=
+
+" Diaspora : pods
+
+command! ds             tabopen https://joindiaspora.com/
+
+command! dpoddiasporg   tabopen https://diasp.org
+command! dpodframa      tabopen https://framasphere.org/
+command! dpodjoin       tabopen https://joindiaspora.com/
+
+" Movim
+
+command! mi              tabopen https://it.movim.eu/
+
+" Hubzilla
+
+command! hzdotorg        tabopen https://hubzilla.org/
+command! hzpublichubs    tabopen https://hubzilla.nl/pubsites/
+
+" Hubzilla : hubs
+
+command! hz              tabopen https://lastauth.com/
+
+command! hhhubzillasite  tabopen https://hubzilla.site/
+command! hhlastauth      tabopen https://lastauth.com/
+
+" GNU Social
+
+command! gsInstances     tabopen http://skilledtests.com/wiki/List_of_Independent_GNU_social_Instances
+command! gsGroups        tabopen http://skilledtests.com/wiki/List_of_federated_GNU_social_groups
+
+" GNU Social : instances
+
+command! gs              tabopen https://gnusocial.no/
+
+command! gsiQuitter      tabopen https://quitter.no/
+
+" Reddit
+
+command! -nargs=* ri  tabopen https://www.reddit.com/r/<args>
+
+command! -nargs=+ riSearch tabopen https://www.reddit.com/search?q=<args>
+
+command! -nargs=+ riMulti tabopen https://www.reddit.com/me/m/<args>/
+
+command! riAccueil    tabopen https://www.reddit.com/
+command! riAll        tabopen https://www.reddit.com/r/all
+command! riUser       tabopen https://www.reddit.com/user/orduval/
+command! riExplore    tabopen https://www.reddit.com/explore
+command! riSub        tabopen https://www.reddit.com/subreddits/
+command! riSubMine    tabopen https://www.reddit.com/subreddits/mine/
+command! riMultihub   tabopen https://www.reddit.com/r/multihub/
+
+" Stackexchange
+
+command! -nargs=* se tabopen http://stackexchange.com/
+
+command! -nargs=* so tabopen http://stackoverflow.com/questions/tagged/<args>
+command! -nargs=* su tabopen http://superuser.com/questions/tagged/<args>
+
+" Slashdot
+
+command! slashdot     tabopen https://slashdot.org/
+
+command! -nargs=* sd  tabopen https://slashdot.org/tag/<args>
+
+" Gitter
+
+command! gitter tabopen https://gitter.im
+
+" Gmail
+
+command! gmail tabopen https://mail.google.com/mail/u/0/#inbox
+
+" Twitter
+
+command! -nargs=* tt tabopen https://twitter.com/<args>
+
+" Facebook
+
+command! facebook tabopen http://www.facebook.com
+
+" Wordpress
+
+command! wp       tabopen http://wordpress.com/
+
+command! wpAdmin  tabopen http://wordpress.com/wp-admin/
+
+" }}}2
+
+" Sport {{{2
+
+command! flashscore tabopen http://www.flashscore.com/tennis/
+
+command! cricfree tabopen http://cricfree.cc
+
+command! sportcategory tabopen http://sportcategory.com
+
+" }}}2
+
+" Radio {{{2
+
+command! m3               tabopen http://www.rtbf.be/musiq3
+
+" }}}2
+
+" Télévision {{{2
+
+command! auvio tabopen http://www.rtbf.be/auvio
+
+" }}}2
+
+" Multics : linux, bsd, etc {{{2
+
+command! gnu tabopen https://www.gnu.org/
+
+command! hnode tabopen https://h-node.org/
+
+command! linfr tabopen https://linuxfr.org/
+command! -nargs=* lf open https://linuxfr.org/tags/<args>/public
+
+command! framasoft tabopen https://framasoft.org/
+
+command! distrowatch tabopen http://distrowatch.com/
+
+command! phoronix tabopen http://www.phoronix.com/
+
+" Fedora {{{3
+
+command! fedora tabopen https://getfedora.org/
+
+" }}}3
+
+" Debian {{{3
+
+command! debian tabopen https://debian.org/
+
+" }}}3
+
+" Devuan {{{3
+
+command! devuan tabopen https://devuan.org/
+
+" }}}3
+
+" Slackware {{{3
+
+command! slackware tabopen http://www.slackware.com/
+
+command! slackbook tabopen http://www.slackbook.org/
+
+command! slackbuilds tabopen https://slackbuilds.org/
+
+" }}}3
+
+" Gentoo {{{3
+
+command! gentoo tabopen https://gentoo.org/
+
+" }}}3
+
+" Arch Linux {{{3
+
+command! al tabopen http://www.archlinux.org/
+
+command! alfr tabopen https://archlinux.fr/
+
+command! archwiki tabopen http://wiki.archlinux.org/
+
+command! archFormatting tabopen https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Formatting
+
+command! archaur tabopen http://aur.archlinux.org/
+
+command! archlinuxFr tabopen http://archlinux.fr/
+
+" }}}3
+
+" Void Linux {{{3
+
+command! voidlinux tabopen http://www.voidlinux.eu/
+
+" }}}3
+
+" BSD {{{3
+
+command! bsdnow tabopen http://www.bsdnow.tv/
+command! bsdnowTutorials tabopen http://www.bsdnow.tv/tutorials
+
+" }}}3
+
+" FreeBSD {{{3
+
+command! fb tabopen https://www.freebsd.org/
+
+command! fbFtp tabopen ftp://ftp.freebsd.org/
+
+command! fbHandbook tabopen https://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/
+
+command! -nargs=* fbMan tabopen https://www.freebsd.org/cgi/man.cgi?query=<args>&apropos=0&sektion=0&manpath=FreeBSD+11.0-RELEASE+and+Ports&arch=default&format=html
+
+command! fbWiki tabopen https://wiki.freebsd.org/
+
+command! fbLists tabopen https://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/eresources-mail.html
+
+command! fbForums tabopen https://forums.freebsd.org/
+
+command! fbRecentPosts tabopen https://forums.freebsd.org/find-new/6100496/posts
+
+command! fbFoundation tabopen https://www.freebsdfoundation.org/
+
+command! fbDaemonNotes tabopen http://daemon-notes.com/
+
+command! freshports tabopen http://www.freshports.org/
+
+command! fbnews tabopen https://www.freebsdnews.com/
+
+" }}}3
+
+" True OS {{{3
+
+command! tr tabopen https://www.trueos.org/
+
+command! trHandbook tabopen https://www.trueos.org/handbook/trueos.html
+
+command! trDiscourse tabopen https://discourse.trueos.org/
+
+" }}}3
+
+" DragonFly BSD {{{3
+
+command! dragonflybsd tabopen http://www.dragonflybsd.org/
+
+" }}}3
+
+" NetBSD {{{3
+
+command! netbsd tabopen http://netbsd.org/
+
+" }}}3
+
+" OpenBSD {{{3
+
+command! openbsd tabopen http://www.openbsd.org/
+
+command! openbsdFaq tabopen http://www.openbsd.org/faq/
+
+" }}}3
+
+" OpenIndiana {{{3
+
+command! oi tabopen https://www.openindiana.org/
+
+command! oiDoc tabopen http://docs.openindiana.org/
+
+command! tribblix tabopen http://tribblix.org/
+
+" }}}3
+
+" Tribblix {{{3
+
+command! tribblix tabopen http://tribblix.org/
+
+" }}}3
+
+" Lumina {{{3
+
+command! lumina tabopen https://lumina-desktop.org/
+
+command! luminaHandbook tabopen https://lumina-desktop.org/handbook/
+
+" }}}3
+
+" }}}2
+
+" Littérature {{{2
+
+command! lpdp tabopen http://www.lapassiondespoemes.com
+command! pwn tabopen http://poesie.webnet.fr
+command! poemefrance tabopen http://www.poeme-france.com
+
+command! poesiesNet tabopen http://www.poesies.net
+
+command! gutenberg      tabopen http://www.gutenberg.org
+command! gallica        tabopen http://gallica.bnf.fr/
+command! librivox       tabopen https://www.librivox.org/
+
+" }}}2
+
+" Musique {{{2
+
+command! soundcloud tabopen https://soundcloud.com
+
+" Échantillons
+
+command! freesound tabopen http://freesound.org
+
+" Partitions
+
+command! chmtl tabopen http://www.chmtl.indiana.edu
+command! quatuor tabopen http://www.quatuor.org
+
+command! choralwiki tabopen http://www.choralwiki.org
+command! imslp      tabopen http://imslp.org
+command! mutopia    tabopen http://www.mutopiaproject.org
+
+" }}}2
+
+" Science {{{2
+
+command! phys tabopen https://phys.org/
+
+" }}}2
+
+" Histoire {{{2
+
+"command! rev tabopen http://www.revelations-of-the-ancient-world.com
+
+command! behindthename tabopen http://www.behindthename.com/
+
+" }}}2
+
+" Traduction {{{2
+
+command! -nargs=* en tabopen http://translate.google.fr/#auto|en|<args>
+command! -nargs=* fr tabopen http://translate.google.fr/#auto|fr|<args>
+command! -nargs=* it tabopen http://translate.google.fr/#auto|it|<args>
+command! -nargs=* la tabopen http://translate.google.fr/#auto|la|<args>
+
+" }}}2
+
+" Maison {{{2
+
+command! ores tabopen http://www.ores.net
+
+" }}}2
+
+" Courses {{{2
+
+command! aldi tabopen http://fr.aldi.be
+
+" }}}2
+
+" Thé {{{2
+
+command! tea      tabopen http://teapedia.org/en/Main_Page
+
+command! cha      tabopen http://www.cha-hu-the.be
+command! chaMenu  tabopen http://www.cha-hu-the.be/cha-hu-the-liste.pdf
+
+command! pal      tabopen http://www.palaisdesthes.com/fr/
+
+" }}}2
+
+" Finance {{{2
+
+command! gps tabopen http://pleja.over-blog.com/article-table-des-matieres-des-post-its-109197461.html
+
+command! pleja tabopen http://forums.univers-bourse.com/members/pleja.html
+command! parisboy tabopen http://forums.univers-bourse.com/members/parisboy.html
+
+command! cac tabopen http://www.boursorama.com/bourse/actions/palmares/?MARCHE=1rPCAC&VARIATION=50002&PERIODE=3
+command! sbf tabopen http://www.boursorama.com/bourse/actions/palmares/?VARIATION=50002&PERIODE=3
+
+command! ubActivity         open http://forums.univers-bourse.com/activity.php
+command! ubUser             open http://www.univers-bourse.com/user
+
+command! caleco             tabopen http://www.actionforex.com/calendar
+
+command! binck              tabopen https://web.binck.be/Logon?culture=fr-BE
+command! binckSite          tabopen https://www.binck.be/fr
+command! binck360           tabopen https://login.binck360.be/
+
+command! belfius            tabopen https://www.belfius.be
+
+command! tradingview        tabopen https://www.tradingview.com/e
+command! tradingviewAccueil tabopen https://www.tradingview.com
+
+command! taxonweb           tabopen http://www.taxonweb.be
+
+command! indiceLoyer        tabopen http://www.pim.be/pimfichier/indexloyer.html
+
+" }}}2
+
+" }}}1

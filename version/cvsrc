@@ -1,0 +1,7 @@
+checkout -P
+diff -uN
+log -N
+rdiff -u
+release -d
+tag -c
+update -Pd

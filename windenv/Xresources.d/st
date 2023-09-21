@@ -1,0 +1,48 @@
+! vim: set filetype=xdefaults:
+! vim: set commentstring=!\ %s :
+
+! Font {{{1
+
+! st.font:xft:DejaVu Sans Mono:size=11
+
+!st.font:			-*-fixed-*-*-*-*-12-*-*-*-*-*-*-1
+
+st.font:xft:Monospace:size=9
+! st.boldfont:xft:Monospace-Bold:size=11
+
+! st.font:     xft:bitstream vera sans mono:size=11:antialias=true
+! st.boldFont: xft:bitstream vera sans mono:bold:size=11:antialias=true
+
+!st.letterSpace:              -1
+!st.lineSpace:                1
+
+! }}}1
+
+! Couleurs {{{1
+
+st.foreground:   #5b3c11
+st.background:   #000000
+
+st.cursorColor: #5b3c11
+st.cursorBlink: true
+
+st.colorUL:		#88421d
+
+st.color0: #000000
+st.color1: #b21818
+st.color2: #118011
+st.color3: #965724
+st.color4: #1818b2
+st.color5: #b218b2
+st.color6: #149696
+st.color7: #949494
+st.color8: #434343
+st.color9: #c74141
+st.color10: #36a636
+st.color11: #988404
+st.color12: #5454ff
+st.color13: #c842c8
+st.color14: #309494
+st.color15: #ffffff
+
+! }}}1

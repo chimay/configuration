@@ -1,0 +1,54 @@
+# vim: set filetype=conf:
+
+include "%S/iso8859-1/Compose"
+
+<Multi_key> <asciicircum> <e>   	: "ê"
+
+<Multi_key> <less> <less>        	: "«"   guillemotleft # LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+<Multi_key> <greater> <greater>  	: "»"   guillemotright # RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+<Multi_key> <less> <space>        	: "« "
+<Multi_key> <greater> <space> 	 	: " »"
+
+#<Multi_key> <V> <L>              	: "|"   bar # VERTICAL LINE
+#<Multi_key> <A> <T>              	: "@"   at # COMMERCIAL AT
+#<Multi_key> <plus> <plus>        	: "#"   numbersign # NUMBER SIGN
+#<Multi_key> <o> <c>              	: "©"   copyright # COPYRIGHT SIGN
+#<Multi_key> <s> <o>              	: "§"   section # SECTION SIGN
+#<Multi_key> <p> <exclam>         	: "¶"   paragraph # PILCROW SIGN
+
+#<Multi_key> <parenleft> <parenleft> 	: "["   bracketleft # LEFT SQUARE BRACKET
+#<Multi_key> <parenright> <parenright> 	: "]"   bracketright # RIGHT SQUARE BRACKET
+
+#<Multi_key> <minus> <parenleft>  	: "{"   braceleft # LEFT CURLY BRACKET
+#<Multi_key> <parenright> <minus> 	: "}"   braceright # RIGHT CURLY BRACKET
+
+#<Multi_key> <minus> <minus> <period> 	: "–"   U2013 # EN DASH
+#<Multi_key> <minus> <minus> <minus> 	: "—"   U2014 # EM DASH
+
+#<Multi_key> <numbersign> <b>     	: "♭"   U266d # MUSIC FLAT SIGN
+#<Multi_key> <numbersign> <f>     	: "♮"   U266e # MUSIC NATURAL SIGN
+#<Multi_key> <numbersign> <numbersign> 	: "♯"   U266f # MUSIC SHARP SIGN
+
+#<Multi_key> <plus> <minus>       	: "±"   plusminus # PLUS-MINUS SIGN
+#<Multi_key> <period> <minus>    	: "·"   periodcentered # MIDDLE DOT
+#<Multi_key> <period> <equal>    	: "•"   enfilledcircbullet # BULLET
+#<Multi_key> <x> <x>              	: "×"   multiply # MULTIPLICATION SIGN
+
+#<Multi_key> <o> <o>              	: "°"   degree # DEGREE SIGN
+#<Multi_key> <percent> <o>        	: "‰"   U2030 # PER MILLE SIGN
+
+#<Multi_key> <space> <space>      	: " "   nobreakspace # NO-BREAK SPACE
+#<Multi_key> <space> <period>     	: " "   U2008 # PUNCTUATION SPACE
+
+#<Multi_key> <period> <greater>   	: "›"   U203a # SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+#<Multi_key> <period> <less>      	: "‹"   U2039 # SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+#<Multi_key> <period> <period>    	: "…"   ellipsis # HORIZONTAL ELLIPSIS
+
+#<Multi_key> <exclam> <asciicircum> 	: "¦"   brokenbar # BROKEN BAR
+#<Multi_key> <exclam> <exclam>    	: "¡"   exclamdown # INVERTED EXCLAMATION MARK
+#<Multi_key> <question> <question> 	: "¿"   questiondown # INVERTED QUESTION MARK
+
+#<Multi_key> <o> <e>              	: "œ"   oe # LATIN SMALL LIGATURE OE
+#<Multi_key> <O> <E>              	: "Œ"   OE # LATIN CAPITAL LIGATURE OE
+#<Multi_key> <a> <e>              	: "æ"   ae # LATIN SMALL LETTER AE
+#<Multi_key> <A> <E>              	: "Æ"   AE # LATIN CAPITAL LETTER AE

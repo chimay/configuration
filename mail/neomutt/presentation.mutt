@@ -1,0 +1,563 @@
+# vim: set filetype=muttrc :
+
+#  {{{ Générique
+# ------------------------------------------------------------------------
+
+set sleep_time=1
+
+# }}}
+
+#  {{{ Menus
+# ------------------------------------------------------------------------
+
+set menu_scroll
+set menu_context=7
+set menu_move_off=no
+
+# }}}
+
+#  {{{ Barres de progression
+# ------------------------------------------------------------------------
+
+set read_inc=7
+set write_inc=7
+
+# }}}
+
+# {{{ Recherche
+
+set search_context=7
+
+# }}}
+
+#  {{{ Date (date_format)
+# ------------------------------------------------------------------------
+
+#set locale="en_US.UTF-8"
+
+#set date_format="%a %d %b %Y, %H:%M"
+set date_format="%a %d %b %H:%M"
+
+#   %a  	Nom abrégé du jour de la semaine  	De Sun à Sat
+#   %A 	Nom complet du jour de la semaine 	De Sunday à Saturday
+#   %d 	Jour du mois en numérique, sur 2 chiffres (avec le zéro initial) 	De 01 à 31
+#   %e 	Jour du mois, avec un espace précédant le premier chiffre 	De 1 à 31
+#   %j 	Jour de l'année, sur 3 chiffres avec un zéro initial 	001 à 366
+#   %u 	Représentation ISO-8601 du jour de la semaine 	De 1 (pour Lundi) à 7 (pour Dimanche)
+#   %w 	Représentation numérique du jour de la semaine 	De 0 (pour Dimanche) à 6 (pour Samedi)
+#
+#   Semaine 	--- 	---
+#
+#   %U 	Numéro de la semaine de l'année donnée, en commençant par le premier Lundi comme première semaine 	13 (pour la 13ème
+#   		 semaine pleine de l'année)
+#   %V 	Numéro de la semaine de l'année, suivant la norme ISO-8601:1988, en commençant comme première semaine, la semaine de
+#   		l'année contenant au moins 4 jours, et où Lundi est le début de la semaine 	De 01 à 53 (où 53 compte comme semai
+#   		e de chevauchement)
+#   %W 	Une représentation numérique de la semaine de l'année, en commençant par le premier Lundi de la première semaine
+#   		 6 (pour la 46ème semaine de la semaine commençant par un Lundi)
+#
+#   Mois 	--- 	---
+#
+#   %b 	Nom du mois, abrégé, suivant la locale 	De Jan à Dec
+#   %B 	Nom complet du mois, suivant la locale 	De January à December
+#   %h 	Nom du mois abrégé, suivant la locale (alias de %b) 	De Jan à Dec
+#   %m 	Mois, sur 2 chiffres 	De 01 (pour Janvier) à 12 (pour Décembre)
+#
+#   Année 	--- 	---
+#
+#   %C 	Représentation, sur 2 chiffres, du siècle (année divisée par 100, réduit à un entier) 	19 pour le 20ème siècle
+#   %g 	Représentation, sur 2 chiffres, de l'année, compatible avec les standards ISO-8601:1988 (voyez %V) 	Exemple : 09 pou
+#   		la semaine du 6 janvier 2009
+#   %G 	La version complète à quatre chiffres de %g 	Exemple : 2008 pour la semaine du 3 janvier 2009
+#   %y 	L'année, sur 2 chiffres 	Exemple : 09 pour 2009, 79 pour 1979
+#   %Y 	L'année, sur 4 chiffres 	Exemple : 2038
+#
+#   Heure 	--- 	---
+#
+#   %H 	L'heure, sur 2 chiffres, au format 24 heures 	De 00 à 23
+#   %I 	Heure, sur 2 chiffres, au format 12 heures 	De 01 à 12
+#   %l ('L' minuscule) 	Heure, au format 12 heures, avec un espace précédant de complétion pour les heures sur un chiffre 	D# 		 e 1 à 12
+#   %M 	Minute, sur 2 chiffres 	De 00 à 59
+#   %p 	'AM' ou 'PM', en majuscule, basé sur l'heure fournie 	Exemple : AM pour 00:31, PM pour 22:23
+#   %P 	'am' ou 'pm', en minuscule, basé sur l'heure fournie 	Exemple : am pour 00:31, pm pour 22:23
+#   %r 	Identique à "%I:%M:%S %p" 	Exemple : 09:34:17 PM pour 21:34:17
+#   %R 	Identique à "%H:%M" 	Exemple : 00:35 pour 12:35 AM, 16:44 pour 4:44 PM
+#   %S 	Seconde, sur 2 chiffres 	De 00 à 59
+#   %T 	Identique à "%H:%M:%S" 	Exemple : 21:34:17 pour 09:34:17 PM
+#   %X 	Représentation de l'heure, basée sur la locale, sans la date 	Exemple : 03:59:16 ou 15:59:16
+#   %z 	Soit le décalage horaire depuis UTC, ou son abréviation (suivant le système d'exploitation) 	Exemple : -0500 ou ES# 		 T pour l'heure de l'Est
+#   %Z 	Le décalage horaire ou son abréviation NON fournie par %z (suivant le système d'exploitation) 	Exemple : -0500 ou ES# 		 T pour l'heure de l'Est
+#
+#   L'heure et la date 	--- 	---
+#
+#   %c 	Date et heure préférées, basées sur la locale 	Exemple : Tue Feb 5 00:45:10 2009 pour le 4 Février 2009 à 12:45:10
+#   		AM
+#   %D 	Identique à "%m/%d/%y" 	Exemple : 02/05/09 pour le 5 Février 2009
+#   %F 	Identique à "%Y-%m-%d" (utilisé habituellement par les bases de données) 	Exemple : 2009-02-05 pour le 5 février
+#   		2009
+#   %s 	Timestamp de l'époque Unix (identique à la fonction time()) 	Exemple : 305815200 pour le 10 Septembre 1979
+#   		08:40:0 AM
+#   %x 	Représentation préférée de la date, basée sur la locale, sans l'heure 	Exemple : 02/05/09 pour le 5 Février 2009
+#
+#   Divers 	--- 	---
+#
+#   %n 	Une nouvelle ligne ("\n") 	---
+#   %t 	Une tabulation ("\t") 	---
+#   %% 	Le caractère de pourcentage ("%") 	---
+
+# }}}
+
+#  {{{ Index (index_format)
+# ------------------------------------------------------------------------
+
+# characters :
+#
+# <space> The mail is not addressed to your address.
+#        2      + You are the only recipient of the message.
+#        3      T Your address appears in the "To:" header field, but you are not the only recipient of the message.
+#        4      C Your address is specified in the "Cc:" header field, but you are not the only recipient.
+#        5      F Indicates the mail that was sent by you.
+#        6      L Indicates the mail was sent to a mailing-list you subscribe to.
+#        7      R Your address appears in the "Reply-To:" header field but none of the above applies.
+
+set to_chars=' >tc<lr'	# Fanions de destinataire des courriels
+
+# Voir aussi hooks/folder/all.mutt
+#
+# Important d’afficher le numéro des messages, car on peut alors y accéder
+# rapidement via ce numéro
+
+set index_format="%4N  %[%a %d %b %H:%M] %2.2S %2.2T %?X?[%X]&   ? %-21.21F %?M?§%3E&    ? %5C   %-60.60s %> "
+
+# %?X?%-4c&    ?
+# %?Y?%Y&%s?
+
+#  index_format
+#        Type: string
+#
+#        This  variable allows you to customize the message index display
+#        to your personal taste.
+#
+#        “Format strings” are similar to the strings used in the C  func‐
+#        tion  printf(3)  to  format  output  (see  the man page for more
+#        details).  The following sequences are defined in Mutt:
+#        %a     address of the author
+#        %A     reply-to  address  (if  present;  otherwise:  address  of
+#               author)
+#        %b     filename of the original message folder (think mailbox)
+#        %B     the list to which the letter was sent, or else the folder
+#               name (%b).
+#        %c     number of characters (bytes) in the message
+#        %C     current message number
+#        %d     date and time of the message in the format  specified  by
+#               $date_format converted to sender's time zone
+#        %D     date  and  time of the message in the format specified by
+#               $date_format converted to the local time zone
+#        %e     current message number in thread
+#        %E     number of messages in current thread
+#        %f     sender  (address  +   real   name),   either   From:   or
+#               Return-Path:
+#        %F     author name, or recipient name if the message is from you
+#        %H     spam attribute(s) of this message
+#        %i     message-id of the current message
+#        %l     number  of  lines  in  the  message  (does  not work with
+#               maildir, mh, and possibly IMAP folders)
+#        %L     If an address in the “To:” or “Cc:” header field  matches
+#               an address defined by the users “subscribe” command, this
+#               displays ”To <list-name>”, otherwise the same as %F.
+#        %m     total number of message in the mailbox
+#        %M     number of hidden messages if the thread is collapsed.
+#        %N     message score
+#        %n     author's real name (or address if missing)
+#        %O     original save  folder  where  mutt  would  formerly  have
+#               stashed  the  message: list name or recipient name if not
+#               sent to a list
+#        %P     progress indicator for the built-in pager  (how  much  of
+#               the file has been displayed)
+#        %s     subject of the message
+#        %S     status of the message (“N”/“D”/“d”/“!”/“r”/*)
+#        %t     “To:” field (recipients)
+#        %T     the appropriate character from the $to_chars string
+#        %u     user (login) name of the author
+#        %v     first name of the author, or the recipient if the message
+#               is from you
+#        %X     number of attachments (please see the “attachments”  sec‐
+#               tion for possible speed effects)
+#        %y     “X-Label:” field, if present
+#        %Y     “X-Label:”  field,  if  present, and (1) not at part of a
+#               thread  tree,  (2)  at  the  top  of  a  thread,  or  (3)
+#               “X-Label:”   is   different   from   preceding  message's
+#               “X-Label:”.
+#        %Z     message status flags
+#        %{fmt} the date and time of the message is converted to sender's
+#               time  zone, and “fmt” is expanded by the library function
+#               strftime(3); a leading bang disables locales
+#        %[fmt] the date and time of the  message  is  converted  to  the
+#               local  time  zone,  and  “fmt” is expanded by the library
+#               function strftime(3); a leading bang disables locales
+#        %(fmt) the local date and time when the  message  was  received.
+#               “fmt”  is expanded by the library function strftime(3); a
+#               leading bang disables locales
+#        %<fmt> the current local time. “fmt” is expanded by the  library
+#               function strftime(3); a leading bang disables locales.
+#        %>X    right justify the rest of the string and pad with charac‐
+#               ter “X”
+#        %|X    pad to the end of the line with character “X”
+#        %*X    soft-fill with character “X” as pad
+#
+#        “Soft-fill” deserves some explanation:  Normal  right-justifica‐
+#        tion  will  print everything to the left of the “%>”, displaying
+#        padding and whatever lies to the right only if there's room.  By
+#        contrast, soft-fill gives priority to the right-hand side, guar‐
+#        anteeing space to display it and showing padding only if there's
+#        still  room.  If necessary, soft-fill will eat text leftwards to
+#        make room for rightward text.
+
+# }}}
+
+# {{{ Barre de statut (status_format)
+
+set status_on_top				# Met la ligne d'état en haut.
+
+set status_format=" %h %?b? £ %b? [%r] %f  Msg %?M?%M / ?%?m?%m?%?l?  Siz?%?L? %L /?%?l? %l?%?n?  New %n?%?d?  Del %d?%?F?  Imp %F?%?t?  Sel %t?%?p?  Post %p?  Pos %P %?V?Lim %V? Sort %s/%.17S %>"
+
+#       status_format
+#              Type: string
+#
+#              Controls  the format of the status line displayed in the “index”
+#              menu.  This string is similar to $index_format, but has its  own
+#              set of printf(3)-like sequences:
+#              %b     number of mailboxes with new mail *
+#              %d     number of deleted messages *
+#              %f     the full pathname of the current mailbox
+#              %F     number of flagged messages *
+#              %h     local hostname
+#              %l     size (in bytes) of the current mailbox *
+#              %L     size  (in bytes) of the messages shown (i.e., which match
+#                     the current limit) *
+#              %m     the number of messages in the mailbox *
+#              %M     the number of messages shown (i.e., which match the  cur‐
+#                     rent limit) *
+#              %n     number of new messages in the mailbox *
+#              %o     number of old unread messages *
+#              %p     number of postponed messages *
+#              %P     percentage of the way through the index
+#              %r     modified/read-only/won't-write/attach-message  indicator,
+#                     according to $status_chars
+#              %s     current sorting mode ($sort)
+#              %S     current aux sorting method ($sort_aux)
+#              %t     number of tagged messages *
+#              %u     number of unread messages *
+#              %v     Mutt version string
+#              %V     currently active limit pattern, if any *
+#              %>X    right justify the rest of the string and pad with “X”
+#              %|X    pad to the end of the line with “X”
+#              %*X    soft-fill with character “X” as pad
+#
+#              For an explanation of “soft-fill”, see the  $index_format  docu‐
+#              mentation.
+#
+#              * = can be optionally printed if nonzero
+#
+#              Some  of  the  above sequences can be used to optionally print a
+#              string if their value is nonzero.  For  example,  you  may  only
+#              want  to  see  the  number  of flagged messages if such messages
+#              exist, since zero is not particularly meaningful.  To optionally
+#              print  a  string based upon one of the above sequences, the fol‐
+#              lowing construct is used:
+#
+#              %?<sequence_char>?<optional_string>?
+#
+#              where sequence_char is a character from  the  table  above,  and
+#              optional_string   is  the  string  you  would  like  printed  if
+#              sequence_char is nonzero.   optional_string  may  contain  other
+#              sequences  as well as normal text, but you may not nest optional
+#              strings.
+#
+#              Here is an example illustrating how to optionally print the num‐
+#              ber of new messages in a mailbox:
+#
+#              %?n?%n new messages.?
+#
+#              You can also switch between two strings using the following con‐
+#              struct:
+#
+#              %?<sequence_char>?<if_string>&<else_string>?
+#
+#              If the value of sequence_char is  non-zero,  if_string  will  be
+#              expanded, otherwise else_string will be expanded.
+#
+#              You  can  force  the result of any printf(3)-like sequence to be
+#              lowercase by prefixing the sequence character with an underscore
+#              (“_”) sign.  For example, if you want to display the local host‐
+#              name in lowercase, you would use: “%_h”.
+#
+#              If you prefix the sequence character with a colon (“:”)  charac‐
+#              ter, mutt will replace any dots in the expansion by underscores.
+#              This might be helpful with IMAP folders that don't like dots  in
+#              folder names.
+
+# }}}
+
+#  {{{ Pager (pager_format)
+# ------------------------------------------------------------------------
+
+set tilde				# Lignes virtuelles après la fin d'un courriel
+
+# Taille du mini-index dans le pager.
+set pager_index_lines=`cat ~/racine/config/mail/neomutt/data/number-of-lines`
+
+set smart_wrap=yes
+set markers=yes					# + sur les lignes coupées
+
+set pager_stop=no				# PageDown passe au courriel suivant
+								# en fin de courriel
+
+set pager_context=7
+
+set pager_format="no %C sc %N [%X] <%-7.21F> %-7.36s {§ %e/%E} %d %P %l l %c %> "
+
+#   %a     address of the author
+#   %A     reply-to address (if present; otherwise: address of author)
+#   %b     filename of the original message folder (think mailBox)
+#   %B     the list to which the letter was sent, or else the folder name (%b).
+#   %c     number of characters (bytes) in the message
+#   %C     current message number
+#   %d     date and time of the message in the format specified by “date_format” converted to sender's time zone
+#   %D     date and time of the message in the format specified by “date_format” converted to the local time zone
+#   %e     current message number in thread
+#   %E     number of messages in current thread
+#   %f     sender (address + real name), either From: or Return-Path:
+#   %F     author name, or recipient name if the message is from you
+#   %H     spam attribute(s) of this message
+#   %i     message-id of the current message
+#   %l     number of lines in the message (does not work with maildir, mh, and possibly IMAP folders)
+#   %L     If an address in the To or CC header field matches an address defined by  the  users  “subscribe”  command,
+#   		 this displays ”To <list-name>”, otherwise the same as %F.
+#   %m     total number of message in the mailbox
+#   %M     number of hidden messages if the thread is collapsed.
+#   %N     message score
+#   %n     author's real name (or address if missing)
+#   %O     (_O_riginal  save  folder)  Where mutt would formerly have stashed the message: list name or recipient name
+#   		 if no list
+#   %P     progress indicator for the builtin pager (how much of the file has been displayed)
+#   %s     subject of the message
+#   %S     status of the message (N/D/d/!/r/*)
+#   %t     `to:' field (recipients)
+#   %T     the appropriate character from the $to_chars string
+#   %u     user (login) name of the author
+#   %v     first name of the author, or the recipient if the message is from you
+#   %X     number of attachments (please see the “attachments” section for possible speed effects)
+#   %y     `x-label:' field, if present
+#   %Y     `x-label' field, if present, and (1) not at part of a thread tree, (2) at the top of a thread, or  (3)  `x-
+#   		 label' is different from preceding message's `x-label'.
+#   %Z     message status flags
+#   %{fmt} the  date  and time of the message is converted to sender's time zone, and “fmt” is expanded by the library
+#   		 function “strftime”; a leading bang disables locales
+#   %[fmt] the date and time of the message is converted to the local time zone, and “fmt” is expanded by the  library
+#   		 function “strftime”; a leading bang disables locales
+#   %(fmt) the  local  date  and time when the message was received.  “fmt” is expanded by the library function “strf-
+#   		 time”; a leading bang disables locales
+#   %<fmt> the current local time. “fmt” is expanded by the library  function  “strftime”;  a  leading  bang  disables
+#   		 locales.
+#   %>X    right justify the rest of the string and pad with character ”X”
+#   %|X    pad to the end of the line with character ”X”
+#   %*X    soft-fill with character ”X” as pad
+
+# {{{ En-têtes (hdr_format)
+
+#set hdr_format="%4C %Z %{%d-%m-%Y} %-20.20L %-15.15t (%4l) %s"
+
+# }}}
+
+# {{{ Format de citation
+
+#set quote_regexp="^([ \t]*[|>:}#])+"
+#set quote_regexp="^([A-Za-z0-9 \t]*[|>:}#])+"
+set quote_regexp="^(\s*[|>])+"
+
+set smileys="(>From )|(:[-^]?[][)(><}{|/DP])"
+
+# }}}
+
+# }}}
+
+#  {{{ Explorateur de fichiers/boîtes (folder_format)
+# ------------------------------------------------------------------------
+
+set folder_format="%36d %4t %8s %4N %f"
+
+#   This  variable  allows you to customize the file browser display
+#   to your personal taste.  This string is similar  to  $index_for‐
+#   mat, but has its own set of printf(3)-like sequences:
+#   %C     current file number
+#   %d     date/time folder was last modified
+#   %D     date/time folder was last modified using $date_format.
+#   %f     filename (“/” is appended to directory names, “@” to sym‐
+#          bolic links and “*” to executable files)
+#   %F     file permissions
+#   %g     group name (or numeric gid, if missing)
+#   %l     number of hard links
+#   %N     N if folder has new mail, blank otherwise
+#   %s     size in bytes
+#   %t     “*” if the file is tagged, blank otherwise
+#   %u     owner name (or numeric uid, if missing)
+#   %>X    right justify the rest of the string and pad with charac‐
+#          ter “X”
+#   %|X    pad to the end of the line with character “X”
+#   %*X    soft-fill with character “X” as pad
+
+# }}}
+
+#  {{{ Alias (alias_format)
+# ------------------------------------------------------------------------
+
+set alias_format="%4n %2f %t %-10a   %r"
+
+#   Specifies the format of the data displayed for the “alias” menu.
+#   The following printf(3)-style sequences are available:
+#   %a     alias name
+#   %f     flags - currently, a “d” for an alias marked for deletion
+#   %n     index number
+#   %r     address which alias expands to
+#   %t     character  which  indicates  if  the  alias is tagged for
+#          inclusion
+
+# }}}
+
+#  {{{ Rédaction (compose_format)
+# ------------------------------------------------------------------------
+
+set compose_format="-- Mutt: Compose on %h [Approx. msg size: %l   Atts: %a]%>-"
+
+#   Controls the format of the status line displayed  in  the  “com‐
+#   pose”  menu.   This string is similar to $status_format, but has
+#   its own set of printf(3)-like sequences:
+#   %a     total number of attachments
+#   %h     local hostname
+#   %l     approximate size (in bytes) of the current message
+#   %v     Mutt version string
+
+# }}}
+
+#  {{{ Message (message_format)
+# ------------------------------------------------------------------------
+
+set message_format="%s"
+
+# This  is  the  string  displayed  in  the  “attachment” menu for
+# attachments of type  message/rfc822.   For  a  full  listing  of
+# defined  printf(3)-like sequences see the section on $index_format.
+
+# }}}
+
+#  {{{ Suivi (forward_format)
+# ------------------------------------------------------------------------
+
+set forward_format = "[%a: %s]"
+
+# This  variable  controls  the  default subject when forwarding a
+# message.  It uses the same format sequences as the $index_format
+# variable.
+
+# }}}
+
+# {{{ Mix (mix_entry_format)
+
+# set mix_entry_format = "%4n %c %-16s %a"
+
+#   This variable describes the format of a  remailer  line  on  the
+#   mixmaster  chain selection screen.  The following printf(3)-like
+#   sequences are supported:
+#   %n     The running number on the menu.
+#   %c     Remailer capabilities.
+#   %s     The remailer's short name.
+#   %a     The remailer's e-mail address.
+
+
+# }}}
+
+#  {{{ Attachments (attach_format)
+# ------------------------------------------------------------------------
+
+set attach_format="%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s] "
+
+#   This  variable  describes  the  format of the “attachment” menu.
+#   The following printf(3)-style sequences are understood:
+#   %C     charset
+#   %c     requires charset conversion (“n” or “c”)
+#   %D     deleted flag
+#   %d     description
+#   %e     MIME content-transfer-encoding
+#   %f     filename
+#   %I     disposition (“I” for inline, “A” for attachment)
+#   %m     major MIME type
+#   %M     MIME subtype
+#   %n     attachment number
+#   %Q     “Q”, if MIME part qualifies for attachment counting
+#   %s     size
+#   %t     tagged flag
+#   %T     graphic tree characters
+#   %u     unlink (=to delete) flag
+#   %X     number of qualifying MIME parts  in  this  part  and  its
+#          children (please see the “attachments” section for possi‐
+#          ble speed effects)
+#   %>X    right justify the rest of the string and pad with charac‐
+#          ter “X”
+#   %|X    pad to the end of the line with character “X”
+#   %*X    soft-fill with character “X” as pad
+
+# }}}
+
+#  {{{ Requête externe (query_format)
+# ------------------------------------------------------------------------
+
+set query_format="%4c %t %-25.25a %-25.25n %?e?(%e)?"
+
+#    This variable describes the format of the “query” menu. The fol‐
+#    lowing printf(3)-style sequences are understood:
+#    %a     destination address
+#    %c     current entry number
+#    %e     extra information *
+#    %n     destination name
+#    %t     “*” if current entry is tagged, a space otherwise
+#    %>X    right justify the rest of the string and pad with “X”
+#    %|X    pad to the end of the line with “X”
+#    %*X    soft-fill with character “X” as pad
+#
+#    For  an  explanation of “soft-fill”, see the $index_format docu‐
+#    mentation.
+#
+#    * = can be optionally printed if nonzero, see the $status_format
+#    documentation.
+
+# }}}
+
+#  {{{ Chiffrement (pgp_entry_format)
+# ------------------------------------------------------------------------
+
+set pgp_entry_format="%4n %t%f %4l/0x%k %-4a %2c %u"
+
+#    This variable allows you to customize the PGP key selection menu
+#    to your personal taste. This string is similar to $index_format,
+#    but has its own set of printf(3)-like sequences:
+#    %n     number
+#    %k     key id
+#    %u     user id
+#    %a     algorithm
+#    %l     key length
+#    %f     flags
+#    %c     capabilities
+#    %t     trust/validity of the key-uid association
+#    %[<s>] date of the key where <s> is an strftime(3) expression
+
+# }}}
+
+#  {{{ Barre latérale
+# ------------------------------------------------------------------------
+
+# Ne fonctionne pas sans patch
+
+#ifdef sidebar_visible set sidebar_visible=no sidebar_width=24
+
+# }}}

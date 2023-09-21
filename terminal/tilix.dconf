@@ -1,0 +1,15 @@
+[/]
+warn-vte-config-issue=false
+quake-height-percent=60
+theme-variant='dark'
+quake-hide-headerbar=false
+quake-width-percent=80
+
+[profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+login-shell=true
+background-transparency-percent=13
+cursor-shape='block'
+dim-transparency-percent=19
+scrollback-lines=10000
+visible-name='Par défaut'
+use-theme-colors=false

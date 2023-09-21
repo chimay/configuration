@@ -1,6 +1,0 @@
-(:name evil-org-mode-somelauw
-       :website "http://github.com/Somelauw/evil-org-mode"
-       :description "Supplemental evil-mode keybindings to emacs org-mode."
-       :type github
-       :pkgname "Somelauw/evil-org-mode"
-       :depends (evil evil-leader))

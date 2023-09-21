@@ -1,0 +1,5 @@
+# vim: set filetype=conf:
+
+# user@localhost
+# user@nice.mail
+# | "/usr/bin/procmail"

@@ -1,0 +1,27 @@
+# vim: set ft=zsh :
+
+# [[ $OPERASYS = *linux* ]] && {
+#
+# 	screenfetch -N
+# }
+#
+# [[ $OPERASYS = *bsd* ]] && {
+#
+# 	bsdinfo
+# }
+
+
+[[ -d $dirstack[1] ]] && cd $dirstack[1]
+
+echo
+eval-ssh-agent
+
+# echo
+# task
+
+# echo
+# rem -c+
+# echo
+# rem -gaad -h
+
+#pkill -f 'rem -gaad -h'

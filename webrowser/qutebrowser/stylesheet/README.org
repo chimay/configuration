@@ -1,0 +1,21 @@
+
+#+STARTUP: showall
+
+* Themes
+
+Minimalist themes for various apps.
+
+Most are brown foreground on black background, with a few extra colors
+for syntax highlighting.
+
+
+** Terminal
+
+The terminal theme is inspired from [[https://github.com/chriskempson/base16-shell][Base16-shell]].
+
+Simply source it in zshrc (or bashrc I guess) to apply color changes.
+
+
+* Warning
+
+I try to be mindful when I code, but some bugs might remain, so be careful.

@@ -1,0 +1,5 @@
+# vim: set filetype=conf :
+
+path = racine
+path = graphix
+path = virtualbox

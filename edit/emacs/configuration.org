@@ -1,0 +1,2598 @@
+
+#+STARTUP: showall
+
+* Documentation
+
+
+** Aide en ligne
+
+C-h i   : lecteur info (très pratique)
+C-h r   : manuel emacs en mode info
+C-h C-h : aide sur l’aide en ligne
+C-h f   : aide de la fonction donnée
+C-h k   : aide de la séquence de touches donnée
+C-h v   : aide de la variable donnée
+C-h m   : aide sur le mode majeur & les modes mineurs courant
+
+Début de séquence de touches puis « C-h » :
+liste de toutes les séquences de touches
+commençant par celle donnée
+
+C-h a : commandes dont les noms correspondent à un motif donné
+C-h b : tous les keybindings
+C-h c : commande lancée par la séquence de touche donnée
+C-h C : système de coding
+C-h d : fonctions, variables, etc, dont les noms correspondent à un motif donné
+C-h e : messages (echo area)
+C-h F : aide de la commande donnée
+C-h K : aide de la commande liée à la séquence de touches donnée
+C-h n : changements récents dans emacs
+C-h p : paquet correspondant à un mot clé
+C-h P : décrit le paquet donné
+C-h s : table de syntaxe courante
+C-h S : section info du symbole courant
+C-h t : tutoriel
+C-h w : quelle séquence de touche lance la commande donnée ?
+C-h . : aide correspondant au point courant dans l’echo area
+C-h C-a : information à propos d’emacs
+C-h C-f : emacs FAQ
+C-h C-p : known problems
+
+
+** Modificateurs disponibles
+
+M = Méta
+C = Control
+S = Shift
+s = Super
+H = Hyper
+
+** Chargement
+
+(add-to-list 'load-path "...")
+
+(load "...")
+
+(require 'librairie)
+(require 'librairie "fichier")
+
+(autoload 'symbole "chemin" "description" t)
+
+
+** Keybindings
+
+[[https://stackoverflow.com/questions/683425/globally-override-key-binding-in-emacs/683575#683575]]
+
+
+** Booléens
+
+use “t” for true, “nil” for false
+
+
+** Historique
+
+Minibuffer :
+
+  - M-p, up (previous-history-element) : retrieve the input before the one currently in the minibuffer
+
+  - M-n, down (next-history-element) : retrieve the input after the one currently in the minibuffer
+
+  - M-r (previous-matching-history-element) : Move to an earlier item in the minibuffer history that matches a regexp you enter.
+
+  - M-s (next-matching-history-element) : Move to a later item in the minibuffer history that matches a regexp you enter.
+
+
+* Info
+
+#+begin_src emacs-lisp
+
+(setq Info-use-header-line t)
+(setq Info-hide-note-references t)
+
+(setq Info-scroll-prefer-subnodes nil)
+
+(setq Info-isearch-search t)
+
+(setq Info-enable-active-nodes nil)
+
+#+end_src
+
+
+* Interne
+
+
+** Serveur
+
+#+begin_src emacs-lisp
+  (require 'server)
+  (unless (server-running-p) (server-start))
+#+end_src
+
+
+** Chemins d’accès
+
+#+begin_src emacs-lisp
+  (add-to-list 'load-path "~/racine/dotdir/emacs.d")
+  (add-to-list 'custom-theme-load-path "~/racine/config/edit/emacs/color")
+#+end_src
+
+
+** Configuration automatique
+
+Fichier utilisé par customize
+
+#+begin_src emacs-lisp
+  (setq custom-file "~/racine/config/edit/emacs/enligne.el")
+  (load custom-file)
+#+end_src
+
+
+** Messages
+
+#+begin_src emacs-lisp
+  (setq message-log-max 3000)
+  (setq debug-on-error t)
+#+end_src
+
+
+** Optimisation
+
+#+begin_src emacs-lisp
+  (setq gc-cons-threshold 20000000)
+#+end_src
+
+
+** Compilation bytecode
+
+Désactivé car induisant parfois en erreur.
+
+#+begin_src emacs-lisp
+  ;;(require 'bytecomp)
+  ;;(byte-recompile-directory "~/racine/config/edit/emacs" 0)
+#+end_src
+
+
+* Présentation
+
+
+** Démarrage
+
+#+begin_src emacs-lisp
+  (setq inhibit-startup-message t)
+  (setq inhibit-splash-screen t)
+  (setq inhibit-startup-screen t)
+  (setq initial-buffer-choice t)
+  (setq initial-scratch-message ";; Buffer for notes you don’t want to save.\n\n")
+  (setq initial-buffer-choice (lambda ()
+      (org-agenda-list 30)
+      (get-buffer "*Org Agenda*")))
+#+end_src
+
+
+** Police
+
+#+begin_src emacs-lisp
+  ;;(set-frame-font "Monospace-11")
+  ;;(add-to-list 'default-frame-alist '(font . "Monospace-11" ))
+  ;;(set-frame-font "monofur-14")
+  ;;(add-to-list 'default-frame-alist '(font . "monofur-14" ))
+  ;;(set-frame-font "Fantasque\ Sans\ Mono-12")
+  (add-to-list 'default-frame-alist '(font . "Fantasque\ Sans\ Mono-12" ))
+#+end_src
+
+
+** Symboles
+
+#+begin_src emacs-lisp
+  (global-prettify-symbols-mode 1)
+#+end_src
+
+
+** Curseur
+
+#+begin_src emacs-lisp
+  (setq blink-cursor-mode nil)
+#+end_src
+
+
+** Menus
+
+#+begin_src emacs-lisp
+  (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+#+end_src
+
+
+** Lignes et colonnes
+
+Mode hl-line activé/désactivé via un binding (voir [[*Apparence][bindings/apparence]])
+
+#+begin_src emacs-lisp
+  (require 'linum)
+  (global-linum-mode 1)
+  (setq line-number-display-limit nil)
+  (line-number-mode t)
+  (column-number-mode t)
+  (global-hl-line-mode 0)
+#+end_src
+
+
+** Barres de défilement
+
+#+begin_src emacs-lisp
+  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+  (if (fboundp 'horizontal-scroll-bar-mode) (horizontal-scroll-bar-mode -1))
+
+  (setq	scroll-step 1
+	  scroll-margin 7
+	  scroll-conservatively 100000
+	  scroll-up-agressively 0.01
+	  scroll-down-agressively 0.01
+	  scroll-preserve-screen-position 1
+	  auto-window-vscroll nil)
+
+  (setq-default
+	  scroll-up-agressively 0.01
+	  scroll-down-agressively 0.01)
+
+  (setq mouse-wheel-scroll-amount '(5 ((shift) . 10))) ; one line at a time
+  (setq mouse-wheel-progressive-speed nil)            ; don't accelerate scrolling
+  (setq mouse-wheel-follow-mouse 't)                  ; scroll window under mouse
+  (setq scroll-step 1)                                ; keyboard scroll one line at a time
+#+end_src
+
+
+** Coloration syntaxique
+
+#+begin_src emacs-lisp
+  ; Activer la coloration syntaxique
+  (global-font-lock-mode t)
+  ;;(setq font-lock-maximum-decoration '((c-mode . 1) (t . 2)))
+  (setq font-lock-maximum-decoration t)
+#+end_src
+
+
+** Barre d'outil
+
+#+begin_src emacs-lisp
+  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+#+end_src
+
+
+** Beep
+
+#+begin_src emacs-lisp
+  (setq visible-bell 1)
+  (setq visible-bell 'top-bottom)
+#+end_src
+
+
+** Thème
+
+#+begin_src emacs-lisp
+  (when (equal window-system 'x) (load-theme 'golden-night-gui t))
+  (when (equal window-system nil) (load-theme 'golden-night-term t))
+
+  (if (daemonp)
+    (add-hook 'after-make-frame-functions
+      #'(lambda (frame)
+       (with-selected-frame frame
+	 (when (equal window-system 'x) (load-theme 'golden-night-gui t))
+	 )))
+    (when (equal window-system 'x) (load-theme 'golden-night-gui t)))
+#+end_src
+
+
+* Fenêtres
+
+
+** Winner
+
+#+begin_src emacs-lisp
+;; (winner-mode 1)
+#+end_src>
+
+
+* Édition
+
+
+** Labels (tags)
+
+#+begin_src emacs-lisp
+  (setq tags-add-tables nil)
+#+end_src
+
+
+** Commandes
+
+#+begin_src emacs-lisp
+  (setq disabled-command-function nil)
+#+end_src
+
+
+** Lignes visuelles
+
+#+begin_src emacs-lisp
+  ; Coupures entre les mots
+  (global-visual-line-mode -1)
+  ; La flèche vers le bas bouge par lignes visuelles
+  (setq line-move-visual nil)
+#+end_src
+
+
+** Indentation
+
+#+begin_src emacs-lisp
+  (setq indent-tabs-mode nil)
+  (setq standard-indent 4)
+  (setq tab-width 4)
+  (setq c-basic-offset 4)
+#+end_src
+
+
+** Format
+
+#+begin_src emacs-lisp
+  (setq delete-trailing-lines nil)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+  ; Mode texte en auto-fill par défaut (créé une nouvelle ligne  entre deux mots à
+  ; chaque fois que la ligne courant devient trop longue)
+
+  (add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+  ; en Americain, les phrases (sentences) se terminent par deux espaces
+  ; ce comportement n'est pas souhaitable en francais
+
+  (setq sentence-end-double-space nil)
+
+  ; Eviter que la cesure de fin de ligne, operée par exemple par le
+  ; mode autofill ou par un M-q, coupe au niveau d'un caractere parenthèse ouvrante ou :
+
+  (add-hook 'fill-no-break-predicate 'fill-french-nobreak-p)
+#+end_src
+
+
+** Sélection
+
+#+begin_src emacs-lisp
+  (setq shift-select-mode nil)
+  (delete-selection-mode 1)
+  ;(pending-delete-mode t)
+#+end_src
+
+
+** Correspondances (), [], ...
+
+#+begin_src emacs-lisp
+  (show-paren-mode 1)
+  (setq show-paren-style 'parenthesis)
+  ;; (setq show-paren-style 'expression)
+  ;; (setq show-paren-style 'mixed)
+  (setq show-paren-delay 0)
+  (electric-pair-mode t)
+  ;; Voir aussi smartparens
+#+end_src
+
+
+** Recherche & Remplacement
+
+#+begin_src emacs-lisp
+  ; Wrap search
+  (setq isearch-wrap-function nil)
+  (setq search-default-mode #'char-fold-to-regexp)
+  (setq replace-char-fold t)
+#+end_src
+
+
+** Annulation
+
+#+begin_src emacs-lisp
+  (setq undo-limit 80000)
+#+end_src
+
+
+** Copier & Coller
+
+#+begin_src emacs-lisp
+  (setq kill-ring-max 1234)
+  (setq save-interprogram-paste-before-kill t)
+#+end_src
+
+
+** Confirmation
+
+#+begin_src emacs-lisp
+  ; y / n au lieu de yes / no
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+
+** Sélection en rectangle
+
+
+*** En partant d’une sélection ordinaire
+
+Activé par C-x <SPC>.
+
+
+*** CUA Mode
+
+Activé par [[*Bindings][un binding]].
+
+Ensuite :
+
+  - RET change le curseur de coin
+
+  - Le texte inséré se place à gauche ou à droite du rectangle,
+    suivant la position du curseur
+
+  - C-2 M-w copie le texte dans le registre 2
+
+  - C-S-<SPC> place une marque globale où tous les textes copiés
+    seront ajoutés
+
+
+** Chiffrement
+
+#+begin_src emacs-lisp
+  ;: Fait automatiquement
+  ;;(require 'epa-file)
+  ;;(epa-file-enable)
+#+end_src
+
+
+* Fichiers
+
+
+** Backup
+
+#+begin_src emacs-lisp
+  (setq version-control t)
+  (setq delete-old-versions t)
+  (setq backup-by-copying t)
+  (setq kept-new-versions 7)
+  (setq kept-old-versions 5)
+  (setq backup-directory-alist '((".*" . "~/racine/varia/backup/emacs/")))
+#+end_src
+
+
+** Autosave
+
+#+begin_src emacs-lisp
+  (setq auto-save-default t)
+  (setq auto-save-interval 300)
+  (setq auto-save-timeout 30)
+  (defconst biblio/autosave-dir
+   (concat (getenv "HOME") "/racine/varia/autosave/emacs/"))
+  (setq auto-save-list-file-prefix biblio/autosave-dir)
+  (setq auto-save-file-name-transforms `((".*" ,biblio/autosave-dir t)))
+#+end_src
+
+
+** Autoread
+
+#+begin_src emacs-lisp
+  ;; (global-auto-revert-mode 1)
+  ;; (setq global-auto-revert-non-file-buffers t)
+  ;; (setq auto-revert-verbose nil)
+#+end_src
+
+
+** Encodage
+
+#+begin_src emacs-lisp
+  (set-default-coding-systems 'utf-8)
+  (set-language-environment 'utf-8)
+  (setq locale-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
+  (setq file-name-coding-system 'utf-8)
+  (set-language-environment "UTF-8")
+  (set-default-coding-systems 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-selection-coding-system 'utf-8)
+  (set-clipboard-coding-system 'utf-8)
+  (setq utf-translate-cjk-mode nil)
+  (setq-default buffer-file-coding-system 'utf-8-unix)
+  (add-to-list 'file-coding-system-alist '("\\.tex" . utf-8-unix))
+
+  ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
+
+  (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+  ;; (setq x-select-request-type 'STRING)
+  ;; (setq x-select-request-type 'TEXT)
+#+end_src
+
+
+** Accents
+
+Ils sont normalement supportés par votre distribution mais on ne sait jamais
+
+#+begin_src emacs-lisp
+  (setq selection-coding-system 'compound-text-with-extensions)
+#+end_src
+
+
+** Compression
+
+#+begin_src emacs-lisp
+  (auto-compression-mode t)
+#+end_src
+
+
+** Accès à distance
+
+#+begin_src emacs-lisp
+  (require 'tramp)
+#+end_src
+
+
+* Répertoires
+
+#+begin_src emacs-lisp
+  (require 'dired-x)
+  (require 'dired-aux)
+  (require 'wdired)
+
+  (setq wdired-allow-to-change-permissions t)
+  (setq default-directory "~/racine/plain/")
+  (setq delete-by-moving-to-trash t)
+  (setq trash-directory "~/racine/trash/emacs")
+  (setq dired-listing-switches "--time-style=iso -lhDF")
+  (setq ls-lisp-dirs-first t)
+  (setq dired-ls-F-marks-symlinks t)
+  (setq dired-recursive-copies 'always)
+  (setq dired-recursive-deletes 'always)
+
+  (add-hook 'dired-mode-hook 'auto-revert-mode)
+
+  (setq dired-listing-switches "-lha")
+  (setq-default dired-omit-files-p t)
+
+  ;; (setq dired-omit-files
+  ;;     (concat dired-omit-files "^\\..*\\.un~"))
+
+  (setq dired-omit-files "^\\..*\\.un~")
+  (setq
+   wdired-allow-to-change-permissions t
+   wdired-allow-to-redirect-links t)
+#+end_src
+
+
+* Tampons (buffers)
+
+
+** Tampon contenant la liste des tampons
+
+#+begin_src emacs-lisp
+  (autoload 'ibuffer "ibuffer" "List buffers." t)
+#+end_src
+
+
+** Tampons inactifs
+
+#+begin_src emacs-lisp
+  ; nombre de jours
+  (setq clean-buffer-list-delay-general 1)
+  ; nombre de secondes
+  (setq clean-buffer-list-delay-special (* 12 3600))
+#+end_src
+
+
+** Min windows
+
+#+begin_src emacs-lisp
+  (setq resize-mini-windows t)
+  (setq max-mini-window-height 30)
+#+end_src
+
+
+** Minibuffer
+
+#+begin_src emacs-lisp
+  (setq enable-recursive-minibuffers t)
+  (setq minibuffer-auto-raise t)
+#+end_src
+
+
+* Historique
+
+
+** Sauvegarde
+
+#+begin_src emacs-lisp
+  (setq savehist-file (expand-file-name "savehist" user-emacs-directory))
+  (setq savehist-autosave-interval 300)
+  (setq save-place-file (expand-file-name "saveplace" user-emacs-directory))
+  (setq-default save-place t)
+  ; Important de placer le require après la définition des variables
+  (require 'saveplace)
+  (savehist-mode 1)
+#+end_src
+
+
+** Tampons, Buffers
+
+#+begin_src emacs-lisp
+;; (desktop-save-mode 1)
+#+end_src
+
+
+** Fichiers récents
+
+Penser à exécuter recentf-cleanup de temps en temps
+
+#+begin_src emacs-lisp
+  (setq recentf-max-saved-items 1234)
+  (setq recentf-max-menu-items 1234)
+  (setq recentf-save-file (expand-file-name "recentf" user-emacs-directory))
+
+  ;; disable before we start recentf!
+  (setq recentf-auto-cleanup 'never)
+
+  ;; Important de placer le require après la définition des variables
+  (require 'recentf)
+
+  (append recentf-exclude '("*\\.html\\'" "*\\.epub"))
+  (recentf-mode 1)
+#+end_src
+
+
+* Contrôle de version
+
+#+begin_src emacs-lisp
+  (require 'vc)
+#+end_src
+
+
+* Terminal & Shell
+
+
+** ANSI
+
+#+begin_src emacs-lisp
+  (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+  (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+#+end_src
+
+
+** Shell bash, zsh, etc
+
+#+begin_src emacs-lisp
+  (setq explicit-shell-file-name "/bin/bash")
+  (setq shell-file-name "bash")
+
+  (defun comint-delchar-or-eof-or-kill-buffer (arg)
+    (interactive "p")
+    (if (null (get-buffer-process (current-buffer)))
+	(kill-buffer)
+      (comint-delchar-or-maybe-eof arg)))
+
+  (add-hook 'shell-mode-hook
+	    (lambda ()
+	      (define-key shell-mode-map
+		(kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer)))
+
+  (defvar biblio/terminal-shell "/bin/bash")
+
+  (defadvice ansi-term (before force-bash)
+    (interactive (list biblio/terminal-shell)))
+
+  (ad-activate 'ansi-term)
+#+end_src
+
+
+** Eshell
+
+
+*** Visual commands
+
+#+begin_src emacs-lisp
+  (require 'eshell)
+  (require 'em-smart)
+
+  (setq eshell-where-to-jump 'begin)
+  (setq eshell-review-quick-commands nil)
+  (setq eshell-smart-space-goes-to-end t)
+#+end_src
+
+
+** IELM : Interactive Emacs-Lisp Mode
+
+#+begin_src emacs-lisp
+  ;; Nothing yet
+#+end_src
+
+
+* Courriel
+
+
+** Données
+
+#+begin_src emacs-lisp
+  ;; (setq user-mail-address "your@mail")
+  ;; (setq user-full-name "Tic Tac")
+#+end_src
+
+
+** Receive
+
+If getmail or fetchmail or ... is not installed
+
+#+begin_src emacs-lisp
+  ;(setq mail-sources '((pop :server "pop.provider.org" :user "you" :password "secret")))
+#+end_src
+
+
+** Send
+
+#+begin_src emacs-lisp
+  ;;(setq smtpmail-default-smtp-server "smtp.server.org")
+  ;;(setq smtpmail-smtp-server "smtp.server.org")
+  ;;(setq smtpmail-local-domain "server.org")
+  ;(setq smtpmail-auth-credentials '(("hostname" "port" "username" "password")))
+  ;(setq smtpmail-starttls-credentials '(("hostname" "port" nil nil)))
+  ;;(load-library "smtpmail")
+  ;;(setq send-mail-function 'smtpmail-send-it)
+  ;;(setq message-send-mail-function 'smtpmail-send-it)
+#+end_src
+
+
+** Read
+
+Pour lire ses mails dans emacs : M-x rmail
+
+#+begin_src emacs-lisp
+  ;;(setq rmail-preserve-inbox t)
+  ;;(setq rmail-primary-inbox-list
+  ;;      '("/var/spool/mail/user"
+  ;;	"~/racine/mail/Systeme/mbox"
+  ;;       ))
+  ;;(setq rmail-ignored-headers
+  ;;      (concat rmail-ignored-headers
+  ;;	      "\\|^x-.*:\\|^IronPort-PHdr.*:\\|^Received.*:\\|^DKIM.*:"))
+#+end_src
+
+
+* Programmes externes
+
+
+** Compilation
+
+#+begin_src emacs-lisp
+  (setq compilation-window-height 12)
+
+  ;; use gdb-many-windows by default
+  (setq gdb-many-windows t)
+
+  ;; Non-nil means display source file containing the main routine at startup
+  (setq gdb-show-main t)
+#+end_src
+
+
+** Impression
+
+#+begin_src emacs-lisp
+  ;; Options génériques
+  (setq lpr-switches '("-o number-up=2" "-o Duplex=DuplexTumble"))
+
+  ;; Avec lpr
+  ;; (setq lpr-command "lpr")
+  ;; (setq printer-name "Officejet_5740")
+
+  ;; Avec lp
+  (setq lpr-command "lp")
+  (setq printer-name nil)
+  (setq lpr-add-switches nil)
+#+end_src
+
+
+** Navigation
+
+#+begin_src emacs-lisp
+  (setq browse-url-browser-function 'browse-url-generic)
+  (setq browse-url-generic-program "qutebrowser")
+#+end_src
+
+
+* Modes
+
+
+** Python
+
+#+begin_src emacs-lisp
+  (setq-default major-mode 'text-mode)
+  (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+  (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+  (setq python-shell-interpreter "python")
+  (setq python-shell-completion-native nil)
+#+end_src
+
+
+* Orthographe
+
+#+begin_src emacs-lisp
+  ;(ispell-change-dictionary "francais" t)
+  ;(setq ispell-dictionary "francais")
+#+end_src
+
+
+* Fonctions
+
+Pour les fonctionnelles
+
+#+begin_src emacs-lisp
+  (setq lexical-binding t)
+#+end_src
+
+
+** Fichier de configuration
+
+
+*** Éditer ce fichier
+
+#+begin_src emacs-lisp
+  (defun biblio/edite-configuration-org ()
+    (interactive)
+    (find-file "~/racine/config/edit/emacs/configuration.org")
+    (cd "~/racine/config/edit/emacs"))
+#+end_src
+
+
+*** Recharger ce fichier
+
+#+begin_src emacs-lisp
+  (defun biblio/recharge-configuration-org ()
+    "Reloads configuration.org at runtime"
+    (interactive)
+    (org-babel-load-file "~/racine/config/edit/emacs/configuration.org"))
+#+end_src
+
+
+** Affiche nom fichier
+
+#+begin_src emacs-lisp
+  (defun biblio/affiche-copie-nom-fichier ()
+    (interactive)
+    (message (buffer-file-name))
+    (kill-new (file-truename buffer-file-name)))
+#+end_src
+
+
+** Début & fin de fichier
+
+#+begin_src emacs-lisp
+  (defun biblio/debut-fin-fichier ()
+    (interactive)
+    (if (eq (point) (point-min))
+	(goto-char (point-max))
+      (goto-char (point-min))))
+#+end_src
+
+
+** Demi-pages
+
+Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v
+
+#+begin_src emacs-lisp
+  (defun biblio/demi-page-bas ()
+    "scroll down half the page"
+    (interactive)
+    (scroll-up (/ (window-body-height) 2)))
+
+  (defun biblio/demi-page-haut ()
+    "scroll up half the page"
+    (interactive)
+    (scroll-down (/ (window-body-height) 2)))
+#+end_src
+
+
+** Efface le mot
+
+#+begin_src emacs-lisp
+  (defun biblio/efface-mot ()
+    (interactive)
+    (forward-char 1)
+    (backward-word)
+    (kill-word 1))
+#+end_src
+
+
+** Efface jusqu’au début de la ligne
+
+#+begin_src emacs-lisp
+  (defun biblio/efface-jusque-debut-ligne ()
+  (interactive)
+  (kill-line 0))
+#+end_src
+
+
+** Efface le contenu de la ligne
+
+#+begin_src emacs-lisp
+  (defun biblio/efface-contenu-ligne ()
+    (interactive)
+    (beginning-of-line)
+    (kill-line))
+#+end_src
+
+
+** Copie le mot
+
+#+begin_src emacs-lisp
+  (defun biblio/copie-mot ()
+    (interactive)
+    (forward-char 1)
+    (backward-word)
+    (kill-word 1)
+    (undo-boundary)
+    (undo))
+#+end_src
+
+
+** Copie jusqu’au début de la ligne
+
+#+begin_src emacs-lisp
+  (defun biblio/copie-jusque-debut-ligne ()
+    (interactive)
+    (save-excursion
+      (kill-new (buffer-substring
+		 (point-at-bol)
+		 (point)))))
+#+end_src
+
+
+** Copie jusqu’à la fin de la ligne
+
+#+begin_src emacs-lisp
+  (defun biblio/copie-jusque-fin-ligne ()
+    (interactive)
+    (save-excursion
+      (kill-new (buffer-substring
+		 (point)
+		 (point-at-eol)))))
+#+end_src
+
+
+** Copie le contenu d’une ligne
+
+#+begin_src emacs-lisp
+  (defun biblio/copie-contenu-ligne ()
+    (interactive)
+    (save-excursion
+      (kill-new
+       (buffer-substring-no-properties
+	(point-at-bol)
+	(point-at-eol)))))
+#+end_src
+
+
+** Copie une ligne
+
+#+begin_src emacs-lisp
+  (defun biblio/copie-ligne ()
+    (interactive)
+    (save-excursion
+      (kill-new
+       (buffer-substring-no-properties
+	(line-beginning-position 1)
+	(line-beginning-position 2))))
+    ;; Old version
+    ;; (kill-whole-line)
+    ;; (undo-boundary)
+    ;; (undo)
+    )
+#+end_src
+
+
+** Copie la phrase
+
+#+begin_src emacs-lisp
+  (defun biblio/copie-phrase ()
+    (interactive)
+    (save-excursion
+      (let ((one)
+	    (two))
+	(backward-sentence)
+	(setq one (point))
+	(forward-sentence)
+	(setq two (point))
+	(kill-new (buffer-substring-no-properties one two))))
+    ;; (kill-sentence)
+    ;; (undo-boundary)
+    ;; (undo)
+    )
+#+end_src
+
+
+** Copie une expression lisp simple
+
+#+begin_src emacs-lisp
+  (defun biblio/copie-sexp ()
+    "Copie une sexp lisp"
+    (interactive)
+    (save-excursion
+      (let ((one)
+	    (two))
+	;; (backward-sexp)
+	(setq one (point))
+	(forward-sexp)
+	(setq two (point))
+	(kill-new (buffer-substring-no-properties one two))))
+    ;; (kill-sexp)
+    ;; (undo-boundary)
+    ;; (undo)
+    )
+#+end_src
+
+
+** Tampons (buffers)
+
+
+*** Alterner les deux plus récents
+
+#+begin_src emacs-lisp
+  (defun biblio/alterne-deux-derniers-tampons ()
+   "Visite alternativement les deux derniers tampons édités"
+   (interactive)
+   (switch-to-buffer nil))
+#+end_src
+
+
+*** Fermer le tampon courant
+
+#+begin_src emacs-lisp
+  (defun biblio/ferme-tampon-courant ()
+    "Supprime le tampon courant."
+    (interactive)
+    (kill-buffer (current-buffer)))
+#+end_src
+
+
+*** Fermer tous les tampons
+
+#+begin_src emacs-lisp
+  (defun biblio/ferme-tous-les-tampons ()
+    "Ferme tous les tampons."
+    (interactive)
+    (mapc 'kill-buffer (buffer-list)))
+#+end_src
+
+
+*** Revert all buffers
+
+#+begin_src emacs-lisp
+  (defun biblio/revert-all-buffers ()
+    "Refreshes all open buffers from their respective files."
+    (interactive)
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+	(when (and (buffer-file-name) (file-exists-p (buffer-file-name)) (not (buffer-modified-p)))
+	  (revert-buffer t t t) )))
+    (message "Refreshed open files.") )
+#+end_src
+
+
+*** Tampons souvent utilisés
+
+#+begin_src emacs-lisp
+  (defun biblio/aller-au-tampon-scratch ()
+    (interactive)
+    (switch-to-buffer "*scratch*"))
+
+  (defun biblio/aller-au-tampon-grenier ()
+    (interactive)
+    (split-window-right)
+    (other-window 1)
+    (find-file "Grenier")
+    (end-of-buffer))
+#+end_src
+
+
+** Fenêtres
+
+#+begin_src emacs-lisp
+
+(defun biblio/scinde-et-suit-horizontalement ()
+  (interactive)
+  (split-window-below)
+  (balance-windows)
+  (other-window 1))
+
+(defun biblio/scinde-et-suit-verticalement ()
+  (interactive)
+  (split-window-right)
+  (balance-windows)
+  (other-window 1))
+
+#+end_src
+
+
+** Insertion date
+
+#+begin_src emacs-lisp
+  (defun biblio/insertion-date () (interactive)
+    (insert (shell-command-to-string "echo -n $(date +'%d %b %Y')")))
+#+end_src
+
+
+** Insertion date jour
+
+#+begin_src emacs-lisp
+
+(defun biblio/insertion-date-jour () (interactive)
+  (insert (shell-command-to-string "echo -n $(date +'%a %d %b %Y')")))
+
+#+end_src
+
+
+** Insertion date jour heure
+
+#+begin_src emacs-lisp
+
+(defun biblio/insertion-date-jour-heure () (interactive)
+  (insert (shell-command-to-string "echo -n $(date +'%H : %M %a %d %b %Y')")))
+
+#+end_src
+
+
+** Style du texte sous le curseur
+
+#+begin_src emacs-lisp
+  (defun biblio/style-sous-curseur ()
+    (interactive)
+    (what-cursor-position t))
+#+end_src
+
+
+** Lignes vides simples
+
+#+begin_src emacs-lisp
+
+(defun biblio/lignes-vides-simples ()
+
+  (interactive)
+
+  (goto-char (point-min))
+
+  (while (re-search-forward "\\(^\\s-*$\\)\n" nil t)
+    (replace-match "\n")
+    (forward-char 1))
+
+  (goto-char (point-min))
+)
+
+#+end_src
+
+
+** Lignes doubles avant titres
+
+#+begin_src emacs-lisp
+
+(defun biblio/lignes-doubles-avant-titres ()
+
+  (interactive)
+
+  (goto-char (point-min))
+
+  (while (re-search-forward "\\(^\\*+ \\)" nil t)
+    (replace-match (concat "\n" (match-string 1)) t nil))
+
+  (goto-char (point-min))
+)
+
+#+end_src
+
+
+** Autres
+
+#+begin_src emacs-lisp
+
+(require 'personnel-fonction "fonction")
+
+#+end_src
+
+
+* Bindings
+
+
+** Libération
+
+#+begin_src emacs-lisp
+  (global-unset-key (kbd "<f5>"))
+  (global-unset-key (kbd "<f6>"))
+  (global-unset-key (kbd "<f7>"))
+  (global-unset-key (kbd "<f8>"))
+  (global-unset-key (kbd "<f9>"))
+  (global-unset-key (kbd "<f10>"))
+  (global-unset-key (kbd "<f11>"))
+  (global-unset-key (kbd "C-x C-z"))
+#+end_src
+
+
+** Modificateurs
+
+X-Y, où X est un des éléments de la liste ci-dessous :
+
+S = Shift
+C = Control
+M = Meta
+A = Alt
+s = Super
+H = Hyper
+
+
+** Fichier de configuration
+
+
+*** Éditer ce fichier
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f5> e") 'biblio/edite-configuration-org)
+#+end_src
+
+
+*** Recharger ce fichier
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f5> r") 'biblio/recharge-configuration-org)
+#+end_src
+
+
+*** Recharger un fichier lisp
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f7> e") 'eval-buffer)
+#+end_src
+
+
+*** Thème courant
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f6> t") 'list-faces-display)
+#+end_src
+
+
+** Exécution de fonction intéractive
+
+#+begin_src emacs-lisp
+  ;;(global-set-key (kbd "M-:") 'execute-extended-command)
+  ;;(global-set-key (kbd "M-;") 'keyboard-quit)
+  ;;(define-key minibuffer-local-map (kbd "M-;") 'minibuffer-keyboard-quit)
+#+end_src
+
+
+** Historique
+
+#+begin_src emacs-lisp
+  ;; (global-set-key (kbd "s-R" ) 'recentf-open-files)
+  ;; (define-key minibuffer-local-map (kbd "M-p") 'previous-history-element)
+  ;; (define-key minibuffer-local-map (kbd "M-n") 'next-history-element)
+  ;; (define-key minibuffer-local-map (kbd "M-p") 'previous-complete-history-element)
+  ;; (define-key minibuffer-local-map (kbd "M-n") 'next-complete-history-element)
+  (define-key minibuffer-local-map (kbd "<up>") 'previous-complete-history-element)
+  (define-key minibuffer-local-map (kbd "<down>") 'next-complete-history-element)
+#+end_src
+
+
+** Quitter
+
+Client et serveur
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "s-z s-z") 'save-buffers-kill-emacs)
+#+end_src
+
+
+** Exploration
+
+#+begin_src emacs-lisp
+  ;;(global-set-key (kbd "s-*") 'find-name-dired)
+#+end_src
+
+
+*** Navigation
+
+#+begin_src emacs-lisp
+  (global-set-key [kp-prior] 'biblio/demi-page-haut)
+  (global-set-key [prior]    'biblio/demi-page-haut)
+  (global-set-key [kp-next]  'biblio/demi-page-bas)
+  (global-set-key [next]     'biblio/demi-page-bas)
+  (global-set-key (kbd "C-v") 'scroll-up-command)
+  (global-set-key (kbd "M-v") 'scroll-down-command)
+  (global-set-key (kbd "s-a") 'backward-paragraph)
+  (global-set-key (kbd "s-e") 'forward-paragraph)
+  (global-set-key (kbd "C-$")  'biblio/debut-fin-fichier)
+#+end_src
+
+
+*** Signets
+
+Voir aussi the [[*Helm][Helm]] section
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "s-\"") 'bookmark-set)
+  (global-set-key (kbd "s-3")   'bookmark-bmenu-list)
+#+end_src
+
+
+*** Labels (etags, emacs tags)
+
+Voir Helm dans la configuration des paquets
+
+#+begin_src emacs-lisp
+  ;;(global-set-key (kbd "M-*") 'find-tag)
+  ;;(global-set-key (kbd "M-,") 'pop-tag-mark)
+  ;;(global-set-key (kbd "M-.") 'tags-loop-continue)
+#+end_src
+
+
+** Insertion
+
+#+begin_src emacs-lisp
+  (global-set-key [insert]    'overwrite-mode)
+  (global-set-key [kp-insert] 'overwrite-mode)
+#+end_src
+
+
+** Annulation
+
+#+begin_src emacs-lisp
+  (global-unset-key (kbd "C-z"))
+  (global-set-key (kbd "C-z" ) 'undo)
+  ;; Redo : M-_
+#+end_src
+
+
+** Effacer, Couper
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<S-delete>") 'biblio/efface-mot)
+  (global-set-key (kbd "<M-delete>") 'biblio/efface-contenu-ligne)
+  (global-set-key (kbd "<C-delete>") 'kill-whole-line)
+  ;; Rappelle le C-u de Unix
+  (global-set-key (kbd "s-u") 'biblio/efface-jusque-debut-ligne)
+  ;; (global-set-key (kbd "C-k") 'kill-line)
+  (global-set-key (kbd "<C-backspace>") 'backward-kill-word)
+  (global-set-key (kbd "<M-backspace>") 'biblio/efface-mot)
+  (global-set-key (kbd "<S-backspace>") 'just-one-space)
+#+end_src
+
+
+** Copier
+
+#+begin_src emacs-lisp
+  ;; M-w pour copier
+  ;; C-w pour couper
+  ;; C-y pour coller
+  ;; M-y pour faire tourner le yank-ring
+  ;; (global-set-key (kbd "M-y") 'yank-pop)
+  (global-set-key (kbd "<S-insert>") 'biblio/copie-mot)
+  (global-set-key (kbd "<M-insert>") 'biblio/copie-contenu-ligne)
+  (global-set-key (kbd "<C-insert>") 'biblio/copie-ligne)
+  ;; Rappelle le C-u de Unix
+  (global-set-key (kbd "s-U") 'biblio/copie-jusque-debut-ligne)
+  (global-set-key (kbd "<C-S-insert>") 'biblio/copie-jusque-fin-ligne)
+#+end_src
+
+
+** Rectangle
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "s-v") 'cua-rectangle-mark-mode)
+#+end_src
+
+CUA mode est mieux
+
+#+begin_src emacs-lisp
+  ;;(global-set-key (kbd "C-x s-r") 'string-insert-rectangle)
+  ;;(global-set-key (kbd "C-x s-r") 'string-rectangle)
+#+end_src
+
+
+** Répétition
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "s-7") 'repeat)
+#+end_src
+
+
+** Recherche & Remplacement
+
+#+begin_src emacs-lisp
+  ;;(define-key isearch-mode-map (kbd "M-p") 'isearch-ring-retreat)
+  ;;(define-key isearch-mode-map (kbd "M-n") 'isearch-ring-advance)
+  (global-set-key (kbd "s-r") 'rgrep)
+#+end_src
+
+
+** Complétion
+
+#+begin_src emacs-lisp
+  (setq hippie-expand-try-functions-list
+	'(try-expand-dabbrev
+	  try-expand-dabbrev-all-buffers
+	  try-expand-dabbrev-from-kill
+	  try-expand-all-abbrevs
+	  try-expand-list
+	  try-expand-line
+	  try-complete-file-name-partially
+	  try-complete-file-name
+	  try-complete-lisp-symbol-partially
+	  try-complete-lisp-symbol))
+  (global-set-key (kbd "M-SPC") 'hippie-expand)
+#+end_src
+
+
+** Orthographe
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f11> o") 'flyspell-mode)
+  ; Espaces
+  (global-set-key (kbd "<f11> s") 'whitespace-mode)
+#+end_src
+
+
+** Fenêtres
+
+Voir aussi key-chord & hydra dans la configuration des paquets
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<s-kp-0>") 'delete-window)
+  (global-set-key (kbd "<s-kp-1>") 'delete-other-windows)
+  (global-set-key (kbd "<s-kp-2>") 'biblio/scinde-et-suit-horizontalement)
+  (global-set-key (kbd "<s-kp-3>") 'biblio/scinde-et-suit-verticalement)
+  (global-set-key (kbd "<s-kp-7>") 'other-window)
+  (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
+  (global-set-key (kbd "<S-up>") 'windmove-up)
+  (global-set-key (kbd "<S-down>") 'windmove-down)
+  (global-set-key (kbd "<S-right>") 'windmove-right)
+  (global-set-key (kbd "<S-left>") 'windmove-left)
+  (global-set-key (kbd "<s-kp-8>") 'windmove-up)
+  (global-set-key (kbd "<s-kp-5>") 'windmove-down)
+  (global-set-key (kbd "<s-kp-6>") 'windmove-right)
+  (global-set-key (kbd "<s-kp-4>") 'windmove-left)
+  (global-set-key (kbd "C-x ^") 'enlarge-window)
+  (global-set-key (kbd "C-x _") 'shrink-window)
+  (global-set-key (kbd "C-x }") 'enlarge-window-horizontally)
+  (global-set-key (kbd "C-x {") 'shrink-window-horizontally)
+  (global-set-key (kbd "<f11> f") 'follow-mode)
+#+end_src
+
+
+** Tampons (buffers)
+
+
+*** Tampon précédent
+
+#+begin_src emacs-lisp
+  ;; Remplacé par torus-alternate
+  ;; (global-set-key (kbd "C-^") 'biblio/alterne-deux-derniers-tampons)
+#+end_src
+
+
+*** Liste des tampons
+
+#+begin_src emacs-lisp
+  (define-key global-map [remap list-buffers] 'ibuffer)
+#+end_src
+
+
+*** Revert
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f7> r") 'revert-buffer)
+  (global-set-key (kbd "<f7> R") 'biblio/revert-all-buffers)
+#+end_src
+
+
+*** Fermer le tampon courant
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-x k") 'biblio/ferme-tampon-courant)
+#+end_src
+
+
+*** Fermer tous les tampons
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-M-s-k") 'biblio/ferme-tous-les-tampons)
+#+end_src
+
+
+*** Tampons inactifs
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f7> c") 'clean-buffer-list)
+#+end_src
+
+
+*** Vue restreinte sur un tampon (narrowing)
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "s-à") 'narrow-to-region)
+#+end_src
+
+
+*** Tampons souvent utilisés
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f7> s") 'biblio/aller-au-tampon-scratch)
+  (global-set-key (kbd "<f7> g") 'biblio/aller-au-tampon-grenier)
+#+end_src
+
+
+*** Divers
+
+#+begin_src emacs-lisp
+  ;; Lancer et répondre "!" pour sauver tous les tampons modifiés
+  ;; (global-set-key (kbd "C-x s") 'save-some-buffers)
+  (global-set-key (kbd "<f7> n") 'biblio/affiche-copie-nom-fichier)
+#+end_src
+
+
+** Langages
+
+
+*** Emacs-lisp
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-=") 'eval-expression)
+  (global-set-key (kbd "C-M-u") 'backward-up-list)
+  (global-set-key (kbd "C-M-d") 'down-list)
+  (global-set-key (kbd "<C-up>") 'backward-up-list)
+  (global-set-key (kbd "<C-down>") 'down-list)
+  (global-set-key (kbd "C-M-f") 'forward-sexp)
+  (global-set-key (kbd "C-M-b") 'backward-sexp)
+  (global-set-key (kbd "<C-right>") 'forward-sexp)
+  (global-set-key (kbd "<C-left>") 'backward-sexp)
+  (global-set-key (kbd "C-M-n") 'forward-list)
+  (global-set-key (kbd "C-M-p") 'backward-list)
+  (global-set-key (kbd "<C-M-right>") 'forward-list)
+  (global-set-key (kbd "<C-M-left>") 'backward-list)
+  (global-set-key (kbd "C-M-a") 'beginning-of-defun)
+  (global-set-key (kbd "C-M-e") 'end-of-defun)
+
+  ;; Plus général avec outline
+
+  ;; (global-set-key (kbd "M-p") 'beginning-of-defun)
+  ;; (global-set-key (kbd "M-n") 'end-of-defun)
+
+  (global-set-key (kbd "M-(") 'insert-parentheses)
+  (global-set-key (kbd "M-)") 'move-past-close-and-reindent)
+  (global-set-key (kbd "C-M-k") 'kill-sexp)
+  (global-set-key (kbd "s-y") 'biblio/copie-sexp)
+  (global-set-key (kbd "s-k") 'kill-sexp)
+
+  ;; Slurp & Barf, Split & Splice : voir smartparens
+
+  ;; Interactive Emacs-Lisp Mode
+  (global-set-key (kbd "<s-return>") 'ielm)
+#+end_src
+
+
+*** Shell
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-|") 'shell-command-on-region)
+  (global-set-key (kbd "C-!") 'shell)
+  (global-set-key (kbd "s-!") 'eshell)
+  (global-set-key (kbd "<s-kp-enter>") 'ansi-term)
+#+end_src
+
+
+*** Compilation
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f8>") 'compile)
+#+end_src
+
+
+** Outils
+
+
+*** Calculatrice
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-&") 'calc)
+#+end_src
+
+
+*** Date
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "s-d") 'biblio/insertion-date)
+  (global-set-key (kbd "s-D") 'biblio/insertion-date-jour)
+#+end_src
+
+
+*** Caractères
+
+Voir aussi key-chord & hydra dans la configuration des paquets
+
+#+begin_src emacs-lisp
+  (define-prefix-command 'caracteres/map)
+
+  (global-set-key (kbd "<f9>") 'caracteres/map)
+
+  (define-key caracteres/map (kbd "<") (lambda () (interactive) (insert "⟻")))
+  (define-key caracteres/map (kbd ">") (lambda () (interactive) (insert "⟼")))
+  (define-key caracteres/map (kbd "SPC") (lambda () (interactive) (insert " ")))
+  (define-key caracteres/map (kbd "'") (lambda () (interactive) (insert "’")))
+  (define-key caracteres/map (kbd "a") (lambda () (interactive) (insert "â")))
+  (define-key caracteres/map (kbd "e") (lambda () (interactive) (insert "ê")))
+  (define-key caracteres/map (kbd "i") (lambda () (interactive) (insert "î")))
+  (define-key caracteres/map (kbd "o") (lambda () (interactive) (insert "ô")))
+  (define-key caracteres/map (kbd "u") (lambda () (interactive) (insert "û")))
+#+end_src
+
+
+** Souris
+
+#+begin_src emacs-lisp
+  (global-set-key [down-mouse-2]   'mouse-flash-position-or-M-x)
+  (global-set-key [S-down-mouse-2] 'mouse-scan-lines-or-M-:)
+#+end_src
+
+
+** Apparence
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "s-l") 'linum-mode)
+  (global-set-key (kbd "<f11> l") 'hl-line-mode)
+#+end_src
+
+Infos sur les thèmes
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f6> c") 'biblio/style-sous-curseur)
+#+end_src
+
+
+* Macros enregistrées
+
+#+begin_src emacs-lisp
+  ;; (fset 'efface-tag
+  ;;    (lambda (&optional arg) "Keyboard macro." (interactive "p")
+  ;;       (kmacro-exec-ring-item (quote ([19 60 return 2 134217828 134217828 134217828 4 4] 0 "%d")) arg)))
+  ;;
+  ;; (global-set-key (kbd "C-x C-k 0") 'efface-tag)
+#+end_src
+
+
+* Configuration des paquets
+
+
+** Librairies
+
+#+begin_src emacs-lisp
+  (require 'cl)
+  (use-package duo
+    :config
+    (duo-init "duo-common" "duo-referen"))
+#+end_src
+
+
+** Organisation
+
+
+*** Outline
+
+#+begin_src emacs-lisp
+  (require 'outline)
+  (eval-after-load "outline" '(require 'foldout))
+  (define-prefix-command 'outline/map)
+  (global-set-key (kbd "s-o") 'outline/map)
+  (global-set-key (kbd "M-n") 'outline-next-visible-heading)
+  (global-set-key (kbd "M-p") 'outline-previous-visible-heading)
+  (define-key outline/map (kbd "n") 'outline-next-visible-heading)
+  (define-key outline/map (kbd "p") 'outline-previous-visible-heading)
+  (define-key outline/map (kbd "f") 'outline-forward-same-level)
+  (define-key outline/map (kbd "b") 'outline-backward-same-level)
+  (define-key outline/map (kbd "u") 'outline-up-heading)
+  (define-key outline/map (kbd "h") 'outline-hide-entry)
+  (define-key outline/map (kbd "s") 'outline-show-entry)
+  (define-key outline/map (kbd "H") 'outline-hide-body)
+  (define-key outline/map (kbd "S") 'outline-show-all)
+  (define-key outline/map (kbd "C-h") 'outline-hide-subtree)
+  (define-key outline/map (kbd "C-s") 'outline-show-subtree)
+  (define-key outline/map (kbd "M-s") 'outline-show-branches)
+  (define-key outline/map (kbd "M-S-s") 'outline-show-children)
+  (define-key outline/map (kbd "C-M-c") 'outline-hide-sublevels)
+  (define-key outline/map (kbd "C-M-S-c") 'outline-hide-others)
+  (define-key outline/map (kbd "l") 'outline-hide-leaves)
+  (define-key outline/map (kbd "Z") 'foldout-zoom-subtree)
+  (define-key outline/map (kbd "X") 'foldout-exit-fold)
+#+end_src
+
+
+**** Outline-magic
+
+#+begin_src emacs-lisp
+  (add-hook
+   'outline-minor-mode-hook
+   (lambda ()
+     (require 'outline-magic)
+     (define-key outline-minor-mode-map (kbd "TAB") 'outline-cycle)))
+#+end_src
+
+
+*** Org-mode
+
+#+begin_src emacs-lisp
+  (use-package org)
+#+end_src
+
+
+**** Options
+
+#+begin_src emacs-lisp
+  (setq org-directory "~/racine/organ/orgmode/")
+  (setq org-archive-location "~/racine/organ/orgmode/archive.org::* Fichier %s")
+
+  ;; Commandes org accessibles au 1er * de chaque titre
+  (setq org-use-speed-commands t)
+
+  ;; Pas d’indentation auto pour suivre la hiérarchie
+  (setq org-adapt-indentation nil)
+
+  (setq org-list-use-circular-motion t)
+  (setq org-export-preserve-breaks nil)
+  (setq org-ellipsis " [...]")
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+  (setq org-src-window-setup 'current-window)
+  (setq org-confirm-babel-evaluate nil)
+  (setq org-export-with-smart-quotes t)
+#+end_src
+
+
+**** Org goto
+
+#+begin_src emacs-lisp
+  (setq org-goto-auto-isearch nil)
+  (setq org-goto-interface 'outline-path-completionp)
+  (setq org-outline-path-complete-in-steps nil)
+#+end_src
+
+
+**** Bindings
+
+#+begin_src emacs-lisp
+  (defun org-liste-espacee ()
+    "Passer une ligne avant Meta-return"
+    (interactive)
+    (org-meta-return)
+    (beginning-of-visual-line)
+    (newline)
+    (end-of-visual-line))
+
+  (add-hook
+   'org-mode-hook
+   #'(lambda ()
+      (define-key org-mode-map (kbd "s-§") 'org-goto)
+      (define-key org-mode-map (kbd "M-§") 'org-sparse-tree)
+      (define-key org-mode-map (kbd "C-c l") 'org-store-link)
+      (define-key org-mode-map (kbd "C-c a") 'org-agenda)
+      (define-key org-mode-map (kbd "C-c c") 'org-capture)
+      (define-key org-mode-map (kbd "C-c b") 'org-iswitchb)
+      (define-key org-mode-map (kbd "<C-M-return>") 'org-liste-espacee)))
+#+end_src
+
+
+**** Modules
+
+#+begin_src emacs-lisp
+  (org-babel-do-load-languages
+    'org-babel-load-languages
+    '((emacs-lisp . t)
+      (shell t)
+      (org t)
+      (lilypond t)
+      (octave t)))
+
+  ;;(require 'org-checklist)
+  (require 'org-tempo)
+#+end_src
+
+
+**** Exportation
+
+#+begin_src emacs-lisp
+  (with-eval-after-load 'ox
+    (require 'ox-pandoc))
+  (eval-after-load "org"
+    '(require 'ox-md nil t))
+  ;;  :publishing-function org-html-publish-to-html
+#+end_src
+
+
+**** Agenda
+
+Voir C-c [ & C-c ] pour la gestion de org-agenda-files
+
+#+begin_src emacs-lisp
+  (setq org-agenda-span 30)
+  (setq org-agenda-start-on-weekday nil)
+  (setq org-agenda-start-day nil)
+  (setq org-agenda-include-diary nil)
+#+end_src
+
+
+**** Complétion
+
+Nécessite org-tempo
+
+#+begin_src emacs-lisp
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+#+end_src
+
+
+**** Liste de choses à faire
+
+#+begin_src emacs-lisp
+  (setq org-treat-S-cursor-todo-selection-as-state-change nil)
+  ;; (setq org-use-fast-todo-selection t)
+  ;; (setq org-todo-keywords
+  ;;       (quote
+  ;;        ((sequence "TODO(t!)" "DONE(d!)" "MAYBE(m!)" "WAIT(w@/!)" "|" "CANCELLED(c@)"))))
+#+end_src
+
+
+**** Capture
+
+#+begin_src emacs-lisp
+  (setq org-default-notes-file "~/racine/organ/orgmode/notes.org")
+  (setq org-capture-templates
+	'(("a" "Agenda" entry
+	   (file+olp "~/racine/organ/orgmode/agenda.org" "Agenda" "Unique")
+	   "* TODO %?\nSCHEDULED: %^{Agenda}T \nLien : %a\n\n%i" :empty-lines 1)
+	  ("t" "Todo : Liste de tâches" entry
+	   (file+headline "~/racine/organ/orgmode/taches.org" "Tâches")
+	   "* TODO %?\n\nCréé le : %U\n\nLien : %a\n\n%i" :empty-lines 1)
+	  ("f" "Fix : Astuces, résolution de bugs" entry
+	   (file+headline "~/racine/organ/orgmode/astuces.org" "Astuces")
+	   "* %?\n\nCréé le : %U\n\nLien : %a\n\n%i" :empty-lines 1)
+	  ("l" "Log : Journal de bord du capitaine" entry
+	   (file+olp+datetree "~/racine/organ/orgmode/journaldebord.org" "Journal")
+	   "* %?\n\nCréé le %U\n\nLien : %a\n\n%i" :empty-lines 1)
+	  ("d" "Dreamtime : Rêverie" entry
+	   (file+olp+datetree "~/racine/organ/orgmode/reverie.org" "Rêverie")
+	   "* %?" :empty-lines 1)
+	  ("e" "Éducation" entry
+	   (file+olp+datetree "~/racine/organ/orgmode/education.org" "Éducation")
+	   "* %?" :empty-lines 1)
+	  ("n" "Notes" entry
+	   (file+headline "~/racine/organ/orgmode/notes.org" "Notes")
+	   "* %?\n\nCréé le : %U\n\nLien : %a\n\n%i" :empty-lines 1)))
+#+end_src
+
+
+**** Refile
+
+#+begin_src emacs-lisp
+  ;; (setq org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9)))
+  (setq org-refile-targets '((nil :maxlevel . 9)))
+
+  ;; Show full paths for refiling
+  (setq org-refile-use-outline-path t)
+#+end_src
+
+
+**** Présentation
+
+#+begin_src emacs-lisp
+  (setq org-list-demote-modify-bullet
+	'(("-" . "+") ("+" . "*") ("*" . "-")))
+  (use-package org-bullets)
+  (setq org-bullets-face-name (quote org-bullet-face))
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (setq org-bullets-bullet-list '("☯" "☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
+
+
+*** Org graph view
+
+#+begin_src emacs-lisp
+  (use-package org-graph-view
+    :bind (("s-£" . org-graph-view)))
+#+end_src
+
+
+*** Alert
+
+#+begin_src emacs-lisp
+  (use-package alert
+    :custom ((alert-default-style 'libnotify)
+	     (alert-fade-time 30)
+	     (alert-persist-idle-time 900)))
+#+end_src
+
+
+*** Org-alert
+
+Ne vérifie pas l’heure : on demande un intervalle long, au moins une
+heure.
+
+#+begin_src emacs-lisp
+  (use-package org-alert
+    :after (org)
+    :custom ((org-alert-interval 3600)
+	     (org-alert-headline-regexp "\\(Sched.+:.+\\|Deadline:.+\\)"))
+    :config
+    (org-alert-enable))
+#+end_src
+
+
+*** Org-wild-notifier
+
+#+begin_src emacs-lisp
+  (require 'org-wild-notifier)
+  (org-wild-notifier-mode)
+  (setq org-wild-notifier-alert-time 10)
+  (setq org-wild-notifier-keyword-whitelist '("TODO"))
+  (setq org-wild-notifier--day-wide-events t)
+  (setq org-wild-notifier-alert-times-property "WILD_NOTIFIER_NOTIFY_BEFORE")
+#+end_src
+
+
+*** Toc-org
+
+#+begin_src emacs-lisp
+  (use-package toc-org
+    :hook (org-mode . toc-org-mode))
+#+end_src
+
+
+** Exploration
+
+
+*** Projectile
+
+#+begin_src emacs-lisp
+  (use-package projectile
+    :bind (("M-s M-o" . projectile-multi-occur))
+    :custom ((projectile-indexing-method 'alien)
+	     (projectile-enable-caching t)
+	     (projectile-completion-system 'helm)
+	     (projectile-switch-project-action 'helm-projectile)
+	     (projectile-keymap-prefix (kbd "s-p")))
+    :config (projectile-global-mode))
+#+end_src
+
+
+*** Counsel, Ivy, Swiper
+
+#+begin_src emacs-lisp
+  (use-package ivy
+    :bind (("<f11> i" . ivy-mode)
+	   ("s-F" . counsel-find-file)
+	   ("s-B" . ivy-switch-buffer)
+	   ("s-X" . counsel-M-x)
+	   ("s-S" . swiper)
+	   ("s->" . counsel-ag)
+	   :map ivy-minibuffer-map
+	   ("M-o" . ivy-dispatching-done)
+	   ("C-n" . ivy-next-line)
+	   ("C-p" . ivy-previous-line)
+	   ("M-<" . ivy-beginning-of-buffer)
+	   ("M->" . ivy-end-of-buffer)
+	   ("C-v" . ivy-scroll-up-command)
+	   ("M-v" . ivy-scroll-down-command))
+    :custom ((ivy-height 20)
+	     (ivy-wrap t)
+	     (ivy-count-format "(%d/%d) ")
+	     (ivy-use-virtual-buffers t)))
+  (use-package ivy-rich
+    :after (ivy))
+  (use-package swiper
+    :after (ivy))
+  (use-package counsel
+    :after (ivy))
+#+end_src
+
+
+*** Helm
+
+
+**** Options
+
+#+begin_src emacs-lisp
+  (use-package helm)
+  (use-package helm-gtags)
+  (use-package helm-projectile)
+  (use-package helm-swoop)
+
+  (helm-mode 1)
+
+  (setq helm-split-window-default-side 'other)
+  (setq helm-split-window-in-side-p t)
+  (setq helm-autoresize-mode t)
+  (setq helm-autoresize-max-height 40)
+  (setq helm-autoresize-min-height 30)
+  (setq helm-move-to-line-cycle-in-source t)
+  (setq helm-quick-update t)
+  (setq helm-idle-delay 0.01)
+  (setq helm-input-idle-delay 0.01)
+  (setq helm-candidate-number-limit 200)
+  (setq helm-scroll-amount 4)
+  (setq helm-ff-file-name-history-use-recentf t)
+  (setq helm-buffers-favorite-modes (append helm-buffers-favorite-modes '(picture-mode artist-mode)))
+  (setq helm-ff-search-library-in-sexp t)
+
+  (loop for ext in
+   '("\\.elc$" "\\.pyc$" "\\.git$" "\\.o$" "*~")
+   do (add-to-list 'helm-boring-file-regexp-list ext))
+
+  (setq helm-mini-default-sources '(
+    helm-source-buffers-list
+    helm-source-recentf
+    helm-source-files-in-current-dir
+    helm-source-projectile-files-list
+    helm-source-projectile-projects
+    helm-source-buffer-not-found))
+
+  (setq helm-M-x-requires-pattern 0)
+  (setq helm-locate-command "locate -d ~/racine/index/locate/racine.db %s -e -A %s")
+  (setq helm-ack-grep-executable "/usr/bin/vendor_perl/ack")
+#+end_src
+
+
+**** Bindings
+
+Voir aussi key-chord & hydra dans la configuration des paquets
+
+#+begin_src emacs-lisp
+   (global-unset-key (kbd "C-x c"))
+
+   (global-set-key (kbd "<f11> h") 'helm-mode)
+
+   (global-set-key (kbd "M-X") 'helm-minibuffer-history)
+   (global-set-key (kbd "s-ù") 'helm-mini)
+   (global-set-key (kbd "M-x") 'helm-M-x)
+
+   ; Même idée qu’occur
+   (global-set-key (kbd "s-é") 'helm-swoop)
+   (global-set-key (kbd "s-è") 'helm-multi-swoop)
+
+   (global-set-key (kbd "s-ç") 'helm-show-kill-ring)
+
+   ;; (global-set-key (kbd "M-s l") 'swiper-helm)
+
+   (global-set-key (kbd "s-$") 'helm-etags-select)
+   (global-set-key (kbd "s--") 'helm-locate)
+   (global-set-key (kbd "s-<") 'helm-do-grep-ag)
+   (global-set-key (kbd "s-&") 'helm-projectile-grep)
+   (global-set-key (kbd "s-'") 'helm-all-mark-rings)
+
+   ;; To set and go to bookmarks
+   (global-set-key (kbd "s-m") 'helm-filtered-bookmarks)
+
+   (define-key global-map [remap find-file] 'helm-find-files)
+   (define-key global-map [remap occur] 'helm-multi-occur-from-isearch)
+   (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+   (define-key global-map [remap bookmark-bmenu-list] 'helm-filtered-bookmarks)
+   (define-key global-map [remap insert-register] 'helm-register)
+#+end_src
+
+
+**** Bindings locaux au tampon helm
+
+#+begin_src emacs-lisp
+  (define-key helm-map (kbd "s-z") 'helm-select-action)
+  (define-key helm-map (kbd "C-z") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "<left>") 'helm-next-source)
+  (define-key helm-map (kbd "<right>") 'helm-previous-source)
+#+end_src
+
+
+*** Counsel projectile
+
+#+begin_src emacs-lisp
+  (use-package counsel-projectile
+    :commands (counsel-projectile)
+    :bind (("s-P" . counsel-projectile)))
+#+end_src
+
+
+*** Torus
+
+#+begin_src emacs-lisp
+  (use-package torus
+    :after (duo)
+    :bind-keymap ("s-t" . torus-map)
+    :bind (("<s-insert>" . torus-add-here)
+	   ("s-f" . torus-add-file)
+	   ("s-b" . torus-add-buffer)
+	   ("<S-s-insert>" . torus-add-circle)
+	   ("<s-delete>" . torus-delete-location)
+	   ("<S-s-delete>" . torus-delete-circle)
+	   ("<M-prior>" . torus-previous-location)
+	   ("<M-next>" . torus-next-location)
+	   ("<C-prior>" . torus-previous-circle)
+	   ("<C-next>" . torus-next-circle)
+	   ("<S-prior>" . torus-previous-torus)
+	   ("<S-next>" . torus-next-torus)
+	   ("s-SPC" . torus-switch-location)
+	   ("s-=" . torus-switch-circle)
+	   ("s-µ" . torus-switch-torus)
+	   ("s-x" . torus-search-location)
+	   ("s-?" . torus-search-location-in-torus)
+	   ("s-/" . torus-search-circle)
+	   ("s-c" . torus-search-circle)
+	   ("s-h" . torus-browse-history)
+	   ("<M-home>" . torus-newer)
+	   ("<M-end>" . torus-older)
+	   ("C-^" . torus-alternate)
+	   ("s-^" . torus-alternate-in-same-torus-other-circle)
+	   ("<C-S-prior>" . torus-alternate-in-same-torus)
+	   ("<C-S-next>" . torus-alternate-in-same-circle)
+	   ("<C-S-home>" . torus-alternate-in-other-torus)
+	   ("<C-S-end>" . torus-alternate-in-other-circle)
+	   ("<C-M-prior>" . torus-move-location-backward)
+	   ("<C-M-next>" . torus-move-location-forward)
+	   ("<S-s-prior>" . torus-rotate-circle-left)
+	   ("<S-s-end>" . torus-rotate-circle-right)
+	   ("s-%" . torus-split-menu)
+	   ("s-g" . torus-autogroup-menu)
+	   :map torus-map
+	   ("y" . torus-copy-location-to-circle)
+	   ("Y" . torus-copy-circle-to-torus))
+    :hook ((emacs-startup . torus-hello)
+	   (kill-emacs . torus-bye))
+    :custom ((torus-prefix-key "s-t")
+	     (torus-binding-level 3)
+	     (torus-verbosity 1)
+	     (torus-dirname "~/racine/plugin/data/torus")
+	     (torus-load-on-startup t)
+	     (torus-save-on-exit t)
+	     (torus-autoread-file "auto")
+	     (torus-autowrite-file "auto")
+	     (torus-backup-number 7)
+	     (torus-history-maximum-elements 50)
+	     (torus-maximum-horizontal-split 3)
+	     (torus-maximum-vertical-split 4)
+	     (torus-display-tab-bar t)
+	     (torus-display-position nil)
+	     (torus-dashboard-size 2)
+	     (torus-prefix-separator " : ")
+	     (torus-join-separator " & "))
+    :config
+    (torus-init)
+    (torus-install-default-bindings))
+#+end_src
+
+
+*** Helm projectile
+
+#+begin_src emacs-lisp
+  (require 'helm-projectile)
+  (helm-projectile-on)
+#+end_src
+
+
+*** Ibuffer-vc
+
+#+begin_src emacs-lisp
+  (defun ibuffer-vc--hook ()
+      (ibuffer-vc-set-filter-groups-by-vc-root)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+	(ibuffer-do-sort-by-alphabetic)))
+  (add-hook 'ibuffer-hook 'ibuffer-vc--hook)
+#+end_src
+
+
+** Arborescence du système de fichiers
+
+
+*** Dired-hacks
+
+#+begin_src emacs-lisp
+  (use-package dired-filter
+    :bind (:map dired-mode-map
+		("é f" . dired-filter-map)
+		("é m" . dired-filter-mark-map)
+		("é g" . dired-filter-group-mode)))
+  (use-package dired-subtree
+    :bind (:map dired-mode-map
+	   ("<tab>" . dired-subtree-toggle)
+	   ("<backtab>" . dired-subtree-cycle)))
+  (use-package dired-narrow
+    :bind (:map dired-mode-map
+		("C-c C-n" . dired-narrow)
+		("C-c C-f" . dired-narrow-fuzzy)
+		("C-c C-r" . dired-narrow-regexp)))
+#+end_src
+
+
+** Fenêtres
+
+#+begin_src emacs-lisp
+  (use-package switch-window
+    :custom ((switch-window-input-style 'minibuffer)
+	     (switch-window-increase 4)
+	     (switch-window-threshold 2)
+	     (switch-window-shortcut-style 'qwerty)
+	     (switch-window-qwerty-shortcuts
+	      '("0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))))
+  (define-key global-map [remap other-window] 'switch-window)
+#+end_src
+
+
+*** Emacs mini frame
+
+#+begin_src emacs-lisp
+  (use-package mini-frame
+    :commands (mini-frame-mode)
+    :bind (( "<f11> m" . 'mini-frame-mode)))
+#+end_src
+
+
+** Recherche
+
+
+*** Wgrep
+
+#+begin_src emacs-lisp
+  (use-package wgrep
+    :custom ((wgrep-auto-save-buffer t)
+	     (wgrep-enable-key "e")))
+#+end_src
+
+
+*** Rg
+
+Ripgrep
+
+#+begin_src emacs-lisp
+  (use-package rg
+    :after wgrep
+    :config
+    (rg-enable-default-bindings))
+#+end_src
+
+*** Iy-go-to-char
+
+#+begin_src emacs-lisp
+  (use-package iy-go-to-char
+    :bind (( "s-;" . 'iy-go-to-char)
+	   ("s-," . 'iy-go-to-char-backward)
+	   ("C-c s-;" . 'iy-go-to-or-up-to-continue)
+	   ("C-c s-," . 'iy-go-to-or-up-to-continue-backward)))
+#+end_src
+
+
+** Annulation
+
+
+*** Undo-tree
+
+Voir aussi key-chord & hydra dans la configuration des paquets
+
+#+begin_src emacs-lisp
+  ;; Credit: https://emacs.stackexchange.com/questions/45721/how-to-properly-define-hydras-inside-use-package
+
+  (use-package undo-tree
+    :bind (("<f11> u" . global-undo-tree-mode)
+	   ("C-x u" . undo-tree-visualize))
+    :custom
+    ((global-undo-tree-mode 1)
+     (undo-tree-auto-save-history t)
+     ;;(undo-tree-visualizer-timestamps t)
+     (undo-tree-history-directory-alist '((".*" . "~/racine/varia/undo/emacs/")))))
+#+end_src
+
+
+** Copier & coller
+
+#+begin_src emacs-lisp
+  (use-package savekill
+    :custom ((save-kill-file-name (expand-file-name "yank-ring.el" user-emacs-directory))
+	     (savekill-max-saved-items 700)
+	     (save-kill-coding-system 'utf-8)
+	     (save-interprogram-paste-before-kill t)))
+#+end_src
+
+
+** Registres
+
+
+*** Register list
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-x r L") 'register-list)
+#+end_src
+
+
+** Complétion
+
+
+*** Company
+
+#+begin_src emacs-lisp
+  (use-package company
+    :custom ((company-idle-delay 1)
+	     (company-minimum-prefix-length 3))
+    :commands (company-mode)
+    :hook ((emacs-lisp-mode . company-mode))
+    :bind (:map company-active-map
+		("C-n" . company-select-next)
+		("C-p" . company-select-previous)
+		("SPC" . company-abort)))
+#+end_src
+
+
+*** Yasnippet
+
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :commands (yas-minor-mode)
+    :hook (emacs-lisp-mode . yas-minor-mode))
+#+end_src
+
+
+*** Auto-yasnippet
+
+#+begin_src emacs-lisp
+  (use-package auto-yasnippet
+    :bind (("C-M-(" . 'aya-create)
+	   ("C-M-)" . 'aya-expand)))
+#+end_src
+
+
+** Contrôle de version
+
+
+*** Magit
+
+Activer ou désactiver magit-auto-revert-mode ?
+
+#+begin_src emacs-lisp
+  (use-package magit
+    :commands (magit-status)
+    :bind ("C-x g" . magit-status))
+#+end_src
+
+
+** Sélection
+
+
+*** Region-bindings-mode
+
+#+begin_src emacs-lisp
+  (use-package region-bindings-mode
+    :custom ((region-bindings-mode-disable-predicates ((lambda () buffer-read-only)))))
+  (require 'region-bindings-mode)
+  (region-bindings-mode-enable)
+  (global-set-key (kbd "C-w") 'backward-kill-word)
+  (define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
+#+end_src
+
+
+*** Multiple cursors (mc)
+
+#+begin_src emacs-lisp
+  (use-package multiple-cursors
+    :commands (mc/mark-next-like-this
+	       mc/mark-more-like-this-extended
+	       mc/edit-lines)
+    :bind (:map region-bindings-mode-map
+		("s-n" . 'mc/mark-next-like-this)
+		("s-SPC" . 'mc/mark-more-like-this-extended)
+		("s-=" . 'mc/edit-lines)))
+#+end_src
+
+
+** Langages
+
+
+*** Smartparens
+
+Langages, parenthèses
+
+#+begin_src emacs-lisp
+  (use-package smartparens)
+
+  (smartparens-global-mode nil)
+  (show-smartparens-global-mode nil)
+
+  ;;(require 'smartparens-config)
+
+  (add-hook 'emacs-lisp-mode #'smartparens-strict-mode)
+
+  (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
+  (sp-local-pair 'minibuffer-inactive-mode "\`" nil :actions nil)
+  (sp-local-pair #'emacs-lisp-mode "'" nil :actions nil)
+  (sp-local-pair #'emacs-lisp-mode "\`" nil :actions nil)
+  (sp-local-pair #'inferior-emacs-lisp-mode "'" nil :actions nil)
+  (sp-local-pair #'inferior-emacs-lisp-mode "\`" nil :actions nil)
+
+  (global-set-key (kbd "<f11> p") 'smartparens-global-mode)
+
+  (define-key sp-keymap (kbd "C-)") 'sp-forward-slurp-sexp)
+  (define-key sp-keymap (kbd "C-(") 'sp-forward-barf-sexp)
+  (define-key sp-keymap (kbd "C-M-(") 'sp-backward-slurp-sexp)
+  (define-key sp-keymap (kbd "C-M-)") 'sp-backward-barf-sexp)
+  (define-key sp-keymap (kbd "s-)") 'sp-split-sexp)
+  (define-key sp-keymap (kbd "s-(") 'sp-splice-sexp)
+#+end_src
+
+
+** Read Eval Print Loops
+
+
+*** Eval in REPL
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<C-return>") 'eir-eval-in-ielm)
+#+end_src
+
+
+** Encodage
+
+
+** Async
+
+#+begin_src emacs-lisp
+  (autoload 'dired-async-mode "dired-async.el" nil t)
+  (dired-async-mode 1)
+  (async-bytecomp-package-mode 1)
+#+end_src
+
+
+** Présentation
+
+
+*** Pretty mode
+
+#+begin_src emacs-lisp
+  (use-package pretty-mode
+    :init (global-pretty-mode t))
+#+end_src
+
+
+** Bindings
+
+
+*** Key-chord
+
+Ralentit la frappe : activer seulement lorsque nécessaire
+
+#+begin_src emacs-lisp
+  (use-package key-chord
+    :bind (("<f11> c" . key-chord-mode))
+    :custom ((key-chord-two-keys-delay 0.12)
+	     (key-chord-one-key-delay 0.12)))
+#+end_src
+
+
+**** Helm
+
+#+begin_src emacs-lisp
+  (key-chord-define-global "xc" 'helm-M-x)
+  (key-chord-define-global "bn" 'helm-mini)
+  (key-chord-define-global "df" 'helm-find-files)
+#+end_src
+
+
+**** Undo
+
+#+begin_src emacs-lisp
+  (key-chord-define-global "yz" 'undo-tree-visualize)
+#+end_src
+
+
+**** Fenêtres
+
+#+begin_src emacs-lisp
+  (key-chord-define-global "wz" 'delete-other-windows)
+  (key-chord-define-global "ws" 'split-window-below)
+  (key-chord-define-global "wq" 'split-window-right)
+
+  (key-chord-define-global "wx" #'(lambda () (interactive) (shrink-window-horizontally 5)))
+  (key-chord-define-global "wc" #'(lambda () (interactive) (shrink-window 5)))
+  (key-chord-define-global "wv" #'(lambda () (interactive) (enlarge-window 5)))
+  (key-chord-define-global "wb" #'(lambda () (interactive) (enlarge-window-horizontally 5)))
+#+end_src
+
+
+**** Caractères
+
+#+begin_src emacs-lisp
+  (key-chord-define-global "a^" (lambda () (interactive) (insert "â")))
+  (key-chord-define-global "e^" (lambda () (interactive) (insert "ê")))
+  (key-chord-define-global "i^" (lambda () (interactive) (insert "î")))
+  (key-chord-define-global "o^" (lambda () (interactive) (insert "ô")))
+  (key-chord-define-global "u^" (lambda () (interactive) (insert "û")))
+#+end_src
+
+
+*** Hydra
+
+#+begin_src emacs-lisp
+    (use-package hydra)
+#+end_src
+
+Gestionnaire de paquet straight
+
+#+begin_src emacs-lisp
+  (defhydra hydra-straight-helper (:hint nil)
+    "
+  _c_heck all       |_f_etch all     |_m_erge all      |_n_ormalize all   |p_u_sh all
+  _C_heck package   |_F_etch package |_M_erge package  |_N_ormlize package|p_U_sh package
+  ----------------^^+--------------^^+---------------^^+----------------^^+------------||_q_uit||
+  _r_ebuild all     |_p_ull all      |_v_ersions freeze|_w_atcher start   |_g_et recipe
+  _R_ebuild package |_P_ull package  |_V_ersions thaw  |_W_atcher quit    |prun_e_ build"
+    ("c" straight-check-all)
+    ("C" straight-check-package)
+    ("r" straight-rebuild-all)
+    ("R" straight-rebuild-package)
+    ("f" straight-fetch-all)
+    ("F" straight-fetch-package)
+    ("p" straight-pull-all)
+    ("P" straight-pull-package)
+    ("m" straight-merge-all)
+    ("M" straight-merge-package)
+    ("n" straight-normalize-all)
+    ("N" straight-normalize-package)
+    ("u" straight-push-all)
+    ("U" straight-push-package)
+    ("v" straight-freeze-versions)
+    ("V" straight-thaw-versions)
+    ("w" straight-watcher-start)
+    ("W" straight-watcher-quit)
+    ("g" straight-get-recipe)
+    ("e" straight-prune-build)
+    ("q" nil))
+
+  (global-set-key (kbd "<f12> s") 'hydra-straight-helper/body)
+#+end_src
+
+
+*** Evil
+
+#+begin_src emacs-lisp
+  (use-package evil
+    :bind (("<f11> v" . evil-mode))
+    :custom ((evil-undo-system 'undo-tree)))
+#+end_src
+
+**** Powerline
+
+#+begin_src emacs-lisp
+  (use-package powerline-evil)
+  (powerline-evil-vim-theme)
+#+end_src
+
+
+**** Org mode
+
+#+begin_src emacs-lisp
+  ;; (use-package evil-org)
+  ;; (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
+  ;; (global-set-key (kbd "<f11> w") 'evil-org-mode)
+#+end_src
+
+
+*** Xah-math-input
+
+#+begin_src emacs-lisp
+  (use-package xah-math-input
+    :commands (xah-math-input-mode)
+    :bind (("<f11> x" . xah-math-input-mode)))
+#+end_src
+
+
+*** Which-key
+
+#+begin_src emacs-lisp
+  (use-package which-key
+    :init (which-key-mode)
+    :custom ((which-key-idle-delay 1.0)))
+#+end_src
+
+
+* Fin
+
+Nécessaire pour éviter un stack overflow lors du chargement du fichier.

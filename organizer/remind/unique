@@ -1,0 +1,5 @@
+# vim: set filetype=conf:
+
+#REM friday AT 10:30 +15 MSG Acheter équerre %1
+#REM thursday AT 12:55 +15 MSG École %1
+REM frebruary 9 AT 10:30 +30 Vérifier la réinscription de François %1

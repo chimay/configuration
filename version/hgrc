@@ -1,0 +1,51 @@
+# vim: set ft=cfg :
+
+[ui]
+
+username = remi.dore@protonmail.com
+merge = vimdiff
+ignore.general = ~/racine/config/version/hgignore
+
+[alias]
+
+i    = commit
+o    = checkout
+ci   = commit
+co   = checkout
+li   = commit
+lo   = checkout
+lci  = commit
+lco  = checkout
+ri   = push
+ro   = pull
+rci  = push
+rco  = pull
+
+d   = diff
+h   = help
+l   = log
+pup = pull -u
+s   = status
+
+[pager]
+
+pager = less -FRX
+pagermode = auto
+ignore = version, update
+
+quiet = True
+
+[extensions]
+
+hgext.children =
+hgext.purge =
+hgext.record =
+hgext.rebase =
+hgext.transplant =
+hgext.mq =
+hgext.color =
+hgext.fetch =
+
+[color]
+
+mode = auto

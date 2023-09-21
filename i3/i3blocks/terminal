@@ -1,8 +1,0 @@
-#!/usr/bin/env /bin/zsh
-
-echo Term
-
-if [ -n "$BLOCK_BUTTON" ]
-then
-	urxvtc > /dev/null
-fi

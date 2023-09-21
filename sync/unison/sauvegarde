@@ -1,0 +1,43 @@
+# vim: set filetype=conf :
+
+maxbackups = 5
+
+# {{{ Backup dans un répertoire central
+
+# backuplocation = central
+#
+# backupdir = /home/david/var/alter/sync/unison/backup
+#
+# backupprefix = unison-
+# backupsuffix = -$VERSION
+
+# }}}
+
+# {{{ Backup dans le répertoire du fichier
+
+# backuplocation = local
+
+# backupprefix = .unison/
+# backupsuffix = -$VERSION
+
+# }}}
+
+# {{{ Backup de la version courante pour utiliser dans les merge
+
+# backupcurrent = Name tags
+
+# backupcurrent = Path log/alter/sync/unison.log
+
+# backupcurrent = Name artist/eclats2vers/*
+
+# }}}
+
+# {{{ Backup des versions précédentes
+
+# backup = Name tags
+
+# backup = Path log/alter/sync/unison.log
+
+# backup = Name artist/eclats2vers/*
+
+# }}}

@@ -1,0 +1,22 @@
+#!/usr/bin/env /bin/zsh
+
+recharge='pkill -RTMIN+1 i3blocks'
+
+if [ -n "$BLOCK_BUTTON" ]
+then
+	case $BLOCK_BUTTON in
+	  1) urxvtc -e pulsemixer ;;
+	  2) urxvtc -e alsamixer -c 0 ;;
+	  3) urxvtc -e ncpamixer ;;
+	  4) pamixer --increase 5 ;;
+	  5) pamixer --decrease 5 ;;
+	esac
+
+	sleep 0.1
+
+	$=recharge
+fi
+
+volume=$(pamixer --get-volume)
+
+echo "$volume %"

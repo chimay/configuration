@@ -1,0 +1,30 @@
+[$Version]
+update_info=konsole.upd:2.9.0-global-options
+
+[Colors]
+CurrentPalette=Rainbow Colors
+
+[Desktop Entry]
+DefaultProfile=Terminal.profile
+
+[Favorite Profiles]
+Favorites=
+
+[KonsoleWindow]
+ShowMenuBarByDefault=false
+
+[MainWindow]
+Height 1080=697
+Height 864=865
+Height 900=681
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAABj4AAANDAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+Width 1152=1153
+Width 1600=1264
+Width 1920=1274
+Window-Maximized 1080x1920=false
+Window-Maximized 900x1600=false
+
+[TabBar]
+ShowQuickButtons=true

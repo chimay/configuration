@@ -1,0 +1,45 @@
+[Colors]
+CurrentPalette=* Custom Colors *
+
+[Desktop Entry]
+FullScreen=false
+
+[KFileDialog Settings]
+Height 900=570
+Recent Files[$e]=$HOME/doc/unix/edit/vim/manuelVim.pdf,$HOME/bds.txt,$HOME/doc/artist/music/traites/Baroque/Fux/A-Fux_Gradus-en.pdf,$HOME/doc/unix/org/hyperlist.pdf,$HOME/doc/unix/sync/dropbox/GettingStarted.pdf,$HOME/Documents/caddyhome/catalogueAutomneHiver.pdf
+Width 1600=912
+
+[MainWindow]
+Height 900=800
+State=AAAA/wAAAAD9AAAAAAAABcwAAALhAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width 1600=1484
+
+[Print Preview]
+Height 900=500
+Width 1600=600
+
+[Recent Dirs]
+okular[$e]=file://$HOME/img/kdelook/papiersPeints/0-nouveaux/,file://$HOME/doc/unix/edit/vim/,file://$HOME/doc/art/mus/theorie/
+
+[Recent Files]
+File1[$e]=$HOME/Documents/tombola.pdf
+File10[$e]=$HOME/notes/corpus/qigong.pdf
+File2[$e]=$HOME/notes/home/ecole/brin-08-2014.pdf
+File3[$e]=$HOME/Documents/reine-elisa.pdf
+File4[$e]=$HOME/documen/scien/finance/Ichimoku-Winners.pdf
+File5[$e]=$HOME/Downloads/1304738910 13-08-15.pdf
+File6[$e]=$HOME/documen/scien/finance/turtles.pdf
+File7[$e]=$HOME/Documents/Document_numerise.pdf
+File8[$e]=$HOME/scien/finance/courtiers/belfius/2015/BE26083604079829_20151123_00003.pdf
+File9[$e]=/var/spool/cups-pdf/david/david.pdf
+Name1[$e]=tombola.pdf
+Name10[$e]=qigong.pdf
+Name2[$e]=brin-08-2014.pdf
+Name3[$e]=reine-elisa.pdf
+Name4[$e]=Ichimoku-Winners.pdf
+Name5[$e]=1304738910 13-08-15.pdf
+Name6[$e]=turtles.pdf
+Name7[$e]=Document_numerise.pdf
+Name8[$e]=BE26083604079829_20151123_00003.pdf
+Name9[$e]=david.pdf

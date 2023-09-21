@@ -1,0 +1,66 @@
+q
+mark filename="*radiohead*"
+clear 
+bind -f common k win-up
+bind common <key> cd
+set color_cmdline_bg=default
+live-filter ledzep
+filter 
+filter filename="*michael*"
+filter filename
+mark filename="*/*eorgeMichael*" 
+mark filename="*/A-*" 
+filter
+filter eorgeMichael
+live-filter 
+live-filter eorgeMichael
+filter GeorgeMichael
+mark filename="*/7-*" 
+add ~/audio
+mark
+mark filename="*/F-*"
+mark filename="*/A-*"
+help
+ad
+mark filename="*/7-*"
+mark 
+shuffle 
+mark filename="*hippie*"
+mark filename="*key*ses*quartet*"
+mark filename="*key*ses*quartet"
+mark filename="*key*Ses*Quartet"
+live-filter key session quartet
+fil
+seek +4:00
+seek 4:00
+live-filter arpeggiata
+mark filename="*magic*"
+mark :mar*"
+unmark 
+unbind
+mark filename="*aceofbase*"
+mark filename=*aceofbase*
+mark filename=aceofbase
+mark aceofbase
+invert 
+live-filter aceofbase
+load -p ~/racine/config/music/cmus/playlist.pl
+load -p ~/racine/musica/list/Tout.m3u
+cd ~/
+load -p Im
+shell ls
+shell
+w
+bind
+load ~/racine/musica/list/Tout.m3u
+filter ramaz
+view 
+colorscheme cyan
+save
+alq
+colorscheme solarized-dark
+colorscheme zenburn
+colorscheme night
+colorscheme green
+colorscheme gray-88
+colorscheme default

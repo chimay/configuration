@@ -1,0 +1,268 @@
+<frescobaldi-shortcut name="Default">
+  <!--
+  Created by Frescobaldi 3.2.
+-->
+  <collection name="main">
+    <name name="file_new">
+      <shortcut>Ctrl+E</shortcut>
+    </name>
+    <name name="file_open">
+      <shortcut>Ctrl+Ù</shortcut>
+      <shortcut>Ctrl+O</shortcut>
+    </name>
+    <name name="file_close">
+      <shortcut>Ctrl+Q</shortcut>
+    </name>
+    <name name="file_save">
+      <shortcut>Ctrl+W</shortcut>
+    </name>
+    <name name="file_save_all">
+      <shortcut>Ctrl+Shift+W</shortcut>
+    </name>
+    <name name="file_quit">
+      <shortcut>Ctrl+Shift+Q</shortcut>
+    </name>
+    <name name="edit_undo">
+      <shortcut>Ctrl+U</shortcut>
+    </name>
+    <name name="edit_redo">
+      <shortcut>Ctrl+R</shortcut>
+    </name>
+    <name name="edit_cut">
+      <shortcut>Ctrl+Del</shortcut>
+    </name>
+    <name name="edit_copy">
+      <shortcut>Ctrl+Y</shortcut>
+    </name>
+    <name name="edit_paste">
+      <shortcut>Ctrl+P</shortcut>
+    </name>
+    <name name="file_insert_file">
+      <shortcut>Ctrl+I</shortcut>
+    </name>
+    <name name="edit_select_all" />
+    <name name="edit_select_current_toplevel">
+      <shortcut>Ctrl+)</shortcut>
+    </name>
+    <name name="edit_select_none">
+      <shortcut>Ctrl+(</shortcut>
+    </name>
+    <name name="edit_find">
+      <shortcut>Ctrl+/</shortcut>
+      <shortcut>Ctrl+F</shortcut>
+    </name>
+    <name name="edit_find_next">
+      <shortcut>Ctrl+$</shortcut>
+    </name>
+    <name name="edit_find_previous">
+      <shortcut>Ctrl+^</shortcut>
+    </name>
+    <name name="edit_replace">
+      <shortcut>Ctrl+S</shortcut>
+    </name>
+    <name name="view_next_document">
+      <shortcut>Ctrl+PgDown</shortcut>
+    </name>
+    <name name="view_previous_document">
+      <shortcut>Ctrl+PgUp</shortcut>
+    </name>
+    <name name="view_goto_line">
+      <shortcut>Ctrl+G</shortcut>
+    </name>
+  </collection>
+  <collection name="scorewiz">
+    <name name="scorewiz">
+      <shortcut>Ctrl+Shift+E</shortcut>
+    </name>
+  </collection>
+  <collection name="musicview">
+    <name name="music_fit_width">
+      <shortcut>Ctrl+=</shortcut>
+    </name>
+    <name name="music_fit_height">
+      <shortcut>Ctrl+~</shortcut>
+    </name>
+    <name name="music_rotate_right">
+      <shortcut>Alt+Shift+&gt;</shortcut>
+    </name>
+    <name name="music_rotate_left">
+      <shortcut>Alt+&lt;</shortcut>
+    </name>
+    <name name="music_sync_cursor">
+      <shortcut>Alt+$</shortcut>
+    </name>
+    <name name="music_document_select" />
+  </collection>
+  <collection name="documentactions">
+    <name name="edit_cut_assign" />
+    <name name="tools_indent_indent">
+      <shortcut>Ctrl+!</shortcut>
+    </name>
+    <name name="tools_remove_trailing_whitespace">
+      <shortcut>Ctrl+&lt;</shortcut>
+    </name>
+  </collection>
+  <collection name="sidebar">
+    <name name="folding_fold_current">
+      <shortcut>Ctrl+Tab</shortcut>
+    </name>
+    <name name="folding_unfold_current">
+      <shortcut>Shift+Tab</shortcut>
+    </name>
+    <name name="folding_fold_all">
+      <shortcut>Ctrl+Z</shortcut>
+    </name>
+    <name name="folding_unfold_all">
+      <shortcut>Ctrl+Shift+Z</shortcut>
+    </name>
+  </collection>
+  <collection name="browseriface">
+    <name name="go_forward">
+      <shortcut>Alt+Tab</shortcut>
+    </name>
+  </collection>
+  <collection name="matchingpair">
+    <name name="view_matching_pair">
+      <shortcut>Alt+Ù</shortcut>
+    </name>
+  </collection>
+  <collection name="bookmarkmanager">
+    <name name="view_next_mark">
+      <shortcut>Ctrl+'</shortcut>
+    </name>
+    <name name="view_previous_mark">
+      <shortcut>Ctrl+"</shortcut>
+    </name>
+    <name name="view_clear_error_marks">
+      <shortcut>Ctrl+&amp;</shortcut>
+    </name>
+    <name name="view_clear_all_marks">
+      <shortcut>Ctrl+Shift+B</shortcut>
+    </name>
+  </collection>
+  <collection name="logtool">
+    <name name="log_next_error">
+      <shortcut>Ctrl+É</shortcut>
+    </name>
+    <name name="log_previous_error">
+      <shortcut>Ctrl+È</shortcut>
+    </name>
+  </collection>
+  <collection name="engrave">
+    <name name="engrave_publish">
+      <shortcut>Ctrl+Shift+M</shortcut>
+    </name>
+    <name name="engrave_custom">
+      <shortcut>Ctrl+Alt+M</shortcut>
+    </name>
+  </collection>
+  <collection name="autocomplete">
+    <name name="popup_completions">
+      <shortcut>Ctrl+N</shortcut>
+    </name>
+  </collection>
+  <collection name="pitch">
+    <name name="pitch_transpose">
+      <shortcut>Ctrl+Shift+T</shortcut>
+    </name>
+    <name name="pitch_modal_transpose">
+      <shortcut>Ctrl+Alt+T</shortcut>
+    </name>
+    <name name="pitch_mode_shift">
+      <shortcut>Alt+Shift+T</shortcut>
+    </name>
+    <name name="pitch_simplify">
+      <shortcut>Ctrl+Shift+A</shortcut>
+    </name>
+  </collection>
+  <collection name="rest">
+    <name name="rest_spacer2fmrest">
+      <shortcut>Alt+Del</shortcut>
+    </name>
+  </collection>
+  <collection name="rhythm">
+    <name name="rhythm_double">
+      <shortcut>Ctrl+2</shortcut>
+    </name>
+    <name name="rhythm_halve">
+      <shortcut>Ctrl+1</shortcut>
+    </name>
+    <name name="rhythm_dot">
+      <shortcut>Ctrl+:</shortcut>
+    </name>
+    <name name="rhythm_undot">
+      <shortcut>Ctrl+,</shortcut>
+    </name>
+  </collection>
+  <collection name="lyrics">
+    <name name="lyrics_hyphenate">
+      <shortcut>Ctrl+Shift+L</shortcut>
+    </name>
+  </collection>
+  <collection name="panels">
+    <name name="panel_musicview">
+      <shortcut>Ctrl+Μ</shortcut>
+    </name>
+    <name name="panel_logtool">
+      <shortcut>Ctrl+L</shortcut>
+    </name>
+    <name name="panel_quickinsert">
+      <shortcut>Ctrl+À</shortcut>
+    </name>
+    <name name="panel_charmap">
+      <shortcut>Ctrl+Ç</shortcut>
+    </name>
+    <name name="panel_snippettool">
+      <shortcut>Ctrl+Shift+S</shortcut>
+    </name>
+    <name name="panel_outline">
+      <shortcut>Ctrl+§</shortcut>
+    </name>
+    <name name="panel_miditool">
+      <shortcut>Alt+Shift+P</shortcut>
+    </name>
+  </collection>
+  <collection name="view">
+    <name name="window_split_horizontal">
+      <shortcut>Ctrl+Shift+H</shortcut>
+    </name>
+    <name name="window_split_vertical">
+      <shortcut>Ctrl+Shift+V</shortcut>
+      <shortcut>Ctrl+Alt+V</shortcut>
+      <shortcut>Alt+Shift+V</shortcut>
+    </name>
+    <name name="window_close_view">
+      <shortcut>Ctrl+Shift+X</shortcut>
+    </name>
+    <name name="window_close_others">
+      <shortcut>Ctrl+Shift+O</shortcut>
+    </name>
+    <name name="window_next_view">
+      <shortcut>Alt+End</shortcut>
+    </name>
+    <name name="window_previous_view">
+      <shortcut>Alt+Home</shortcut>
+    </name>
+  </collection>
+  <collection name="quickinsert">
+    <name name="spanner_slur">
+      <shortcut>Alt+)</shortcut>
+    </name>
+  </collection>
+  <collection name="file_export">
+    <name name="export_audio">
+      <shortcut>Ctrl+Alt+A</shortcut>
+    </name>
+    <name name="export_musicxml">
+      <shortcut>Ctrl+Alt+X</shortcut>
+    </name>
+  </collection>
+  <collection name="miditool">
+    <name name="midi_pause">
+      <shortcut>Pause</shortcut>
+    </name>
+    <name name="midi_play">
+      <shortcut>Ctrl+Space</shortcut>
+    </name>
+  </collection>
+</frescobaldi-shortcut>

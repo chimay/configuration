@@ -1,0 +1,26 @@
+# vim: set filetype=conf :
+
+start 1
+rotate 30
+
+size 3000k
+
+olddir rotate
+
+copytruncate
+noshred
+
+missingok
+
+nosharedscripts
+
+dateext
+dateformat -%Y-%m-%d
+
+compress
+nodelaycompress
+
+compresscmd /usr/bin/xz
+uncompresscmd /usr/bin/unxz
+compressext .xz
+compressoptions -6
