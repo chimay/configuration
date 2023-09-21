@@ -825,7 +825,7 @@ nnoremap <d-q> <cmd>bwipe! #<cr>
 " wipe all buffers
 nnoremap <m-s-q> <cmd>%bwipe<cr>
 
-nnoremap <f3><m-s> <cmd>%sort<cr>
+nnoremap <f3>s <cmd>%sort<cr>
 
 " Lecture seule {{{3
 
@@ -1148,15 +1148,13 @@ nnoremap <f3>ig <cmd>call biblio#highlight_group()<cr>
 
 "  Shell {{{2
 
-nnoremap <f3>s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap <f3>S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-
-nnoremap <f3>h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap \s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
 
 " Journal de bord {{{2
 
 nnoremap <f3>L <cmd>tabe ~/racine/log/captain<cr>
-
 
 " Pavé numérique {{{2
 

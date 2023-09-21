@@ -27,7 +27,6 @@ set more
 
 set clipboard=
 
-
 "  Environnement {{{1
 
 "  Chemins de recherche des fichiers {{{2
@@ -477,6 +476,7 @@ nnoremap <f4>B :blast<cr>
 nnoremap <m-q> <cmd>bw!<cr>
 nnoremap <m-s-q> <cmd>bw! #<cr>
 
+nnoremap <f3>s <cmd>%sort<cr>
 
 " Fenêtres {{{2
 
@@ -782,10 +782,9 @@ tnoremap <f3>n <c-\><c-n>
 
 "  Shell {{{2
 
-nnoremap \s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap \S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap \h :tabe ~/racine/hist/zsh/$HOST<cr>
-
+nnoremap \s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
 
 " Journal de bord {{{2
 
