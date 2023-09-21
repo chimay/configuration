@@ -18,6 +18,7 @@ augroup publish-in-repo
 	autocmd BufWritePost ~/racine/config/** call biblio#publish ()
 	autocmd BufWritePost ~/racine/shell/** call biblio#publish ()
 	autocmd BufWritePost ~/racine/automat/** call biblio#publish ()
+	autocmd BufWritePost ~/racine/snippet/** call biblio#publish ()
 augroup END
 
 augroup resload-service

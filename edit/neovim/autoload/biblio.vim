@@ -389,15 +389,18 @@ fun! biblio#publish ()
 	if source ==? 'grenier'
 		return 'not-copying-grenier'
 	endif
-	if source =~ '\m^' .. $HOME .. '/racine/shell'
+	if source =~ '\m^' .. $HOME .. '/racine/config'
+		let mode = 'config'
+		let repo = 'configuration'
+	elseif source =~ '\m^' .. $HOME .. '/racine/shell'
 		let mode = 'shell'
 		let repo = 'scripts/' .. mode
 	elseif source =~ '\m^' .. $HOME .. '/racine/automat'
 		let mode = 'automat'
 		let repo = 'scripts/' .. mode
-	elseif source =~ '\m^' .. $HOME .. '/racine/config'
-		let mode = 'config'
-		let repo = 'configuration'
+	elseif source =~ '\m^' .. $HOME .. '/racine/snippet'
+		let mode = 'snippet'
+		let repo = 'scripts/' .. mode
 	endif
 	let source_dir = $HOME .. '/racine/' .. mode
 	let target_dir = $HOME .. '/racine/public/' .. repo
