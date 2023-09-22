@@ -20,8 +20,10 @@
 
 * Configuration files
 
-A coherent set of configuration files for my favorite apps.
+Content :
 
+- a coherent set of configuration files for my favorite apps.
+- little autoloaded functions for vim & neovim
 
 * Keybindings
 

@@ -380,18 +380,41 @@ fun! biblio#copy (source, destination, ask = 'confirm')
 	return 'success'
 endfun
 
+if exists('s:dont_publish')
+	unlockvar! s:dont_publish
+endif
+let s:dont_publish = [
+	\ '\m.*perso.*',
+	\ '\m.*qutebrowser/config*',
+	\ '\m.*bookmark*',
+	\ '\m.*quickmark*',
+	\ '\mGrenier',
+	\ ]
+lockvar! s:dont_publish
+
 fun! biblio#publish ()
 	" Copy current file to ~/public/...
 	let source = biblio#full_path ()
-	if source =~ '\m^' .. $HOME .. '/racine/shell'
+	for pattern in s:dont_publish
+		if source =~ pattern
+			return 'dont-publish-file'
+		endif
+	endfor
+	if source =~ '\m^' .. $HOME .. '/racine/config'
+		let mode = 'config'
+		let repo = 'configuration'
+	elseif source =~ '\m^' .. $HOME .. '/racine/self'
+		let mode = 'self'
+		let repo = 'scripts/' .. mode
+	elseif source =~ '\m^' .. $HOME .. '/racine/shell'
 		let mode = 'shell'
 		let repo = 'scripts/' .. mode
 	elseif source =~ '\m^' .. $HOME .. '/racine/automat'
 		let mode = 'automat'
 		let repo = 'scripts/' .. mode
-	elseif source =~ '\m^' .. $HOME .. '/racine/config'
-		let mode = 'config'
-		let repo = 'configuration'
+	elseif source =~ '\m^' .. $HOME .. '/racine/snippet'
+		let mode = 'snippet'
+		let repo = 'scripts/' .. mode
 	endif
 	let source_dir = $HOME .. '/racine/' .. mode
 	let target_dir = $HOME .. '/racine/public/' .. repo
@@ -405,7 +428,9 @@ fun! biblio#publish ()
 	endif
 	let returnstring = biblio#copy (source, destination, 'force')
 	if returnstring ==# 'success'
-		echomsg 'publish : copied' source '->' destination
+		let source_tilde = fnamemodify(source, ':~')
+		let destination_tilde = fnamemodify(destination, ':~')
+		echomsg 'publish : copied' source_tilde '->' destination_tilde
 	endif
 	return returnstring
 endfun
