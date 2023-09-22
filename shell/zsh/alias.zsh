@@ -220,7 +220,6 @@ alias vd=edir
 
 alias mcp='qcp -d'
 
-
 # Suppression {{{2
 
 alias rm=trash-put
@@ -247,71 +246,6 @@ alias rl='readlink -f'
 alias ftp='sftp'
 
 alias rs='rsync -av'
-
-alias rmv='rsync --verbose --progress --stats --human-readable --itemize-changes \
-	--log-file="$HOME/log/rsync.log" \
-	--rsh=ssh \
-	--recursive \
-	--modify-window=1 \
-	--owner --group --times --perms --links \
-	--remove-source-files'
-
-alias cp='rsync --verbose --progress --stats --human-readable --itemize-changes \
-	--log-file="$HOME/log/rsync.log" \
-	--rsh=ssh \
-	--recursive \
-	--modify-window=1 \
-	--owner --group --times --perms --links \
-	--update'
-
-# relative
-alias cpr='rsync --verbose --progress --stats --human-readable --itemize-changes \
-	--log-file="$HOME/log/rsync.log" \
-	--rsh=ssh \
-	--recursive \
-	--modify-window=1 \
-	--owner --group --times --perms --links \
-	--update \
-	--relative'
-
-# force
-alias cpf='rsync --verbose --progress --stats --human-readable --itemize-changes \
-	--log-file="$HOME/log/rsync.log" \
-	--rsh=ssh \
-	--recursive \
-	--modify-window=1 \
-	--owner --group --times --perms --links \
-	--ignore-times'
-
-alias sn='rsync --verbose --progress --stats --human-readable --itemize-changes \
-	--log-file="$HOME/log/rsync.log" \
-	--rsh=ssh \
-	--recursive \
-	--modify-window=1 \
-	--delete-during \
-	--owner --group --times --perms --links \
-	--update'
-
-# relative
-alias snr='rsync --verbose --progress --stats --human-readable --itemize-changes \
-	--log-file="$HOME/log/rsync.log" \
-	--rsh=ssh \
-	--recursive \
-	--modify-window=1 \
-	--delete-during \
-	--owner --group --times --perms --links \
-	--update \
-	--relative'
-
-# force
-alias snf='rsync --verbose --progress --stats --human-readable --itemize-changes \
-	--log-file="$HOME/log/rsync.log" \
-	--rsh=ssh \
-	--recursive \
-	--modify-window=1 \
-	--delete-during \
-	--owner --group --times --perms --links \
-	--ignore-times'
 
 alias st='run-syncthing.sh &'
 

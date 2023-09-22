@@ -67,6 +67,164 @@ run-ed () {
 	eval $runme
 }
 
+#  mvr : move with rsync {{{2
+
+mvr () {
+	rsync \
+		--verbose \
+		--progress \
+		--stats \
+		--human-readable \
+		--itemize-changes \
+		--log-file="$HOME/log/rsync.log" \
+		--rsh=ssh \
+		--recursive \
+		--modify-window=1 \
+		--owner \
+		--group \
+		--times \
+		--perms \
+		--links \
+		--remove-source-files \
+		"$@"
+}
+
+#  cp : copy with rsync {{{2
+
+cp () {
+	rsync \
+		--verbose \
+		--progress \
+		--stats \
+		--human-readable \
+		--itemize-changes \
+		--log-file="$HOME/log/rsync.log" \
+		--rsh=ssh \
+		--recursive \
+		--modify-window=1 \
+		--owner \
+		--group \
+		--times \
+		--perms \
+		--links \
+		--update \
+		"$@"
+}
+
+#  cpr : copy with rsync, relative path {{{2
+
+cpr () {
+	rsync \
+		--verbose \
+		--progress \
+		--stats \
+		--human-readable \
+		--itemize-changes \
+		--log-file="$HOME/log/rsync.log" \
+		--rsh=ssh \
+		--recursive \
+		--modify-window=1 \
+		--owner \
+		--group \
+		--times \
+		--perms \
+		--links \
+		--update \
+		--relative \
+		"$@"
+}
+
+#  cpf : copy with rsync, force overwrite {{{2
+
+cpf () {
+	rsync \
+		--verbose \
+		--progress \
+		--stats \
+		--human-readable \
+		--itemize-changes \
+		--log-file="$HOME/log/rsync.log" \
+		--rsh=ssh \
+		--recursive \
+		--modify-window=1 \
+		--owner \
+		--group \
+		--times \
+		--perms \
+		--links \
+		--ignore-times \
+		"$@"
+}
+
+#  sn : sync with rsync {{{2
+
+sn () {
+	rsync \
+		--verbose \
+		--progress \
+		--stats \
+		--human-readable \
+		--itemize-changes \
+		--log-file="$HOME/log/rsync.log" \
+		--rsh=ssh \
+		--recursive \
+		--modify-window=1 \
+		--delete-during \
+		--owner \
+		--group \
+		--times \
+		--perms \
+		--links \
+		--update \
+		"$@"
+}
+
+#  sn : sync with rsync, relative path {{{2
+
+snr () {
+	rsync \
+		--verbose \
+		--progress \
+		--stats \
+		--human-readable \
+		--itemize-changes \
+		--log-file="$HOME/log/rsync.log" \
+		--rsh=ssh \
+		--recursive \
+		--modify-window=1 \
+		--delete-during \
+		--owner \
+		--group \
+		--times \
+		--perms \
+		--links \
+		--update \
+		--relative \
+		"$@"
+}
+
+#  snf : sync with rsync, force overwrite {{{2
+
+snf () {
+	rsync \
+		--verbose \
+		--progress \
+		--stats \
+		--human-readable \
+		--itemize-changes \
+		--log-file="$HOME/log/rsync.log" \
+		--rsh=ssh \
+		--recursive \
+		--modify-window=1 \
+		--delete-during \
+		--owner \
+		--group \
+		--times \
+		--perms \
+		--links \
+		--ignore-times \
+		"$@"
+}
 
 # swap-files : échange des noms de fichiers {{{2
 
