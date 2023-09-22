@@ -81,10 +81,9 @@ packadd matchit
 "  Caractères utilisés dans les mots {{{1
 
 "set iskeyword=@,48-57,_,192-255
+"set iskeyword=48-57,_,192-255
 
-set iskeyword=48-57,_,192-255
-
-"set iskeyword-=/,:,#,@,-
+set iskeyword-=/,:,#,@,-
 
 " Pageur interne {{{1
 

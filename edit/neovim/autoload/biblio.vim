@@ -380,15 +380,25 @@ fun! biblio#copy (source, destination, ask = 'confirm')
 	return 'success'
 endfun
 
+if exists('s:dont_publish')
+	unlockvar! s:dont_publish
+endif
+let s:dont_publish = [
+	\ '\m.*perso.*',
+	\ '\m.*bookmark*',
+	\ '\m.*quickmark*',
+	\ '\mGrenier',
+	\ ]
+lockvar! s:dont_publish
+
 fun! biblio#publish ()
 	" Copy current file to ~/public/...
 	let source = biblio#full_path ()
-	if source =~ 'perso'
-		return 'not-copying-perso'
-	endif
-	if source ==? 'grenier'
-		return 'not-copying-grenier'
-	endif
+	for pattern in s:dont_publish
+		if source =~ pattern
+			return 'dont-publish-file'
+		endif
+	endfor
 	if source =~ '\m^' .. $HOME .. '/racine/config'
 		let mode = 'config'
 		let repo = 'configuration'
