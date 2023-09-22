@@ -385,6 +385,7 @@ if exists('s:dont_publish')
 endif
 let s:dont_publish = [
 	\ '\m.*perso.*',
+	\ '\m.*qutebrowser/config*',
 	\ '\m.*bookmark*',
 	\ '\m.*quickmark*',
 	\ '\mGrenier',
@@ -427,7 +428,9 @@ fun! biblio#publish ()
 	endif
 	let returnstring = biblio#copy (source, destination, 'force')
 	if returnstring ==# 'success'
-		echomsg 'publish : copied' source '->' destination
+		let source_tilde = fnamemodify(source, ':~')
+		let destination_tilde = fnamemodify(destination, ':~')
+		echomsg 'publish : copied' source_tilde '->' destination_tilde
 	endif
 	return returnstring
 endfun
