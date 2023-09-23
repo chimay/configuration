@@ -169,11 +169,12 @@ then
 	alias la='ls -a'
 	alias ll='ls -l'
 else
-	alias l='ls --color=auto --show-control-chars'
-	alias ls='ls --color=auto'
-	alias la='ls -a --color=auto'
-	alias ll='ls -l --color=auto'
-	alias le=ls_extended
+	alias l='command ls --color=auto --show-control-chars'
+	alias ll='command ls -l --color=auto'
+	alias la='command ls -a --color=auto'
+	alias ls='lsd'
+	alias lsl='lsd -l'
+	alias lsa='lsd -a'
 fi
 
 alias ù=most-recently-modified
@@ -554,32 +555,20 @@ hash -d archive=~/racine/archive
 hash -d artisan=~/racine/artisan
 hash -d automat=~/racine/automat
 hash -d bridge=~/racine/bridge
-hash -d built=~/racine/built
-hash -d cloud=~/racine/cloud
 hash -d common=~/racine/common
 hash -d config=~/racine/config
 hash -d dotdir=~/racine/dotdir
 hash -d example=~/racine/example
 hash -d feder=~/racine/feder
-hash -d confeder=~/racine/feder/confeder
 hash -d fun=~/racine/fun
-hash -d game=~/racine/game
 hash -d gate=~/racine/gate
 hash -d hist=~/racine/hist
 hash -d hub=~/racine/hub
-hash -d humour=~/racine/humour
-hash -d image=~/racine/image
 hash -d index=~/racine/index
 hash -d infoman=~/racine/infoman
-hash -d install=~/racine/install
-hash -d liber=~/racine/liber
-hash -d list=~/racine/list
 hash -d litera=~/racine/litera
 hash -d local=~/racine/local
-hash -d log=~/racine/log
 hash -d mail=~/racine/mail
-hash -d meta=~/racine/meta
-hash -d multics=~/racine/multics
 hash -d musica=~/racine/musica
 hash -d network=~/racine/network
 hash -d news=~/racine/news
@@ -593,25 +582,20 @@ hash -d plugin=~/racine/plugin
 hash -d prolang=~/racine/prolang
 hash -d public=~/racine/public
 hash -d refer=~/racine/refer
-hash -d repo=~/racine/repo
 hash -d run=~/racine/run
 hash -d scien=~/racine/scien
 hash -d search=~/racine/search
 hash -d self=~/racine/self
-hash -d share=~/racine/share
-hash -d shell=~/racine/shell
 hash -d session=~/racine/session
+hash -d shell=~/racine/shell
 hash -d site=~/racine/site
 hash -d snippet=~/racine/snippet
 hash -d source=~/racine/source
 hash -d syncron=~/racine/syncron
+hash -d system=~/racine/system
 hash -d template=~/racine/template
-hash -d test=~/racine/test
 hash -d trash=~/racine/trash
 hash -d varia=~/racine/varia
-hash -d void=~/racine/void
-hash -d wiki=~/racine/wiki
-
 
 #  Site {{{2
 

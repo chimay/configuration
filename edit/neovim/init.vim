@@ -771,11 +771,11 @@ nnoremap ZQ <cmd>qa!<cr>
 
 "  Fichiers {{{2
 
+"nnoremap <C-G> 2<C-G>
+
 " Fichier courant aussi disponible dans le registre %
 " Fichier alternatif aussi disponible dans le registre #
-"nnoremap <C-G> <cmd>let @" = expand("%<cmd>p")<cr>2<C-G>
-
-nnoremap <C-G> 2<C-G>
+nnoremap <C-G> <cmd>let @" = expand("%:p:~")<cr>2<C-G>
 
 nnoremap <f2>i <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
 inoremap <f2>i <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
@@ -783,6 +783,9 @@ inoremap <f2>i <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
 " not a good idea, strange effect
 " nnoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
 " inoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
+
+nnoremap <f2>d <cmd>tabedit ~/racine/organ/orgmode/reverie.org <bar> normal Gzx<cr>
+inoremap <f2>d <cmd>tabedit ~/racine/organ/orgmode/reverie.org <bar> normal Gzx<cr>
 
 command! -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
@@ -1028,8 +1031,6 @@ inoremap <m-u> <c-g>u
 " by default in neovim
 "inoremap <C-U> <C-G>u<C-U>
 "inoremap <C-W> <C-G>u<C-W>
-
-
 
 "  Pliage {{{2
 

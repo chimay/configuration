@@ -356,9 +356,8 @@ playlist_editor_display_mode = columns
 
 seek_time = 5
 
-#
-#volume_change_step = 2
-#
+volume_change_step = 5
+
 #autocenter_mode = no
 
 autocenter_mode = yes

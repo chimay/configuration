@@ -62,6 +62,7 @@ run-ed () {
 	runme=$runme'-f ~/racine/hist/rlwrap/ed.comp '
 	runme=$runme'-l ~/racine/hist/rlwrap/ed.comp '
 	runme=${runme}'ed -v -p " ed : "'
+	runme=${runme}" $@"
 	echo $runme
 	echo
 	eval $runme

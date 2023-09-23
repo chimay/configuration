@@ -35,11 +35,11 @@ ignore = Name gtags.files
 
 # {{{ Bases de données
 
-ignore = Path racine/index/locate/*
-ignore = Path racine/index/locate/.*
+ignore = Path racine/index/filesys/locate/*
+ignore = Path racine/index/filesys/locate/.*
 
-ignore = Path racine/index/qutebrowser/*
-ignore = Path racine/index/qutebrowser/.*
+ignore = Path racine/index/webrowser/qutebrowser/*
+ignore = Path racine/index/webrowser/qutebrowser/.*
 
 ignore = Path racine/index/filesys/z-dirs
 

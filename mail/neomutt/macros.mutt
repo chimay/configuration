@@ -81,7 +81,6 @@ macro   pager   "\ex"           ":exec "
 macro   generic "\e:"           ":exec "
 macro   pager   "\e:"           ":exec "
 
-
 # Choix de la boîte aux lettres {{{1
 
 # ┌────────┬────────────────────────────────────────────────────────────────────┐
@@ -207,7 +206,6 @@ macro index ua '<undelete-pattern>all<enter>'
 # Ajout de l’expéditeur dans abook {{{1
 
 macro index,pager  £ "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
-
 
 # Visualisation des liens {{{1
 

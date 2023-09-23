@@ -210,7 +210,6 @@ bind index ms resend-message
 bind index mq query
 bind index à query
 
-
 # Sélection {{{2
 
 bind index <space> tag-entry

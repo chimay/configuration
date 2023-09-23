@@ -97,6 +97,7 @@ bspc rule -a MuseScore4 desktop=artisan
 bspc rule -a frescobaldi desktop=artisan
 bspc rule -a Rosegarden desktop=artisan
 bspc rule -a vimiv desktop=artisan
+bspc rule -a Sxiv desktop=artisan
 
 bspc rule -a vlc desktop=entertain
 bspc rule -a wesnoth desktop=entertain
@@ -133,8 +134,8 @@ bspc rule -a URxvt:journal              state=floating rectangle=1200x500+350+50
 bspc rule -a URxvt:maintenance          state=floating rectangle=1200x500+350+50
 bspc rule -a URxvt:multimedia           state=floating
 
-bspc rule -a Vimiv                      state=floating
-bspc rule -a Sxiv                       state=floating
+# bspc rule -a vimiv                      state=floating
+# bspc rule -a Sxiv                       state=floating
 
 bspc rule -a Pavucontrol                state=floating
 bspc rule -a QjackCtl                   state=floating

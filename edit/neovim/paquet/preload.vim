@@ -543,7 +543,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.todo_cycle = ['TODO', 'IN PROGRESS', 'ALMOST DONE', 'DONE']
 	let g:organ_config.templates['<m'] = 'mystuff'
 	let g:organ_config.templates['+m'] = 'mystuff'
-	let g:organ_config.timestamp_format = '%d %B %Y, %H:%M'
+	let g:organ_config.timestamp_format = '%A %d %B %Y, %H:%M'
 	let g:organ_config.expr.keep = 120
 	let g:organ_config.completion.vocalize = 1
 	let g:organ_config.completion.wordize = 1
