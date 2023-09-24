@@ -388,6 +388,8 @@ let s:dont_publish = [
 	\ '\m.*qutebrowser/config*',
 	\ '\m.*bookmark*',
 	\ '\m.*quickmark*',
+	\ '\m.*autostart*',
+	\ '\m.*autostop*',
 	\ '\mGrenier',
 	\ ]
 lockvar! s:dont_publish
@@ -414,6 +416,9 @@ fun! biblio#publish ()
 		let repo = 'scripts/' .. mode
 	elseif source =~ '\m^' .. $HOME .. '/racine/snippet'
 		let mode = 'snippet'
+		let repo = 'scripts/' .. mode
+	elseif source =~ '\m^' .. $HOME .. '/racine/site'
+		let mode = 'site'
 		let repo = 'scripts/' .. mode
 	endif
 	let source_dir = $HOME .. '/racine/' .. mode

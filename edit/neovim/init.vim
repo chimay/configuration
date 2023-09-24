@@ -1021,10 +1021,12 @@ cnoremap <silent> <S-Insert> <C-R>+
 
 " noremap <S-Insert> <MiddleMouse>
 
+ "  Annulation {{{2
 
-"  Annulation {{{2
+inoremap <c-z> <cmd>undo<cr>
+inoremap <m-z> <cmd>redo<cr>
 
-" <C-G>u entame un nouvel atome d'undo {{{3
+" <C-G>u entame un nouvel atome d'undo
 
 inoremap <m-u> <c-g>u
 

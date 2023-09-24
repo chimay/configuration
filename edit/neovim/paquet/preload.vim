@@ -386,7 +386,7 @@ nnoremap gf <cmd>Utl<cr>
 
 let g:utl_cfg_hdl_scm_http = "!qutebrowser '%u#%f' &"
 
-
+let g:utl_opt_highlight_urls='no'
 
 " Ligne de commande (:ex mode) {{{1
 
@@ -504,7 +504,6 @@ if ! exists("g:organ_loaded")
 		\ 'organ-next',
 		\ 'organ-backward',
 		\ 'organ-forward',
-		\ 'organ-parent',
 		\ 'organ-loose-child',
 		\ 'organ-strict-child',
 		\ 'organ-meta-return',

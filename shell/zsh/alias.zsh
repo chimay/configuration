@@ -520,7 +520,6 @@ alias -g DS='| diffstat'
 
 alias -g F='| fpp'
 
-
 #  Suffixes : alias -s {{{1
 
 # Pour choisir le programme qui va ouvrir le fichier, d’après l’extension
