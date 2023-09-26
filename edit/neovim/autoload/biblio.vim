@@ -390,6 +390,8 @@ let s:dont_publish = [
 	\ '\m.*quickmark*',
 	\ '\m.*autostart*',
 	\ '\m.*autostop*',
+	\ '\m.*pass-to-gpg-symmetric*',
+	\ '\m.*pass-to-age*',
 	\ '\mGrenier',
 	\ ]
 lockvar! s:dont_publish

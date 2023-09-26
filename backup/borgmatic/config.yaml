@@ -39,7 +39,6 @@ source_directories:
   - racine/litera
   - racine/local
   - racine/mail
-  - racine/multics
   - racine/musica
   - racine/network
   - racine/news
@@ -69,6 +68,7 @@ source_directories:
   - racine/shell
   - racine/site
   - racine/snippet
+  - racine/system
   - racine/template
 
 # A required list of local or remote repositories with paths and

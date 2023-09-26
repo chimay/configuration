@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Credit:
 # base16-shell (https://github.com/chriskempson/base16-shell)
 # Base16 Shell template by Chris Kempson (http://chriskempson.com)
 # Atelier Lakeside scheme by Bram de Haan (http://atelierbramdehaan.nl)

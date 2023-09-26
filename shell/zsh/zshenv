@@ -350,13 +350,11 @@ export RIPGREP_CONFIG_PATH=~/racine/config/search/ripgrep
 
 # Less {{{2
 
-export LESSKEYIN=~/racine/config/visu/less/lesskey
-
 export PAGER=less
-
 export MANPAGER=less
-
 export BAT_PAGER=less
+
+export LESSKEYIN=~/racine/config/visu/less/lesskey
 
 export LESS="--no-init --raw-control-chars --ignore-case --buffers=360 --tabs=4 --jump-target=.36 --window=-4 --shift=.36 --max-forw-scroll=36 --max-back-scroll=36 --LONG-PROMPT --prompt=M?f%f:[Tube]. ?m (%x) No %i/%m:. ?ljLigne %l.?L/%L:. ?djPage %dj:.?D/%D:. ?pPct %pj:."
 
@@ -369,7 +367,6 @@ export LESSHISTFILE=~/racine/hist/less/lesshst
 export LESSHISTSIZE=12347
 
 export LESSEDIT='%E ?lm+%lm. %f'
-
 export LESSECHO=lessecho
 
 # Couleurs {{{3
@@ -382,18 +379,18 @@ export LESSECHO=lessecho
 # LESS_TERMCAP_us # begin underline
 # LESS_TERMCAP_so # begin standout-mode - info box
 
-export LESS_TERMCAP_md=$'\E[0;31m'
-export LESS_TERMCAP_mb=$'\E[5m'
-export LESS_TERMCAP_us=$'\E[3;33m'
-export LESS_TERMCAP_so=$'\E[7m'
+export LESS_TERMCAP_md=$'\e[0;31m'
+export LESS_TERMCAP_mb=$'\e[5m'
+export LESS_TERMCAP_us=$'\e[3;33m'
+export LESS_TERMCAP_so=$'\e[7m'
 
 # LESS_TERMCAP_me # end mode
 # LESS_TERMCAP_ue # end underline
 # LESS_TERMCAP_se # end standout-mode
 
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
 
 # Most {{{2
 

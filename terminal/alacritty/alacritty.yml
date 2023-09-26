@@ -28,7 +28,7 @@
   # voir <url:~/racine/config/shell/zsh/zshenv#tn=LS_COLORS>
   #TERM: xterm-256color
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. Both lines and columns
@@ -74,6 +74,7 @@
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
   #opacity: 1.0
+  opacity: 0.95
 
   # Startup Mode (changes require restart)
   #
@@ -203,11 +204,11 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
-#colors:
+colors:
   # Default colors
-  #primary:
-  #  background: '#1d1f21'
-  #  foreground: '#c5c8c6'
+  primary:
+    background: '#000000'
+    foreground: '#5b3c11'
 
     # Bright and dim foreground colors
     #
@@ -275,9 +276,9 @@ font:
   # search and vi mode.
   #
   # By default, these will use the opposing primary color.
-  #line_indicator:
-  #  foreground: None
-  #  background: None
+  line_indicator:
+    foreground: '#b72e30'
+    background: '#000000'
 
   # Footer bar
   #
@@ -299,40 +300,40 @@ font:
   #  background: CellForeground
 
   # Normal colors
-  #normal:
-  #  black:   '#1d1f21'
-  #  red:     '#cc6666'
-  #  green:   '#b5bd68'
-  #  yellow:  '#f0c674'
-  #  blue:    '#81a2be'
-  #  magenta: '#b294bb'
-  #  cyan:    '#8abeb7'
-  #  white:   '#c5c8c6'
+  normal:
+    black:   '#1d1f21'
+    red:     '#b21818'
+    green:   '#118011'
+    yellow:  '#965724'
+    blue:    '#6040a0'
+    magenta: '#b218b2'
+    cyan:    '#149696'
+    white:   '#947454'
 
   # Bright colors
-  #bright:
-  #  black:   '#666666'
-  #  red:     '#d54e53'
-  #  green:   '#b9ca4a'
-  #  yellow:  '#e7c547'
-  #  blue:    '#7aa6da'
-  #  magenta: '#c397d8'
-  #  cyan:    '#70c0b1'
-  #  white:   '#eaeaea'
+  bright:
+   black:   '#434343'
+   red:     '#872e30'
+   green:   '#36a636'
+   yellow:  '#b36700'
+   blue:    '#7050c0'
+   magenta: '#c842c8'
+   cyan:    '#309494'
+   white:   '#b49474'
 
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
-  #dim:
-  #  black:   '#131415'
-  #  red:     '#864343'
-  #  green:   '#777c44'
-  #  yellow:  '#9e824c'
-  #  blue:    '#556a7d'
-  #  magenta: '#75617b'
-  #  cyan:    '#5b7d78'
-  #  white:   '#828482'
+  dim:
+    black:   '#131415'
+    red:     '#864343'
+    green:   '#777c44'
+    yellow:  '#9e824c'
+    blue:    '#556a7d'
+    magenta: '#75617b'
+    cyan:    '#5b7d78'
+    white:   '#828482'
 
   # Indexed Colors
   #
@@ -350,6 +351,7 @@ font:
   # the default background. When set to `true` all cells will be transparent
   # regardless of their background color.
   #transparent_background_colors: false
+  transparent_background_colors: true
 
 # Bell
 #
@@ -786,6 +788,7 @@ key_bindings:
 
   # (Windows, Linux, and BSD only)
   - { key: Insert,         mods: Shift,         mode: ~Vi,        action: Paste            }
+  - { key: Insert,         mods: Control,                         action: Copy             }
   - { key: V,         mods: Control|Shift,      mode: ~Vi,        action: Paste            }
   - { key: C,         mods: Control|Shift,                        action: Copy             }
   - { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
