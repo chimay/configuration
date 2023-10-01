@@ -2,4 +2,4 @@
 
 export RACINE_BASH=$HOME/racine/config/cmdline/bash
 
-source ${RACINE_BASH}/bashrc
+source "${RACINE_BASH}/bashrc"

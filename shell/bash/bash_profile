@@ -5,4 +5,8 @@
 PATH="/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:$HOME/racine/shell/alarm"
 export PATH
 
+HISTSIZE=60000
+HISTFILESIZE=120000
+HISTCONTROL=erasedups:ignorespace
+
 [[ -f ~/.bashrc ]] && . ~/.bashrc

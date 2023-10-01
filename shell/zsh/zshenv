@@ -68,13 +68,9 @@ export PROMPT RPROMPT
 #  Historique {{{2
 
 export HISTFILE=~/racine/hist/zsh/$HOST
-
 export SAVEHIST=60000
-
 export HISTSIZE=$SAVEHIST
-
 export HISTFILESIZE=$HISTSIZE
-
 
 # Piles de répertoires {{{2
 
@@ -478,7 +474,6 @@ export RESTIC_PASSWORD_COMMAND='pass show backup/restic/main'
 
 export OCTAVE_HISTFILE=~/racine/hist/octave/octave_hist
 export OCTAVE_HISTSIZE=34712
-
 
 #  Bases de données {{{1
 

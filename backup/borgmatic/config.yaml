@@ -47,7 +47,6 @@ source_directories:
   - racine/pack/bin
   - racine/pack/release
   - racine/pack/shar
-  - racine/pack/system
   - racine/papier
   - racine/pictura
   - racine/plain

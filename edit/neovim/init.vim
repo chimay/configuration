@@ -989,13 +989,13 @@ vnoremap <f3>; :%s/\<\>//<left><left><left><left>
 
 command! -nargs=1 GlobalYank <cmd>call biblio#global_yank(<q-args>, 'a')
 
-nnoremap <f3>y <cmd>GlobalYank<space>
+nnoremap <f3>y :GlobalYank<space>
 
 " Couper toutes les lignes correspondant à un motif
 
 command! -nargs=1 GlobalDelete <cmd>call biblio#global_delete(<q-args>, 'a')
 
-nnoremap <f3>d <cmd>GlobalDelete<space>
+nnoremap <f3>d :GlobalDelete<space>
 
 " comme dans les Xterm
 " c-insert = yank
@@ -1124,7 +1124,6 @@ nnoremap QQ gQ
 " Hauteur de la fenêtre de commande {{{3
 
 nnoremap <f3>c :set cmdheight=
-
 
 " Ligne ou sélection courante {{{3
 
@@ -1421,7 +1420,6 @@ endif
 " Hauteur
 
 set cmdheight=3
-
 
 " Conceal {{{2
 

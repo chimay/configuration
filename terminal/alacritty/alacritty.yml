@@ -789,6 +789,8 @@ key_bindings:
   # (Windows, Linux, and BSD only)
   - { key: Insert,         mods: Shift,         mode: ~Vi,        action: Paste            }
   - { key: Insert,         mods: Control,                         action: Copy             }
+  - { key: V,         mods: super,              mode: ~Vi,        action: Paste            }
+  - { key: C,         mods: super,                                action: Copy             }
   - { key: V,         mods: Control|Shift,      mode: ~Vi,        action: Paste            }
   - { key: C,         mods: Control|Shift,                        action: Copy             }
   - { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
@@ -805,8 +807,8 @@ key_bindings:
   - { key: Return,         mods: Control|Alt,                     action: CreateNewWindow  }
 
   # Vi Mode
-  - { key: V,      mods: super,         mode: ~Search,    action: ToggleViMode            }
-  - { key: V,      mods: super,         mode: Vi|~Search, action: ScrollToBottom          }
+  - { key: E,      mods: super,         mode: ~Search,    action: ToggleViMode            }
+  - { key: E,      mods: super,         mode: Vi|~Search, action: ScrollToBottom          }
   - { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
   - { key: I,                           mode: Vi|~Search, action: ToggleViMode            }
   - { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
@@ -853,9 +855,9 @@ key_bindings:
   - { key: E,      mods: Shift,         mode: Vi|~Search, action: WordRightEnd            }
   - { key: Key5,   mods: Shift,         mode: Vi|~Search, action: Bracket                 }
   - { key: Slash,                       mode: Vi|~Search, action: SearchForward           }
-  - { key: Slash,  mods: Shift,         mode: Vi|~Search, action: SearchBackward          }
-  - { key: F2,                          mode: Vi|~Search, action: SearchForward           }
-  - { key: F3,                          mode: Vi|~Search, action: SearchBackward          }
+  - { key: Slash,  mods: Shift,         mode: Vi|~Search, action: SearchForward           }
+  - { key: Colon,                       mode: Vi|~Search, action: SearchBackward          }
+  - { key: Colon,  mods: Shift,         mode: Vi|~Search, action: SearchBackward          }
   - { key: N,                           mode: Vi|~Search, action: SearchNext              }
   - { key: N,      mods: Shift,         mode: Vi|~Search, action: SearchPrevious          }
 

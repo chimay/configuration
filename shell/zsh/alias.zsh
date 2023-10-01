@@ -601,23 +601,18 @@ hash -d varia=~/racine/varia
 hash -d eclats2vers=~/racine/site/eclats2vers/generic
 hash -d equa6on=~/racine/site/equa6on/generic
 
-
 # Terminal {{{2
 
 hash -d tmuxconf=~/racine/config/multiplex/tmux
 
-
 # Shell, Script {{{2
-# ------------------------------------
 
 hash -d historique=~/racine/dotdir/zsh
 
 hash -d zconf=$RACINE_ZSH
 hash -d zdot=~/racine/dotdir/zsh
 
-
 # Edit {{{2
-# ------------------------------------
 
 hash -d vimconf=~/racine/config/edit/vim
 hash -d neovimconf=~/racine/config/edit/neovim
@@ -630,7 +625,6 @@ hash -d mdot=~/racine/dotdir/emacs.d
 
 hash -d muttconf=~/racine/config/mail/neomutt
 
-
 # Plugins {{{2
 
 hash -d pman=~/racine/plugin/manager
@@ -642,16 +636,13 @@ hash -d elpaca=~/racine/plugin/manager/elpaca
 hash -d straight=~/racine/plugin/manager/straight
 hash -d elget=~/racine/plugin/manager/el-get
 
-
 # Artisan {{{2
 
 hash -d lilypond=~/racine/musica/lilypond
 hash -d musescore=~/racine/musica/musescore
 hash -d rosegarden=~/racine/musica/rosegarden
 
-
 # Multimedia {{{2
-# ------------------------------------
 
 hash -d aartistes=~/audio/artistes
 hash -d abook=~/audio/book
@@ -659,3 +650,7 @@ hash -d abook=~/audio/book
 hash -d classique=~/audio/artistes/classique
 
 hash -d jazz=~/audio/artistes/jazz
+
+#  Synchronization {{{2
+
+hash -d syncthing=~/racine/syncron/syncthing
