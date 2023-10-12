@@ -469,23 +469,18 @@ bind pager uu undelete-message
 bind pager ut undelete-thread
 bind pager us undelete-subthread
 
-
 # Attachés {{{2
 
 bind pager & view-attachments
 bind pager A view-attachments
 
-
 # Destinataires {{{2
 
 bind pager = create-alias
 
-
 # Commande {{{2
 
 bind pager | pipe-message
-
-
 
 # Attach {{{1
 
@@ -527,7 +522,6 @@ bind attach u noop
 
 bind attach dd delete-entry
 bind attach uu undelete-entry
-
 
 # Visualisation {{{2
 

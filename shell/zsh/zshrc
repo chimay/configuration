@@ -93,7 +93,6 @@ setopt auto_remove_slash
 
 unsetopt complete_aliases
 
-
 #  Zstyle {{{2
 
 # Priorité {{{3
@@ -128,7 +127,6 @@ zstyle ':completion:*:cd:*' tag-order "local-directories path-directories"
 
 zstyle ':completion:*' list-dirs-first yes
 
-
 # Groupes {{{3
 
 zstyle ':completion:*' group-name ''
@@ -136,7 +134,6 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-grouped yes
 
 zstyle ':completion:*:-command-' group-order builtins functions commands
-
 
 # Complétion floue {{{3
 
@@ -153,11 +150,9 @@ zstyle ':completion:*:correct:*' max-errors 2 numeric
 
 zstyle ':completion:*' original true
 
-
 # Prédiction {{{3
 
 zstyle ':completion:predict:*' completer _complete
-
 
 # Présentation {{{3
 
@@ -178,7 +173,6 @@ zstyle ':completion:*' list-separator ' : '
 
 zstyle ':completion:*' list-colors '=*='
 
-
 # Menu {{{3
 
 # pour obtenir un menu convivial pour la completion (avec les flèches du clavier)
@@ -193,8 +187,6 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 # Affichage détaillé
 
 zstyle ':completion:*' file-list list=7 insert=7
-
-
 
 # Historique {{{3
 
@@ -234,13 +226,11 @@ zstyle ':completion:*:*:pkill:*' menu yes select
 zstyle ':completion:*:*:killall:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:*:killall:*' menu yes select
 
-
 # Sous-commandes {{{3
 
 #zstyle ':completion:*:gravure:*' \
 	#file-patterns \
 		#'gravure-iso image-iso gravure-cd'
-
 
 # Unicité des arguments {{{3
 
@@ -258,7 +248,6 @@ zstyle ':completion:*:diff:*' ignore-line yes
 zstyle ':completion:*:joue:*' ignore-line yes
 zstyle ':completion:*:mplayer:*' ignore-line yes
 
-
 # Ignorer {{{3
 
 #fignore=(.zwc .pyc .dvi .o \~)
@@ -270,7 +259,6 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 # Complète par les ignorés si rien d'autre
 
 zstyle ':completion:*:ignored:*' completer _complete
-
 
 # Motifs {{{3
 
@@ -288,20 +276,17 @@ zstyle ':completion:*' \
 		'l:|=* r:|=*' \
 		'r:[^A-Z0-9]||[A-Z0-9]=** r:|=*'
 
-
 # Utilisateurs & Hôtes {{{3
 
 zstyle ':completion:*' users-hosts \
-	$USER@quigonjinn.local \
+	$USER@taijitu.local \
 	$USER@shari.local \
 	$USER@tixu.local
-
 
 # Courriel {{{3
 
 zstyle ':completion:*' mail-directory ~/racine/mail
 zstyle ':completion:*' muttrc ~/racine/config/mail/neomutt/alias.mutt
-
 
 # Options {{{3
 
@@ -328,13 +313,11 @@ zstyle ':completion:*' insert-tab yes
 
 zstyle ':completion:all-matches:*' old-matches only
 
-
-
 #  Compdef {{{2
 
 # Types de fichiers {{{3
 
-compdef '_files -g "*.htm *.html *.php *.phtm *.phtml"' elinks firefox
+compdef '_files -g "*.htm *.html *.php *.phtm *.phtml"' elinks w3m qutebrowser firefox
 compdef '_files -g "*.pdf *.ps"' okular apvlv
 compdef '_files -g "*.ar"' ar
 compdef '_files -g "*.tar *.tar.* *.tgz *.tbz *.tbz2"' tar
@@ -344,7 +327,6 @@ compdef '_files -g "*.gz"' zcat
 compdef '_files -g "*.bz *.bz2"' bzcat
 compdef '_files -g "*.tex"' latex
 compdef '_files -g "*.ly"' lilypond
-
 
 # Listes d’arguments {{{3
 

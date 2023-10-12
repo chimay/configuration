@@ -42,16 +42,14 @@ let g:no_plugin_maps = 1
 
 " Mappings {{{3
 
-" Si tab est défini ici, le commenter dans Neocomplcache
-
 " inoremap <tab> <cmd>call UltiSnips#ExpandSnippetOrJump()<cr>
 " snoremap <tab> <cmd>call UltiSnips#JumpForwards()<cr>
 " inoremap <s-tab> <cmd>call UltiSnips#JumpBackwards()<cr>
 " snoremap <s-tab> <cmd>call UltiSnips#JumpBackwards()<cr>
 
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<m-tab>"
+let g:UltiSnipsExpandTrigger="<c-x><c-x>"
+let g:UltiSnipsJumpForwardTrigger="<c-x><c-x>"
+let g:UltiSnipsJumpBackwardTrigger="<c-x><bs>"
 
 let g:UltiSnipsListSnippets='<F10>l'
 
@@ -222,43 +220,53 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 if ! exists("g:wheel_loaded")
 	" Init
-	let g:wheel_config              = {}
-	let g:wheel_config.maxim        = {}
-	let g:wheel_config.completion   = {}
-	let g:wheel_config.frecency     = {}
-	let g:wheel_config.display      = {}
-	let g:wheel_config.display.sign = {}
+	let g:wheel_config                 = {}
+	let g:wheel_config.project         = {}
+	let g:wheel_config.storage         = {}
+	let g:wheel_config.storage.wheel   = {}
+	let g:wheel_config.storage.session = {}
+	let g:wheel_config.maxim           = {}
+	let g:wheel_config.completion      = {}
+	let g:wheel_config.frecency        = {}
+	let g:wheel_config.display         = {}
+	let g:wheel_config.display.sign    = {}
 
-	" The file where toruses and circles will be stored and read
-	let g:wheel_config.file = '~/racine/plugin/data/wheel/auto'
-	" Auto read wheel file on startup if > 0
-	let g:wheel_config.autoread = 1
-	" Auto write wheel file on exit if > 0
-	let g:wheel_config.autowrite = 1
-	" The file where session will be stored and read
-	let g:wheel_config.session_file = '~/racine/plugin/data/wheel/layout'
-	" Auto read session file on startup if > 0
-	let g:wheel_config.autoread_session = 1
-	" Auto write session file on exit if > 0
-	let g:wheel_config.autowrite_session = 1
-	" Number of backups for the wheel or session file
-	let g:wheel_config.backups = 12
 	" The bigger it is, the more mappings available
 	let g:wheel_config.mappings = 20
 	" Prefix for mappings
 	let g:wheel_config.prefix = '<d-w>'
-	" Auto cd to project root if > 0
-	let g:wheel_config.auto_chdir_project = 1
-	" Marker of project root
-	"let g:wheel_config.project_markers = '.git'
-	"let g:wheel_config.project_markers = '.racine-projet'
-	" List of markers
-	" The project dir is found as soon as one marker is found in it
-	let g:wheel_config.project_markers = ['.hg' , '.git', '.racine-projet']
 	" Locate database ; default one if left empty
 	let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
 	" Grep command : :grep or :vimpgrep
 	let g:wheel_config.grep = 'vimgrep'
+
+	" Marker of project root
+	"let g:wheel_config.project.markers = '.git'
+	"let g:wheel_config.project.markers = '.racine-projet'
+	" List of markers
+	" The project dir is found as soon as one marker is found in it
+	let g:wheel_config.project.markers = ['.hg' , '.git', '.racine-projet']
+	" Auto cd to project root if > 0
+	let g:wheel_config.project.auto_chdir = 1
+
+	" The folder where toruses and circles will be stored and read
+	let g:wheel_config.storage.wheel.folder = '~/racine/plugin/data/wheel/neovim'
+	" Name of the default wheel file
+	let g:wheel_config.storage.wheel.name = 'auto'
+	" Auto read wheel file on startup if > 0
+	let g:wheel_config.storage.wheel.autoread = 1
+	" Auto write wheel file on exit if > 0
+	let g:wheel_config.storage.wheel.autowrite = 1
+	" The folder where sessions will be stored and read
+	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/wheel/neovim/session'
+	" Name of the default session file
+	let g:wheel_config.storage.session.name = 'layout'
+	" Auto read default session file on startup if > 0
+	let g:wheel_config.storage.session.autoread = 1
+	" Auto write default session file on exit if > 0
+	let g:wheel_config.storage.session.autowrite = 1
+	" Number of backups for the wheel or session file
+	let g:wheel_config.storage.backups = 7
 
 	" Maximum number of elements in history
 	let g:wheel_config.maxim.history = 700

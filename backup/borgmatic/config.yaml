@@ -417,6 +417,7 @@ borg_config_directory: /home/david/racine/config/backup/borg
     # Extra command-line options to pass to "borg check".
     # check: --extra-option
 
+# Invalide
 # keep_last = 3
 
 # Keep all archives within this time interval.

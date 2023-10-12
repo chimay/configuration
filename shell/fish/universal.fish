@@ -4,17 +4,13 @@
 
 set -U fish_features stderr-nocaret qmark-noglob
 
-# }}}1
-
 # Key bindings {{{1
 
-# ---- for emacs
+# emacs {{{2
 
 set -U fish_key_bindings fish_default_key_bindings
 
-#fish_default_key_binding
-
-# ---- for vi
+# vim {{{2
 
 #set -U fish_key_bindings fish_vi_key_bindings
 
@@ -23,8 +19,7 @@ set -U fish_key_bindings fish_default_key_bindings
 # set -U fish_cursor_insert line
 # set -U fish_cursor_replace_one underscore
 
-# ---- hybrid
+# custom {{{2
 
 #set -U fish_key_bindings fish_hybrid_key_bindings
-
-# }}}1
+#set -U fish_key_bindings fish_user_key_bindings

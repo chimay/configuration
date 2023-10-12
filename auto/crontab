@@ -5,9 +5,7 @@
 # en arrière-plan, le "&" n’est pas nécessaire
 
 SHELL=/bin/zsh
-
 PATH=$PATH
-
 MAILTO=$USER
 
 # Ne fonctionne pas : l’adresse devient $USER@$HOST.lan, et opensmtpd ne
@@ -70,13 +68,11 @@ MAILTO=$USER
 # command to be run at 4:30 am on the 1st and 15th of each month,
 # plus every Friday.
 
-# }}}1
 
 # Horodatage {{{1
 
 0	*/1	*	*	*	horodate.zsh &>>! ~/log/cron.log
 
-# }}}1
 
 # Self {{{1
 
@@ -85,13 +81,11 @@ MAILTO=$USER
 # test mail
 #*	*	*	*	*	date
 
-# }}}1
 
 # Shell {{{1
 
 0	11	*	*	7	compile-zsh-autoload.zsh
 
-# }}}1
 
 # Édition {{{1
 
@@ -102,7 +96,6 @@ MAILTO=$USER
 20	12	*	*	7	gen-thesaurus.sed ~/racine/site/eclats2vers/generic/grimoire/litera-04-plumier.org >! ~/racine/index/dict/spell/synonymes.txt
 30	12	*	*	7	gen-dictionnaire.sh ~/racine/index/dict/spell/synonymes.txt >! ~/racine/index/dict/spell/dictionnaire.txt
 
-# }}}1
 
 # Contrôle de version {{{1
 
@@ -111,32 +104,27 @@ MAILTO=$USER
 50	13	*	*	6		update-version.zsh ~/racine/plugin/source
 55 	13	*	*	6		update-version.zsh ~/racine/plugin/manager/tmux-plugins
 
-# }}}1
 
 # Logrotate {{{1
 
 0	14	*	*	5	run-logrotate.zsh journal
 10	14	*	*	5	run-logrotate.zsh irc
 
-# }}}1
 
 # Navigation {{{1
 
 0	16	*	*	*	qute-history.zsh 2>>! ~/log/qute-history.log
 
-# }}}1
 
 # Multimédia {{{1
 
 30	17	*	*	6	audio-perm.zsh ~/audio
 
-# }}}1
 
 # Nettoyage {{{1
 
 10	18	*	*	*	clean-attic.zsh
 
-# }}}1
 
 # Météo {{{1
 
@@ -144,7 +132,6 @@ MAILTO=$USER
 
 #0	19	*	*	*	run-wttr-in.zsh louvain-la-neuve &>>! ~/log/wttr-in.log
 
-# }}}1
 
 # Notifications {{{1
 
@@ -152,20 +139,17 @@ MAILTO=$USER
 
 # */15	9-18	*	*	1-5		clocher.zsh &>>! ~/log/clocher.log
 
-# }}}2
 
 # Finance {{{2
 
 30	11	*	*/3		4,5		semaine-du-mois.zsh &>>! ~/log/semaine-mois.log
 50	15	*	*		*		fin-mois-trimestre.zsh &>>! ~/log/fin-mois-trimestre.log
 
-# }}}2
 
 # Alimentation {{{2
 
 0	12	*	*	*		bell.zsh notification/restes.ogg &>>! ~/log/cron.log
 
-# }}}2
 
 # Thé glacé {{{2
 
@@ -177,43 +161,28 @@ MAILTO=$USER
 
 #0	11	*	1-6,9-12	3			bell.zsh notification/the-glace.ogg n="thé glacé" &>>! ~/log/cron.log
 
-# }}}2
 
 # École {{{2
 
-5	14	*	1-6,9-12	0		bell.zsh notification/reveil.ogg n=reveil &>>! ~/log/cron.log
-
-# --- Primaire ---
+#5	14	*	1-6,9-12	0		bell.zsh notification/reveil.ogg n=reveil &>>! ~/log/cron.log
 
 # Après-midi, pour 15h45
 
-35	15	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole.ogg n=ecole &>>! ~/log/cron.log
+55	15	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole.ogg n=ecole &>>! ~/log/cron.log
 
 # Mercredi pour 12h15
 
-05	12	*	1-6,9-12	3			bell.zsh notification/ecole.ogg n=ecole &>>! ~/log/cron.log
-
-# Piscine le jeudi
-
-# 20	19	*	1-6,9-12	3		bell.zsh notification/sac-piscine.ogg n=piscine &>>! ~/log/cron.log
-# 20	15	*	1-6,9-12	4		bell.zsh notification/sac-piscine.ogg n=piscine &>>! ~/log/cron.log
-
-# --- Secondaire ---
-
-# Après-midi, pour 15h45
-
-#35	15	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole.ogg n=ecole &>>! ~/log/cron.log
-
-# Mercredi pour 12h15
-
-#05	12	*	1-6,9-12	3		bell.zsh notification/ecole.ogg n=ecole &>>! ~/log/cron.log
+25	12	*	1-6,9-12	3			bell.zsh notification/ecole.ogg n=ecole &>>! ~/log/cron.log
 
 # Sac de gym
 
 30	19	*	1-6,9-12	1		bell.zsh notification/sac-gym.ogg n=gymnastique &>>! ~/log/cron.log
 30	19	*	1-6,9-12	3		bell.zsh notification/sac-gym.ogg n=gymnastique &>>! ~/log/cron.log
 
-# }}}2
+# Piscine
+
+# 20	19	*	1-6,9-12	3		bell.zsh notification/sac-piscine.ogg n=piscine &>>! ~/log/cron.log
+# 20	15	*	1-6,9-12	4		bell.zsh notification/sac-piscine.ogg n=piscine &>>! ~/log/cron.log
 
 # Méditation {{{2
 
@@ -222,26 +191,22 @@ MAILTO=$USER
 #5	14	*	1-6,9-12	6,7			bell.zsh notification/meditation.ogg n=meditation &>>! ~/log/cron.log
 #5	14	*	7,8			*			bell.zsh notification/meditation.ogg n=meditation &>>! ~/log/cron.log
 
-# }}}2
 
 # Téléphone {{{2
 
 05	14	*	*	0	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
 #05	19	*	*	2	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
 
-# }}}2
 
 # Dents {{{2
 
 15	20	*	*	*	bell.zsh notification/laver-les-dents.ogg &>>! ~/log/cron.log
 
-# }}}2
 
 # Courses {{{2
 
 0	19	*	*	0		bell.zsh notification/activer-points-plus.ogg &>>! ~/log/cron.log
 
-# }}}2
 
 # Anniversaires {{{2
 
@@ -253,6 +218,4 @@ MAILTO=$USER
 0	19	18	11	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
 0	19	17	12	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
 
-# }}}2
 
-# }}}1

@@ -407,6 +407,9 @@ fun! biblio#publish ()
 	if source =~ '\m^' .. $HOME .. '/racine/config'
 		let mode = 'config'
 		let repo = 'configuration'
+	elseif source =~ '\m^' .. $HOME .. '/racine/fun'
+		let mode = 'fun'
+		let repo = 'scripts/' .. mode
 	elseif source =~ '\m^' .. $HOME .. '/racine/self'
 		let mode = 'self'
 		let repo = 'scripts/' .. mode

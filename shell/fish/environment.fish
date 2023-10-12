@@ -1,10 +1,8 @@
 # vim: set filetype=sh:
 
-# Environment {{{1
-
 set -gx SHELL /bin/fish
 
-# ---- terminal
+# terminal {{{1
 
 switch $TERM
 	case 'linux*'
@@ -17,7 +15,7 @@ switch $TERM
 		set -gx TERM screen-256color
 end
 
-# ---- path
+# path {{{1
 
 set -gxa PATH /usr/{,local/}{,s}bin
 set -gxa PATH ~/.local/bin ~/racine/bin/local/bin
@@ -27,16 +25,14 @@ for folder in ~/racine/{install,shell,bin}/*
 	set -gxa PATH $folder
 end
 
-# ---- history
+# history {{{1
 
 set -gx fish_history $HOST
 
-# ---- commands
+# commands {{{1
 
 set -gx VISUAL vim
 set -gx EDITOR vim
 set -gx PAGER less
 set -gx MANPAGER less
 set -gx BROWSER w3m
-
-# }}}1

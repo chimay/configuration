@@ -75,7 +75,6 @@ packadd matchit
 
 "set verbosefile=~/Documents/neovim.log
 
-
 " ------------------------------------
 
 "  Caractères utilisés dans les mots {{{1
@@ -987,13 +986,13 @@ vnoremap <f3>; :%s/\<\>//<left><left><left><left>
 
 " Copie de toutes les lignes correspondant à un motif
 
-command! -nargs=1 GlobalYank <cmd>call biblio#global_yank(<q-args>, 'a')
+command! -nargs=1 GlobalYank :call biblio#global_yank(<q-args>, 'a')<cr>
 
 nnoremap <f3>y :GlobalYank<space>
 
 " Couper toutes les lignes correspondant à un motif
 
-command! -nargs=1 GlobalDelete <cmd>call biblio#global_delete(<q-args>, 'a')
+command! -nargs=1 GlobalDelete :call biblio#global_delete(<q-args>, 'a')<cr>
 
 nnoremap <f3>d :GlobalDelete<space>
 
@@ -1065,12 +1064,13 @@ inoremap <d-d> <c-r>=strftime("%d %B %Y")<cr>
 inoremap <PageUp> <C-P>
 inoremap <PageDown> <C-N>
 
+inoremap <tab> <C-N>
+
 "inoremap <C-Space> <C-X><C-O>
 "inoremap <M-Space> <C-X><C-L>
 
 cnoremap <PageUp> <C-P>
 cnoremap <PageDown> <C-N>
-
 
 " Ligne de commande {{{2
 

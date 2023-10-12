@@ -4,43 +4,53 @@
 
 if ! exists("g:wheel_loaded")
 	" Init
-	let g:wheel_config              = {}
-	let g:wheel_config.maxim        = {}
-    let g:wheel_config.completion   = {}
-    let g:wheel_config.frecency     = {}
-	let g:wheel_config.display      = {}
-	let g:wheel_config.display.sign = {}
+	let g:wheel_config                 = {}
+	let g:wheel_config.project         = {}
+	let g:wheel_config.storage         = {}
+	let g:wheel_config.storage.wheel   = {}
+	let g:wheel_config.storage.session = {}
+	let g:wheel_config.maxim           = {}
+	let g:wheel_config.completion      = {}
+	let g:wheel_config.frecency        = {}
+	let g:wheel_config.display         = {}
+	let g:wheel_config.display.sign    = {}
 
-	" The file where toruses and circles will be stored and read
-	let g:wheel_config.file = '~/racine/plugin/data/wheel/roue.vim'
-	" Auto read wheel file on startup if > 0
-	let g:wheel_config.autoread = 0
-	" Auto write wheel file on exit if > 0
-	let g:wheel_config.autowrite = 1
-    " The file where session will be stored and read
-    let g:wheel_config.session_file = '~/racine/plugin/data/wheel/session.vim'
-    " Auto read session file on startup if > 0
-    let g:wheel_config.autoread_session = 0
-    " Auto write session file on exit if > 0
-    let g:wheel_config.autowrite_session = 1
-	" Number of backups for the wheel or session file
-	let g:wheel_config.backups = 3
 	" The bigger it is, the more mappings available
 	let g:wheel_config.mappings = 2
 	" Prefix for mappings
 	let g:wheel_config.prefix = '<m-w>'
-	" Auto cd to project root if > 0
-	let g:wheel_config.auto_chdir_project = 1
-	" Marker of project root
-	"let g:wheel_config.project_markers = '.git'
-	"let g:wheel_config.project_markers = '.racine-projet'
-	" List of markers
-	" The project dir is found as soon as one marker is found in it
-	let g:wheel_config.project_markers = ['.git', '.racine-projet']
 	" Locate database ; default one if left empty
 	let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
 	" Grep command : :grep or :vimpgrep
 	let g:wheel_config.grep = 'vimgrep'
+
+	" Marker of project root
+	"let g:wheel_config.project.markers = '.git'
+	"let g:wheel_config.project.markers = '.racine-projet'
+	" List of markers
+	" The project dir is found as soon as one marker is found in it
+	let g:wheel_config.project.markers = ['.hg' , '.git', '.racine-projet']
+	" Auto cd to project root if > 0
+	let g:wheel_config.project.auto_chdir = 1
+
+	" The folder where toruses and circles will be stored and read
+	let g:wheel_config.storage.wheel.folder = '~/racine/plugin/data/wheel/vim'
+	" Name of the default wheel file
+	let g:wheel_config.storage.wheel.name = 'roue.vim'
+	" Auto read wheel file on startup if > 0
+	let g:wheel_config.storage.wheel.autoread = 0
+	" Auto write wheel file on exit if > 0
+	let g:wheel_config.storage.wheel.autowrite = 1
+	" The folder where sessions will be stored and read
+	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/wheel/vim/session'
+	" Name of the default session file
+	let g:wheel_config.storage.session.name = 'layout.vim'
+	" Auto read default session file on startup if > 0
+	let g:wheel_config.storage.session.autoread = 0
+	" Auto write default session file on exit if > 0
+	let g:wheel_config.storage.session.autowrite = 1
+	" Number of backups for the wheel or session file
+	let g:wheel_config.storage.backups = 5
 
 	" Maximum number of elements in history
 	let g:wheel_config.maxim.history = 700
