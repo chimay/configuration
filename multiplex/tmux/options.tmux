@@ -17,15 +17,12 @@ set -s escape-time 30
 
 set -ga terminal-overrides ",xterm-256color:Tc"
 
-# }}}1
 
 # Titre {{{1
 
 set -g set-titles on
 set -g set-titles-string 'tmux:#{pane_title}'
 #set -g set-titles-string 'tmux:#{pane_id}'
-
-# }}}1
 
 # Variables d’environnement {{{1
 
@@ -37,13 +34,11 @@ set-environment -g HOME $HOME
 
 set-environment -g PATH "$HOME/.local/bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/.gem/ruby/2.4.0/bin:$HOME/.gem/ruby/2.5.0/bin:$HOME/racine/self:$HOME/racine/automat:$HOME/racine/pack/bin:$HOME/racine/shell/alarm:$HOME/racine/shell/disk:$HOME/racine/shell/mail:$HOME/racine/shell/media:$HOME/racine/shell/network:$HOME/racine/shell/power:$HOME/racine/shell/run:$HOME/racine/shell/start:$HOME/racine/shell/version:$HOME/racine/shell/visu:$HOME/racine/bin/binar:$HOME/racine/bin/go:$HOME/racine/bin/make:$HOME/racine/bin/python:$HOME/racine/bin/utils:$HOME/racine/install/bootstrap:$HOME/racine/install/build:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/bin/core_perl:/usr/bin/site_perl:/usr/bin/vendor_perl:$HOME/racine/plugin/manager/plugged/fzf/bin"
 
-# }}}1
 
 # Shell {{{1
 
 set -g default-shell "zsh"
 
-# }}}1
 
 # Commande par défaut {{{1
 
@@ -55,19 +50,16 @@ set -g default-shell "zsh"
 
 set -g default-command "zsh -l"
 
-# }}}1
 
 # Ligne de commande {{{1
 
 set -w -g status-keys emacs
 
-# }}}1
 
 # Messages {{{1
 
 set -g message-limit 84
 
-# }}}1
 
 # Barre de statut {{{1
 
@@ -85,17 +77,14 @@ set -g status-justify centre
 set -g status-left-length 45
 set -g status-right-length 40
 
-# }}}1
 
 # Historique {{{1
 
-set -g history-limit 84712
+set -g history-limit 847120
 
 # Ligne de commande
 
 set -g history-file ~/racine/hist/tmux/cmdline-$HOST
-
-# }}}1
 
 # Monitoring {{{1
 
@@ -109,7 +98,6 @@ set -g visual-activity on
 set -g visual-bell on
 set -g visual-silence on
 
-# }}}1
 
 # Verrouillage {{{1
 
@@ -119,7 +107,6 @@ set -g lock-command "vlock"
 
 set -g lock-after-time 108000000
 
-# }}}1
 
 # Sessions {{{1
 
@@ -128,7 +115,6 @@ set -s exit-unattached off
 set -g destroy-unattached off
 set -g detach-on-destroy on
 
-# }}}1
 
 # Monitoring {{{1
 
@@ -140,7 +126,6 @@ set -g window-status-activity-style 'blink'
 set -ag window-status-activity-style 'fg=#b21818'
 set -ag window-status-activity-style bg=black
 
-# }}}1
 
 # Fenêtres {{{1
 
@@ -155,7 +140,6 @@ set -w -g allow-rename off
 
 set -g alternate-screen off
 
-# }}}1
 
 # Panels {{{1
 
@@ -163,7 +147,6 @@ set -g pane-base-index 1
 
 set -g display-panes-time 84712
 
-# }}}1
 
 # Mode copie {{{1
 
@@ -175,16 +158,13 @@ set -s buffer-limit 30
 
 set -w -g mode-keys vi
 
-# }}}1
 
 # Souris {{{1
 
 set -g mouse on
 
-# }}}1
 
 # Horloge {{{1
 
 set -g clock-mode-style 24
 
-# }}}1

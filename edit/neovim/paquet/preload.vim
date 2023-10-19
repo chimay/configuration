@@ -361,6 +361,7 @@ if ! exists("g:wheel_loaded")
     nmap <silent> <d-cr>      <cmd>call wheel#vortex#helix('tab')<cr>
 	nmap <silent> <d-x>       <plug>(wheel-prompt-index-circles)
 
+	" altgr-h
 	nmap <silent> ħ           <cmd>call wheel#waterclock#history('tab')<cr>
 	nmap <silent> <d-h>       <plug>(wheel-dedibuf-history)
 

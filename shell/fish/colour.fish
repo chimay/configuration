@@ -25,10 +25,10 @@ set -U fish_color_search_match 872e30
 
 set -U fish_pager_color_progress --underline
 set -U fish_pager_color_background normal
-set -U fish_pager_color_prefix --underline
+set -U fish_pager_color_prefix normal
 set -U fish_pager_color_completion normal
 set -U fish_pager_color_description normal
 set -U fish_pager_color_selected_background normal
-set -U fish_pager_color_selected_prefix a54000 --italic
-set -U fish_pager_color_selected_completion a54000 --italic
+set -U fish_pager_color_selected_prefix 872e30 --bold
+set -U fish_pager_color_selected_completion 872e30 --bold
 set -U fish_pager_color_selected_description normal

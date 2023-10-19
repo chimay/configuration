@@ -342,6 +342,7 @@ alias bu=run-buku
 # Recherche
 
 alias sr=surfraw
+alias dg='BROWSER=qutebrowser ddgr'
 
 # Navigateurs
 

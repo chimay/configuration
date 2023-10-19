@@ -14,7 +14,6 @@ bind F1 send-prefix
 
 set -g repeat-time 1275
 
-# }}}1
 
 # Key tables {{{1
 
@@ -22,7 +21,6 @@ bind -n F2 switch-client -T custom
 bind -n F3 switch-client -T resize
 bind -n F4 copy-mode
 
-# }}}1
 
 # Rechargement de tmux.conf {{{1
 
@@ -30,13 +28,11 @@ bind -T custom @ \
 	source ~/racine/config/multiplex/tmux/tmux.conf \; \
 	display-message 'tmux.conf reloaded'
 
-# }}}1
 
 # Aide {{{1
 
 bind -T custom H list-keys
 
-# }}}1
 
 # Quitter {{{1
 
@@ -45,19 +41,16 @@ bind -T custom M-q confirm kill-window
 bind -T custom Q confirm kill-session
 bind -T custom C-q confirm kill-server
 
-# }}}1
 
 # Messages {{{1
 
 bind -T custom i show-messages
 
-# }}}1
 
 # Barre de statut {{{1
 
 bind -T custom b set-option status
 
-# }}}1
 
 # Ligne de commande {{{1
 
@@ -73,7 +66,6 @@ bind -T custom ';' send-keys '~/racine/shell/dialog/fzf-tmux-command.zsh -s' Ent
 bind -T custom µ send-keys '~/racine/shell/dialog/fzf-tmux-history.zsh' Enter
 bind -T custom £ send-keys '~/racine/shell/dialog/fzf-tmux-history.zsh -s' Enter
 
-# }}}1
 
 # Sessions {{{1
 
@@ -89,7 +81,6 @@ bind -T custom d detach-client
 bind -T custom '{' switch-client -p
 bind -T custom '}' switch-client -n
 
-# }}}1
 
 # Historique d’un panel {{{1
 
@@ -108,21 +99,17 @@ bind -T custom p pipe-pane -o 'cat >> ~/racine/hist/tmux/#h-#S-#W-#P.pipe'
 bind -T custom w capture-pane \; save-buffer /tmp/tmux-buffer \; \
 	new-window -n "w3m" '$SHELL -c "w3m < /tmp/tmux-buffer"'
 
-# }}}1
 
-# }}}1
 
 # Verrouillage {{{1
 
 bind -T custom M-l lock-client
 
-# }}}1
 
 # Arbre des Sessions, Fenêtres & Panels {{{1
 
 bind -T custom § choose-tree -Zw
 
-# }}}1
 
 # Tmux windows = tabs {{{1
 
@@ -157,7 +144,6 @@ bind -T custom 8 select-window -t :=8
 bind -T custom 9 select-window -t :=9
 bind -T custom 0 select-window -t :=10
 
-# }}}1
 
 # Tmux panes = windows {{{1
 
@@ -197,13 +183,11 @@ bind -n C-Right    swap-pane -U
 
 bind -T custom M-$ set -w synchronize-panes
 
-# }}}1
 
 # Commande en arrière-plan {{{1
 
 bind -T custom '&' command-prompt -p 'Commande à lancer ? ' "run-shell -b '%%'"
 
-# }}}1
 
 # Mode redimensionnement {{{1
 
@@ -227,7 +211,6 @@ bind -T resize J resize-pane -D 5 \; switch-client -T resize
 bind -T resize K resize-pane -U 5 \; switch-client -T resize
 bind -T resize L resize-pane -R 5 \; switch-client -T resize
 
-# }}}1
 
 # Mode copie {{{1
 
@@ -241,4 +224,3 @@ bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
 bind -T copy-mode-vi 'y' send -X  copy-selection
 bind -T copy-mode-vi 'p' send -X  paste-buffer
 
-# }}}1

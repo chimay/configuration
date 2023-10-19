@@ -319,8 +319,11 @@ super + ctrl + mu
 # super + ctrl + t
 # 	thunderbird
 
-super + ctrl + t
-	claws-mail
+# super + ctrl + t
+# 	claws-mail
+
+# super + ctrl + s
+# 	quasselclient
 
 super + ctrl + o
 	goto-or-run.sh libreoffice

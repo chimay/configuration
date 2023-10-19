@@ -20,7 +20,6 @@ set -g @plugin 'whame/tmux-modal'
 # set -g @plugin 'tmux-plugins/tmux-resurrect'
 # set -g @plugin 'tmux-plugins/tmux-continuum'
 
-# }}}1
 
 # Configuration {{{1
 
@@ -55,14 +54,12 @@ set -g @extrakto_popup_size '90%'
 # set -g @continuum-save-interval '300'
 #set -g @continuum-restore 'on'
 
-# }}}1
 
 # Installation automatique {{{1
 
 # if "test ! -d ~/.tmux/plugins/tpm" \
 #    "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
 
-# }}}1
 
 # Initialisation {{{1
 
@@ -70,6 +67,4 @@ set -g @extrakto_popup_size '90%'
 
 run '~/racine/plugin/manager/tmux-plugins/tpm/tpm'
 
-# }}}1
 
-# }}}1
