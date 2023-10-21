@@ -416,7 +416,6 @@ set ttimeoutlen=50
 nnoremap <F1> :tab help<space>
 nnoremap <S-F1> :tab helpgrep<space>
 
-
 " Quitter {{{2
 
 nnoremap ZZ :qa<cr>
@@ -427,51 +426,38 @@ nnoremap ZQ :qa!<cr>
 
 nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
-nnoremap <f3>n :new <bar> only<cr>
-nnoremap <f3>r :e!<cr>
-nnoremap <f3>w :wa<cr>
-
-nnoremap <f3>x :call biblio#text_to_password()<cr>
-
-nnoremap <kenter> :wa<cr>
-
-nnoremap \e :tabe ~/racine/config/edit/vim/vimrc<cr>
-inoremap \e :tabe ~/racine/config/edit/vim/vimrc<cr>
-
-nnoremap \r :so ~/racine/config/edit/vim/vimrc<cr>
-inoremap \r :so ~/racine/config/edit/vim/vimrc<cr>
+nnoremap \v :tabe ~/racine/config/edit/vim/vimrc<cr>
 
 command -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/vim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
-nnoremap <f3>s :<c-u>EditSyntaxPlugin<cr>
+nnoremap <f2>s :<c-u>EditSyntaxPlugin<cr>
 
-nnoremap <f3>n :new <bar> only<cr>
-nnoremap <f3>! :e!<cr>
+nnoremap \n :new <bar> only<cr>
 
-nnoremap <f3>e :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
+nnoremap \g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
-nnoremap <f3>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
+nnoremap \e :e <C-R>=expand('%:p:h') . '/' <CR><C-D>
+nnoremap \r :r <C-R>=expand('%:p:h') . '/' <CR><C-D>
+
+nnoremap \x :call biblio#text_to_password()<cr>
 
 " Arguments {{{2
 
-nnoremap <f4>a :previous<cr>
-nnoremap <f4>a :next<cr>
+nnoremap <f7>a :previous<cr>
+nnoremap <f8>a :next<cr>
 
-nnoremap <f4>A :first<cr>
-nnoremap <f4>A :last<cr>
+nnoremap <f7>A :first<cr>
+nnoremap <f8>A :last<cr>
 
 
 " Tampons {{{2
 
-nnoremap <C-PageUp> :bprevious<cr>
-nnoremap <C-PageDown> :bnext<cr>
+nnoremap <f7>b :bprevious<cr>
+nnoremap <f8>b :bnext<cr>
 
-nnoremap <f4>b :bprevious<cr>
-nnoremap <f4>b :bnext<cr>
-
-nnoremap <f4>B :bfirst<cr>
-nnoremap <f4>B :blast<cr>
+nnoremap <f7>B :bfirst<cr>
+nnoremap <f8>B :blast<cr>
 
 nnoremap <m-q> <cmd>bw!<cr>
 nnoremap <m-s-q> <cmd>bw! #<cr>
@@ -498,42 +484,47 @@ nnoremap <s-down>  <c-w><down>
 
 "  Onglets {{{2
 
-nnoremap <f3>t :tabedit<space>
-nnoremap <f3>T :tabnew<cr>
+nnoremap <f3>t <cmd>tabnew<cr>
+nnoremap <f3>T :tabedit<space>
 
 nnoremap <c-left> gT
 nnoremap <c-right> gt
 
-nnoremap <f4>t :tabm -1<cr>
-nnoremap <f4>t :tabm +1<cr>
+nnoremap <f7>T <cmd>tabfirst<cr>
+nnoremap <f8>T <cmd>tablast<cr>
 
-nnoremap <f4>T :tabfirst<cr>
-nnoremap <f4>T :tablast<cr>
+nnoremap <f7>t <cmd>tabmove -1<cr>
+nnoremap <f8>t <cmd>tabmove +1<cr>
 
+nnoremap <c-s-left> <cmd>tabmove -1<cr>
+nnoremap <c-s-right> <cmd>tabmove +1<cr>
+
+nnoremap <F3>= <cmd>call biblio#equal_windows()<cr>
+
+nnoremap <leader><left> <cmd>call biblio#win2prev_tab()<cr>
+nnoremap <leader><right> <cmd>call biblio#win2next_tab()<cr>
 
 " Liste quickfix {{{2
 
-nnoremap <f4>q :cprevious<cr>
-nnoremap <f4>q :cnext<cr>
+nnoremap <f7>q <cmd>cprevious<cr>
+nnoremap <f8>q <cmd>cnext<cr>
 
-nnoremap <f4>Q :cfirst<cr>
-nnoremap <f4>Q :clast<cr>
+nnoremap <f7>Q <cmd>cfirst<cr>
+nnoremap <f8>Q <cmd>clast<cr>
 
-nnoremap <f4><c-q> :cpfile<cr>
-nnoremap <f4><c-q> :cnfile<cr>
-
+nnoremap <f7><c-q> <cmd>cpfile<cr>
+nnoremap <f8><c-q> <cmd>cnfile<cr>
 
 " Listes locales {{{2
 
-nnoremap <f4>l :lprevious<cr>
-nnoremap <f4>l :lnext<cr>
+nnoremap <f7>l <cmd>lprevious<cr>
+nnoremap <f8>l <cmd>lnext<cr>
 
-nnoremap <f4>L :lfirst<cr>
-nnoremap <f4>L :llast<cr>
+nnoremap <f7>L <cmd>lfirst<cr>
+nnoremap <f8>L <cmd>llast<cr>
 
-nnoremap <f4><c-l> :lpfile<cr>
-nnoremap <f4><c-l> :lnfile<cr>
-
+nnoremap <f7><c-l> <cmd>lpfile<cr>
+nnoremap <f8><c-l> <cmd>lnfile<cr>
 
 " Anciens fichiers {{{2
 
@@ -543,18 +534,16 @@ nnoremap <f4><c-l> :lnfile<cr>
 
 "nnoremap <m-o> :browse oldfiles<cr>
 
-
 "  Tags {{{2
 
-nnoremap <f4><m-t> :tprevious<cr>
-nnoremap <f4><m-t> :tnext<cr>
+nnoremap <f7><m-t> <cmd>tprevious<cr>
+nnoremap <f8><m-t> <cmd>tnext<cr>
 
-nnoremap <f4><m-s-t> :tfirst<cr>
-nnoremap <f4><m-s-t> :tlast<cr>
+nnoremap <f7><m-s-t> <cmd>tfirst<cr>
+nnoremap <f8><m-s-t> <cmd>tlast<cr>
 
-nnoremap <m-j> :tj /
-nnoremap <m-s-j> :tab tj /
-
+nnoremap <f3>j <cmd>tj /
+nnoremap <f3>J <cmd>tab tj /
 
 "  Informations {{{2
 
@@ -612,16 +601,13 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f3>; /\<\><left><left>
-vnoremap <f3>; /\<\><left><left>
-
+nnoremap <f3>, /\<\><left><left>
+vnoremap <f3>, /\<\><left><left>
 
 "  Remplacement {{{3
 
-nnoremap <f3>, :%s:\<\>::<left><left><left><left>
-vnoremap <f3>, :%s:\<\>::<left><left><left><left>
-
-
+nnoremap <f3>; :%s/\<\>//<left><left><left><left>
+vnoremap <f3>; :%s/\<\>//<left><left><left><left>
 
 "  Copier / Coller {{{2
 
@@ -665,24 +651,22 @@ vnoremap . :normal .<CR>
 
 "  Pliage {{{2
 
-nnoremap g( (
-nnoremap g) (
+nnoremap ]] ]z
+nnoremap [[ [z
 
-vnoremap g( (
-vnoremap g) )
+nnoremap <f7>z ]z
+nnoremap <f8>z [z
 
-nnoremap <f4>) zjzx]z[z
-nnoremap <f4>( zkzx[z
+vnoremap <f7>z ]z
+vnoremap <f8>z [z
 
-vnoremap <f4>) zjzx]z[z
-vnoremap <f4>( zkzx[z
+nnoremap <f7>) zjzx]z
+nnoremap <f8>( zkzx[z
 
-nnoremap <f4>z ]z
-nnoremap <f4>z [z
+vnoremap <f7>) zjzx]z
+vnoremap <f8>( zkzx[z
 
-vnoremap <f4>z ]z
-vnoremap <f4>z [z
-
+nnoremap zo zCzO
 
 "  Complétion {{{2
 
@@ -762,34 +746,25 @@ nnoremap <f3>c :set cmdheight=
 
 " Comme commande ex
 
-nnoremap <f3>: :exe getline(".")<CR>
-vnoremap <f3>: :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
-
-
+nnoremap <f3>: <cmd>exe getline(".")<CR>
 
 "  Informations {{{2
 
-nnoremap <f3>ig :echo biblio#highlight_group()<cr>
+nnoremap <f3>ig <cmd>call biblio#highlight_group()<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <f3>$ :call biblio#terminal()<cr>
+nnoremap <C-!> <cmd>call biblio#terminal()<cr>
 
 set termwinkey=<C-W>
 
 tnoremap <f3>n <c-\><c-n>
-
 
 "  Shell {{{2
 
 nnoremap \s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 nnoremap \S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 nnoremap \h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
-
-" Journal de bord {{{2
-
-nnoremap <f3>L :tabe ~/racine/log/captain<cr>
-
 
 " Pavé numérique {{{2
 
@@ -810,8 +785,6 @@ nmap <k9> 9
 " Présentation {{{2
 
 nnoremap <f3>l :set cursorline!<cr>
-
-
 
 "  Présentation {{{1
 

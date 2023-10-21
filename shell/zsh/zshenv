@@ -7,9 +7,11 @@ setopt nullglob
 OPERASYS=inconnu
 
 case $(uname -a) in
-
 	*Linux*ARCH*)
-		OPERASYS=archlinux
+		OPERASYS=arch
+		;;
+	*Linux*MANJARO*)
+		OPERASYS=manjaro
 		;;
 	*Linux*Ubuntu*)
 		OPERASYS=ubuntu
@@ -21,11 +23,6 @@ case $(uname -a) in
 		OPERASYS=linux
 		;;
 esac
-
-if [ -f /etc/arch-release ]
-then
-	OPERASYS=archlinux
-fi
 
 export OPERASYS
 
@@ -118,7 +115,7 @@ manpath+=(/usr/local/man)
 
 # Exécutables {{{3
 
-# Déplacé dans <url:~/racine/config/cmdline/zsh/zprofile>
+# Déplacé dans <url:~/racine/config/shell/zsh/zprofile>
 
 # Nécessaire car zsh source /etc/profile
 # (qui réécrit PATH) après ~/.zshenv

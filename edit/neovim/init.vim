@@ -776,8 +776,7 @@ nnoremap ZQ <cmd>qa!<cr>
 " Fichier alternatif aussi disponible dans le registre #
 nnoremap <C-G> <cmd>let @" = expand("%:p:~")<cr>2<C-G>
 
-nnoremap <f2>i <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
-inoremap <f2>i <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
+nnoremap <f2>v <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
 
 " not a good idea, strange effect
 " nnoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
@@ -797,8 +796,8 @@ nnoremap <kEnter> <cmd>call biblio#write_all()<cr>
 
 nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 
-nnoremap <f3>e :e <c-r>=expand('%:p:h') . '/' <cr>
-nnoremap <f3>r :r <c-r>=expand('%:p:h') . '/' <cr>
+nnoremap <f2>e :e <c-r>=expand('%:p:h') . '/' <cr>
+nnoremap <f2>r :r <c-r>=expand('%:p:h') . '/' <cr>
 
 nnoremap <f3>x :call biblio#text_to_password()<cr>
 
@@ -884,7 +883,6 @@ nnoremap <f8>Q <cmd>clast<cr>
 nnoremap <f7><c-q> <cmd>cpfile<cr>
 nnoremap <f8><c-q> <cmd>cnfile<cr>
 
-
 " Listes locales {{{2
 
 nnoremap <f7>l <cmd>lprevious<cr>
@@ -896,7 +894,6 @@ nnoremap <f8>L <cmd>llast<cr>
 nnoremap <f7><c-l> <cmd>lpfile<cr>
 nnoremap <f8><c-l> <cmd>lnfile<cr>
 
-
 " Anciens fichiers {{{2
 
 " Fichiers dont une marque est présente dans shada
@@ -904,7 +901,6 @@ nnoremap <f8><c-l> <cmd>lnfile<cr>
 " Voir la configuration de la librairie tlib
 
 "nnoremap <m-o> <cmd>browse oldfiles<cr>
-
 
 "  Tags {{{2
 
@@ -969,13 +965,10 @@ nnoremap ' `
 nnoremap <f3>, /\<\><left><left>
 vnoremap <f3>, /\<\><left><left>
 
-
 "  Remplacement {{{3
 
 nnoremap <f3>; :%s/\<\>//<left><left><left><left>
 vnoremap <f3>; :%s/\<\>//<left><left><left><left>
-
-
 
 "  Copier / Coller {{{2
 
@@ -996,7 +989,12 @@ command! -nargs=1 GlobalDelete :call biblio#global_delete(<q-args>, 'a')<cr>
 
 nnoremap <f3>d :GlobalDelete<space>
 
-" comme dans les Xterm
+" Option paste
+
+nnoremap <f3>p :set paste!<cr>
+
+" Comme dans les Xterm
+
 " c-insert = yank
 " s-insert = paste
 
@@ -1051,7 +1049,6 @@ vnoremap <f7>) zjzx]z
 vnoremap <f8>( zkzx[z
 
 nnoremap zo zCzO
-
 
 " Insertion {{{2
 
@@ -1135,8 +1132,6 @@ nnoremap <m-:> <cmd>exe getline(".")<CR>
 
 nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 
-
-
 "  Orthographe {{{2
 
 " underline ~~~ wrong words
@@ -1155,7 +1150,7 @@ nnoremap \h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
 
 " Journal de bord {{{2
 
-nnoremap <f3>L <cmd>tabe ~/racine/log/captain<cr>
+nnoremap <f3>L <cmd>tabe ~/racine/omni/log/captain<cr>
 
 " Pavé numérique {{{2
 
@@ -1198,7 +1193,6 @@ set termguicolors
 
 nnoremap <f3>l <cmd>set cursorline!<cr>
 
-
 " Émulateur de terminal {{{2
 
 nnoremap <C-!> <cmd>call biblio#terminal()<cr>
@@ -1222,8 +1216,6 @@ tnoremap <D-h> <C-\><C-n><C-W><Left>
 tnoremap <D-j> <C-\><C-n><C-W><Down>
 tnoremap <D-k> <C-\><C-n><C-W><Up>
 tnoremap <D-l> <C-\><C-n><C-W><Right>
-
-
 
 "  Abréviations {{{1
 
@@ -1351,7 +1343,6 @@ set nostartofline
 " Mets en évidence la colonne courante
 
 "set cursorcolumn
-
 
 " Mise en évidence {{{2
 
