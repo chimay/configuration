@@ -1,19 +1,25 @@
 
+// -- palette
+
 Palette
 {
+  color: 5b3c11;
+  background: 303030;
   text: #5b3c11;
   window: #000000;
   window-text: #5b3c11;
-  button: #120705;
-  button-text: #7b3c11;
+  button-text: #9b3c11;
+  button: #131313;
   light: #000000;
   midlight: #000000;
   mid: #341207;
   dark: #120705;
-  link: #7b5c11;
-  link-visited: #7b3c11;
-  marker-line: #872e30;
+  link: #872e30;
+  link-visited: #88421d;
+  marker-line: #5b3c11;
 }
+
+// ---- chat elements
 
 ChatListItem {
 	foreground: #5b3c11;
@@ -47,7 +53,7 @@ MultiLineEdit {
 }
 
 BufferView {
-	background: black;
+	background: #000000;
 }
 
 NickView {
@@ -80,7 +86,7 @@ ChatLine#quit { foreground: #5b3c11; }
 ChatLine#kick { foreground: #debc85; }
 
 ChatLine#kill {
-	foreground: #ff0000;
+	foreground: #ff3421;
 	background: #131313;
 	font-weight: bold;
 }
@@ -98,7 +104,7 @@ ChatLine#error {
 }
 
 ChatLine#daychange {
-	foreground: #916409;
+	foreground: #7b3c11;
 }
 
 ChatLine#mode {
@@ -110,13 +116,13 @@ ChatLine#topic {
 }
 
 ChatLine#netsplit-join {
-	foreground: #ff0000;
+	foreground: #ff3421;
 	background: #131313;
 	font-weight: bold;
 }
 
 ChatLine#netsplit-quit {
-	foreground: #ff0000;
+	foreground: #ff3421;
 	background: #131313;
 	font-weight: bold;
 }
@@ -130,11 +136,6 @@ ChatLine::sender#plain[sender="self"] {
 	foreground: #872e30;
 }
 
-/**
- * The following are the sixteen colours used for the senders.
- * The names are calculated by taking the hash of the nickname.
- * Then take the modulo (the remainder) when divided by 16.
- */
 ChatLine::sender#plain[sender="0"] { foreground: #5b3c11; }
 ChatLine::sender#plain[sender="1"] { foreground: #5b3c11; }
 ChatLine::sender#plain[sender="2"] { foreground: #5b3c11; }
@@ -152,7 +153,6 @@ ChatLine::sender#plain[sender="d"] { foreground: #5b3c11; }
 ChatLine::sender#plain[sender="e"] { foreground: #5b3c11; }
 ChatLine::sender#plain[sender="f"] { foreground: #5b3c11; }
 
-// NickView Colors
 NickListItem {
 	height:30px;
 }
@@ -167,38 +167,86 @@ NickListItem[type="user", state="away"] {
 	font-style: italic;
 }
 
+// ---- qt
+
 QMenu
 {
-  color: #5b3c11;
+  color: #7b3c11;
   background-color: #000000;
 }
 
 QMenu::item
 {
-  color: #872e30;
+  color: #7b3c11;
   background-color: #000000;
 }
 
 QMenu::item:selected
 {
   color: #000000;
-  background-color: #872e30;
+  background-color: #7b3c11;
+  font-weight: bold;
+}
+
+QMenuBar {
+  color: #872e30;
+  background-color: #000000;
+}
+
+QMenuBar::item:selected
+{
+  color: #000000;
+  background-color: #7b3c11;
+  font-weight: bold;
+  border: 1px solid #131313;
+}
+
+QMenuBar::item:disabled
+{
+  background-color: #131313;
+  color: grey;
+}
+
+QHeader {
+  color: #972e30;
+  background: #131313;
+}
+
+QProgressBar {
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
+QProgressBar::chunk {
+  background-color: #303030;
+  color: #04ff00;
+}
+
+QList
+{
+  background: #341207;
+}
+
+QList::item:selected
+{
+  color: #000000;
+  background: #5b3c11;
   font-weight: bold;
 }
 
 QListView
 {
-  background: #00000;
-}
-
-QListView::item:hover
-{
-  background: #341207;
+  background: #101010;
 }
 
 QListView::item:selected
 {
   background: #123407;
+}
+
+QListView::item:hover
+{
+  background: #341207;
 }
 
 QTableView {
@@ -208,6 +256,24 @@ QTableView {
 	alternate-background-color: #000000;
 	selection-background-color: #341207;
 	border-width: 3 3 3 3;
+}
+
+QTabBar::tab
+{
+  color: #5b3c99;
+  background: #131313;
+  border: 1px solid #8f8e90;
+  border-bottom-color: #000000;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 2px;
+  min-width: 8px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover
+{
+ border-color: #04bbaa;
+ border-bottom-color: #000000;
 }
 
 QTreeView
@@ -252,6 +318,32 @@ QTreeView::item:hover {
   background: #120705;
 }
 
+QWidget {
+    color: #5b3c11;
+	// background: #000000;
+}
+
+QListWidget { color: #debc85; alternate-background: #131313; }
+
+QTableWidget { color: #debc85; alternate-background: #131313; }
+
+QToolTip {
+    color: 972e30;
+    background: #303030;
+    border: 2px solid #202020;
+    border-radius: 2px;
+}
+
+QLineEdit:enabled {
+	color: #debc85;
+	background: #131313;
+}
+
+QTextEdit {
+	color: #5b3c11;
+	background: #000000;
+}
+
 QCheckBox {
   color: #9b3c11;
   background-color: #000000;
@@ -267,14 +359,49 @@ QCheckBox::indicator:checked {
   background-color: #123407;
 }
 
-QWidget {
-    color: #5b3c11;
-	// background: #000000;
+QSpinBox:enabled {
+	color: #debc85;
+	background: #131313;
+ }
+
+QComboBox
+{
+  color: #88421d;
+  background-color: #131313;
 }
 
-/* ToolTip */
-/* Note: You cannot create transparent sections in the popup box without a mask set. Thus the black edges outside the rounded borders. */
-QToolTip {
-    color: 972e30;
-    background: #000000;
+QPushButton
+{
+  background: #131313;
+  color: #04ff00;
+  border: 1px solid #8f8e90;
+  border-radius: 6px;
+  padding: 3px;
+}
+
+QPushButton::selected, QPushButton::hover
+{
+  border: 1px solid #04ff00;
+  padding: 2px;
+}
+
+QPushButton::pressed
+{
+  border: 2px solid #04ff50;
+}
+
+QPushButton::disabled
+{
+  border: 1px solid #8f8e90;
+  background: #131313;
+  color: grey;
+  padding: 2px;
+}
+
+QSplitter::handle {
+	background: #303030;
+}
+
+QMainWindow::separator {
+	background: #303030;
 }
