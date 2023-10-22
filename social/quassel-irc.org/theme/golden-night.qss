@@ -241,12 +241,14 @@ QListView
 
 QListView::item:selected
 {
-  background: #123407;
+  background: #124307;
 }
 
 QListView::item:hover
 {
-  background: #341207;
+  color: #000000;
+  background: #124312;
+  font-weight: bold;
 }
 
 QTableView {
@@ -315,7 +317,9 @@ QTreeView::item:selected {
 
 QTreeView::item:hover {
   border-radius: 3px;
-  background: #120705;
+  color: #000000;
+  background: #5b3c11;
+  font-weight: bold;
 }
 
 QWidget {
@@ -323,9 +327,15 @@ QWidget {
 	// background: #000000;
 }
 
-QListWidget { color: #debc85; alternate-background: #131313; }
+QListWidget {
+	color: #debc85;
+	alternate-background: #131313;
+}
 
-QTableWidget { color: #debc85; alternate-background: #131313; }
+QTableWidget {
+	color: #debc85;
+	alternate-background: #131313;
+}
 
 QToolTip {
     color: 972e30;
