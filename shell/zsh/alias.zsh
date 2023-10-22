@@ -362,7 +362,6 @@ alias dl=aria2p
 
 alias gg=amfora
 
-
 # Chat {{{1
 
 # matrix client
@@ -462,9 +461,11 @@ alias dy=synonym
 alias ç=calculator
 
 alias wk=wikicurses
-alias wa='wikicurses --wiki ArchWiki'
-alias wp=wikipedia2text
-alias wt=wptranslate
+alias wka='wikicurses --wiki ArchWiki'
+
+alias wpt=wikipedia2text
+alias wt=wiki-tui
+alias wpt=wptranslate
 
 # Arch Linux Wiki
 # offline, mode texte

@@ -6,23 +6,32 @@ setopt nullglob
 
 OPERASYS=inconnu
 
-case $(uname -a) in
-	*Linux*ARCH*)
-		OPERASYS=arch
-		;;
-	*Linux*MANJARO*)
-		OPERASYS=manjaro
-		;;
-	*Linux*Ubuntu*)
-		OPERASYS=ubuntu
-		;;
-	*FreeBSD*)
-		OPERASYS=freebsd
-		;;
-	*Linux*|*linux*)
-		OPERASYS=linux
-		;;
-esac
+if which lsb_release >& /dev/null
+then
+	case $(lsb_release -d) in
+		*Arch*Linux*)
+			OPERASYS=arch
+			;;
+		*Manjaro*Linux*)
+			OPERASYS=manjaro
+			;;
+		*Ubuntu*)
+			OPERASYS=ubuntu
+			;;
+		*Linux*Mint*)
+			OPERASYS=mint
+			;;
+		*Linux*|*linux*)
+			OPERASYS=linux
+			;;
+	esac
+else
+	case $(uname -a) in
+		*FreeBSD*)
+			OPERASYS=freebsd
+			;;
+	esac
+fi
 
 export OPERASYS
 

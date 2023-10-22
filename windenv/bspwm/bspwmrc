@@ -10,7 +10,7 @@ source ~/racine/config/cmdline/zsh/zprofile
 
 # in cas of restart, we need to stop some processes first
 autostop.zsh >>! ~/log/autostop.log 2>&1
-
+sleep 1
 autostart.zsh >>! ~/log/autostart.log 2>&1
 
 # }}}1

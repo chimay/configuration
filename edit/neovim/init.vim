@@ -1061,7 +1061,8 @@ inoremap <d-d> <c-r>=strftime("%d %B %Y")<cr>
 inoremap <PageUp> <C-P>
 inoremap <PageDown> <C-N>
 
-inoremap <tab> <C-N>
+"inoremap <tab> <C-N>
+"inoremap <tab> <cmd>call biblio#smart_tab()<cr>
 
 "inoremap <C-Space> <C-X><C-O>
 "inoremap <M-Space> <C-X><C-L>

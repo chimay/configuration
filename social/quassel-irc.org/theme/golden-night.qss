@@ -1,0 +1,252 @@
+
+Palette
+{
+  text: #5b3c11;
+  window: #000000;
+  window-text: #5b3c11;
+  button: #120705;
+  button-text: #7b3c11;
+  light: #000000;
+  midlight: #000000;
+  mid: #341207;
+  dark: #120705;
+  link: #7b3c11;
+  link-visited: #5b3c11;
+  marker-line: #872e30;
+}
+
+ChatListItem {
+	foreground: #5b3c11;
+}
+
+ChatListItem[state="inactive"] {
+	foreground: #5b3c11;
+}
+ChatListItem[state="channel-event"] {
+	foreground: #5b3c11;
+}
+ChatListItem[state="highlighted"] {
+	foreground: #88421d;
+}
+ChatListItem[state="unread-message"] {
+	foreground: #7b3c11;
+}
+
+ChatView {
+	background: #000000;
+}
+
+ChatWidget {
+	background: #000000;
+}
+
+MultiLineEdit {
+	background: #131313;
+	color: #005A5A;
+}
+
+BufferView {
+	background: black;
+}
+
+NickView {
+	background: #000000;
+}
+
+TopicWidget {
+	background: #000000;
+	foreground: #5b3c11 ;
+}
+
+TopicView {
+	background: #000000;
+	foreground: #5b3c11;
+}
+
+ChatLine::timestamp {
+	foreground: #5b3c11;
+}
+
+ChatLine#plain { foreground: #5b3c11; }
+ChatLine#notice { foreground: #916409; }
+ChatLine#action { foreground: #04ff00; }
+ChatLine#nick { foreground: #916409; }
+
+ChatLine#join { foreground: #5b3c11; }
+ChatLine#part { foreground: #5b3c11; }
+ChatLine#quit { foreground: #5b3c11; }
+
+ChatLine#kick { foreground: #debc85; }
+
+ChatLine#kill {
+	foreground: #ff0000;
+	background: #131313;
+	font-weight: bold;
+}
+
+ChatLine#server {
+	foreground: #916409;
+}
+
+ChatLine#info {
+	foreground: #916409;
+}
+
+ChatLine#error {
+	foreground: #916409;
+}
+
+ChatLine#daychange {
+	foreground: #916409;
+}
+
+ChatLine#mode {
+	foreground: #3b3c11;
+}
+
+ChatLine#topic {
+	foreground: #3b3c11;
+}
+
+ChatLine#netsplit-join {
+	background: #131313;
+	foreground: #ff0000;
+	font-weight: bold;
+}
+
+ChatLine#netsplit-quit {
+	background: #131313;
+	foreground: #ff0000;
+	font-weight: bold;
+}
+
+ChatLine[label="highlight"] {
+  foreground: #872e30; font-weight: bold;
+  background: #001122;
+}
+
+ChatLine::sender#plain[sender="self"] {
+	foreground: #872e30;
+}
+
+/**
+ * The following are the sixteen colours used for the senders.
+ * The names are calculated by taking the hash of the nickname.
+ * Then take the modulo (the remainder) when divided by 16.
+ */
+ChatLine::sender#plain[sender="0"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="1"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="2"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="3"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="4"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="5"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="6"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="7"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="8"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="9"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="a"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="b"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="c"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="d"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="e"] { foreground: #5b3c11; }
+ChatLine::sender#plain[sender="f"] { foreground: #5b3c11; }
+
+// NickView Colors
+NickListItem {
+	height:30px;
+}
+NickListItem[type="category"] {
+	foreground: #5b3c11;
+}
+NickListItem[type="user"] {
+	foreground: #5b3c11;
+}
+NickListItem[type="user", state="away"] {
+	foreground: #5b3c11;
+	font-style: italic;
+}
+
+QMenu::item:selected
+{
+  color: #872e90;
+  background-color: #000000;
+}
+
+QListView
+{
+  background: #00000;
+}
+
+QListView::item:hover
+{
+  background: #341207;
+}
+
+QListView::item:selected
+{
+  background: #123407;
+}
+
+QTableView {
+	color: #5b3c11;
+	foreground-color: #5b3c11;
+	selection-background-color: #341207;
+	background-color: #000000;
+}
+
+QTreeView
+{
+  background: #000000;
+  alternate-background-color: #000000;
+  selection-color: #872e30;
+  selection-background-color: #071205;
+  color: #5b3c11;
+}
+
+QTreeView::item:focus {
+  color: #000000;
+  background: #5b3c11;
+  font-weight: bold;
+}
+
+QTreeView::item:selected {
+  color: #5b3c11;
+}
+
+QTreeView::item:selected:active{
+  color: #972e30;
+  background: #000000;
+}
+
+QTreeView::item:selected {
+  color: #972e30;
+  background: #000000;
+}
+
+QTreeView::item:hover {
+  border-radius: 3px;
+  background: #120705;
+}
+
+QCheckBox::indicator {
+  color: #5b3c11;
+  background-color: #341207;
+}
+
+QCheckBox::indicator:checked {
+  color: #000000;
+  background-color: #123407;
+}
+
+QWidget {
+    color: #5b3c11;
+	background: #000000;
+}
+
+/* ToolTip */
+/* Note: You cannot create transparent sections in the popup box without a mask set. Thus the black edges outside the rounded borders. */
+QToolTip {
+    color: 972e30;
+    background: #000000;
+}
+

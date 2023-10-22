@@ -104,6 +104,31 @@ fun! biblio#toggle_relative_linum ()
 	set relativenumber?
 endfun
 
+" -- smart tab
+
+fun! biblio#smart_tab ()
+	" Tab with contextual behaviour in insert mode
+	" If char before cursor is empty, indent
+	" Else, complete
+	" DOES NOT WORK
+	let previous_column = col('.') - 2
+	if previous_column >= 0
+		let previous_char = getline('.')[previous_column]
+	else
+		let previous_char = ' '
+	endif
+	if previous_char =~ '\m\s'
+		startinsert
+		"normal '>>'
+		call feedkeys("\<c-t>",'nx')
+	else
+		startinsert
+		"normal '<c-n>'
+		call feedkeys("\<c-n>",'nx')
+	endif
+	echomsg previous_column previous_char
+endfun
+
 " -- global actions on buffer lines
 
 fun! biblio#global_yank (pattern, ...)
