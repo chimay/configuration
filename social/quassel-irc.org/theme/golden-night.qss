@@ -10,8 +10,8 @@ Palette
   midlight: #000000;
   mid: #341207;
   dark: #120705;
-  link: #7b3c11;
-  link-visited: #5b3c11;
+  link: #7b5c11;
+  link-visited: #7b3c11;
   marker-line: #872e30;
 }
 
@@ -70,7 +70,7 @@ ChatLine::timestamp {
 
 ChatLine#plain { foreground: #5b3c11; }
 ChatLine#notice { foreground: #916409; }
-ChatLine#action { foreground: #04ff00; }
+ChatLine#action { foreground: #7b3c11; }
 ChatLine#nick { foreground: #916409; }
 
 ChatLine#join { foreground: #5b3c11; }
@@ -278,4 +278,3 @@ QToolTip {
     color: 972e30;
     background: #000000;
 }
-
