@@ -27,6 +27,7 @@ ChatListItem[state="channel-event"] {
 }
 ChatListItem[state="highlighted"] {
 	foreground: #88421d;
+	background: #000000;
 }
 ChatListItem[state="unread-message"] {
 	foreground: #7b3c11;
@@ -37,7 +38,7 @@ ChatView {
 }
 
 ChatWidget {
-	background: #000000;
+	background: grey;
 }
 
 MultiLineEdit {
@@ -166,6 +167,18 @@ NickListItem[type="user", state="away"] {
 	font-style: italic;
 }
 
+QMenu
+{
+  color: #5b3c11;
+  background-color: #000000;
+}
+
+QMenu::item
+{
+  color: #5b3c11;
+  background-color: #000000;
+}
+
 QMenu::item:selected
 {
   color: #872e90;
@@ -192,6 +205,7 @@ QTableView {
 	foreground-color: #5b3c11;
 	selection-background-color: #341207;
 	background-color: #000000;
+	border-width: 3 3 3 3;
 }
 
 QTreeView
@@ -201,6 +215,14 @@ QTreeView
   selection-color: #872e30;
   selection-background-color: #071205;
   color: #5b3c11;
+}
+
+QTreeView::branch {
+  background: #000000;
+}
+
+QTreeView::branch:selected {
+  background: #000000;
 }
 
 QTreeView::item:focus {
@@ -228,8 +250,13 @@ QTreeView::item:hover {
   background: #120705;
 }
 
+QCheckBox {
+  color: #9b3c11;
+  background-color: #000000;
+}
+
 QCheckBox::indicator {
-  color: #5b3c11;
+  color: #000000;
   background-color: #341207;
 }
 
@@ -240,7 +267,7 @@ QCheckBox::indicator:checked {
 
 QWidget {
     color: #5b3c11;
-	background: #000000;
+	// background: #000000;
 }
 
 /* ToolTip */
