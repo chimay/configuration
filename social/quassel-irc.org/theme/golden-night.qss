@@ -110,20 +110,20 @@ ChatLine#topic {
 }
 
 ChatLine#netsplit-join {
-	background: #131313;
 	foreground: #ff0000;
+	background: #131313;
 	font-weight: bold;
 }
 
 ChatLine#netsplit-quit {
-	background: #131313;
 	foreground: #ff0000;
+	background: #131313;
 	font-weight: bold;
 }
 
 ChatLine[label="highlight"] {
-  foreground: #872e30; font-weight: bold;
-  background: #001122;
+  foreground: #872e30;
+  background: #000000;
 }
 
 ChatLine::sender#plain[sender="self"] {
@@ -175,14 +175,15 @@ QMenu
 
 QMenu::item
 {
-  color: #5b3c11;
+  color: #872e30;
   background-color: #000000;
 }
 
 QMenu::item:selected
 {
-  color: #872e90;
-  background-color: #000000;
+  color: #000000;
+  background-color: #872e30;
+  font-weight: bold;
 }
 
 QListView
@@ -203,8 +204,9 @@ QListView::item:selected
 QTableView {
 	color: #5b3c11;
 	foreground-color: #5b3c11;
-	selection-background-color: #341207;
 	background-color: #000000;
+	alternate-background-color: #000000;
+	selection-background-color: #341207;
 	border-width: 3 3 3 3;
 }
 
