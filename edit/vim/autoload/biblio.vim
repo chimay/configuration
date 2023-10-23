@@ -104,6 +104,26 @@ fun! biblio#toggle_relative_linum ()
 	set relativenumber?
 endfun
 
+" -- smart tab
+
+fun! biblio#smart_tab ()
+	" Tab with contextual behaviour in insert mode
+	" For :map-expression
+	" If char before cursor is a space, return <c-t> to indent
+	" Else, return <c-n> to complete
+	let previous_column = col('.') - 2
+	if previous_column >= 0
+		let previous_char = getline('.')[previous_column]
+	else
+		let previous_char = ' '
+	endif
+	if previous_char =~ '\m\s'
+		return "\<c-t>"
+	else
+		return "\<c-n>"
+	endif
+endfun
+
 " -- global actions on buffer lines
 
 fun! biblio#global_yank (pattern, ...)

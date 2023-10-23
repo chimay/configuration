@@ -673,9 +673,10 @@ nnoremap zo zCzO
 inoremap <PageUp> <C-P>
 inoremap <PageDown> <C-N>
 
+inoremap <expr> <tab> biblio#smart_tab()
+
 "inoremap <C-Space> <C-X><C-O>
 "inoremap <M-Space> <C-X><C-L>
-
 
 " Ligne de commande {{{2
 
@@ -780,7 +781,6 @@ nmap <k6> 6
 nmap <k7> 7
 nmap <k8> 8
 nmap <k9> 9
-
 
 " Présentation {{{2
 
