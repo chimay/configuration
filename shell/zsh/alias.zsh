@@ -367,8 +367,10 @@ alias gg=amfora
 # matrix client
 alias mrx=gomuks
 
-alias iri=irssi
+alias irs=irssi
 alias wct=weechat
+
+alias I=weechat
 
 #  Date {{{1
 

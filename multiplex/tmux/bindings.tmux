@@ -144,7 +144,6 @@ bind -T custom 8 select-window -t :=8
 bind -T custom 9 select-window -t :=9
 bind -T custom 0 select-window -t :=10
 
-
 # Tmux panes = windows {{{1
 
 # h & v like vim
@@ -223,4 +222,3 @@ bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
 
 bind -T copy-mode-vi 'y' send -X  copy-selection
 bind -T copy-mode-vi 'p' send -X  paste-buffer
-
