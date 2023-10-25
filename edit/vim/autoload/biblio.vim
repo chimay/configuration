@@ -155,7 +155,9 @@ endfun
 fun! biblio#text_to_password ()
 	" Insert some digits in password
 	silent! % substitute/a/4/g
+	silent! % substitute/b/6/g
 	silent! % substitute/e/3/g
+	silent! % substitute/g/9/g
 	silent! % substitute/i/1/g
 	silent! % substitute/o/0/g
 endfun
