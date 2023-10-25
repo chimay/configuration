@@ -782,8 +782,10 @@ nnoremap <f2>v <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
 " nnoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
 " inoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
 
+" dream
 nnoremap <f2>d <cmd>tabedit ~/racine/organ/orgmode/reverie.org <bar> normal Gzx<cr>
-inoremap <f2>d <cmd>tabedit ~/racine/organ/orgmode/reverie.org <bar> normal Gzx<cr>
+" fix
+nnoremap <f2>f <cmd>tabedit ~/racine/organ/orgmode/astuces.org <bar> normal Gzx<cr>
 
 command! -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
