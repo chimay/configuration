@@ -571,6 +571,7 @@ hash -d index=~/racine/index
 hash -d infoman=~/racine/infoman
 hash -d litera=~/racine/litera
 hash -d local=~/racine/local
+hash -d log=~/racine/log
 hash -d mail=~/racine/mail
 hash -d musica=~/racine/musica
 hash -d network=~/racine/network

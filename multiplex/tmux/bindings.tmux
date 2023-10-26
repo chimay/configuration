@@ -21,38 +21,32 @@ bind -n F2 switch-client -T custom
 bind -n F3 switch-client -T resize
 bind -n F4 copy-mode
 
-
-# Rechargement de tmux.conf {{{1
+# Reload tmux.conf {{{1
 
 bind -T custom @ \
 	source ~/racine/config/multiplex/tmux/tmux.conf \; \
 	display-message 'tmux.conf reloaded'
 
-
-# Aide {{{1
+# Help {{{1
 
 bind -T custom H list-keys
 
-
-# Quitter {{{1
+# Quit {{{1
 
 bind -T custom q confirm kill-pane
 bind -T custom M-q confirm kill-window
 bind -T custom Q confirm kill-session
 bind -T custom C-q confirm kill-server
 
-
 # Messages {{{1
 
 bind -T custom i show-messages
 
-
-# Barre de statut {{{1
+# Status bar {{{1
 
 bind -T custom b set-option status
 
-
-# Ligne de commande {{{1
+# Tmux command line {{{1
 
 bind ':' command-prompt -p 'tmux :'
 
@@ -65,7 +59,6 @@ bind -T custom ';' send-keys '~/racine/shell/dialog/fzf-tmux-command.zsh -s' Ent
 
 bind -T custom µ send-keys '~/racine/shell/dialog/fzf-tmux-history.zsh' Enter
 bind -T custom £ send-keys '~/racine/shell/dialog/fzf-tmux-history.zsh -s' Enter
-
 
 # Sessions {{{1
 
@@ -82,7 +75,7 @@ bind -T custom '{' switch-client -p
 bind -T custom '}' switch-client -n
 
 
-# Historique d’un panel {{{1
+# Panel history {{{1
 
 bind -T custom ù send-keys "tmux capture-pane -S - -p | less +G" Enter
 
@@ -99,17 +92,13 @@ bind -T custom p pipe-pane -o 'cat >> ~/racine/hist/tmux/#h-#S-#W-#P.pipe'
 bind -T custom w capture-pane \; save-buffer /tmp/tmux-buffer \; \
 	new-window -n "w3m" '$SHELL -c "w3m < /tmp/tmux-buffer"'
 
-
-
-# Verrouillage {{{1
+# Lock {{{1
 
 bind -T custom M-l lock-client
 
-
-# Arbre des Sessions, Fenêtres & Panels {{{1
+# Sessions, windows & panels tree {{{1
 
 bind -T custom § choose-tree -Zw
-
 
 # Tmux windows = tabs {{{1
 
@@ -183,12 +172,11 @@ bind -n C-Right    swap-pane -U
 bind -T custom M-$ set -w synchronize-panes
 
 
-# Commande en arrière-plan {{{1
+# Background command {{{1
 
 bind -T custom '&' command-prompt -p 'Commande à lancer ? ' "run-shell -b '%%'"
 
-
-# Mode redimensionnement {{{1
+# Resize mode {{{1
 
 bind -T resize Left  resize-pane -L \; switch-client -T resize
 bind -T resize Down  resize-pane -D \; switch-client -T resize
@@ -211,7 +199,7 @@ bind -T resize K resize-pane -U 5 \; switch-client -T resize
 bind -T resize L resize-pane -R 5 \; switch-client -T resize
 
 
-# Mode copie {{{1
+# Copy mode {{{1
 
 bind -T custom p paste-buffer
 bind -T custom '"' choose-buffer

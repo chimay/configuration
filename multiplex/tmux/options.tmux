@@ -17,6 +17,13 @@ set -s escape-time 30
 
 set -ga terminal-overrides ",xterm-256color:Tc"
 
+# Resize
+
+set-window -g aggressive-resize on
+
+# Events
+
+set -g focus-events on
 
 # Titre {{{1
 
@@ -38,7 +45,6 @@ set-environment -g PATH "$HOME/.local/bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/.gem/r
 # Shell {{{1
 
 set -g default-shell "zsh"
-
 
 # Commande par défaut {{{1
 

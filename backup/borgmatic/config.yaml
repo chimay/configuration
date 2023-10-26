@@ -38,6 +38,7 @@ source_directories:
   - racine/infoman
   - racine/litera
   - racine/local
+  - racine/log
   - racine/mail
   - racine/musica
   - racine/network
