@@ -86,7 +86,7 @@ set -g status-right-length 40
 
 # Historique {{{1
 
-set -g history-limit 347120
+set -g history-limit 123470
 
 # Ligne de commande
 

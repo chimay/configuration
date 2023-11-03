@@ -372,7 +372,8 @@ searcher () {
 		echo Using ripgrep
 		echo
 		(( $#fichiers > 0 )) || fichiers=(.)
-		command rg --color=never --heading --smart-case --line-number $motif $=fichiers | sed 's/^/  /'
+		#command rg --color=never --heading --smart-case --line-number $motif $=fichiers | sed 's/^/  /'
+		command rg --heading --smart-case --line-number $motif $=fichiers
 	elif command -v ag &> /dev/null
 	then
 		echo Using silver searcher
@@ -393,7 +394,6 @@ searcher () {
 		command grep --color=never $motif $=fichiers | sed 's/^/  /'
 	fi
 }
-
 
 # grep-command {{{2
 

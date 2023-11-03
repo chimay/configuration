@@ -44,7 +44,6 @@ source_directories:
   - racine/network
   - racine/news
   - racine/omni
-  - racine/organ
   - racine/pack/bin
   - racine/pack/release
   - racine/pack/shar
@@ -62,14 +61,12 @@ source_directories:
   - racine/refer
   - racine/run
   - racine/science
-  - racine/search
   - racine/self
   - racine/session
   - racine/shell
   - racine/site
   - racine/snippet
   - racine/system
-  - racine/template
 
 # A required list of local or remote repositories with paths and
 # optional labels (which can be used with the --repository flag to
@@ -95,6 +92,8 @@ repositories:
       label: usb-disc
     - path: ssh://david@shari.local//home/david/backup/borg
       label: shari-ssh
+    - path: ssh://david@tixu//home/david/backup/borg
+      label: tixu-ssh
 
 # Working directory for the "borg create" command. Tildes are
 # expanded. Useful for backing up using relative paths. See

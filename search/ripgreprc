@@ -4,4 +4,4 @@
 ripgrep-pipe.zsh
 
 --pre-glob
-*.{pdf,html,odt,png,jpg,gif,ogg,mp3}
+*.{pdf,html,odt,png,jpg,gif,ogg,mp3,xz,zst}

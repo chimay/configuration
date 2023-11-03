@@ -55,7 +55,7 @@ set -g @prefix_highlight_bg 'default'
 set -g @prefix_highlight_copy_mode_attr 'none,fg=1,bg=default'
 
 set -g @fzf-url-bind 'u'
-set -g @fzf-url-history-limit '30000'
+set -g @fzf-url-history-limit '900'
 set -g @fzf-url-fzf-options '--layout=reverse'
 #set -g @fzf-url-open "tmux split w3m"
 set -g @fzf-url-open "qutebrowser"

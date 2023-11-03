@@ -345,8 +345,7 @@ export LS_COLORS='no=00:fi=00:rs=0:ex=3;38;5;9:di=38;5;88:mh=01:ln=3;38;5;3:or=3
 
 export GREP_COLORS='ms=01;31:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36'
 
-export RIPGREP_CONFIG_PATH=~/racine/config/search/ripgrep
-
+export RIPGREP_CONFIG_PATH=~/racine/config/search/ripgreprc
 
 #  Pageurs {{{1
 

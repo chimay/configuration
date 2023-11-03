@@ -41,7 +41,6 @@ URxvt.color13: #c842c8
 URxvt.color14: #309494
 URxvt.color15: #ffffff
 
-
 ! Transparence {{{1
 
 URxvt*inheritPixmap: false
@@ -53,7 +52,6 @@ URxvt*transparent: false
 ! URxvt*shading: 0 to 99 darkens, 101 to 200 lightens
 
 !URxvt*shading: 7
-
 
 ! Options {{{1
 
@@ -70,7 +68,6 @@ URxvt.intensityStyles:	false
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 URxvt.secondaryWheel: 1
-
 
 ! Plugins {{{1
 
@@ -90,4 +87,3 @@ URxvt.secondaryWheel: 1
 ! URxvt.url-select.launcher:  qutebrowser
 ! URxvt.url-launcher:	qutebrowser
 ! URxvt.url-select.underline: true
-
