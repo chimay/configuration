@@ -1,0 +1,78 @@
+# vim: set filetype=muttrc :
+
+# Example NeoMutt config file for the nntp feature.
+
+# --------------------------------------------------------------------------
+# VARIABLES – shown with their default values
+# --------------------------------------------------------------------------
+
+set news_server = 'news.eternal-september.org'
+set newsrc = '~/racine/config/news/newsrc'
+set news_cache_dir = '~/racine/news/cache'
+
+set followup_to = yes
+set honor_followup_to = yes
+set followup_to_poster = ask-yes
+set x_comment_to = yes
+
+set ask_x_comment_to = no
+set catchup_newsgroup = no
+set followup_to_poster = ask-no
+set group_index_format = '%4C %M%N %5s  %-45.45f %d'
+set inews = ''
+set newsgroups_charset = utf-8
+set nntp_authenticators = ''
+set nntp_context = 1000
+set nntp_listgroup = yes
+set nntp_load_description = yes
+set nntp_pass = ''
+set nntp_poll = 60
+set nntp_user = ''
+set post_moderated = ask-yes
+set save_unsubscribed = no
+set show_new_news = yes
+set show_only_unread = no
+
+# --------------------------------------------------------------------------
+# FUNCTIONS – shown with an example mapping
+# --------------------------------------------------------------------------
+
+# mark all articles in newsgroup as read
+bind browser,index ,c catchup
+# open a different newsgroup
+bind index,pager ,§ change-newsgroup
+bind index,pager ,= change-newsgroup
+# edit the Followup-To field
+bind compose ,ef edit-followup-to
+# edit the newsgroups list
+bind compose ,en edit-newsgroups
+# edit the X-Comment-To field
+#bind compose ,ex edit-x-comment-to
+# followup to newsgroup
+bind attach,index,pager ,f followup-message
+# post message to newsgroup
+bind index,pager ,p post-message
+# load list of all newsgroups from NNTP server
+bind browser ,r reload-active
+# subscribe to current mbox (IMAP/NNTP only)
+bind browser ,s subscribe
+# subscribe to newsgroups matching a pattern
+bind browser ,S subscribe-pattern
+# mark all articles in newsgroup as unread
+bind browser ,C uncatchup
+# unsubscribe from current mbox (IMAP/NNTP only)
+bind browser ,u unsubscribe
+# unsubscribe from newsgroups matching a pattern
+bind browser ,U unsubscribe-pattern
+# open a different newsgroup in read only mode
+#bind index,pager \ei change-newsgroup-readonly
+# forward to newsgroup
+bind attach,index,pager ,f forward-to-group
+# get all children of the current message
+# bind index ??? get-children
+# get parent of the current message
+bind index ,p get-parent
+# reconstruct thread containing current message
+ bind index ,t reconstruct-thread
+# get message with Message-Id
+bind index ,g get-message

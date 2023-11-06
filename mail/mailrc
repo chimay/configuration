@@ -4,7 +4,6 @@
 
 set v15-compat
 
-# }}}1
 
 # Default {{{1
 
@@ -249,7 +248,6 @@ set reply-to-honour=ask-yes
 
 # s-it-mode
 
-# }}}1
 
 # Boîtes aux lettres {{{1
 
@@ -367,7 +365,6 @@ set keepsave
 
 set showto
 
-# }}}1
 
 # Affichage de messages {{{1
 
@@ -387,16 +384,15 @@ retain date sender from to cc subject message-id mail-followup-to reply-to
 #  \headerpick save ignore '^Original-.*$' '^X-.*$'
 #\end
 
-# }}}1
 
 # Envoi de messages {{{1
 
-set from="user <user@mail.net>"
+set from="user_name <user_name@mail_server.org>"
 
 # Serveur smtp ?
 # Commenter pour utiliser openSmtpd
 
-# set mta='smtp://relay.mail.net'
+# set mta='smtp://relay.mail_server.org'
 # set smtp-auth=none
 
 # Ask for a message subject.
@@ -456,7 +452,6 @@ set expandaddr
 
 headerpick forward retain subject date from to
 
-# }}}1
 
 # Historique de commandes {{{1
 
@@ -467,7 +462,6 @@ set history-gabby=all history-gabby-persist
 
 set history-file=+.s-nailhist
 
-# }}}1
 
 # Alias de commandes {{{1
 
@@ -480,7 +474,6 @@ commandalias é search
 
 commandalias § file
 
-# }}}1
 
 # Mailing lists {{{1
 
@@ -490,7 +483,6 @@ set followup-to
 set followup-to-honour=ask-yes
 set reply-to-honour=ask-yes
 
-# }}}1
 
 # Mime Types {{{1
 
@@ -533,7 +525,6 @@ wysh set pipe-application/pdf='?&=? \
    trap "trap \"\" INT QUIT TERM; exit 1" INT QUIT TERM;\
    zathura "${MAILX_FILENAME_TEMPORARY}"'
 
-# }}}1
 
 # SSL {{{1
 
@@ -562,4 +553,3 @@ wysh set pipe-application/pdf='?&=? \
 # Request strict transport security checks
 # set ssl-verify=strict
 
-# }}}1

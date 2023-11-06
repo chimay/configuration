@@ -125,7 +125,6 @@ MAILTO=$USER
 
 10	18	*	*	*	clean-attic.zsh
 
-
 # Météo {{{1
 
 #0	19	*	*	*	run-wego.zsh 2>&1 | tee -a ~/log/wego.log

@@ -210,3 +210,8 @@ bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
 
 bind -T copy-mode-vi 'y' send -X  copy-selection
 bind -T copy-mode-vi 'p' send -X  paste-buffer
+
+# Mouse {{{1
+
+bind -T custom C-m set -g mouse on \; display "Mouse : on"
+bind -T custom M-m set -g mouse off \; display "Mouse : off"

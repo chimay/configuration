@@ -58,7 +58,6 @@ bind generic ? search-reverse
 bind generic n search-next
 bind generic N search-opposite
 
-
 # Sélection {{{2
 
 bind generic <return> select-entry
@@ -72,7 +71,6 @@ bind generic vv tag-entry
 # to operate on tagged entries
 
 bind generic ";" tag-prefix
-
 
 # Commande {{{2
 
@@ -326,12 +324,10 @@ bind pager \e% change-folder-readonly
 
 bind pager . buffy-list
 
-
 # Threads {{{2
 
 bind pager * link-threads
 bind pager '#' break-thread
-
 
 # Affichage {{{2
 

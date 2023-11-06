@@ -1,0 +1,14 @@
+# Host that runs Transmission daemon
+set connect.host localhost
+# set connect.port 123
+
+# Update torrent/peer/file/etc lists every 10 seconds
+set tui.poll 10
+
+# Default columns in torrent lists
+set columns.torrents name ratio rate-up rate-down
+
+# Open a few tabs on startup
+tab ls active --sort !%downloaded,path,!rate
+tab ls paused --sort !%downloaded --columns name,%downloaded,ratio,size
+tab ls isolated --sort tracker --columns name,path

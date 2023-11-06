@@ -420,6 +420,11 @@ zmodload -i zsh/zleparameter
 
 #  Codes du terminal {{{2
 
+# Libère C-s C-q
+
+#stty stop undef
+#stty start undef
+
 # Terminfo
 
 # create a zkbd compatible hash;
@@ -449,7 +454,6 @@ clavier[End]=${terminfo[kend]}
 clavier[Insert]=${terminfo[kich1]}
 clavier[Delete]=${terminfo[kdch1]}
 
-
 # Main keymap {{{2
 
 # Main keymap = emacs
@@ -464,18 +468,15 @@ bindkey -e
 
 #bindkey -a
 
-
 # Aide {{{2
 
 bindkey '\eh' run-help
 
 bindkey '\e?' where-is
 
-
 # Caractère littéral {{{2
 
 bindkey '^V' quoted-insert
-
 
 # Fonctions zle {{{2
 
@@ -624,7 +625,6 @@ bindkey '^X^P' predict-off
 
 bindkey '^Xr' history-incremental-search-backward
 bindkey '^Xs' history-incremental-search-forward
-
 
 # Complétion incrémentale d’après l’historique {{{3
 

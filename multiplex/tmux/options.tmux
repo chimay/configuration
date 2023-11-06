@@ -146,7 +146,6 @@ set -w -g allow-rename off
 
 set -g alternate-screen off
 
-
 # Panels {{{1
 
 set -g pane-base-index 1
@@ -168,7 +167,6 @@ set -w -g mode-keys vi
 # Souris {{{1
 
 set -g mouse on
-
 
 # Horloge {{{1
 

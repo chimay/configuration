@@ -24,7 +24,6 @@
 #	│@alias  │to the default save folder as determined by the address of the alias│
 #	└────────┴────────────────────────────────────────────────────────────────────┘
 
-# }}}2
 
 # Motifs de recherche / correspondance {{{2
 
@@ -141,9 +140,7 @@
 #	│)        │threads containing messages from you: ~(~P)                        │
 #	└─────────┴───────────────────────────────────────────────────────────────────┘
 
-# }}}2
 
-# }}}1
 
 #  Générique {{{1
 
@@ -153,7 +150,6 @@ set help
 
 set quit=yes
 
-# }}}1
 
 #  Environnement {{{1
 
@@ -163,13 +159,11 @@ set shell='zsh'
 
 set wait_key = yes
 
-# }}}2
 
 #  Visualisation {{{2
 
 set pager=builtin
 
-# }}}2
 
 #  Édition {{{2
 
@@ -177,7 +171,6 @@ set pager=builtin
 
 set editor='vim -u ~/racine/config/edit/vim/rc-vimail.vim'
 
-# }}}2
 
 #  Localisation {{{2
 
@@ -185,14 +178,12 @@ set charset='utf-8'		# Encodage du terminal
 
 set send_charset="us-ascii:utf-8:iso-8859-1"
 
-# }}}2
 
 #  Sons {{{2
 
 set beep=no
 set beep_new=no
 
-# }}}2
 
 #  Cache {{{2
 
@@ -201,22 +192,17 @@ set header_cache=~/racine/varia/cache/neomutt/headers
 set message_cachedir=~/racine/varia/cache/neomutt/messages
 set certificate_file=~/racine/varia/cache/neomutt/certs
 
-# }}}2
 
-# }}}1
 
 #  Historique {{{1
 
 set history=3000
 set history_file=~/racine/hist/neomutt/history
 
-# }}}1
 
 #  Présentation {{{1
 
 source $my_muttroot/presentation.mutt
-
-# }}}1
 
 #  Courriels {{{1
 
@@ -224,13 +210,11 @@ source $my_muttroot/presentation.mutt
 
 set allow_8bit=yes
 
-# }}}2
 
 #  Drapeaux {{{2
 
 set mark_old=yes
 
-# }}}2
 
 #  En-têtes {{{2
 
@@ -253,7 +237,6 @@ hdr_order From: To: Cc: Bcc: Date: Subject: Reply-To: In-Reply-To: X-Label:
 
 set write_bcc=yes
 
-# }}}2
 
 #  Corps {{{2
 
@@ -265,11 +248,8 @@ unalternative_order *
 
 alternative_order text/html text/plain application/pdf application/postscript application/x-tar-gz image/* audio/*
 
-# }}}3
 
-# }}}2
 
-# }}}1
 
 #  Files de discussion {{{1
 
@@ -281,7 +261,6 @@ set sort='threads'
 
 set sort_aux='reverse-last-date-received'
 
-# }}}2
 
 #  Options {{{2
 
@@ -302,22 +281,18 @@ set sort_re=no
 
 set collapse_unread=yes
 
-# }}}2
 
-# }}}1
 
 #  Tri {{{1
 
 set sort_alias="alias"
 set sort_browser='reverse-date'
 
-# }}}1
 
 #  Informations personnelles {{{1
 
 source $my_muttroot/perso.mutt
 
-# }}}1
 
 #  Sélections {{{1
 
@@ -332,7 +307,6 @@ set auto_tag=yes
 
 set delete_untag=yes
 
-# }}}1
 
 #  Adresses {{{1
 
@@ -351,7 +325,6 @@ source $my_muttroot/groups.mutt
 
 set query_command="abook --mutt-query '%s'"
 
-# }}}1
 
 #  Compression {{{1
 
@@ -373,7 +346,6 @@ append-hook '\.xz$' "xz --stdout              '%t' >> '%f'"
 # close-hook  '\.bz2$' "bzip2 --stdout              '%t' >  '%f'"
 # append-hook '\.bz2$' "bzip2 --stdout              '%t' >> '%f'"
 
-# }}}1
 
 #  Boîtes {{{1
 
@@ -390,18 +362,16 @@ append-hook '\.xz$' "xz --stdout              '%t' >> '%f'"
 
 set folder='~/racine/mail'
 
-# }}}2
 
 # Boîtes particulières {{{2
 
 set spoolfile='=system/inbox'
-set mbox='/var/spool/mail/user'
+set mbox='/var/spool/mail/david'
 set record=^
 set postponed='=system/postponed'
 
 set trash='=system/trash'
 
-# }}}2
 
 #  Configuration {{{2
 
@@ -422,14 +392,12 @@ set recall=no				# Rappelle les courriels postposés
 set confirmappend=no	# Enregistre sans confirmation
 set confirmcreate=no	# Crée une boîte sans confirmation
 
-# }}}2
 
 # Boîtes distantes {{{2
 
 set mail_check=84
 set timeout=15
 
-# }}}2
 
 # Liste des boites {{{2
 
@@ -437,9 +405,7 @@ unmailboxes *
 
 mailboxes `~/racine/automat/mail-boxes.zsh`
 
-# }}}2
 
-# }}}1
 
 #  Hooks {{{1
 
@@ -447,13 +413,9 @@ set new_mail_command="~/racine/automat/new-mail.zsh %n %u &"
 
 source $my_muttroot/hooks.mutt
 
-# }}}1
-
 #  Listes de diffusion {{{1
 
 source $my_muttroot/list.mutt
-
-# }}}1
 
 #  Envois {{{1
 
@@ -469,7 +431,6 @@ set copy=yes
 set askcc=no
 set askbcc=no
 
-# }}}2
 
 #  Rédaction {{{2
 
@@ -484,7 +445,6 @@ set autoedit=no
 set abort_nosubject=no
 set abort_unmodified=no
 
-# }}}2
 
 #  Réponses {{{2
 
@@ -511,18 +471,10 @@ set attribution='%f wrote, on %d :\n'
 set indent_str='> '		# Préfixe de citation
 #set indent_str='%n> '	# Préfixe de citation avec nom expéditeur
 
-# }}}3
 
 # Listes {{{3
 
-set followup_to=yes
-set honor_followup_to=ask-yes
-
 set ignore_list_reply_to=yes
-
-# }}}3
-
-# }}}2
 
 #  Transferts {{{2
 
@@ -536,24 +488,19 @@ set forward_format="[%a: %s]"
 
 set mime_forward=ask-no
 
-# }}}3
 
-# }}}2
 
 #  Renvois {{{2
 
 set bounce=yes
 set bounce_delivered=no
 
-# }}}2
 
-# }}}1
 
 #  Scores {{{1
 
 source $my_muttroot/scores.mutt
 
-# }}}1
 
 #  Visualisation de différents types de fichiers {{{1
 
@@ -561,19 +508,16 @@ source $my_muttroot/scores.mutt
 
 set mailcap_sanitize=yes
 
-# }}}2
 
 #  Détermination automatique du type de fichier {{{2
 
 mime_lookup application/octet-stream
 
-# }}}2
 
 #  Mailcap {{{2
 
 set mailcap_path="~/racine/config/mail/mailcap"
 
-# }}}2
 
 #  Visualisation automatique {{{2
 
@@ -597,21 +541,17 @@ auto_view image/*
 
 auto_view application/msword
 
-# }}}2
 
-# }}}1
 
 #  Raccourcis clavier {{{1
 
 source $my_muttroot/bindings.mutt
 
-# }}}1
 
 #  Macros {{{1
 
 source $my_muttroot/macros.mutt
 
-# }}}1
 
 #  Couleurs {{{1
 
@@ -622,13 +562,11 @@ source $my_muttroot/color/golden-night.mutt
               #*color) echo '~/racine/config/mail/neomutt/theme/huit'; break ;;\
               #*)        echo '~/racine/config/mail/neomutt/theme/mono'; break ;;\
          #esac`
-# }}}1
 
 #  Chiffrement {{{1
 
 source $my_muttroot/crypt.mutt
 
-# }}}1
 
 #  Recherche {{{1
 
@@ -636,7 +574,6 @@ source $my_muttroot/crypt.mutt
 
 set simple_search="~s %s"
 
-# }}}1
 
 # Impression {{{1
 
@@ -644,10 +581,11 @@ set simple_search="~s %s"
 
 #set print_command="lp -o number-up=2 -o Duplex=DuplexTumble"
 
-# }}}1
+# news {{{1
+
+source $my_muttroot/news.mutt
 
 #  Divers {{{1
 
 # set mixmaster = 'mixmaster'
 
-# }}}1

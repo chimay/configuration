@@ -782,8 +782,8 @@ nnoremap <f2>v <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
 " nnoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
 " inoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
 
-nnoremap <f2>d <cmd>tabedit ~/racine/organ/orgmode/dream.org <bar> normal Gzx<cr>
-nnoremap <f2>f <cmd>tabedit ~/racine/organ/orgmode/fix.org <bar> normal ggzx<cr>
+nnoremap <f2>d <cmd>tabedit ~/racine/plain/orgmode/dream.org <bar> normal Gzx<cr>
+nnoremap <f2>f <cmd>tabedit ~/racine/plain/orgmode/fix.org <bar> normal ggzx<cr>
 nnoremap <f2>l <cmd>tabedit ~/racine/log/ship/captain.md <bar> normal ggzx<cr>
 
 command! -nargs=? -complete=filetype EditSyntaxPlugin

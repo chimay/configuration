@@ -380,7 +380,7 @@ alias jour='date +" [=] %A %d %B %Y  (o) %H : %M : %S  | %:z | "'
 # Réseau {{{1
 
 alias ftp=lftp
-
+alias wp=wgetpaste
 
 #  Langages de script {{{1
 

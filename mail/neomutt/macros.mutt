@@ -61,7 +61,6 @@ bind pager @ noop
 macro index @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
 macro pager @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
 
-
 # Nettoyage du cache {{{1
 
 macro index @c '<enter-command>set message_cache_clean=yes<enter>'
