@@ -547,9 +547,9 @@ export YTFZF_CACHE=~/racine/varia/cache/ytfzf
 #  Nouvelles {{{1
 
 export NNTPSERVER=news.eternal-september.org
+#export NNTPSERVER=snews://news.eternal-september.org:563
 
-export SLRN_ROOT=~/racine/news/spool
-
+export SLRNPULL_ROOT=~/racine/news/spool
 
 #  Jeux {{{1
 

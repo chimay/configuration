@@ -583,7 +583,7 @@ set simple_search="~s %s"
 
 # news {{{1
 
-source $my_muttroot/news.mutt
+#source $my_muttroot/news.mutt
 
 #  Divers {{{1
 

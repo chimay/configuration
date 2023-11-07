@@ -12,6 +12,7 @@ set news_cache_dir = '~/racine/news/cache'
 
 set followup_to = yes
 set honor_followup_to = yes
+set ask_followup_to = no
 set followup_to_poster = ask-yes
 set x_comment_to = yes
 
