@@ -54,6 +54,7 @@ set server_object "spool"
 % This can be "nntp" (post directly to the server), "inews" (use external
 % program for posting) or "slrnpull" (spool message for slrnpull to send).
 set post_object "slrnpull"
+set use_slrnpull		1
 
 % Set this to zero if you want to leave Message-ID generation to your server
 % or your system does not have a proper unique hostname.
@@ -239,7 +240,7 @@ set emphasized_text_mode 1
 %set usascii_override 1
 
 % If non-zero, call metamail for MIME formats slrn cannot handle.
-%set use_metamail 1
+set use_metamail 0
 
 %
 %% 7. Some preferences for the header window (see the manual for more)
@@ -330,7 +331,7 @@ color date		"default"	"default"
 color description	"default"	"default"
 color error		"red"		"default"	"blink"
 color frame		"yellow"	"blue"
-color from_myself	"brightmagenta"	"default"	"bold"
+color from_myself	"green"	"default"	"bold"
 color group		"default"	"default"
 color grouplens_display	"default"	"default"
 color header_name	"default"		"default"	"bold"
@@ -345,18 +346,18 @@ color menu_press	"default"	"yellow"
 color message		"default"	"default"
 color normal		"default"	"default"
 color pgpsignature	"default"	"default"
-color quotes		"brown"		"default"
-color quotes1		"green"	"default"
-color quotes2		"yellow"		"default"
-color quotes3		"red"		"default"
-color quotes4		"brown"		"default"
-color quotes5		"brown"		"default"
-color quotes6		"brown"		"default"
-color quotes7		"brown"		"default"
+color quotes		"default"		"default"
+color quotes1		"default"	"default"
+color quotes2		"default"		"default"
+color quotes3		"default"		"default"
+color quotes4		"default"		"default"
+color quotes5		"default"		"default"
+color quotes6		"default"		"default"
+color quotes7		"default"		"default"
 color response_char	"green"		"default"	"bold"
 color signature		"default"		"default"
 color selection		"default"	"default"	"bold"
-color status		"default"	"default"	"reverse"
+color status		"brown"	"default"	"bold"
 color subject		"default"	"default"
 color thread_number	"default"	"default"	"bold"
 color tilde		"darkgray"		"default"	"bold"
@@ -410,6 +411,8 @@ mono verbatim	        "none"
 
 % Key bindings
 
+setkey group help             "?"      % Display a help screen
+
 setkey group line_down        "j"
 setkey group line_up          "k"
 setkey group page_down        "^F"     % Scroll to the next page
@@ -430,14 +433,28 @@ setkey group toggle_hidden    "h"      % Toggle display of hidden groups
 setkey group toggle_list_all  "a"      % Toggle listing of unsubscribed groups
 setkey group help             "?"      % Display a help screen
 
-setkey article next                    "n"  % next unread article
-setkey article previous                "p"  % previous unread article
-setkey article post                 "P"		% Post a new article
-setkey article followup             "f"		% Post a followup
-setkey article reply                "r"		% Reply to poster
-setkey article forward              "F"		% Forward posting via mail
-setkey article save                 "w"		% Save article
-setkey article pipe                 "|"		% Pipe article
+setkey group quit             "q"      % Quit slrn
+
+setkey article help                    "?"	% Display help screen
+
+setkey article header_line_down      "l"	% Move to next article
+setkey article header_line_up        "h"	% Move to previous article
+setkey article header_line_down      "n"	% Move to next article
+setkey article header_line_up        "p"	% Move to previous article
+setkey article next                    "\en"  % next unread article
+setkey article previous                "\ep"  % previous unread article
+
+setkey article hide_article         "i"		% Hide/Show the article window
+setkey article toggle_collapse_threads "z"	% Collapse/Uncollapse thread
+setkey article toggle_headers          "H"	% Full headers (on/off)
+setkey article enlarge_article_window  "-"	% Enlarge the article window
+setkey article shrink_article_window   "+"	% Shrink the article window
+setkey article zoom_article_window     "^"	% Maximize/Unmaximize article
+setkey article toggle_quotes           "<"	% Display quoted lines (on/off)
+setkey article toggle_signature        "\e-"	% Show signature (on/off)
+
+setkey article get_parent_header       "T"		% Reconstruct thread
+setkey article get_children_headers    "t"	% Find all children
 
 setkey article article_line_down    "j"	% Scroll article down one line
 setkey article article_line_up      "k"	% Scroll article up one line
@@ -447,13 +464,21 @@ setkey article article_bob          "g"		% Move to the end of the article
 setkey article article_eob          "G"		% Move to the beginning
 setkey article article_search       "/"		% Search forward in the article
 
-setkey article header_line_down      "l"	% Move to next article
-setkey article header_line_up        "h"	% Move to previous article
 setkey article goto_article          "*"	% Move to article (number)
 setkey article author_search_forward   "a"	% Author search forward
 setkey article author_search_backward  "A"	% Author search backward
 setkey article subject_search_forward  "s"	% Subject search forward
 setkey article subject_search_backward "S"	% Subject search backward
+
+setkey article mark_spot               "m"	% Mark current article position
+setkey article exchange_mark           "'"	% Return to marked article
+
+setkey article post                 "P"		% Post a new article
+setkey article followup             "f"		% Post a followup
+setkey article reply                "r"		% Reply to poster
+setkey article forward              "F"		% Forward posting via mail
+setkey article save                 "w"		% Save article
+setkey article pipe                 "|"		% Pipe article
 
 setkey article delete                  "d"	% Mark article as read
 setkey article undelete                "u"	% Mark article as unread
@@ -464,10 +489,30 @@ setkey article uncatchup_all           "^U"	% Mark all articles as unread
 setkey article uncatchup               "\eu"	% Uncatchup (up to this article)
 setkey article expunge                 "x"	% Remove all read articles
 
+setkey article browse_url              "U"	% Search for URL and follow it
+setkey article toggle_sort             "o"	% Select threading method
+
 setkey article skip_to_next_group      "^N"  % go to the next group
 setkey article skip_to_previous_group  "^P"  % go to the previous group
 
 setkey article toggle_header_tag       "!"	% Set/remove header tag
+
+setkey article quit                 "q"		% Quit
+
+setkey readline bol		 "^A"		% Beginning of line
+setkey readline eol		 "^E"		% End of line
+setkey readline right		 "\e[C"		% Move right
+setkey readline left		 "\e[D"		% Move left
+setkey readline bdel		 "^H"		% Delete backward
+setkey readline bdel		 "^?"		% Delete Backward
+setkey readline del		 "^D"		% Delete Foreword
+setkey readline delbol		 "^U"		% Delete to Beginning of line
+setkey readline delbow		 "^W"		% Delete to Beginning of word
+setkey readline deleol		 "^K"		% Delete to End of line
+setkey readline trim		 "\e/"		% Trim whitespace
+setkey readline quoted_insert	 "^Q"		% Quoted insert
+setkey readline complete	 "\t"		% Complete filename
+setkey readline cycle		 " "		% Cycle among filenames
 
 %
 %% 10. Group mode key bindings
@@ -508,7 +553,7 @@ setkey group toggle_scoring   "K"      % Select scoring mode
 setkey group repeat_last_key  "."      % Repeat last key sequence
 setkey group evaluate_cmd     "^X\e"   % Read line and interpret it as S-Lang
 setkey group suspend          "^Z"     % Suspend slrn
-setkey group quit             "Q"      % Quit slrn
+%setkey group quit             "Q"      % Quit slrn
 
 % Group management:
 %setkey group catchup          "C"      % Mark all articles as read
@@ -557,8 +602,8 @@ setkey article cancel               "\e^C"	% Cancel article
 setkey article print                "y"		% Print article
 setkey article decode               ":"		% Decode article
 setkey article suspend              "^Z"	% Suspend slrn
-setkey article quit                 "q"		% Quit slrn
-setkey article fast_quit            "Q"		% Quit slrn immediately
+%setkey article quit                 "q"		% Quit slrn
+%setkey article fast_quit            "Q"		% Quit slrn immediately
 
 % Moving in the article pager:
 setkey article article_line_down    "\eOD"	% Scroll article down one line
@@ -569,8 +614,8 @@ setkey article article_line_up      "\e\e[B"
 setkey article article_page_down    " "		% Scroll article down one page
 setkey article article_page_up      "^?"	% Scroll article up one page
 setkey article article_page_up      "b"		% Scroll article up one page
-setkey article article_eob          ">"		% Move to the end of the article
-setkey article article_bob          "<"		% Move to the beginning
+%setkey article article_eob          ">"		% Move to the end of the article
+%setkey article article_bob          "<"		% Move to the beginning
 setkey article article_left         "\eOD"	% Pan article to the left
 setkey article article_left         "\e[D"
 setkey article article_right        "\eOC"	% Pan article to the right
@@ -614,21 +659,21 @@ setkey article uncatchup               "\eU"	% Uncatchup (up to this article)
 setkey article expunge                 "x"	% Remove all read articles
 
 % Display properties:
-setkey article toggle_headers          "t"	% Full headers (on/off)
+%setkey article toggle_headers          "t"	% Full headers (on/off)
 setkey article toggle_rot13            "\eR"	% Toggle ROT-13 decryption
-setkey article toggle_quotes           "T"	% Display quoted lines (on/off)
-setkey article toggle_signature        "\\"	% Show signature (on/off)
-setkey article wrap_article            "W"	% Wrap long lines (on/off)
+%setkey article toggle_quotes           "T"	% Display quoted lines (on/off)
+%setkey article toggle_signature        "\\"	% Show signature (on/off)
+%setkey article wrap_article            "W"	% Wrap long lines (on/off)
 setkey article show_spoilers           "\e?"	% Reveal spoilers (on/off)
 setkey article toggle_pgpsignature     "]"	% Show PGP signature (on/off)
 setkey article toggle_verbatim_marks   "["	% Show verbatim marks (on/off)
-setkey article enlarge_article_window  "^"	% Enlarge the article window
-setkey article shrink_article_window   "^^"	% Shrink the article window
-setkey article zoom_article_window     "z"	% Maximize/Unmaximize article
-setkey article hide_article            "h"	% Hide/Show the article window
-setkey article browse_url              "U"	% Search for URL and follow it
-setkey article toggle_sort             "\eS"	% Select threading method
-setkey article toggle_collapse_threads "\et"	% Collapse/Uncollapse thread
+%setkey article enlarge_article_window  "^"	% Enlarge the article window
+%setkey article shrink_article_window   "^^"	% Shrink the article window
+%setkey article zoom_article_window     "z"	% Maximize/Unmaximize article
+%setkey article hide_article            "h"	% Hide/Show the article window
+%setkey article browse_url              "U"	% Search for URL and follow it
+%setkey article toggle_sort             "\eS"	% Select threading method
+%setkey article toggle_collapse_threads "\et"	% Collapse/Uncollapse thread
 setkey article toggle_header_formats   "\ea"	% Toggle header display formats
 setkey article redraw                  "^L"	% Redraw screen
 %setkey article redraw                  "^R"	% Redraw screen
@@ -640,10 +685,10 @@ setkey article view_scores             "v"      % Show which rules matched
 setkey article locate_article          "\el"	% Locate article by Message-ID
 setkey article get_children_headers    "\e^P"	% Find all children
 setkey article get_parent_header       "\ep"	% Reconstruct thread
-setkey article mark_spot               ";"	% Mark current article position
-setkey article exchange_mark           ","	% Return to marked article
-setkey article tag_header              "#"	% Numerically tag article
-setkey article untag_headers           "\e#"	% Remove all numerical tags
+%setkey article mark_spot               ";"	% Mark current article position
+%setkey article exchange_mark           ","	% Return to marked article
+%setkey article tag_header              "#"	% Numerically tag article
+%setkey article untag_headers           "\e#"	% Remove all numerical tags
 %setkey article toggle_header_tag       "*"	% Set/remove header tag
 setkey article repeat_last_key         "."	% Repeat last key sequence
 setkey article grouplens_rate_article  "0"	% Rate article with grouplens
@@ -653,20 +698,20 @@ setkey article evaluate_cmd            "^X\e"   % Interpret line as S-Lang
 %% Command prompt key bindings
 %
 
-setkey readline bol		 "^A"		% Beginning of line
-setkey readline eol		 "^E"		% End of line
-setkey readline right		 "\e[C"		% Move right
-setkey readline left		 "\e[D"		% Move left
-setkey readline bdel		 "^H"		% Delete backward
-setkey readline bdel		 "^?"		% Delete Backward
-setkey readline del		 "^D"		% Delete Foreword
-setkey readline delbol		 "^U"		% Delete to Beginning of line
-setkey readline delbow		 "^W"		% Delete to Beginning of word
-setkey readline deleol		 "^K"		% Delete to End of line
-setkey readline trim		 "\e/"		% Trim whitespace
-setkey readline quoted_insert	 "^Q"		% Quoted insert
-setkey readline complete	 "\t"		% Complete filename
-setkey readline cycle		 " "		% Cycle among filenames
+%setkey readline bol		 "^A"		% Beginning of line
+%setkey readline eol		 "^E"		% End of line
+%setkey readline right		 "\e[C"		% Move right
+%setkey readline left		 "\e[D"		% Move left
+%setkey readline bdel		 "^H"		% Delete backward
+%setkey readline bdel		 "^?"		% Delete Backward
+%setkey readline del		 "^D"		% Delete Foreword
+%setkey readline delbol		 "^U"		% Delete to Beginning of line
+%setkey readline delbow		 "^W"		% Delete to Beginning of word
+%setkey readline deleol		 "^K"		% Delete to End of line
+%setkey readline trim		 "\e/"		% Trim whitespace
+%setkey readline quoted_insert	 "^Q"		% Quoted insert
+%setkey readline complete	 "\t"		% Complete filename
+%setkey readline cycle		 " "		% Cycle among filenames
 
 % This is a special hack for HP terminals to get the arrow keys working.
 % Are there any other terminals being used with non-ANSI arrow keys?
