@@ -41,20 +41,22 @@ server "news.eternal-september.org" ".jnewsrc"
 %server "news://news.unina.it" ".jnewsrc2"
 %server "news.easysw.com" ".jnewsrc_cups"
 
-% If a server requires authentication, add a nnrpaccess line for it.
-%nnrpaccess "news.doe.com" "john" "secret"
 
 % Some servers require authentication, but don't ask for it.
 % To offer your authentication data "voluntarily", set this variable to 1.
-%set force_authentication 0
+set force_authentication 1
 
 % This can either be set to "nntp" (read online) or "spool" (use local spool)
+%set server_object "nntp"
+
 set server_object "spool"
 
 % This can be "nntp" (post directly to the server), "inews" (use external
 % program for posting) or "slrnpull" (spool message for slrnpull to send).
+%set post_object "nntp"
+
 set post_object "slrnpull"
-set use_slrnpull		1
+%set use_slrnpull		1
 
 % Set this to zero if you want to leave Message-ID generation to your server
 % or your system does not have a proper unique hostname.
@@ -160,8 +162,8 @@ set printer_name "lpr -Plp"
 
 % Filename where articles / email you sent are archived.
 % Note: If these are unset, slrn does not keep a copy of outgoing messages.
-set save_posts "racine/news/saved/posts"
-set save_replies "racine/news/saved/replies"
+set save_posts "racine/news/sent/posts"
+set save_replies "racine/news/sent/replies"
 
 % File where failed posts are appended.  Use "" to disable saving.
 set failed_posts_file "racine/news/dead.letter"
@@ -172,10 +174,10 @@ set scorefile "racine/news/score"
 % Set kill_score to -9999
 set kill_score -9999
 % Name of directory where decoded files are placed.
-set decode_directory "racine/news/decoded"
+set decode_directory "racine/news/saved/decoded"
 
 % Directory where all other files are saved.
-set save_directory "racine/news/decoded"
+set save_directory "racine/news/saved/posts"
 
 % Directory where postponed articles are placed. Please make sure it exists.
 set postpone_directory "racine/news/postponed"
@@ -339,7 +341,7 @@ color header_number	"default"		"default"
 color headers		"default"	"default"
 color neg_score		"red"		"default"
 color pos_score		"yellow"		"default"
-color high_score	"green"		"default"	"bold"
+color high_score	"brown"		"default"	"bold"
 color italicstext	"default"	"default"	"bold"
 color menu		"default"	"default"
 color menu_press	"default"	"yellow"
@@ -354,7 +356,7 @@ color quotes4		"default"		"default"
 color quotes5		"default"		"default"
 color quotes6		"default"		"default"
 color quotes7		"default"		"default"
-color response_char	"green"		"default"	"bold"
+color response_char	"default"		"default"	"bold"
 color signature		"default"		"default"
 color selection		"default"	"default"	"bold"
 color status		"brown"	"default"	"bold"
@@ -364,7 +366,7 @@ color tilde		"darkgray"		"default"	"bold"
 color tree		"default"		"default"	"bold"
 color underlinetext	"default"		"default"	"underline"
 color url		"darkblue"		"default"	"bold"
-color verbatim		"green"		"default"
+color verbatim		"default"		"default"
 
 % These attributes are for terminals that cannot display color:
 mono article		"none"

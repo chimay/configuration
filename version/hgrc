@@ -8,43 +8,53 @@ ignore.general = ~/racine/config/version/hgignore
 
 [alias]
 
-i    = commit
-o    = checkout
-ci   = commit
-co   = checkout
-li   = commit
-lo   = checkout
-lci  = commit
-lco  = checkout
-ri   = push
-ro   = pull
-rci  = push
-rco  = pull
+h   = help
+
+i   = commit
+o   = checkout
+ci  = commit
+co  = checkout
+li  = commit
+lo  = checkout
+lci = commit
+lco = checkout
+ri  = push
+ro  = pull
+rci = push
+rco = pull
+pup = pull -u
+
+tg  = tag
 
 d   = diff
-h   = help
 l   = log
-pup = pull -u
 s   = status
+
+rv  = revert
+rb  = rollback
+
+u   = parent
+h   = heads
+p   = paths
 
 [pager]
 
-pager = less -FRX
+pager     = less -FRX
 pagermode = auto
-ignore = version, update
+ignore    = version, update
 
 quiet = True
 
 [extensions]
 
-hgext.children =
-hgext.purge =
-hgext.record =
-hgext.rebase =
+hgext.children   =
+hgext.purge      =
+hgext.record     =
+hgext.rebase     =
 hgext.transplant =
-hgext.mq =
-hgext.color =
-hgext.fetch =
+hgext.mq         =
+hgext.color      =
+hgext.fetch      =
 
 [color]
 

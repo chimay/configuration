@@ -329,6 +329,10 @@ alias £=abook
 
 alias n=newsboat
 
+# Usenet {{{1
+
+alias rn=run-slrn.sh
+
 # Fediverse {{{1
 
 alias mt='BROWSER=qutebrowser toot tui'
@@ -626,7 +630,7 @@ hash -d emacsconf=~/racine/config/edit/emacs
 
 hash -d mdot=~/racine/dotdir/emacs.d
 
-# Courriel {{{2
+# Mail {{{2
 
 hash -d muttconf=~/racine/config/mail/neomutt
 
