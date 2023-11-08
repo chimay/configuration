@@ -777,11 +777,7 @@ nnoremap ZQ <cmd>qa!<cr>
 nnoremap <C-G> <cmd>let @" = expand("%:p:~")<cr>2<C-G>
 
 nnoremap <f2>v <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
-
-" not a good idea, strange effect
-" nnoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
-" inoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
-
+nnoremap <f2>c <cmd>tabedit ~/racine/plain/organize/cronos.org<cr>
 nnoremap <f2>d <cmd>tabedit ~/racine/plain/orgmode/dream.org <bar> normal Gzx<cr>
 nnoremap <f2>f <cmd>tabedit ~/racine/plain/orgmode/fix.org <bar> normal ggzx<cr>
 nnoremap <f2>l <cmd>tabedit ~/racine/log/ship/captain.md <bar> normal ggzx<cr>
@@ -947,6 +943,19 @@ inoremap <S-Down> <C-o>gj
 " Déplacement de lignes {{{3
 
 " Voir plugin textmanip
+
+" Echange {{3
+
+" chars
+nnoremap <f4>c xp
+nnoremap <f4>C Xp
+" words
+nnoremap <f4>w bdwelp
+" lines
+nnoremap <f4>l ddp
+nnoremap <f4>L ddkP
+" paragraphs
+nnoremap <f4>p {dap}P{
 
 " Signets {{{3
 

@@ -10,6 +10,10 @@ ignore.general = ~/racine/config/version/hgignore
 
 h   = help
 
+s   = status
+l   = log
+d   = diff
+
 i   = commit
 o   = checkout
 ci  = commit
@@ -18,23 +22,23 @@ li  = commit
 lo  = checkout
 lci = commit
 lco = checkout
+
+ic  = incoming
+og  = outgoing
 ri  = push
 ro  = pull
 rci = push
 rco = pull
 pup = pull -u
 
-tg  = tag
-
-d   = diff
-l   = log
-s   = status
+t   = tag
 
 rv  = revert
 rb  = rollback
+bo  = backout
 
-u   = parent
-h   = heads
+P   = parent
+H   = heads
 p   = paths
 
 [pager]

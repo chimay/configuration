@@ -333,7 +333,7 @@ color date		"default"	"default"
 color description	"default"	"default"
 color error		"red"		"default"	"blink"
 color frame		"yellow"	"blue"
-color from_myself	"green"	"default"	"bold"
+color from_myself	"default"	"default"	"bold"
 color group		"default"	"default"
 color grouplens_display	"default"	"default"
 color header_name	"default"		"default"	"bold"
@@ -436,6 +436,7 @@ setkey group toggle_list_all  "a"      % Toggle listing of unsubscribed groups
 setkey group help             "?"      % Display a help screen
 
 setkey group quit             "q"      % Quit slrn
+setkey group quit             "Q"      % Quit slrn
 
 setkey article help                    "?"	% Display help screen
 
@@ -446,7 +447,7 @@ setkey article header_line_up        "p"	% Move to previous article
 setkey article next                    "\en"  % next unread article
 setkey article previous                "\ep"  % previous unread article
 
-setkey article hide_article         "i"		% Hide/Show the article window
+setkey article hide_article         "q"		% Hide/Show the article window
 setkey article toggle_collapse_threads "z"	% Collapse/Uncollapse thread
 setkey article toggle_headers          "H"	% Full headers (on/off)
 setkey article enlarge_article_window  "-"	% Enlarge the article window
@@ -499,7 +500,8 @@ setkey article skip_to_previous_group  "^P"  % go to the previous group
 
 setkey article toggle_header_tag       "!"	% Set/remove header tag
 
-setkey article quit                 "q"		% Quit
+setkey article quit                 "Q"		% Quit
+setkey article fast_quit            "^Q"	% Fast Quit
 
 setkey readline bol		 "^A"		% Beginning of line
 setkey readline eol		 "^E"		% End of line

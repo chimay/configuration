@@ -438,7 +438,6 @@ nmap cxx <Plug>(ExchangeLine)
 nmap z( [
 nmap z) ]
 
-
 " Évaluation {{{1
 
 " Increment activator (nishigori/increment-activator) {{{2
