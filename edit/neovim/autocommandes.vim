@@ -26,7 +26,7 @@ augroup END
 
 augroup resload-service
 	autocmd!
-	autocmd BufWritePost ~/racine/config/system/dunst/dunstrc !restart-dunst.zsh &
+	autocmd BufWritePost ~/racine/config/system/dunst/dunstrc !restart-dunst.sh &
 	autocmd BufWritePost ~/racine/config/windenv/sxhkd/sxhkdrc !pkill -10 -f sxhkd
 	autocmd BufWritePost ~/racine/config/windenv/keynav/keynavrc !pkill -1 -f keynav
 	autocmd BufWritePost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart

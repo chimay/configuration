@@ -796,6 +796,9 @@ nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 nnoremap <f2>e :e <c-r>=expand('%:p:h') . '/' <cr>
 nnoremap <f2>r :r <c-r>=expand('%:p:h') . '/' <cr>
 
+" figlet banner
+nnoremap <f2>b <cmd>call biblio#figlet()<cr>
+
 nnoremap <f3>x :call biblio#text_to_password()<cr>
 
 " Arguments {{{2

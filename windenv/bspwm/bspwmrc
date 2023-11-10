@@ -4,8 +4,6 @@
 
 source ~/racine/config/cmdline/zsh/zprofile
 
-# }}}1
-
 # Autostart {{{1
 
 # in cas of restart, we need to stop some processes first
@@ -13,25 +11,17 @@ autostop.zsh >>! ~/log/autostop.log 2>&1
 sleep 1
 autostart.zsh >>! ~/log/autostart.log 2>&1
 
-# }}}1
-
 # Reset all rules {{{1
 
 bspc rule -r "*"
-
-# }}}1
 
 # Monitor {{{1
 
 bspc monitor -d term edit browser office artisan entertain misc
 
-# }}}1
-
 # Desktops {{{1
 
 #bspc desktop -f term
-
-# }}}1
 
 # Config {{{1
 
@@ -65,8 +55,6 @@ bspc config presel_feedback_color "#301207"
 # Pas besoin avec picom
 # bspc config focused_frame_opacity 1.0
 # bspc config normal_frame_opacity 0.85
-
-# }}}1
 
 # Rules {{{1
 
@@ -112,13 +100,10 @@ bspc rule -a sun-awt-X11-XFramePeer desktop=misc
 bspc rule -a com-itfinance-core-Starter desktop=misc
 bspc rule -a java-lang-Thread desktop=misc
 
-# }}}2
 
 # Tiled {{{2
 
 bspc rule -a Emacs  state=tiled
-
-# }}}2
 
 # Floating {{{2
 
@@ -158,8 +143,6 @@ bspc rule -a Element state=floating
 
 bspc rule -a Wihotspot-gui  state=floating rectangle=964x574+476+50
 
-# }}}2
-
 # Dropdown {{{2
 
 # rectangle=width x height + Xoffset + Yoffset
@@ -168,7 +151,3 @@ bspc rule -a kitty:dropdown sticky=on state=floating rectangle=1500x700+200+40
 bspc rule -a URxvt:dropdown sticky=on state=floating rectangle=964x574+476+50
 
 bspc rule -a URxvt:calculator sticky=on state=floating rectangle=964x574+476+50
-
-# }}}2
-
-# }}}1

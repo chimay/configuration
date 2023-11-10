@@ -150,6 +150,14 @@ fun! biblio#global_delete (pattern, ...)
 	exe 'global/' . a:pattern . '/delete ' . toupper(register)
 endfun
 
+" -- banner
+
+fun! biblio#figlet ()
+	" Insert figlet banner at current line
+	let text = input('Text : ')
+	execute 'read ! figlet' text
+endfun
+
 " -- passwords
 
 fun! biblio#text_to_password ()

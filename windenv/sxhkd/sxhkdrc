@@ -370,7 +370,7 @@ hyper + a ; r
 
 # Réseau {{{1
 
-hyper + shift + n
+hyper + shift + w
 	toggle-wifi.zsh
 
 #  Processeurs {{{1
