@@ -5,7 +5,8 @@
 # If you want you can set this to $EDITOR to use your environment variable or
 # vim if you want to specify the program directly.
 # default="TUT_USE_INTERNAL"
-editor="TUT_USE_INTERNAL"
+#editor="TUT_USE_INTERNAL"
+editor="$EDITOR"
 
 # You need to press yes in a confirmation dialog before favoriting, boosting,
 # etc.
@@ -14,7 +15,7 @@ confirmation=true
 
 # Enable mouse support in tut.
 # default=false
-mouse-support=false
+mouse-support=true
 
 # The date format to be used. See https://pkg.go.dev/time#pkg-constants
 # default="2006-01-02 15:04"
@@ -121,7 +122,7 @@ redraw-ui=true
 # default this is disabled and you enable it by setting a key here. It can only
 # consist of one char, so set it to something like a comma.
 # default=""
-leader-key=""
+leader-key=","
 
 # Number of milliseconds before the leader command resets. So if you tap the
 # leader-key by mistake or are to slow it empties all the input after X
@@ -148,6 +149,103 @@ leader-timeout=1000
 # on-creation-closed="new-pane"
 # on-focus="focus-self"
 # --- END OF EXAMPLE ---
+
+[[general.timelines]]
+name="Home"
+type="home"
+shortcut = "0"
+hide-boosts=false
+hide-replies=false
+
+[[general.timelines]]
+name="Local"
+type="local"
+shortcut = "1"
+hide-boosts=false
+hide-replies=false
+closed=true
+on-creation-closed="new-pane"
+on-focus="focus-self"
+
+[[general.timelines]]
+name="Federated"
+type="federated"
+shortcut = "2"
+hide-boosts=false
+hide-replies=false
+closed=true
+on-creation-closed="new-pane"
+on-focus="focus-self"
+
+[[general.timelines]]
+name="Notifications"
+type="notifications"
+shortcut = "3"
+hide-boosts=false
+hide-replies=false
+closed=true
+on-creation-closed="new-pane"
+on-focus="focus-self"
+
+[[general.timelines]]
+name="Direct"
+type="direct"
+shortcut = "4"
+hide-boosts=false
+hide-replies=false
+closed=true
+on-creation-closed="new-pane"
+on-focus="focus-self"
+
+[[general.timelines]]
+name="Mentions"
+type="mentions"
+shortcut = "5"
+hide-boosts=false
+hide-replies=false
+closed=true
+on-creation-closed="new-pane"
+on-focus="focus-self"
+
+[[general.timelines]]
+name="Favorited"
+type="favorited"
+shortcut = "6"
+hide-boosts=false
+hide-replies=false
+closed=true
+on-creation-closed="new-pane"
+on-focus="focus-self"
+
+# [[general.timelines]]
+# name="All"
+# type="special-all"
+# shortcut = "7"
+# hide-boosts=false
+# hide-replies=false
+# closed=true
+# on-creation-closed="new-pane"
+# on-focus="focus-self"
+
+# [[general.timelines]]
+# name="Boosts"
+# type="special-boosts"
+# shortcut = "8"
+# hide-boosts=false
+# hide-replies=false
+# closed=true
+# on-creation-closed="new-pane"
+# on-focus="focus-self"
+
+# [[general.timelines]]
+# name="Replies"
+# type="special-replies"
+# shortcut = "9"
+# hide-boosts=false
+# hide-replies=false
+# closed=true
+# on-creation-closed="new-pane"
+# on-focus="focus-self"
 
 # The name to display above the timeline
 # default=""
@@ -235,6 +333,66 @@ leader-timeout=1000
 # data="column"
 # shortcut="c"
 # --- END OF EXAMPLE ---
+
+[[general.leader-actions]]
+type="preferences"
+shortcut="P"
+
+[[general.leader-actions]]
+type="refetch"
+shortcut="r"
+
+[[general.leader-actions]]
+type="close-pane"
+shortcut="x"
+
+[[general.leader-actions]]
+type="clear-notifications"
+shortcut="N"
+
+[[general.leader-actions]]
+type="compose"
+shortcut="c"
+
+[[general.leader-actions]]
+type="edit"
+shortcut="e"
+
+[[general.leader-actions]]
+type="profile"
+shortcut="p"
+
+[[general.leader-actions]]
+type="blocking"
+shortcut="B"
+
+[[general.leader-actions]]
+type="boosts"
+shortcut="b"
+
+[[general.leader-actions]]
+type="favorited"
+shortcut="F"
+
+[[general.leader-actions]]
+type="favorites"
+shortcut="f"
+
+[[general.leader-actions]]
+type="followers"
+shortcut="S"
+
+[[general.leader-actions]]
+type="following"
+shortcut="s"
+
+[[general.leader-actions]]
+type="history"
+shortcut="h"
+
+[[general.leader-actions]]
+type="tags"
+shortcut="t"
 
 # The action you want to run.
 # valid: blocking, boosts, clear-notifications, close-pane, compose, edit, favorited,

@@ -335,7 +335,8 @@ alias rn=run-slrn.sh
 
 # Fediverse {{{1
 
-alias mt='BROWSER=qutebrowser toot tui'
+alias tot='BROWSER=qutebrowser toot tui'
+alias tut='BROWSER=qutebrowser tut'
 
 # Navigation {{{1
 
