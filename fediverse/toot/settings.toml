@@ -1,0 +1,41 @@
+
+[common]
+# Whether to use ANSI color in output
+color = true
+
+# Enable debug logging, shows HTTP requests
+debug = true
+
+# Redirect debug log to the given file
+debug_file = "log/toot.log"
+
+# Log request and response bodies in the debug log
+verbose = false
+
+# Do not write to output
+quiet = false
+
+[commands.post]
+editor = "vim"
+sensitive = true
+visibility = "unlisted"
+scheduled_in = "30 minutes"
+
+[tui]
+colors = 16
+
+[tui.palette]
+columns_divider = ["brown", ""]
+footer_status = ["brown", ""]
+footer_status_bold = ["brown, bold", ""]
+header = ["brown", ""]
+header_bold = ["brown, bold", ""]
+intro_smalltext = ["dark green", ""]
+shortcut = ["dark green", ""]
+shortcut_highlight = ["dark red", ""]
+status_detail_account = ["", ""]
+status_detail_bookmarked = ["", ""]
+status_detail_timestamp = ["", ""]
+status_list_account = ["", ""]
+status_list_selected = ["dark red", ""]
+status_list_timestamp = ["", ""]

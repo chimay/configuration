@@ -15,7 +15,11 @@ set -s escape-time 30
 
 # True colors
 
+#set -ga terminal-overrides ",tmux-256color:Tc"
 set -ga terminal-overrides ",xterm-256color:Tc"
+#set -ga terminal-overrides ",kitty-256color:Tc"
+
+#set -sa terminal-features ',xterm-kitty:RGB'
 
 # Resize
 

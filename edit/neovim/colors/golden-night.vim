@@ -112,7 +112,6 @@ hi PmenuSbar		guifg=#88421D		guibg=#070707		gui=NONE
 hi PmenuSel			guifg=black			guibg=#5B3C11		gui=bold
 hi PmenuThumb		guifg=#88421D		guibg=#122312		gui=NONE
 
-
 " Menu de complétion de la ligne de commande {{{2
 
 hi WildMenu		guifg=brown			guibg=#070707		gui=NONE
