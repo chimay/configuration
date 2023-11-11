@@ -301,8 +301,8 @@ super + ctrl + l
 super + ctrl + i
 	vimiv ~/photo/numerique
 
-super + ctrl + {c,q,x,l}
-	goto-or-run.sh {chromium,qutebrowser,firefox,lagrange}
+super + ctrl + {c,q,x}
+	goto-or-run.sh {chromium,qutebrowser,firefox}
 
 super + ctrl + n
 	run-with-log.sh nyxt

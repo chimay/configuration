@@ -184,7 +184,6 @@ set send_charset="us-ascii:utf-8:iso-8859-1"
 set beep=no
 set beep_new=no
 
-
 #  Cache {{{2
 
 set tmpdir=~/racine/varia/temp
@@ -366,7 +365,7 @@ set folder='~/racine/mail'
 # Boîtes particulières {{{2
 
 set spoolfile='=system/inbox'
-set mbox='/var/spool/mail/david'
+set mbox='/var/spool/mail/user_name'
 set record=^
 set postponed='=system/postponed'
 
@@ -409,7 +408,7 @@ mailboxes `~/racine/automat/mail-boxes.zsh`
 
 #  Hooks {{{1
 
-set new_mail_command="~/racine/automat/new-mail.zsh %n %u &"
+set new_mail_command="~/racine/automat/new-mail.sh %n %u &"
 
 source $my_muttroot/hooks.mutt
 

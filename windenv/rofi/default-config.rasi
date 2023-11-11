@@ -34,7 +34,6 @@ configuration {
 /*	parse-known-hosts: true;*/
 	combi-modi: "window,run,ssh";
 	matching: "glob";
-/*	tokenize: true;*/
 /*	m: "-5";*/
 /*	filter: ;*/
 /*	dpi: -1;*/

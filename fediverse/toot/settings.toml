@@ -17,9 +17,6 @@ quiet = false
 
 [commands.post]
 editor = "vim"
-sensitive = true
-visibility = "unlisted"
-scheduled_in = "30 minutes"
 
 [tui]
 colors = 16

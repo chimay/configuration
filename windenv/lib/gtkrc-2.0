@@ -9,6 +9,6 @@ widget_class "*" style "user-font"
 
 gtk-font-name="Sans 12"
 
-include "/home/david/.gtkrc.mine"
+include "/home/user_name/.gtkrc.mine"
 
 # -- THEME AUTO-WRITTEN DO NOT EDIT

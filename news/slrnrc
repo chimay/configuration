@@ -417,6 +417,8 @@ setkey group help             "?"      % Display a help screen
 
 setkey group line_down        "j"
 setkey group line_up          "k"
+setkey group line_down        "n"
+setkey group line_up          "p"
 setkey group page_down        "^F"     % Scroll to the next page
 setkey group page_up          "^B"    % Scroll to the previous page
 setkey group bob              "g"    % Go to the top of the list
@@ -430,10 +432,10 @@ setkey group add_group        "a"      % Add a new newsgroup
 setkey group subscribe        "s"      % Subscribe to the current newsgroup
 setkey group unsubscribe      "u"      % Unsubscribe from the current newsgroup
 setkey group save_newsrc      "w"      % Force a save of the newsrc file
+setkey group post             "P"      % Post an article
 
 setkey group toggle_hidden    "h"      % Toggle display of hidden groups
 setkey group toggle_list_all  "a"      % Toggle listing of unsubscribed groups
-setkey group help             "?"      % Display a help screen
 
 setkey group quit             "q"      % Quit slrn
 setkey group quit             "Q"      % Quit slrn
@@ -447,7 +449,7 @@ setkey article header_line_up        "p"	% Move to previous article
 setkey article next                    "\en"  % next unread article
 setkey article previous                "\ep"  % previous unread article
 
-setkey article hide_article         "q"		% Hide/Show the article window
+setkey article hide_article         "µ"		% Hide/Show the article window
 setkey article toggle_collapse_threads "z"	% Collapse/Uncollapse thread
 setkey article toggle_headers          "H"	% Full headers (on/off)
 setkey article enlarge_article_window  "-"	% Enlarge the article window
@@ -500,8 +502,8 @@ setkey article skip_to_previous_group  "^P"  % go to the previous group
 
 setkey article toggle_header_tag       "!"	% Set/remove header tag
 
-setkey article quit                 "Q"		% Quit
-setkey article fast_quit            "^Q"	% Fast Quit
+setkey article quit                 "q"		% Quit
+setkey article fast_quit            "Q"		% Fast Quit
 
 setkey readline bol		 "^A"		% Beginning of line
 setkey readline eol		 "^E"		% End of line

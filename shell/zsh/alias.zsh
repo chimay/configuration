@@ -253,7 +253,7 @@ alias st='run-syncthing.sh &'
 # Gestionnaires de fichiers {{{2
 
 alias §=vifmrun
-alias f=run-vifm
+alias fm=run-vifm
 
 alias cf='clifm --no-color'
 
@@ -335,8 +335,9 @@ alias rn=run-slrn.sh
 
 # Fediverse {{{1
 
-alias tot='BROWSER=qutebrowser toot tui'
-alias tut='BROWSER=qutebrowser tut'
+alias f='tut'
+alias F='BROWSER=qutebrowser toot tui'
+alias fl=neonmodem
 
 # Navigation {{{1
 
@@ -526,8 +527,6 @@ alias -g V='| view -'
 alias -g W='| vimpager'
 
 alias -g DS='| diffstat'
-
-alias -g F='| fpp'
 
 #  Suffixes : alias -s {{{1
 

@@ -34,7 +34,6 @@ Netscape*blinkingEnabled:       False
 !XLock.background:       	SteelBlue
 !XLock.foreground:       	Black
 !XLock.username:         	And you are?
-!XLock.password:         	And your problem is?
 !XLock.info:             	Which part of "bite me" don't you understand?
 !XLock.validate:         	*clickety-click*
 !XLock.invalid:          	Thank you.  YOUR account has been deleted.

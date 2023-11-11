@@ -265,8 +265,7 @@ source $RACINE_ZSH/couleurs.zsh
 
 # Go {{{2
 
-export GOPATH=~/racine/bin/go
-
+export GOPATH=~/racine/prolang/compiles/go
 
 # Linuxbrew {{{2
 
