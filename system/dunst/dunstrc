@@ -302,7 +302,7 @@
 
 [play_sound]
     summary = "*"
-    script = ~/racine/shell/alarm/notify-sound.sh
+    script = ~/racine/shell/alarm/notify-sound.zsh
 
 #[espeak]
 #    summary = "*"

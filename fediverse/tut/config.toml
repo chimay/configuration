@@ -93,7 +93,7 @@ stick-to-top=false
 # Display the username of the person being boosted instead of the person that
 # boosted.
 # default=false
-show-boosted-user=false
+show-boosted-user=true
 
 # Open a new pane when you run a command like :timeline home.
 # default=true

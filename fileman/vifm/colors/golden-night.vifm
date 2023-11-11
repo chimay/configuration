@@ -3,18 +3,23 @@
 highlight Win             cterm=none            ctermfg=default       ctermbg=none
 
 highlight TabLine         cterm=none            ctermfg=default       ctermbg=none
-highlight TabLineSel      cterm=reverse,bold	ctermfg=default       ctermbg=none
+"highlight TabLineSel      cterm=reverse,bold	ctermfg=default       ctermbg=none
+highlight TabLineSel      cterm=none			ctermfg=3		      ctermbg=none
 
-highlight TopLine         cterm=reverse         ctermfg=default       ctermbg=none
-highlight TopLineSel      cterm=reverse,bold    ctermfg=default       ctermbg=none
-highlight StatusLine      cterm=reverse         ctermfg=default       ctermbg=none
+"highlight TopLine         cterm=reverse         ctermfg=default       ctermbg=none
+highlight TopLine         cterm=none	         ctermfg=default	   ctermbg=232
+"highlight TopLineSel      cterm=reverse,bold    ctermfg=default       ctermbg=none
+highlight TopLineSel      cterm=none		    ctermfg=3		       ctermbg=232
+"highlight StatusLine      cterm=reverse         ctermfg=default       ctermbg=none
+highlight StatusLine      cterm=none	         ctermfg=3		       ctermbg=232
 highlight Border          cterm=none            ctermfg=default       ctermbg=none
 
 highlight Selected        cterm=none            ctermfg=9             ctermbg=default
 
-"highlight CurrLine        cterm=bold            ctermfg=52            ctermbg=default
-"highlight CurrLine        cterm=bold            ctermfg=88            ctermbg=default
-highlight CurrLine        cterm=reverse,bold    ctermfg=default       ctermbg=default
+"highlight CurrLine       cterm=bold            ctermfg=52            ctermbg=default
+"highlight CurrLine       cterm=bold            ctermfg=88            ctermbg=default
+"highlight CurrLine        cterm=reverse,bold    ctermfg=default       ctermbg=default
+highlight CurrLine        cterm=none		    ctermfg=1		      ctermbg=default
 highlight OtherLine       cterm=bold,italic     ctermfg=default       ctermbg=default
 
 highlight WildMenu        cterm=reverse         ctermfg=white         ctermbg=black
