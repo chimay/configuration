@@ -373,11 +373,9 @@ set wildignore+=*.wav,*.flac,*.ogg,*.mp3
 
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj
 
-
 " Casse {{{2
 
 set wildignorecase
-
 
 "  Complétion en mode insertion {{{2
 

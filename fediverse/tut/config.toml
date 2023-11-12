@@ -163,7 +163,7 @@ type="local"
 shortcut = "1"
 hide-boosts=false
 hide-replies=false
-closed=true
+closed=false
 on-creation-closed="new-pane"
 on-focus="focus-self"
 
@@ -183,7 +183,7 @@ type="notifications"
 shortcut = "3"
 hide-boosts=false
 hide-replies=false
-closed=true
+closed=false
 on-creation-closed="new-pane"
 on-focus="focus-self"
 
@@ -826,35 +826,35 @@ special-keys=["End"]
 # Go to previous feed
 
 # default=["h", "H"]
-keys=["H"]
+keys=["p"]
 
 # default=["Left"]
-special-keys=["Left"]
+special-keys=["Backtab"]
 
 [input.main-next-feed]
 # Go to next feed
 
 # default=["l", "L"]
-keys=["L"]
+keys=["n"]
 
 # default=["Right"]
-special-keys=["Right"]
+special-keys=["Tab"]
 
 [input.main-prev-pane]
 # Focus on the previous feed pane
 
-keys=["h"]
+keys=["h", "H"]
 
 # default=["Backtab"]
-special-keys=["Backtab"]
+special-keys=["Left"]
 
 [input.main-next-pane]
 # Focus on the next feed pane
 
-keys=["l"]
+keys=["l", "L"]
 
 # default=["Tab"]
-special-keys=["Tab"]
+special-keys=["Right"]
 
 [input.main-next-account]
 # Focus on the next account

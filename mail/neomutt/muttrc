@@ -260,7 +260,6 @@ set sort='threads'
 
 set sort_aux='reverse-last-date-received'
 
-
 #  Options {{{2
 
 set duplicate_threads=yes
@@ -580,7 +579,7 @@ set simple_search="~s %s"
 
 #set print_command="lp -o number-up=2 -o Duplex=DuplexTumble"
 
-# news {{{1
+# News {{{1
 
 #source $my_muttroot/news.mutt
 

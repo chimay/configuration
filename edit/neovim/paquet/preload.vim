@@ -326,7 +326,7 @@ if ! exists("g:wheel_loaded")
 
 	nnoremap <tab> :<c-u>Wheel<space>
 	" altgr-w
-	nnoremap « :<c-u>Wheel<space>
+	nmap « <plug>(wheel-prompt-read-session)
 
 	nnoremap <silent> <c-l> <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
 	inoremap <silent> <c-l> <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a

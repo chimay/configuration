@@ -105,7 +105,6 @@ bind index Z collapse-all
 bind index * link-threads
 bind index '#' break-thread
 
-
 # Affichage {{{2
 
 bind index <return> display-message
