@@ -33,7 +33,6 @@ set search_context=7
 #  {{{ Date (date_format)
 # ------------------------------------------------------------------------
 
-#set locale="en_US.UTF-8"
 
 #set date_format="%a %d %b %Y, %H:%M"
 set date_format="%a %d %b %H:%M"

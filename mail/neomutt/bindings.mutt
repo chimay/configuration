@@ -15,6 +15,8 @@ unbind *
 
 bind generic \eh help
 
+bind generic W what-key
+
 bind generic \cL refresh
 
 bind generic q exit
@@ -82,6 +84,8 @@ bind generic ! shell-escape
 # Index {{{1
 
 bind index \eh help
+
+bind index W what-key
 
 bind index L show-log-messages
 
@@ -170,7 +174,6 @@ bind index <backtab> previous-thread
 bind index + next-subthread
 bind index - previous-subthread
 
-
 # Recherche {{{2
 
 bind index / search
@@ -179,13 +182,11 @@ bind index ? search-reverse
 bind index n search-next
 bind index N search-opposite
 
-
 # Réception {{{2
 
 # voir macro
 
 bind index \eg fetch-mail
-
 
 # Envoi {{{2
 
@@ -306,6 +307,8 @@ bind index | pipe-message
 # Pager {{{1
 
 bind pager \eh help
+
+bind pager W what-key
 
 bind pager \cL redraw-screen
 

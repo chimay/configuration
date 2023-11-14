@@ -55,8 +55,10 @@
 bind index @ noop
 bind pager @ noop
 
-
 # Recharge la configuration {{{1
+
+macro index \er '<enter-command>source $my_muttroot/neomuttrc<enter>'
+macro pager \er '<enter-command>source $my_muttroot/neomuttrc<enter>'
 
 macro index @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
 macro pager @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
@@ -65,7 +67,6 @@ macro pager @@ '<enter-command>source $my_muttroot/neomuttrc<enter>'
 
 macro index @c '<enter-command>set message_cache_clean=yes<enter>'
 macro pager @c '<enter-command>set message_cache_clean=yes<enter>'
-
 
 # Impression {{{1
 
@@ -212,7 +213,6 @@ bind pager U noop
 
 macro index,pager U  "<pipe-message>run-urlscan.sh<enter>" 'follow links with urlscan'
 macro attach,compose U  "<pipe-entry>run-urlscan.sh<enter>" 'follow links with urlscan'
-
 
 # Ouverture du mail dans un navigateur {{{1
 

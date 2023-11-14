@@ -2,7 +2,7 @@
 
 highlight Win             cterm=none            ctermfg=default       ctermbg=none
 
-highlight TabLine         cterm=none            ctermfg=default       ctermbg=none
+highlight TabLine         cterm=none            ctermfg=default       ctermbg=232
 "highlight TabLineSel      cterm=reverse,bold	ctermfg=default       ctermbg=none
 highlight TabLineSel      cterm=none			ctermfg=3		      ctermbg=none
 

@@ -829,7 +829,8 @@ special-keys=["End"]
 keys=["p"]
 
 # default=["Left"]
-special-keys=["Backtab"]
+#special-keys=["Backtab"]
+special-keys=["Backspace2", "Backtab"]
 
 [input.main-next-feed]
 # Go to next feed

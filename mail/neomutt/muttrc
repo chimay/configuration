@@ -201,7 +201,7 @@ set history_file=~/racine/hist/neomutt/history
 
 #  Présentation {{{1
 
-source $my_muttroot/presentation.mutt
+source $my_muttroot/display.mutt
 
 #  Courriels {{{1
 
