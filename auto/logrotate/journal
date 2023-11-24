@@ -1,6 +1,6 @@
 # vim: set filetype=conf :
 
-include /home/david/racine/config/auto/logrotate/defaut
+include /home/user_name/racine/config/auto/logrotate/defaut
 
-/home/david/log/* {}
-/home/david/log/polybar/* {}
+/home/user_name/log/* {}
+/home/user_name/log/polybar/* {}

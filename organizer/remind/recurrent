@@ -3,10 +3,10 @@
 REM mon tue wed thu fri AT 7:34 MSG Réveiller les enfants
 
 REM monday AT 11:00 +30 MSG Synchronisation imap
-REM tuesday AT 11:00 +30 MSG Mise à jour ordinateur
+REM wednesday AT 11:00 +30 MSG Mise à jour ordinateur
 
 REM sunday AT 19:30 +30 MSG Synchroniser la clé usb
-REM thursday AT 19:30 +30 MSG Synchroniser la clé usb
+REM friday AT 9:30 +30 MSG Synchroniser la clé usb
 
 REM 2019-12-21 *91 AT 11:00 +30 MSG Pack essentiel
 

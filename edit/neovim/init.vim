@@ -779,6 +779,7 @@ nnoremap <f2>c <cmd>tabedit ~/racine/plain/organize/cronos.org<cr>
 nnoremap <f2>d <cmd>tabedit ~/racine/plain/orgmode/dream.org <bar> normal Gzx<cr>
 nnoremap <f2>f <cmd>tabedit ~/racine/plain/orgmode/fix.org <bar> normal ggzx<cr>
 nnoremap <f2>l <cmd>tabedit ~/racine/log/ship/captain.md <bar> normal ggzx<cr>
+nnoremap <f2>t <cmd>tabedit ~/racine/plain/orgmode/tasks.org <bar> normal ggzx<cr>
 
 command! -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/neovim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
@@ -1064,8 +1065,7 @@ nnoremap zo zCzO
 " Insertion {{{2
 
 " Date
-inoremap <d-d> <c-r>=strftime("%d %B %Y")<cr>
-
+inoremap <d-d> <c-r>=strftime("%a %d %b %Y")<cr>
 
 "  Complétion {{{2
 

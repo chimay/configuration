@@ -32,8 +32,7 @@ set -g focus-events on
 # Titre {{{1
 
 set -g set-titles on
-set -g set-titles-string 'tmux:#{pane_title}'
-#set -g set-titles-string 'tmux:#{pane_id}'
+set -g set-titles-string '#{pane_title}'
 
 # Variables d’environnement {{{1
 

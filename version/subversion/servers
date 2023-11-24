@@ -6,7 +6,6 @@
 ###   http-proxy-host            Proxy host for HTTP connection
 ###   http-proxy-port            Port number of proxy host service
 ###   http-proxy-username        Username for auth to proxy service
-###   http-proxy-password        Password for auth to proxy service
 ###   http-proxy-exceptions      List of sites that do not use proxy
 ###   http-timeout               Timeout for HTTP requests in seconds
 ###   http-compression           Whether to compress HTTP requests
@@ -19,18 +18,15 @@
 ###   ssl-authority-files        List of files, each of a trusted CA
 ###   ssl-trust-default-ca       Trust the system 'default' CAs
 ###   ssl-client-cert-file       PKCS#12 format client certificate file
-###   ssl-client-cert-password   Client Key password, if needed.
 ###   ssl-pkcs11-provider        Name of PKCS#11 provider to use.
 ###   http-library               Which library to use for http/https
 ###                              connections.
 ###   http-bulk-updates          Whether to request bulk update
 ###                              responses or to fetch each file
 ###                              in an individual request. 
-###   store-passwords            Specifies whether passwords used
 ###                              to authenticate against a
 ###                              Subversion server may be cached
 ###                              to disk in any way.
-###   store-plaintext-passwords  Specifies whether passwords may
 ###                              be cached on disk unencrypted.
 ###   store-ssl-client-cert-pp   Specifies whether passphrase used
 ###                              to authenticate against a client
@@ -41,25 +37,14 @@
 ###                              passphrases may be cached on disk
 ###                              unencrypted (i.e., as plaintext).
 ###   store-auth-creds           Specifies whether any auth info
-###                              (passwords, server certs, etc.)
 ###                              may be cached to disk.
 ###   username                   Specifies the default username.
 ###
-### Set store-passwords to 'no' to avoid storing passwords on disk
-### in any way, including in password stores.  It defaults to
-### 'yes', but Subversion will never save your password to disk in
 ### plaintext unless explicitly configured to do so.
-### Note that this option only prevents saving of *new* passwords;
-### it doesn't invalidate existing passwords.  (To do that, remove
 ### the cache files by hand as described in the Subversion book.)
 ###
-### Set store-plaintext-passwords to 'no' to avoid storing
-### passwords in unencrypted form in the auth/ area of your config
 ### directory. Set it to 'yes' to allow Subversion to store
-### unencrypted passwords in the auth/ area.  The default is
 ### 'ask', which means that Subversion will ask you before
-### saving a password to disk in unencrypted form.  Note that
-### this option has no effect if either 'store-passwords' or 
 ### 'store-auth-creds' is set to 'no'.
 ###
 ### Set store-ssl-client-cert-pp to 'no' to avoid storing ssl
@@ -120,17 +105,14 @@
 # http-proxy-host = proxy1.some-domain-name.com
 # http-proxy-port = 80
 # http-proxy-username = blah
-# http-proxy-password = doubleblah
 # http-timeout = 60
 # neon-debug-mask = 130
-# store-plaintext-passwords = no
 # username = harry
 
 ### Information for the second group:
 # [othergroup]
 # http-proxy-host = proxy2.some-domain-name.com
 # http-proxy-port = 9000
-# No username and password for the proxy, so use the defaults below.
 
 ### You can set default parameters in the 'global' section.
 ### These parameters apply if no corresponding parameter is set in
@@ -140,7 +122,6 @@
 ### information in the 'global' section and not bother with
 ### 'groups' or any other sections.
 ###
-### Most people might want to configure password caching
 ### parameters here, but you can also configure them per server
 ### group (per-group settings override global settings).
 ###
@@ -157,14 +138,10 @@
 # http-proxy-host = defaultproxy.whatever.com
 # http-proxy-port = 7000
 # http-proxy-username = defaultusername
-# http-proxy-password = defaultpassword
 # http-compression = no
 # No http-timeout, so just use the builtin default.
 # No neon-debug-mask, so neon debugging is disabled.
 # ssl-authority-files = /path/to/CAcert.pem;/path/to/CAcert2.pem
 #
-# Password / passphrase caching parameters:
-# store-passwords = no
 # store-ssl-client-cert-pp = no
-# store-plaintext-passwords = no
 # store-ssl-client-cert-pp-plaintext = no

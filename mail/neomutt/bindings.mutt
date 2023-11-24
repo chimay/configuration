@@ -93,13 +93,13 @@ bind index L show-log-messages
 
 bind index . mailbox-list
 
-bind index ù next-unread-mailbox
+# ne fonctionne plus, voir macros
+#bind index ù next-unread-mailbox
 
-bind index w sync-mailbox
+#bind index w sync-mailbox
 
 bind index c change-folder
 bind index \ec change-folder-readonly
-
 
 # Threads {{{2
 
@@ -125,7 +125,6 @@ bind index ét limit-current-thread
 
 bind index o sort-mailbox
 bind index O sort-reverse
-
 
 # Mouvement {{{2
 

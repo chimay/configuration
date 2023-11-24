@@ -265,13 +265,15 @@ source $RACINE_ZSH/couleurs.zsh
 
 # Go {{{2
 
-export GOPATH=~/racine/prolang/compiles/go
+export GOPATH=~/racine/prolang/compiled/go
+
+# Rust {{{2
+
+export CARGO_HOME=~/.cargo
 
 # Linuxbrew {{{2
 
 export HOMEBREW_CC=gcc
-
-
 
 # Réseau {{{1
 

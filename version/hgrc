@@ -2,7 +2,7 @@
 
 [ui]
 
-username = remi.dore@protonmail.com
+username = user_name@mail_server.com
 merge = vimdiff
 ignore.general = ~/racine/config/version/hgignore
 

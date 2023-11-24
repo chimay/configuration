@@ -159,7 +159,9 @@ fun! biblio#text_to_password ()
 	silent! % substitute/e/3/g
 	silent! % substitute/g/9/g
 	silent! % substitute/i/1/g
+	silent! % substitute/l/£/g
 	silent! % substitute/o/0/g
+	silent! % substitute/s/$/g
 endfun
 
 " ---- windows & tabs

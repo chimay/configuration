@@ -1,7 +1,7 @@
 # vim: set filetype=conf :
 
-include /home/david/racine/config/auto/logrotate/copie
+include /home/user_name/racine/config/auto/logrotate/copie
 
-/home/david/data/$HOST/cmdline/zsh/*.zsh {}
+/home/user_name/data/$HOST/cmdline/zsh/*.zsh {}
 
-/home/david/data/$HOST/edit/vim/info/*.info {}
+/home/user_name/data/$HOST/edit/vim/info/*.info {}

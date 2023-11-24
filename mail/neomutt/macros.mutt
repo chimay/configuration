@@ -49,7 +49,6 @@
 #
 # 	~/racine/config/mail/neomutt/bindings.mutt
 
-
 # Nettoyage du préfixe {{{1
 
 bind index @ noop
@@ -71,7 +70,6 @@ macro pager @c '<enter-command>set message_cache_clean=yes<enter>'
 # Impression {{{1
 
 macro index,pager @p '<pipe-message>lp -o number-up=2 -o Duplex=DuplexTumble'
-
 
 # Exécution d’une fonction {{{1
 
@@ -115,12 +113,16 @@ macro pager ^ '<change-folder>!<enter>'
 macro index $ '<change-folder>><enter>'
 macro pager $ '<change-folder>><enter>'
 
+macro index ù '<change-folder><enter>'
 
 # Réception du courrier {{{1
 
 macro   index   \eg   "!getmail >> ~/log/getmail.log 2>> ~/log/getmail.err<return>"
 macro   pager   \eg   "!getmail >> ~/log/getmail.log 2>> ~/log/getmail.err<return>"
 
+# Sauver la boîte {{{1
+
+macro index w <sync-mailbox><sort-mailbox>t
 
 # Sélection (tag) {{{1
 

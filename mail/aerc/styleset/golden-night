@@ -1,0 +1,80 @@
+#
+# aerc golden night, base on default style
+#
+# This styleset uses the terminal defaults as its base.
+# More information on how to configure the styleset can be found in
+# the aerc-stylesets(7) manpage. Please read the manual before
+# modifying or creating a styleset.
+
+# Uncomment these two lines to reset all attributes and start from scratch.
+*.default=true
+*.normal=true
+
+*.selected.reverse=toggle
+
+title.reverse=true
+#header.bold=true
+header.fg=3
+
+#*error.bold=true
+*error.fg=1
+warning.fg=yellow
+success.fg=green
+
+#statusline*.default=true
+statusline_default.bold=true
+statusline_default.reverse=true
+#statusline_error.fg=red
+#statusline_error.reverse=true
+#statusline_warning.fg=yellow
+#statusline_warning.reverse=true
+
+msglist_default.selected.bold=true
+msglist_default.selected.reverse=true
+msglist_unread.bold=false
+#msglist_deleted.fg=gray
+msglist_deleted.dim=true
+msglist_flagged.fg=9
+msglist_thread_folded.default=true
+msglist_thread_folded.normal=true
+#msglist_result.fg=green
+msglist_pill.reverse=true
+
+dirlist_unread.bold=false
+
+part_mimetype.bold=true
+
+#part_mimetype.dim=true
+#part_mimetype.selected.dim=false
+#part_filename.selected.bold=true
+
+completion_default.selected.reverse=true
+completion_default.selected.bold=true
+completion_pill.reverse=true
+
+tab.reverse=true
+tab.bold=true
+
+border.reverse = true
+border.bold = true
+
+selector_focused.reverse=true
+#selector_chooser.bold=true
+
+[viewer]
+header.bold=true
+url.default=true
+url.normal=true
+url.fg=9
+quote_*.dim=true
+signature.dim=true
+
+#url.underline=true
+#header.bold=true
+#diff_meta.bold=true
+#diff_chunk.dim=true
+#diff_add.fg=2
+#diff_del.fg=1
+#quote_*.fg=1
+#quote_*.dim=true
+#quote_1.dim=false

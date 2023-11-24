@@ -279,8 +279,6 @@ set sort_re=no
 
 set collapse_unread=yes
 
-
-
 #  Tri {{{1
 
 set sort_alias="alias"
@@ -364,7 +362,7 @@ set folder='~/racine/mail'
 # Boîtes particulières {{{2
 
 set spoolfile='=system/inbox'
-set mbox='/var/spool/mail/user_name'
+set mbox='/var/spool/mail/david'
 set record=^
 set postponed='=system/postponed'
 
@@ -403,11 +401,9 @@ unmailboxes *
 
 mailboxes `~/racine/automat/mail-boxes.zsh`
 
-
-
 #  Hooks {{{1
 
-set new_mail_command="~/racine/automat/new-mail.sh %n %u &"
+set new_mail_command="~/racine/automat/neomutt-new-mail.sh %n %u &"
 
 source $my_muttroot/hooks.mutt
 
@@ -586,4 +582,3 @@ set simple_search="~s %s"
 #  Divers {{{1
 
 # set mixmaster = 'mixmaster'
-

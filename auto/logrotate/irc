@@ -1,12 +1,12 @@
 # vim: set filetype=conf :
 
-include /home/david/racine/config/auto/logrotate/defaut
+include /home/user_name/racine/config/auto/logrotate/defaut
 
-/home/david/log/irc/* {
+/home/user_name/log/irc/* {
 
 }
 
-/home/david/log/irc/freenode/* {
+/home/user_name/log/irc/freenode/* {
 
 	rotate 0
 	monthly

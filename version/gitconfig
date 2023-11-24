@@ -31,9 +31,9 @@ autocorrect = 1
 
 [user]
 
-name = chimay
+name = user_name
 
-email = remi.dore@protonmail.com
+email = user_name@mail_server.com
 
 #signingkey = 9307AC23
 
@@ -193,6 +193,6 @@ tree = ! tree . | less
 
 [github]
 
-user = chimay
+user = user_name
 
 # }}}1

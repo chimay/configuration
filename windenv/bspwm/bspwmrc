@@ -86,6 +86,7 @@ bspc rule -a frescobaldi desktop=artisan
 bspc rule -a Rosegarden desktop=artisan
 bspc rule -a vimiv desktop=artisan
 bspc rule -a Sxiv desktop=artisan
+bspc rule -a feh desktop=artisan
 
 bspc rule -a vlc desktop=entertain
 bspc rule -a wesnoth desktop=entertain

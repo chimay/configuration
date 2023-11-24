@@ -732,7 +732,6 @@ nnoremap <F10> :vsplit!<cr>
 nnoremap <F11> :set millerview! | set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"<cr>
 nnoremap <F12> :set lsview!<cr>
 
-
 " Onglets {{{2
 
 nnoremap t :tabnew<cr>

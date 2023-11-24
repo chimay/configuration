@@ -87,7 +87,7 @@ set spool_check_up_on_nov 0
 
 % max number of articles before slrn ask you to download headers
 % default is 100
-set query_read_group_cutoff 300
+set query_read_group_cutoff 1200
 
 % if unlike 0, add a space between the quote_string and the test not
 % quoted, for better readability
@@ -417,8 +417,10 @@ setkey group help             "?"      % Display a help screen
 
 setkey group line_down        "j"
 setkey group line_up          "k"
-setkey group line_down        "n"
-setkey group line_up          "p"
+setkey group line_down        "l"
+setkey group line_up          "h"
+setkey group line_down        "$"
+setkey group line_up          "^"
 setkey group page_down        "^F"     % Scroll to the next page
 setkey group page_up          "^B"    % Scroll to the previous page
 setkey group bob              "g"    % Go to the top of the list
@@ -434,7 +436,7 @@ setkey group unsubscribe      "u"      % Unsubscribe from the current newsgroup
 setkey group save_newsrc      "w"      % Force a save of the newsrc file
 setkey group post             "P"      % Post an article
 
-setkey group toggle_hidden    "h"      % Toggle display of hidden groups
+setkey group toggle_hidden    "H"      % Toggle display of hidden groups
 setkey group toggle_list_all  "a"      % Toggle listing of unsubscribed groups
 
 setkey group quit             "q"      % Quit slrn
@@ -444,17 +446,17 @@ setkey article help                    "?"	% Display help screen
 
 setkey article header_line_down      "l"	% Move to next article
 setkey article header_line_up        "h"	% Move to previous article
-setkey article header_line_down      "n"	% Move to next article
-setkey article header_line_up        "p"	% Move to previous article
-setkey article next                    "\en"  % next unread article
-setkey article previous                "\ep"  % previous unread article
+setkey article header_line_down      "$"	% Move to next article
+setkey article header_line_up        "^"	% Move to previous article
+setkey article next                    "n"  % next unread article
+setkey article previous                "p"  % previous unread article
 
-setkey article hide_article         "µ"		% Hide/Show the article window
+setkey article hide_article         "i"		% Hide/Show the article window
 setkey article toggle_collapse_threads "z"	% Collapse/Uncollapse thread
 setkey article toggle_headers          "H"	% Full headers (on/off)
 setkey article enlarge_article_window  "-"	% Enlarge the article window
 setkey article shrink_article_window   "+"	% Shrink the article window
-setkey article zoom_article_window     "^"	% Maximize/Unmaximize article
+setkey article zoom_article_window     "Z"	% Maximize/Unmaximize article
 setkey article toggle_quotes           "<"	% Display quoted lines (on/off)
 setkey article toggle_signature        "\e-"	% Show signature (on/off)
 

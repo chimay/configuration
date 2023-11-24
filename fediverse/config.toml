@@ -1,0 +1,55 @@
+# Keybindings
+#
+# Navigation
+# j — move down
+# k — move up
+# space — select the highlighted item
+# c — view the creator of the highlighted item
+# r — view the recipient of the highlighted item (e.g. the group it was posted to)
+# a — view the actor of the activity (e.g. view the retweeter of a retweet)
+# h — move back in your browser history
+# l — move forward in your browser history
+# g — move to the expanded item (i.e. move to the current OP)
+# ctrl+c — exit the program
+# 
+# Media
+# p — open the highlighted user's profile picture
+# b — open the highlighted user's banner
+# o — open the content of a post itself (e.g. open the video associated with a video post)
+# number keys — open a link within the highlighted text
+
+[feeds]
+# the entries will be spliced together
+# in chronological order, like an RSS reader
+linux = [ # open with `servitor feed linux`
+    "@torvalds@social.kernel.org",
+    "@luke@videos.lukesmith.xyz",
+    "@thelinuxexperiment@tilvids.com",
+]
+dnd = [ # open with `servitor feed dnd`
+    "@rpgmemes@ttrpg.network",
+    "@dnd@lemmy.world",
+]
+
+[style.colors]
+primary = "#5b3c11"
+error = "#872e30"
+highlight = "#88421d"
+code_background = "#120707"
+
+[network]
+preload_amount = 7 # the number of posts to load in above and below the highlighted post
+timeout_seconds = 12
+cache_size = 128 # the number of JSON responses the cache can hold
+
+[media]
+hook = [
+    "sh", "-c",
+    '''
+        if test "$2" = "video"; then exec mpv --keep-open=yes "$0"; fi
+        if test "$1" = "image/gif"; then exec mpv --keep-open=yes "$0"; fi
+        if test "$2" = "image"; then exec feh --scale-down --image-bg black "$0"; fi
+        exec firefox "$0"
+    ''',
+    "%url", "%mimetype", "%supertype"
+]

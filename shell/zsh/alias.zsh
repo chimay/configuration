@@ -324,6 +324,7 @@ alias à=send-mail
 
 alias nm=neomutt
 alias M=run-neomutt.zsh
+alias A=aerc
 
 alias £=abook
 

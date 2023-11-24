@@ -5,18 +5,12 @@
 
 ### Section for authentication and authorization customizations.
 [auth]
-### Set password stores used by Subversion. They should be
 ### delimited by spaces or commas. The order of values determines
-### the order in which password stores are used.
-### Valid password stores:
 ###   gnome-keyring        (Unix-like systems)
 ###   kwallet              (Unix-like systems)
 ###   gpg-agent            (Unix-like systems)
 ###   keychain             (Mac OS X)
 ###   windows-cryptoapi    (Windows)
-# password-stores = gpg-agent,gnome-keyring,kwallet
-### To disable all password stores, use an empty list:
-# password-stores =
 ###
 ### Set KWallet wallet used by Subversion. If empty or unset,
 ### then the default network wallet will be used.
@@ -34,11 +28,9 @@
 # ssl-client-cert-file-prompt = no
 ###
 ### The rest of the [auth] section in this file has been deprecated.
-### Both 'store-passwords' and 'store-auth-creds' can now be
 ### specified in the 'servers' file in your config directory
 ### and are documented there. Anything specified in this section 
 ### is overridden by settings specified in the 'servers' file.
-# store-passwords = no
 # store-auth-creds = no
 
 ### Section for configuring external helper applications.
