@@ -854,17 +854,11 @@ nnoremap <f3>o <cmd>call biblio#toggle_readonly()<cr>
 nnoremap <f3>t <cmd>tabnew<cr>
 nnoremap <f3>T :tabedit<space>
 
-nnoremap <c-left> gT
-nnoremap <c-right> gt
-
 nnoremap <f7>T <cmd>tabfirst<cr>
 nnoremap <f8>T <cmd>tablast<cr>
 
 nnoremap <f7>t <cmd>tabmove -1<cr>
 nnoremap <f8>t <cmd>tabmove +1<cr>
-
-nnoremap <c-s-left> <cmd>tabmove -1<cr>
-nnoremap <c-s-right> <cmd>tabmove +1<cr>
 
 nnoremap <F3>= <cmd>call biblio#equal_windows()<cr>
 
@@ -1559,7 +1553,6 @@ syntax on
 "  Tous les plugins restant {{{1
 
 source ~/racine/config/edit/neovim/paquet/packager.vim
-
 source ~/racine/config/edit/neovim/paquet/preload.vim
 
 " on charge tout dans start, pour pouvoir utiliser certaines fonctions
@@ -1572,11 +1565,23 @@ packloadall
 
 source ~/racine/config/edit/neovim/paquet/postload.vim
 
+" Maps remplaçant ceux des plugins {{{1
+
+nnoremap <c-left> <c-w>W
+nnoremap <c-right> <c-w>w
+
+nnoremap <c-pageup> gT
+nnoremap <c-pagedown> gt
+
+nnoremap <c-home> <cmd>tabfirst<cr>
+nnoremap <c-end> <cmd>tablast<cr>
+
+nnoremap <c-s-pageup> <cmd>tabmove -1<cr>
+nnoremap <c-s-pagedown> <cmd>tabmove +1<cr>
 
 " Auto-commandes pour plugins {{{1
 
 source ~/racine/config/edit/neovim/paquet/autocmd-plugin.vim
-
 
 " Lua {{{1
 

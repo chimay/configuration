@@ -76,8 +76,6 @@ fun! PackagerInit ()
 	" -- plugins with deps
 endfun
 
-" }}}1
-
 " Functions {{{1
 
 fun! PackagerInstall (...)
@@ -100,8 +98,6 @@ fun! PackagerStatus ()
 	call packager#status()
 endfun
 
-" }}}1
-
 " Commands {{{1
 
 command! -nargs=* PackagerInstall call PackagerInstall(<f-args>)
@@ -113,5 +109,3 @@ nnoremap <F12>i <cmd>PackagerInstall<cr>
 nnoremap <F12>u <cmd>PackagerUpdate<cr>
 nnoremap <F12>c <cmd>PackagerClean<cr>
 nnoremap <F12>s <cmd>PackagerStatus<cr>
-
-" }}}1

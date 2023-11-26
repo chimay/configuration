@@ -10,7 +10,6 @@
 "
 " nnoremap bidule <plug>PluginBidule
 
-
 " Touches pour maps / préfixes de maps {{{1
 
 " <d-...>
@@ -72,7 +71,6 @@ let NERDCreateDefaultMappings = 0
 
 map <d-;> <plug>NERDCommenterToggle
 
-
 "  TComment (tomtom/tcomment_vim) {{{2
 
 let g:tcomment#blank_lines = 0
@@ -88,15 +86,11 @@ let g:tcomment_types = {
 	\ 'vim': '" %s'
 \}
 
-
-
 " Copier & Coller {{{1
 
 " Highlighted Yank {{{2
 
 let g:highlightedyank_highlight_duration = 1000
-
-
 
 " Paires : (), [], {}, <>, <a></a>, etc {{{1
 
@@ -117,15 +111,11 @@ let g:AutoPairsMapBS = 0
 let g:AutoPairsMapCR = 0
 let g:AutoPairsMapSpace = 0
 
-
 " Mappings {{{3
 
 let g:AutoPairsShortcutToggle = '<F11>('
 
 imap <s-space>  <C-R>=AutoPairsSpace()<CR>
-
-
-
 
 " Mouvement {{{1
 
@@ -174,7 +164,6 @@ omap T <Plug>Sneak_T
 nmap zl <Plug>SneakLabel_s
 nmap zL <Plug>SneakLabel_S
 
-
 " Options {{{3
 
 let g:sneak#label = 0
@@ -198,9 +187,6 @@ highlight SneakScope cterm=reverse
 " " Needed if a plugin sets the colorscheme dynamically:
 " autocmd User SneakLeave highlight clear Sneak
 
-
-
-
 " Espaces {{{1
 
 " DeleteTrailingWhitespace (DeleteTrailingWhitespace) {{{2
@@ -211,8 +197,6 @@ let g:DeleteTrailingWhitespace_Action = 'delete'
 "let g:DeleteTrailingWhitespace_Action = 'ask'
 
 let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
-
-
 
 " Exploration multiple {{{1
 
@@ -404,8 +388,6 @@ let g:utl_opt_highlight_urls='no'
 cmap <m-tab> <Plug>CmdlineCompleteBackward
 cmap <s-tab> <Plug>CmdlineCompleteForward
 
-
-
 " Objets texte {{{1
 
 " Targets (wellle/targets.vim) {{{2
@@ -415,8 +397,6 @@ let g:targets_nl = 'nN'
 let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr rr ll lb ar ab lB Ar aB Ab AB rb al rB Al bb aa bB Aa BB AA'
 let g:targets_jumpRanges = 'bb bB BB aa Aa AA'
 let g:targets_gracious = 1
-
-
 
 " Manipulation de lignes {{{1
 
@@ -428,7 +408,6 @@ nmap cx <Plug>(Exchange)
 vmap X <Plug>(Exchange)
 nmap cxc <Plug>(ExchangeClear)
 nmap cxx <Plug>(ExchangeLine)
-
 
 " LineJuggler  {{{2
 
@@ -456,8 +435,6 @@ let g:increment_activator_filetype_candidates = {
   \     ['pick', 'reword', 'edit', 'squash', 'fixup', 'exec'],
   \   ],
   \ }
-
-
 
 " Organisation {{{1
 
@@ -564,7 +541,6 @@ if ! exists("g:organ_loaded")
 	imap ↓    <plug>(organ-unicode)
 endif
 
-
 " Table mode {{{2
 
 nnoremap <d-&> <cmd>TableModeToggle<cr>
@@ -575,7 +551,6 @@ let g:table_mode_always_active = 0
 let g:table_mode_corner = '+'
 " table à la markdown
 "let g:table_mode_corner = '|'
-
 
 " Terminal {{{1
 
