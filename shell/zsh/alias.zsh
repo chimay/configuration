@@ -402,7 +402,7 @@ alias alsamix='alsamixer -c 0'
 alias pm=pulsemixer
 alias pmt=ncpamixer
 
-alias µ=mpv
+alias µ='mpv --no-video'
 
 alias mpt=ncmpcpp
 

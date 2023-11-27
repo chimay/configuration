@@ -426,6 +426,10 @@ nnoremap ZQ :qa!<cr>
 
 nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
 
+nnoremap \n :new <bar> only<cr>
+nnoremap \e :e <C-R>=expand('%:p:h') . '/' <CR><C-D>
+nnoremap \r :r <C-R>=expand('%:p:h') . '/' <CR><C-D>
+nnoremap \g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 nnoremap \v :tabe ~/racine/config/edit/vim/vimrc<cr>
 
 command -nargs=? -complete=filetype EditSyntaxPlugin
@@ -433,14 +437,8 @@ command -nargs=? -complete=filetype EditSyntaxPlugin
 
 nnoremap <f2>s :<c-u>EditSyntaxPlugin<cr>
 
-nnoremap \n :new <bar> only<cr>
-
-nnoremap \g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
-
-nnoremap \e :e <C-R>=expand('%:p:h') . '/' <CR><C-D>
-nnoremap \r :r <C-R>=expand('%:p:h') . '/' <CR><C-D>
-
-nnoremap \x :call biblio#text_to_password()<cr>
+nnoremap \m <cmd>make -k<cr>
+nnoremap \x <cmd>call biblio#text_to_password()<cr>
 
 " Arguments {{{2
 
@@ -1059,6 +1057,23 @@ packloadall
 " doivent se situer après packloadall
 
 source ~/racine/config/edit/vim/paquet/postload.vim
+
+" Maps remplaçant ceux des plugins {{{1
+
+nnoremap <c-left> <c-w>W
+nnoremap <c-right> <c-w>w
+
+nnoremap <c-pageup> gT
+nnoremap <c-pagedown> gt
+
+nnoremap <c-home> <cmd>tabfirst<cr>
+nnoremap <c-end> <cmd>tablast<cr>
+
+nnoremap <s-pageup> <cmd>tabmove -1<cr>
+nnoremap <s-pagedown> <cmd>tabmove +1<cr>
+
+" nnoremap <c-s-pageup> <cmd>tabmove -1<cr>
+" nnoremap <c-s-pagedown> <cmd>tabmove +1<cr>
 
 "  Auto-commandes pour plugins {{{1
 

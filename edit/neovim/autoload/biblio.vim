@@ -283,6 +283,20 @@ endfun
 
 " ---- disc operations
 
+fun! biblio#make_ogg ()
+	" Make ogg file (eg from lilypond file)
+	let filename = fnamemodify(expand('%'), ':p:r')
+	let oggname = filename .. '.ogg'
+	execute 'make -k' oggname
+endfun
+
+fun! biblio#make_mp3 ()
+	" Make mp3 file (eg from lilypond file)
+	let filename = fnamemodify(expand('%'), ':p:r')
+	let mp3name = filename .. '.mp3'
+	execute 'make -k' mp3name
+endfun
+
 fun! biblio#full_path (...)
 	" Return filename full path
 	" Default : current file name

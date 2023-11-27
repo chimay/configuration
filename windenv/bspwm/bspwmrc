@@ -75,6 +75,7 @@ bspc rule -a Min desktop=browser
 bspc rule -a Thunderbird desktop=browser
 
 bspc rule -a Zathura desktop=office
+bspc rule -a Apvlv desktop=office
 bspc rule -a libreoffice-startcenter desktop=office
 
 bspc rule -a GeoGebra desktop=artisan
@@ -105,6 +106,7 @@ bspc rule -a java-lang-Thread desktop=misc
 # Tiled {{{2
 
 bspc rule -a Emacs  state=tiled
+bspc rule -a Zathura  state=tiled
 
 # Floating {{{2
 

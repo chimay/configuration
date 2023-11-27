@@ -647,7 +647,6 @@ set makeprg='make'
 set makeef=
 " set makeef='make-errors-##'
 
-
 "  Maps {{{1
 
 " Idées de touches pour maps / préfixes de maps {{{2
@@ -774,6 +773,10 @@ nnoremap ZQ <cmd>qa!<cr>
 " Fichier alternatif aussi disponible dans le registre #
 nnoremap <C-G> <cmd>let @" = expand("%:p:~")<cr>2<C-G>
 
+nnoremap <f2>n <cmd>new <bar> only<cr>
+nnoremap <f2>e :e <c-r>=expand('%:p:h') . '/' <cr>
+nnoremap <f2>r :r <c-r>=expand('%:p:h') . '/' <cr>
+nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 nnoremap <f2>v <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
 nnoremap <f2>c <cmd>tabedit ~/racine/plain/organize/cronos.org<cr>
 nnoremap <f2>d <cmd>tabedit ~/racine/plain/orgmode/dream.org <bar> normal Gzx<cr>
@@ -786,19 +789,14 @@ command! -nargs=? -complete=filetype EditSyntaxPlugin
 
 nnoremap <f2>s <cmd>EditSyntaxPlugin<cr>
 
-nnoremap <f3>n <cmd>new <bar> only<cr>
-
-nnoremap <kEnter> <cmd>call biblio#write_all()<cr>
-
-nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
-
-nnoremap <f2>e :e <c-r>=expand('%:p:h') . '/' <cr>
-nnoremap <f2>r :r <c-r>=expand('%:p:h') . '/' <cr>
-
 " figlet banner
 nnoremap <f2>b <cmd>call biblio#figlet()<cr>
 
-nnoremap <f3>x :call biblio#text_to_password()<cr>
+nnoremap <f3>m :make -k<space>
+nnoremap <f3>o <cmd>call biblio#make_ogg()<cr>
+nnoremap <f3>x <cmd>call biblio#text_to_password()<cr>
+
+nnoremap <kEnter> <cmd>call biblio#write_all()<cr>
 
 " Arguments {{{2
 
@@ -828,9 +826,7 @@ nnoremap <f3>s <cmd>%sort<cr>
 
 " Lecture seule {{{3
 
-nnoremap <f3>o <cmd>call biblio#toggle_readonly()<cr>
-
-
+nnoremap <f3>r <cmd>call biblio#toggle_readonly()<cr>
 
 " Fenêtres {{{2
 
@@ -1576,8 +1572,11 @@ nnoremap <c-pagedown> gt
 nnoremap <c-home> <cmd>tabfirst<cr>
 nnoremap <c-end> <cmd>tablast<cr>
 
-nnoremap <c-s-pageup> <cmd>tabmove -1<cr>
-nnoremap <c-s-pagedown> <cmd>tabmove +1<cr>
+nnoremap <s-pageup> <cmd>tabmove -1<cr>
+nnoremap <s-pagedown> <cmd>tabmove +1<cr>
+
+" nnoremap <c-s-pageup> <cmd>tabmove -1<cr>
+" nnoremap <c-s-pagedown> <cmd>tabmove +1<cr>
 
 " Auto-commandes pour plugins {{{1
 

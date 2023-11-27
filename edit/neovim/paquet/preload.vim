@@ -308,26 +308,29 @@ if ! exists("g:wheel_loaded")
 
 	set tabline=%!wheel#status#tabline()
 
-	nnoremap <tab> :<c-u>Wheel<space>
-	" altgr-w
-	nmap « <plug>(wheel-prompt-read-session)
+	nnoremap <tab>            :<c-u>Wheel<space>
+	" altgr-r
+	nmap ¶                    <plug>(wheel-prompt-read-session)
 
-	nnoremap <silent> <c-l> <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
-	inoremap <silent> <c-l> <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
+	nnoremap <silent> <c-l>   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
+	inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 
-	nmap <silent> § <plug>(wheel-dedibuf-index-tree)
-	nmap <silent> ù <plug>(wheel-dedibuf-frecency)
-	nmap <silent> µ <plug>(wheel-dedibuf-buffer-all)
-	nmap <silent> £ <plug>(wheel-dedibuf-tabwin-tree)
-	nmap <silent> é <plug>(wheel-dedibuf-grep)
-	nmap <silent> è <plug>(wheel-dedibuf-narrow-circle)
-	nmap <silent> à <plug>(wheel-dedibuf-narrow-operator)
-	vmap <silent> à <plug>(wheel-dedibuf-narrow)
+	nmap <silent> §           <plug>(wheel-dedibuf-index-tree)
+	nmap <silent> ù           <plug>(wheel-dedibuf-frecency)
+	nmap <silent> µ           <plug>(wheel-dedibuf-buffer-all)
+	nmap <silent> £           <plug>(wheel-dedibuf-tabwin-tree)
+	nmap <silent> é           <plug>(wheel-dedibuf-grep)
+	nmap <silent> è           <plug>(wheel-dedibuf-narrow-circle)
+	nmap <silent> à           <plug>(wheel-dedibuf-narrow-operator)
+	vmap <silent> à           <plug>(wheel-dedibuf-narrow)
 
-	nmap <silent> <c-bs>     <plug>(wheel-prompt-outline)
+	nmap <silent> <m-ù>       <plug>(wheel-dedibuf-mru)
+	nmap <silent> <m-µ>       <plug>(wheel-dedibuf-buffer)
+
+	nmap <silent> <c-bs>      <plug>(wheel-prompt-outline)
 
 	" altgr-o
-	nmap <silent> œ          <plug>(wheel-prompt-occur)
+	nmap <silent> œ           <plug>(wheel-prompt-occur)
 
 	nmap <silent> <c-p>       <plug>(wheel-prompt-yank-plain-linewise-before)
 	nmap <silent> <c-n>       <plug>(wheel-prompt-yank-plain-linewise-after)
@@ -535,6 +538,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.completion.scores = 0
 	" maps
 	nnoremap <space> :<c-u>Organ<space>
+	nnoremap <c-down> :<c-u>Organ org-to-markdown
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u
 	nmap ↓    <plug>(organ-unicode)

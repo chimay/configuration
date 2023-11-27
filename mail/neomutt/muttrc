@@ -321,7 +321,6 @@ source $my_muttroot/groups.mutt
 
 set query_command="abook --mutt-query '%s'"
 
-
 #  Compression {{{1
 
 # Handler for xz compressed mailboxes
