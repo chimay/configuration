@@ -362,7 +362,7 @@ fileviewer *.pdf
 	\ %pc
 	\ vifmimg clear
 
-filextype *.pdf apvlv %c, zathura %c %i &, xpdf %c
+filextype *.pdf zathura %c %i &, apvlv %c &, xpdf %c &
 
 " Epub
 
@@ -371,7 +371,7 @@ fileviewer *.epub
 	\ %pc
 	\ vifmimg clear
 
-filextype *.epub zathura %c %i &, apvlv %c, xpdf %c
+filextype *.epub zathura %c %i &, apvlv %c &, xpdf %c &
 
 " Djvu
 

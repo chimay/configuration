@@ -327,6 +327,7 @@ compdef '_files -g "*.gz"' zcat
 compdef '_files -g "*.bz *.bz2"' bzcat
 compdef '_files -g "*.tex"' latex
 compdef '_files -g "*.ly"' lilypond
+compdef '_files -g "*.midi"' timidity fluidsynth timidity-segment.sh fluid-player.sh midiplay.sh
 
 # Listes d’arguments {{{3
 

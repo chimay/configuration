@@ -106,10 +106,6 @@ hyper + {Prior,Next}
 hyper + {Left,Down,Up,Right}
 	bspc node -m {west,south,north,east}
 
-# Preselect direction for next new window
-hyper + shift + {Left,Down,Up,Right}
-	bspc node --presel-dir {west,south,north,east}
-
 # Cancel preselection
 hyper + shift + c
 	bspc node --presel-dir cancel
@@ -128,7 +124,7 @@ super + shift + {Left,Up,Down,Right}
 
 # Move floating
 # easier with mouse, see ~/racine/config/windenv/bspwm/bspwmrc
-hyper + alt + shift + {Left,Down,Up,Right}
+hyper + control + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0, 0 20, 0 -20, 20 0}
 
 # Move (window) to desktop
@@ -157,9 +153,16 @@ hyper + shift + greater
 	bspc node @/ -B
 
 # Resize
-# easier with mouse, see ~/racine/config/windenv/bspwm/bspwmrc
-hyper + shift + {Left,Down,Up,Right}
-	bspc node -z {right -20 0, top 0 -20, bottom 0 -20, left -20 0}
+# floating : easier with mouse, see ~/racine/config/windenv/bspwm/bspwmrc
+hyper + control + {h,j,k,l}
+    {bspc node @parent/second -z left -20 0; \
+    bspc node @parent/first -z right -20 0, \
+    bspc node @parent/second -z top 0 +20; \
+    bspc node @parent/first -z bottom 0 +20, \
+    bspc node @parent/first -z bottom 0 -20; \
+    bspc node @parent/second -z top 0 -20, \
+    bspc node @parent/first -z right +20 0; \
+    bspc node @parent/second -z left +20 0}
 
 # Zoom : alternate between the tiled and monocle layout
 hyper + z
@@ -184,7 +187,6 @@ hyper + t ; {Left,Down,Up,Right}
 # Remove one tab from tabbed
 hyper + t ; r
 	bspwm-remove-from-tabbed.sh
-
 
 # Bsp-layout {{{1
 
@@ -263,7 +265,7 @@ hyper + equal
 # Applications {{{1
 
 hyper + {dollar, Return, exclam, comma}
-	{kitty, alacritty, xterm, urxvtc}
+	{kitty, alacritty, xterm -ls zsh, urxvtc}
 
 hyper + t ; {x,u}
 	{tabbed -c xterm -into, tabbed -c urxvtc -embed}
@@ -453,7 +455,6 @@ hyper + s ; plus
 
 hyper + shift + @z
 	sleep 1 ; xset dpms force off
-
 
 # Souris {{{1
 

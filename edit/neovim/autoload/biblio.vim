@@ -283,18 +283,14 @@ endfun
 
 " ---- disc operations
 
-fun! biblio#make_ogg ()
-	" Make ogg file (eg from lilypond file)
-	let filename = fnamemodify(expand('%'), ':p:r')
-	let oggname = filename .. '.ogg'
-	execute 'make -k' oggname
-endfun
-
-fun! biblio#make_mp3 ()
-	" Make mp3 file (eg from lilypond file)
-	let filename = fnamemodify(expand('%'), ':p:r')
-	let mp3name = filename .. '.mp3'
-	execute 'make -k' mp3name
+fun! biblio#chmodexec ()
+	" Make current file executable
+	let filename = fnamemodify(expand('%'), ':p')
+	let chmod = 'chmod +x ' .. filename
+	let output = system(chmod)
+	let list = 'ls -l ' .. filename
+	let info = systemlist(list)[0]
+	echomsg info
 endfun
 
 fun! biblio#full_path (...)
@@ -489,4 +485,38 @@ fun! biblio#publish ()
 		echomsg 'publish : copied' source_tilde '->' destination_tilde
 	endif
 	return returnstring
+endfun
+
+" ---- music
+
+fun! biblio#make_midi ()
+	" Make midi file (eg from lilypond file)
+	let filename = fnamemodify(expand('%'), ':p:r')
+	let midiname = filename .. '.midi'
+	execute 'make -k' midiname
+endfun
+
+fun! biblio#make_ogg ()
+	" Make ogg file (eg from lilypond file)
+	let filename = fnamemodify(expand('%'), ':p:r')
+	let oggname = filename .. '.ogg'
+	execute 'make -k' oggname
+endfun
+
+fun! biblio#make_mp3 ()
+	" Make mp3 file (eg from lilypond file)
+	let filename = fnamemodify(expand('%'), ':p:r')
+	let mp3name = filename .. '.mp3'
+	execute 'make -k' mp3name
+endfun
+
+fun! biblio#display_pdf ()
+	" Display pdf file (eg from lilypond file)
+	let filename = fnamemodify(expand('%'), ':p:r')
+	let pdfname = filename .. '.pdf'
+	execute 'make -k' pdfname
+	let display = 'zathura ' .. pdfname .. '&'
+	echomsg display
+	let output = system(display)
+	echomsg output
 endfun

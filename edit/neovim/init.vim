@@ -793,8 +793,10 @@ nnoremap <f2>s <cmd>EditSyntaxPlugin<cr>
 nnoremap <f2>b <cmd>call biblio#figlet()<cr>
 
 nnoremap <f3>m :make -k<space>
-nnoremap <f3>o <cmd>call biblio#make_ogg()<cr>
-nnoremap <f3>x <cmd>call biblio#text_to_password()<cr>
+nnoremap <f4>m <cmd>call biblio#make_midi()<cr>
+nnoremap <f4>o <cmd>call biblio#make_ogg()<cr>
+nnoremap <f4>x <cmd>call biblio#text_to_password()<cr>
+nnoremap <f4>p <cmd>call biblio#display_pdf()<cr>
 
 nnoremap <kEnter> <cmd>call biblio#write_all()<cr>
 
@@ -939,15 +941,15 @@ inoremap <S-Down> <C-o>gj
 " Echange {{3
 
 " chars
-nnoremap <f4>c xp
-nnoremap <f4>C Xp
+nnoremap <f6>c xp
+nnoremap <f6>C Xp
 " words
-nnoremap <f4>w bdwelp
+nnoremap <f6>w bdwelp
 " lines
-nnoremap <f4>l ddp
-nnoremap <f4>L ddkP
+nnoremap <f6>l ddp
+nnoremap <f6>L ddkP
 " paragraphs
-nnoremap <f4>p {dap}P{
+nnoremap <f6>p {dap}P{
 
 " Signets {{{3
 
@@ -1081,7 +1083,6 @@ cnoremap <C-X><C-D> <C-D>
 " insère le plus long
 cnoremap <C-X><C-L> <C-L>
 
-
 " Déplacement {{{3
 
 " Mot suivant / précédent
@@ -1092,7 +1093,6 @@ cnoremap <m-f> <C-Right>
 " Vers début de ligne
 
 cnoremap <C-A> <C-B>
-
 
 " Remplacer la ligne par le résultat d’une expression {{{3
 
@@ -1105,11 +1105,9 @@ cnoremap <C-A> <C-B>
 
 cnoremap <m-,> <c-r>=expand('%:p:h') . '/'<cr>
 
-
 " Effacer {{{3
 
 cmap <m-d> <c-right><c-w>
-
 
 " Mode ex {{{3
 
@@ -1118,10 +1116,13 @@ cmap <m-d> <c-right><c-w>
 
 nnoremap QQ gQ
 
-
 " Hauteur de la fenêtre de commande {{{3
 
 nnoremap <f3>c :set cmdheight=
+
+" Rendre le fichier exécutable {{{3
+
+nnoremap <f3>C <cmd>call biblio#chmodexec()<cr>
 
 " Ligne ou sélection courante {{{3
 

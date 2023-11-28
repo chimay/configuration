@@ -90,8 +90,7 @@ alias iii=feh
 
 # Fontes
 
-alias fp='fontpreview-ueberzug -f "#5b3c11" -b "#000000"'
-
+alias fntprev='fontpreview-ueberzug -f "#5b3c11" -b "#000000"'
 
 #  Édition {{{1
 
@@ -402,6 +401,10 @@ alias alsamix='alsamixer -c 0'
 alias pm=pulsemixer
 alias pmt=ncpamixer
 
+alias mp=midiplay.sh
+alias tms=timidity-segment.sh
+alias fp=fluid-player.sh
+
 alias µ='mpv --no-video'
 
 alias mpt=ncmpcpp
@@ -546,6 +549,7 @@ alias -s bz2=less
 alias -s zip=less
 alias -s deb=less
 
+alias -s midi=timidity
 alias -s ogg=mpv
 alias -s mp3=mpv
 alias -s flac=mpv

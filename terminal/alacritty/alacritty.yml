@@ -463,6 +463,11 @@ colors:
 #  args:
 #    - --login
 
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working

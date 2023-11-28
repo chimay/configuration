@@ -539,11 +539,12 @@ export MPLAYER_VERBOSE=0
 
 export MPD_PORT=6600
 
+export MOC_FLUIDSYNTH_SOUNDFONT=/usr/share/soundfonts/freepats-general-midi.sf2
+
 # Nécessaire pour dvdauthor
 #export VIDEO_FORMAT=PAL
 
 export YTFZF_CACHE=~/racine/varia/cache/ytfzf
-
 
 #  Nouvelles {{{1
 
