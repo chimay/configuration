@@ -22,9 +22,9 @@
 "function.builtin" = "yellow1"
 "tag" = "red1"
 "comment" = { fg = "#754321", modifiers = ["italic"]  }
-"constant" = { fg = "purple1" }
+"constant" = { fg = "#872e30" }
 "constant.builtin" = { fg = "purple1", modifiers = ["bold"] }
-"string" = "green1"
+"string" = "#88421d"
 "constant.numeric" = "purple1"
 "constant.character.escape" = { fg = "fg2", modifiers = ["bold"] }
 "label" = "aqua1"
@@ -50,15 +50,15 @@
 "ui.statusline.inactive" = { fg = "fg4", bg = "bg1" }
 "ui.popup" = { bg = "bg1" }
 "ui.window" = { bg = "bg1" }
-"ui.help" = { bg = "bg1", fg = "fg1" }
+"ui.help" = { bg = "#000000", fg = "#5b3c11" }
 "ui.text" = { fg = "fg1" }
 "ui.text.focus" = { fg = "fg1" }
-"ui.selection" = { bg = "bg2" }
-"ui.selection.primary" = { bg = "bg3" }
+"ui.selection" = { bg = "#341207" }
+"ui.selection.primary" = { bg = "#5b3c11", fg = "#000000" }
 "ui.cursor.primary" = { bg = "fg4", fg = "bg1" }
 "ui.cursor.match" = { bg = "bg3" }
-"ui.menu" = { fg = "fg1", bg = "bg2" }
-"ui.menu.selected" = { fg = "bg2", bg = "blue1", modifiers = ["bold"] }
+"ui.menu" = { fg = "#88421d", bg = "#000000" }
+"ui.menu.selected" = { fg = "#000000", bg = "#5b3c11", modifiers = ["bold"] }
 "ui.virtual.whitespace" = "bg2"
 "ui.virtual.ruler" = { bg = "bg1" }
 "ui.virtual.inlay-hint" = { fg = "gray1" }
