@@ -93,9 +93,8 @@ MAILTO=$USER
 
 10	12	*	*	6	gen-tags.zsh
 
-20	12	*	*	7	gen-thesaurus.sed ~/racine/site/eclats2vers/generic/grimoire/litera-04-plumier.org >! ~/racine/index/dict/spell/synonymes.txt
+20	12	*	*	7	gen-thesaurus.sed ~/racine/site/eclats2vers/generic/grimoire/litera-05-plumier.org >! ~/racine/index/dict/spell/synonymes.txt
 30	12	*	*	7	gen-dictionnaire.sh ~/racine/index/dict/spell/synonymes.txt >! ~/racine/index/dict/spell/dictionnaire.txt
-
 
 # Contrôle de version {{{1
 

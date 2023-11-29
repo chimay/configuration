@@ -55,7 +55,6 @@ hyper + shift + q
 hyper + k
 	i3lock -c "#341207" -i ~/racine/pictura/i3lock/default
 
-
 # Bspwm {{{1
 
 # Restart
@@ -106,12 +105,16 @@ hyper + {Prior,Next}
 hyper + {Left,Down,Up,Right}
 	bspc node -m {west,south,north,east}
 
+# Preselect direction for next new window
+hyper + shift + {Left,Down,Up,Right}
+	bspc node --presel-dir {west,south,north,east}
+
 # Cancel preselection
 hyper + shift + c
 	bspc node --presel-dir cancel
 
 # Create new receptacle (without window)
-hyper + shift + {Left,Down,Up,Right}
+hyper + control + shift + {Left,Down,Up,Right}
 	bspc node --presel-dir {west,south,north,east} -i
 
 # Recover space of empty receptacle
@@ -122,9 +125,8 @@ hyper + shift + e
 super + shift + {Left,Up,Down,Right}
 	bspc node -s {west,north,south,east}
 
-# Move floating
-# easier with mouse, see ~/racine/config/windenv/bspwm/bspwmrc
-hyper + control + shift + {Left,Down,Up,Right}
+# Move floating : easier with mouse, see ~/racine/config/windenv/bspwm/bspwmrc
+hyper + control + shift + {h,j,k,l}
 	bspc node -v {-20 0, 0 20, 0 -20, 20 0}
 
 # Move (window) to desktop
@@ -437,7 +439,6 @@ hyper + s ; Right
 
 hyper + s ; Left
 	xbacklight -dec 25
-
 
 #  Veille {{{2
 

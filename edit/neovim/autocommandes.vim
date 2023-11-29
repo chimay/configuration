@@ -24,7 +24,7 @@ augroup publish-in-repo
 	autocmd BufWritePost ~/racine/site/**/*Makefile* call biblio#publish ()
 augroup END
 
-augroup resload-service
+augroup reload-service
 	autocmd!
 	autocmd BufWritePost ~/racine/config/system/dunst/dunstrc !restart-dunst.sh &
 	autocmd BufWritePost ~/racine/config/windenv/sxhkd/sxhkdrc !pkill -10 -f sxhkd
@@ -32,11 +32,6 @@ augroup resload-service
 	autocmd BufWritePost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
 	autocmd BufWritePost ~/racine/config/windenv/picom.conf !restart-picom.zsh &
 	autocmd BufWritePost ~/racine/config/organizer/remind/* !pkill -10 -f remind-server
-augroup END
-
-augroup shell-history
-	autocmd!
-	autocmd BufEnter historique.zsh setlocal nofoldenable
 augroup END
 
 augroup quickfix-window
@@ -60,7 +55,6 @@ augroup END
 
 augroup tabulation
 	autocmd!
-	" ---- syntax of these languages is fussy over tabs Vs spaces
 	autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
 	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd FileType org,markdown setlocal ts=2 sts=2 sw=2 expandtab
@@ -71,6 +65,7 @@ augroup folding
 	autocmd BufReadPost ~/public/wheel/**.vim setlocal foldmethod=indent
 	autocmd BufReadPost ~/public/organ/**.vim setlocal foldmethod=indent
 	autocmd BufReadPost *.snippets setlocal nofoldenable
+	autocmd BufEnter historique.zsh setlocal nofoldenable
 augroup END
 
 augroup file-detection
@@ -98,6 +93,11 @@ augroup file-image
 	autocmd!
 	"autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!identify -verbose "%"
 	autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!exiv2 pr "%"
+augroup END
+
+augroup file-music
+	autocmd BufReadPost *.ly setlocal commentstring=%%s
+	autocmd BufReadPost *.ly nnoremap <buffer> <f5> <cmd>call biblio#make_midi()<cr>
 augroup END
 
 augroup file-audio

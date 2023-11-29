@@ -29,12 +29,13 @@ hook global KakBegin .* %{ try %{ source %sh{echo $HOME/racine/hist/kak/history 
 
 # Maps
 # ------------------------------
- 
+
 map global normal ^ gh
 map global normal $ gl
 
 map global normal <a-$> $
 
+map global normal <del> d
 map global normal x d
 map global normal µ x
 
@@ -47,10 +48,10 @@ map global normal = '| fmt -w $kak_opt_autowrap_column<ret>'
 map global normal <c-l> 'vv'
 
 # copy X clipboard
- 
+
 map global normal <c-p> '| xclip -o -selection primary <ret> '
 
-# User maps : prefix <space> 
+# User maps : prefix <space>
 # ------------------------------
 
 map global user 'c' ': edit ~/racine/config/edit/kak/kakrc<ret>'
@@ -68,7 +69,7 @@ map global user 'Q' ': quit<ret>'
 
 # Commandes
 # ------------------------------
- 
+
 define-command -override cd change-directory
 define-command -override bd delete-buffer
 

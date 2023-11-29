@@ -678,6 +678,10 @@ signal-all () {
 	done
 	(( $#signal > 0 )) || signal=15
 	iden=($(pgrep -f "$motif"))
+	(( $#iden == 0 )) && {
+		echo No process found.
+		return 0
+	}
 	echo "kill -$signal $=iden"
 	echo
 	kill -$signal $=iden
