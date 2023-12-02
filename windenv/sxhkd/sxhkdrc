@@ -36,11 +36,11 @@ hyper + comma
 	zshrunterm.sh
 
 hyper + ccedilla
-	rofi-greenclip.zsh
+	rofi-clipmenu.zsh
+	#rofi-greenclip.zsh
 
 hyper + agrave
-	urxvtc -name fzf-nova -e ~/racine/bin/fzf-nova/fzf-nova
-
+	urxvtc -name fzf-nova -e ~/racine/infoman/unix/generic/gotbletu/shownotes/fzf_nova/fzf-nova
 
 # Environnement graphique {{{1
 

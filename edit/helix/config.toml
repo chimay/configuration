@@ -8,7 +8,8 @@
 # theme = "dark_plus"
 # theme = "everforest_dark"
 # theme = "fleet_dark"
-theme = "gruvbox_dark_hard"
+# theme = "gruvbox_dark_hard"
+theme = "golden-night"
 # theme = "heisenberg"
 # theme = "hex_lavender"
 # theme = "jellybean"
@@ -118,7 +119,7 @@ C-pageup = ":buffer-previous" # Maps `ga` to show possible code actions
 C-del = ":buffer-close"
 "@" = "replay_macro"
 "backspace" = "extend_line_below"
-"µ" = "extend_line_below"
+"µ" = ["extend_line_below", "select_mode"]
 "x" = "delete_selection"
 "del" = "delete_selection"
 

@@ -3,6 +3,7 @@
 # Options {{{1
 
 set font "monospace normal 11"
+set recolor true
 
 set guioptions cs
 
@@ -23,8 +24,6 @@ set zoom-step 20
 set scroll-step 80
 
 set selection-clipboard clipboard
-
-# }}}1
 
 # Maps {{{1
 
@@ -49,53 +48,51 @@ map <C-2> feedkeys ":set pages-per-row 2"<Return>
 map <C-3> feedkeys ":set pages-per-row 3"<Return>
 map <C-4> feedkeys ":set pages-per-row 4"<Return>
 
-# }}}1
-
 # Thème {{{1
 
 set default-fg "#5b3c11"
 set default-bg "black"
 
+set highlight-color "#872e30"
+set highlight-active-color "#88421d"
+
 set inputbar-fg "#5b3c11"
 set inputbar-bg "black"
-
 set statusbar-fg "#5b3c11"
 set statusbar-bg "black"
 
-set completion-fg "#5b3c11"
-set completion-bg "black"
-
 set tabbar-fg "#5b3c11"
 set tabbar-bg "black"
-
 set tabbar-focus-fg "black"
 set tabbar-focus-bg "#5b3c11"
 
-set completion-highlight-fg "black"
-set completion-highlight-bg "#5b3c11"
+set completion-fg "#88421d"
+set completion-bg "#070707"
+set completion-group-fg "#88421d"
+set completion-group-bg "#070707"
+set completion-highlight-fg "#ab1c11"
+set completion-highlight-bg "#070707"
 
 set notification-fg "#5b3c11"
 set notification-bg "black"
-
 set notification-warning-fg "green"
 set notification-warning-bg "black"
-
 set notification-error-fg "red"
 set notification-error-bg "black"
 
+set render-loading true
 set render-loading-fg "#5b3c11"
 set render-loading-bg "black"
 
 set index-fg "#5b3c11"
 set index-bg "black"
-
 set index-active-fg "black"
 set index-active-bg "#5b3c11"
 
-# set recolor true
-# set recolor-keephue true
-# set recolor-reverse-video true
-# set recolor-lightcolor "#5b3c11"
-# set recolor-darkcolor "black"
+set recolor-keephue true
+set recolor-reverse-video true
+set recolor-lightcolor "#5b3c11"
+set recolor-darkcolor "black"
 
-# }}}1
+# set recolor-lightcolor "black"
+# set recolor-darkcolor "#5b3c11"

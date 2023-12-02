@@ -21,13 +21,13 @@ let g:colors_name = "golden-night"
 " #872E30
 " #88421D
 " #845A3B
+" #AB1C11
 
 " #754321
 " #434343
 " #120507
 
 " #947454
-
 
 " Mode gui {{{1
 
@@ -99,11 +99,13 @@ hi TabLineFill		guifg=NONE		guibg=#151515		gui=NONE
 
 " Barre de statut {{{2
 
- "hi StatusLine		guifg=NONE		guibg=NONE			gui=reverse,bold
- hi StatusLine		guifg=#6b3c11	guibg=#070707		gui=bold
- hi StatusLineNC	guifg=NONE		guibg=#050505		gui=NONE
+hi StatusLineNC		guifg=#5b3c11	guibg=#120705		gui=bold
+hi StatusLine		guifg=NONE		guibg=NONE			gui=reverse,bold
 
- hi WheelStatusLine		guifg=#5b3c11	guibg=NONE		gui=NONE
+"hi StatusLineNC	guifg=NONE		guibg=#050505		gui=NONE
+"hi StatusLine		guifg=#7b3c11	guibg=#070707		gui=bold
+
+hi WheelStatusLine		guifg=#5b3c11	guibg=NONE		gui=NONE
 
 " Menu de complétion en mode insertion {{{2
 

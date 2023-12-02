@@ -262,15 +262,14 @@ alias mc='mc -b'
 
 alias y=yank-file
 
-alias çç='xclip -i -selection clipboard'
-alias àà='xclip -o -selection clipboard'
+alias ç='xclip -i -selection clipboard'
+alias à='xclip -o -selection clipboard'
 
-alias çç1='xclip -i -selection primary'
-alias çç2='xclip -i -selection secondary'
+alias ç1='xclip -i -selection primary'
+alias ç2='xclip -i -selection secondary'
 
-alias àà1='xclip -o -selection primary'
-alias àà2='xclip -o -selection secondary'
-
+alias à1='xclip -o -selection primary'
+alias à2='xclip -o -selection secondary'
 
 #  Paquets {{{1
 
@@ -319,7 +318,7 @@ alias clc=calcurse
 # Courriel {{{1
 
 alias a="mail -Y 'h $'"
-alias à=send-mail
+alias àà=send-mail
 
 alias nm=neomutt
 alias M=run-neomutt.zsh
@@ -470,7 +469,7 @@ alias ds=sdcv
 alias dt=translator
 alias dy=synonym
 
-alias ç=calculator
+alias çç=calculator
 
 alias wk=wikicurses
 alias wka='wikicurses --wiki ArchWiki'

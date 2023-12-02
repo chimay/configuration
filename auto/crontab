@@ -89,7 +89,7 @@ MAILTO=$USER
 
 # Édition {{{1
 
-0	12	*	*	5	update-locate-db.sh ~/racine/index/filesys/locate/racine.db &>>! ~/log/locate.log
+0	12	*	*	5	update-locate-db.sh ~/racine/index/filesys/locate &>>! ~/log/locate.log
 
 10	12	*	*	6	gen-tags.zsh
 

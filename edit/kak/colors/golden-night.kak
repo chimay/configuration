@@ -1,65 +1,66 @@
 # golden-night theme
 
 evaluate-commands %sh{
-    # first we define the lucius colors as named colors
-    ornuit_brun="rgb:5b3c11"
-    ornuit_pale="rgb:754321"
-    ornuit_gris="rgb:120507"
-    ornuit_gris_fonce="rgb:070707"
-    ornuit_rouge="rgb:872e30"
-    ornuit_rouge_intense="rgb:88421d"
-    ornuit_rouge_pale="rgb:845a3b"
-    ornuit_fond="rgb:000000"
+    # first we define the colors
+    golden_night_brun="rgb:5b3c11"
+    golden_night_pale="rgb:754321"
+    golden_night_gris="rgb:120507"
+    golden_night_gris_fonce="rgb:070707"
+    golden_night_rouge="rgb:872e30"
+    golden_night_rouge_intense="rgb:88421d"
+    golden_night_rouge_vif="rgb:ab1c11"
+    golden_night_rouge_pale="rgb:845a3b"
+    golden_night_fond="rgb:000000"
 
     echo "
         # then we map them to code
-        face global value ${ornuit_brun}
-        face global type ${ornuit_rouge}
-        face global variable ${ornuit_rouge}
-        face global module ${ornuit_rouge}
-        face global function ${ornuit_rouge}
-        face global string ${ornuit_rouge}
-        face global keyword ${ornuit_rouge}
-        face global operator ${ornuit_rouge}
-        face global attribute ${ornuit_rouge}
-        face global comment ${ornuit_pale}
-        face global meta ${ornuit_rouge}
+        face global value ${golden_night_brun}
+        face global type ${golden_night_rouge}
+        face global variable ${golden_night_rouge}
+        face global module ${golden_night_rouge}
+        face global function ${golden_night_rouge}
+        face global string ${golden_night_rouge}
+        face global keyword ${golden_night_rouge}
+        face global operator ${golden_night_rouge}
+        face global attribute ${golden_night_rouge}
+        face global comment ${golden_night_pale}
+        face global meta ${golden_night_rouge}
         face global builtin default+b
 
         # and markup
-        face global title ${ornuit_rouge}
-        face global header ${ornuit_rouge}
-        face global bold ${ornuit_rouge}
-        face global italic ${ornuit_pale}
-        face global mono ${ornuit_brun}
-        face global block ${ornuit_brun}
-        face global link ${ornuit_brun}
-        face global bullet ${ornuit_brun}
-        face global list ${ornuit_brun}
+        face global title ${golden_night_rouge}
+        face global header ${golden_night_rouge}
+        face global bold ${golden_night_rouge}
+        face global italic ${golden_night_pale}
+        face global mono ${golden_night_brun}
+        face global block ${golden_night_brun}
+        face global link ${golden_night_brun}
+        face global bullet ${golden_night_brun}
+        face global list ${golden_night_brun}
 
         # and built in faces
-        face global Default ${ornuit_brun},${ornuit_fond}
-        face global PrimarySelection ${ornuit_fond},${ornuit_rouge_intense}+fg
-        face global SecondarySelection ${ornuit_fond},${ornuit_brun}+fg
-        face global PrimaryCursor ${ornuit_fond},${ornuit_rouge}+fg
-        face global SecondaryCursor ${ornuit_fond},${ornuit_brun}+fg
-        face global PrimaryCursorEol ${ornuit_fond},${ornuit_rouge_intense}+fg
-        face global SecondaryCursorEol ${ornuit_fond},${ornuit_brun}+fg
-        face global LineNumbers ${ornuit_brun},${ornuit_fond}
-        face global LineNumberCursor ${ornuit_fond},${ornuit_brun}+b
-        face global MenuForeground ${ornuit_rouge},${ornuit_gris}
-        face global MenuBackground ${ornuit_pale},${ornuit_gris_fonce}
-        face global MenuInfo ${ornuit_brun}
-        face global Information ${ornuit_brun},${ornuit_fond}
-        face global Error ${ornuit_rouge},${ornuit_fond}
-        face global StatusLine ${ornuit_rouge},${ornuit_fond}
-        face global StatusLineMode ${ornuit_rouge},${ornuit_fond}+b
-        face global StatusLineInfo ${ornuit_rouge},${ornuit_fond}
-        face global StatusLineValue ${ornuit_brun}
-        face global StatusCursor ${ornuit_fond},${ornuit_brun}
-        face global Prompt ${ornuit_brun}
-        face global MatchingChar ${ornuit_brun},${ornuit_fond}
-        face global BufferPadding ${ornuit_brun},${ornuit_fond}
-        face global Whitespace ${ornuit_fond}+f
+        face global Default ${golden_night_brun},${golden_night_fond}
+        face global PrimarySelection ${golden_night_fond},${golden_night_rouge_intense}+fg
+        face global SecondarySelection ${golden_night_fond},${golden_night_brun}+fg
+        face global PrimaryCursor ${golden_night_fond},${golden_night_rouge}+fg
+        face global SecondaryCursor ${golden_night_fond},${golden_night_brun}+fg
+        face global PrimaryCursorEol ${golden_night_fond},${golden_night_rouge_intense}+fg
+        face global SecondaryCursorEol ${golden_night_fond},${golden_night_brun}+fg
+        face global LineNumbers ${golden_night_brun},${golden_night_fond}
+        face global LineNumberCursor ${golden_night_fond},${golden_night_brun}+b
+        face global MenuForeground ${golden_night_rouge_vif},${golden_night_gris}
+        face global MenuBackground ${golden_night_pale},${golden_night_gris_fonce}
+        face global MenuInfo ${golden_night_brun}
+        face global Information ${golden_night_brun},${golden_night_fond}
+        face global Error ${golden_night_rouge},${golden_night_fond}
+        face global StatusLine ${golden_night_rouge},${golden_night_fond}
+        face global StatusLineMode ${golden_night_rouge},${golden_night_fond}+b
+        face global StatusLineInfo ${golden_night_rouge},${golden_night_fond}
+        face global StatusLineValue ${golden_night_brun}
+        face global StatusCursor ${golden_night_fond},${golden_night_brun}
+        face global Prompt ${golden_night_brun}
+        face global MatchingChar ${golden_night_brun},${golden_night_fond}
+        face global BufferPadding ${golden_night_brun},${golden_night_fond}
+        face global Whitespace ${golden_night_fond}+f
     "
 }

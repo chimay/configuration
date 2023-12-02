@@ -409,12 +409,14 @@ set pumheight=30
 "	]	tag completion
 "	t	same as "]"
 
-set complete=.,w,b,u,U,
-			\s~/racine/index/dict/spell/synonymes.txt,
-			\k~/racine/index/dict/spell/fr-classique+reforme1990.dic,
-			\k~/racine/index/dict/spell/en_GB.dic,
-			\t,i,d
+" set complete=.,w,b,u,U,
+" 			\s~/racine/index/dict/spell/synonymes.txt,
+" 			\k~/racine/index/dict/spell/fr-classique+reforme1990.dic,
+" 			\k~/racine/index/dict/spell/en_GB.dic,
+" 			\t,i,d
 
+set complete=.,b,u,U,i,d
+" use c-x c-k for dictionary and c-x c-t for thesaurus
 
 " Casse intelligente pour les complétions {{{3
 
@@ -793,9 +795,10 @@ nnoremap <f2>s <cmd>EditSyntaxPlugin<cr>
 nnoremap <f2>b <cmd>call biblio#figlet()<cr>
 
 nnoremap <f3>m :make -k<space>
+nnoremap <f3>x <cmd>call biblio#text_to_password()<cr>
+
 nnoremap <f4>m <cmd>call biblio#make_midi()<cr>
 nnoremap <f4>o <cmd>call biblio#make_ogg()<cr>
-nnoremap <f4>x <cmd>call biblio#text_to_password()<cr>
 nnoremap <f4>p <cmd>call biblio#display_pdf()<cr>
 
 nnoremap <kEnter> <cmd>call biblio#write_all()<cr>
@@ -1122,7 +1125,7 @@ nnoremap <f3>c :set cmdheight=
 
 " Rendre le fichier exécutable {{{3
 
-nnoremap <f3>C <cmd>call biblio#chmodexec()<cr>
+nnoremap <f4>x <cmd>call biblio#chmodexec()<cr>
 
 " Ligne ou sélection courante {{{3
 
@@ -1541,11 +1544,12 @@ endif
 " Add vim files {{{1
 
 " for lilypond
+" interfere with config
 
-filetype off
-set runtimepath+=/usr/share/vim/vimfiles
-filetype on
-syntax on
+" filetype off
+" set runtimepath+=/usr/share/vim/vimfiles
+" filetype on
+" syntax on
 
 "  Tous les plugins restant {{{1
 

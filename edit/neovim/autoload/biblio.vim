@@ -518,5 +518,5 @@ fun! biblio#display_pdf ()
 	let display = 'zathura ' .. pdfname .. '&'
 	echomsg display
 	let output = system(display)
-	echomsg output
+	"echomsg output
 endfun
