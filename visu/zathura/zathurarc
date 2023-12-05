@@ -11,7 +11,8 @@ set n-completion-items 15
 
 set incremental-search true
 
-set show-scrollbars false
+# unknown
+#set show-scrollbars false
 
 set window-height 700
 set window-width 1200
@@ -35,7 +36,7 @@ map b navigate previous
 
 map + zoom in
 map - zoom out
- 
+
 map q quit
 map ZZ quit
 
@@ -61,10 +62,11 @@ set inputbar-bg "black"
 set statusbar-fg "#5b3c11"
 set statusbar-bg "black"
 
-set tabbar-fg "#5b3c11"
-set tabbar-bg "black"
-set tabbar-focus-fg "black"
-set tabbar-focus-bg "#5b3c11"
+# unknown
+#set tabbar-fg "#5b3c11"
+#set tabbar-bg "black"
+#set tabbar-focus-fg "black"
+#set tabbar-focus-bg "#5b3c11"
 
 set completion-fg "#88421d"
 set completion-bg "#070707"

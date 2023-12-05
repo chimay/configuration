@@ -51,9 +51,11 @@ color normal default default
 
 # {{{ Statut
 
-color status color3 color232
+color status color9 color232
 
-color message color3 default
+mono status reverse,bold
+
+color message color2 default
 
 color error color3 default
 
@@ -115,6 +117,8 @@ color index color240 default ~D
 # }}}
 
 # {{{ Message courant
+
+color indicator color3 color233
 
 mono indicator reverse
 

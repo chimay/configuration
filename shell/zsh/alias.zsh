@@ -305,8 +305,7 @@ alias in=info
 #  Recherche {{{1
 
 alias é=searcher
-alias è='rg --vimgrep --smart-case'
-
+alias è=search-in-irc
 
 # Organisation {{{1
 

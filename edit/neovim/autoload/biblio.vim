@@ -113,14 +113,18 @@ fun! biblio#smart_tab ()
 	" Else, return <c-n> to complete
 	let previous_column = col('.') - 2
 	if previous_column >= 0
-		let previous_char = getline('.')[previous_column]
+		let previous = getline('.')[:previous_column]
 	else
-		let previous_char = ' '
+		let previous = ''
 	endif
-	if previous_char =~ '\m\s'
+	if empty(previous)
 		return "\<c-t>"
-	else
+	elseif previous =~ '\m^\s*$'
+		return "\<c-t>"
+	elseif previous[-1:] =~ '\m\S'
 		return "\<c-n>"
+	else
+		return "\<c-v>\<tab>"
 	endif
 endfun
 
@@ -493,6 +497,7 @@ fun! biblio#make_midi ()
 	" Make midi file (eg from lilypond file)
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let midiname = filename .. '.midi'
+	setlocal makeprg=make
 	execute 'make -k' midiname
 endfun
 
@@ -500,6 +505,7 @@ fun! biblio#make_ogg ()
 	" Make ogg file (eg from lilypond file)
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let oggname = filename .. '.ogg'
+	setlocal makeprg=make
 	execute 'make -k' oggname
 endfun
 
@@ -507,6 +513,7 @@ fun! biblio#make_mp3 ()
 	" Make mp3 file (eg from lilypond file)
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let mp3name = filename .. '.mp3'
+	setlocal makeprg=make
 	execute 'make -k' mp3name
 endfun
 
@@ -514,6 +521,7 @@ fun! biblio#display_pdf ()
 	" Display pdf file (eg from lilypond file)
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let pdfname = filename .. '.pdf'
+	setlocal makeprg=make
 	execute 'make -k' pdfname
 	let display = 'zathura ' .. pdfname .. '&'
 	echomsg display

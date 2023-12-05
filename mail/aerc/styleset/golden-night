@@ -10,7 +10,7 @@
 *.default=true
 *.normal=true
 
-*.selected.reverse=toggle
+#*.selected.reverse=toggle
 
 title.reverse=true
 #header.bold=true
@@ -29,8 +29,10 @@ statusline_default.reverse=true
 #statusline_warning.fg=yellow
 #statusline_warning.reverse=true
 
-msglist_default.selected.bold=true
-msglist_default.selected.reverse=true
+msglist_default.selected.fg=3
+msglist_default.selected.bg=233
+#msglist_default.selected.bold=true
+#msglist_default.selected.reverse=true
 msglist_unread.bold=false
 #msglist_deleted.fg=gray
 msglist_deleted.dim=true
@@ -54,6 +56,7 @@ completion_pill.reverse=true
 
 tab.reverse=true
 tab.bold=true
+tab.selected.reverse=false
 
 border.reverse = true
 border.bold = true

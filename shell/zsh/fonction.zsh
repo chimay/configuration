@@ -372,7 +372,7 @@ searcher () {
 		echo Using ripgrep
 		echo
 		(( $#fichiers > 0 )) || fichiers=(.)
-		#command rg --color=never --heading --smart-case --line-number $motif $=fichiers | sed 's/^/  /'
+		#command rg --heading --smart-case --vimgrep $motif $=fichiers
 		command rg --heading --smart-case --line-number $motif $=fichiers
 	elif command -v ag &> /dev/null
 	then
@@ -477,6 +477,12 @@ lc () {
 	esac
 }
 
+# search in irc {{{2
+
+search-in-irc () {
+	local files=($(rg -l "$@" ~/racine/log/irc/irc-*))
+	{ print -l $=files ; echo ; cat $=files } | less
+}
 
 # vim-quickfix {{{2
 
