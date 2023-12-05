@@ -287,10 +287,11 @@ alias stamp='command ts'
 
 alias pg='pgrep -af'
 alias s=kill
+alias pid=process-iden
 alias sa=signal-all
+alias psi=process-signal
 
 alias fini='mpv ~/audio/sonnerie/notification/fini.ogg'
-
 
 #  Manuel & Info {{{1
 
@@ -306,6 +307,7 @@ alias in=info
 
 alias é=searcher
 alias è=search-in-irc
+alias lc=locate-file
 
 # Organisation {{{1
 

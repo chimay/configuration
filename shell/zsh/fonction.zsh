@@ -29,7 +29,6 @@ done
 # err : display to stderr {{{2
 
 err () {
-
 	print "$@" 1>&2
 }
 
@@ -38,17 +37,12 @@ err () {
 
 pager () {
 	local less
-
 	#less="less --lesskey-file=$HOME/racine/built/less/key.out"
 	less="less"
-
 	(( $# == 0 )) && {
-
 		$=less .
-
 		return 0
 	}
-
 	$=less "$@"
 }
 
@@ -235,47 +229,35 @@ swap-files () {
 		echo
 		return 1
 	}
-
 	local TMPFILE=$(mktemp)
-
 	mv "$1" $TMPFILE
-
 	mv "$2" "$1"
-
 	mv $TMPFILE "$2"
 }
-
 
 # number-of-files {{{2
 
 number-of-files () {
 	local arguments
 	local repertoire
-
 	if (( $# == 0 ))
 	then
 		arguments=.
 	else
 		arguments=($@)
 	fi
-
 	for repertoire in $arguments
 	do
 		[[ -d $repertoire ]] || continue
-
 		echo "`print -l ${repertoire}/**/*(.) | wc -l` : $repertoire"
 	done
 }
 
-
 # most-recently-modified files {{{2
 
 most-recently-modified () {
-
 	local vecteur=()
-
 	local autres=()
-
 	while true
 	do
 		case $1 in
@@ -292,10 +274,8 @@ most-recently-modified () {
 				;;
 		esac
 	done
-
 	local nombre=${vecteur[1]:-7}
 	local repertoire=${autres[1]:-.}
-
 	echo Répertoires
 	echo "------------"
 	echo
@@ -349,7 +329,6 @@ run-vifm () {
 # yank-file {{{2
 
 yank-file () {
-
 	cat $1 | xclip -i -selection clipboard
 }
 
@@ -402,14 +381,12 @@ grep-command () {
 }
 
 
-# lc : locate {{{2
+# locate-file {{{2
 
-lc () {
+locate-file () {
 	local options mots dossier motifs
-
 	options=()
 	mots=()
-
 	while true
 	do
 		case $1 in
@@ -426,18 +403,15 @@ lc () {
 				;;
 		esac
 	done
-
 	if (( $#mots >= 2 ))
 	then
 		dossier=$mots[1]
 		motifs=$mots[2,-1]
-
 	elif (( $#mots == 1 ))
 	then
 		dossier=racine
 		motifs=$mots
 	fi
-
 	case $dossier in
 		r|ra|rac|raci|racin|racine)
 			echo "plocate -d ~/racine/index/filesys/locate/racine.db $=options $=motifs"
@@ -448,6 +422,11 @@ lc () {
 			echo "plocate -d ~/racine/index/filesys/locate/usr-local.db -e -A $=options $=motifs"
 			echo
 			plocate -d ~/racine/index/filesys/locate/usr-local.db -e -A $=options $=motifs
+			;;
+		g|gr|graph|graphix)
+			echo "plocate -d ~/racine/index/filesys/locate/graphix.db -e -A $=options $=motifs"
+			echo
+			plocate -d ~/racine/index/filesys/locate/graphix.db -e -A $=options $=motifs
 			;;
 		a|au|aud|audi|audio)
 			echo "plocate -d ~/racine/index/filesys/locate/audio.db -e -A $=options $=motifs"
@@ -506,83 +485,62 @@ vim-quickfix () {
 	fi
 }
 
-# procgrep : process grep {{{2
+# process-grep {{{2
 
-procgrep () {
-
+process-grep () {
 	local motif
-
 	motif="$@"
-
 	(( $#motif > 0 )) || {
-
 		echo -n "Motif : "
 		read motif
 		echo
 	}
-
 	(( $#motif > 0 )) || return 1
-
 	command ps --no-headers -eo '%p %a' | command grep -v grep | command grep --color=never $motif
 }
 
 
-# pid : grep process id(s) {{{2
+# process-iden {{{3
 
-pid () {
-
+process-iden () {
 	local motif
-
 	motif="$@"
-
 	(( $#motif > 0 )) || {
-
 		echo -n "Motif : "
 		read motif
 		echo
 	}
-
 	(( $#motif > 0 )) || return 1
-
 	command ps --no-headers -eo '%p %a' | \
 		command grep -v grep | \
 		command grep --color=never $motif | \
 		awk '{print $1}'
 }
 
-# pgroup : groupe d’un processus {{{2
+# process-group {{{2
 
-pgroup () {
-
+process-group () {
 	local motif listiden iden groupe arbre
-
 	motif="$@"
-
 	(( $#motif > 0 )) || {
-
 		echo -n "Motif : "
 		read motif
 		echo
 	}
-
 	(( $#motif > 0 )) || return 1
-
 	listiden=($(
 		command ps --no-headers -eo '%p %a' |
 		command grep -v grep |
 		command grep --color=never $motif |
 		awk '{print $1}'
 	))
-
 	for iden in $=listiden
 	do
 		groupe=$(ps --no-headers -o "%r" -p $iden | tr -d ' \t\n\r')
-
 		arbre=($(
 			ps -eo "%r %p" |
 			awk '{ if ( $1 == '$groupe' ) print $2 }'
 		))
-
 		echo "Groupe de $iden : $groupe"
 		echo "------------------------------"
 		echo
@@ -591,58 +549,44 @@ pgroup () {
 	done
 }
 
-# ptree : arbre du groupe d’un processus {{{2
+# process-tree {{{2
 
-ptree () {
-
+process-tree () {
 	local motif listiden iden listgroupes groupe
 	local parent enfant racine
-
 	motif="$@"
-
 	(( $#motif > 0 )) || {
-
 		echo -n "Motif : "
 		read motif
 		echo
 	}
-
 	(( $#motif > 0 )) || return 1
-
 	listiden=($(
 		command ps --no-headers -eo '%p %a' |
 		command grep -v grep |
 		command grep --color=never $motif |
 		awk '{print $1}'
 	))
-
 	listgroupes=()
-
 	typeset -A grpiden
-
 	for iden in $=listiden
 	do
 		groupe=$(ps --no-headers -o "%r" -p $iden | tr -d ' \t\n\r')
 		listgroupes+=$groupe
 		grpiden[$groupe]=$iden
 	done
-
 	listgroupes=(${(u)listgroupes})
-
 	for groupe in $=listgroupes
 	do
 		enfant=$grpiden[$groupe]
-
 		while true
 		do
 			parent=$( \
 				ps -eo "%r %P %p" | \
 				awk '{ if ( $1 == '$groupe' && $3 == '$enfant' ) print $2 }' \
 			)
-
 			echo "$parent -> $enfant"
 			echo
-
 			if (( $#parent > 0 ))
 			then
 				enfant=$parent
@@ -651,15 +595,12 @@ ptree () {
 				break
 			fi
 		done
-
 		echo Racine : $racine
 		echo
-
 		pstree -p $racine
 		echo
 		ps -eo "%r %p %a" --forest | awk '{ if ( $1 == '$groupe' ) print $0 }'
 	done
-
 }
 
 # signal-all : send signal to all processes matching a pattern {{{2
@@ -695,12 +636,9 @@ signal-all () {
 
 # psi : process signal, more interactive than signal-all {{{2
 
-psi () {
-
+process-signal () {
 	local motif signal identifiants reponse
-
 	reponse=n
-
 	while true
 	do
 		case $1 in
@@ -721,75 +659,55 @@ psi () {
 				;;
 		esac
 	done
-
 	(( $#motif > 0 )) || {
 		echo -n "Motif : "
 		read motif
 		echo
 	}
-
 	(( $#motif > 0 )) || return 1
-
 	command ps --no-headers -eo '%p %a' | command grep -v grep | command grep --color=never $motif
 	echo
-
 	identifiants=($(
 		command ps --no-headers -eo '%p %a' |
 		command grep -v grep |
 		command grep --color=never $motif |
 		awk '{print $1}'
 	))
-
 	echo $=identifiants
 	echo
-
 	(( $#identifiants > 0 )) || return 2
-
 	[ $reponse = y ] || {
 		echo -n "Voulez-vous envoyer un signal à ces processus ? (y/n, o/n) "
 		read reponse
 		echo
 	}
-
 	(( $#reponse > 0 )) || return 1
-
 	[ $reponse = y -o $reponse = o -o $reponse = yes -o $reponse = oui ] || return 0
-
 	(( $#signal > 0 )) || {
 		echo -n "Signal [15 = TERM] (l=liste des signaux) : "
 		read signal
 		echo
 	}
-
 	(( $#signal == 0 )) && signal=15
-
 	while [ $signal = l ]
 	do
 		bash -c 'kill -L'
 		echo
-
 		echo -n "Signal [15 = TERM] (l=liste des signaux) : "
 		read signal
 		echo
-
 		(( $#signal == 0 )) && signal=15
 	done
-
-
 	echo "kill -$signal $=identifiants"
 	echo
-
 	kill -$signal $=identifiants
-
 }
 
 
 # webreader : using readable & w3m {{{2
 
 webreader () {
-
 	readable $1 | w3m -T text/html
-
 	#readable $1 -p html-title,html-content | w3m -T text/html
 }
 
@@ -797,7 +715,6 @@ webreader () {
 # mail {{{2
 
 mua () {
-
 	local executable
 	which mail && executable=mail
 	which s-nail && executable=s-nail
@@ -894,14 +811,11 @@ run-buku () {
 # ssh {{{2
 
 ssh() {
-
 	local options mots
 	local code=0
 	local ancien
 	local nom
-
 	options=()
-
 	while true
 	do
 		case $1 in
@@ -914,37 +828,25 @@ ssh() {
 				;;
 		esac
 	done
-
 	mots=("$@")
-
 	nom=${mots[1]%.*}
-
 	echo nom = $nom
 	echo
-
 	ancien=$(tmux display-message -p '#{window_name}')
-
 	if [ $TERM = tmux -o $TERM = tmux-256color ]
 	then
 		tmux rename-window "$nom"
-
 		echo "command ssh $=options $=mots"
 		echo
-
 		command ssh $=options $=mots
-
 		code=$?
-
 		tmux rename-window $ancien
     else
 		echo "command ssh $=options $=mots"
 		echo
-
 		command ssh $=options $=mots
-
 		code=$?
     fi
-
 	return $code
 }
 
@@ -952,14 +854,11 @@ ssh() {
 # sshx : ssh -X pour lancer des apps X Window {{{2
 
 sshx() {
-
 	local options mots
 	local code=0
 	local ancien
 	local nom
-
 	options=()
-
 	while true
 	do
 		case $1 in
@@ -972,37 +871,25 @@ sshx() {
 				;;
 		esac
 	done
-
 	mots=("$@")
-
 	nom=${mots[1]%.*}
-
 	echo nom = $nom
 	echo
-
 	ancien=$(tmux display-message -p '#{window_name}')
-
 	if [ $TERM = tmux -o $TERM = tmux-256color ]
 	then
 		tmux rename-window "$nom"
-
 		echo "command ssh -X -C $=options $=mots"
 		echo
-
 		command ssh -X -C $=options $=mots
-
 		code=$?
-
 		tmux rename-window $ancien
     else
 		echo "command ssh -X -C $=options $=mots"
 		echo
-
 		command ssh -X -C $=options $=mots
-
 		code=$?
     fi
-
 	return $code
 }
 
@@ -1010,7 +897,6 @@ sshx() {
 # cmd-mpv {{{2
 
 cmd-mpv () {
-
 	echo $* > ~/racine/run/fifo/mpv
 }
 
@@ -1068,43 +954,32 @@ listen-and-clean () {
 #  eval-ssh-agent {{{1
 
 eval-ssh-agent () {
-
 	emulate -R zsh
 	setopt local_options
 	setopt warn_create_global
-
 	typeset -gx SSH_AUTH_SOCK SSH_AGENT_PID
-
 	local psgrep='/bin/ps auxww | /bin/grep -v grep | /bin/grep --color=never'
-
 	local repertoire=$HOME/racine/run/ssh
 	local fichier=$repertoire/agent
-
 	[[ -d $repertoire ]] || mkdir -p $repertoire
-
 	if ! eval $=psgrep ssh-agent &>>| ~/log/psgrep.log
 	then
 		echo "On lance ssh-agent"
 		echo
-
 		ssh-agent >| $fichier
 	else
 		echo "ssh-agent tourne déjà"
 		echo
 	fi
-
 	local ligne
-
 	while read ligne
 	do
 		eval $ligne
 	done < $fichier
-
 	echo
 	echo "SSH_AUTH_SOCK = $SSH_AUTH_SOCK"
 	echo
 	echo "SSH_AGENT_PID = $SSH_AGENT_PID"
-
 }
 
 # Fonctions ZLE {{{1
@@ -1127,15 +1002,10 @@ avant-plan () {
 # Copie et désactive région {{{2
 
 copie-et-desactive-region () {
-
 	emulate -R zsh
-
 	setopt local_options
-
 	setopt warn_create_global
-
 	zle copy-region-as-kill
-
 	(( REGION_ACTIVE == 1 )) && REGION_ACTIVE=0
 }
 
@@ -1143,33 +1013,19 @@ copie-et-desactive-region () {
 # Fzf & Greenclip {{{2
 
 fzf-greenclip () {
-
 	emulate -R zsh
-
 	setopt local_options
-
 	setopt warn_create_global
-
 	tampon=$BUFFER
-
 	copie=$(greenclip print | fzf)
-
 	echo $copie | xclip -selection clipboard
-
 	zle reset-prompt
-
 	zle kill-buffer
-
 	LBUFFER=$copie
-
 	zle quote-line
-
 	LBUFFER=$tampon$LBUFFER
-
 	zle beginning-of-line
 }
-
-
 
 # Fonctions mathématiques {{{1
 
@@ -1187,8 +1043,6 @@ fzf-greenclip () {
 
 # functions -M gauss 3 3 zmath_gauss
 
-
-
 # Crochets (hooks) {{{1
 
 # Chpwd {{{2
@@ -1201,7 +1055,6 @@ fzf-greenclip () {
 typeset -ga chpwd_functions
 
 chpwd () {
-
 	print -l $PWD >>! $REPERTOIRES_FICHIER
 }
 
@@ -1245,15 +1098,11 @@ preexec () {
 typeset -ga zshaddhistory_functions
 
 zshaddhistory () {
-
 	emulate -R zsh
-
 	setopt local_options
-
     local line=${1%%$'\n'}
     local cmd=${line%% *}
 	local argts=${(j/ /)argv}
-
     [[ ${#line} -ge 1
         && ${cmd}   != (plouf|plou[gh])
 		&& ${argts} != *tutututututu*
@@ -1276,12 +1125,10 @@ zshexit () {
 # Special Widgets {{{1
 
 function zle-line-init zle-keymap-select {
-
 	if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} ))
 	then
 		printf '%s' "${terminfo[smkx]}"
 	fi
-
     RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}+"
     RPS2=$RPS1
     zle reset-prompt
