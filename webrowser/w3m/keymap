@@ -361,6 +361,8 @@
 
 # principal {{{1
 
+# generic {{{2
+
 keymap	M-h	HELP
 
 keymap	ii	INFO
@@ -379,7 +381,7 @@ keymap	Q	ABORT
 keymap : COMMAND "READ_SHELL ~/.w3m/cgi-bin/fnx_fzfmiru.cgi ; BACK ; GOTO file:/cgi-bin/fnx_execute.cgi ; BACK"
 
 # pop-up
-keymap	mm	MENU
+keymap	M-m		MENU
 
 # opening {{{2
 
@@ -430,9 +432,10 @@ keymap	B	COMMAND "PREV_PAGE ; UP ; UP"
 
 # links {{{2
 
-keymap	ll	LIST
 keymap	lm	MOVE_LIST_MENU
+keymap	ll	MOVE_LIST_MENU
 keymap	lM	LIST_MENU
+keymap	lL	LIST
 
 keymap	+	NEXT_LINK
 keymap	-	PREV_LINK
@@ -461,14 +464,15 @@ keymap	lE	  EXTERN_LINK
 
 # buffer menu
 keymap	bm	SELECT_MENU
+keymap	b=	SELECT_MENU
 keymap	=	SELECT_MENU
 
 # delete buffer and go to previous one
 # DEL = BackSpace
-keymap	bb	BACK
 keymap	DEL	BACK
 
 keymap	bp	PREV
+keymap	bb	PREV
 keymap	bn	NEXT
 keymap	H	PREV
 keymap	L	NEXT
@@ -488,9 +492,11 @@ keymap	mm		BOOKMARK
 
 # tabs {{{2
 
+keymap	tc	COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
 keymap	tt	COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
 
 keymap	tm	TAB_MENU
+keymap	t=	TAB_MENU
 keymap	tl	TAB_LINK
 keymap	tp	PREV_TAB
 keymap	tn	NEXT_TAB
