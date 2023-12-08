@@ -644,7 +644,7 @@ set diffopt=filler,context:4,vertical,foldcolumn:2
 
 "  Compilation de fichiers {{{1
 
-set makeprg='make'
+set makeprg=make
 
 set makeef=
 " set makeef='make-errors-##'

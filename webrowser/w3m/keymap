@@ -1,6 +1,6 @@
 # vim: set filetype=conf:
 
-# Documentation {{{1
+# documentation {{{1
 
 # Ctrl  : C-, ^
 # Escape: ESC-, M-, ^[
@@ -15,138 +15,156 @@
 # Voir aussi
 # <url:~/racine/config/cmdline/zsh/zshenv#tn=WWW_HOME>
 
-# }}}1
+# readme func {{{1
 
-# Principal {{{1
+# ABORT		Quit at once
+# ACCESSKEY	Pop up accesskey menu
+# ADD_BOOKMARK	Add current page to bookmarks
+# ALARM		Set alarm
+# BACK		Close current buffer and return to the one below in stack
+# BEGIN		Go to the first line
+# BOOKMARK	View bookmarks
+# CENTER_H	Center on cursor column
+# CENTER_V	Center on cursor line
+# CHARSET 	Change the character encoding for the current document
+# CLOSE_TAB	Close tab
+# CLOSE_TAB_MOUSE Close tab at mouse pointer
+# COMMAND 	Invoke w3m function(s)
+# COOKIE		View cookie list
+# DEFAULT_CHARSET Change the default character encoding
+# DEFINE_KEY	Define a binding between a key stroke combination and a command
+# DELETE_PREVBUF	Delete previous buffer (mainly for local CGI-scripts)
+# DICT_WORD	Execute dictionary command (see README.dict)
+# DICT_WORD_AT	Execute dictionary command for word at cursor
+# DISPLAY_IMAGE	Restart loading and drawing of images
+# DOWN		Scroll the screen down one line
+# DOWNLOAD	Save document source
+# DOWNLOAD_LIST	Display downloads panel
+# EDIT		Edit local source
+# EDIT_SCREEN	Edit rendered copy of document
+# END		Go to the last line
+# EXEC_SHELL	Execute shell command and display output
+# EXIT		Quit at once
+# EXTERN		Display using an external browser
+# EXTERN_LINK	Display target using an external browser
+# FRAME		Toggle rendering HTML frames
+# GOTO		Open specified document in a new buffer
+# GOTO_LINE	Go to the specified line
+# GOTO_LINK	Follow current hyperlink in a new buffer
+# GOTO_RELATIVE	Go to relative address
+# HELP		Show help panel
+# HISTORY 	Show browsing history
+# INFO		Display information about the current document
+# INTERRUPT	Suspend w3m to background
+# ISEARCH 	Incremental search forward
+# ISEARCH_BACK	Incremental search backward
+# LEFT		Shift screen one column left
+# LINE_BEGIN	Go to the beginning of the line
+# LINE_END	Go to the end of the line
+# LINE_INFO	Display current position in document
+# LINK_BEGIN	Move to the first hyperlink
+# LINK_END	Move to the last hyperlink
+# LINK_MENU	Pop up link element menu
+# LIST		Show all URLs referenced
+# LIST_MENU	Pop up menu for hyperlinks to browse to
+# LOAD		Open local file in a new buffer
+# MAIN_MENU	Pop up menu
+# MARK		Set/unset mark
+# MARK_MID	Turn Message-ID-like strings into hyperlinks
+# MARK_URL	Turn URL-like strings into hyperlinks
+# MARK_WORD	Turn current word into hyperlink
+# MENU		Pop up menu
+# MENU_MOUSE	Pop up menu at mouse pointer
+# MOUSE_TOGGLE	Toggle mouse support
+# MOVE_DOWN	Cursor down
+# MOVE_DOWN1	Cursor down. With edge touched, slide
+# MOVE_LEFT	Cursor left
+# MOVE_LEFT1	Cursor left. With edge touched, slide
+# MOVE_LIST_MENU	Pop up menu to navigate between hyperlinks
+# MOVE_MOUSE	Move cursor to mouse pointer
+# MOVE_RIGHT	Cursor right
+# MOVE_RIGHT1	Cursor right. With edge touched, slide
+# MOVE_UP		Cursor up
+# MOVE_UP1	Cursor up. With edge touched, slide
+# MSGS		Display error messages
+# NEW_TAB 	Open a new tab (with current document)
+# NEXT		Switch to the next buffer
+# NEXT_DOWN	Move downward to the next hyperlink
+# NEXT_HALF_PAGE	Scroll down half a page
+# NEXT_LEFT	Move left to the next hyperlink
+# NEXT_LEFT_UP	Move left or upward to the next hyperlink
+# NEXT_LINK	Move to the next hyperlink
+# NEXT_MARK	Go to the next mark
+# NEXT_PAGE	Scroll down one page
+# NEXT_RIGHT	Move right to the next hyperlink
+# NEXT_RIGHT_DOWN	Move right or downward to the next hyperlink
+# NEXT_TAB	Switch to the next tab
+# NEXT_UP		Move upward to the next hyperlink
+# NEXT_VISITED	Move to the next visited hyperlink
+# NEXT_WORD	Move to the next word
+# NOTHING 	Do nothing
+# NULL		Do nothing
+# OPTIONS 	Display options setting panel
+# PEEK		Show current address
+# PEEK_IMG	Show image address
+# PEEK_LINK	Show target address
+# PIPE_BUF	Pipe current buffer through a shell command and display output
+# PIPE_SHELL	Execute shell command and display output
+# PREV		Switch to the previous buffer
+# PREV_HALF_PAGE	Scroll up half a page
+# PREV_LINK	Move to the previous hyperlink
+# PREV_MARK	Go to the previous mark
+# PREV_PAGE	Scroll up one page
+# PREV_TAB	Switch to the previous tab
+# PREV_VISITED	Move to the previous visited hyperlink
+# PREV_WORD	Move to the previous word
+# PRINT		Save rendered document
+# QUIT		Quit with confirmation request
+# READ_SHELL	Execute shell command and display output
+# REDO		Cancel the last undo
+# REDRAW		Draw the screen anew
+# REG_MARK	Mark all occurences of a pattern
+# REINIT		Reload configuration file
+# RELOAD		Load current document anew
+# RESHAPE 	Re-render document
+# RIGHT		Shift screen one column right
+# SAVE		Save document source
+# SAVE_IMAGE	Save inline image
+# SAVE_LINK	Save hyperlink target
+# SAVE_SCREEN	Save rendered document
+# SEARCH		Search forward
+# SEARCH_BACK	Search backward
+# SEARCH_FORE	Search forward
+# SEARCH_NEXT	Continue search forward
+# SEARCH_PREV	Continue search backward
+# SELECT		Display buffer-stack panel
+# SELECT_MENU	Pop up buffer-stack menu
+# SETENV		Set environment variable
+# SET_OPTION	Set option
+# SHELL		Execute shell command and display output
+# SHIFT_LEFT	Shift screen left
+# SHIFT_RIGHT	Shift screen right
+# SOURCE		Toggle between HTML shown or processed
+# STOP_IMAGE	Stop loading and drawing of images
+# SUBMIT		Submit form
+# SUSPEND 	Suspend w3m to background
+# TAB_GOTO	Open specified document in a new tab
+# TAB_GOTO_RELATIVE	Open relative address in a new tab
+# TAB_LEFT	Move left along the tab bar
+# TAB_LINK	Follow current hyperlink in a new tab
+# TAB_MENU	Pop up tab selection menu
+# TAB_MOUSE	Select tab by mouse action
+# TAB_RIGHT	Move right along the tab bar
+# UNDO		Cancel the last cursor movement
+# UP		Scroll the screen up one line
+# VERSION		Display the version of w3m
+# VIEW		Toggle between HTML shown or processed
+# VIEW_BOOKMARK	View bookmarks
+# VIEW_IMAGE	Display image in viewer
+# WHEREIS 	Search forward
+# WRAP_TOGGLE	Toggle wrapping mode in searches
 
-keymap	M-h	HELP
-
-keymap	q	ABORT
-keymap	Q	QUIT
-
-keymap	m-m	MENU
-
-keymap	o	GOTO
-keymap	O	GOTO_RELATIVE
-
-# open file
-keymap	M-f	LOAD
-
-keymap	r	RELOAD
-keymap	R	RELOAD
-
-keymap	i	INFO
-keymap	C-g	LINE_INFO
-
-keymap	j	UP
-keymap	k	DOWN
-
-keymap	M-l	LIST
-
-keymap	+	NEXT_LINK
-keymap	-	PREV_LINK
-keymap	=	MOVE_LIST_MENU
-keymap	M	LIST_MENU
-keymap	[	LINK_BEGIN
-keymap	]	LINK_END
-
-# show link number
-keymap f   COMMAND 'SET_OPTION "display_link_number = toggle" ; RESHAPE'
-# preceded by link number : go to link
-# follow mode, like in qutebrowser
-keymap	*	LINK_BEGIN
-
-keymap	SPC	COMMAND "NEXT_PAGE ; DOWN ; DOWN"
-keymap	b	COMMAND "PREV_PAGE ; UP ; UP"
-
-# DEL = BackSpace
-keymap	DEL	BACK
-keymap	B	BACK
-keymap	H	PREV
-keymap	L	NEXT
-keymap	=	SELECT_MENU
-
-keymap	h	HISTORY
-
-keymap	m	ADD_BOOKMARK
-keymap	"'"		BOOKMARK
-
-keymap	t	COMMAND "NEW_TAB ; BOOKMARK"
-keymap	M-t	TAB_MENU
-keymap	C-t	TAB_LINK
-keymap	l	TAB_LINK
-# voir aussi restore tabs
-keymap	J	PREV_TAB
-keymap	K	NEXT_TAB
-keymap	\^	PREV_TAB
-keymap	$	NEXT_TAB
-keymap M-\^ TAB_LEFT
-keymap M-$ TAB_RIGHT
-
-keymap	w	PRINT
-keymap	W	DOWNLOAD
-
-keymap	,	  MARK_URL
-keymap	";"   MARK_WORD
-
-keymap	&	  EXTERN
-keymap	e	  EXTERN_LINK
-
-keymap	C-o	OPTIONS
-
-# Surfraw
-# ------------------------------
-
-# To enable cgi clipboard scripts :
-#
-# ln -s ~/.w3m/cgi-bin/*clipboard* /usr/lib/w3m/cgi-bin
-
-# for x sessions
-
-keymap  s  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; TAB_GOTO /usr/lib/w3m/cgi-bin/goto_clipboard_primary.cgi"
-
-# keymap  xs  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; GOTO /usr/lib/w3m/cgi-bin/goto_clipboard.cgi"
-# keymap  XS  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; TAB_GOTO /usr/lib/w3m/cgi-bin/goto_clipboard.cgi"
-
-# for tmux users
-
-# keymap  xs  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw_tmux.cgi ; GOTO /usr/lib/w3m/cgi-bin/goto_tmux_clipboard.cgi"
-# keymap  XS  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw_tmux.cgi ; TAB_GOTO /usr/lib/w3m/cgi-bin/goto_tmux_clipboard.cgi"
-
-# Downloads
-# ------------------------------
-
-#keymap	C-D	SAVE
-
-keymap	d		EXTERN			'diana add'
-keymap	D		EXTERN_LINK		'diana add'
-
-keymap	m-d		EXTERN			'diana --pause add'
-keymap	C-D		EXTERN_LINK		'diana --pause add'
-
-# Readability-cli
-# ------------------------------
-
-keymap  C-R    COMMAND "SHELL 'readable $W3M_URL > /tmp/readable.html' ; LOAD /tmp/readable.html"
-
-# Text to speech
-# ------------------------------
-
-keymap m-s	COMMAND "PRINT /tmp/picospeaker.txt ; SHELL 'picospeaker -l en-US < /tmp/picospeaker.txt 2>/dev/null &'"
-keymap c-s	COMMAND "PRINT /tmp/picospeaker.txt ; SHELL 'picospeaker -l fr-FR < /tmp/picospeaker.txt 2>/dev/null &'"
-keymap p COMMAND "SHELL '~/racine/shell/process/toggle-process.zsh /usr/bin/play'"
-keymap \\\s COMMAND "SHELL 'pkill play'"
-
-# Restore tabs
-# ------------------------------
-
-keymap  x      COMMAND     "EXTERN 'echo %s >> ~/.w3m/restore-tab.txt' ; CLOSE_TAB"
-keymap  X      COMMAND     "EXTERN 'echo %s >> ~/.w3m/restore-tab.txt' ; CLOSE_TAB"
-keymap  U      TAB_GOTO    /usr/lib/w3m/cgi-bin/restore_tab.cgi
-
-# }}}1
-
-# Par défaut {{{1
+# par défaut {{{1
 
 # A sample of ~/.w3m/keymap (default)
 #
@@ -292,4 +310,151 @@ keymap  U      TAB_GOTO    /usr/lib/w3m/cgi-bin/restore_tab.cgi
 # keymap	M-[6~	NEXT_PAGE
 # keymap	M-[28~	MENU
 
-# }}}1
+# principal {{{1
+
+keymap	M-h	HELP
+
+keymap	ii	INFO
+keymap	il	LINE_INFO
+
+keymap	M-o	OPTIONS
+keymap	C-o	SET_OPTION
+
+# quit with confirmation
+keymap	q	QUIT
+# quit at once
+keymap	Q	ABORT
+
+keymap : COMMAND "READ_SHELL ~/.w3m/cgi-bin/fnx_fzfmiru.cgi ; BACK ; GOTO file:/cgi-bin/fnx_execute.cgi ; BACK"
+
+# pop-up
+keymap	mm	MENU
+
+# opening {{{2
+
+# open in new buffer
+keymap	oo	GOTO
+# open relative url
+keymap	or	GOTO_RELATIVE
+
+# open file
+keymap	of	LOAD
+
+keymap	r	RELOAD
+
+# search engines {{{2
+
+# surfraw {{{3
+
+# for x sessions
+
+keymap sr  COMMAND "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
+keymap sR  COMMAND "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
+
+# navigation {{{2
+
+keymap	j	UP
+keymap	k	DOWN
+
+keymap	SPC	COMMAND "NEXT_PAGE ; DOWN ; DOWN"
+keymap	b	COMMAND "PREV_PAGE ; UP ; UP"
+
+# links {{{2
+
+keymap	ll	LIST
+keymap	lm	MOVE_LIST_MENU
+keymap	lM	LIST_MENU
+keymap	+	NEXT_LINK
+keymap	-	PREV_LINK
+keymap	lg	LINK_BEGIN
+keymap	lG	LINK_END
+# show link number
+keymap ln   COMMAND 'SET_OPTION "display_link_number = toggle" ; RESHAPE'
+# preceded by link number : go to link
+# follow mode, like in qutebrowser
+keymap	lf	LINK_BEGIN
+# url like -> hyperlink
+keymap	lu	  MARK_URL
+# word -> hyperlink
+keymap	lw   MARK_WORD
+# display current page in external browser
+keymap	&	  EXTERN
+keymap	le	  EXTERN
+# display link target in external browser
+keymap	lE	  EXTERN_LINK
+
+# buffers {{{2
+
+# delete buffer and go to previous one
+# DEL = BackSpace
+keymap	bh	BACK
+keymap	DEL	BACK
+keymap	H	PREV
+keymap	L	NEXT
+keymap	bp	PREV
+keymap	bn	NEXT
+keymap	bh	PREV
+keymap	bl	NEXT
+# buffer menu
+keymap	=	SELECT_MENU
+keymap	bm	SELECT_MENU
+
+# history {{{2
+
+keymap	h	HISTORY
+
+# bookmarks {{{2
+
+keymap	ma	ADD_BOOKMARK
+keymap	"'"		BOOKMARK
+keymap	mm		BOOKMARK
+
+# tabs {{{2
+
+keymap	tn	COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
+keymap	tt	COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
+
+keymap	tm	TAB_MENU
+keymap	tl	TAB_LINK
+keymap	th	PREV_TAB
+keymap	tl	NEXT_TAB
+keymap	J	PREV_TAB
+keymap	K	NEXT_TAB
+keymap	\^	PREV_TAB
+keymap	$	NEXT_TAB
+keymap M-\^ TAB_LEFT
+keymap M-$ TAB_RIGHT
+keymap tH  TAB_LEFT
+keymap tL  TAB_RIGHT
+# restore tabs
+keymap  tx      COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
+keymap  x       COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
+keymap  tu      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
+keymap  tr      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
+
+# save, download {{{2
+
+# save rendered document to file
+keymap	w	PRINT
+keymap	dw	PRINT
+# save source to file
+keymap	ds	SAVE
+keymap	dd	DOWNLOAD
+
+# diana is a front-end for aria2c
+keymap	da		EXTERN			'diana add'
+keymap	dA		EXTERN_LINK		'diana add'
+
+keymap	dpa		EXTERN			'diana --pause add'
+keymap	dpA		EXTERN_LINK		'diana --pause add'
+
+# readability {{{2
+
+keymap  rr    COMMAND "SHELL 'readable $W3M_URL > /tmp/readable.html' ; LOAD /tmp/readable.html"
+
+# text to speech {{{2
+
+keymap ap	COMMAND "PRINT /tmp/picospeaker.txt ; SHELL 'picospeaker -l en-US < /tmp/picospeaker.txt 2>/dev/null &'"
+keymap aP	COMMAND "PRINT /tmp/picospeaker.txt ; SHELL 'picospeaker -l fr-FR < /tmp/picospeaker.txt 2>/dev/null &'"
+keymap at	COMMAND "SHELL '~/racine/shell/process/toggle-process.zsh /usr/bin/play'"
+keymap as	COMMAND "SHELL 'pkill play'"

@@ -51,7 +51,6 @@ bind generic \cB previous-page
 bind generic <pageup> previous-page
 bind generic <pagedown> next-page
 
-
 # Recherche {{{2
 
 bind generic / search
@@ -78,7 +77,6 @@ bind generic ";" tag-prefix
 
 bind generic : enter-command
 bind generic ! shell-escape
-
 
 
 # Index {{{1
@@ -219,7 +217,6 @@ bind index vp tag-pattern
 
 bind index vu untag-pattern
 
-
 # Modification {{{2
 
 bind index e edit
@@ -291,17 +288,13 @@ bind index D noop
 
 bind index DD purge-message
 
-
 # Destinataires {{{2
 
 bind index = create-alias
 
-
 # Commande {{{2
 
 bind index | pipe-message
-
-
 
 # Pager {{{1
 
@@ -341,7 +334,6 @@ bind pager O sort-reverse
 bind pager "'" skip-quoted
 bind pager '"' toggle-quoted
 bind pager z toggle-quoted
-
 
 # Mouvement {{{2
 
@@ -389,7 +381,6 @@ bind pager ) next-thread
 bind pager + next-subthread
 bind pager - previous-subthread
 
-
 # Recherche {{{2
 
 bind pager / search
@@ -398,12 +389,11 @@ bind pager ? search-reverse
 bind pager n search-next
 bind pager N search-opposite
 
-
 # Envoi {{{2
 
 bind pager m noop
 
-bind pager a mail
+bind pager à mail
 bind pager µ reply
 
 bind pager mm mail
@@ -416,18 +406,15 @@ bind pager ml list-reply
 bind pager mr reply
 bind pager ms resend-message
 
-
 # Recherche {{{2
 
 bind pager '\' search-toggle
-
 
 # Sélection {{{2
 
 bind pager v noop
 
 bind pager vv tag-message
-
 
 # Modification {{{2
 
@@ -468,7 +455,7 @@ bind pager us undelete-subthread
 # Attachés {{{2
 
 bind pager & view-attachments
-bind pager A view-attachments
+bind pager a view-attachments
 
 # Destinataires {{{2
 
@@ -487,11 +474,9 @@ bind attach \eh help
 bind attach H display-toggle-weed
 bind attach z collapse-parts
 
-
 # Sélection {{{2
 
 bind    attach  <space>     select-entry
-
 
 # Envoi {{{2
 
@@ -504,7 +489,6 @@ bind attach mf forward-message
 bind attach mg group-reply
 bind attach ml list-reply
 bind attach mr reply
-
 
 # Modification {{{2
 
@@ -571,7 +555,6 @@ bind editor \cV quote-char
 bind    editor  "\e<backspace>" kill-word
 bind    editor  "\e<delete>"    kill-word
 
-
 # Alias {{{1
 
 bind alias d noop
@@ -579,7 +562,6 @@ bind alias u noop
 
 bind alias dd delete-entry
 bind alias uu undelete-entry
-
 
 # Query {{{1
 
@@ -589,7 +571,6 @@ bind query m mail
 bind query à query
 
 bind query A query-append
-
 
 # Compose {{{1
 
@@ -667,12 +648,10 @@ bind compose g send-message
 bind compose p postpone-message
 bind compose q exit
 
-
 # Postpone {{{1
 
 bind postpone d delete-entry
 bind postpone u undelete-entry
-
 
 # Browser {{{1
 
@@ -720,4 +699,3 @@ bind browser \ec create-mailbox
 bind browser D noop
 
 bind browser DD delete-mailbox
-
