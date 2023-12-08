@@ -2,22 +2,12 @@
 
 # documentation {{{1
 
-# Ctrl  : C-, ^
-# Escape: ESC-, M-, ^[
-# Space : SPC, ' '
-# Tab   : TAB, ^i, ^I
-# Delete: DEL, ^?
-# Up    : UP, ^[[A
-# Down  : DOWN, ^[[B
-# Right : RIGHT, ^[[C
-# Left  : LEFT, ^[[D
-
 # Voir aussi
 # <url:~/racine/config/cmdline/zsh/zshenv#tn=WWW_HOME>
 
-# readme func {{{1
+# readme func {{{2
 
-# ABORT		Quit at once
+# ABORT		Quit without confirmation
 # ACCESSKEY	Pop up accesskey menu
 # ADD_BOOKMARK	Add current page to bookmarks
 # ALARM		Set alarm
@@ -31,6 +21,9 @@
 # CLOSE_TAB_MOUSE Close tab at mouse pointer
 # COMMAND 	Invoke w3m function(s)
 # COOKIE		View cookie list
+# CURSOR_TOP	Move cursor to the top line on the screen
+# CURSOR_MIDDLE	Move cursor to the middle line on the screen
+# CURSOR_BOTTOM	Move cursor to the bottom line on the screen
 # DEFAULT_CHARSET Change the default character encoding
 # DEFINE_KEY	Define a binding between a key stroke combination and a command
 # DELETE_PREVBUF	Delete previous buffer (mainly for local CGI-scripts)
@@ -44,16 +37,17 @@
 # EDIT_SCREEN	Edit rendered copy of document
 # END		Go to the last line
 # EXEC_SHELL	Execute shell command and display output
-# EXIT		Quit at once
+# EXIT		Quit without confirmation
 # EXTERN		Display using an external browser
 # EXTERN_LINK	Display target using an external browser
 # FRAME		Toggle rendering HTML frames
 # GOTO		Open specified document in a new buffer
+# GOTO_HOME	Return to the homepage (specified HTTP_HOME or WWW_HOME variable)
 # GOTO_LINE	Go to the specified line
 # GOTO_LINK	Follow current hyperlink in a new buffer
 # GOTO_RELATIVE	Go to relative address
 # HELP		Show help panel
-# HISTORY 	Show browsing history
+# HISTORY		Show browsing history
 # INFO		Display information about the current document
 # INTERRUPT	Suspend w3m to background
 # ISEARCH 	Incremental search forward
@@ -164,7 +158,62 @@
 # WHEREIS 	Search forward
 # WRAP_TOGGLE	Toggle wrapping mode in searches
 
-# par défaut {{{1
+# keys {{{2
+
+# Keyboard Support for w3m
+#                                                  (1999/06/30) H. Sakamoto
+#                                                   hsaka@mth.biglobe.ne.jp
+
+# Keyboard settings are located in ~/.w3m/keymap.
+# Settings are designated by:
+
+#     keymap key command [argument]
+
+# Ex. See: keymap.default and keymap.lynx
+# Command settings can be seen in README.func
+
+# Multi-character escape sequences are designated by:
+#     Escape letter
+#     Escape [ letter, Escape O letter
+#     Escape [ number ~, EScape [ number number ~
+
+# Special characters are represented as:
+
+#     Ctrl     : C-, ^
+#     Escape   : ESC-, M-, \e, ^[
+#     Space    : SPC, ' '
+#     Tab      : AB, \t, ^i, ^I
+#     Delete   : DEL, ^?
+#     BackSpace: \b, ^h, ^H
+#     NewLine  : \n, ^j, ^J
+#     Return   : \r, ^m, ^M
+#     Bell     : \a, ^g, ^G
+#     Up       : UP, ^[[A
+#     Down     : DOWN, ^[[B
+#     Right    : RIGHT, ^[[C
+#     Left     : LEFT, ^[[D
+#     ^        : \^
+
+# Also, terminal commands are can be used by:
+
+#     Insert  : ^[[2~
+#     PageUp  : ^[[5~
+#     PageDown: ^[[6~
+#     F1      : ^[[11~
+#     F2      : ^[[12~
+#     F3      : ^[[13~
+#     F4      : ^[[14~
+#     F5      : ^[[15~
+#     F6      : ^[[17~
+#     F7      : ^[[18~
+#     F8      : ^[[19~
+#     F9      : ^[[20~
+#     F10     : ^[[21~
+#     Help    : ^[[28~
+
+# (Confirm for each keyboard using Ctrl-V + key.)
+
+# par défaut {{{2
 
 # A sample of ~/.w3m/keymap (default)
 #
@@ -201,7 +250,7 @@
 # keymap	C-v	NEXT_PAGE
 # keymap	C-w	WRAP_TOGGLE
 # keymap	C-z	SUSPEND
-#
+
 # keymap	SPC	NEXT_PAGE
 # keymap	!	SHELL
 # keymap	\"	REG_MARK
@@ -266,11 +315,11 @@
 # keymap	{	PREV_TAB
 # keymap	|	PIPE_BUF
 # keymap	}	NEXT_TAB
-#
+
 # keymap	M-TAB	PREV_LINK
 # keymap	M-C-j	SAVE_LINK
 # keymap	M-C-m	SAVE_LINK
-#
+
 # keymap	M-:	MARK_MID
 # keymap	M-<	BEGIN
 # keymap	M->	END
@@ -293,16 +342,16 @@
 # keymap	M-u	GOTO_RELATIVE
 # keymap	M-v	PREV_PAGE
 # keymap	M-w	DICT_WORD
-#
+
 # keymap	UP	MOVE_UP
 # keymap	DOWN	MOVE_DOWN
 # keymap	RIGHT	MOVE_RIGHT
 # keymap	LEFT	MOVE_LEFT
-#
+
 # keymap	M-[E	MENU
 # keymap	M-[L	MENU
 # keymap	M-[Z	PREV_LINK
-#
+
 # keymap	M-[1~	BEGIN
 # keymap	M-[2~	MENU
 # keymap	M-[4~	END
@@ -316,6 +365,8 @@ keymap	M-h	HELP
 
 keymap	ii	INFO
 keymap	il	LINE_INFO
+keymap	iu	PEEK
+keymap	iU	PEEK_LINK
 
 keymap	M-o	OPTIONS
 keymap	C-o	SET_OPTION
@@ -334,13 +385,22 @@ keymap	mm	MENU
 
 # open in new buffer
 keymap	oo	GOTO
+keymap	ot	TAB_GOTO
+
+keymap	oh	GOTO_HOME
+
 # open relative url
-keymap	or	GOTO_RELATIVE
+keymap	O	GOTO_RELATIVE
+keymap	OT	TAB_GOTO_RELATIVE
 
 # open file
 keymap	of	LOAD
 
 keymap	r	RELOAD
+
+# open url in clipboard
+keymap  pp      GOTO        file:/cgi-bin/goto_clipboard.cgi
+keymap  PP      TAB_GOTO    file:/cgi-bin/goto_clipboard.cgi
 
 # search engines {{{2
 
@@ -355,49 +415,66 @@ keymap sR  COMMAND "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO 
 
 keymap	j	UP
 keymap	k	DOWN
+keymap	<	LEFT
+keymap	>	RIGHT
+
+keymap	d	NEXT_HALF_PAGE
+keymap	u	PREV_HALF_PAGE
+keymap	C-f	NEXT_PAGE
+keymap	C-b	PREV_PAGE
+
+keymap z CURSOR_MIDDLE
 
 keymap	SPC	COMMAND "NEXT_PAGE ; DOWN ; DOWN"
-keymap	b	COMMAND "PREV_PAGE ; UP ; UP"
+keymap	B	COMMAND "PREV_PAGE ; UP ; UP"
 
 # links {{{2
 
 keymap	ll	LIST
 keymap	lm	MOVE_LIST_MENU
 keymap	lM	LIST_MENU
+
 keymap	+	NEXT_LINK
 keymap	-	PREV_LINK
+
 keymap	lg	LINK_BEGIN
 keymap	lG	LINK_END
+
 # show link number
 keymap ln   COMMAND 'SET_OPTION "display_link_number = toggle" ; RESHAPE'
 # preceded by link number : go to link
 # follow mode, like in qutebrowser
 keymap	lf	LINK_BEGIN
+
 # url like -> hyperlink
 keymap	lu	  MARK_URL
 # word -> hyperlink
 keymap	lw   MARK_WORD
+
 # display current page in external browser
-keymap	&	  EXTERN
 keymap	le	  EXTERN
+keymap	&	  EXTERN
 # display link target in external browser
 keymap	lE	  EXTERN_LINK
 
 # buffers {{{2
 
+# buffer menu
+keymap	bm	SELECT_MENU
+keymap	=	SELECT_MENU
+
 # delete buffer and go to previous one
 # DEL = BackSpace
-keymap	bh	BACK
+keymap	bb	BACK
 keymap	DEL	BACK
-keymap	H	PREV
-keymap	L	NEXT
+
 keymap	bp	PREV
 keymap	bn	NEXT
-keymap	bh	PREV
-keymap	bl	NEXT
-# buffer menu
-keymap	=	SELECT_MENU
-keymap	bm	SELECT_MENU
+keymap	H	PREV
+keymap	L	NEXT
+
+keymap | PIPE_BUF
+keymap b| PIPE_BUF
 
 # history {{{2
 
@@ -411,42 +488,45 @@ keymap	mm		BOOKMARK
 
 # tabs {{{2
 
-keymap	tn	COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
 keymap	tt	COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
 
 keymap	tm	TAB_MENU
 keymap	tl	TAB_LINK
-keymap	th	PREV_TAB
-keymap	tl	NEXT_TAB
+keymap	tp	PREV_TAB
+keymap	tn	NEXT_TAB
 keymap	J	PREV_TAB
 keymap	K	NEXT_TAB
 keymap	\^	PREV_TAB
 keymap	$	NEXT_TAB
-keymap M-\^ TAB_LEFT
-keymap M-$ TAB_RIGHT
 keymap tH  TAB_LEFT
 keymap tL  TAB_RIGHT
+keymap M-\^ TAB_LEFT
+keymap M-$ TAB_RIGHT
+
 # restore tabs
 keymap  tx      COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
 keymap  x       COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
 keymap  tu      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
 keymap  tr      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
 
-# save, download {{{2
+# file operations : edit, save, download {{{2
+
+keymap	fe  EDIT_SCREEN
 
 # save rendered document to file
 keymap	w	PRINT
-keymap	dw	PRINT
+keymap	fw	PRINT
+
 # save source to file
-keymap	ds	SAVE
-keymap	dd	DOWNLOAD
+keymap	fs	SAVE
+keymap	fd	DOWNLOAD
 
 # diana is a front-end for aria2c
-keymap	da		EXTERN			'diana add'
-keymap	dA		EXTERN_LINK		'diana add'
+keymap	fa		EXTERN			'diana add'
+keymap	fA		EXTERN_LINK		'diana add'
 
-keymap	dpa		EXTERN			'diana --pause add'
-keymap	dpA		EXTERN_LINK		'diana --pause add'
+keymap	fpa		EXTERN			'diana --pause add'
+keymap	fpA		EXTERN_LINK		'diana --pause add'
 
 # readability {{{2
 
