@@ -388,11 +388,10 @@ keymap	M-m		MENU
 # open in new buffer
 keymap	oo	GOTO
 keymap	ot	TAB_GOTO
-
 keymap	oh	GOTO_HOME
 
 # open relative url
-keymap	O	GOTO_RELATIVE
+keymap	OO	GOTO_RELATIVE
 keymap	OT	TAB_GOTO_RELATIVE
 
 # open file
@@ -432,9 +431,9 @@ keymap	B	COMMAND "PREV_PAGE ; UP ; UP"
 
 # links {{{2
 
-keymap	lm	MOVE_LIST_MENU
-keymap	ll	MOVE_LIST_MENU
-keymap	lM	LIST_MENU
+keymap	lm	LIST_MENU
+keymap	ll	LIST_MENU
+keymap	lM	MOVE_LIST_MENU
 keymap	lL	LIST
 
 keymap	+	NEXT_LINK
