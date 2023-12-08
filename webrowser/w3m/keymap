@@ -536,7 +536,7 @@ keymap	fpA		EXTERN_LINK		'diana --pause add'
 
 # readability {{{2
 
-keymap  rr    COMMAND "SHELL 'readable $W3M_URL > /tmp/readable.html' ; LOAD /tmp/readable.html"
+keymap  C-r    COMMAND "SHELL 'readable $W3M_URL > /tmp/readable.html' ; NEW_TAB ; LOAD /tmp/readable.html"
 
 # text to speech {{{2
 
