@@ -372,8 +372,8 @@ keymap	C-g	LINE_INFO
 keymap	iu	PEEK
 keymap	iU	PEEK_LINK
 
-keymap	M-o	OPTIONS
-keymap	C-o	SET_OPTION
+keymap	co	OPTIONS
+keymap	cO	SET_OPTION
 
 # quit with confirmation
 keymap	q	QUIT
@@ -390,10 +390,12 @@ keymap	M-m		MENU
 # open in new buffer
 keymap	oo	GOTO
 keymap	ot	TAB_GOTO
+keymap	M-o	TAB_GOTO
 keymap	oh	GOTO_HOME
 
 # open relative url
 keymap	OO	GOTO_RELATIVE
+keymap	C-o	GOTO_RELATIVE
 keymap	OT	TAB_GOTO_RELATIVE
 
 # open file
@@ -404,7 +406,7 @@ keymap  om      EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --auto
 keymap  oM      EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
 keymap  og      EXTERN_LINK   'mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
 
-keymap	r	RELOAD
+keymap	or	RELOAD
 
 # open url in clipboard
 keymap  PP      GOTO        file:/cgi-bin/goto_clipboard.cgi
@@ -416,10 +418,13 @@ keymap  pp      TAB_GOTO    file:/cgi-bin/goto_clipboard.cgi
 
 # for x sessions
 
-keymap sr  COMMAND "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
-keymap sR  COMMAND "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
+keymap sr  COMMAND "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
+keymap sR  COMMAND "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
 
 # navigation {{{2
+
+keymap	C-a	LINE_BEGIN
+keymap	C-e	LINE_END
 
 keymap	j	UP
 keymap	k	DOWN
@@ -552,6 +557,7 @@ keymap	fpA		EXTERN_LINK		'diana --pause add'
 
 # readability {{{2
 
+keymap  rr    COMMAND "SHELL 'readable $W3M_URL > /tmp/readable.html' ; NEW_TAB ; LOAD /tmp/readable.html"
 keymap  C-r    COMMAND "SHELL 'readable $W3M_URL > /tmp/readable.html' ; NEW_TAB ; LOAD /tmp/readable.html"
 
 # text to speech {{{2
