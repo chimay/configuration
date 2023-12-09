@@ -182,7 +182,7 @@
 #     Ctrl     : C-, ^
 #     Escape   : ESC-, M-, \e, ^[
 #     Space    : SPC, ' '
-#     Tab      : AB, \t, ^i, ^I
+#     Tab      : TAB, \t, ^i, ^I
 #     Delete   : DEL, ^?
 #     BackSpace: \b, ^h, ^H
 #     NewLine  : \n, ^j, ^J
@@ -364,6 +364,8 @@
 # generic {{{2
 
 keymap	M-h	HELP
+keymap  \\\?    COMMAND       "HELP; SEARCH ^User-Defined; CENTER_V"            # show user custom hotkeys binding
+keymap  \\\f    COMMAND       "HELP; SEARCH ^Input Line Editing Mode; CENTER_V" # show field hotkeys binding
 
 keymap	ii	INFO
 keymap	M-i	INFO
@@ -371,9 +373,6 @@ keymap	il	LINE_INFO
 keymap	C-g	LINE_INFO
 keymap	iu	PEEK
 keymap	iU	PEEK_LINK
-
-keymap	co	OPTIONS
-keymap	cO	SET_OPTION
 
 # quit with confirmation
 keymap	q	QUIT
@@ -384,6 +383,19 @@ keymap : COMMAND "READ_SHELL ~/.w3m/cgi-bin/fnx_fzfmiru.cgi ; BACK ; GOTO file:/
 
 # pop-up
 keymap	M-m		MENU
+
+# configure options {{{2
+
+keymap	co	OPTIONS
+keymap	cO	SET_OPTION
+
+keymap cn   COMMAND 'SET_OPTION "show_lnum = toggle" ; RESHAPE'
+keymap cl   COMMAND 'SET_OPTION "display_link_number = toggle" ; RESHAPE'
+keymap cc   COMMAND 'SET_OPTION "color = toggle" ; RESHAPE'
+keymap ci   COMMAND 'SET_OPTION "display_image = toggle" ; RELOAD'
+keymap cb   COMMAND "SET_OPTION display_borders=toggle ; RESHAPE"
+# Treat URL-like strings as links in all pages (convert text to url)
+keymap cu   COMMAND "SET_OPTION mark_all_pages=toggle ; RELOAD"
 
 # opening {{{2
 
@@ -402,15 +414,19 @@ keymap	OT	TAB_GOTO_RELATIVE
 keymap	of	LOAD
 
 # open with handlers
-keymap  om      EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
-keymap  oM      EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
-keymap  og      EXTERN_LINK   'mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
+keymap  hm      EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
+keymap  hM      EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
+keymap  hg      EXTERN_LINK   'mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
 
-keymap	or	RELOAD
+keymap	R	RELOAD
 
 # open url in clipboard
 keymap  PP      GOTO        file:/cgi-bin/goto_clipboard.cgi
 keymap  pp      TAB_GOTO    file:/cgi-bin/goto_clipboard.cgi
+
+# yank {{{2
+
+keymap yy  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fn_yank_page_url.cgi ; BACK"
 
 # search engines {{{2
 
@@ -418,8 +434,12 @@ keymap  pp      TAB_GOTO    file:/cgi-bin/goto_clipboard.cgi
 
 # for x sessions
 
-keymap sr  COMMAND "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
-keymap sR  COMMAND "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
+keymap sr  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
+keymap sR  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
+keymap sx  COMMAND  "TAB_GOTO https://searx.org; GOTO_LINE 5; NEXT_LINK; GOTO_LINK"
+keymap sd  COMMAND  "TAB_GOTO https://duckduckgo.com/lite/; NEXT_LINK; GOTO_LINK"
+keymap sg  COMMAND  "TAB_GOTO https://google.com; GOTO_LINE 6; NEXT_LINK; GOTO_LINK"
+keymap se  COMMAND  "TAB_GOTO https://stackexchange.com; GOTO_LINE 7; NEXT_LINK; GOTO_LINK"
 
 # navigation {{{2
 
@@ -443,12 +463,14 @@ keymap	B	COMMAND "PREV_PAGE ; UP ; UP"
 
 # links {{{2
 
-keymap	lM	MOVE_LIST_MENU
+keymap	lm	MOVE_LIST_MENU
 keymap	M-l	MOVE_LIST_MENU
-keymap	lm	LIST_MENU
+
+keymap	lM	LIST_MENU
 keymap	C-l	LIST_MENU
-keymap	lL	LIST
+
 keymap	ll	LIST
+#keymap	TAB	LIST
 
 keymap	+	NEXT_LINK
 keymap	-	PREV_LINK
@@ -456,28 +478,24 @@ keymap	-	PREV_LINK
 keymap	lg	LINK_BEGIN
 keymap	lG	LINK_END
 
-# show link number
-keymap ln   COMMAND 'SET_OPTION "display_link_number = toggle" ; RESHAPE'
-
 # preceded by link number : go to link
 # follow mode, like in qutebrowser
 keymap	lf	LINK_BEGIN
+keymap	'#'	LINK_BEGIN
+keymap	*	LINK_BEGIN
 
 # url like -> hyperlink
 keymap	lu	  MARK_URL
 # word -> hyperlink
 keymap	lw   MARK_WORD
 
+# external browser {{{2
+
 # display current page in external browser
-keymap	le	  EXTERN
+keymap	el	  EXTERN
 keymap	&	  EXTERN
 # display link target in external browser
-keymap	lE	  EXTERN_LINK
-
-# display {{{2
-
-keymap dl   COMMAND 'SET_OPTION "show_lnum = toggle" ; RESHAPE'
-keymap di   COMMAND 'SET_OPTION "display_image = toggle" ; RESHAPE'
+keymap	et	  EXTERN_LINK
 
 # buffers {{{2
 
@@ -549,11 +567,11 @@ keymap	fs	SAVE
 keymap	fd	DOWNLOAD
 
 # diana is a front-end for aria2c
-keymap	fa		EXTERN			'diana add'
-keymap	fA		EXTERN_LINK		'diana add'
+keymap	fd		EXTERN			'diana add'
+keymap	fD		EXTERN_LINK		'diana add'
 
-keymap	fpa		EXTERN			'diana --pause add'
-keymap	fpA		EXTERN_LINK		'diana --pause add'
+keymap	fpd		EXTERN			'diana --pause add'
+keymap	fpD		EXTERN_LINK		'diana --pause add'
 
 # readability {{{2
 

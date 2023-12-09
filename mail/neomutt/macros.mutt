@@ -150,7 +150,6 @@ macro index vO '<tag-pattern>~d >30d<enter>'
 
 macro index vo '<tag-pattern>~d >7d<enter>'
 
-
 #  Filtrage {{{1
 
 # annuler le filtre
@@ -189,7 +188,6 @@ macro index éz '<limit>~z >200k<enter>'
 
 macro index éZ '<limit>~z >50k<enter>'
 
-
 # Suppression {{{1
 
 # messages de plus de 30 jours
@@ -203,7 +201,6 @@ macro index do '<delete-pattern>~d >7d<enter>'
 # annuler la suppresion
 
 macro index ua '<undelete-pattern>all<enter>'
-
 
 # Ajout de l’expéditeur dans abook {{{1
 
@@ -222,7 +219,6 @@ macro attach & \
 	"<pipe-entry>cat >| ~/racine/varia/cache/neomutt/html/mail.html \
 	&& qutebrowser ~/racine/varia/cache/neomutt/html/mail.html<enter>" \
 	'Open in qutebrowser'
-
 
 # Nombre de lignes d’index dans le pager {{{1
 

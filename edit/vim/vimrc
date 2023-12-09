@@ -464,8 +464,8 @@ nnoremap <f3>s <cmd>%sort<cr>
 
 " Fenêtres {{{2
 
-nnoremap <s-tab>  <c-w>w
-nnoremap <m-s-tab>  <c-w>p
+nnoremap <c-right>  <c-w>w
+nnoremap <c-left>  <c-w>W
 
 " Les mouvements directionnels sont aussi accessible via h j k l
 
@@ -484,9 +484,6 @@ nnoremap <s-down>  <c-w><down>
 
 nnoremap <f3>t <cmd>tabnew<cr>
 nnoremap <f3>T :tabedit<space>
-
-nnoremap <c-left> gT
-nnoremap <c-right> gt
 
 nnoremap <f7>T <cmd>tabfirst<cr>
 nnoremap <f8>T <cmd>tablast<cr>
@@ -1065,6 +1062,9 @@ nnoremap <c-right> <c-w>w
 
 nnoremap <c-pageup> gT
 nnoremap <c-pagedown> gt
+
+nnoremap <c-p> gT
+nnoremap <c-n> gt
 
 nnoremap <c-home> <cmd>tabfirst<cr>
 nnoremap <c-end> <cmd>tablast<cr>

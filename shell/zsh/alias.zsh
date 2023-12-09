@@ -2,7 +2,6 @@
 
 # Touches non utilisées {{{1
 
-
 #  Généralités {{{1
 
 # Commande qui ne fait rien
@@ -17,25 +16,21 @@ alias nope=:
 
 alias rr='builtin r'
 
-
 # ------------------------------------
 
 # Documentation {{{1
 
 # tldr, cheatsheets, ...
 
-
 # Self {{{1
 
 alias cm='chezmoi -c ~/racine/self/chezmoi/config/chezmoi.toml -S ~/racine/self/chezmoi/source -D ~'
-
 
 # Sudo {{{1
 
 # Remplacement pour gksu, kdesu
 
 alias gsu=pkexec
-
 
 #  Affichage {{{1
 
@@ -44,11 +39,9 @@ alias ef='printf'
 alias c=cat
 alias valve=wall
 
-
 #  Clavier {{{1
 
 alias azer="setxkbmap be ; xmodmap ~/racine/config/windenv/xmodmap/belge-meta-super-hyper"
-
 
 #  Contrôle de version {{{1
 
@@ -59,7 +52,6 @@ alias 9=tig
 #alias diff='diff -BN'
 
 alias p1='patch -p1 < '
-
 
 #  Visualisation {{{1
 
@@ -99,7 +91,6 @@ alias fntprev='fontpreview-ueberzug -f "#5b3c11" -b "#000000"'
 
 alias ed=run-ed
 
-
 # Vim {{{2
 
 alias v=vim
@@ -110,7 +101,6 @@ alias vid=vimdiff
 alias vq=vim-quickfix
 
 alias se=sudoedit
-
 
 #  Neovim {{{2
 
@@ -179,7 +169,6 @@ fi
 alias ù=most-recently-modified
 alias nf=number-of-files
 
-
 # Répertoires {{{2
 
 alias 0='cd ~/racine'
@@ -188,11 +177,9 @@ alias pw='pwd'
 
 alias cdfzf='cd $(fzfz)'
 
-
 # Arborescence {{{2
 
 alias tree='tree -C -A'
-
 
 # Place {{{2
 
@@ -201,7 +188,6 @@ alias dfc='dfc -c never'
 
 alias du='du -sh'
 alias duc='ncdu --color off'
-
 
 # Renommage & Déplacement {{{2
 
@@ -214,7 +200,6 @@ alias mm='qmv -f destination-only -d -e kak'
 #alias vd=vidir
 
 alias vd=edir
-
 
 # Copie {{{2
 
@@ -234,12 +219,10 @@ alias rmrf='command rm -rf'
 
 alias srm='srm -vvv'
 
-
 # Liens {{{2
 
 alias ln='ln -i'
 alias rl='readlink -f'
-
 
 #  Synchronisation {{{2
 
@@ -275,14 +258,16 @@ alias à2='xclip -o -selection secondary'
 
 alias pk='pack'
 
-
 #  Processus {{{1
 
 alias j='jobs'
 
 alias t=htop
 
-alias ts=tsp
+alias ts='TS_SOCKET=~/racine/run/socket/task-spooler tsp'
+alias ts-1='TS_SOCKET=~/racine/run/socket/task-spooler-1 tsp'
+alias ts-2='TS_SOCKET=~/racine/run/socket/task-spooler-2 tsp'
+
 alias stamp='command ts'
 
 alias pg='pgrep -af'
@@ -304,7 +289,6 @@ alias mw=w3mman
 
 alias in=info
 
-
 #  Recherche {{{1
 
 alias é=searcher
@@ -316,7 +300,6 @@ alias lc=locate-file
 alias ta=task
 
 alias clc=calcurse
-
 
 # Courriel {{{1
 
@@ -384,7 +367,6 @@ alias I=weechat
 
 alias jour='date +" [=] %A %d %B %Y  (o) %H : %M : %S  | %:z | "'
 
-
 # Réseau {{{1
 
 alias ftp=lftp
@@ -395,7 +377,6 @@ alias wp=wgetpaste
 #alias irb='irb --simple-prompt'
 
 alias rvm-bash='/bin/bash rvm'
-
 
 #  Musique, Vidéo {{{1
 
@@ -439,7 +420,6 @@ alias pc=playerctl
 #alias vlc-http='vlc -I http --http-host 127.0.0.1:8080'
 
 
-
 #  Science {{{1
 
 alias 8='octave --no-gui --quiet'
@@ -454,7 +434,6 @@ alias journeaux='tail /var/log/mail.* | ccze -A'
 
 alias sv=systemctl
 
-
 # Utilitaires {{{1
 
 alias wo='command w'
@@ -464,7 +443,6 @@ alias wh='which -a'
 alias vmstat='vmstat 1 4'
 
 # who, mesg, talk, write, wall
-
 
 # Dictionnaires {{{1
 
@@ -486,28 +464,23 @@ alias wpt=wptranslate
 
 alias aw=wiki-search
 
-
 # Bureautique {{{1
 
 alias 4=sc-im
-
 
 # Météo {{{1
 
 alias we=wego
 
-
 # Applications {{{1
 
 alias nautilus='nautilus --no-desktop'
-
 
 # ------------------------------------
 
 #  Précommandes {{{1
 
 alias mkdir='nocorrect mkdir -p'
-
 
 #  Globaux : alias -g {{{1
 
@@ -556,7 +529,6 @@ alias -s ogg=mpv
 alias -s mp3=mpv
 alias -s flac=mpv
 alias -s wav=mpv
-
 
 #  Alias de répertoires : hash -d {{{1
 

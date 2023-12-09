@@ -1491,6 +1491,9 @@ nnoremap <c-right> <c-w>w
 nnoremap <c-pageup> gT
 nnoremap <c-pagedown> gt
 
+nnoremap <c-p> gT
+nnoremap <c-n> gt
+
 nnoremap <c-home> <cmd>tabfirst<cr>
 nnoremap <c-end> <cmd>tablast<cr>
 

@@ -59,7 +59,7 @@ mark 0
 emacs_like_lineedit 0
 space_autocomplete 0
 vi_prec_num 0
-mark_all_pages 0
+mark_all_pages 1
 wrap_search 0
 ignorecase_search 1
 use_mouse 1

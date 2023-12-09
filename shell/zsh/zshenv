@@ -54,7 +54,6 @@ export TERM
 
 export TERMINAL=xterm
 
-
 #  Self (zsh configure zsh) {{{1
 
 export RACINE_ZSH=~/racine/config/shell/zsh
@@ -89,7 +88,6 @@ export DIRSTACKSIZE=300
 
 export REPERTOIRES_FICHIER="$HOME/racine/hist/zsh/dirs-$HOST"
 
-
 #  Chemins {{{2
 
 # Documentation (man) {{{3
@@ -103,7 +101,6 @@ manpath+=(~/racine/bin/local/man)
 manpath+=(/usr/local/share/man)
 manpath+=(/usr/share/man)
 manpath+=(/usr/local/man)
-
 
 #  Documentation (info) {{{3
 
@@ -129,7 +126,6 @@ manpath+=(/usr/local/man)
 # Nécessaire car zsh source /etc/profile
 # (qui réécrit PATH) après ~/.zshenv
 
-
 # Fonctions {{{3
 
 typeset -U fpath
@@ -144,14 +140,12 @@ fpath=(~/racine/fun/zsh/autoload/*(F) $fpath)
 fpath=(~/racine/fun/zsh/completion/*(F) $fpath)
 fpath=(~/racine/fun/zsh/zle $fpath)
 
-
 # Répertoires {{{3
 
 typeset -U cdpath
 
 #cdpath=($cdpath ~)
 #cdpath=($cdpath ~/racine/data ~/racine/var ~/log)
-
 
 # Personnalisés {{{3
 
@@ -180,7 +174,6 @@ export REPORTTIME=300
 
 export KEYTIMEOUT=127
 
-
 #  Courriel {{{2
 
 typeset -U mailpath
@@ -200,11 +193,9 @@ export MAIL=/var/spool/mail/$USER
 
 export MAILCHECK=36
 
-
 # Autosuggestions {{{2
 
 #export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=2"
-
 
 
 #  Nom de l'ordinateur {{{1
@@ -212,12 +203,10 @@ export MAILCHECK=36
 export HOST=`hostname -s`
 export HOSTNAME=$HOST
 
-
 # Environnement graphique {{{1
 
 #export XCOMPOSEFILE=~/racine/config/windenv/XCompose
 #export GTK_IM_MODULE=xim
-
 
 # Perso {{{1
 
@@ -226,7 +215,6 @@ source $RACINE_ZSH/perso.zsh
 #  Masque {{{1
 
 umask 0022
-
 
 #  Couleurs & Effets {{{1
 
@@ -257,11 +245,9 @@ source $RACINE_ZSH/couleurs.zsh
 
 #export CFLAGS
 
-
 # Lisp {{{2
 
 #export LISP=sbcl
-
 
 # Go {{{2
 
@@ -281,12 +267,10 @@ export HOMEBREW_CC=gcc
 
 #export NETRC=~/.netrc
 
-
 # Répertoire temporaire {{{1
 
 export TMPDIR=/tmp
 #export TMPDIR=~/tmp
-
 
 #  Cmdline {{{1
 
@@ -335,6 +319,11 @@ export CM_IGNORE_WINDOW=".*[Pp]inentry.*"
 export CM_LAUNCHER=rofi
 export CM_HISTLENGTH=17
 export CM_DIR=~/racine/hist/clipmenu
+
+# processus {{{1
+
+export TS_SLOTS=7
+export TS_SOCKET=~/racine/run/socket/task-spooler
 
 #  Utilitaires {{{1
 
@@ -442,7 +431,6 @@ export GTAGSCONF=~/racine/config/edit/labels/gtags.conf
 export GTAGSLABEL=native
 #export GTAGSLABEL=ctags
 
-
 # Gestionnaires de fichiers {{{1
 
 export QT_QPA_PLATFORMTHEME=qt5ct
@@ -461,7 +449,6 @@ export CVSROOT=:local:~/racine/repo/central/conversys
 
 export VCSH_REPO_D=~/racine/self/vcsh/repo.d
 export VCSH_HOOK_D=~/racine/self/vcsh/hooks-enabled
-
 
 #  Synchronisation {{{1
 
@@ -494,7 +481,6 @@ export PGDATA=~/db/postgresql
 #export PGHOST=localhost
 #export PGPORT=5432
 
-
 #  Langages de script (perl, python, ruby, ...) {{{1
 
 # Perl
@@ -514,7 +500,6 @@ export RUBYPATH=~/racine/bin/ruby
 export RUBYLIB=~/racine/ruby/lib
 #export RUBYOPT=
 
-
 #  Navigateurs {{{1
 
 export BROWSER=w3m
@@ -526,7 +511,6 @@ export WWW_HOME="file://$HOME/racine/refer/orgmode/bookmarks.html"
 
 export BUKU_COLORS=xXxxx
 
-
 #  Java {{{1
 
 # export JAVA_HOME=~/soft/mach/jre1.7.0_21
@@ -535,7 +519,6 @@ export BUKU_COLORS=xXxxx
 # export JAVA_OPTS="-Xms256m -Xmx512m"
 
 # export _JAVA_OPTIONS="-Xms256m -Xmx512m"
-
 
 #  Multimedia {{{1
 
