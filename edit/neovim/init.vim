@@ -41,7 +41,6 @@
 " - 'viminfo' includes "!"
 " - 'wildmenu' is set by default
 
-
 " Plugins needed before config {{{1
 
 packadd matchit
@@ -50,14 +49,12 @@ packadd matchit
 
 "set cpoptions-=C
 
-
 " Chemins de chargement {{{1
 
 " Pas nécessaire : ~/.config/nvim -> ~config/edit/neovim
 " Provoque des doublons avec ultisnips
 
 "set runtimepath+=~/racine/config/edit/neovim
-
 
 " Debug {{{1
 
@@ -88,18 +85,15 @@ set iskeyword-=/,:,#,@,-
 
 set more
 
-
 " Insertion {{{1
 
 " nostop = don’t stop at beginning of insert
 
 set backspace=indent,eol,start
 
-
 " Couper, copier, coller {{{1
 
 set clipboard=
-
 
 "  Environnement {{{1
 
@@ -108,15 +102,12 @@ set clipboard=
 set path=.,,
 "set path=**
 
-
 "  Chemins de recherche des répertoires {{{2
 
 "set cdpath=,
 
 "set cdpath+=~/racine
 "set cdpath+=~
-
-
 
 "  Système de fichier {{{1
 
@@ -128,7 +119,6 @@ set path=.,,
 
 "set autochdir
 
-
 "  Lecture / Écriture {{{2
 
 "set autowrite				" Sauvegarde automatique des fichiers lors de navigation
@@ -138,7 +128,6 @@ set path=.,,
 "set autowriteall			" Sauvegarde automatique des fichiers aussi pour :e, :enew, :q, :qall, :x, :recover
 
 "set autoread
-
 
 "  Sauvegardes {{{2
 
@@ -152,11 +141,9 @@ set writebackup
 
 set backupskip=/tmp/*,/etc/*,mutt-*-*-*-*
 
-
 " Patchmode {{{2
 
 "set patchmode=.original
-
 
 "  Fichier de récupération en cas de crash {{{2
 
@@ -170,8 +157,6 @@ set directory=~/racine/varia/autosave/neovim
 set updatecount=100			" Nombre de caractères
 set updatetime=1000			" Millisecondes
 
-
-
 "  Annulation {{{1
 
 set undolevels=1234
@@ -181,7 +166,6 @@ if exists("&undofile")
 	set undoreload=12743
 	set undodir=~/racine/varia/undo/neovim,.
 endif
-
 
 "  Session {{{1
 
@@ -201,7 +185,6 @@ set sessionoptions+=tabpages
 set sessionoptions+=unix
 set sessionoptions+=winpos
 set sessionoptions+=winsize
-
 
 "  Encodage {{{1
 
@@ -233,16 +216,12 @@ setglobal fileencodings=utf-8
 "dig uu 0613			" ɥ
 "dig ?? 0660			" ʔ
 
-
 " Divers {{{3
 
 " dig -n 8208				" ‐
 " dig -m 8211				" –
 
 "dig ~~ 0771			" tilde supérieur
-
-
-
 
 "  Langue {{{1
 
@@ -284,7 +263,6 @@ set selection=inclusive
 set modeline
 set modelines=7
 
-
 "  Périphériques {{{1
 
 "  Clavier {{{2
@@ -297,7 +275,6 @@ set whichwrap=<,>,[,],~,b,s,h,l
 
 set visualbell
 set noerrorbells
-
 
 "  Souris {{{2
 
@@ -312,7 +289,6 @@ set mousemodel=extend				" Clic droit modifie sélection
 
 set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up-arrow,v:rightup-arrow
 
-
 " Sélection {{{2
 
 "set selectmode+=key
@@ -320,8 +296,6 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up
 
 "set keymodel+=startsel
 "set keymodel+=stopsel
-
-
 
 "  Recherche {{{1
 
@@ -335,7 +309,6 @@ set ignorecase
 " des majuscules sont présentes dans le motif
 
 set smartcase
-
 
 " Grep {{{2
 
@@ -354,8 +327,6 @@ elseif executable('grep')
 else
 	set grepprg=internal
 endif
-
-
 
 "  Complétion {{{1
 
@@ -422,7 +393,6 @@ set complete=.,b,u,U,i,d
 
 set infercase
 
-
 "  Omnicomplétion {{{3
 
 set omnifunc=syntaxcomplete#Complete
@@ -434,11 +404,9 @@ set omnifunc=syntaxcomplete#Complete
 	"\ endif
 "endif
 
-
 " Complétion personalisée, gérée par certains plugins comme neocomplete
 
 "set completefunc=
-
 
 "  Complétion dans la ligne de commande {{{2
 
@@ -475,9 +443,6 @@ set wildoptions=pum,tagfile
 "set wildmode=longest,full
 set wildmode=full
 
-
-
-
 "  Formatage du texte {{{1
 
 set textwidth=72
@@ -503,7 +468,6 @@ set formatexpr=
 set formatprg=fmt
 "set formatprg=par\ -w85rjq
 
-
 "  Indentation {{{1
 
 " Tabulation {{{2
@@ -517,7 +481,6 @@ set shiftwidth=4
 
 set noexpandtab
 set nosmarttab
-
 
 " Indentation {{{2
 
@@ -538,8 +501,6 @@ set cindent
 " Indentation basée sur l’évaluation d’une expression
 
 "set indentexpr=
-
-
 
 "  Pliage {{{1
 
@@ -579,14 +540,11 @@ set foldcolumn=7
 
 set foldtext=biblio#folding_text()
 
-
 "  Méthode des marqueurs {{{2
 
 set foldmethod=marker
 
 set foldmarker={{{,}}}
-
-
 
 "  Tampons (buffers) {{{1
 
@@ -598,7 +556,6 @@ set bufhidden=hide
 " Demande si il faut sauver un buffer avant de le cacher
 
 "set confirm
-
 
 "  Onglets {{{1
 
@@ -615,7 +572,6 @@ set bufhidden=hide
 
 set showtabline=1
 
-
 "  Regarder les onglets quand on change de tampon
 
 set switchbuf=usetab
@@ -624,11 +580,9 @@ set switchbuf=usetab
 
 set tabpagemax=50
 
-
 "  Différences entre fichiers {{{1
 
 set diffopt=filler,context:4,vertical,foldcolumn:2
-
 
 "  Labels, etiquettes {{{1
 
@@ -639,8 +593,6 @@ set diffopt=filler,context:4,vertical,foldcolumn:2
 "set tags=./tags,tags
 
 "set tags=./tags,./TAGS,tags,TAGS
-
-
 
 "  Compilation de fichiers {{{1
 
@@ -714,7 +666,6 @@ set makeef=
 " before the 'a' In most default configs, ^[a may be typed by pressing
 " first <C-v>, then <M-a>
 
-
 "  Options {{{2
 
 " Temps (en millisecondes)
@@ -757,7 +708,6 @@ nnoremap K K<c-w>T
 nnoremap ZZ <cmd>qa<cr>
 nnoremap ZQ <cmd>qa!<cr>
 
-
 " Phrases {{{2
 
 " noremap <f7>s (
@@ -765,7 +715,6 @@ nnoremap ZQ <cmd>qa!<cr>
 
 " vnoremap <f7>s (
 " vnoremap <f8>s )
-
 
 "  Fichiers {{{2
 
@@ -810,7 +759,6 @@ nnoremap <f8>a <cmd>next<cr>
 
 nnoremap <f7>A <cmd>first<cr>
 nnoremap <f8>A <cmd>last<cr>
-
 
 " Tampons (buffers) {{{2
 
@@ -1101,7 +1049,6 @@ cnoremap <C-A> <C-B>
 
 "cnoremap <C-@> <C-\>e
 
-
 " Insérer un élément {{{3
 
 " Répertoire du fichier courant
@@ -1142,7 +1089,6 @@ nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 " underline ~~~ wrong words
 nnoremap <silent> <f3>~ <cmd>setlocal spell!<cr>
 
-
 "  Informations {{{2
 
 nnoremap <f3>ig <cmd>call biblio#highlight_group()<cr>
@@ -1179,7 +1125,6 @@ nmap <k9> 9
 
 nnoremap <silent> <D-l> <cmd>call biblio#toggle_relative_linum()<cr>
 
-
 " Curseur {{{3
 
 set guicursor=
@@ -1192,7 +1137,6 @@ set guicursor=
 			\ci:ver25,
 			\cr:hor25,
 			\sm:block
-
 
 set termguicolors
 
@@ -1235,13 +1179,10 @@ tnoremap <D-l> <C-\><C-n><C-W><Right>
 "cab hh tab help
 "cab dd <c-r>=strftime("[=] %A %d %B %Y  (o) %H : %M : %S  %z")<cr>
 
-
 " Fautes de frappe courantes {{{2
 
 iab totu tout
 iab sosu sous
-
-
 
 "  Présentation {{{1
 
@@ -1268,11 +1209,9 @@ set showbreak=┅
 set showbreak=↪
 set breakat=" ^I!@*-+;:,./?"
 
-
 "  Caractères non imprimables {{{2
 
 "set display+=uhex
-
 
 "  Mise en évidence {{{2
 
@@ -1281,7 +1220,6 @@ set breakat=" ^I!@*-+;:,./?"
 "if exists("&colorcolumn")
 	"set colorcolumn=+1
 "endif
-
 
 "  Correspondances {{{2
 
@@ -1295,7 +1233,6 @@ set showmatch
 " Fréquence de showmatch
 
 set matchtime=7
-
 
 "  Défilement {{{2
 
@@ -1320,7 +1257,6 @@ set sidescrolloff=15
 " Saut lorsque le curseur dépasse les limites hauts / bas
 
 set scrolljump=1
-
 
 "  Tabulation et espaces de fin de lignes {{{2
 
@@ -1353,12 +1289,10 @@ set nostartofline
 
 "set colorcolumn=+1
 
-
 " Splits {{{2
 
 set splitbelow
 set splitright
-
 
 "  Messages {{{2
 
@@ -1373,7 +1307,6 @@ set shortmess=
 "set shortmess=a
 
 set showmode
-
 
 "  Barre de statut {{{2
 
@@ -1410,7 +1343,6 @@ if has('statusline')
 	set statusline+=%<
 endif
 
-
 "  Zone de commande {{{2
 
 " Hauteur
@@ -1425,14 +1357,11 @@ set cmdheight=3
 
 " Voir aussi ~/racine/config/edit/neovim/after/syntax/html/conceal/neovim
 
-
 " Couleurs dans le terminal {{{2
 
 if has("termguicolors")
 	set termguicolors
 endif
-
-
 
 "  Syntaxe {{{1
 
@@ -1440,15 +1369,12 @@ endif
 
 syntax enable
 
-
 "  Options {{{2
 
 "syntax sync fromstart
 
 syntax sync minlines=7
 syntax sync maxlines=84
-
-
 
 " Ligne de commande :ex {{{1
 
@@ -1465,7 +1391,6 @@ set cmdwinheight=15
 
 set inccommand=split
 
-
 " Commandes {{{2
 
 " Convenient command to see the difference between the current buffer and the
@@ -1477,17 +1402,11 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-
-
 " Terminal {{{1
-
-
-
 
 "  Auto-commandes {{{1
 
 source ~/racine/config/edit/neovim/autocommandes.vim
-
 
 "  Types de fichiers {{{1
 
@@ -1527,7 +1446,6 @@ set shada=
 
 set history=10000
 
-
 " ------------------------------
 
 " Python {{{1
@@ -1539,7 +1457,6 @@ elseif $OPERASYS == 'freebsd'
 	let g:python3_host_prog = '/usr/local/bin/python3'
 	let g:python_host_prog = '/usr/local/bin/python2'
 endif
-
 
 " Add vim files {{{1
 

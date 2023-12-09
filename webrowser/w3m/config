@@ -9,7 +9,7 @@ open_tab_dl_list 1
 display_link 1
 display_link_number 0
 decode_url 1
-display_lineinfo 0
+display_lineinfo 1
 ext_dirlist 1
 dirlist_cmd file:///$LIB/dirlist.cgi
 use_dictcommand 1
@@ -18,24 +18,27 @@ multicol 0
 alt_entity 0
 graphic_char 0
 display_borders 0
+disable_center 0
 fold_textarea 0
 display_ins_del 1
 ignore_null_img_alt 1
 view_unseenobject 0
-display_image 1
+display_image 0
 pseudo_inlines 1
 auto_image 1
 max_load_image 4
 ext_image_viewer 1
 image_scale 100
+inline_img_protocol 0
 imgdisplay w3mimgdisplay
 image_map_list 1
 fold_line 0
-show_lnum 1
+show_lnum 0
 show_srch_str 1
 label_topline 0
 nextpage_topline 0
 color 1
+high-intensity 0
 basic_color terminal
 anchor_color terminal
 image_color terminal
@@ -54,6 +57,7 @@ confirm_qq 1
 close_tab_back 0
 mark 0
 emacs_like_lineedit 0
+space_autocomplete 0
 vi_prec_num 0
 mark_all_pages 0
 wrap_search 0
@@ -72,6 +76,7 @@ document_root
 personal_document_root
 cgi_bin ~/.w3m/cgi-bin:/usr/lib/w3m/cgi-bin:/usr/local/libexec/w3m/cgi-bin
 index_file
+tmp_dir
 mime_types ~/.mime.types, /usr/etc/mime.types
 mailcap ~/.w3m/mailcap, /usr/etc/w3m/mailcap
 urimethodmap ~/.w3m/urimethodmap, /usr/etc/w3m/urimethodmap
@@ -97,6 +102,7 @@ pre_form_file ~/.w3m/pre_form
 siteconf_file ~/.w3m/siteconf
 user_agent
 no_referer 0
+cross_origin_referer 1
 accept_language en;q=1.0
 accept_encoding gzip, compress, bzip, bzip2, deflate
 accept_media text/html, text/*;q=0.5, image/*
@@ -105,6 +111,7 @@ retry_http 1
 default_url 1
 follow_redirection 10
 meta_refresh 0
+localhost_only 0
 dns_order 0
 nntpserver news.gmane.org
 nntpmode
@@ -112,16 +119,20 @@ max_news 50
 use_proxy 1
 http_proxy
 https_proxy
+gopher_proxy
 ftp_proxy
 no_proxy
 noproxy_netaddr 1
 no_cache 0
 ssl_forbid_method 2, 3
+ssl_min_version
+ssl_cipher
 ssl_verify_server 1
 ssl_cert_file
 ssl_key_file
 ssl_ca_path
 ssl_ca_file
+ssl_ca_default 1
 use_cookie 1
 show_cookie 0
 accept_cookie 1

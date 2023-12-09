@@ -296,7 +296,9 @@ alias fini='mpv ~/audio/sonnerie/notification/fini.ogg'
 #  Manuel & Info {{{1
 
 alias rh=run-help
+
 alias m=man
+#alias m=w3mman
 
 alias mw=w3mman
 

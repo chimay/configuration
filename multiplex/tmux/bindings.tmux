@@ -14,7 +14,6 @@ bind F1 send-prefix
 
 set -g repeat-time 1275
 
-
 # Key tables {{{1
 
 bind -n F2 switch-client -T custom
@@ -74,7 +73,6 @@ bind -T custom d detach-client
 bind -T custom '{' switch-client -p
 bind -T custom '}' switch-client -n
 
-
 # Panel history {{{1
 
 bind -T custom ù send-keys "tmux capture-pane -S - -p | less +G" Enter
@@ -85,11 +83,11 @@ bind -T custom c command-prompt -p 'save history to filename:' \
 
 # Active / Désactive la copie de la sortie vers un fichier
 
-bind -T custom p pipe-pane -o 'cat >> ~/racine/hist/tmux/#h-#S-#W-#P.pipe'
+bind -T custom '|' pipe-pane -o 'cat >> ~/racine/hist/tmux/#h-#S-#W-#P.pipe'
 
 # Pipe le pane vers w3m
 
-bind -T custom w capture-pane \; save-buffer /tmp/tmux-buffer \; \
+bind -T custom u capture-pane \; save-buffer /tmp/tmux-buffer \; \
 	new-window -n "w3m" '$SHELL -c "w3m < /tmp/tmux-buffer"'
 
 # Lock {{{1
@@ -171,7 +169,6 @@ bind -n C-Right    swap-pane -U
 
 bind -T custom M-$ set -w synchronize-panes
 
-
 # Background command {{{1
 
 bind -T custom '&' command-prompt -p 'Commande à lancer ? ' "run-shell -b '%%'"
@@ -197,7 +194,6 @@ bind -T resize H resize-pane -L 5 \; switch-client -T resize
 bind -T resize J resize-pane -D 5 \; switch-client -T resize
 bind -T resize K resize-pane -U 5 \; switch-client -T resize
 bind -T resize L resize-pane -R 5 \; switch-client -T resize
-
 
 # Copy mode {{{1
 

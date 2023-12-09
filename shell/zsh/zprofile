@@ -47,6 +47,8 @@ path+=(~/racine/local/bin)
 
 path+=(~/racine/matemat/octave)
 
+path+=(~/racine/config/webrowser/w3m/bin)
+
 # Système {{{2
 
 path+=(/usr/local/bin)

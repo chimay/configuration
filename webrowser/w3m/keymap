@@ -213,7 +213,7 @@
 
 # (Confirm for each keyboard using Ctrl-V + key.)
 
-# par défaut {{{2
+# default maps {{{2
 
 # A sample of ~/.w3m/keymap (default)
 #
@@ -366,7 +366,9 @@
 keymap	M-h	HELP
 
 keymap	ii	INFO
+keymap	M-i	INFO
 keymap	il	LINE_INFO
+keymap	C-g	LINE_INFO
 keymap	iu	PEEK
 keymap	iU	PEEK_LINK
 
@@ -397,11 +399,16 @@ keymap	OT	TAB_GOTO_RELATIVE
 # open file
 keymap	of	LOAD
 
+# open with handlers
+keymap  om      EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
+keymap  oM      EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
+keymap  og      EXTERN_LINK   'mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
+
 keymap	r	RELOAD
 
 # open url in clipboard
-keymap  pp      GOTO        file:/cgi-bin/goto_clipboard.cgi
-keymap  PP      TAB_GOTO    file:/cgi-bin/goto_clipboard.cgi
+keymap  PP      GOTO        file:/cgi-bin/goto_clipboard.cgi
+keymap  pp      TAB_GOTO    file:/cgi-bin/goto_clipboard.cgi
 
 # search engines {{{2
 
@@ -431,10 +438,12 @@ keymap	B	COMMAND "PREV_PAGE ; UP ; UP"
 
 # links {{{2
 
-keymap	lm	LIST_MENU
-keymap	ll	LIST_MENU
 keymap	lM	MOVE_LIST_MENU
+keymap	M-l	MOVE_LIST_MENU
+keymap	lm	LIST_MENU
+keymap	C-l	LIST_MENU
 keymap	lL	LIST
+keymap	ll	LIST
 
 keymap	+	NEXT_LINK
 keymap	-	PREV_LINK
@@ -444,6 +453,7 @@ keymap	lG	LINK_END
 
 # show link number
 keymap ln   COMMAND 'SET_OPTION "display_link_number = toggle" ; RESHAPE'
+
 # preceded by link number : go to link
 # follow mode, like in qutebrowser
 keymap	lf	LINK_BEGIN
@@ -458,6 +468,11 @@ keymap	le	  EXTERN
 keymap	&	  EXTERN
 # display link target in external browser
 keymap	lE	  EXTERN_LINK
+
+# display {{{2
+
+keymap dl   COMMAND 'SET_OPTION "show_lnum = toggle" ; RESHAPE'
+keymap di   COMMAND 'SET_OPTION "display_image = toggle" ; RESHAPE'
 
 # buffers {{{2
 
@@ -486,7 +501,7 @@ keymap	h	HISTORY
 # bookmarks {{{2
 
 keymap	ma	ADD_BOOKMARK
-keymap	"'"		BOOKMARK
+keymap	"'"	VIEW_BOOKMARK
 keymap	mm		BOOKMARK
 
 # tabs {{{2
@@ -503,6 +518,8 @@ keymap	J	PREV_TAB
 keymap	K	NEXT_TAB
 keymap	\^	PREV_TAB
 keymap	$	NEXT_TAB
+keymap	C-p	PREV_TAB
+keymap	C-n	NEXT_TAB
 keymap tH  TAB_LEFT
 keymap tL  TAB_RIGHT
 keymap M-\^ TAB_LEFT
