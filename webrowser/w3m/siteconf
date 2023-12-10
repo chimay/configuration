@@ -8,5 +8,6 @@
 # user_agent "string"
 # url m!^gopher?://!
 # substitute_url "file:/cgi-bin/gopher.cgi?"
+
 url m@^gopher?://(.*)hURL:@
 substitute_url "file:///cgi-bin/redirect_gopher.cgi?"

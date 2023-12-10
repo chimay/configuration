@@ -347,7 +347,11 @@ alias wr=webreader
 
 # téléchargement
 
+# aria
 alias dl=aria2p
+# transmission
+alias tmr=transmission-remote
+alias tmt=tremc
 
 # gemini
 

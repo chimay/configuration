@@ -1,0 +1,4 @@
+# vim: set filetype=conf:
+
+gemini: file:/cgi-bin/gemini.cgi?%s
+magnet: file:/cgi-bin/magnet.cgi?%s
