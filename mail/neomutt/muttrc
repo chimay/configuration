@@ -24,7 +24,6 @@
 #	│@alias  │to the default save folder as determined by the address of the alias│
 #	└────────┴────────────────────────────────────────────────────────────────────┘
 
-
 # Motifs de recherche / correspondance {{{2
 
 #	┌─────────┬───────────────────────────────────────────────────────────────────┐
@@ -140,8 +139,6 @@
 #	│)        │threads containing messages from you: ~(~P)                        │
 #	└─────────┴───────────────────────────────────────────────────────────────────┘
 
-
-
 #  Générique {{{1
 
 #reset all
@@ -149,7 +146,6 @@
 set help
 
 set quit=yes
-
 
 #  Environnement {{{1
 
@@ -159,11 +155,9 @@ set shell='zsh'
 
 set wait_key = yes
 
-
 #  Visualisation {{{2
 
 set pager=builtin
-
 
 #  Édition {{{2
 
@@ -171,13 +165,11 @@ set pager=builtin
 
 set editor='vim -u ~/racine/config/edit/vim/rc-vimail.vim'
 
-
 #  Localisation {{{2
 
 set charset='utf-8'		# Encodage du terminal
 
 set send_charset="us-ascii:utf-8:iso-8859-1"
-
 
 #  Sons {{{2
 
@@ -191,13 +183,10 @@ set header_cache=~/racine/varia/cache/neomutt/headers
 set message_cachedir=~/racine/varia/cache/neomutt/messages
 set certificate_file=~/racine/varia/cache/neomutt/certs
 
-
-
 #  Historique {{{1
 
 set history=3000
 set history_file=~/racine/hist/neomutt/history
-
 
 #  Présentation {{{1
 
@@ -209,11 +198,9 @@ source $my_muttroot/display.mutt
 
 set allow_8bit=yes
 
-
 #  Drapeaux {{{2
 
 set mark_old=yes
-
 
 #  En-têtes {{{2
 
@@ -236,7 +223,6 @@ hdr_order From: To: Cc: Bcc: Date: Subject: Reply-To: In-Reply-To: X-Label:
 
 set write_bcc=yes
 
-
 #  Corps {{{2
 
 # Multipartie {{{3
@@ -246,9 +232,6 @@ unalternative_order *
 #alternative_order text/plain text/html application/pdf application/postscript application/x-tar-gz image/* audio/*
 
 alternative_order text/html text/plain application/pdf application/postscript application/x-tar-gz image/* audio/*
-
-
-
 
 #  Files de discussion {{{1
 
@@ -284,11 +267,9 @@ set collapse_unread=yes
 set sort_alias="alias"
 set sort_browser='reverse-date'
 
-
 #  Informations personnelles {{{1
 
 source $my_muttroot/perso.mutt
-
 
 #  Sélections {{{1
 
@@ -302,7 +283,6 @@ set auto_tag=yes
 # Enlève le tag des messages marqués pour suppression
 
 set delete_untag=yes
-
 
 #  Adresses {{{1
 
@@ -341,7 +321,6 @@ append-hook '\.xz$' "xz --stdout              '%t' >> '%f'"
 # close-hook  '\.bz2$' "bzip2 --stdout              '%t' >  '%f'"
 # append-hook '\.bz2$' "bzip2 --stdout              '%t' >> '%f'"
 
-
 #  Boîtes {{{1
 
 # Shortcuts for mail boxes :
@@ -357,7 +336,6 @@ append-hook '\.xz$' "xz --stdout              '%t' >> '%f'"
 
 set folder='~/racine/mail'
 
-
 # Boîtes particulières {{{2
 
 set spoolfile='=system/inbox'
@@ -366,7 +344,6 @@ set record=^
 set postponed='=system/postponed'
 
 set trash='=system/trash'
-
 
 #  Configuration {{{2
 
@@ -387,12 +364,10 @@ set recall=no				# Rappelle les courriels postposés
 set confirmappend=no	# Enregistre sans confirmation
 set confirmcreate=no	# Crée une boîte sans confirmation
 
-
 # Boîtes distantes {{{2
 
 set mail_check=84
 set timeout=15
-
 
 # Liste des boites {{{2
 
@@ -424,7 +399,6 @@ set copy=yes
 set askcc=no
 set askbcc=no
 
-
 #  Rédaction {{{2
 
 # Édition des en-têtes pendant la rédaction
@@ -437,7 +411,6 @@ set autoedit=no
 
 set abort_nosubject=no
 set abort_unmodified=no
-
 
 #  Réponses {{{2
 
@@ -464,7 +437,6 @@ set attribution='%f wrote, on %d :\n'
 set indent_str='> '		# Préfixe de citation
 #set indent_str='%n> '	# Préfixe de citation avec nom expéditeur
 
-
 # Listes {{{3
 
 set ignore_list_reply_to=yes
@@ -481,19 +453,14 @@ set forward_format="[%a: %s]"
 
 set mime_forward=ask-no
 
-
-
 #  Renvois {{{2
 
 set bounce=yes
 set bounce_delivered=no
 
-
-
 #  Scores {{{1
 
 source $my_muttroot/scores.mutt
-
 
 #  Visualisation de différents types de fichiers {{{1
 
@@ -501,16 +468,13 @@ source $my_muttroot/scores.mutt
 
 set mailcap_sanitize=yes
 
-
 #  Détermination automatique du type de fichier {{{2
 
 mime_lookup application/octet-stream
 
-
 #  Mailcap {{{2
 
 set mailcap_path="~/racine/config/mail/mailcap"
-
 
 #  Visualisation automatique {{{2
 
@@ -534,17 +498,13 @@ auto_view image/*
 
 auto_view application/msword
 
-
-
 #  Raccourcis clavier {{{1
 
 source $my_muttroot/bindings.mutt
 
-
 #  Macros {{{1
 
 source $my_muttroot/macros.mutt
-
 
 #  Couleurs {{{1
 
@@ -560,13 +520,11 @@ source $my_muttroot/color/golden-night.mutt
 
 source $my_muttroot/crypt.mutt
 
-
 #  Recherche {{{1
 
 #set simple_search="~f %s | ~s %s | ~x %s | =b %s"
 
 set simple_search="~s %s"
-
 
 # Impression {{{1
 

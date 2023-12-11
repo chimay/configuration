@@ -4,8 +4,9 @@
 
 save-path "~/racine/news/saved"
 
-browser w3m
+#browser w3m
 #browser elinks
+browser urlportal.sh
 external-url-viewer "urlview"
 
 cleanup-on-quit yes

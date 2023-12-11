@@ -42,7 +42,10 @@ msglist_thread_folded.normal=true
 #msglist_result.fg=green
 msglist_pill.reverse=true
 
-dirlist_unread.bold=false
+dirlist_default.selected.bold=true
+dirlist_default.selected.reverse=true
+dirlist_unread.selected.bold=true
+dirlist_unread.selected.reverse=true
 
 part_mimetype.bold=true
 

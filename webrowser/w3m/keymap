@@ -488,19 +488,24 @@ keymap  lG  LINK_END
 
 keymap  lt    TAB_LINK
 
+keymap  lp    EXTERN_LINK urlportal.sh
+
 # hint mode {{{3
 
 # preceded by link number : go to link
 # follow mode, like in qutebrowser
 
 #### toggle hinting mode (vimium similar)
-keymap  SPC-SPC COMMAND "SET_OPTION display_link_number=toggle ; RESHAPE"
-#### jump to link number (e.g press 3ff) and hide hinting mode (similar to gg in vim)
-keymap  SPC-j      COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN"
+keymap  SPC-SPC  COMMAND "SET_OPTION display_link_number=toggle ; RESHAPE"
+#### jump to link number (e.g press 3 SPC-j) and hide hinting mode (similar to gg in vim)
+keymap  SPC-j    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN"
 #### jump to link number and open it
-keymap  SPC-f      COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; GOTO_LINK"
+keymap  SPC-f    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; GOTO_LINK"
 #### jump to link number and open it in new tab
-keymap  SPC-t      COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; TAB_LINK"
+keymap  SPC-t    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; TAB_LINK"
+#### copy link to clipboard (e.g press SPC-SPC then 4 SPC-y to yank url)
+# doesnt work, why ?
+keymap  SPC-y    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; READ_SHELL ~/.w3m/cgi-bin/fn_yank_current_link.cgi ; BACK"
 
 # turn text into links {{{3
 
@@ -587,18 +592,18 @@ keymap  fs  SAVE
 keymap  fd  DOWNLOAD
 
 # diana is a front-end for aria2c
-keymap  fd      EXTERN          'diana add'
-keymap  fD      EXTERN_LINK     'diana add'
+keymap  fa      EXTERN          'diana add'
+keymap  fA      EXTERN_LINK     'diana add'
 
-keymap  fpd     EXTERN          'diana --pause add'
-keymap  fpD     EXTERN_LINK     'diana --pause add'
+keymap  fap     EXTERN          'diana --pause add'
+keymap  faP     EXTERN_LINK     'diana --pause add'
 
 keymap  ft      EXTERN_LINK     'transmission-remote --add'
 
 # readability {{{2
 
-keymap  rr    COMMAND "SHELL 'readable $W3M_URL > /tmp/readable.html' ; NEW_TAB ; LOAD /tmp/readable.html"
-keymap  C-r   COMMAND "SHELL 'readable $W3M_URL > /tmp/readable.html' ; NEW_TAB ; LOAD /tmp/readable.html"
+keymap C-r COMMAND "READ_SHELL 'python3 -m readability.readability -u $W3M_URL 2>/dev/null 1>~/racine/varia/cache/readable/last.html' ; BACK ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
+keymap rr  COMMAND "SHELL 'readable $W3M_URL > ~/racine/varia/cache/readable/last.html' ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
 
 # text to speech {{{2
 
