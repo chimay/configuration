@@ -149,6 +149,14 @@ bind -n S-Down  select-pane -D
 bind -n S-Up    select-pane -U
 bind -n S-Right select-pane -R
 
+bind -n C-Down rotate-window -D
+bind -n C-Up rotate-window -U
+
+bind -n C-Left  swap-pane -D
+bind -n C-Right swap-pane -U
+
+bind -T custom M-$ set -w synchronize-panes
+
 bind -T custom z resize-pane -Z
 
 bind -T custom -r + resize-pane -U 2
@@ -160,14 +168,6 @@ bind -T custom -r S-Up resize-pane -U 2
 bind -T custom -r S-Down resize-pane -D 2
 bind -T custom -r S-Left resize-pane -L 2
 bind -T custom -r S-Right resize-pane -R 2
-
-bind -n M-Down rotate-window -D
-bind -n M-Up rotate-window -U
-
-bind -n M-Left  swap-pane -D
-bind -n M-Right swap-pane -U
-
-bind -T custom M-$ set -w synchronize-panes
 
 # Background command {{{1
 

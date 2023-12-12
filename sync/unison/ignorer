@@ -51,20 +51,7 @@ ignore = Name .hg
 ignore = Name .bzr
 ignore = Name _darcs
 
-#ignore = Name .git
-
-# ignorenot = Regex racine/site/.*/.git
-# ignorenot = Regex racine/self/.*/.git
-# ignorenot = Regex racine/dotdir/.*/.git
-# ignorenot = Regex racine/infoman/.*/.git
-# ignorenot = Regex racine/plugin/manager/vimpack/.*/.git
-# ignorenot = Regex racine/plugin/manager/neovimpack/.*/.git
-# ignorenot = Regex racine/plugin/manager/tmux-plugins/.*/.git
-# ignorenot = Regex racine/public/.*/.git
-# ignorenot = Regex racine/repo/.*/.bzr
-# ignorenot = Regex racine/source/.*/.git
-
-#ignorenot = Regex racine/self/chezmoi/.git
+# git : for custom repos, destined to be synced
 
 # }}}
 
