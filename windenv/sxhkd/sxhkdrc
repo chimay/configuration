@@ -17,7 +17,6 @@
 # button6,7 = molette gauche/droite
 # button8,9 = latéraux gauche/droit
 
-
 # Lanceurs {{{1
 
 hyper + colon
@@ -230,7 +229,6 @@ hyper + y
 hyper + r
 	bsp-layout remove
 
-
 # Barres {{{1
 
 hyper + b
@@ -241,7 +239,6 @@ hyper + p ; t
 
 hyper + p ; r
 	polybar-msg cmd restart
-
 
 # Dropdown {{{1
 
@@ -262,7 +259,6 @@ button8
 
 hyper + equal
 	urxvtc-calculator.zsh
-
 
 # Applications {{{1
 
@@ -305,8 +301,8 @@ super + ctrl + l
 super + ctrl + i
 	vimiv ~/photo/numerique
 
-super + ctrl + {c,q,x}
-	goto-or-run.sh {chromium,qutebrowser,firefox}
+super + ctrl + {q,f,x}
+	goto-or-run.sh {qutebrowser,falkon,firefox}
 
 super + ctrl + n
 	run-with-log.sh nyxt
@@ -326,8 +322,8 @@ super + ctrl + o
 super + ctrl + m
 	goto-or-run.sh mscore
 
-super + ctrl + f
-	run-frescobaldi.sh
+# super + ctrl + f
+# 	run-frescobaldi.sh
 
 super + ctrl + r
 	goto-or-run.sh rosegarden
@@ -337,7 +333,6 @@ super + ctrl + w
 
 super + ctrl + shift + v
 	vlc
-
 
 # Notifications {{{1
 
@@ -365,12 +360,10 @@ super + asciitilde
 super + shift + grave
 	dunstctl context
 
-
 # Agenda {{{1
 
 hyper + a ; r
 	pkill -10 -f remind-server.zsh
-
 
 # Réseau {{{1
 
@@ -405,7 +398,6 @@ hyper + o ; s
 hyper + o ; space
 	pkill -12 -f clock.zsh
 
-
 # Transparence {{{2
 
 # diaphane
@@ -415,7 +407,6 @@ hyper + d ; Up
 
 hyper + d ; Down
 	transset-df --dec 0.1
-
 
 # Luminosité {{{2
 
@@ -464,7 +455,6 @@ hyper + shift + @z
 
 hyper + x
 	xmouseless
-
 
 # Multimédia {{{1
 
@@ -528,12 +518,10 @@ hyper + space ; t
 button6
 	urxvtc -name multimedia -e ncmpcpp
 
-
 # Informations {{{1
 
 button7
 	less-log.sh ~/log/wallpaper.log
-
 
 # Examples {{{1
 

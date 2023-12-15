@@ -1,32 +1,36 @@
 " vim: filetype=vim :
 
-highlight Win			  cterm=none			ctermfg=default		  ctermbg=none
+highlight clear
 
-highlight TabLine		  cterm=none			ctermfg=default		  ctermbg=none
-highlight TabLineSel	  cterm=reverse,bold	ctermfg=default		  ctermbg=none
+highlight Win			  cterm=none			ctermfg=default		  ctermbg=none
+highlight OtherWin		  cterm=none			ctermfg=default		  ctermbg=none
+highlight AuxWin		  cterm=none			ctermfg=default		  ctermbg=none
 
 highlight TopLine		  cterm=reverse,bold	ctermfg=default		  ctermbg=none
 highlight TopLineSel	  cterm=reverse,bold	ctermfg=default		  ctermbg=none
 
+highlight TabLine		  cterm=none			ctermfg=default		  ctermbg=none
+highlight TabLineSel	  cterm=reverse,bold	ctermfg=default		  ctermbg=none
+
 highlight StatusLine	  cterm=reverse,bold	ctermfg=default		  ctermbg=none
+highlight JobLine		  cterm=none			ctermfg=2			  ctermbg=none
 
 highlight Border		  cterm=none			ctermfg=default		  ctermbg=none
 
 highlight Selected		  cterm=none			ctermfg=3			  ctermbg=default
 
-"highlight CurrLine		  cterm=bold			ctermfg=52			  ctermbg=default
-"highlight CurrLine		  cterm=bold			ctermfg=88			  ctermbg=default
 "highlight CurrLine		  cterm=reverse,bold	ctermfg=default		  ctermbg=default
-"highlight CurrLine		  cterm=none			ctermfg=16			  ctermbg=default
 highlight CurrLine		  cterm=none			ctermfg=3			  ctermbg=232
 highlight OtherLine		  cterm=bold			ctermfg=default		  ctermbg=232
 
-highlight WildMenu		  cterm=reverse			ctermfg=white		  ctermbg=black
+highlight WildMenu		  cterm=none			ctermfg=3			  ctermbg=black
+highlight SuggestBox	  cterm=none			ctermfg=default		  ctermbg=black
 highlight CmdLine		  cterm=none			ctermfg=default		  ctermbg=none
 highlight ErrorMsg		  cterm=none			ctermfg=red			  ctermbg=none
 
 highlight Directory		  cterm=none			ctermfg=default		  ctermbg=default
 highlight Link			  cterm=none			ctermfg=default		  ctermbg=default
+highlight HardLink		  cterm=none			ctermfg=default		  ctermbg=default
 highlight BrokenLink	  cterm=none			ctermfg=237			  ctermbg=default
 highlight Socket		  cterm=none			ctermfg=magenta		  ctermbg=default
 highlight Device		  cterm=none			ctermfg=magenta		  ctermbg=default

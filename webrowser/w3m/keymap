@@ -423,7 +423,7 @@ keymap  of  LOAD
 # open with handlers
 keymap  hm      EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
 keymap  hM      EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
-keymap  hg      EXTERN_LINK   'mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
+keymap  hb      EXTERN_LINK   'tsp mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
 
 keymap  R   RELOAD
 
@@ -478,7 +478,6 @@ keymap  lM  LIST_MENU
 keymap  C-l LIST_MENU
 
 keymap  ll  LIST
-#keymap TAB LIST
 
 keymap  +   NEXT_LINK
 keymap  -   PREV_LINK
@@ -531,13 +530,16 @@ keymap  =   SELECT_MENU
 
 # delete buffer and go to previous one
 # DEL = BackSpace
-keymap  DEL BACK
+keymap  bd BACK
+keymap  x  BACK
 
 keymap  bp  PREV
 keymap  bb  PREV
 keymap  bn  NEXT
-keymap  H   PREV
-keymap  L   NEXT
+keymap  K   PREV
+keymap  J   NEXT
+keymap  DEL PREV
+keymap  TAB NEXT
 
 keymap | PIPE_BUF
 keymap b| PIPE_BUF
@@ -557,13 +559,15 @@ keymap  mm      BOOKMARK
 keymap  tc  COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
 keymap  tt  COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
 
+
 keymap  tm    TAB_MENU
 keymap  t=    TAB_MENU
 keymap  tl    TAB_LINK
+keymap  tC-j  TAB_LINK
 keymap  tp    PREV_TAB
 keymap  tn    NEXT_TAB
-keymap  J     PREV_TAB
-keymap  K     NEXT_TAB
+keymap  H     PREV_TAB
+keymap  L     NEXT_TAB
 keymap  \^    PREV_TAB
 keymap  $     NEXT_TAB
 keymap  C-p   PREV_TAB
@@ -573,9 +577,9 @@ keymap tL     TAB_RIGHT
 keymap M-\^   TAB_LEFT
 keymap M-$    TAB_RIGHT
 
-# restore tabs
+# delete & restore tabs
 keymap  tx      COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
-keymap  x       COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
+keymap  X       COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
 keymap  tu      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
 keymap  tr      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
 
@@ -592,11 +596,8 @@ keymap  fs  SAVE
 keymap  fd  DOWNLOAD
 
 # diana is a front-end for aria2c
-keymap  fa      EXTERN          'diana add'
-keymap  fA      EXTERN_LINK     'diana add'
-
-keymap  fap     EXTERN          'diana --pause add'
-keymap  faP     EXTERN_LINK     'diana --pause add'
+keymap  fa      EXTERN_LINK     'diana add'
+keymap  fA      EXTERN_LINK     'diana --pause add'
 
 keymap  ft      EXTERN_LINK     'transmission-remote --add'
 

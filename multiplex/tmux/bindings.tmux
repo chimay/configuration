@@ -107,8 +107,8 @@ bind -T custom t command-prompt \
 
 bind -T custom M-t command-prompt -p 'Commande de la nouvelle fenêtre ? ' "new-window '%%'"
 
-bind -T custom $ split-window -p 30 'exec ~/racine/shell/dialog/fzf-tmux-new-cli.zsh'
-bind -T custom ! split-window -p 30 'exec ~/racine/shell/dialog/fzf-tmux-new-tui.zsh'
+bind -T custom M-Enter split-window -p 30 'exec ~/racine/shell/dialog/fzf-tmux-new-cli.zsh'
+bind -T custom M-! split-window -p 30 'exec ~/racine/shell/dialog/fzf-tmux-new-tui.zsh'
 
 bind -T custom m command-prompt -p 'Nouveau nom de la fenêtre ? ' "rename-window '%%'"
 
@@ -116,6 +116,7 @@ bind -n C-PageUp previous-window
 bind -n C-PageDown next-window
 
 bind -T custom '^' last-window
+bind -n C-Home last-window
 
 bind -T custom '(' move-window -t :-1
 bind -T custom ')' move-window -t :+1
@@ -142,18 +143,22 @@ bind -T custom M-v command-prompt -p 'Commande pour le nouveau panel ? ' "split-
 
 bind -T custom "'" display-panes
 
-bind -T custom l last-pane
-
 bind -n S-Left  select-pane -L
 bind -n S-Down  select-pane -D
 bind -n S-Up    select-pane -U
 bind -n S-Right select-pane -R
 
-bind -n C-Down rotate-window -D
-bind -n C-Up rotate-window -U
+bind -T custom '$' last-pane
+bind -n C-End last-pane
 
-bind -n C-Left  swap-pane -D
-bind -n C-Right swap-pane -U
+bind -n S-PageDown rotate-window -D
+bind -n S-PageUp rotate-window -U
+bind -n S-Home  swap-pane -D
+bind -n S-End swap-pane -U
+
+bind -T custom l next-layout
+# current pane to new window
+bind -T custom T break-pane
 
 bind -T custom M-$ set -w synchronize-panes
 
