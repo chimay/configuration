@@ -68,7 +68,7 @@ set completion-fg "#88421d"
 set completion-bg "#070707"
 set completion-group-fg "#88421d"
 set completion-group-bg "#070707"
-set completion-highlight-fg "#ab1c11"
+set completion-highlight-fg "#ab1207"
 set completion-highlight-bg "#070707"
 
 set notification-fg "#5b3c11"

@@ -161,7 +161,6 @@ set fusehome="~/racine/bridge/fuse"
 
 let $VIFM_SERVER_NAME = v:servername
 
-
 " Historique {{{1
 
 " This is how many directories to store in histories.
@@ -211,7 +210,6 @@ set sessionoptions=
 			\filetypes,
 			\commands
 
-
 " Marques {{{1
 
 " :mark mark /full/directory/path [filename]
@@ -242,7 +240,6 @@ mark A ~/audio
 mark w ~/graphix/wallpaper
 
 mark D ~/Documents
-
 
 " Types de fichiers {{{1
 
@@ -575,7 +572,6 @@ filetype *.ftp
 filetype * vim %c
 filextype * gvim %c &
 
-
 " Thème {{{1
 
 colorscheme golden-night
@@ -604,7 +600,6 @@ filter! /^.*\.(git|hg|bzr|o|py[co])$|.*~$/
 "source devicons.vifm
 "source ~/racine/config/fileman/vifm/devicons.vifm
 
-
 " Icones {{{1
 
 " file types
@@ -621,7 +616,6 @@ set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.m
 set classify+=' ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
 
 source ~/racine/config/fileman/vifm/favicons.vifm
-
 
 " Commandes {{{1
 
@@ -653,7 +647,6 @@ command! mkcd :mkdir %a | cd %a
 command! print lp %f
 command! rln :rlink %D %d
 command! vgrep vim "+grep %a"
-
 
 " Mappings {{{1
 
@@ -703,17 +696,14 @@ nnoremap @r :restart<cr>
 nnoremap @e :write | edit $MYVIFMRC | restart<cr>
 nnoremap @s :source $MYVIFMRC<cr>
 
-
 " Quitter {{{2
 
 nnoremap ZZ :qa<cr>
 nnoremap ZQ :qa!<cr>
 
-
 " Sessions {{{2
 
 nnoremap <m-s> :session<space>
-
 
 " Présentation {{{2
 
@@ -739,7 +729,6 @@ nnoremap t :tabnew<cr>
 nnoremap ^ gT
 nnoremap $ gt
 
-
 " Déplacement {{{2
 
 nnoremap <PageUp> <C-B>
@@ -753,13 +742,11 @@ mnoremap <c-l> :nohlsearch<cr>zz
 nnoremap zz :nohlsearch<cr>zz
 mnoremap zz :nohlsearch<cr>zz
 
-
 " Sélectionner {{{2
 
 nnoremap <space> tj
 
 nnoremap zs :select<space>
-
 
 " Signets {{{2
 
@@ -767,7 +754,6 @@ nnoremap M :bmark<space>
 nnoremap <m-b> :bmarks<space>
 
 nnoremap <m-m> :marks<cr>
-
 
 " Recherche {{{2
 
@@ -782,7 +768,6 @@ nnoremap ° :locate<space>
 nnoremap zg :grep<space>
 nnoremap zl :locate<space>
 
-
 " Tri {{{2
 
 " Display sorting dialog
@@ -791,7 +776,6 @@ nnoremap s :sort<cr>
 
 nnoremap S :invert o<cr>
 
-
 " Filtres {{{2
 
 " Fichiers cachés
@@ -799,7 +783,6 @@ nnoremap S :invert o<cr>
 " ne marche pas
 " nnoremap <m-.> za
 " nnoremap <m-;> za
-
 
 " Visualiser & Éditer {{{2
 
@@ -860,7 +843,6 @@ nnoremap & :cd %c<cr><tab>:cd %D:t<cr><tab>
 nnoremap <m-c> :windo cd<space>
 nnoremap <m-u> :windo cd ..<cr>
 
-
 " Menus & Dialogs {{{2
 
 " Create virtual folder
@@ -871,7 +853,6 @@ mnoremap f b
 
 "mnoremap ... v
 
-
 " Renommer {{{2
 
 nnoremap I cw<c-a>
@@ -880,7 +861,6 @@ nnoremap A cw
 
 nnoremap cv :rename<cr>
 nnoremap cr :rename!<cr>
-
 
 " Copier, Coller, Supprimer {{{2
 
@@ -953,7 +933,6 @@ elseif executable('xsel')
 	map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
 endif
 
-
 " Autres opérations sur fichiers {{{2
 
 " New file
@@ -990,7 +969,6 @@ nnoremap <m-i> :media<cr>
 
 nnoremap <m-w> :!feh --bg-max --no-fehbg %f<cr>
 
-
 " Contrôle de version {{{2
 
 " VCS repository
@@ -998,12 +976,9 @@ nnoremap <m-w> :!feh --bg-max --no-fehbg %f<cr>
 nnoremap <m-r> :!lazygit<cr>
 nnoremap <m-v> :!tig<cr>
 
-
 " Shell {{{2
 
 nnoremap <c-s> :shell<cr>
 nnoremap <insert> :shell<cr>
 
 nnoremap <m-j> :jobs<cr>
-
-

@@ -31,7 +31,6 @@ zmodload -i zsh/complist
 #zmodload -i zsh/stat
 #disable stat
 
-
 #  Options {{{2
 
 # Menu
@@ -203,7 +202,6 @@ zstyle ':completion:history-complete-word:*' remove-all-dups yes
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/racine/varia/cache/zsh/completion
 
-
 # Commandes {{{3
 
 zstyle ':completion:*:rm:*' \
@@ -359,7 +357,6 @@ compdef '_arguments "1:Subcmds:(dmsend update setup block unblock follow unfollo
 	lsarchive lscommands lsdm lsdmarchive lsblocking lsfollowers lsfollowing lsrecent lsreplies \
 	lsrt lsrtarchive lsrtreplies)"' twidge
 
-
 # Fonctions de complétion identiques pour plusieurs commandes {{{3
 
 # Alias, fonctions
@@ -369,8 +366,6 @@ compdef trash-put=rm
 compdef k=kill
 
 compdef _man info
-
-
 
 #  Compctl (ancien système) {{{2
 
@@ -408,9 +403,6 @@ zstyle ':completion:*' use-compctl true
 # }
 
 # compctl -K _pip_completion pip
-
-
-
 
 #  Éditeur interne de ligne de commande (ZLE) {{{1
 
@@ -489,19 +481,16 @@ bindkey '^G' send-break
 
 bindkey '^L' clear-screen
 
-
 # Undo {{{2
 
 bindkey '^Xu' undo
 bindkey '^X^U' undo
 bindkey '^X^R' redo
 
-
 # Mots {{{2
 
 autoload -U select-word-style
 select-word-style bash
-
 
 # Contrôle de flux {{{2
 
@@ -523,13 +512,11 @@ bindkey '\es' push-line-or-edit
 
 bindkey '\eg' get-line
 
-
 # Caractères composés (digraph) {{{2
 
 autoload -Uz insert-composed-char
 zle -N insert-composed-char
 bindkey "^Xk" insert-composed-char
-
 
 # Mouvements {{{2
 
@@ -548,7 +535,6 @@ bindkey '\eb' backward-word
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 
-
 # Édition {{{2
 
 [[ -n "${clavier[Insert]}" ]] && bindkey "${clavier[Insert]}" overwrite-mode
@@ -566,7 +552,6 @@ bindkey '\et' transpose-words
 bindkey "\e'" quote-line
 bindkey '\e"' quote-region
 
-
 #  Copier & Coller {{{2
 
 bindkey '\em' set-mark-command
@@ -580,7 +565,6 @@ zle -N copie-et-desactive-region
 
 bindkey '\ew' copie-et-desactive-region
 
-
 bindkey '\ek' kill-region
 
 bindkey '^Y' yank
@@ -591,11 +575,6 @@ bindkey '^K' kill-line
 bindkey '\er' kill-whole-line
 
 bindkey '^W' backward-kill-word
-
-zle -N fzf-greenclip
-
-bindkey '\eç' fzf-greenclip
-
 
 #  Historique {{{2
 
@@ -633,14 +612,11 @@ autoload -Uz incremental-complete-word
 zle -N incremental-complete-word
 bindkey '^Xi' incremental-complete-word
 
-
 # Mots {{{3
 
 # Dernier mot de la ligne précédente
 
 bindkey '\e$' insert-last-word
-
-
 
 #  Expansion & complétion {{{2
 
@@ -818,7 +794,6 @@ bindkey -M vicmd 'D' vi-kill-eol
 
 bindkey -M vicmd 'd' vi-delete
 
-
 # Mode command {{{3
 
 bindkey -M command '^J' accept-line
@@ -836,7 +811,6 @@ bindkey -M command '\er' kill-whole-line
 
 bindkey -M command '\ev' vi-cmd-mode
 
-
 # Mode isearch {{{3
 
 bindkey -M isearch '^M' accept-search
@@ -850,8 +824,6 @@ bindkey -M isearch '^W' backward-kill-word
 
 bindkey -M isearch '\ev' vi-cmd-mode
 
-
-
 # Key sequences {{{2
 
 bindkey -s '\e^' "!:0\t"
@@ -863,7 +835,6 @@ bindkey -s '\e^' "!:0\t"
 # Dernière commande sans le dernier argument
 
 bindkey -s '\e:' "!:0-$\t"
-
 
 # Fonctions perso {{{2
 
@@ -881,7 +852,6 @@ zle -N biblio-alternate-dirs
 
 bindkey '^\^' biblio-alternate-dirs
 
-
 # Trois points ... --> ../.. {{{3
 
 zle -N biblio-three-dots
@@ -896,7 +866,6 @@ bindkey "," biblio-three-commas
 
 bindkey -M isearch "," self-insert
 
-
 # Trois étoiles {{{3
 
 zle -N biblio-three-stars
@@ -905,7 +874,6 @@ bindkey "*" biblio-three-stars
 
 bindkey -M isearch "*" self-insert
 
-
 # Changement de répertoire avec fzf {{{3
 
 zle -N biblio-repertoires
@@ -913,7 +881,6 @@ zle -N biblio-repertoires
 # folders stack
 
 bindkey "^F" biblio-repertoires
-
 
 #  Éditeur externe {{{3
 
@@ -949,7 +916,6 @@ bindkey '\eC' capitalize-word
 
 # voir aussi <url:zshenv#tn=FZF_DEFAULT_OPTS>
 
-
 # fzf tab completion {{{1
 
 #source ~/racine/shell/source/fzf-zsh-completion.sh
@@ -980,7 +946,6 @@ bindkey '\eC' capitalize-word
 # bind-git-helper f b t r h s
 # unset -f bind-git-helper
 
-
 # zoxide {{{1
 
 eval "$(zoxide init zsh)"
@@ -991,20 +956,17 @@ zle -N biblio-zoxide-interactive
 
 bindkey "^X^F" biblio-zoxide-interactive
 
-
 # ------------------------------------------------------------
 
 #  Alias {{{1
 
 source ${RACINE_ZSH}/alias.zsh
 
-
 #  Aide {{{1
 
 #unalias run-help
 #autoload -U run-help
 #export HELPDIR=/usr/share/zsh/help
-
 
 #  Quotes {{{1
 
@@ -1022,13 +984,11 @@ setopt rc_quotes
 
 unsetopt sh_word_split
 
-
 #  Tableaux associatifs des commandes, etc {{{1
 
 setopt hash_cmds
 setopt hash_all
 setopt hash_list_all
-
 
 #  Correction {{{1
 
@@ -1041,7 +1001,6 @@ setopt hash_list_all
 # Commandes et arguments
 
 #setopt correct_all
-
 
 #  Historique {{{1
 
@@ -1064,7 +1023,6 @@ setopt append_history
 
 #setopt extended_history
 
-
 # Non enregistrés {{{2
 
 setopt hist_ignore_space
@@ -1072,11 +1030,9 @@ setopt hist_ignore_space
 #setopt hist_no_store
 #setopt hist_no_functions
 
-
 # Commentaires {{{2
 
 setopt interactive_comments
-
 
 # Doublons {{{2
 
@@ -1104,7 +1060,6 @@ setopt hist_save_no_dups
 
 setopt hist_find_no_dups
 
-
 # Bang substitution (!!, !..., etc) {{{2
 
 set hist_chars='!^#'
@@ -1114,20 +1069,16 @@ set hist_chars='!^#'
 
 #setopt hist_verify
 
-
 # Modifications {{{2
 
 #setopt hist_reduce_blanks
 #setopt hist_allow_clobber
-
-
 
 #  Fichiers {{{1
 
 # Demande confirmation pour rm *
 
 unsetopt rm_star_silent
-
 
 #  Redirections {{{1
 
@@ -1145,7 +1096,6 @@ setopt multios
 
 unsetopt sh_nullcmd
 unsetopt csh_nullcmd
-
 
 #  Processus {{{1
 
@@ -1167,7 +1117,6 @@ setopt hup
 
 setopt notify
 
-
 #  Limites {{{1
 
 # Limite le nombre de processus
@@ -1182,16 +1131,13 @@ ulimit -s 8400
 
 ulimit -c 0
 
-
 #  Couleurs {{{1
 
 autoload -U colors
 
-
 #  Prompt {{{1
 
 source ${RACINE_ZSH}/prompt.zsh
-
 
 #  Génération de noms de fichiers {{{1
 
@@ -1292,7 +1238,6 @@ setopt ksh_glob
 
 unsetopt sh_glob
 
-
 #  Divers {{{1
 
 setopt multibyte
@@ -1313,7 +1258,6 @@ unsetopt ignore_eof
 #autoload -U zsh-mime-handler
 #autoload -U pick-web-browser
 #zsh-mime-setup
-
 
 #  Modules {{{1
 
@@ -1362,7 +1306,6 @@ autoload -U zargs
 
 #zfparams ftp.membres.lycos.fr eclats2vers
 
-
 #  Navigation dans les répertoires {{{1
 
 # Auto-cd {{{2
@@ -1374,12 +1317,10 @@ setopt auto_cd
 
 setopt cdable_vars
 
-
 # Liens {{{2
 
 unsetopt chase_links
 unsetopt chase_dots
-
 
 # Pile des répertoires {{{2
 
@@ -1408,7 +1349,6 @@ setopt pushd_minus
 
 #autoload -U pu
 
-
 # Chargement du fichier de la pile des répertoires {{{2
 
 # Voir aussi
@@ -1424,8 +1364,6 @@ then
 
 	print -l ${(Oa)~dirstack} >! $REPERTOIRES_FICHIER
 fi
-
-
 
 # ------------------------------------------------------------
 
@@ -1453,7 +1391,6 @@ function _pip_completion {
              PIP_AUTO_COMPLETE=1 $words[1] ) )
 }
 compctl -K _pip_completion pip
-
 
 # Kitty {{{1
 

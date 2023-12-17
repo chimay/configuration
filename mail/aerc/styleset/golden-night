@@ -47,10 +47,10 @@ dirlist_default.selected.reverse=true
 dirlist_unread.selected.bold=true
 dirlist_unread.selected.reverse=true
 
-part_mimetype.bold=true
+part_mimetype.selected.fg=9
+#part_mimetype.selected.bold=true
+#part_mimetype.selected.reverse=true
 
-#part_mimetype.dim=true
-#part_mimetype.selected.dim=false
 #part_filename.selected.bold=true
 
 completion_default.selected.reverse=true

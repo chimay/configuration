@@ -471,6 +471,9 @@ fun! biblio#publish ()
 	elseif source =~ '\m^' .. $HOME .. '/racine/site'
 		let mode = 'site'
 		let repo = 'scripts/' .. mode
+	elseif source =~ '\m^' .. $HOME .. '/racine/musica/lilypond/template'
+		let mode = 'musica/lilypond/template'
+		let repo = 'lilypond-templates'
 	endif
 	let source_dir = $HOME .. '/racine/' .. mode
 	let target_dir = $HOME .. '/racine/public/' .. repo
