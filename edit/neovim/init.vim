@@ -743,7 +743,7 @@ nnoremap <f2>s <cmd>EditSyntaxPlugin<cr>
 " figlet banner
 nnoremap <f2>b <cmd>call biblio#figlet()<cr>
 
-nnoremap <f3>m :make -k<space>
+nnoremap <f3>m :make! -k<space>
 nnoremap <f3>x <cmd>call biblio#text_to_password()<cr>
 
 nnoremap <f4>m <cmd>call biblio#make_midi()<cr>
@@ -1490,9 +1490,6 @@ nnoremap <c-right> <c-w>w
 
 nnoremap <c-pageup> gT
 nnoremap <c-pagedown> gt
-
-nnoremap <c-p> gT
-nnoremap <c-n> gt
 
 nnoremap <c-home> <cmd>tabfirst<cr>
 nnoremap <c-end> <cmd>tablast<cr>

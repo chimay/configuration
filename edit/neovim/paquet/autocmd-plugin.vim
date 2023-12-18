@@ -55,4 +55,6 @@ augroup autopairs
 	autocmd BufLeave *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
 	autocmd BufEnter *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"' }
 	autocmd BufLeave *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
+	autocmd BufEnter *.ly let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"' }
+	autocmd BufLeave *.ly let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
 augroup END

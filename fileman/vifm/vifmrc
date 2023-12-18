@@ -877,19 +877,19 @@ nnoremap X ds
 
 " Voir aussi :copy et :move
 
-nnoremap àc :!cp %f %D &<cr>
-nnoremap àm :!mv %f %D &<cr>
+nnoremap àc :!tsp cp %f %D &<cr>
+nnoremap àm :!tsp mv %f %D &<cr>
 " mc
-nnoremap <f5> :!cp %f %D &<cr>
-nnoremap <f6> :!mv %f %D &<cr>
+nnoremap <f5> :!tsp cp %f %D &<cr>
+nnoremap <f6> :!tsp mv %f %D &<cr>
 
 " Sync with Rsync
 
-nnoremap àf :!rsync -av %f %D &<cr>
-nnoremap àd :!rsync -av %d/ %D &<cr>
+nnoremap àf :!tsp rsync -av --progress %f %D &<cr>
+nnoremap àd :!tsp rsync -av --progress %d/ %D &<cr>
 " mc
-nnoremap <f2>f :!rsync -av %f %D &<cr>
-nnoremap <f2>d :!rsync -av %d/ %D &<cr>
+nnoremap <f2>f :!tsp rsync -av --progress %f %D &<cr>
+nnoremap <f2>d :!tsp rsync -av --progress %d/ %D &<cr>
 
 " Copier & Coller
 

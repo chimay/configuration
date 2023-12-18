@@ -313,7 +313,7 @@ export FZFZ_RECENT_DIRS_TOOL=z
 
 export CLIFM_FZF_HEIGHT=70
 
-export CM_MAX_CLIPS=1200
+export CM_MAX_CLIPS=700
 export CM_SELECTIONS="clipboard primary secondary"
 export CM_IGNORE_WINDOW=".*[Pp]inentry.*"
 export CM_LAUNCHER=rofi

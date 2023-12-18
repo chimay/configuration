@@ -501,7 +501,7 @@ fun! biblio#make_midi ()
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let midiname = filename .. '.midi'
 	setlocal makeprg=make
-	execute 'make -k' midiname
+	execute 'make! -k' midiname
 endfun
 
 fun! biblio#make_ogg ()
@@ -509,7 +509,7 @@ fun! biblio#make_ogg ()
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let oggname = filename .. '.ogg'
 	setlocal makeprg=make
-	execute 'make -k' oggname
+	execute 'make! -k' oggname
 endfun
 
 fun! biblio#make_mp3 ()
@@ -517,7 +517,7 @@ fun! biblio#make_mp3 ()
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let mp3name = filename .. '.mp3'
 	setlocal makeprg=make
-	execute 'make -k' mp3name
+	execute 'make! -k' mp3name
 endfun
 
 fun! biblio#display_pdf ()
@@ -525,7 +525,7 @@ fun! biblio#display_pdf ()
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let pdfname = filename .. '.pdf'
 	setlocal makeprg=make
-	execute 'make -k' pdfname
+	execute 'make! -k' pdfname
 	let display = 'zathura ' .. pdfname .. '&'
 	echomsg display
 	let output = system(display)
