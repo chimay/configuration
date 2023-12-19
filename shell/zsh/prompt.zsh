@@ -1,8 +1,8 @@
-# vim: set ft=zsh :
+#!/bin/zsh
 
 # Remarque : il ne semble pas nécessaire d’exporter les variables de PROMPT
 
-# Options {{{1
+# options {{{1
 
 setopt prompt_percent
 setopt prompt_subst
@@ -13,18 +13,18 @@ setopt prompt_cr
 setopt prompt_sp
 
 
-# Initialisation {{{1
+# initialization {{{1
 
 autoload -U promptinit
 promptinit
 
 
-# Signe de fin de fichier sans passage à la ligne {{{1
+# end of file sign, without newline char {{{1
 
 PROMPT_EOL_MARK='%F{red}<EOF>%f'
 
 
-# Fonctions {{{1
+# functions {{{1
 
 # Répétition du texte de remplissage {{{2
 
@@ -53,8 +53,7 @@ function repete_texte {
 
 
 
-#  Choix {{{1
-# ------------------------------------------------------------------------
+# choice {{{1
 
 # Simple prompt "%"
 

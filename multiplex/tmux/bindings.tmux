@@ -51,8 +51,8 @@ bind ':' command-prompt -p 'tmux :'
 
 # Menu
 
-bind -T custom ':' send-keys '~/racine/shell/dialog/fzf-tmux-command.zsh' Enter
-bind -T custom ';' send-keys '~/racine/shell/dialog/fzf-tmux-command.zsh -s' Enter
+bind -T custom ':' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-tmux-command.zsh"
+bind -T custom ';' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-speed"
 
 # Historique
 

@@ -1,6 +1,6 @@
 # vim: set filetype=tmux.conf :
 
-# Documentation {{{1
+# documentation {{{1
 
 # ---- copycat
 # prefix / : regex search
@@ -31,7 +31,7 @@
 # -- copy mode
 # prefix Y : copy & paste
 
-# Liste de plugins {{{1
+# plugin list {{{1
 
 set -g @plugin 'tmux-plugins/tpm'
 
@@ -45,7 +45,7 @@ set -g @plugin 'whame/tmux-modal'
 # set -g @plugin 'tmux-plugins/tmux-resurrect'
 # set -g @plugin 'tmux-plugins/tmux-continuum'
 
-# Configuration {{{1
+# configuration {{{1
 
 set -g @prefix_highlight_output_prefix '['
 set -g @prefix_highlight_output_suffix ']'
@@ -77,12 +77,12 @@ set -g @yank_selection 'clipboard'
 # set -g @continuum-save-interval '300'
 #set -g @continuum-restore 'on'
 
-# Installation automatique {{{1
+# automatic install {{{1
 
 # if "test ! -d ~/.tmux/plugins/tpm" \
 #    "run-shell 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
 
-# Initialisation {{{1
+# initialization {{{1
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 

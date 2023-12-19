@@ -1,4 +1,4 @@
-# vim: set ft=zsh :
+#!/bin/zsh
 
 # {{{ Documentation
 

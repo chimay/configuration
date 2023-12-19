@@ -1,8 +1,8 @@
-# vim: set ft=zsh :
+#!/bin/zsh
 
-# Touches non utilisées {{{1
+# unused keys {{{1
 
-#  Généralités {{{1
+#  generic {{{1
 
 # Commande qui ne fait rien
 # REM : pass est une commande de gestion de mot de passe
@@ -18,32 +18,36 @@ alias rr='builtin r'
 
 # ------------------------------------
 
-# Documentation {{{1
+# documentation {{{1
 
 # tldr, cheatsheets, ...
 
-# Self {{{1
+# self {{{1
 
 alias cm='chezmoi -c ~/racine/self/chezmoi/config/chezmoi.toml -S ~/racine/self/chezmoi/source -D ~'
 
-# Sudo {{{1
+# meta with completion {{{1
+
+alias fn=fzf-nova
+
+# sudo {{{1
 
 # Remplacement pour gksu, kdesu
 
 alias gsu=pkexec
 
-#  Affichage {{{1
+# display {{{1
 
 alias e='print -l'
 alias ef='printf'
 alias c=cat
 alias valve=wall
 
-#  Clavier {{{1
+# keyboard {{{1
 
 alias azer="setxkbmap be ; xmodmap ~/racine/config/windenv/xmodmap/belge-meta-super-hyper"
 
-#  Contrôle de version {{{1
+# version control {{{1
 
 alias g=git
 alias r=lazygit
@@ -53,7 +57,7 @@ alias 9=tig
 
 alias p1='patch -p1 < '
 
-#  Visualisation {{{1
+# visualization {{{1
 
 alias p=pager
 
@@ -84,7 +88,7 @@ alias iii=feh
 
 alias fntprev='fontpreview-ueberzug -f "#5b3c11" -b "#000000"'
 
-#  Édition {{{1
+# edition {{{1
 
 # Ed {{{2
 # ------------------------------------------------------------
@@ -148,7 +152,7 @@ alias emopen='emacsclient'
 
 alias test-emacs='cd ~/racine/test/emacs && HOME=~/racine/test/emacs emacs'
 
-#  Système de fichiers {{{1
+# file system {{{1
 
 # Liste {{{2
 
@@ -241,7 +245,7 @@ alias cf='clifm --no-color'
 
 alias mc='mc -b'
 
-# Copier & Coller {{{1
+# cut & paste {{{1
 
 alias y=yank-file
 
@@ -254,11 +258,11 @@ alias ç2='xclip -i -selection secondary'
 alias à1='xclip -o -selection primary'
 alias à2='xclip -o -selection secondary'
 
-#  Paquets {{{1
+# packages {{{1
 
 alias pk='pack'
 
-#  Processus {{{1
+# processus {{{1
 
 alias j='jobs'
 
@@ -278,7 +282,7 @@ alias psi=process-signal
 
 alias fini='mpv ~/audio/sonnerie/notification/fini.ogg'
 
-#  Manuel & Info {{{1
+# manual & info {{{1
 
 alias rh=run-help
 
@@ -289,19 +293,19 @@ alias mw=w3mman
 
 alias in=info
 
-#  Recherche {{{1
+# searching {{{1
 
 alias é=searcher
 alias è=search-in-irc
 alias lc=locate-file
 
-# Organisation {{{1
+# organization {{{1
 
 alias ta=task
 
 alias clc=calcurse
 
-# Courriel {{{1
+# mail {{{1
 
 alias a="mail -Y 'h $'"
 alias àà=send-mail
@@ -314,17 +318,17 @@ alias £=abook
 
 alias n=newsboat
 
-# Usenet {{{1
+# usenet {{{1
 
 alias rn=run-slrn.sh
 
-# Fediverse {{{1
+# fediverse {{{1
 
 alias f='tut'
 alias F='BROWSER=qutebrowser toot tui'
 alias fl=neonmodem
 
-# Navigation {{{1
+# navigation {{{1
 
 # Signets
 
@@ -357,7 +361,7 @@ alias tmt=tremc
 
 alias gg=amfora
 
-# Chat {{{1
+# chat {{{1
 
 # matrix client
 alias mrx=gomuks
@@ -367,22 +371,23 @@ alias wct=weechat
 
 alias I=weechat
 
-#  Date {{{1
+#  date {{{1
 
 alias jour='date +" [=] %A %d %B %Y  (o) %H : %M : %S  | %:z | "'
 
-# Réseau {{{1
+# network {{{1
 
 alias ftp=lftp
+alias tcp=termscp
 alias wp=wgetpaste
 
-#  Langages de script {{{1
+# script languages {{{1
 
 #alias irb='irb --simple-prompt'
 
 alias rvm-bash='/bin/bash rvm'
 
-#  Musique, Vidéo {{{1
+# music, video {{{1
 
 alias alsamix='alsamixer -c 0'
 alias pm=pulsemixer
@@ -423,12 +428,11 @@ alias pc=playerctl
 
 #alias vlc-http='vlc -I http --http-host 127.0.0.1:8080'
 
-
-#  Science {{{1
+# science {{{1
 
 alias 8='octave --no-gui --quiet'
 
-#  Surveillance système {{{1
+# system {{{1
 
 alias free='free -m'
 
@@ -438,7 +442,7 @@ alias journeaux='tail /var/log/mail.* | ccze -A'
 
 alias sv=systemctl
 
-# Utilitaires {{{1
+# utils {{{1
 
 alias wo='command w'
 
@@ -448,7 +452,7 @@ alias vmstat='vmstat 1 4'
 
 # who, mesg, talk, write, wall
 
-# Dictionnaires {{{1
+# dictionnaries {{{1
 
 alias ds=sdcv
 alias dt=translator
@@ -468,25 +472,25 @@ alias wpt=wptranslate
 
 alias aw=wiki-search
 
-# Bureautique {{{1
+# office {{{1
 
 alias 4=sc-im
 
-# Météo {{{1
+# weather {{{1
 
 alias we=wego
 
-# Applications {{{1
+# applications {{{1
 
 alias nautilus='nautilus --no-desktop'
 
 # ------------------------------------
 
-#  Précommandes {{{1
+# precommands {{{1
 
 alias mkdir='nocorrect mkdir -p'
 
-#  Globaux : alias -g {{{1
+# global : alias -g {{{1
 
 alias -g B='| bat'
 alias -g C='| cat'
@@ -511,7 +515,7 @@ alias -g W='| vimpager'
 
 alias -g DS='| diffstat'
 
-#  Suffixes : alias -s {{{1
+# suffix : alias -s {{{1
 
 # Pour choisir le programme qui va ouvrir le fichier, d’après l’extension
 
@@ -534,7 +538,7 @@ alias -s mp3=mpv
 alias -s flac=mpv
 alias -s wav=mpv
 
-#  Alias de répertoires : hash -d {{{1
+# folder aliases : hash -d {{{1
 
 hash -d racine=~/racine
 hash -d wallpaper=~/graphix/wallpaper

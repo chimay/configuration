@@ -1,6 +1,6 @@
 # vim: set filetype=tmux.conf :
 
-# Ligne de commande {{{1
+# command line {{{1
 
 #set -g message-style 'fg=#B36700,dim'
 
@@ -10,8 +10,7 @@ set -ag message-style 'bg=#070403'
 set -g message-command-style fg=green
 set -ag message-command-style bg=black
 
-
-# Barre de statut {{{1
+# status bar {{{1
 
 #set -g status-style underscore
 set -g status-style none
@@ -26,21 +25,17 @@ set -g window-status-last-style none
 set -ag window-status-last-style 'fg=#5b3c11'
 set -ag window-status-last-style bg=black
 
-
-# Panneaux {{{1
+# panels {{{1
 
 set -g pane-active-border-style "fg=#754321"
 set -g pane-border-style "fg=#341207"
 
-
-# Mode copie {{{1
+# copy mode {{{1
 
 set -g mode-style fg=black
 set -ag mode-style "bg=#5b3c11"
 
-
-
-# Contenu {{{1
+# content {{{1
 
 #set -g status-left " #S > #W > #P #[fg=red,none]#{s/root//:client_key_table}#[fg=default,underscore] #[none]#{prefix_highlight}#[default]"
 set -g status-left " #S > #W > #P #[fg=red,none]#{s/root//:client_key_table}#[fg=default] #[none]#{prefix_highlight}#[default]"
@@ -51,4 +46,3 @@ set -g window-status-separator ' | '
 
 set -g window-status-format '#I #W#F'
 set -g window-status-current-format '#[none][ #I #W#F ]#[default]'
-

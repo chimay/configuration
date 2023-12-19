@@ -1,6 +1,6 @@
-# vim: set ft=zsh :
+#!/bin/zsh
 
-# Chemins des exécutables {{{1
+# executables path {{{1
 
 setopt null_glob
 
@@ -29,6 +29,7 @@ path+=(~/racine/automat)
 path+=(~/racine/pack/bin)
 
 path+=(~/racine/shell/*(F))
+path+=(~/racine/shell/directory/*(F))
 
 path+=(~/racine/prolang/interpreted/perl)
 path+=(~/racine/prolang/interpreted/python/bin)

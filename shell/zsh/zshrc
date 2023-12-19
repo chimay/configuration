@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-#  Fonctions {{{1
+# functions {{{1
 
 # $0 représente le nom de la fonction
 
@@ -18,7 +18,7 @@ setopt global_export
 
 source ${RACINE_ZSH}/fonction.zsh
 
-#  Complétion {{{1
+# complétion {{{1
 
 #  Initialisation {{{2
 
@@ -404,7 +404,7 @@ zstyle ':completion:*' use-compctl true
 
 # compctl -K _pip_completion pip
 
-#  Éditeur interne de ligne de commande (ZLE) {{{1
+# command line editor (ZLE) {{{1
 
 #  Initialisation {{{2
 
@@ -958,17 +958,17 @@ bindkey "^X^F" biblio-zoxide-interactive
 
 # ------------------------------------------------------------
 
-#  Alias {{{1
+# alias {{{1
 
 source ${RACINE_ZSH}/alias.zsh
 
-#  Aide {{{1
+# help {{{1
 
 #unalias run-help
 #autoload -U run-help
 #export HELPDIR=/usr/share/zsh/help
 
-#  Quotes {{{1
+# quotes {{{1
 
 # Le double '' correspond à un guillement simple
 # normal dans un '...' Exemple :
@@ -984,13 +984,13 @@ setopt rc_quotes
 
 unsetopt sh_word_split
 
-#  Tableaux associatifs des commandes, etc {{{1
+# commands associative arrays {{{1
 
 setopt hash_cmds
 setopt hash_all
 setopt hash_list_all
 
-#  Correction {{{1
+# correction {{{1
 
 # Possible aussi via ^x c et complétion
 
@@ -1002,7 +1002,7 @@ setopt hash_list_all
 
 #setopt correct_all
 
-#  Historique {{{1
+# history {{{1
 
 # Fichier d’historique {{{2
 
@@ -1074,13 +1074,13 @@ set hist_chars='!^#'
 #setopt hist_reduce_blanks
 #setopt hist_allow_clobber
 
-#  Fichiers {{{1
+# files {{{1
 
 # Demande confirmation pour rm *
 
 unsetopt rm_star_silent
 
-#  Redirections {{{1
+# redirections {{{1
 
 # Le fichier ne sera pas écrasé avec une redirection simple :
 # >| (ou l’équivalent >!) doit etre utilisé pour pouvoir ecraser
@@ -1097,7 +1097,7 @@ setopt multios
 unsetopt sh_nullcmd
 unsetopt csh_nullcmd
 
-#  Processus {{{1
+# processus {{{1
 
 setopt monitor
 
@@ -1117,7 +1117,7 @@ setopt hup
 
 setopt notify
 
-#  Limites {{{1
+# limits {{{1
 
 # Limite le nombre de processus
 
@@ -1131,15 +1131,15 @@ ulimit -s 8400
 
 ulimit -c 0
 
-#  Couleurs {{{1
+# colours {{{1
 
 autoload -U colors
 
-#  Prompt {{{1
+# prompt {{{1
 
 source ${RACINE_ZSH}/prompt.zsh
 
-#  Génération de noms de fichiers {{{1
+# filename generation (globbing) {{{1
 
 # Globbing
 
@@ -1238,7 +1238,7 @@ setopt ksh_glob
 
 unsetopt sh_glob
 
-#  Divers {{{1
+# miscellaneous {{{1
 
 setopt multibyte
 
@@ -1259,7 +1259,7 @@ unsetopt ignore_eof
 #autoload -U pick-web-browser
 #zsh-mime-setup
 
-#  Modules {{{1
+# modules {{{1
 
 # zmodload -i zsh/zutil
 # zmodload -i zsh/files
@@ -1306,7 +1306,7 @@ autoload -U zargs
 
 #zfparams ftp.membres.lycos.fr eclats2vers
 
-#  Navigation dans les répertoires {{{1
+# directories navigation {{{1
 
 # Auto-cd {{{2
 
@@ -1367,14 +1367,14 @@ fi
 
 # ------------------------------------------------------------
 
-# Thème {{{1
+# theme {{{1
 
 # Basé sur base16, permet d’uniformiser le thème du terminal
 # indépendamment des émulateurs
 
 source ~/racine/config/terminal/theme/golden-night.sh
 
-# Archlinux pkgfile {{{1
+# archlinux pkgfile {{{1
 
 [ $OPERASYS = archlinux ] && source /usr/share/doc/pkgfile/command-not-found.zsh
 

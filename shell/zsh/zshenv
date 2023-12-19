@@ -1,4 +1,4 @@
-# vim: set ft=zsh :
+#!/bin/zsh
 
 setopt nullglob
 
@@ -284,6 +284,7 @@ export RLWRAP_HOME=~/racine/hist/rlwrap
 export RLWRAP_EDITOR='vim "+call cursor(%L,%C)" %F'
 
 export FZF_DEFAULT_OPTS='
+	-i
 	--exact
 	--cycle
 	--height=50%
@@ -305,6 +306,7 @@ export FZF_DEFAULT_OPTS='
 	--bind=alt-a:toggle-all
 	--bind=ctrl-s:toggle-sort
 	--bind=ctrl-u:end-of-line+unix-line-discard
+	--bind 'home:first,end:last'
 	'
 
 export FZFZ_RECENT_DIRS_TOOL=z

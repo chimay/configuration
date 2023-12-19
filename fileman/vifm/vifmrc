@@ -877,11 +877,11 @@ nnoremap X ds
 
 " Voir aussi :copy et :move
 
-nnoremap àc :!tsp cp %f %D &<cr>
-nnoremap àm :!tsp mv %f %D &<cr>
+nnoremap àc :!tsp rsync -av --progress %f %D &<cr>
+nnoremap àm :!tsp rsync -av --progress --remove-source-files %f %D<cr>
 " mc
-nnoremap <f5> :!tsp cp %f %D &<cr>
-nnoremap <f6> :!tsp mv %f %D &<cr>
+nnoremap <f5> :!tsp rsync -av --progress %f %D &<cr>
+nnoremap <f6> :!tsp rsync -av --progress --remove-source-files %f %D<cr>
 
 " Sync with Rsync
 
