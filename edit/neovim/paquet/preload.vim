@@ -40,8 +40,8 @@ let g:no_plugin_maps = 1
 " miniSnip (Jorengarenar/miniSnip) {{{1
 
 let g:miniSnip_dirs = ['~/racine/plugin/data/miniSnip']
-"let g:miniSnip_trigger = '<c-j>'
-let g:miniSnip_trigger = '<c-s>'
+let g:miniSnip_trigger = '<c-j>'
+"let g:miniSnip_trigger = '<c-s>'
 let g:miniSnip_complKey = '<c-x><c-u>'
 let g:miniSnip_extends = {
 			\ "cpp" : [ "objc", "c" ],
@@ -86,15 +86,11 @@ let g:highlightedyank_highlight_duration = 1000
 
 " Options {{{3
 
-let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
-
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
 let g:AutoPairsFlyMode = 0
-
 let g:AutoPairsShortcutBackInsert = '<m-space>'
 let g:AutoPairsShortcutJump = '<m-)>'
-
 let g:AutoPairsCenterLine = 1
-
 let g:AutoPairsMapBS = 0
 let g:AutoPairsMapCR = 0
 let g:AutoPairsMapSpace = 0

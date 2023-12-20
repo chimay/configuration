@@ -266,19 +266,22 @@ alias pk='pack'
 
 alias j='jobs'
 
+alias pg='pgrep -af'
+alias s=kill
+alias pid=process-iden
+alias sa=signal-all
+alias psi=process-signal
+
 alias t=htop
 
 alias ts='TS_SOCKET=~/racine/run/socket/task-spooler tsp'
 alias ts-1='TS_SOCKET=~/racine/run/socket/task-spooler-1 tsp'
 alias ts-2='TS_SOCKET=~/racine/run/socket/task-spooler-2 tsp'
 
-alias stamp='command ts'
+# watch
+alias wa=viddy
 
-alias pg='pgrep -af'
-alias s=kill
-alias pid=process-iden
-alias sa=signal-all
-alias psi=process-signal
+alias stamp='command ts'
 
 alias fini='mpv ~/audio/sonnerie/notification/fini.ogg'
 
@@ -579,7 +582,6 @@ hash -d public=~/racine/public
 hash -d refer=~/racine/refer
 hash -d run=~/racine/run
 hash -d science=~/racine/science
-hash -d search=~/racine/search
 hash -d self=~/racine/self
 hash -d session=~/racine/session
 hash -d shell=~/racine/shell

@@ -52,11 +52,11 @@ bind ':' command-prompt -p 'tmux :'
 # Menu
 
 bind -T custom ':' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-tmux-command.zsh"
-bind -T custom ';' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-speed"
+bind -T custom ',' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-speed"
 
 # Historique
 
-bind -T custom µ capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-tmux-history.zsh"
+bind -T custom ';' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-tmux-history.zsh"
 
 # Sessions {{{1
 

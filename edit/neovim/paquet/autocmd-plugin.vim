@@ -51,10 +51,7 @@ augroup END
 
 augroup autopairs
 	autocmd!
-	autocmd BufEnter *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'" }
-	autocmd BufLeave *.vim let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
-	autocmd BufEnter *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"' }
-	autocmd BufLeave *.el let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
-	autocmd BufEnter *.ly let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"' }
-	autocmd BufLeave *.ly let g:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '"':'"' }
+	autocmd filetype vim let b:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '`':'`' }
+	autocmd filetype lisp let b:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"', '`':'`' }
+	autocmd filetype lilypond let b:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"', '`':'`' }
 augroup END
