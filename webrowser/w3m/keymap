@@ -385,6 +385,7 @@ keymap  q   QUIT
 keymap  Q   ABORT
 
 keymap : COMMAND "READ_SHELL ~/.w3m/cgi-bin/fnx_fzfmiru.cgi ; BACK ; GOTO file:/cgi-bin/fnx_execute.cgi ; BACK"
+keymap M-x COMMAND "READ_SHELL ~/.w3m/cgi-bin/fnx_fzfmiru.cgi ; BACK ; GOTO file:/cgi-bin/fnx_execute.cgi ; BACK"
 
 # menu {{{2
 
@@ -425,11 +426,11 @@ keymap  hm      EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --auto
 keymap  hM      EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
 keymap  hb      EXTERN_LINK   'tsp mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
 
-keymap  R   RELOAD
-
 # open url in clipboard
 keymap  PP      GOTO        file:/cgi-bin/goto_clipboard.cgi
 keymap  pp      TAB_GOTO    file:/cgi-bin/goto_clipboard.cgi
+
+keymap  R   RELOAD
 
 # yank {{{2
 

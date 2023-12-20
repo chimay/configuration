@@ -352,7 +352,7 @@ set wildignorecase
 
 "set completeopt=menuone,preview
 
-set completeopt=menuone,longest
+set completeopt=menu
 
 set pumheight=30
 
@@ -1485,8 +1485,10 @@ source ~/racine/config/edit/neovim/paquet/postload.vim
 
 " Maps remplaçant ceux des plugins {{{1
 
-nnoremap <c-left> <c-w>W
-nnoremap <c-right> <c-w>w
+nnoremap <c-left> <c-w>h
+nnoremap <c-down> <c-w>j
+nnoremap <c-up> <c-w>k
+nnoremap <c-right> <c-w>l
 
 nnoremap <c-pageup> gT
 nnoremap <c-pagedown> gt

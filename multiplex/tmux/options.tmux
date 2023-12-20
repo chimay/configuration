@@ -46,7 +46,8 @@ set-environment -g PATH "$HOME/perl5/bin:$HOME/.pip/bin:$HOME/racine/self/bin/bu
 
 # shell {{{1
 
-set -g default-shell "zsh"
+# only used when default-command is empty
+set -g default-shell "/bin/sh"
 
 # default commands {{{1
 
@@ -68,8 +69,7 @@ set -g message-limit 84
 
 # status bar {{{1
 
-set status-position bottom
-#set status-position top
+set -g status-position bottom
 
 set -g display-time 1234
 
@@ -92,23 +92,25 @@ set -g history-file ~/racine/hist/tmux/cmdline-$HOST
 
 # monitoring {{{1
 
+set -g monitor-bell on
 set -g bell-action any
+set -g visual-bell off
 
-#set -g visual-content on
+set -g monitor-activity off
+set -g activity-action any
+set -g visual-activity off
 
-set -g activity-action off
+set -g monitor-silence 0
+set -g silence-action any
+set -g visual-silence off
 
-set -g visual-activity on
-set -g visual-bell on
-set -g visual-silence on
-
-set -g window-status-bell-style 'blink'
-set -ag window-status-bell-style 'fg=#b21818'
+set -g window-status-bell-style 'fg=#b21818'
 set -ag window-status-bell-style bg=black
+set -ag window-status-bell-style 'blink'
 
-set -g window-status-activity-style 'blink'
-set -ag window-status-activity-style 'fg=#b21818'
+set -g window-status-activity-style 'fg=#b21818'
 set -ag window-status-activity-style bg=black
+set -ag window-status-activity-style 'blink'
 
 # lock {{{1
 

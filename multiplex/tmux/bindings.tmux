@@ -56,8 +56,7 @@ bind -T custom ';' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer
 
 # Historique
 
-bind -T custom µ send-keys '~/racine/shell/dialog/fzf-tmux-history.zsh' Enter
-bind -T custom £ send-keys '~/racine/shell/dialog/fzf-tmux-history.zsh -s' Enter
+bind -T custom µ capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-tmux-history.zsh"
 
 # Sessions {{{1
 

@@ -37,31 +37,19 @@ let g:no_plugin_maps = 1
 
 " Bouts de code (snippets, bits, modèles) {{{1
 
-"  UltiSnips (SirVer/ultisnips) {{{2
+" miniSnip (Jorengarenar/miniSnip) {{{1
 
-" Mappings {{{3
-
-" inoremap <tab> <cmd>call UltiSnips#ExpandSnippetOrJump()<cr>
-" snoremap <tab> <cmd>call UltiSnips#JumpForwards()<cr>
-" inoremap <s-tab> <cmd>call UltiSnips#JumpBackwards()<cr>
-" snoremap <s-tab> <cmd>call UltiSnips#JumpBackwards()<cr>
-
-let g:UltiSnipsExpandTrigger="<c-x><c-x>"
-let g:UltiSnipsJumpForwardTrigger="<c-x><c-x>"
-let g:UltiSnipsJumpBackwardTrigger="<c-x><bs>"
+let g:miniSnip_dirs = ['~/racine/plugin/data/miniSnip']
+"let g:miniSnip_trigger = '<c-j>'
+let g:miniSnip_trigger = '<c-s>'
+let g:miniSnip_complKey = '<c-x><c-u>'
+let g:miniSnip_extends = {
+			\ "cpp" : [ "objc", "c" ],
+			\ }
 
 let g:UltiSnipsListSnippets='<F10>l'
 
-nnoremap <F10>e <cmd>UltiSnipsEdit<cr>
-nnoremap <F10>a <cmd>UltiSnipsAddFiletypes<space>
-
-" Données {{{3
-
-"let g:UltiSnipsSnippetsDir = $HOME . '/racine/config/edit/neovim/snippet'
-
-let g:UltiSnipsSnippetDirectories=['snippet', 'UltiSnips']
-
-let g:UltiSnipsEditSplit = 'horizontal'
+nnoremap <f10>e :e ~/racine/plugin/data/miniSnip/
 
 " Commentaires {{{1
 
@@ -538,7 +526,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.completion.scores = 0
 	" maps
 	nnoremap <space> :<c-u>Organ<space>
-	nnoremap <c-down> :<c-u>Organ org-to-markdown
+	nnoremap <c-s-down> :<c-u>Organ org-to-markdown
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u
 	nmap ↓    <plug>(organ-unicode)

@@ -18,8 +18,9 @@ fun! PackagerInit ()
 	"call packager#local('~/racine/public/organ', always)
 	"call packager#local('~/racine/public/vimscript-tricks', always)
 	" ---- auto loaded plugins
-	call packager#add('jiangmiao/auto-pairs', always)
 	call packager#add('justinmk/vim-sneak', always)
+	call packager#add('jiangmiao/auto-pairs', always)
+	call packager#add('Jorengarenar/miniSnip', always)
 	call packager#add('kana/vim-textobj-entire', always)
 	call packager#add('kana/vim-textobj-fold', always)
 	call packager#add('kana/vim-textobj-function', always)
@@ -41,9 +42,6 @@ fun! PackagerInit ()
 	call packager#add('vim-scripts/utl.vim', always)
 	call packager#add('wellle/targets.vim', always)
 	call packager#add('McSinyx/vim-octave', always)
-	" freezes nvim with undo
-" 	call packager#add('nvim-treesitter/nvim-treesitter')
-" 	call packager#add('nvim-orgmode/orgmode')
 	" -- plugins with deps
 	call packager#add('vim-scripts/LineJuggler', {
 				\ 'type' : 'start',
@@ -74,6 +72,10 @@ fun! PackagerInit ()
 	call packager#add('vim-scripts/YankRing.vim', optional)
 	call packager#add('mhinz/neovim-remote', optional)
 	" -- plugins with deps
+	" ---- does not work
+	" freezes nvim with undo
+" 	call packager#add('nvim-treesitter/nvim-treesitter')
+" 	call packager#add('nvim-orgmode/orgmode')
 endfun
 
 " Functions {{{1

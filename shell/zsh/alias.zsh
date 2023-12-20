@@ -59,17 +59,17 @@ alias p1='patch -p1 < '
 
 # visualization {{{1
 
-alias p=pager
-
-alias pp='pager +G'
-
 alias b=bat
+
+alias p=pager
+alias pp='pager +G'
 alias q='most -C'
 
-alias u=vimpager
+alias vp=vimpager
+alias nvp=nvimpager
+alias nvm=nviman.sh
 
 alias tt='multitail'
-
 alias taco='multitail -C -ts'
 
 # PDF, EPUB
