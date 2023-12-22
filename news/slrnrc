@@ -14,13 +14,13 @@
 
 % The "From:" header will be generated from the following three variables.
 % With the example settings, it would read "john@doe.com (John Doe)".
-set username "user_name"
-set hostname "mail_server.com"
+set username "remi.dore"
+set hostname "protonmail.com"
 set realname "Remi Dore"
 
 % Set this if you want replies to your articles to go to a address different
 % from the one in "From:".
-set replyto  "user_name@mail_server.com"
+set replyto  "remi.dore@protonmail.com"
 
 % What to put into the "Organization:" header line.
 %set organization "Doe inc."
@@ -41,6 +41,10 @@ server "news.eternal-september.org" ".jnewsrc"
 %server "news://news.unina.it" ".jnewsrc2"
 %server "news.easysw.com" ".jnewsrc_cups"
 
+% If a server requires authentication, add a nnrpaccess line for it.
+% If you leave username and/or password empty, slrn will prompt for it.
+%nnrpaccess "news.doe.com" "john" "secret"
+nnrpaccess "snews://news.eternal-september.org:563" "chimay" "fl3urd3v13"
 
 % Some servers require authentication, but don't ask for it.
 % To offer your authentication data "voluntarily", set this variable to 1.
@@ -69,9 +73,9 @@ set read_active 1
 % The following variables are only meaningful when using spool mode:
 
 % Basic directory settings
-set spool_inn_root "/home/user_name/racine/news/spool"
-set spool_root "/home/user_name/racine/news/spool/news"
-set spool_nov_root "/home/user_name/racine/news/spool"
+set spool_inn_root "/home/david/racine/news/spool"
+set spool_root "/home/david/racine/news/spool/news"
+set spool_nov_root "/home/david/racine/news/spool"
 
 % These are relative to spool_inn_root unless they start with "/".
 set spool_active_file "data/active"
@@ -444,12 +448,14 @@ setkey group quit             "Q"      % Quit slrn
 
 setkey article help                    "?"	% Display help screen
 
+setkey article header_line_down      "n"	% Move to next article
+setkey article header_line_up        "p"	% Move to previous article
 setkey article header_line_down      "l"	% Move to next article
 setkey article header_line_up        "h"	% Move to previous article
 setkey article header_line_down      "$"	% Move to next article
 setkey article header_line_up        "^"	% Move to previous article
-setkey article next                    "n"  % next unread article
-setkey article previous                "p"  % previous unread article
+%setkey article next                    "n"  % next unread article
+%setkey article previous                "p"  % previous unread article
 
 setkey article hide_article         "i"		% Hide/Show the article window
 setkey article toggle_collapse_threads "z"	% Collapse/Uncollapse thread

@@ -498,8 +498,16 @@ endfun
 
 fun! biblio#make_midi ()
 	" Make midi file (eg from lilypond file)
-	let filename = fnamemodify(expand('%'), ':p:r')
-	let midiname = filename .. '.midi'
+	let extension = fnamemodify(expand('%'), ':e:e')
+	if extension == 'mld.ly'
+		let shortname = fnamemodify(expand('%'), ':t:r:r')
+		let parent    = fnamemodify(expand('%'), ':h:h')
+		let filename = parent .. '/' .. shortname
+		let midiname = filename .. '.midi'
+	elseif extension == 'ly'
+		let filename = fnamemodify(expand('%'), ':p:r')
+		let midiname = filename .. '.midi'
+	endif
 	setlocal makeprg=make
 	execute 'make! -k' midiname
 endfun

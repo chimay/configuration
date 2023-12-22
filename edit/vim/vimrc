@@ -417,8 +417,10 @@ nnoremap <f3>s <cmd>%sort<cr>
 
 " Fenêtres {{{2
 
-nnoremap <c-right>  <c-w>w
-nnoremap <c-left>  <c-w>W
+nnoremap <c-right> <c-w>l
+nnoremap <c-down>  <c-w>j
+nnoremap <c-up>    <c-w>k
+nnoremap <c-left>  <c-w>h
 
 " Les mouvements directionnels sont aussi accessible via h j k l
 
@@ -971,9 +973,6 @@ packloadall
 source ~/racine/config/edit/vim/paquet/postload.vim
 
 " Maps remplaçant ceux des plugins {{{1
-
-nnoremap <c-left> <c-w>W
-nnoremap <c-right> <c-w>w
 
 nnoremap <c-pageup> gT
 nnoremap <c-pagedown> gt

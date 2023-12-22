@@ -208,7 +208,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.completion.fuzzy = 0
 	let g:organ_config.completion.scores = 0
 	" maps
-	nnoremap <space> :<c-u>Organ<space>
+	nnoremap <space>o :<c-u>Organ<space>
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u
 	nmap ↓    <plug>(organ-unicode)
