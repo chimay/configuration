@@ -507,9 +507,12 @@ fun! biblio#make_midi ()
 	elseif extension == 'ly'
 		let filename = fnamemodify(expand('%'), ':p:r')
 		let midiname = filename .. '.midi'
+	else
+		return 'filetype not supported'
 	endif
 	setlocal makeprg=make
 	execute 'make! -k' midiname
+	return 'success'
 endfun
 
 fun! biblio#make_ogg ()

@@ -113,14 +113,18 @@ fun! biblio#smart_tab ()
 	" Else, return <c-n> to complete
 	let previous_column = col('.') - 2
 	if previous_column >= 0
-		let previous_char = getline('.')[previous_column]
+		let previous = getline('.')[:previous_column]
 	else
-		let previous_char = ' '
+		let previous = ''
 	endif
-	if previous_char =~ '\m\s'
+	if empty(previous)
 		return "\<c-t>"
-	else
+	elseif previous =~ '\m^\s*$'
+		return "\<c-t>"
+	elseif previous[-1:] =~ '\m\S'
 		return "\<c-n>"
+	else
+		return "\<c-v>\<tab>"
 	endif
 endfun
 
@@ -148,6 +152,14 @@ fun! biblio#global_delete (pattern, ...)
 	endif
 	exe 'let @' . register . " = ''"
 	exe 'global/' . a:pattern . '/delete ' . toupper(register)
+endfun
+
+" -- banner
+
+fun! biblio#figlet ()
+	" Insert figlet banner at current line
+	let text = input('Text : ')
+	execute 'read ! figlet' text
 endfun
 
 " -- passwords
@@ -274,6 +286,16 @@ fun! biblio#terminal ()
 endfun
 
 " ---- disc operations
+
+fun! biblio#chmodexec ()
+	" Make current file executable
+	let filename = fnamemodify(expand('%'), ':p')
+	let chmod = 'chmod +x ' .. filename
+	let output = system(chmod)
+	let list = 'ls -l ' .. filename
+	let info = systemlist(list)[0]
+	echomsg info
+endfun
 
 fun! biblio#full_path (...)
 	" Return filename full path
@@ -412,6 +434,10 @@ let s:dont_publish = [
 	\ '\m.*qutebrowser/config*',
 	\ '\m.*bookmark*',
 	\ '\m.*quickmark*',
+	\ '\m.*autostart*',
+	\ '\m.*autostop*',
+	\ '\m.*pass-to-gpg-symmetric*',
+	\ '\m.*pass-to-age*',
 	\ '\mGrenier',
 	\ ]
 lockvar! s:dont_publish
@@ -427,6 +453,9 @@ fun! biblio#publish ()
 	if source =~ '\m^' .. $HOME .. '/racine/config'
 		let mode = 'config'
 		let repo = 'configuration'
+	elseif source =~ '\m^' .. $HOME .. '/racine/fun'
+		let mode = 'fun'
+		let repo = 'scripts/' .. mode
 	elseif source =~ '\m^' .. $HOME .. '/racine/self'
 		let mode = 'self'
 		let repo = 'scripts/' .. mode
@@ -439,6 +468,12 @@ fun! biblio#publish ()
 	elseif source =~ '\m^' .. $HOME .. '/racine/snippet'
 		let mode = 'snippet'
 		let repo = 'scripts/' .. mode
+	elseif source =~ '\m^' .. $HOME .. '/racine/site'
+		let mode = 'site'
+		let repo = 'scripts/' .. mode
+	elseif source =~ '\m^' .. $HOME .. '/racine/musica/lilypond/template'
+		let mode = 'musica/lilypond/template'
+		let repo = 'lilypond-templates'
 	endif
 	let source_dir = $HOME .. '/racine/' .. mode
 	let target_dir = $HOME .. '/racine/public/' .. repo
@@ -457,4 +492,53 @@ fun! biblio#publish ()
 		echomsg 'publish : copied' source_tilde '->' destination_tilde
 	endif
 	return returnstring
+endfun
+
+" ---- music
+
+fun! biblio#make_midi ()
+	" Make midi file (eg from lilypond file)
+	let extension = fnamemodify(expand('%'), ':e:e')
+	if extension == 'mld.ly'
+		let shortname = fnamemodify(expand('%'), ':t:r:r')
+		let parent    = fnamemodify(expand('%'), ':h:h')
+		let filename = parent .. '/' .. shortname
+		let midiname = filename .. '.midi'
+	elseif extension == 'ly'
+		let filename = fnamemodify(expand('%'), ':p:r')
+		let midiname = filename .. '.midi'
+	else
+		return 'filetype not supported'
+	endif
+	setlocal makeprg=make
+	execute 'make! -k' midiname
+	return 'success'
+endfun
+
+fun! biblio#make_ogg ()
+	" Make ogg file (eg from lilypond file)
+	let filename = fnamemodify(expand('%'), ':p:r')
+	let oggname = filename .. '.ogg'
+	setlocal makeprg=make
+	execute 'make! -k' oggname
+endfun
+
+fun! biblio#make_mp3 ()
+	" Make mp3 file (eg from lilypond file)
+	let filename = fnamemodify(expand('%'), ':p:r')
+	let mp3name = filename .. '.mp3'
+	setlocal makeprg=make
+	execute 'make! -k' mp3name
+endfun
+
+fun! biblio#display_pdf ()
+	" Display pdf file (eg from lilypond file)
+	let filename = fnamemodify(expand('%'), ':p:r')
+	let pdfname = filename .. '.pdf'
+	setlocal makeprg=make
+	execute 'make! -k' pdfname
+	let display = 'zathura ' .. pdfname .. '&'
+	echomsg display
+	let output = system(display)
+	"echomsg output
 endfun
