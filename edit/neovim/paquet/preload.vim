@@ -39,7 +39,7 @@ let g:no_plugin_maps = 1
 
 " miniSnip (Jorengarenar/miniSnip) {{{1
 
-let g:miniSnip_dirs = ['~/racine/plugin/neovim/data/miniSnip']
+let g:miniSnip_dirs = ['~/racine/plugin/data/neovim/miniSnip']
 let g:miniSnip_trigger = '<c-j>'
 "let g:miniSnip_trigger = '<c-s>'
 let g:miniSnip_complKey = '<c-x><c-u>'
@@ -47,7 +47,7 @@ let g:miniSnip_extends = {
 			\ "cpp" : [ "objc", "c" ],
 			\ }
 
-nnoremap <f10>e :e ~/racine/plugin/neovim/data/miniSnip/
+nnoremap <f10>e :e ~/racine/plugin/data/neovim/miniSnip/
 
 " Commentaires {{{1
 

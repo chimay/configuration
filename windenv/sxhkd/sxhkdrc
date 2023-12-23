@@ -1,6 +1,6 @@
 # vim: set filetype=conf:
 
-# Documentation {{{1
+# documentation {{{1
 
 #
 # wm independent hotkeys
@@ -17,7 +17,7 @@
 # button6,7 = molette gauche/droite
 # button8,9 = latéraux gauche/droit
 
-# Lanceurs {{{1
+# launcher {{{1
 
 hyper + colon
 	rofi-meta.zsh
@@ -41,7 +41,7 @@ hyper + ccedilla
 hyper + agrave
 	urxvtc -name fzf-nova -e ~/racine/infoman/unix/generic/gotbletu/shownotes/fzf_nova/fzf-nova
 
-# Environnement graphique {{{1
+# window environment {{{1
 
 # Déconnexion
 hyper + shift + d
@@ -54,7 +54,7 @@ hyper + shift + q
 hyper + k
 	i3lock -c "#341207" -i ~/racine/pictura/i3lock/default
 
-# Bspwm {{{1
+# bspwm {{{1
 
 # Restart
 hyper + shift + r
@@ -189,7 +189,7 @@ hyper + t ; {Left,Down,Up,Right}
 hyper + t ; r
 	bspwm-remove-from-tabbed.sh
 
-# Bsp-layout {{{1
+# bsp-layout {{{1
 
 hyper + l ; e
 	bsp-layout set tall
@@ -229,7 +229,7 @@ hyper + y
 hyper + r
 	bsp-layout remove
 
-# Barres {{{1
+# bars {{{1
 
 hyper + b
 	polybar-msg cmd toggle
@@ -240,7 +240,7 @@ hyper + p ; t
 hyper + p ; r
 	polybar-msg cmd restart
 
-# Dropdown {{{1
+# dropdown {{{1
 
 hyper + ugrave
 	kitty-dropdown.zsh
@@ -260,7 +260,7 @@ button8
 hyper + equal
 	urxvtc-calculator.zsh
 
-# Applications {{{1
+# applications {{{1
 
 hyper + {dollar, Return, exclam, comma}
 	{kitty, alacritty, xterm -ls zsh, urxvtc}
@@ -334,7 +334,7 @@ super + ctrl + w
 super + ctrl + shift + v
 	vlc
 
-# Notifications {{{1
+# notifications {{{1
 
 hyper + minus ; x
 	dunstctl close
@@ -360,17 +360,23 @@ super + asciitilde
 super + shift + grave
 	dunstctl context
 
-# Agenda {{{1
+# clock {{{1
+
+# toggle active / pause
+hyper + o ; space
+	pkill -12 -f clock.zsh
+
+# agenda {{{1
 
 hyper + a ; r
 	pkill -10 -f remind-server.zsh
 
-# Réseau {{{1
+# network {{{1
 
 hyper + shift + w
 	toggle-wifi.zsh
 
-#  Processeurs {{{1
+# cpus {{{1
 
 hyper + c ; s
 	notify-send "$(cpupower-gui profile save | head -n 1)"
@@ -378,9 +384,13 @@ hyper + c ; s
 hyper + c ; d
 	notify-send "$(cpupower-gui profile demand | head -n 1)"
 
-# Écran {{{1
+# screen {{{1
 
 # Fond d’écran {{{2
+
+# evaluation
+hyper + w ; e
+	eval-wallpaper.zsh
 
 # Recharge toute la liste d’images
 hyper + w ; r
@@ -393,10 +403,6 @@ hyper + w ; n
 # stop waiting
 hyper + o ; s
 	pkill -10 -f clock.zsh
-
-# toggle active / pause
-hyper + o ; space
-	pkill -12 -f clock.zsh
 
 # Transparence {{{2
 
@@ -448,7 +454,7 @@ hyper + s ; plus
 hyper + shift + @z
 	sleep 1 ; xset dpms force off
 
-# Souris {{{1
+# mouse {{{1
 
 # aussi lancé par keynav
 # voir ~/racine/config/windenv/keynav/keynavrc
@@ -456,7 +462,7 @@ hyper + shift + @z
 hyper + x
 	xmouseless
 
-# Multimédia {{{1
+# multimédia {{{1
 
 XF86AudioRaiseVolume
 	pamixer --increase 5
@@ -469,6 +475,10 @@ XF86AudioMute
 
 XF86AudioPlay
 	mpc toggle
+
+# evaluation
+hyper + space ; e
+	eval-song.zsh
 
 hyper + space ; Up
 	pamixer --increase 5
@@ -518,12 +528,12 @@ hyper + space ; t
 button6
 	urxvtc -name multimedia -e ncmpcpp
 
-# Informations {{{1
+# informations {{{1
 
 button7
 	less-log.sh ~/log/wallpaper.log
 
-# Examples {{{1
+# examples {{{1
 
 # # terminal emulator
 # super + Return
@@ -642,4 +652,3 @@ button7
 # # move a floating window
 # super + {Left,Down,Up,Right}
 # 	bspc node -v {-20 0,0 20,0 -20,20 0}
-
