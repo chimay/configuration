@@ -47,6 +47,8 @@ fun! PackagerInit ()
 				\ 'type' : 'start',
 				\ 'requires' : ['vim-scripts/ingo-library', 'vim-scripts/LineJugglerCommands']
 				\ })
+	" -- filetype plugins
+	call packager#add('martineausimon/nvim-lilypond-suite', always)
 	" ---- optional plugins, loaded on some filetypes
 	call packager#add('mzlogin/vim-markdown-toc', optional)
 	call packager#add('vim-latex/vim-latex', optional)

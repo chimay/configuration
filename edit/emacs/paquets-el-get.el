@@ -2,9 +2,9 @@
 
 ;;; * Gestionnaire de paquets el-get
 
-(add-to-list 'load-path "~/racine/plugin/manager/el-get/el-get")
+(add-to-list 'load-path "~/racine/plugin/manager/emacs/el-get/el-get")
 
-(setq el-get-dir "~/racine/plugin/manager/el-get")
+(setq el-get-dir "~/racine/plugin/manager/emacs/el-get")
 
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -14,7 +14,7 @@
     (eval-print-last-sexp)))
 
 (add-to-list 'el-get-user-package-directory "~/racine/config/edit/emacs/pack")
-(add-to-list 'el-get-recipe-path "~/racine/plugin/data/el-get-user/recipes")
+(add-to-list 'el-get-recipe-path "~/racine/plugin/emacs/data/el-get-user/recipes")
 
 ;;; ** Bindings
 

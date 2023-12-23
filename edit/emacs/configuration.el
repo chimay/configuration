@@ -1115,7 +1115,7 @@
   :custom ((torus-prefix-key "s-t")
 	   (torus-binding-level 3)
 	   (torus-verbosity 1)
-	   (torus-dirname "~/racine/plugin/data/torus")
+	   (torus-dirname "~/racine/plugin/emacs/data/torus")
 	   (torus-load-on-startup t)
 	   (torus-save-on-exit t)
 	   (torus-autoread-file "auto")

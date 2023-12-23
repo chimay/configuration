@@ -86,4 +86,4 @@ set -g @yank_selection 'clipboard'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 
-run-shell '~/racine/plugin/manager/tmux-plugins/tpm/tpm'
+run-shell '~/racine/plugin/manager/tmux/plugins/tpm/tpm'

@@ -134,7 +134,7 @@ alias h=helix
 
 # Emacs {{{2
 
-alias esrv=run-emacs-server
+alias esrv=run-emacs-server.sh
 
 alias emx='emacs -nw'
 
@@ -628,11 +628,12 @@ hash -d muttconf=~/racine/config/mail/neomutt
 hash -d pman=~/racine/plugin/manager
 hash -d pdata=~/racine/plugin/data
 
-hash -d vimpackager=~/racine/plugin/manager/vimpack/packager
-hash -d neovimpackager=~/racine/plugin/manager/neovimpack/packager
-hash -d elpaca=~/racine/plugin/manager/elpaca
-hash -d straight=~/racine/plugin/manager/straight
-hash -d elget=~/racine/plugin/manager/el-get
+hash -d vimpackager=~/racine/plugin/manager/vim/pack/packager
+hash -d neovimpackager=~/racine/plugin/manager/neovim/pack/packager
+
+# hash -d elpaca=~/racine/plugin/manager/emacs/elpaca
+# hash -d straight=~/racine/plugin/manager/emacs/straight
+# hash -d elget=~/racine/plugin/manager/emacs/el-get
 
 # Artisan {{{2
 

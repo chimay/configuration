@@ -53,5 +53,5 @@ augroup autopairs
 	autocmd!
 	autocmd filetype vim let b:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '`':'`' }
 	autocmd filetype lisp let b:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"', '`':'`' }
-	autocmd filetype lilypond let b:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"', '`':'`' }
+	autocmd filetype lilypond let b:AutoPairs = { '[':']', '{':'}', '<':'>', '"':'"', '`':'`' }
 augroup END
