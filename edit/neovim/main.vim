@@ -692,13 +692,15 @@ nnoremap ZQ <cmd>qa!<cr>
 
 " Phrases {{{2
 
-" noremap <f7>s (
-" noremap <f8>s )
+" noremap <f5>s (
+" noremap <f6>s )
 
-" vnoremap <f7>s (
-" vnoremap <f8>s )
+" vnoremap <f5>s (
+" vnoremap <f6>s )
 
 "  Fichiers {{{2
+
+nnoremap <kEnter> <cmd>call library#write_all()<cr>
 
 "nnoremap <C-G> 2<C-G>
 
@@ -725,30 +727,32 @@ nnoremap <f2>s <cmd>EditSyntaxPlugin<cr>
 " figlet banner
 nnoremap <f2>b <cmd>call library#figlet()<cr>
 
+nnoremap <f2>x <cmd>call library#text_to_password()<cr>
+nnoremap <f2>X <cmd>call library#password_to_text()<cr>
+
 nnoremap <f3>m :make! -k<space>
-nnoremap <f3>x <cmd>call library#text_to_password()<cr>
+nnoremap <f3>x <cmd>call library#chmodexec()<cr>
 
-nnoremap <f4>m <cmd>call library#make_midi()<cr>
-nnoremap <f4>o <cmd>call library#make_ogg()<cr>
-nnoremap <f4>p <cmd>call library#display_pdf()<cr>
-
-nnoremap <kEnter> <cmd>call library#write_all()<cr>
+" lilypond
+nnoremap <f9>m <cmd>call library#make_midi()<cr>
+nnoremap <f9>o <cmd>call library#make_ogg()<cr>
+nnoremap <f9>p <cmd>call library#display_pdf()<cr>
 
 " Arguments {{{2
 
-nnoremap <f7>a <cmd>previous<cr>
-nnoremap <f8>a <cmd>next<cr>
+nnoremap <f5>a <cmd>previous<cr>
+nnoremap <f6>a <cmd>next<cr>
 
-nnoremap <f7>A <cmd>first<cr>
-nnoremap <f8>A <cmd>last<cr>
+nnoremap <f5>A <cmd>first<cr>
+nnoremap <f6>A <cmd>last<cr>
 
 " Tampons (buffers) {{{2
 
-nnoremap <f7>b <cmd>bprevious<cr>
-nnoremap <f8>b <cmd>bnext<cr>
+nnoremap <f5>b <cmd>bprevious<cr>
+nnoremap <f6>b <cmd>bnext<cr>
 
-nnoremap <f7>B <cmd>bfirst<cr>
-nnoremap <f8>B <cmd>blast<cr>
+nnoremap <f5>B <cmd>bfirst<cr>
+nnoremap <f6>B <cmd>blast<cr>
 
 " wipe buffer
 nnoremap <m-q> <cmd>bwipe!<cr>
@@ -785,11 +789,11 @@ nnoremap <f3>r <cmd>call library#toggle_readonly()<cr>
 nnoremap <f3>t <cmd>tabnew<cr>
 nnoremap <f3>T :tabedit<space>
 
-nnoremap <f7>T <cmd>tabfirst<cr>
-nnoremap <f8>T <cmd>tablast<cr>
+nnoremap <f5>T <cmd>tabfirst<cr>
+nnoremap <f6>T <cmd>tablast<cr>
 
-nnoremap <f7>t <cmd>tabmove -1<cr>
-nnoremap <f8>t <cmd>tabmove +1<cr>
+nnoremap <f5>t <cmd>tabmove -1<cr>
+nnoremap <f6>t <cmd>tabmove +1<cr>
 
 nnoremap <F3>= <cmd>call library#equal_windows()<cr>
 
@@ -798,25 +802,25 @@ nnoremap <leader><right> <cmd>call library#win2next_tab()<cr>
 
 " Liste quickfix {{{2
 
-nnoremap <f7>q <cmd>cprevious<cr>
-nnoremap <f8>q <cmd>cnext<cr>
+nnoremap <f5>q <cmd>cprevious<cr>
+nnoremap <f6>q <cmd>cnext<cr>
 
-nnoremap <f7>Q <cmd>cfirst<cr>
-nnoremap <f8>Q <cmd>clast<cr>
+nnoremap <f5>Q <cmd>cfirst<cr>
+nnoremap <f6>Q <cmd>clast<cr>
 
-nnoremap <f7><c-q> <cmd>cpfile<cr>
-nnoremap <f8><c-q> <cmd>cnfile<cr>
+nnoremap <f5><c-q> <cmd>cpfile<cr>
+nnoremap <f6><c-q> <cmd>cnfile<cr>
 
 " Listes locales {{{2
 
-nnoremap <f7>l <cmd>lprevious<cr>
-nnoremap <f8>l <cmd>lnext<cr>
+nnoremap <f5>l <cmd>lprevious<cr>
+nnoremap <f6>l <cmd>lnext<cr>
 
-nnoremap <f7>L <cmd>lfirst<cr>
-nnoremap <f8>L <cmd>llast<cr>
+nnoremap <f5>L <cmd>lfirst<cr>
+nnoremap <f6>L <cmd>llast<cr>
 
-nnoremap <f7><c-l> <cmd>lpfile<cr>
-nnoremap <f8><c-l> <cmd>lnfile<cr>
+nnoremap <f5><c-l> <cmd>lpfile<cr>
+nnoremap <f6><c-l> <cmd>lnfile<cr>
 
 " Anciens fichiers {{{2
 
@@ -828,11 +832,11 @@ nnoremap <f8><c-l> <cmd>lnfile<cr>
 
 "  Tags {{{2
 
-nnoremap <f7><m-t> <cmd>tprevious<cr>
-nnoremap <f8><m-t> <cmd>tnext<cr>
+nnoremap <f5><m-t> <cmd>tprevious<cr>
+nnoremap <f6><m-t> <cmd>tnext<cr>
 
-nnoremap <f7><m-s-t> <cmd>tfirst<cr>
-nnoremap <f8><m-s-t> <cmd>tlast<cr>
+nnoremap <f5><m-s-t> <cmd>tfirst<cr>
+nnoremap <f6><m-s-t> <cmd>tlast<cr>
 
 nnoremap <f3>j <cmd>tj /
 nnoremap <f3>J <cmd>tab tj /
@@ -874,15 +878,15 @@ inoremap <S-Down> <C-o>gj
 " Echange {{3
 
 " chars
-nnoremap <f6>c xp
-nnoremap <f6>C Xp
+nnoremap <f4>c xp
+nnoremap <f4>C Xp
 " words
-nnoremap <f6>w bdwelp
+nnoremap <f4>w bdwelp
 " lines
-nnoremap <f6>l ddp
-nnoremap <f6>L ddkP
+nnoremap <f4>l ddp
+nnoremap <f4>L ddkP
 " paragraphs
-nnoremap <f6>p {dap}P{
+nnoremap <f4>p {dap}P{
 
 " Signets {{{3
 
@@ -973,17 +977,17 @@ inoremap <m-u> <c-g>u
 nnoremap ]] ]z
 nnoremap [[ [z
 
-nnoremap <f7>z ]z
-nnoremap <f8>z [z
+nnoremap <f5>z ]z
+nnoremap <f6>z [z
 
-vnoremap <f7>z ]z
-vnoremap <f8>z [z
+vnoremap <f5>z ]z
+vnoremap <f6>z [z
 
-nnoremap <f7>) zjzx]z
-nnoremap <f8>( zkzx[z
+nnoremap <f5>) zjzx]z
+nnoremap <f6>( zkzx[z
 
-vnoremap <f7>) zjzx]z
-vnoremap <f8>( zkzx[z
+vnoremap <f5>) zjzx]z
+vnoremap <f6>( zkzx[z
 
 nnoremap zo zCzO
 
@@ -1051,10 +1055,6 @@ nnoremap QQ gQ
 " Hauteur de la fenêtre de commande {{{3
 
 nnoremap <f3>c :set cmdheight=
-
-" Rendre le fichier exécutable {{{3
-
-nnoremap <f4>x <cmd>call library#chmodexec()<cr>
 
 " Ligne ou sélection courante {{{3
 

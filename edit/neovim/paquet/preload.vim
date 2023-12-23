@@ -39,7 +39,7 @@ let g:no_plugin_maps = 1
 
 " miniSnip (Jorengarenar/miniSnip) {{{1
 
-let g:miniSnip_dirs = ['~/racine/plugin/data/miniSnip']
+let g:miniSnip_dirs = ['~/racine/plugin/neovim/data/miniSnip']
 let g:miniSnip_trigger = '<c-j>'
 "let g:miniSnip_trigger = '<c-s>'
 let g:miniSnip_complKey = '<c-x><c-u>'
@@ -47,9 +47,7 @@ let g:miniSnip_extends = {
 			\ "cpp" : [ "objc", "c" ],
 			\ }
 
-let g:UltiSnipsListSnippets='<F10>l'
-
-nnoremap <f10>e :e ~/racine/plugin/data/miniSnip/
+nnoremap <f10>e :e ~/racine/plugin/neovim/data/miniSnip/
 
 " Commentaires {{{1
 
@@ -117,6 +115,15 @@ xmap zF <Plug>Sneak_S
 
 omap zf <Plug>Sneak_s
 omap zF <Plug>Sneak_S
+
+nmap <f8> <Plug>Sneak_s
+nmap <f7> <Plug>Sneak_S
+
+xmap <f8> <Plug>Sneak_s
+xmap <f7> <Plug>Sneak_S
+
+omap <f8> <Plug>Sneak_s
+omap <f7> <Plug>Sneak_S
 
 omap ; <Plug>Sneak_;
 omap , <Plug>Sneak_,
@@ -218,7 +225,7 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.project.auto_chdir = 1
 
 	" The folder where toruses and circles will be stored and read
-	let g:wheel_config.storage.wheel.folder = '~/racine/plugin/data/wheel/neovim'
+	let g:wheel_config.storage.wheel.folder = '~/racine/plugin/data/neovim/wheel'
 	" Name of the default wheel file
 	let g:wheel_config.storage.wheel.name = 'auto'
 	" Auto read wheel file on startup if > 0
@@ -226,7 +233,7 @@ if ! exists("g:wheel_loaded")
 	" Auto write wheel file on exit if > 0
 	let g:wheel_config.storage.wheel.autowrite = 1
 	" The folder where sessions will be stored and read
-	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/wheel/neovim/session'
+	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/neovim/wheel/session'
 	" Name of the default session file
 	let g:wheel_config.storage.session.name = 'layout'
 	" Auto read default session file on startup if > 0

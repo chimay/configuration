@@ -165,7 +165,7 @@ endfun
 " -- passwords
 
 fun! library#text_to_password ()
-	" Insert some digits in password
+	" Insert some digits & special chars in password
 	silent! % substitute/a/4/g
 	silent! % substitute/b/6/g
 	silent! % substitute/e/3/g
@@ -174,6 +174,18 @@ fun! library#text_to_password ()
 	silent! % substitute/l/£/g
 	silent! % substitute/o/0/g
 	silent! % substitute/s/$/g
+endfun
+
+fun! library#password_to_text ()
+	" Remove digits & special chars from password
+	silent! % substitute/4/a/g
+	silent! % substitute/6/b/g
+	silent! % substitute/3/e/g
+	silent! % substitute/9/g/g
+	silent! % substitute/1/i/g
+	silent! % substitute/£/l/g
+	silent! % substitute/0/o/g
+	silent! % substitute/\$/s/g
 endfun
 
 " ---- windows & tabs

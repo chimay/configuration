@@ -304,7 +304,7 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
 set foldcolumn=7
 
-set foldtext=biblio#folding_text()
+set foldtext=library#folding_text()
 
 "  Méthode des marqueurs {{{2
 
@@ -321,7 +321,7 @@ set bufhidden=hide
 
 " Barre d'onglets {{{2
 
-set tabline=%!biblio#tablabel()
+set tabline=%!library#tablabel()
 
 set guitablabel=%N\ %t\ %m
 
@@ -388,7 +388,8 @@ command -nargs=? -complete=filetype EditSyntaxPlugin
 nnoremap <f2>s :<c-u>EditSyntaxPlugin<cr>
 
 nnoremap \m <cmd>make -k<cr>
-nnoremap \x <cmd>call biblio#text_to_password()<cr>
+nnoremap \x <cmd>call library#text_to_password()<cr>
+nnoremap \X <cmd>call library#password_to_text()<cr>
 
 " Arguments {{{2
 
@@ -444,10 +445,10 @@ nnoremap <f8>t <cmd>tabmove +1<cr>
 nnoremap <c-s-left> <cmd>tabmove -1<cr>
 nnoremap <c-s-right> <cmd>tabmove +1<cr>
 
-nnoremap <F3>= <cmd>call biblio#equal_windows()<cr>
+nnoremap <F3>= <cmd>call library#equal_windows()<cr>
 
-nnoremap <leader><left> <cmd>call biblio#win2prev_tab()<cr>
-nnoremap <leader><right> <cmd>call biblio#win2next_tab()<cr>
+nnoremap <leader><left> <cmd>call library#win2prev_tab()<cr>
+nnoremap <leader><right> <cmd>call library#win2next_tab()<cr>
 
 " Liste quickfix {{{2
 
@@ -508,10 +509,10 @@ nnoremap <PageDown> <C-F>
 
 " Lignes {{{3
 
-nnoremap <silent> j <cmd>call biblio#wrap_down()<cr>
-nnoremap <silent> k <cmd>call biblio#wrap_up()<cr>
-nnoremap <silent> <up> <cmd>call biblio#wrap_up()<cr>
-nnoremap <silent> <down> <cmd>call biblio#wrap_down()<cr>
+nnoremap <silent> j <cmd>call library#wrap_down()<cr>
+nnoremap <silent> k <cmd>call library#wrap_up()<cr>
+nnoremap <silent> <up> <cmd>call library#wrap_up()<cr>
+nnoremap <silent> <down> <cmd>call library#wrap_down()<cr>
 
 " Lignes-écran {{{3
 
@@ -609,7 +610,7 @@ nnoremap zo zCzO
 inoremap <PageUp> <C-P>
 inoremap <PageDown> <C-N>
 
-inoremap <expr> <tab> biblio#smart_tab()
+inoremap <expr> <tab> library#smart_tab()
 
 "inoremap <C-Space> <C-X><C-O>
 "inoremap <M-Space> <C-X><C-L>
@@ -681,11 +682,11 @@ nnoremap <f3>: <cmd>exe getline(".")<CR>
 
 "  Informations {{{2
 
-nnoremap <f3>ig <cmd>call biblio#highlight_group()<cr>
+nnoremap <f3>ig <cmd>call library#highlight_group()<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <C-!> <cmd>call biblio#terminal()<cr>
+nnoremap <C-!> <cmd>call library#terminal()<cr>
 
 set termwinkey=<C-W>
 

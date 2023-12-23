@@ -7,6 +7,9 @@
 "
 "set runtimepath+=~/racine/config/edit/neovim
 
+" avoid to read specific vim conf
+set runtimepath-=/usr/share/vim/vimfiles
+
 " lilypond {{{2
 
 " interfere with config
