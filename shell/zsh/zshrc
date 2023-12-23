@@ -868,9 +868,9 @@ bindkey -M isearch "," self-insert
 
 # Trois étoiles {{{3
 
-zle -N biblio-three-stars
+zle -N biblio-two-stars
 
-bindkey "*" biblio-three-stars
+bindkey "*" biblio-two-stars
 
 bindkey -M isearch "*" self-insert
 

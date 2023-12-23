@@ -1,6 +1,6 @@
 " vim: set ft=vim fdm=indent iskeyword&:
 
-fun! mail#biblio#send_archive ()
+fun! mail#library#send_archive ()
 	"let sujet = "archives : " . expand('%:r:r')
 	let sujet = "archives : " . expand('%')
 	let attache = expand('%:p')

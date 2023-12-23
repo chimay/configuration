@@ -97,8 +97,9 @@ augroup file-image
 augroup END
 
 augroup file-music
-	autocmd BufReadPost *.ly setlocal commentstring=%%s
-	autocmd BufReadPost *.ly nnoremap <buffer> <f5> <cmd>call biblio#make_midi()<cr>
+	" see ~/racine/config/edit/neovim/after/ftplugin/lilypond.vim
+	"autocmd BufReadPost *.ly setlocal commentstring=%%s
+	"autocmd BufReadPost *.ly nnoremap <buffer> <f5> <cmd>call biblio#make_midi()<cr>
 augroup END
 
 augroup file-audio

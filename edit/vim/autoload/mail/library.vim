@@ -3,7 +3,7 @@
 "  {{{ Envoie archive
 " ------------------------------------------------------------------------
 
-fu mail#biblio#send_archive ()
+fu mail#library#send_archive ()
 	"let sujet = "archives : " . expand('%:r:r')
 	let sujet = "archives : " . expand('%')
 	let attache = expand('%:p')

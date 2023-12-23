@@ -2,7 +2,7 @@
 
 " ---- help, informations
 
-fun! biblio#helptags ()
+fun! library#helptags ()
 	" Run helptags on doc dir
 	if ! isdirectory('doc')
 		echomsg 'doc is not a directory'
@@ -13,7 +13,7 @@ fun! biblio#helptags ()
 	return v:true
 endfun
 
-fun! biblio#toggle_help_filetype ()
+fun! library#toggle_help_filetype ()
 	" Toggle help / conf filetype
 	if &filetype == 'help'
 		set filetype=conf
@@ -22,7 +22,7 @@ fun! biblio#toggle_help_filetype ()
 	endif
 endfun
 
-fun! biblio#highlight_group ()
+fun! library#highlight_group ()
 	" Display highlight group under cursor
 	if !exists("*synstack")
 		return
@@ -34,7 +34,7 @@ endfun
 
 " ---- buffer
 
-fun! biblio#write_all ()
+fun! library#write_all ()
 	" Write all modified buffers
 	wall
 	echomsg 'all buffers saved'
@@ -42,7 +42,7 @@ endfun
 
 " -- wrap begin & end
 
-fun! biblio#wrap_up ()
+fun! library#wrap_up ()
 	" Line up, or line 1 -> end of file
 	" If fold is closed, take the first line of it
 	if &l:foldenable
@@ -62,7 +62,7 @@ fun! biblio#wrap_up ()
 	return v:true
 endfun
 
-fun! biblio#wrap_down ()
+fun! library#wrap_down ()
 	" Line down, or line end of file -> 1
 	" If fold is closed, take the last line of it
 	if &l:foldenable
@@ -83,7 +83,7 @@ endfun
 
 " -- switches
 
-fun! biblio#toggle_readonly ()
+fun! library#toggle_readonly ()
 	" Toggle readonly & nomodifiable
 	if &modifiable || ! &readonly
 		setlocal readonly nomodifiable
@@ -93,7 +93,7 @@ fun! biblio#toggle_readonly ()
 	setlocal readonly? modifiable?
 endfun
 
-fun! biblio#toggle_relative_linum ()
+fun! library#toggle_relative_linum ()
 	" Toggle relative number
 	if &relativenumber
 		set number norelativenumber
@@ -106,7 +106,7 @@ endfun
 
 " -- smart tab
 
-fun! biblio#smart_tab ()
+fun! library#smart_tab ()
 	" Tab with contextual behaviour in insert mode
 	" For :map-expression
 	" If char before cursor is a space, return <c-t> to indent
@@ -130,7 +130,7 @@ endfun
 
 " -- global actions on buffer lines
 
-fun! biblio#global_yank (pattern, ...)
+fun! library#global_yank (pattern, ...)
 	" Yank all lines matching pattern
 	" Optional argument is a letter register (a by default)
 	if a:0 > 0
@@ -142,7 +142,7 @@ fun! biblio#global_yank (pattern, ...)
 	exe 'global/' . a:pattern . '/yank ' . toupper(register)
 endfun
 
-fun! biblio#global_delete (pattern, ...)
+fun! library#global_delete (pattern, ...)
 	" Delete all lines matching pattern
 	" Optional argument is a letter register (a by default)
 	if a:0 > 0
@@ -156,7 +156,7 @@ endfun
 
 " -- banner
 
-fun! biblio#figlet ()
+fun! library#figlet ()
 	" Insert figlet banner at current line
 	let text = input('Text : ')
 	execute 'read ! figlet' text
@@ -164,7 +164,7 @@ endfun
 
 " -- passwords
 
-fun! biblio#text_to_password ()
+fun! library#text_to_password ()
 	" Insert some digits in password
 	silent! % substitute/a/4/g
 	silent! % substitute/b/6/g
@@ -178,13 +178,13 @@ endfun
 
 " ---- windows & tabs
 
-fun! biblio#equal_windows ()
+fun! library#equal_windows ()
 	let current_tab = tabpagenr()
 	tabdo wincmd =
 	execute current_tab .. 'tabnext'
 endfun
 
-fun! biblio#win2prev_tab ()
+fun! library#win2prev_tab ()
 	" Send window to previous tab
 	let bufnum = bufnr('%')
 	close
@@ -193,7 +193,7 @@ fun! biblio#win2prev_tab ()
 	execute 'buffer' bufnum
 endfun
 
-fun! biblio#win2next_tab ()
+fun! library#win2next_tab ()
 	" Send window to next tab
 	let bufnum = bufnr('%')
 	let lastwin = winnr('$')
@@ -207,7 +207,7 @@ endfun
 
 " --- generate expressions for foldings, tabs, etc
 
-fun! biblio#folding_text ()
+fun! library#folding_text ()
 	" Folding text
 	let commentaire = substitute(&commentstring, '%s', '', '')
 	let text = getline(v:foldstart)
@@ -231,7 +231,7 @@ fun! biblio#folding_text ()
 	return text
 endfun
 
-fun! biblio#tablabel (tabnum)
+fun! library#tablabel (tabnum)
 	" Label of a tab
 	let tabnum = a:tabnum
 	let buflist = tabpagebuflist(tabnum)
@@ -249,7 +249,7 @@ fun! biblio#tablabel (tabnum)
 	return tabnum .. '. ' .. filename .. ' ' .. label
 endfu
 
-fun! biblio#tabline ()
+fun! library#tabline ()
 	" Tab line
 	let title = ''
 	for tabnum in range(1, tabpagenr('$'))
@@ -262,7 +262,7 @@ fun! biblio#tabline ()
 		" set the tab page number (for mouse clicks)
 		let title .= '%' .. tabnum .. 'T'
 		" the label is made by MyTabLabel()
-		let title .= ' %{biblio#tablabel(' . tabnum . ')} '
+		let title .= ' %{library#tablabel(' . tabnum . ')} '
 	endfor
 	" after the last tab fill with TabLineFill and reset tab page nr
 	let title .= '%#TabLineFill#%T'
@@ -275,7 +275,7 @@ endfu
 
 " ---- terminal
 
-fun! biblio#terminal ()
+fun! library#terminal ()
 	" Run terminal in new split
 	let shell = input('Shell to use ? ', 'zsh')
 	if empty(shell)
@@ -287,7 +287,7 @@ endfun
 
 " ---- disc operations
 
-fun! biblio#chmodexec ()
+fun! library#chmodexec ()
 	" Make current file executable
 	let filename = fnamemodify(expand('%'), ':p')
 	let chmod = 'chmod +x ' .. filename
@@ -297,7 +297,7 @@ fun! biblio#chmodexec ()
 	echomsg info
 endfun
 
-fun! biblio#full_path (...)
+fun! library#full_path (...)
 	" Return filename full path
 	" Default : current file name
 	" % -> current filename
@@ -319,15 +319,15 @@ fun! biblio#full_path (...)
 	return filename
 endfun
 
-fun! biblio#format_name (filename)
+fun! library#format_name (filename)
 	" Format filename to avoid annoying characters
 	let filename = a:filename
-	let filename = biblio#full_path (filename)
+	let filename = library#full_path (filename)
 	let filename = substitute(filename, ' ', '_', 'g')
 	return filename
 endfun
 
-fun! biblio#relative_path (...)
+fun! library#relative_path (...)
 	" Return path of filename relative to current directory
 	" Optional argument :
 	"   - filename
@@ -342,12 +342,12 @@ fun! biblio#relative_path (...)
 		echomsg 'biblio relative_path : file name cannot be empty'
 		return 'empty-file-name'
 	endif
-	let filename = biblio#full_path (filename)
+	let filename = library#full_path (filename)
 	let filename = fnamemodify(filename, ':.')
 	return filename
 endfun
 
-fun! biblio#mkdir (directory)
+fun! library#mkdir (directory)
 	" Create directory if non existent
 	let directory = fnamemodify(a:directory, ':p')
 	" ---- check not empty
@@ -356,7 +356,7 @@ fun! biblio#mkdir (directory)
 		return 'empty-dir-name'
 	endif
 	" ---- format dir name
-	let directory = biblio#format_name (directory)
+	let directory = library#format_name (directory)
 	" ---- nothing to do if directory already exists
 	if isdirectory(directory)
 		return 'nothing-to-do'
@@ -371,7 +371,7 @@ fun! biblio#mkdir (directory)
 	return 'success'
 endfun
 
-fun! biblio#copy (source, destination, ask = 'confirm')
+fun! library#copy (source, destination, ask = 'confirm')
 	" Copy file ; perform some checks
 	let source = a:source
 	let destination = a:destination
@@ -386,8 +386,8 @@ fun! biblio#copy (source, destination, ask = 'confirm')
 		return 'empty-destination-file-name'
 	endif
 	" ---- full path
-	let source = biblio#full_path (source)
-	let destination = biblio#format_name (destination)
+	let source = library#full_path (source)
+	let destination = library#format_name (destination)
 	" ---- nothing to do if source == destination
 	if source ==# destination
 		echomsg 'copy : nothing to do if new filename == old one'
@@ -413,7 +413,7 @@ fun! biblio#copy (source, destination, ask = 'confirm')
 	endif
 	" ---- create directory if needed
 	let directory = fnamemodify(destination, ':h')
-	let returnstring = biblio#mkdir(directory)
+	let returnstring = library#mkdir(directory)
 	if returnstring ==# 'failure'
 		return 'failure'
 	endif
@@ -442,9 +442,9 @@ let s:dont_publish = [
 	\ ]
 lockvar! s:dont_publish
 
-fun! biblio#publish ()
+fun! library#publish ()
 	" Copy current file to ~/public/...
-	let source = biblio#full_path ()
+	let source = library#full_path ()
 	for pattern in s:dont_publish
 		if source =~ pattern
 			return 'dont-publish-file'
@@ -485,7 +485,7 @@ fun! biblio#publish ()
 			return 'confirm-publish-no'
 		endif
 	endif
-	let returnstring = biblio#copy (source, destination, 'force')
+	let returnstring = library#copy (source, destination, 'force')
 	if returnstring ==# 'success'
 		let source_tilde = fnamemodify(source, ':~')
 		let destination_tilde = fnamemodify(destination, ':~')
@@ -496,7 +496,7 @@ endfun
 
 " ---- music
 
-fun! biblio#make_midi ()
+fun! library#make_midi ()
 	" Make midi file (eg from lilypond file)
 	let extension = fnamemodify(expand('%'), ':e:e')
 	if extension == 'mld.ly'
@@ -515,7 +515,7 @@ fun! biblio#make_midi ()
 	return 'success'
 endfun
 
-fun! biblio#make_ogg ()
+fun! library#make_ogg ()
 	" Make ogg file (eg from lilypond file)
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let oggname = filename .. '.ogg'
@@ -523,7 +523,7 @@ fun! biblio#make_ogg ()
 	execute 'make! -k' oggname
 endfun
 
-fun! biblio#make_mp3 ()
+fun! library#make_mp3 ()
 	" Make mp3 file (eg from lilypond file)
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let mp3name = filename .. '.mp3'
@@ -531,7 +531,7 @@ fun! biblio#make_mp3 ()
 	execute 'make! -k' mp3name
 endfun
 
-fun! biblio#display_pdf ()
+fun! library#display_pdf ()
 	" Display pdf file (eg from lilypond file)
 	let filename = fnamemodify(expand('%'), ':p:r')
 	let pdfname = filename .. '.pdf'

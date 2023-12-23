@@ -1,6 +1,6 @@
 " vim: set filetype=vim :
 
-" Abbreviations {{{1
+" documentation {{{1
 
 " ab = abbreviation
 " au = autocmd
@@ -41,18 +41,7 @@
 " - 'viminfo' includes "!"
 " - 'wildmenu' is set by default
 
-"  Compatibilité {{{1
-
-"set cpoptions-=C
-
-" Chemins de chargement {{{1
-
-" Pas nécessaire : ~/.config/nvim -> ~config/edit/neovim
-" Provoque des doublons avec ultisnips
-
-"set runtimepath+=~/racine/config/edit/neovim
-
-" Debug {{{1
+" debug {{{1
 
 " 	>= 1	When the shada file is read or written.
 " 	>= 2	When a file is ":source"'ed.
@@ -70,28 +59,32 @@
 
 " ------------------------------------
 
-"  Caractères utilisés dans les mots {{{1
+"  compatibility {{{1
+
+"set cpoptions-=C
+
+"  word chars {{{1
 
 "set iskeyword=@,48-57,_,192-255
 "set iskeyword=48-57,_,192-255
 
 set iskeyword-=/,:,#,@,-
 
-" Pageur interne {{{1
+" internal pager {{{1
 
 set more
 
-" Insertion {{{1
+" insertion {{{1
 
 " nostop = don’t stop at beginning of insert
 
 set backspace=indent,eol,start
 
-" Couper, copier, coller {{{1
+" cut, copy, paste {{{1
 
 set clipboard=
 
-"  Environnement {{{1
+"  environment {{{1
 
 "  Chemins de recherche des fichiers {{{2
 
@@ -105,13 +98,13 @@ set path=.,,
 "set cdpath+=~/racine
 "set cdpath+=~
 
-"  Système de fichier {{{1
+"  filesystem {{{1
 
 "  Répertoire du fichier courant {{{2
 
 " Se place dans le répertoire du fichier courant
 
-" Voir aussi autocommandes
+" Voir aussi autocommand.vim
 
 "set autochdir
 
@@ -153,7 +146,7 @@ set directory=~/racine/varia/autosave/neovim
 set updatecount=100			" Nombre de caractères
 set updatetime=1000			" Millisecondes
 
-"  Annulation {{{1
+" undos {{{1
 
 set undolevels=1234
 
@@ -163,7 +156,7 @@ if exists("&undofile")
 	set undodir=~/racine/varia/undo/neovim,.
 endif
 
-"  Session {{{1
+"  session {{{1
 
 set sessionoptions=
 
@@ -182,7 +175,7 @@ set sessionoptions+=unix
 set sessionoptions+=winpos
 set sessionoptions+=winsize
 
-"  Encodage {{{1
+"  encodage {{{1
 
 setglobal fileencoding=utf-8
 setglobal fileencodings=utf-8
@@ -219,7 +212,7 @@ setglobal fileencodings=utf-8
 
 "dig ~~ 0771			" tilde supérieur
 
-"  Langue {{{1
+"  language {{{1
 
 set spelllang=fr,en
 
@@ -228,7 +221,7 @@ set spellsuggest=best
 "set imsearch
 "set keymap=french-azerty
 
-"  Dictionnaire {{{1
+"  dictionary {{{1
 
 " Complétion par dictionnaire et synonymes
 
@@ -238,15 +231,14 @@ set dictionary+=~/racine/index/dict/spell/dictionnaire.txt
 set dictionary+=~/racine/index/dict/spell/fr-classique+reforme1990.dic
 set dictionary+=~/racine/index/dict/spell/en_GB.dic
 
-" Thesaurus (dictionnaires de synonymes) {{{2
+" Thesaurus (synonymes) {{{2
 
-" Personnel
+" personal
 set thesaurus+=~/racine/index/dict/spell/synonymes.txt
-
-" Officiel
+" french
 set thesaurus+=~/racine/index/dict/spell/thes_fr.dat
 
-"  Modes {{{1
+" modes {{{1
 
 set virtualedit=block,onemore
 "set virtualedit=block,insert,onemore
@@ -259,7 +251,7 @@ set selection=inclusive
 set modeline
 set modelines=7
 
-"  Périphériques {{{1
+" devices {{{1
 
 "  Clavier {{{2
 
@@ -293,7 +285,7 @@ set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up
 "set keymodel+=startsel
 "set keymodel+=stopsel
 
-"  Recherche {{{1
+" search {{{1
 
 " Casse {{{2
 
@@ -324,7 +316,7 @@ else
 	set grepprg=internal
 endif
 
-"  Complétion {{{1
+" completion {{{1
 
 " Fichiers à ignorer {{{2
 
@@ -433,7 +425,7 @@ set wildoptions=pum,tagfile
 "set wildmode=longest,full
 set wildmode=full
 
-"  Formatage du texte {{{1
+" text formatting {{{1
 
 set textwidth=72
 set wrapmargin=7
@@ -458,7 +450,7 @@ set formatexpr=
 set formatprg=fmt
 "set formatprg=par\ -w85rjq
 
-"  Indentation {{{1
+" indentation {{{1
 
 " Tabulation {{{2
 
@@ -492,7 +484,7 @@ set cindent
 
 "set indentexpr=
 
-"  Pliage {{{1
+" folding {{{1
 
 "  Options {{{2
 
@@ -528,7 +520,7 @@ set foldcolumn=7
 
 " Titre des textes pliés
 
-set foldtext=biblio#folding_text()
+set foldtext=library#folding_text()
 
 "  Méthode des marqueurs {{{2
 
@@ -536,7 +528,7 @@ set foldmethod=marker
 
 set foldmarker={{{,}}}
 
-"  Tampons (buffers) {{{1
+" buffers {{{1
 
 " Autorise les fichiers modifiés à être cachés
 
@@ -547,12 +539,12 @@ set bufhidden=hide
 
 "set confirm
 
-"  Onglets {{{1
+" tabs (onglets) {{{1
 
 " Barre d'onglets {{{2
 
 " managed by wheel
-"set tabline=%!biblio#tabline()
+"set tabline=%!library#tabline()
 
 "set guitablabel=%N\ %t\ %m
 
@@ -570,28 +562,28 @@ set switchbuf=usetab
 
 set tabpagemax=50
 
-"  Différences entre fichiers {{{1
+" diff between files {{{1
 
 set diffopt=filler,context:4,vertical,foldcolumn:2
 
-"  Labels, etiquettes {{{1
+" tags (labels, etiquettes) {{{1
 
 "  Tags {{{2
 
-" Voir autocommandes.vim
+" Voir autocommand.vim
 
 "set tags=./tags,tags
 
 "set tags=./tags,./TAGS,tags,TAGS
 
-"  Compilation de fichiers {{{1
+" compilation {{{1
 
 set makeprg=make
 
 set makeef=
 " set makeef='make-errors-##'
 
-"  Maps {{{1
+" maps {{{1
 
 " Idées de touches pour maps / préfixes de maps {{{2
 
@@ -684,10 +676,10 @@ set ttimeoutlen=50
 
 nnoremap <F1> :tab help<space>
 nnoremap <S-F1> :tab helpgrep<space>
-nnoremap <C-F1> <cmd>call biblio#toggle_help_filetype()<cr>
-inoremap <C-F1> <cmd>call biblio#toggle_help_filetype()<cr>
-vnoremap <C-F1> <cmd>call biblio#toggle_help_filetype()<cr>
-nnoremap <M-F1> <cmd>call biblio#helptags()<cr>
+nnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
+inoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
+vnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
+nnoremap <M-F1> <cmd>call library#helptags()<cr>
 
 nnoremap K K<c-w>T
 " does not work
@@ -731,16 +723,16 @@ command! -nargs=? -complete=filetype EditSyntaxPlugin
 nnoremap <f2>s <cmd>EditSyntaxPlugin<cr>
 
 " figlet banner
-nnoremap <f2>b <cmd>call biblio#figlet()<cr>
+nnoremap <f2>b <cmd>call library#figlet()<cr>
 
 nnoremap <f3>m :make! -k<space>
-nnoremap <f3>x <cmd>call biblio#text_to_password()<cr>
+nnoremap <f3>x <cmd>call library#text_to_password()<cr>
 
-nnoremap <f4>m <cmd>call biblio#make_midi()<cr>
-nnoremap <f4>o <cmd>call biblio#make_ogg()<cr>
-nnoremap <f4>p <cmd>call biblio#display_pdf()<cr>
+nnoremap <f4>m <cmd>call library#make_midi()<cr>
+nnoremap <f4>o <cmd>call library#make_ogg()<cr>
+nnoremap <f4>p <cmd>call library#display_pdf()<cr>
 
-nnoremap <kEnter> <cmd>call biblio#write_all()<cr>
+nnoremap <kEnter> <cmd>call library#write_all()<cr>
 
 " Arguments {{{2
 
@@ -769,7 +761,7 @@ nnoremap <f3>s <cmd>%sort<cr>
 
 " Lecture seule {{{3
 
-nnoremap <f3>r <cmd>call biblio#toggle_readonly()<cr>
+nnoremap <f3>r <cmd>call library#toggle_readonly()<cr>
 
 " Fenêtres {{{2
 
@@ -799,10 +791,10 @@ nnoremap <f8>T <cmd>tablast<cr>
 nnoremap <f7>t <cmd>tabmove -1<cr>
 nnoremap <f8>t <cmd>tabmove +1<cr>
 
-nnoremap <F3>= <cmd>call biblio#equal_windows()<cr>
+nnoremap <F3>= <cmd>call library#equal_windows()<cr>
 
-nnoremap <leader><left> <cmd>call biblio#win2prev_tab()<cr>
-nnoremap <leader><right> <cmd>call biblio#win2next_tab()<cr>
+nnoremap <leader><left> <cmd>call library#win2prev_tab()<cr>
+nnoremap <leader><right> <cmd>call library#win2next_tab()<cr>
 
 " Liste quickfix {{{2
 
@@ -859,10 +851,10 @@ nnoremap <PageDown> <C-F>
 
 " Lignes {{{3
 
-nnoremap <silent> j <cmd>call biblio#wrap_down()<cr>
-nnoremap <silent> k <cmd>call biblio#wrap_up()<cr>
-nnoremap <silent> <up> <cmd>call biblio#wrap_up()<cr>
-nnoremap <silent> <down> <cmd>call biblio#wrap_down()<cr>
+nnoremap <silent> j <cmd>call library#wrap_down()<cr>
+nnoremap <silent> k <cmd>call library#wrap_up()<cr>
+nnoremap <silent> <up> <cmd>call library#wrap_up()<cr>
+nnoremap <silent> <down> <cmd>call library#wrap_down()<cr>
 
 " Lignes-écran {{{3
 
@@ -924,13 +916,13 @@ vnoremap <f3>; :%s/\<\>//<left><left><left><left>
 
 " Copie de toutes les lignes correspondant à un motif
 
-command! -nargs=1 GlobalYank :call biblio#global_yank(<q-args>, 'a')<cr>
+command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
 
 nnoremap <f3>y :GlobalYank<space>
 
 " Couper toutes les lignes correspondant à un motif
 
-command! -nargs=1 GlobalDelete :call biblio#global_delete(<q-args>, 'a')<cr>
+command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
 
 nnoremap <f3>d :GlobalDelete<space>
 
@@ -1005,7 +997,7 @@ inoremap <d-d> <c-r>=strftime("%a %d %b %Y")<cr>
 inoremap <PageUp> <C-P>
 inoremap <PageDown> <C-N>
 
-inoremap <expr> <tab> biblio#smart_tab()
+inoremap <expr> <tab> library#smart_tab()
 
 "inoremap <C-Space> <C-X><C-O>
 "inoremap <M-Space> <C-X><C-L>
@@ -1062,7 +1054,7 @@ nnoremap <f3>c :set cmdheight=
 
 " Rendre le fichier exécutable {{{3
 
-nnoremap <f4>x <cmd>call biblio#chmodexec()<cr>
+nnoremap <f4>x <cmd>call library#chmodexec()<cr>
 
 " Ligne ou sélection courante {{{3
 
@@ -1081,7 +1073,7 @@ nnoremap <silent> <f3>~ <cmd>setlocal spell!<cr>
 
 "  Informations {{{2
 
-nnoremap <f3>ig <cmd>call biblio#highlight_group()<cr>
+nnoremap <f3>ig <cmd>call library#highlight_group()<cr>
 
 "  Shell {{{2
 
@@ -1113,7 +1105,7 @@ nmap <k9> 9
 
 " Numérotation des lignes {{{3
 
-nnoremap <silent> <D-l> <cmd>call biblio#toggle_relative_linum()<cr>
+nnoremap <silent> <D-l> <cmd>call library#toggle_relative_linum()<cr>
 
 " Curseur {{{3
 
@@ -1134,8 +1126,8 @@ nnoremap <f3>l <cmd>set cursorline!<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <C-!> <cmd>call biblio#terminal()<cr>
-nnoremap ŧ <cmd>call biblio#terminal()<cr>
+nnoremap <C-!> <cmd>call library#terminal()<cr>
+nnoremap ŧ <cmd>call library#terminal()<cr>
 
 " Passer en mode normal
 
@@ -1156,7 +1148,7 @@ tnoremap <D-j> <C-\><C-n><C-W><Down>
 tnoremap <D-k> <C-\><C-n><C-W><Up>
 tnoremap <D-l> <C-\><C-n><C-W><Right>
 
-"  Abréviations {{{1
+" abbreviations {{{1
 
 " Abréviations {{{2
 
@@ -1174,7 +1166,7 @@ tnoremap <D-l> <C-\><C-n><C-W><Right>
 iab totu tout
 iab sosu sous
 
-"  Présentation {{{1
+" display {{{1
 
 "  Lignes {{{2
 
@@ -1353,7 +1345,7 @@ if has("termguicolors")
 	set termguicolors
 endif
 
-"  Syntaxe {{{1
+" syntax {{{1
 
 "  Activation {{{2
 
@@ -1366,7 +1358,7 @@ syntax enable
 syntax sync minlines=7
 syntax sync maxlines=84
 
-" Ligne de commande :ex {{{1
+" :ex commandline {{{1
 
 " Hauteur de la fenêtre d'historique
 set cmdwinheight=15
@@ -1392,19 +1384,15 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-" Terminal {{{1
+" terminal {{{1
 
-"  Auto-commandes {{{1
-
-source ~/racine/config/edit/neovim/autocommandes.vim
-
-"  Types de fichiers {{{1
+" filetypes {{{1
 
 filetype on
 filetype plugin on
 filetype indent on
 
-"  Thèmes {{{1
+" themes {{{1
 
 colorscheme golden-night
 "colorscheme Atelier_ForestLight
@@ -1435,26 +1423,3 @@ set shada=
 " recherches, nombre de lignes d’entrée
 
 set history=10000
-
-" ------------------------------
-
-" Python {{{1
-
-if $OPERASYS == 'archlinux'
-	let g:python3_host_prog = '/bin/python3'
-	let g:python_host_prog = '/bin/python2'
-elseif $OPERASYS == 'freebsd'
-	let g:python3_host_prog = '/usr/local/bin/python3'
-	let g:python_host_prog = '/usr/local/bin/python2'
-endif
-
-" Add vim files {{{1
-
-" for lilypond
-" interfere with config
-
-" filetype off
-" set runtimepath+=/usr/share/vim/vimfiles
-" filetype on
-" syntax on
-

@@ -1,5 +1,21 @@
 " vim: set filetype=vim :
 
+" paths {{{1
+
+" Pas nécessaire : ~/.config/nvim -> ~config/edit/neovim
+" Provoque des doublons avec ultisnips
+"
+"set runtimepath+=~/racine/config/edit/neovim
+
+" lilypond {{{2
+
+" interfere with config
+"
+" filetype off
+" set runtimepath+=/usr/share/vim/vimfiles
+" filetype on
+" syntax on
+
 " plugins needed before config {{{1
 
 packadd matchit
@@ -8,22 +24,36 @@ packadd matchit
 
 source ~/racine/config/edit/neovim/main.vim
 
+" auto-commands {{{1
+
+source ~/racine/config/edit/neovim/autocommand.vim
+
+" python {{{1
+
+if ['arch', 'manjaro', 'mint', 'ubuntu', 'linux']->index($OPERASYS) >= 0
+	let g:python3_host_prog = '/bin/python3'
+	let g:python_host_prog = '/bin/python2'
+elseif $OPERASYS == 'freebsd'
+	let g:python3_host_prog = '/usr/local/bin/python3'
+	let g:python_host_prog = '/usr/local/bin/python2'
+endif
+
 " all remaining plugins {{{1
 
 source ~/racine/config/edit/neovim/paquet/packager.vim
 source ~/racine/config/edit/neovim/paquet/preload.vim
 
-" on charge tout dans start, pour pouvoir utiliser certaines fonctions
-" de configuration
+" load everything to be able to use some conf functions
 
 packloadall
 
-" les appels aux fonctions autoload des plugins
-" doivent se situer après packloadall
+" plugins autoload functions call have to stand after packloadall
 
 source ~/racine/config/edit/neovim/paquet/postload.vim
 
 " maps replacing plugins ones {{{1
+
+nunmap <f5>
 
 nnoremap <c-left> <c-w>h
 nnoremap <c-down> <c-w>j
