@@ -560,7 +560,7 @@ exec = polybar-batterie.sh
 tail = true
 
 click-left = less-log.sh ~/log/alarm-battery.log &>> ~/log/polybar/less-log-alarm-battery.log &
-click-right = urxvtc-top.sh  &>> ~/log/polybar/urxvtc-top.log &
+click-right = urxvtc-top.sh &>> ~/log/polybar/urxvtc-top.log &
 
 [module/batterie-acpi]
 

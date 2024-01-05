@@ -25,8 +25,8 @@ hyper + colon
 hyper + semicolon
 	dmenu-apps.sh
 
-button9
-	rofi-meta.zsh
+# button9
+# 	rofi-meta.zsh
 
 super + colon
 	zshrun.sh
@@ -254,8 +254,8 @@ hyper + mu
 shift + F12
 	urxvtc-dropdown.zsh
 
-button8
-	urxvtc-dropdown.zsh
+# button8
+# 	urxvtc-dropdown.zsh
 
 hyper + equal
 	urxvtc-calculator.zsh
@@ -386,17 +386,23 @@ hyper + c ; d
 
 # screen {{{1
 
-# Fond d’écran {{{2
+# wallpaper {{{2
+
+# info, log
+hyper + w ; i
+	less-log.sh ~/log/wallpaper.log
+hyper + w ; l
+	less-log.sh ~/log/wallpaper.log
 
 # evaluation
 hyper + w ; e
 	eval-wallpaper.zsh
 
-# Recharge toute la liste d’images
+# reload images list
 hyper + w ; r
 	pkill -10 -f wallpaper.zsh
 
-# Passe au suivant
+# next image
 hyper + w ; n
 	pkill -12 -f wallpaper.zsh
 
@@ -404,7 +410,7 @@ hyper + w ; n
 hyper + o ; s
 	pkill -10 -f clock.zsh
 
-# Transparence {{{2
+# transparence {{{2
 
 # diaphane
 
@@ -414,7 +420,7 @@ hyper + d ; Up
 hyper + d ; Down
 	transset-df --dec 0.1
 
-# Luminosité {{{2
+# luminosity {{{2
 
 XF86MonBrightnessUp
 	xbacklight -inc 5
@@ -437,7 +443,7 @@ hyper + s ; Right
 hyper + s ; Left
 	xbacklight -dec 25
 
-#  Veille {{{2
+# sleep {{{2
 
 hyper + s ; minus
 	xset s off ; xset -dpms ; notify-send "$(xset -q | grep 'Screen Saver:\|timeout\|DPMS')"
@@ -475,6 +481,8 @@ XF86AudioMute
 
 XF86AudioPlay
 	mpc toggle
+
+# music {{{2
 
 # evaluation
 hyper + space ; e
@@ -525,13 +533,13 @@ hyper + space ; M
 hyper + space ; t
 	urxvtc -name multimedia -e ncmpcpp
 
-button6
-	urxvtc -name multimedia -e ncmpcpp
+# button6
+# 	urxvtc -name multimedia -e ncmpcpp
 
 # informations {{{1
 
-button7
-	less-log.sh ~/log/wallpaper.log
+# button7
+# 	less-log.sh ~/log/wallpaper.log
 
 # examples {{{1
 

@@ -517,7 +517,7 @@ keymap  lw   MARK_WORD
 # external browser {{{2
 
 # display current page in external browser
-keymap  eu    EXTERN 'qutebrowser'
+keymap  ee    EXTERN 'qutebrowser'
 keymap  &     EXTERN 'qutebrowser'
 # display link target in external browser
 keymap  el    EXTERN_LINK 'qutebrowser'

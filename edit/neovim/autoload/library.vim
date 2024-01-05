@@ -509,7 +509,7 @@ endfun
 " ---- music
 
 fun! library#make_midi ()
-	" Make midi file (eg from lilypond file)
+	" Make midi file from lilypond file
 	let extension = fnamemodify(expand('%'), ':e:e')
 	if extension == 'mld.ly'
 		let shortname = fnamemodify(expand('%'), ':t:r:r')
@@ -528,29 +528,62 @@ fun! library#make_midi ()
 endfun
 
 fun! library#make_ogg ()
-	" Make ogg file (eg from lilypond file)
-	let filename = fnamemodify(expand('%'), ':p:r')
-	let oggname = filename .. '.ogg'
+	" Make ogg file from lilypond file
+	let extension = fnamemodify(expand('%'), ':e:e')
+	if extension == 'mld.ly'
+		let shortname = fnamemodify(expand('%'), ':t:r:r')
+		let parent    = fnamemodify(expand('%'), ':h:h')
+		let filename = parent .. '/' .. shortname
+		let oggname = filename .. '.ogg'
+	elseif extension == 'ly'
+		let filename = fnamemodify(expand('%'), ':p:r')
+		let oggname = filename .. '.ogg'
+	else
+		return 'filetype not supported'
+	endif
 	setlocal makeprg=make
 	execute 'make! -k' oggname
+	return 'success'
 endfun
 
 fun! library#make_mp3 ()
-	" Make mp3 file (eg from lilypond file)
-	let filename = fnamemodify(expand('%'), ':p:r')
-	let mp3name = filename .. '.mp3'
+	" Make mp3 file from lilypond file
+	let extension = fnamemodify(expand('%'), ':e:e')
+	if extension == 'mld.ly'
+		let shortname = fnamemodify(expand('%'), ':t:r:r')
+		let parent    = fnamemodify(expand('%'), ':h:h')
+		let filename = parent .. '/' .. shortname
+		let mp3name = filename .. '.mp3'
+	elseif extension == 'ly'
+		let filename = fnamemodify(expand('%'), ':p:r')
+		let mp3name = filename .. '.mp3'
+	else
+		return 'filetype not supported'
+	endif
 	setlocal makeprg=make
 	execute 'make! -k' mp3name
+	return 'success'
 endfun
 
 fun! library#display_pdf ()
-	" Display pdf file (eg from lilypond file)
-	let filename = fnamemodify(expand('%'), ':p:r')
-	let pdfname = filename .. '.pdf'
+	" Display pdf file from lilypond file
+	let extension = fnamemodify(expand('%'), ':e:e')
+	if extension == 'mld.ly'
+		let shortname = fnamemodify(expand('%'), ':t:r:r')
+		let parent    = fnamemodify(expand('%'), ':h:h')
+		let filename = parent .. '/' .. shortname
+		let pdfname = filename .. '.pdf'
+	elseif extension == 'ly'
+		let filename = fnamemodify(expand('%'), ':p:r')
+		let pdfname = filename .. '.pdf'
+	else
+		return 'filetype not supported'
+	endif
 	setlocal makeprg=make
 	execute 'make! -k' pdfname
 	let display = 'zathura ' .. pdfname .. '&'
 	echomsg display
 	let output = system(display)
 	"echomsg output
+	return 'success'
 endfun

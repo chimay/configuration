@@ -15,14 +15,14 @@ augroup END
 
 augroup publish-in-repo
 	autocmd!
-	autocmd BufWritePost ~/racine/config/** call biblio#publish ()
-	autocmd BufWritePost ~/racine/fun/** call biblio#publish ()
-	autocmd BufWritePost ~/racine/self/bin/** call biblio#publish ()
-	autocmd BufWritePost ~/racine/shell/** call biblio#publish ()
-	autocmd BufWritePost ~/racine/automat/** call biblio#publish ()
-	autocmd BufWritePost ~/racine/snippet/** call biblio#publish ()
-	autocmd BufWritePost ~/racine/site/**/*Makefile* call biblio#publish ()
-	autocmd BufWritePost ~/racine/musica/lilypond/template/** call biblio#publish ()
+	autocmd BufWritePost ~/racine/config/** call library#publish ()
+	autocmd BufWritePost ~/racine/fun/** call library#publish ()
+	autocmd BufWritePost ~/racine/self/bin/** call library#publish ()
+	autocmd BufWritePost ~/racine/shell/** call library#publish ()
+	autocmd BufWritePost ~/racine/automat/** call library#publish ()
+	autocmd BufWritePost ~/racine/snippet/** call library#publish ()
+	autocmd BufWritePost ~/racine/site/**/*Makefile* call library#publish ()
+	autocmd BufWritePost ~/racine/musica/lilypond/template/** call library#publish ()
 augroup END
 
 augroup reload-service
@@ -99,7 +99,8 @@ augroup END
 augroup file-music
 	" see ~/racine/config/edit/neovim/after/ftplugin/lilypond.vim
 	"autocmd BufReadPost *.ly setlocal commentstring=%%s
-	"autocmd BufReadPost *.ly nnoremap <buffer> <f5> <cmd>call biblio#make_midi()<cr>
+	"autocmd BufReadPost *.ly nnoremap <buffer> <f5> <cmd>call library#make_midi()<cr>
+	autocmd BufReadPost *.ly nnoremap <buffer> µ <cmd>call library#make_midi()<cr>
 augroup END
 
 augroup file-audio
