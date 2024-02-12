@@ -467,8 +467,10 @@ keymap  C-b PREV_PAGE
 
 keymap z CURSOR_MIDDLE
 
-keymap  SPC COMMAND "NEXT_PAGE ; DOWN ; DOWN"
-keymap  B   COMMAND "PREV_PAGE ; UP ; UP"
+# use <PageUp> and <PageDown> instead
+
+#keymap  SPC COMMAND "NEXT_PAGE ; DOWN ; DOWN"
+#keymap  B   COMMAND "PREV_PAGE ; UP ; UP"
 
 # links {{{2
 

@@ -195,6 +195,7 @@ alias duc='ncdu --color off'
 
 # Renommage & Déplacement {{{2
 
+alias x=swap-files
 alias mv='mv -i'
 
 alias mm='qmv -f destination-only -d -e kak'
@@ -249,8 +250,8 @@ alias mc='mc -b'
 
 alias y=yank-file
 
-alias ç='xclip -i -selection clipboard'
-alias à='xclip -o -selection clipboard'
+alias çç='xclip -i -selection clipboard'
+alias àà='xclip -o -selection clipboard'
 
 alias ç1='xclip -i -selection primary'
 alias ç2='xclip -i -selection secondary'
@@ -264,7 +265,8 @@ alias pk='pack'
 
 # processus {{{1
 
-alias j='jobs'
+alias j=jobs
+alias di=disown
 
 alias pg='pgrep -af'
 alias s=kill
@@ -461,7 +463,7 @@ alias ds=sdcv
 alias dt=translator
 alias dy=synonym
 
-alias çç=calculator
+alias ç=calculator
 
 alias wk=wikicurses
 alias wka='wikicurses --wiki ArchWiki'

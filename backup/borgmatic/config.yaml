@@ -50,11 +50,11 @@ source_directories:
   - racine/papier
   - racine/pictura
   - racine/plain
-  - racine/plugin/manager/neovimpack
-  - racine/plugin/manager/vimpack
-  - racine/plugin/manager/lazy.nvim
-  - racine/plugin/manager/plug.kak
-  - racine/plugin/manager/tmux-plugins
+  - racine/plugin/manager/neovim/pack
+  - racine/plugin/manager/vim/pack
+  - racine/plugin/manager/neovim/lazy.nvim
+  - racine/plugin/manager/kak/plug.kak
+  - racine/plugin/manager/tmux/plugins
   - racine/plugin/data
   - racine/prolang
   - racine/public
@@ -89,7 +89,9 @@ repositories:
     - path: /media/cleusb/borg
       label: usb-key
     - path: /media/diskext/david/backup/borg
-      label: usb-disc
+      label: taijitu-usb-disc
+    - path: /media/diskext-sdb1/david/backup/borg
+      label: shari-usb-disc-1
     - path: ssh://david@shari.local//home/david/backup/borg
       label: shari-ssh
     - path: ssh://david@tixu//home/david/backup/borg

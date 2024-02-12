@@ -977,6 +977,9 @@ inoremap <m-u> <c-g>u
 nnoremap ]] ]z
 nnoremap [[ [z
 
+nnoremap ]f ]]
+nnoremap [f [[
+
 nnoremap <f5>z ]z
 nnoremap <f6>z [z
 
@@ -1248,7 +1251,10 @@ set list
 
 set listchars=
 
-set listchars+=tab:>\ ,nbsp:▒
+"set listchars+=tab:>\ ,nbsp:▒
+"set listchars+=tab:>\ ,nbsp:‗
+
+set listchars+=tab:>\ ,nbsp:_
 set listchars+=precedes:❮,extends:❯
 set listchars+=conceal:Δ
 

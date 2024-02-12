@@ -384,7 +384,7 @@ grep-command () {
 # locate-file {{{2
 
 locate-file () {
-	local options mots dossier motifs
+	local options mots dossier motifs database
 	options=()
 	mots=()
 	while true
@@ -414,46 +414,33 @@ locate-file () {
 	fi
 	case $dossier in
 		r|ra|rac|raci|racin|racine)
-			echo "plocate -d ~/racine/index/filesys/locate/racine.db $=options $=motifs"
-			echo
-			plocate -d ~/racine/index/filesys/locate/racine.db -e -A $=options $=motifs
+			database=~/racine/index/filesys/locate/racine.db
 			;;
 		ul|ulo|uloc|usrloc|usrlocal)
-			echo "plocate -d ~/racine/index/filesys/locate/usr-local.db -e -A $=options $=motifs"
-			echo
-			plocate -d ~/racine/index/filesys/locate/usr-local.db -e -A $=options $=motifs
+			database=~/racine/index/filesys/locate/usr-local.db
 			;;
 		g|gr|graph|graphix)
-			echo "plocate -d ~/racine/index/filesys/locate/graphix.db -e -A $=options $=motifs"
-			echo
-			plocate -d ~/racine/index/filesys/locate/graphix.db -e -A $=options $=motifs
+			database=~/racine/index/filesys/locate/graphix.db
 			;;
 		a|au|aud|audi|audio)
-			echo "plocate -d ~/racine/index/filesys/locate/audio.db -e -A $=options $=motifs"
-			echo
-			plocate -d ~/racine/index/filesys/locate/audio.db -e -A $=options $=motifs
+			database=~/racine/index/filesys/locate/audio.db
 			;;
 		f|ph|pho|phot|photo)
-			echo "plocate -d ~/racine/index/filesys/locate/photo.db -e -A $=options $=motifs"
-			echo
-			plocate -d ~/racine/index/filesys/locate/photo.db -e -A $=options $=motifs
+			database=~/racine/index/filesys/locate/photo.db
 			;;
 		dc|dotconfig)
-			echo "plocate -d ~/racine/index/filesys/locate/dotconfig.db -e -A $=options $=motifs"
-			echo
-			plocate -d ~/racine/index/filesys/locate/dotconfig.db -e -A $=options $=motifs
+			database=~/racine/index/filesys/locate/dotconfig.db
 			;;
 		dl|dotlocal)
-			echo "plocate -d ~/racine/index/filesys/locate/dotlocal.db -e -A $=options $=motifs"
-			echo
-			plocate -d ~/racine/index/filesys/locate/dotlocal.db -e -A $=options $=motifs
+			database=~/racine/index/filesys/locate/dotlocal.db
 			;;
 		p|pa|pac|pacman|pacmanlib)
-			echo "plocate -d ~/racine/index/filesys/locate/pacman-lib.db -e -A $=options $=motifs"
-			echo
-			plocate -d ~/racine/index/filesys/locate/pacman-lib.db -e -A $=options $=motifs
+			database=~/racine/index/filesys/locate/pacman-lib.db
 			;;
 	esac
+	echo "plocate -d $database -e -A $=options $=motifs | fzf | xclip -i -selection clipboard"
+	echo
+	plocate -d $database -e -A $=options $=motifs | fzf | xclip -i -selection clipboard
 }
 
 # search in irc {{{2

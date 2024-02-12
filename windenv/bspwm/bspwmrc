@@ -128,7 +128,7 @@ bspc rule -a URxvt:multimedia           state=floating
 bspc rule -a Pavucontrol                state=floating
 bspc rule -a QjackCtl                   state=floating
 
-bspc rule -a Zenity                     state=floating
+bspc rule -a zenity                     state=floating
 bspc rule -a Xfce4-appfinder            state=floating
 bspc rule -a Pamac-manager              state=floating
 bspc rule -a Caja                       state=floating

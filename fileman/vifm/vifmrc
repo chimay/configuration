@@ -918,8 +918,8 @@ nnoremap <c-q> :trashes?<cr>
 
 " Corbeille générale
 
-nnoremap <delete> :!trash-put %f<cr>
-nnoremap dr :!trash-restore <cr>
+nnoremap <delete> :!tsp trash-put %f<cr>
+nnoremap dr :!tsp trash-restore <cr>
 
 " Nom du chemin, fichier, répertoire -> clipboard
 

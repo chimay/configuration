@@ -289,7 +289,7 @@ endfu
 
 fun! library#terminal ()
 	" Run terminal in new split
-	let shell = input('Shell to use ? ', 'zsh')
+	let shell = input('Shell to use ? ', 'zsh -l')
 	if empty(shell)
 		return
 	endif
@@ -510,6 +510,7 @@ endfun
 
 fun! library#make_midi ()
 	" Make midi file from lilypond file
+	call library#write_all ()
 	let extension = fnamemodify(expand('%'), ':e:e')
 	if extension == 'mld.ly'
 		let shortname = fnamemodify(expand('%'), ':t:r:r')
@@ -529,6 +530,7 @@ endfun
 
 fun! library#make_ogg ()
 	" Make ogg file from lilypond file
+	call library#write_all ()
 	let extension = fnamemodify(expand('%'), ':e:e')
 	if extension == 'mld.ly'
 		let shortname = fnamemodify(expand('%'), ':t:r:r')
@@ -548,6 +550,7 @@ endfun
 
 fun! library#make_mp3 ()
 	" Make mp3 file from lilypond file
+	call library#write_all ()
 	let extension = fnamemodify(expand('%'), ':e:e')
 	if extension == 'mld.ly'
 		let shortname = fnamemodify(expand('%'), ':t:r:r')
@@ -567,6 +570,7 @@ endfun
 
 fun! library#display_pdf ()
 	" Display pdf file from lilypond file
+	call library#write_all ()
 	let extension = fnamemodify(expand('%'), ':e:e')
 	if extension == 'mld.ly'
 		let shortname = fnamemodify(expand('%'), ':t:r:r')

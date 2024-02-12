@@ -299,7 +299,7 @@ if ! exists("g:wheel_loaded")
 
 	set tabline=%!wheel#status#tabline()
 
-	nnoremap <tab>            :<c-u>Wheel<space>
+	nnoremap <space>          :<c-u>Wheel<space>
 	" altgr-r
 	nmap ¶                    <plug>(wheel-prompt-read-session)
 
@@ -528,7 +528,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.completion.fuzzy = 0
 	let g:organ_config.completion.scores = 0
 	" maps
-	nnoremap <space> :<c-u>Organ<space>
+	nnoremap <tab> :<c-u>Organ<space>
 	nnoremap <c-s-down> :<c-u>Organ org-to-markdown
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u

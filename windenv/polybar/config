@@ -121,7 +121,7 @@ font-2 = siji:pixelsize=12;1
 
 modules-left = bspwm
 modules-center = cpu memory batterie-script meteo
-modules-right = screens powermenu date
+modules-right = keyboard screens powermenu date
 
 tray-position = right
 tray-padding = 2
@@ -323,6 +323,11 @@ menu-4-3-exec = menu-open-0
 ; the definition for <label-open>
 ;format = <label-toggle> <menu>
 
+[module/keyboard]
+type = custom/text
+content = Keyboard
+click-left = keyboard-layout.zsh
+
 [module/screens]
 type = custom/menu
 
@@ -346,7 +351,7 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = "    Quitter    "
+label-open = "    Quit    "
 label-separator = "  |  "
 label-close = " <-|- "
 

@@ -311,7 +311,7 @@ super + ctrl + t
 	torbrowser-launcher
 
 super + ctrl + y
-	goto-or-run.sh freetube
+	goto-or-run.sh run-freetube.sh
 
 super + ctrl + mu
 	element-desktop
