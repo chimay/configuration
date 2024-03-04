@@ -135,7 +135,7 @@
 #	├─────────┼───────────────────────────────────────────────────────────────────┤
 #	│~$       │unreferenced messages (requires threaded view)                     │
 #	├─────────┼───────────────────────────────────────────────────────────────────┤
-#	│~(PATTERN│messages in threads containing messages matching PATTERN, e.g. all │
+#	│~(PATTERN│messages in ahreads containing messages matching PATTERN, e.g. all │
 #	│)        │threads containing messages from you: ~(~P)                        │
 #	└─────────┴───────────────────────────────────────────────────────────────────┘
 
@@ -235,13 +235,12 @@ alternative_order text/html text/plain application/pdf application/postscript ap
 
 #  Files de discussion {{{1
 
+set use_threads='threads'
+
 #  Tri {{{2
 
-set sort='threads'
-
-# Les files ayant des messages plus récents en premier
-
-set sort_aux='reverse-last-date-received'
+set sort='reverse-last-date'
+set sort_aux='reverse-last-date'
 
 #  Options {{{2
 
