@@ -270,10 +270,10 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.maxim.vertical = 4
 
 	" completion
-	let g:wheel_config.completion.vocalize = 1
-	let g:wheel_config.completion.wordize = 1
+	let g:wheel_config.completion.vocalize = 0
+	let g:wheel_config.completion.wordize = 0
 	let g:wheel_config.completion.fuzzy = 0
-	let g:wheel_config.completion.scores = 1
+	let g:wheel_config.completion.scores = 0
 
 	" Frecency
 	let g:wheel_config.frecency.reward = 120
@@ -523,8 +523,8 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.templates['+m'] = 'mystuff'
 	let g:organ_config.timestamp_format = '%A %d %B %Y, %H:%M'
 	let g:organ_config.expr.keep = 120
-	let g:organ_config.completion.vocalize = 1
-	let g:organ_config.completion.wordize = 1
+	let g:organ_config.completion.vocalize = 0
+	let g:organ_config.completion.wordize = 0
 	let g:organ_config.completion.fuzzy = 0
 	let g:organ_config.completion.scores = 0
 	" maps

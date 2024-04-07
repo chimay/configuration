@@ -427,8 +427,8 @@ keymap  hM      EXTERN        'tsp mpv --ontop --no-border --force-window --auto
 keymap  hb      EXTERN_LINK   'tsp mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
 
 # open url in clipboard
-keymap  PP      GOTO        file:/cgi-bin/goto_clipboard.cgi
 keymap  pp      TAB_GOTO    file:/cgi-bin/goto_clipboard.cgi
+keymap  PP      GOTO        file:/cgi-bin/goto_clipboard.cgi
 
 keymap  R   RELOAD
 
@@ -443,12 +443,16 @@ keymap YY  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fn_yank_current_link.cgi ; BACK"
 
 # for x sessions
 
-keymap sr  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
-keymap sR  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
 keymap sx  COMMAND  "TAB_GOTO https://searx.org; GOTO_LINE 5; NEXT_LINK; GOTO_LINK"
 keymap sd  COMMAND  "TAB_GOTO https://duckduckgo.com/lite/; NEXT_LINK; GOTO_LINK"
 keymap sg  COMMAND  "TAB_GOTO https://google.com; GOTO_LINE 6; NEXT_LINK; GOTO_LINK"
 keymap se  COMMAND  "TAB_GOTO https://stackexchange.com; GOTO_LINE 7; NEXT_LINK; GOTO_LINK"
+
+keymap sw  COMMAND  "TAB_GOTO https://en.m.wikipedia.org; GOTO_LINE 18; NEXT_LINK; GOTO_LINK"
+keymap sW  COMMAND  "TAB_GOTO https://fr.m.wikipedia.org; GOTO_LINE 18; NEXT_LINK; GOTO_LINK"
+
+keymap sr  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
+keymap sR  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
 
 # navigation {{{2
 
@@ -501,7 +505,7 @@ keymap  lp    EXTERN_LINK urlportal.sh
 keymap  SPC-SPC  COMMAND "SET_OPTION display_link_number=toggle ; RESHAPE"
 #### jump to link number (e.g press 3 SPC-j) and hide hinting mode (similar to gg in vim)
 keymap  SPC-j    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN"
-#### jump to link number and open it
+#### follow link : jump to link number and open it
 keymap  SPC-f    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; GOTO_LINK"
 #### jump to link number and open it in new tab
 keymap  SPC-t    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; TAB_LINK"

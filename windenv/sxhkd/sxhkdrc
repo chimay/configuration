@@ -262,8 +262,14 @@ hyper + equal
 
 # applications {{{1
 
-hyper + {dollar, Return, exclam, comma}
-	{kitty, alacritty, xterm -ls zsh, urxvtc}
+hyper + {dollar, exclam, comma}
+	{kitty, xterm -ls zsh, urxvtc}
+
+hyper + Return
+	alacritty msg create-window || alacritty
+
+hyper + shift + Return
+	tabbed -c -n "tabbed-alacritty" alacritty --embed
 
 hyper + t ; {x,u}
 	{tabbed -c xterm -into, tabbed -c urxvtc -embed}

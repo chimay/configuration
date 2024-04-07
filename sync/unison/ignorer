@@ -12,15 +12,11 @@ ignore = Path racine/syncron/syncthing
 
 ignore = Path racine/syncron/recent
 
-# }}}
-
 # Shell {{{1
 
 ignore = Path racine/dotdir/zsh/cache/dirs
 
-# }}}1
-
-# {{{ Étiquettes
+# Étiquettes {{{2
 
 ignore = Name tags
 ignore = Name TAGS
@@ -30,8 +26,6 @@ ignore = Name GRTAGS
 ignore = Name GPATH
 ignore = Name ID
 ignore = Name gtags.files
-
-# }}}
 
 # {{{ Bases de données
 
@@ -43,8 +37,6 @@ ignore = Path racine/index/webrowser/qutebrowser/.*
 
 ignore = Path racine/index/filesys/z-dirs
 
-# }}}
-
 # {{{ Contrôle de version
 
 ignore = Name .hg
@@ -52,8 +44,6 @@ ignore = Name .bzr
 ignore = Name _darcs
 
 # git : for custom repos, destined to be synced
-
-# }}}
 
 # {{{ Courriel
 
@@ -65,8 +55,6 @@ ignore = Path racine/mail/Maildir
 
 ignore = Path racine/mail/Systeme/mbox
 ignore = Path racine/mail/Systeme/dead.letter
-
-# }}}
 
 # {{{ Extensions
 
@@ -93,8 +81,6 @@ ignore = Path racine/plugin/manager/el-get/.*
 
 #ignore = Path racine/share/astronvim
 
-# }}}
-
 # {{{ Source
 
 ignore = Path racine/pack/aur/*
@@ -104,8 +90,6 @@ ignore = Path racine/pack/aur/.*
 # ignore = Path racine/source/.*
 
 # ignorenot = Path racine/source/deps
-
-# }}}
 
 # {{{ Compilation
 
@@ -128,8 +112,6 @@ ignore = Name *.toc
 ignore = Name *.mtc*
 ignore = Name *.ptc*
 
-# }}}
-
 # {{{ Fichiers spéciaux
 
 # {{{ Sockets
@@ -141,8 +123,6 @@ ignore = Path racine/config/crypte/gnupg/S.gpg-agent*
 
 ignore = Path racine/config/webrowser/elinks/socket0
 
-# }}}
-
 # {{{ Tuyaux
 
 ignore = Path racine/run/fifo/*
@@ -150,22 +130,15 @@ ignore = Path racine/run/fifo/.*
 
 ignore = Path racine/config/chaton/weechat/weechat_fifo*
 
-# }}}
-
-# }}}
 
 #  {{{ Sshfs
 
 ignore = Path tremplin/sshfs
 
-#  }}}
-
 # {{{ Fichiers run
 
 ignore = Path racine/run/*
 ignore = Path racine/run/.*
-
-# }}}
 
 # Provisoire {{{1
 
@@ -174,4 +147,3 @@ ignore = Path racine/varia/autosave/*.swp
 ignore = Path racine/config/windenv/xfce4/*
 ignore = Path racine/config/windenv/xfce4/.*
 
-# }}}1

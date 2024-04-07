@@ -7,9 +7,7 @@ ignorenot = Regex racine/config/sync/unison/archive/[^/]+/fp[0-9a-f]*
 
 ignorenot = Path racine/syncron/cleusb
 
-# }}}
-
-# {{{ Étiquettes
+# Étiquettes {{{2
 
 ignorenot = Name tags
 ignorenot = Name TAGS
@@ -20,16 +18,12 @@ ignorenot = Name GPATH
 ignorenot = Name ID
 ignorenot = Name gtags.files
 
-# }}}
-
 # {{{ Bases de données
 
 ignorenot = Path racine/index/locate/*
 ignorenot = Path racine/index/locate/.*
 
 #ignorenot = Path racine/index/filesys/z-dirs
-
-# }}}
 
 # {{{ Contrôle de version
 
@@ -39,8 +33,6 @@ ignorenot = Path racine/index/locate/.*
 
 #ignorenot = Regex racine/plugin/manager/.*/.git
 #ignorenot = Regex racine/plugin/manager/.*
-
-# }}}
 
 # {{{ Courriel
 
@@ -52,8 +44,6 @@ ignorenot = Path racine/mail/Maildir
 
 ignorenot = Path racine/mail/Systeme/mbox
 ignorenot = Path racine/mail/Systeme/dead.letter
-
-# }}}
 
 # {{{ Extensions
 
@@ -75,18 +65,12 @@ ignorenot = Path racine/plugin/manager/straight/.*
 ignorenot = Path racine/plugin/source/*
 ignorenot = Path racine/plugin/source/.*
 
-# }}}
-
 # AUR {{{1
 
 ignore = Path racine/pack/aur/*
 ignore = Path racine/pack/aur/.*
 
-# }}}1
-
 # Provisoire {{{1
 
 ignorenot = Path racine/config/windenv/xfce4/*
 ignorenot = Path racine/config/windenv/xfce4/.*
-
-# }}}1

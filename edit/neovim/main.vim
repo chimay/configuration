@@ -82,7 +82,9 @@ set backspace=indent,eol,start
 
 " cut, copy, paste {{{1
 
-set clipboard=
+"set clipboard=
+
+set clipboard=unnamedplus
 
 "  environment {{{1
 

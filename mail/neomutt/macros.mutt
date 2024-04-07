@@ -122,7 +122,7 @@ macro   pager   \eg   "!getmail >> ~/log/getmail.log 2>> ~/log/getmail.err<retur
 
 # Sauver la boîte {{{1
 
-macro index w <sync-mailbox><sort-mailbox>t
+#macro index w <sync-mailbox>
 
 # Sélection (tag) {{{1
 
@@ -154,11 +154,10 @@ macro index vo '<tag-pattern>~d >7d<enter>'
 
 # annuler le filtre
 
-macro index è '<limit>all<enter>'
+macro index éa '<limit>~A<enter><enter-command>exec collapse-all<enter>'
+macro index éé '<limit>~A<enter><enter-command>exec collapse-all<enter>'
 macro index éu '<limit>all<enter>'
 macro index éc '<limit>all<enter>'
-
-macro index éa '<limit>~A<enter><enter-command>exec collapse-all<enter>'
 
 # nouveaux messages non lus
 

@@ -18,7 +18,8 @@ set more
 
 " Couper, copier, coller {{{1
 
-set clipboard=
+"set clipboard=
+set clipboard=unnamedplus
 
 "  Environnement {{{1
 
@@ -203,8 +204,9 @@ set wildignorecase
 "  Complétion en mode insertion {{{2
 
 "set completeopt=menuone,preview
+"set completeopt=menuone,longest
 
-set completeopt=menuone,longest
+set completeopt=menu
 
 set pumheight=12
 
@@ -914,7 +916,7 @@ syntax sync maxlines=84
 
 "  Auto-commandes {{{1
 
-source ~/racine/config/edit/vim/autocommandes.vim
+source ~/racine/config/edit/vim/autocommand.vim
 
 "  Types de fichiers {{{1
 

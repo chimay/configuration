@@ -94,7 +94,7 @@ bind index . mailbox-list
 # ne fonctionne plus, voir macros
 #bind index ù next-unread-mailbox
 
-#bind index w sync-mailbox
+bind index w sync-mailbox
 
 bind index c change-folder
 bind index \ec change-folder-readonly
@@ -346,14 +346,20 @@ bind pager <up> previous-line
 bind pager \cu half-up
 bind pager \cd half-down
 
-bind pager <space> half-down
-bind pager b half-up
+# bind pager <space> half-down
+# bind pager b half-up
+
+bind pager <pageup> half-up
+bind pager <pagedown> half-down
 
 bind pager \cF next-page
 bind pager \cB previous-page
 
-bind pager <pageup> previous-page
-bind pager <pagedown> next-page
+bind pager <space> next-page
+bind pager b previous-page
+
+# bind pager <pageup> previous-page
+# bind pager <pagedown> next-page
 
 bind pager g top
 bind pager G bottom
