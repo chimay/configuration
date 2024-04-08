@@ -26,6 +26,7 @@
 #include ".Xresources.d/xterm"
 #include ".Xresources.d/uxterm"
 #include ".Xresources.d/urxvt"
+#include ".Xresources.d/zutty"
 #include ".Xresources.d/kitty"
 #include ".Xresources.d/st"
 

@@ -1,0 +1,28 @@
+! vim: set filetype=xdefaults:
+! vim: set commentstring=!\ %s :
+
+! Options valables partout par défaut
+
+! Couleurs {{{1
+
+Zutty.fg:    #5b3c11
+Zutty.bg:    #000000
+
+Zutty.cr:  #5b3c11
+
+Zutty.color0: #000000
+Zutty.color1: #b21818
+Zutty.color2: #118011
+Zutty.color3: #965724
+Zutty.color4: #1818b2
+Zutty.color5: #b218b2
+Zutty.color6: #149696
+Zutty.color7: #745434
+Zutty.color8: #434343
+Zutty.color9: #c74141
+Zutty.color10: #36a636
+Zutty.color11: #988404
+Zutty.color12: #5454ff
+Zutty.color13: #c842c8
+Zutty.color14: #309494
+Zutty.color15: #ffffff

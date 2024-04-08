@@ -182,12 +182,12 @@ hyper + apostrophe
 	bspc node -t '~tiled'
 
 # Add focused window to a tabbed instance in given direction
-hyper + t ; {Left,Down,Up,Right}
-	tabbed-client.sh $(bspc query -N -n {west,south,north,east}) add $(bspc query -N -n focused)
+#hyper + t ; {Left,Down,Up,Right}
+	#tabbed-client.sh $(bspc query -N -n {west,south,north,east}) add $(bspc query -N -n focused)
 
 # Remove one tab from tabbed
-hyper + t ; r
-	bspwm-remove-from-tabbed.sh
+#hyper + t ; r
+	#bspwm-remove-from-tabbed.sh
 
 # bsp-layout {{{1
 
@@ -262,17 +262,20 @@ hyper + equal
 
 # applications {{{1
 
-hyper + {dollar, exclam, comma}
-	{kitty, xterm -ls zsh, urxvtc}
-
-hyper + Return
-	alacritty msg create-window || alacritty
+hyper + {Return, exclam, dollar}
+	{xterm -ls zsh, urxvtc, kitty}
 
 hyper + shift + Return
-	tabbed -c -n "tabbed-alacritty" alacritty --embed
+	tabbed -c -n "tabbed-xterm" xterm -into
 
-hyper + t ; {x,u}
-	{tabbed -c xterm -into, tabbed -c urxvtc -embed}
+hyper + t ; U
+	tabbed -c -n "tabbed-urxvtc" urxvtc -embed
+
+hyper + t ; a
+	alacritty msg create-window || alacritty
+
+hyper + t ; A
+	tabbed -c -n "tabbed-alacritty" alacritty --embed
 
 super + ctrl + section
 	run-vifm.sh

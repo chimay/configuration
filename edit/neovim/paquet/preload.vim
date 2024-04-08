@@ -336,10 +336,12 @@ if ! exists("g:wheel_loaded")
 
 	nmap <silent> <d-^>       <plug>(wheel-alternate-other-torus)
 	nmap <silent> <d-e>       <plug>(wheel-dedibuf-frecency)
-    nmap <silent> <d-cr>      <cmd>call wheel#vortex#helix('tab')<cr>
+	" altgr-x
+    nmap <silent> »          <cmd>call wheel#vortex#helix('tab')<cr>
 	nmap <silent> <d-x>       <plug>(wheel-prompt-index-circles)
 
 	" altgr-h
+	nmap <silent> <d-cr>      <cmd>call wheel#waterclock#history('tab')<cr>
 	nmap <silent> ħ           <cmd>call wheel#waterclock#history('tab')<cr>
 	nmap <silent> <d-h>       <plug>(wheel-dedibuf-history)
 
