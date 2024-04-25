@@ -188,6 +188,20 @@ fun! library#password_to_text ()
 	silent! % substitute/\$/s/g
 endfun
 
+" -- quick access to particular files
+
+fun! library#dream ()
+	tabedit ~/racine/plain/orgmode/dream.org
+	let end = line('$')
+	let today = strftime('%A %d')
+	let heading = '*** ' .. today
+	let moonphase = systemlist('~/racine/shell/calendar/moonphase.py')[0]
+	call append(end, ['', heading, '', '', '', moonphase])
+	let curline = line('$') - 2
+	call cursor(curline, 1)
+	normal zx
+endfun
+
 " ---- windows & tabs
 
 fun! library#equal_windows ()
@@ -217,7 +231,7 @@ fun! library#win2next_tab ()
 	execute 'buffer' bufnum
 endfun
 
-" --- generate expressions for foldings, tabs, etc
+" -- generate expressions for foldings, tabs, etc
 
 fun! library#folding_text ()
 	" Folding text

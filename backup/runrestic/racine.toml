@@ -1,0 +1,109 @@
+name = "racine" # optional. if not set, the filename will be used without the extension
+
+repositories = [
+    "/home/david/backup/restic",
+#     "/media/cleusb/restic",
+#     "sftp:david@shari.local:$HOME/backup/restic",
+    ]
+
+[execution]
+parallel = false
+retry_count = 1
+retry_backoff = "1:00 exponential"  # 00:00 = min:sec; 00:00:00 = hour:min:sec
+# strategies:
+#  - static (same duration every try)
+#  - linear (duration * retry number)
+#  - exponential
+
+[environment]
+# RESTIC_PASSWORD_COMMAND='pass show backup/restic/main'
+# RESTIC_PASSWORD = "CHANGEME"
+RESTIC_PASSWORD_FILE = "/home/david/racine/config/backup/runrestic/mot"
+# https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
+
+[backup]
+sources = [
+    "/home/david/graphix",
+    "/home/david/racine/README.org",
+    "/home/david/racine/artisan",
+    "/home/david/racine/automat",
+    "/home/david/racine/common",
+    "/home/david/racine/config",
+    "/home/david/racine/dotdir/emacs.d",
+    "/home/david/racine/dotdir/nb",
+    "/home/david/racine/dotdir/neovim",
+    "/home/david/racine/feder",
+    "/home/david/racine/filesys",
+    "/home/david/racine/finance",
+    "/home/david/racine/fun",
+    "/home/david/racine/game",
+    "/home/david/racine/gate",
+    "/home/david/racine/hist",
+    "/home/david/racine/hub",
+    "/home/david/racine/humour",
+    "/home/david/racine/index",
+    "/home/david/racine/infoman",
+    "/home/david/racine/install",
+    "/home/david/racine/list",
+    "/home/david/racine/litera",
+    "/home/david/racine/local",
+    "/home/david/racine/log",
+    "/home/david/racine/mail",
+    "/home/david/racine/multics",
+    "/home/david/racine/musica",
+    "/home/david/racine/network",
+    "/home/david/racine/news",
+    "/home/david/racine/omni",
+    "/home/david/racine/organ",
+    "/home/david/racine/pack/bin",
+    "/home/david/racine/papier",
+    "/home/david/racine/pictura",
+    "/home/david/racine/plain",
+    "racine/plugin/README",
+    "racine/plugin/manager/neovimpack",
+    "racine/plugin/manager/vimpack",
+    "racine/plugin/manager/lazy.nvim",
+    "racine/plugin/manager/plug.kak",
+    "racine/plugin/manager/tmux-plugins",
+    "/home/david/racine/plugin/data",
+    "/home/david/racine/prolang",
+    "/home/david/racine/public",
+    "/home/david/racine/refer",
+    "/home/david/racine/repo",
+    "/home/david/racine/run",
+    "/home/david/racine/science",
+    "/home/david/racine/search",
+    "/home/david/racine/self",
+    "/home/david/racine/session",
+    "/home/david/racine/shell",
+    "/home/david/racine/site",
+    "/home/david/racine/snippet",
+    "/home/david/racine/template",
+    "/home/david/racine/test",
+    ]
+
+# exclude_patterns = ['pg_stats_tmp/']
+exclude_files = [
+    "/home/david/racine/list/backup/restic/exclude",
+    ]
+# exclude_if_present = []
+
+pre_hooks = ["pass show backup/borg/main > ~/racine/config/backup/runrestic/mot"]
+post_hooks = ["rm -f ~/racine/config/backup/runrestic/mot"]
+
+[prune]
+# keep-last =  3
+# keep-hourly =  5
+keep-daily =  7
+keep-weekly = 4
+keep-monthly = 12
+keep-yearly = 7
+group-by = "host,paths"
+# https://restic.readthedocs.io/en/latest/060_forget.html#removing-snapshots-according-to-a-policy
+
+[check]
+checks = ["check-unused", "read-data"]
+
+# [metrics.prometheus]
+# path = "/var/lib/node_exporter/textfile_collector/runrestic.prom"
+# password_replacement = "XXX" # use this if you need to redact passwords from repos in the log file #39

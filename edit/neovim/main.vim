@@ -716,7 +716,7 @@ nnoremap <f2>r :r <c-r>=expand('%:p:h') . '/' <cr>
 nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
 nnoremap <f2>v <cmd>tabedit ~/racine/config/edit/neovim/main.vim<cr>
 nnoremap <f2>c <cmd>tabedit ~/racine/plain/organize/cronos.org<cr>
-nnoremap <f2>d <cmd>tabedit ~/racine/plain/orgmode/dream.org <bar> normal Gzx<cr>
+nnoremap <f2>d <cmd>call library#dream()<cr>
 nnoremap <f2>f <cmd>tabedit ~/racine/plain/orgmode/fix.org <bar> normal ggzx<cr>
 nnoremap <f2>l <cmd>tabedit ~/racine/log/ship/captain.md <bar> normal ggzx<cr>
 nnoremap <f2>t <cmd>tabedit ~/racine/plain/orgmode/tasks.org <bar> normal ggzx<cr>

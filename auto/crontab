@@ -101,7 +101,7 @@ MAILTO=$USER
 0 	13	*	*	5		hg-commit.zsh
 
 50	13	*	*	6		update-version.zsh ~/racine/plugin/source
-55 	13	*	*	6		update-version.zsh ~/racine/plugin/manager/tmux-plugins
+55 	13	*	*	6		update-version.zsh ~/racine/plugin/manager/tmux/plugins
 
 
 # Logrotate {{{1

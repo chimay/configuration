@@ -290,10 +290,13 @@ super + ctrl + g
 	run-gvim.sh -c "cd ~/racine/public"
 
 super + ctrl + n
-	run-neovim-qt-client.sh
+	run-neovim-server.sh
 
 super + ctrl + v
-	run-within-kitty.sh vis
+	run-neovim-qt-client.sh
+
+# super + ctrl + v
+# 	run-within-kitty.sh vis
 
 super + ctrl + k
 	run-kitty-kak-client.sh
@@ -313,8 +316,8 @@ super + ctrl + i
 super + ctrl + {q,f,x}
 	goto-or-run.sh {qutebrowser,falkon,firefox}
 
-super + ctrl + n
-	run-with-log.sh nyxt
+# super + ctrl + n
+# 	run-with-log.sh nyxt
 
 super + ctrl + t
 	torbrowser-launcher
