@@ -1,6 +1,6 @@
 # vim: set filetype=conf :
 
-# {{{ Self
+# Self {{{1
 
 #ignore = Regex racine/config/sync/unison/archive/[^/]+/ar.*
 #ignore = Regex racine/config/sync/unison/archive/[^/]+/fp.*
@@ -16,7 +16,7 @@ ignore = Path racine/syncron/recent
 
 ignore = Path racine/dotdir/zsh/cache/dirs
 
-# Étiquettes {{{2
+# Étiquettes {{{1
 
 ignore = Name tags
 ignore = Name TAGS
@@ -27,7 +27,7 @@ ignore = Name GPATH
 ignore = Name ID
 ignore = Name gtags.files
 
-# {{{ Bases de données
+# Bases de données {{{1
 
 ignore = Path racine/index/filesys/locate/*
 ignore = Path racine/index/filesys/locate/.*
@@ -37,7 +37,7 @@ ignore = Path racine/index/webrowser/qutebrowser/.*
 
 ignore = Path racine/index/filesys/z-dirs
 
-# {{{ Contrôle de version
+# Contrôle de version {{{1
 
 ignore = Name .hg
 ignore = Name .bzr
@@ -45,7 +45,7 @@ ignore = Name _darcs
 
 # git : for custom repos, destined to be synced
 
-# {{{ Courriel
+# Courriel {{{1
 
 ignore = Path racine/mail/Procmail/Sauvegarde
 
@@ -53,10 +53,10 @@ ignore = Path racine/mail/Maildir
 
 # Traffic mail local à la machine
 
-ignore = Path racine/mail/Systeme/mbox
-ignore = Path racine/mail/Systeme/dead.letter
+ignore = Path racine/mail/system/mbox
+ignore = Path racine/mail/system/dead.letter
 
-# {{{ Extensions
+# Extensions [[[1
 
 #ignore = Path racine/plugin/manager/vimpack/*
 #ignore = Path racine/plugin/manager/vimpack/.*
@@ -81,7 +81,7 @@ ignore = Path racine/plugin/manager/el-get/.*
 
 #ignore = Path racine/share/astronvim
 
-# {{{ Source
+# Source {{{1
 
 ignore = Path racine/pack/aur/*
 ignore = Path racine/pack/aur/.*
@@ -91,7 +91,7 @@ ignore = Path racine/pack/aur/.*
 
 # ignorenot = Path racine/source/deps
 
-# {{{ Compilation
+# Compilation {{{1
 
 ignore = Name *.elc
 
@@ -112,9 +112,9 @@ ignore = Name *.toc
 ignore = Name *.mtc*
 ignore = Name *.ptc*
 
-# {{{ Fichiers spéciaux
+# Fichiers spéciaux {{{1
 
-# {{{ Sockets
+# Sockets {{{2
 
 ignore = Path racine/run/socket/*
 ignore = Path racine/run/socket/.*
@@ -123,19 +123,18 @@ ignore = Path racine/config/crypte/gnupg/S.gpg-agent*
 
 ignore = Path racine/config/webrowser/elinks/socket0
 
-# {{{ Tuyaux
+# Tuyaux {{{2
 
 ignore = Path racine/run/fifo/*
 ignore = Path racine/run/fifo/.*
 
 ignore = Path racine/config/chaton/weechat/weechat_fifo*
 
-
-#  {{{ Sshfs
+# Sshfs {{{1
 
 ignore = Path tremplin/sshfs
 
-# {{{ Fichiers run
+# Fichiers run {{{1
 
 ignore = Path racine/run/*
 ignore = Path racine/run/.*
@@ -146,4 +145,3 @@ ignore = Path racine/varia/autosave/*.swp
 
 ignore = Path racine/config/windenv/xfce4/*
 ignore = Path racine/config/windenv/xfce4/.*
-

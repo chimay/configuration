@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# Autoload {{{1
+# autoload {{{1
 
 # Voir aussi <url:~/racine/config/cmdline/zsh/zshenv#tn=Fonctions>
 
@@ -24,7 +24,7 @@ do
 done
 
 
-# Fonctions ordinaires {{{1
+# ordinary functions {{{1
 
 # err : display to stderr {{{2
 
@@ -880,6 +880,13 @@ sshx() {
 	return $code
 }
 
+# mpv {{{2
+
+mpv () {
+	cd ~/graphix/screenshot
+	command mpv "$@"
+	cd -
+}
 
 # cmd-mpv {{{2
 
@@ -936,9 +943,9 @@ listen-and-clean () {
 	done
 }
 
-#  Fonctions automatiques {{{1
+#  automatic functions {{{1
 
-#  eval-ssh-agent {{{1
+#  eval-ssh-agent {{{2
 
 eval-ssh-agent () {
 	emulate -R zsh
@@ -969,7 +976,7 @@ eval-ssh-agent () {
 	echo "SSH_AGENT_PID = $SSH_AGENT_PID"
 }
 
-# Fonctions ZLE {{{1
+# zle functions {{{1
 
 # Ne pas oublier :
 #
@@ -1014,7 +1021,7 @@ fzf-greenclip () {
 	zle beginning-of-line
 }
 
-# Fonctions mathématiques {{{1
+# math functions {{{1
 
 #zmodload -i zsh/mathfunc
 
@@ -1030,7 +1037,7 @@ fzf-greenclip () {
 
 # functions -M gauss 3 3 zmath_gauss
 
-# Crochets (hooks) {{{1
+# hook functions {{{1
 
 # Chpwd {{{2
 
@@ -1109,7 +1116,7 @@ zshexit () {
 
 
 
-# Special Widgets {{{1
+# special widgets {{{1
 
 function zle-line-init zle-keymap-select {
 	if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} ))

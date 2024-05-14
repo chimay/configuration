@@ -2,7 +2,7 @@
 
 maxbackups = 5
 
-# {{{ Backup dans un répertoire central
+# Backup dans un répertoire central {{{1
 
 # backuplocation = central
 #
@@ -11,18 +11,14 @@ maxbackups = 5
 # backupprefix = unison-
 # backupsuffix = -$VERSION
 
-# }}}
-
-# {{{ Backup dans le répertoire du fichier
+# Backup dans le répertoire du fichier {{{1
 
 # backuplocation = local
 
 # backupprefix = .unison/
 # backupsuffix = -$VERSION
 
-# }}}
-
-# {{{ Backup de la version courante pour utiliser dans les merge
+# Backup de la version courante pour utiliser dans les merge {{{1
 
 # backupcurrent = Name tags
 
@@ -30,14 +26,10 @@ maxbackups = 5
 
 # backupcurrent = Name artist/eclats2vers/*
 
-# }}}
-
-# {{{ Backup des versions précédentes
+# Backup des versions précédentes {{{1
 
 # backup = Name tags
 
 # backup = Path log/alter/sync/unison.log
 
 # backup = Name artist/eclats2vers/*
-
-# }}}

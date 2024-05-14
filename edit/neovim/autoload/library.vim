@@ -195,7 +195,8 @@ fun! library#dream ()
 	let end = line('$')
 	let today = strftime('%A %d')
 	let heading = '*** ' .. today
-	let moonphase = systemlist('~/racine/shell/calendar/moonphase.py')[0]
+	let moonphase = 'lune : '
+	let moonphase ..= systemlist('~/racine/shell/calendar/moonphase.py')[0]
 	call append(end, ['', heading, '', '', '', moonphase])
 	let curline = line('$') - 2
 	call cursor(curline, 1)

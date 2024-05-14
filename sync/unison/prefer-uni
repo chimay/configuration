@@ -1,6 +1,6 @@
 # vim: set filetype=conf :
 
-# {{{ Intéractivité
+# Intéractivité {{{1
 
 # Mode sans questions, sauf en cas de conflit
 
@@ -10,16 +10,10 @@
 
 batch = true
 
-# }}}
-
-# {{{ Synchronisation
+# Synchronisation {{{1
 
 force = /home/david
 
-# }}}
-
-# {{{ Média amovibles
+# Média amovibles {{{1
 
 #mountpoint = /media/unison
-
-# }}}

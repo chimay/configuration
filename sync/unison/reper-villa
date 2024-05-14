@@ -2,8 +2,7 @@
 
 include reper-maison
 
-# {{{ Dot-dirs
-# ------------------------------------
+# Dot-dirs {{{1
 
 #path = .config
 #path = .fontconfig

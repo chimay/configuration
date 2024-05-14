@@ -1,6 +1,6 @@
 # vim: set filetype=conf :
 
-#  {{{ Documentation
+# Documentation {{{1
 
 # Voir :
 #
@@ -10,9 +10,7 @@
 #
 # 	unidon -doc running
 
-#  }}}
-
-# {{{ Ajout des nouvelles options
+# Ajout des nouvelles options {{{1
 
 # Ajouts d'options via l'interface d'unison
 # (en général des instructions ignore)
@@ -20,9 +18,7 @@
 
 addprefsto = uipref
 
-# }}}
-
-# {{{ Intéractivité
+# Intéractivité {{{1
 
 # Mode sans questions, sauf en cas de conflit
 
@@ -36,9 +32,7 @@ auto = true
 
 #silent = true
 
-# }}}
-
-# {{{ Conflits
+# Conflits {{{1
 
 # -- Affichage des différences
 
@@ -52,9 +46,7 @@ diff = diff -y -W 79 --suppress-common-lines
 
 #merge = Name * -> emacs -q --eval '(ediff-merge-files-with-ancestor "CURRENT1" "CURRENT2" "CURRENTARCH" nil "NEW")'
 
-# }}}
-
-# {{{ Propriétés
+# Propriétés {{{1
 
 # Support amovible ne supportant pas les permissions ?
 
@@ -69,9 +61,7 @@ diff = diff -y -W 79 --suppress-common-lines
 
 times = true
 
-# }}}
-
-# {{{ Synchronisation
+# Synchronisation {{{1
 
 # -- Si un fichier a été modifié sur plusieurs sources,
 # -- ne garder que la version la plus récente
@@ -90,9 +80,7 @@ xferbycopying = true
 
 fastcheck = yes
 
-# }}}
-
-# {{{ Journal
+# Journal {{{1
 
 log = true
 
@@ -103,15 +91,11 @@ logfile = /home/david/log/unison.log
 #logfile = $HOME/log/$HOST/sync/unison.log
 #logfile = /home/david/log/`hostname`/sync/unison.log
 
-# }}}
-
-# {{{ Interface graphique
+# Interface graphique {{{1
 
 # Taille de la fenêtre
 
 height=36
-
-# }}}
 
 # Fusion {{{1
 
@@ -119,5 +103,3 @@ height=36
 # merge = Name * -> diff3 -m CURRENT1 CURRENTARCHOPT CURRENT2 > NEW || echo "differences detected"
 
 #merge = Name * -> gvimdiff CURRENT1 CURRENTARCHOPT CURRENT2
-
-# }}}1

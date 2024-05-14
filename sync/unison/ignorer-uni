@@ -1,13 +1,13 @@
 # vim: set filetype=conf :
 
-# {{{ Self
+# Self {{{1
 
 ignorenot = Regex racine/config/sync/unison/archive/[^/]+/ar[0-9a-f]*
 ignorenot = Regex racine/config/sync/unison/archive/[^/]+/fp[0-9a-f]*
 
 ignorenot = Path racine/syncron/cleusb
 
-# Étiquettes {{{2
+# Étiquettes {{{1
 
 ignorenot = Name tags
 ignorenot = Name TAGS
@@ -18,14 +18,14 @@ ignorenot = Name GPATH
 ignorenot = Name ID
 ignorenot = Name gtags.files
 
-# {{{ Bases de données
+# Bases de données {{{1
 
 ignorenot = Path racine/index/locate/*
 ignorenot = Path racine/index/locate/.*
 
 #ignorenot = Path racine/index/filesys/z-dirs
 
-# {{{ Contrôle de version
+# Contrôle de version {{{1
 
 # À décommenter de temps en temps
 
@@ -34,7 +34,7 @@ ignorenot = Path racine/index/locate/.*
 #ignorenot = Regex racine/plugin/manager/.*/.git
 #ignorenot = Regex racine/plugin/manager/.*
 
-# {{{ Courriel
+# Courriel {{{1
 
 ignorenot = Path racine/mail/Procmail/Sauvegarde
 
@@ -45,7 +45,7 @@ ignorenot = Path racine/mail/Maildir
 ignorenot = Path racine/mail/Systeme/mbox
 ignorenot = Path racine/mail/Systeme/dead.letter
 
-# {{{ Extensions
+# Extensions {{{1
 
 ignorenot = Path racine/plugin/manager/plugged/*
 ignorenot = Path racine/plugin/manager/plugged/.*
