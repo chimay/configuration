@@ -22,4 +22,4 @@ REM 2022-06-07 *60 MSG Produits à déboucher dans l’évier
 REM 2021-08-23 *61 MSG Nettoyer sous le filtre de l’évier
 REM 2022-06-07 *180 MSG Produits à déboucher dans le lavabo
 
-REM 2020-01-30 *28 ++1 AT 10:00 +30 MSG Jour des cartons %b
+#REM 2020-01-30 *28 ++1 AT 10:00 +30 MSG Jour des cartons %b

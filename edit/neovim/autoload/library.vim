@@ -32,6 +32,31 @@ fun! library#highlight_group ()
 	return
 endfun
 
+fun! library#moonphase ()
+	" Moonphase, based on moonphase.py
+	" Credit : http://inamidst.com/code/moonphase.py
+	let moonphase = systemlist('~/racine/shell/calendar/moonphase.py')[0]
+	let words = split(moonphase)
+	" cycle : 0.0 = new moon ; 0.5 = full moon ; 1.0 = new moon
+	let cycle = str2float(words[-1])
+	" phase : 0.0 = new moon ; 1.0 = full moon
+	let phase = 1.0 - 2 * abs(cycle - 0.5)
+	" waxing or waning ?
+	if cycle == 0.0 || cycle == 0.5 || cycle == 1.0
+		let growth = 'neutral'
+	elseif cycle < 0.5
+		let growth = 'waxing'
+	else
+		let growth = 'waning'
+	endif
+	let moonphase = 'moon : '
+	let moonphase ..= tolower(join(words[:-2]))
+	let moonphase ..= '    cycle : ' .. string(cycle)
+	let moonphase ..= '    phase : ' .. string(phase)
+	let moonphase ..= '    ' .. growth
+	return moonphase
+endfun
+
 " ---- buffer
 
 fun! library#write_all ()
@@ -195,8 +220,7 @@ fun! library#dream ()
 	let end = line('$')
 	let today = strftime('%A %d')
 	let heading = '*** ' .. today
-	let moonphase = 'lune : '
-	let moonphase ..= systemlist('~/racine/shell/calendar/moonphase.py')[0]
+	let moonphase = library#moonphase ()
 	call append(end, ['', heading, '', '', '', moonphase])
 	let curline = line('$') - 2
 	call cursor(curline, 1)

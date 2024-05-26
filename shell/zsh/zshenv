@@ -494,7 +494,7 @@ PERL_MM_OPT="INSTALL_BASE=/home/david/perl5"; export PERL_MM_OPT;
 
 # Python
 
-export PYTHONPATH=~/racine/bin/python:$PYTHONPATH
+#export PYTHONPATH=~/.pip/bin:$PYTHONPATH
 
 # Ruby
 

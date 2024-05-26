@@ -174,13 +174,9 @@
 # You can also include other configuration files.
 #include = /path/to/the/file/you/want/to/include
 
-# }}}1
-
 # Sous-titres {{{1
 
 slang=fr,fra,french
-
-# }}}1
 
 # Audio {{{1
 
@@ -189,8 +185,6 @@ slang=fr,fra,french
 ao="pulse,alsa,jack,oss"
 
 alang=en,eng,english
-
-# }}}1
 
 # Vidéo {{{1
 
@@ -205,5 +199,3 @@ double="yes"
 # always keep mplayer on top
 
 ontop="1"
-
-# }}}1

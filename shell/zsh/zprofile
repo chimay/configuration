@@ -32,8 +32,11 @@ path+=(~/racine/shell/*(F))
 path+=(~/racine/shell/directory/*(F))
 
 path+=(~/racine/prolang/interpreted/perl)
-path+=(~/racine/prolang/interpreted/python/bin)
-path+=(~/racine/prolang/interpreted/pip/bin)
+
+#path+=(~/racine/prolang/interpreted/python/bin)
+#path+=(~/racine/prolang/interpreted/pip/bin)
+path+=(~/.pip/bin)
+
 path+=(~/racine/prolang/interpreted/ruby/bin)
 path+=(~/racine/prolang/interpreted/gem/ruby/*/bin)
 
