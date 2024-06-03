@@ -107,37 +107,28 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " 2-character Sneak (default)
 
-nmap zf <Plug>Sneak_s
-nmap zF <Plug>Sneak_S
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
 
-xmap zf <Plug>Sneak_s
-xmap zF <Plug>Sneak_S
+xmap f <Plug>Sneak_s
+xmap F <Plug>Sneak_S
 
-omap zf <Plug>Sneak_s
-omap zF <Plug>Sneak_S
-
-nmap <f8> <Plug>Sneak_s
-nmap <f7> <Plug>Sneak_S
-
-xmap <f8> <Plug>Sneak_s
-xmap <f7> <Plug>Sneak_S
-
-omap <f8> <Plug>Sneak_s
-omap <f7> <Plug>Sneak_S
+omap f <Plug>Sneak_s
+omap F <Plug>Sneak_S
 
 omap ; <Plug>Sneak_;
 omap , <Plug>Sneak_,
 
 " 1-character enhanced 'f'
 
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
+nmap zf <Plug>Sneak_f
+nmap zF <Plug>Sneak_F
 
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
+xmap zf <Plug>Sneak_f
+xmap zF <Plug>Sneak_F
 
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
+omap zf <Plug>Sneak_f
+omap zF <Plug>Sneak_F
 
 " 1-character enhanced 't'
 
