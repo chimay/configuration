@@ -165,9 +165,9 @@ else
 	alias l='command ls --color=auto --show-control-chars'
 	alias ll='command ls -l --color=auto'
 	alias la='command ls -a --color=auto'
-	alias ls='lsd'
-	alias lsl='lsd -l'
-	alias lsa='lsd -a'
+	#alias ls='lsd'
+	#alias lsl='lsd -l'
+	#alias lsa='lsd -a'
 fi
 
 alias ù=most-recently-modified

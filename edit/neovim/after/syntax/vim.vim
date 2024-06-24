@@ -10,6 +10,7 @@ hi vimBracket		   	guifg=#872E30		guibg=default			gui=NONE
 hi vimCmplxRepeat	   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimCommand		   	guifg=brown			guibg=default			gui=NONE
 hi vimCommentTitle	   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimString		   	guifg=#872E30		guibg=default			gui=NONE
 hi vimEnvVar		   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimEscape		   	guifg=#88421d		guibg=default			gui=NONE
 hi vimFuncBody		   	guifg=#5B3C11		guibg=default			gui=NONE

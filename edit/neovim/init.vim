@@ -7,8 +7,12 @@
 "
 "set runtimepath+=~/racine/config/edit/neovim
 
-" avoid to read specific vim conf
+" avoid to read specific legacy vim conf
 set runtimepath-=/usr/share/vim/vimfiles
+
+" load neovim-qt files
+
+set runtimepath+=/usr/share/nvim-qt/runtime
 
 " lilypond {{{2
 

@@ -1,6 +1,7 @@
 " vim: set filetype=vim :
 
 hi zshCommands		guifg=brown			guibg=default			gui=NONE
+hi zshString		guifg=brown			guibg=default			gui=NONE
 hi zshConditional	guifg=#5B3C11		guibg=default			gui=NONE
 hi zshDelimiter		guifg=#5B3C11		guibg=default			gui=NONE
 hi zshDeref			guifg=#5B3C11		guibg=default			gui=NONE

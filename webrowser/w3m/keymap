@@ -536,15 +536,14 @@ keymap  b=  SELECT_MENU
 keymap  =   SELECT_MENU
 
 # delete buffer and go to previous one
-# DEL = BackSpace
 keymap  bd BACK
-keymap  x  BACK
 
 keymap  bp  PREV
 keymap  bb  PREV
 keymap  bn  NEXT
 keymap  K   PREV
 keymap  J   NEXT
+# DEL = BackSpace
 keymap  DEL PREV
 keymap  TAB NEXT
 

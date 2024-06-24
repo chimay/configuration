@@ -3,7 +3,7 @@
 
 ! Font {{{1
 
-URxvt.font:xft:DejaVu Sans Mono:size=11
+URxvt.font:xft:DejaVu Sans Mono:size=12
 
 ! URxvt.font:xft:Monospace:size=11
 ! URxvt.boldfont:xft:Monospace-Bold:size=11

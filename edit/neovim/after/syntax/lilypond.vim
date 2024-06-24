@@ -9,5 +9,6 @@ hi lilySpecial			guifg=#5b3c11		guibg=NONE			gui=NONE
 hi lilyNote				guifg=#5b3c11		guibg=NONE			gui=NONE
 hi lilyPitch			guifg=#5b3c11		guibg=NONE			gui=NONE
 hi lilyReservedWord		guifg=#88421d		guibg=NONE			gui=NONE
+hi lilySlur				guifg=#5b3c11		guibg=NONE			gui=NONE
 hi lilyString			guifg=#88421d		guibg=NONE			gui=NONE
 hi lilyVar				guifg=#5b3c11		guibg=NONE			gui=NONE
