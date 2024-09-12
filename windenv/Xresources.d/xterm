@@ -4,7 +4,7 @@
 ! Font {{{1
 
 XTerm*faceName: DejaVu Sans Mono
-XTerm*faceSize: 12
+XTerm*faceSize: 11
 
 xterm*faceSize1: 9
 xterm*faceSize2: 10

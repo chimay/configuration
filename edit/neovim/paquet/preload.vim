@@ -37,7 +37,7 @@ let g:no_plugin_maps = 1
 
 " Bouts de code (snippets, bits, modèles) {{{1
 
-" miniSnip (Jorengarenar/miniSnip) {{{1
+" miniSnip (Jorengarenar/miniSnip) {{{2
 
 let g:miniSnip_dirs = ['~/racine/plugin/data/neovim/miniSnip']
 let g:miniSnip_trigger = '<c-j>'
@@ -325,7 +325,7 @@ if ! exists("g:wheel_loaded")
 	" altgr-p
 	nmap <silent> þ           <plug>(wheel-prompt-yank-plain-charwise-after)
 
-	nmap <silent> <d-^>       <plug>(wheel-alternate-other-torus)
+	nmap <silent> <d-^>       <plug>(wheel-alternate-window)
 	nmap <silent> <d-e>       <plug>(wheel-dedibuf-frecency)
 	" altgr-x
     nmap <silent> »          <cmd>call wheel#vortex#helix('tab')<cr>
@@ -529,16 +529,9 @@ if ! exists("g:organ_loaded")
 	imap ↓    <plug>(organ-unicode)
 endif
 
-" Table mode {{{2
+" vim markdown toc {{{2
 
-nnoremap <d-&> <cmd>TableModeToggle<cr>
-
-let g:table_mode_always_active = 0
-
-" table à la org mode
-let g:table_mode_corner = '+'
-" table à la markdown
-"let g:table_mode_corner = '|'
+let g:vmt_auto_update_on_save = 1
 
 " Terminal {{{1
 

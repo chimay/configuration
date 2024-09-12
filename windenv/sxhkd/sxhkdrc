@@ -39,7 +39,7 @@ hyper + ccedilla
 	#rofi-greenclip.zsh
 
 hyper + agrave
-	urxvtc -name fzf-nova -e ~/racine/infoman/unix/generic/gotbletu/shownotes/fzf_nova/fzf-nova
+	urxvtc -name fzf-nova -e ~/racine/infoman/unix/generic/gotbletu/fzf-nova/fzf-nova
 
 # window environment {{{1
 
@@ -319,8 +319,11 @@ super + ctrl + {q,f,x}
 # super + ctrl + n
 # 	run-with-log.sh nyxt
 
+# super + ctrl + t
+# 	torbrowser-launcher
+
 super + ctrl + t
-	torbrowser-launcher
+	tradingview
 
 super + ctrl + y
 	goto-or-run.sh run-freetube.sh
@@ -540,7 +543,7 @@ hyper + space ; m
 	urxvtc -name multimedia -e pulsemixer
 
 hyper + space ; M
-	urxvtc -name multimedia -e ncpamixer
+	pavucontrol
 
 hyper + space ; t
 	urxvtc -name multimedia -e ncmpcpp

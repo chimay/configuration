@@ -6,6 +6,7 @@ hi zshConditional	guifg=#5B3C11		guibg=default			gui=NONE
 hi zshDelimiter		guifg=#5B3C11		guibg=default			gui=NONE
 hi zshDeref			guifg=#5B3C11		guibg=default			gui=NONE
 hi zshException		guifg=#9B3C11		guibg=default			gui=NONE
+hi zshHereDoc		guifg=#5B3C11		guibg=default			gui=NONE
 hi zshJobSpec		guifg=#5B3C11		guibg=default			gui=NONE
 hi zshKeyword		guifg=#872E30		guibg=default			gui=NONE
 hi zshOptStart		guifg=#872E30		guibg=default			gui=NONE

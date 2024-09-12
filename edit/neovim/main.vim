@@ -726,14 +726,15 @@ command! -nargs=? -complete=filetype EditSyntaxPlugin
 
 nnoremap <f2>s <cmd>EditSyntaxPlugin<cr>
 
-" figlet banner
-nnoremap <f2>b <cmd>call library#figlet()<cr>
+nnoremap <f2>x <cmd>call library#chmodexec()<cr>
 
-nnoremap <f2>x <cmd>call library#text_to_password()<cr>
-nnoremap <f2>X <cmd>call library#password_to_text()<cr>
+" figlet banner
+nnoremap <f3>b <cmd>call library#figlet()<cr>
+
+nnoremap <f3>x <cmd>call library#text_to_password()<cr>
+nnoremap <f3>X <cmd>call library#password_to_text()<cr>
 
 nnoremap <f3>m :make! -k<space>
-nnoremap <f3>x <cmd>call library#chmodexec()<cr>
 
 " lilypond
 nnoremap <f9>m <cmd>call library#make_midi()<cr>
@@ -1128,6 +1129,12 @@ set guicursor=
 set termguicolors
 
 nnoremap <f3>l <cmd>set cursorline!<cr>
+
+" Fonte de caractères {{{3
+
+" dans neovim-qt
+
+nnoremap <f3>f :GuiFont DejaVu Sans Mono:h12
 
 " Émulateur de terminal {{{2
 

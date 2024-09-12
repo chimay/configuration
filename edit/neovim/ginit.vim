@@ -4,7 +4,8 @@ if ! exists('g:GuiLoaded')
 	finish
 endif
 
-GuiFont DejaVu Sans Mono:h12
+" GuiFont DejaVu Sans Mono:h11
+
 " GuiFont Droid Sans Mono:h11
 " GuiFont Fantasque Sans Mono:h12
 " GuiFont Fira Code:h11

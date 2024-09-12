@@ -163,6 +163,7 @@ then
 	alias ll='ls -l'
 else
 	alias l='command ls --color=auto --show-control-chars'
+	alias ls='command ls --color=auto --show-control-chars'
 	alias ll='command ls -l --color=auto'
 	alias la='command ls -a --color=auto'
 	#alias ls='lsd'
@@ -329,7 +330,7 @@ alias rn=run-slrn.sh
 
 # fediverse {{{1
 
-alias f='tut'
+alias f=tut
 alias F='BROWSER=qutebrowser toot tui'
 alias fl=neonmodem
 
@@ -398,13 +399,15 @@ alias alsamix='alsamixer -c 0'
 alias pm=pulsemixer
 alias pmt=ncpamixer
 
+alias mpt=ncmpcpp
+
 alias mp=midiplay.sh
 alias tms=timidity-segment.sh
 alias fp=fluid-player.sh
 
 alias µ='mpv --no-video'
 
-alias mpt=ncmpcpp
+alias yt=ytfzf
 
 alias pc=playerctl
 

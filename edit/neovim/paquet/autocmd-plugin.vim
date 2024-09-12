@@ -20,6 +20,7 @@ augroup wheel
 	autocmd User WheelBeforeOrganize call wheel#vortex#update()
 	autocmd User WheelBeforeWrite call wheel#vortex#update()
 	autocmd BufLeave * call wheel#vortex#update()
+	autocmd BufLeave * call wheel#caduceus#update_window()
 	autocmd User WheelAfterJump silent! normal! zCzO
 	"autocmd User WheelAfterNative call wheel#projection#follow()
 	autocmd WinEnter * call wheel#projection#follow()

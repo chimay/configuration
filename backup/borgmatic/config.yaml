@@ -474,6 +474,16 @@ keep_yearly: 7
       # "always": running this check every time checks are run.
       # frequency: 2 weeks
 
+checks:
+  - name: repository
+    frequency: 4 weeks
+    only_run_on:
+       - weekend
+  - name: archives
+    frequency: 3 months
+    only_run_on:
+       - weekend
+
 # Paths or labels for a subset of the configured "repositories" (see
 # above) on which to run consistency checks. Handy in case some of
 # your repositories are very large, and so running consistency checks

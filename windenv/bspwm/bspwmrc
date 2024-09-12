@@ -97,11 +97,12 @@ bspc rule -a FreeTube desktop=entertain
 bspc rule -a neochat desktop=entertain
 bspc rule -a mirage desktop=entertain
 
+bspc rule -a TradingView desktop=misc
+
 bspc rule -a net-sourceforge-jnlp-runtime-Boot desktop=misc
 bspc rule -a sun-awt-X11-XFramePeer desktop=misc
 bspc rule -a com-itfinance-core-Starter desktop=misc
 bspc rule -a java-lang-Thread desktop=misc
-
 
 # Tiled {{{2
 

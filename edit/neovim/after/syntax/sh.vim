@@ -22,8 +22,11 @@ hi shRedir		   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shRepeat		   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shSet		   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shSetList	   			guifg=#5B3C11		guibg=default			gui=NONE
+hi shSingleQuote   			guifg=#5B3C11		guibg=default			gui=NONE
+hi shSpecial 	  			guifg=#872e30		guibg=default			gui=NONE
 hi shStatement	   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shTestOpr	   			guifg=#5B3C11		guibg=default			gui=NONE
+hi shTestPattern   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shVariable	   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shWrapLineOperator	   	guifg=#606060		guibg=default			gui=NONE
 
