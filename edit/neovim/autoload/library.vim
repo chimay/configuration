@@ -39,8 +39,8 @@ fun! library#moonphase ()
 	let words = split(moonphase)
 	" cycle : 0.0 = new moon ; 0.5 = full moon ; 1.0 = new moon
 	let cycle = str2float(words[-1])
-	" phase : 0.0 = new moon ; 1.0 = full moon
-	let phase = 1.0 - 2 * abs(cycle - 0.5)
+	" visible : 0.0 = new moon ; 1.0 = full moon
+	let visible = 1.0 - 2 * abs(cycle - 0.5)
 	" waxing or waning ?
 	if cycle == 0.0 || cycle == 0.5 || cycle == 1.0
 		let growth = 'neutral'
@@ -52,7 +52,7 @@ fun! library#moonphase ()
 	let moonphase = 'moon : '
 	let moonphase ..= tolower(join(words[:-2]))
 	let moonphase ..= '    cycle : ' .. string(cycle)
-	let moonphase ..= '    phase : ' .. string(phase)
+	let moonphase ..= '    visible : ' .. string(visible)
 	let moonphase ..= '    ' .. growth
 	return moonphase
 endfun

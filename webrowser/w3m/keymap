@@ -408,29 +408,33 @@ keymap cu   COMMAND "SET_OPTION mark_all_pages=toggle ; RELOAD"
 # opening {{{2
 
 # open in new buffer
-keymap  oo  GOTO
-keymap  ot  TAB_GOTO
-keymap  M-o TAB_GOTO
-keymap  oh  GOTO_HOME
+
+keymap  o  TAB_GOTO
+
+keymap  C-o GOTO_HOME
 
 # open relative url
-keymap  OO  GOTO_RELATIVE
-keymap  C-o GOTO_RELATIVE
-keymap  OT  TAB_GOTO_RELATIVE
+
+keymap  go  TAB_GOTO_RELATIVE
 
 # open file
-keymap  of  LOAD
+
+keymap  O  LOAD
 
 # open with handlers
+
 keymap  hm      EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
 keymap  hM      EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
 keymap  hb      EXTERN_LINK   'tsp mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
 
 # open url in clipboard
+
 keymap  pp      TAB_GOTO    file:/cgi-bin/goto_clipboard.cgi
 keymap  PP      GOTO        file:/cgi-bin/goto_clipboard.cgi
 
-keymap  R   RELOAD
+# reload
+
+keymap  r   RELOAD
 
 # yank {{{2
 
@@ -441,7 +445,7 @@ keymap YY  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fn_yank_current_link.cgi ; BACK"
 
 # surfraw {{{3
 
-# for x sessions
+# for X sessions
 
 keymap sx  COMMAND  "TAB_GOTO https://searx.org; GOTO_LINE 5; NEXT_LINK; GOTO_LINK"
 keymap sd  COMMAND  "TAB_GOTO https://duckduckgo.com/lite/; NEXT_LINK; GOTO_LINK"
@@ -565,52 +569,49 @@ keymap  mm      BOOKMARK
 keymap  tc  COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
 keymap  tt  COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
 
-
 keymap  tm    TAB_MENU
 keymap  t=    TAB_MENU
-keymap  tl    TAB_LINK
+keymap  M-j   TAB_LINK
 keymap  tC-j  TAB_LINK
-keymap  tp    PREV_TAB
-keymap  tn    NEXT_TAB
-keymap  H     PREV_TAB
-keymap  L     NEXT_TAB
 keymap  \^    PREV_TAB
 keymap  $     NEXT_TAB
 keymap  C-p   PREV_TAB
 keymap  C-n   NEXT_TAB
-keymap tH     TAB_LEFT
-keymap tL     TAB_RIGHT
 keymap M-\^   TAB_LEFT
 keymap M-$    TAB_RIGHT
+keymap tH     TAB_LEFT
+keymap tL     TAB_RIGHT
 
 # delete & restore tabs
-keymap  tx      COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
-keymap  X       COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
+
+keymap  x       COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
 keymap  tu      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
 keymap  tr      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
 
 # file operations : edit, save, download {{{2
 
-keymap  fe  EDIT_SCREEN
+keymap  es  EDIT_SCREEN
 
 # save rendered document to file
+
 keymap  w   PRINT
-keymap  fw  PRINT
 
 # save source to file
+
+keymap  gd  DOWNLOAD
 keymap  fs  SAVE
-keymap  fd  DOWNLOAD
 
 # diana is a front-end for aria2c
-keymap  fa      EXTERN_LINK     'diana add'
-keymap  fA      EXTERN_LINK     'diana --pause add'
 
-keymap  ft      EXTERN_LINK     'transmission-remote --add'
+keymap  aa      EXTERN_LINK     'diana add'
+keymap  aA      EXTERN_LINK     'diana --pause add'
+
+keymap  ta      EXTERN_LINK     'transmission-remote --add'
 
 # readability {{{2
 
 keymap C-r  COMMAND "SHELL 'readable $W3M_URL > ~/racine/varia/cache/readable/last.html' ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
-keymap rr COMMAND "READ_SHELL 'python3 -m readability.readability -u $W3M_URL 2>/dev/null 1>~/racine/varia/cache/readable/last.html' ; BACK ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
+keymap R COMMAND "READ_SHELL 'python3 -m readability.readability -u $W3M_URL 2>/dev/null 1>~/racine/varia/cache/readable/last.html' ; BACK ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
 
 # text to speech {{{2
 
