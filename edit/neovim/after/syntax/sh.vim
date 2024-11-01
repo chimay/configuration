@@ -10,6 +10,7 @@ hi shDeref		   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shDerefOp	   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shDerefVar	   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shDoubleQuote			guifg=#5B3C11		guibg=default			gui=NONE
+hi shEcho					guifg=#5B3C11		guibg=default			gui=NONE
 hi shExpr		   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shExprRegion	   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shFunction	   			guifg=#5B3C11		guibg=default			gui=NONE

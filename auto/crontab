@@ -137,74 +137,58 @@ MAILTO=$USER
 
 # */15	9-18	*	*	1-5		clocher.zsh &>>! ~/log/clocher.log
 
-
 # Finance {{{2
 
 30	11	*	*/3		4,5		semaine-du-mois.zsh &>>! ~/log/semaine-mois.log
 50	15	*	*		*		fin-mois-trimestre.zsh &>>! ~/log/fin-mois-trimestre.log
 
+# Backup {{{2
+
+0	19	*	*	0		bell.zsh notification/sauvegarde-cle-usb.ogg volume=100 &>>! ~/log/cron.log
+30	9	*	*	5		bell.zsh notification/sauvegarde-cle-usb.ogg volume=100 &>>! ~/log/cron.log
 
 # Alimentation {{{2
 
-0	12	*	*	*		bell.zsh notification/restes.ogg &>>! ~/log/cron.log
-
-
-# Thé glacé {{{2
-
-# Après-midi, pour 15h
-
-#0	15	*	1-6,9-12	1-2,4-5		bell.zsh notification/the-glace.ogg n="thé glacé" &>>! ~/log/cron.log
-
-# Mercredi pour 11h
-
-#0	11	*	1-6,9-12	3			bell.zsh notification/the-glace.ogg n="thé glacé" &>>! ~/log/cron.log
-
+0	10	*	*	*		bell.zsh notification/plat-frigo.ogg &>>! ~/log/cron.log
+0	12	*	*	*		bell.zsh notification/plat-chauffer.ogg &>>! ~/log/cron.log
 
 # École {{{2
 
+15	18	*	1-6,9-12	0,1,3,4		bell.zsh notification/portefeuille.ogg n=portefeuille volume=120 &>>! ~/log/cron.log
+
 #5	14	*	1-6,9-12	0		bell.zsh notification/reveil.ogg n=reveil &>>! ~/log/cron.log
 
-# Après-midi, pour 15h45
+# lundi, mardi, jeudi, vendredi
 
-55	15	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole.ogg n=ecole &>>! ~/log/cron.log
+55	15	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg n=ecole &>>! ~/log/cron.log
 
-# Mercredi pour 12h15
+# mercredi
 
-25	12	*	1-6,9-12	3			bell.zsh notification/ecole.ogg n=ecole &>>! ~/log/cron.log
+#25	12	*	1-6,9-12	3			bell.zsh notification/ecole-arriver.ogg n=ecole &>>! ~/log/cron.log
+15	13	*	1-6,9-12	3			bell.zsh notification/ecole-arriver.ogg n=ecole &>>! ~/log/cron.log
 
-# Sac de gym
+# sac de gym
 
-30	19	*	1-6,9-12	0		bell.zsh notification/sac-gym.ogg n=gymnastique &>>! ~/log/cron.log
-30	19	*	1-6,9-12	3		bell.zsh notification/sac-gym.ogg n=gymnastique &>>! ~/log/cron.log
+30	19	*	1-6,9-12	0		bell.zsh notification/sac-gym.ogg n=gymnastique volume=100 &>>! ~/log/cron.log
+30	19	*	1-6,9-12	3		bell.zsh notification/sac-gym.ogg n=gymnastique volume=100 &>>! ~/log/cron.log
 
-# Piscine
+# piscine
 
-# 20	19	*	1-6,9-12	3		bell.zsh notification/sac-piscine.ogg n=piscine &>>! ~/log/cron.log
-# 20	15	*	1-6,9-12	4		bell.zsh notification/sac-piscine.ogg n=piscine &>>! ~/log/cron.log
-
-# Méditation {{{2
-
-#5	16	*	1-6,9-12	1-2,4-5		bell.zsh notification/meditation.ogg n=meditation &>>! ~/log/cron.log
-#5	12	*	1-6,9-12	3			bell.zsh notification/meditation.ogg n=meditation &>>! ~/log/cron.log
-#5	14	*	1-6,9-12	6,7			bell.zsh notification/meditation.ogg n=meditation &>>! ~/log/cron.log
-#5	14	*	7,8			*			bell.zsh notification/meditation.ogg n=meditation &>>! ~/log/cron.log
-
+# 20	19	*	1-6,9-12	3		bell.zsh notification/sac-piscine.ogg n=piscine volume=100 &>>! ~/log/cron.log
+# 20	15	*	1-6,9-12	4		bell.zsh notification/sac-piscine.ogg n=piscine volume=100 &>>! ~/log/cron.log
 
 # Téléphone {{{2
 
-05	14	*	*	0	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
+25	14	*	*	0	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
 #05	19	*	*	2	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
-
 
 # Dents {{{2
 
 15	20	*	*	*	bell.zsh notification/laver-les-dents.ogg &>>! ~/log/cron.log
 
-
 # Courses {{{2
 
-0	19	*	*	0		bell.zsh notification/activer-points-plus.ogg &>>! ~/log/cron.log
-
+0	19	*	*	0		bell.zsh notification/activer-points-plus.ogg volume=100 &>>! ~/log/cron.log
 
 # Anniversaires {{{2
 
@@ -215,5 +199,3 @@ MAILTO=$USER
 0	19	26	6	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
 0	19	18	11	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
 0	19	17	12	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
-
-

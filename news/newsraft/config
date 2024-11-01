@@ -1,0 +1,87 @@
+
+# default {{{1
+# This is an example of valid config file for Newsraft.
+# Note that config file is not required for Newsraft to work!
+# It's used only for overriding default settings and expanding functionality.
+
+# Lines with # character at the beginning are comments - they are ignored.
+
+# Here we set some settings.
+#scrolloff 5
+#feeds-menu-paramount-explore true
+#color-list-item-important bold red default
+
+# That's how you bind a regular action.
+#bind ^P mark-unread-all
+
+# Command binding for opening links with feh image viewer.
+#bind f exec feh "%l"
+
+# This will launch mpv in the background.
+#bind m exec mpv --no-terminal "%l" &
+
+# This will launch mpv interactively.
+#bind M exec mpv "%l"
+
+# Credit : Gotbletu {{{1
+
+# view manpages and hotkey action section {{{2
+
+bind H exec man newsraft
+bind A exec man -P 'less -p "^ACTIONS"' newsraft
+
+# edit config {{{2
+
+# edit rss feeds or config (require restart newsraft to apply changes)
+
+bind E exec $EDITOR ~/.config/newsraft/feeds
+bind C exec $EDITOR ~/.config/newsraft/config
+
+# open with tui/gui web browser {{{2
+
+bind o exec w3m "%l"
+#bind O exec $BROWSER "%l"
+bind O exec qutebrowser "%l"
+
+# clipboard {{{2
+
+# copy to system clipboard and tmux clipboard
+
+bind y copy-to-clipboard ; exec tmux set-buffer "%l"
+
+# image {{{2
+
+bind i exec feh "%l"
+
+# multimedia {{{2
+
+bind m exec mpv --no-terminal "%l" &
+bind m exec tsp mpv --ontop --no-border --focus-on=never --force-window --autofit=500x280 --geometry=-15-110 "%l"
+bind M exec tsp mpv --fullscreen "%l"
+
+# show database size {{{2
+
+bind V exec (ls -lh ~/.local/share/newsraft/ && echo ~/.local/share/newsraft) | less -C
+
+# task spooler {{{2
+
+# watch task-spooler queue (ctrl-c to return)
+
+bind t exec watch -t "tsp | cut -c-"$(tput cols)""
+
+# clear all finished task-spooler jobs
+
+bind T exec tsp -C
+
+# colours {{{1
+
+color-status                green default bold
+color-status-info           cyan default bold
+color-status-fail           red default bold
+color-list-item             default default
+color-list-item-unread      yellow default
+color-list-item-important   magenta default
+color-list-feed             default default
+color-list-feed-unread      yellow default
+color-list-section          default default
+color-list-section-unread   yellow default

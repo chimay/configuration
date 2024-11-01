@@ -131,6 +131,7 @@ alias nks='run-neovim-server.sh & run-kak-server.sh &'
 # Helix {{{2
 
 alias h=helix
+alias xx=helix
 
 # Emacs {{{2
 
@@ -322,7 +323,7 @@ alias A=aerc
 
 alias £=abook
 
-alias n=newsboat
+alias n=newsraft
 
 # usenet {{{1
 
@@ -650,6 +651,7 @@ hash -d rosegarden=~/racine/musica/rosegarden
 
 hash -d aartistes=~/audio/artistes
 hash -d abook=~/audio/book
+hash -d anotif=~/audio/bell/notification
 
 hash -d classique=~/audio/artistes/classique
 

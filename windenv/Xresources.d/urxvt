@@ -73,13 +73,15 @@ URxvt.secondaryWheel: 1
 
 ! URxvt.perl-ext-common:	default,matcher,clipboard,url-select,keyboard-select
 
-! URxvt.keysym.F10:			perl:keyboard-select:activate
+! URxvt.keysym.F10:           perl:keyboard-select:activate
 ! URxvt.keysym.F11:           perl:keyboard-select:search
 ! URxvt.keysym.F12:           perl:url-select:select_next
 
 ! URxvt.keysym.M-u:           perl:url-select:select_next
 ! URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 ! URxvt.keysym.M-s:           perl:keyboard-select:search
+
+! control-ins & shift-ins fonctionnent
 
 ! URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
 ! URxvt.keysym.Shift-Control-V:   perl:clipboard:paste

@@ -443,10 +443,6 @@ keymap YY  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fn_yank_current_link.cgi ; BACK"
 
 # search engines {{{2
 
-# surfraw {{{3
-
-# for X sessions
-
 keymap sx  COMMAND  "TAB_GOTO https://searx.org; GOTO_LINE 5; NEXT_LINK; GOTO_LINK"
 keymap sd  COMMAND  "TAB_GOTO https://duckduckgo.com/lite/; NEXT_LINK; GOTO_LINK"
 keymap sg  COMMAND  "TAB_GOTO https://google.com; GOTO_LINE 6; NEXT_LINK; GOTO_LINK"
@@ -454,6 +450,10 @@ keymap se  COMMAND  "TAB_GOTO https://stackexchange.com; GOTO_LINE 7; NEXT_LINK;
 
 keymap sw  COMMAND  "TAB_GOTO https://en.m.wikipedia.org; GOTO_LINE 18; NEXT_LINK; GOTO_LINK"
 keymap sW  COMMAND  "TAB_GOTO https://fr.m.wikipedia.org; GOTO_LINE 18; NEXT_LINK; GOTO_LINK"
+
+# surfraw {{{3
+
+# for X sessions
 
 keymap sr  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
 keymap sR  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
@@ -585,8 +585,7 @@ keymap tL     TAB_RIGHT
 # delete & restore tabs
 
 keymap  x       COMMAND     "EXTERN 'echo %s >> ~/.w3m/RestoreTab.txt' ; CLOSE_TAB"
-keymap  tu      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
-keymap  tr      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
+keymap  X      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
 
 # file operations : edit, save, download {{{2
 
@@ -615,7 +614,7 @@ keymap R COMMAND "READ_SHELL 'python3 -m readability.readability -u $W3M_URL 2>/
 
 # text to speech {{{2
 
-keymap ap   COMMAND "PRINT /tmp/picospeaker.txt ; SHELL 'picospeaker -l en-US < /tmp/picospeaker.txt 2>/dev/null &'"
-keymap aP   COMMAND "PRINT /tmp/picospeaker.txt ; SHELL 'picospeaker -l fr-FR < /tmp/picospeaker.txt 2>/dev/null &'"
-keymap at   COMMAND "SHELL '~/racine/shell/process/toggle-process.zsh /usr/bin/play'"
-keymap as   COMMAND "SHELL 'pkill play'"
+keymap sp   COMMAND "PRINT /tmp/pico-tts.txt ; SHELL 'pico-tts -l en-US < /tmp/pico-tts.txt 2>/dev/null | aplay -q -f S16_LE -r 16 &'"
+keymap sP   COMMAND "PRINT /tmp/pico-tts.txt ; SHELL 'pico-tts -l fr-FR < /tmp/pico-tts.txt 2>/dev/null | aplay -q -f S16_LE -r 16 &'"
+keymap st   COMMAND "SHELL '~/racine/shell/process/toggle-process.zsh aplay'"
+keymap so   COMMAND "SHELL 'pkill aplay ; rm -f /tmp/pico-tts.txt'"
