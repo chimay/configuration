@@ -380,9 +380,14 @@ keymap  iU  PEEK_LINK
 # quit {{{2
 
 # quit with confirmation
+
 keymap  q   QUIT
+
 # quit at once
+
 keymap  Q   ABORT
+
+# execute a w3m command {{{2
 
 keymap : COMMAND "READ_SHELL ~/.w3m/cgi-bin/fnx_fzfmiru.cgi ; BACK ; GOTO file:/cgi-bin/fnx_execute.cgi ; BACK"
 keymap M-x COMMAND "READ_SHELL ~/.w3m/cgi-bin/fnx_fzfmiru.cgi ; BACK ; GOTO file:/cgi-bin/fnx_execute.cgi ; BACK"
@@ -390,6 +395,7 @@ keymap M-x COMMAND "READ_SHELL ~/.w3m/cgi-bin/fnx_fzfmiru.cgi ; BACK ; GOTO file
 # menu {{{2
 
 # pop-up
+
 keymap  M-m     MENU
 
 # configure options {{{2
@@ -402,24 +408,21 @@ keymap cl   COMMAND 'SET_OPTION "display_link_number = toggle" ; RESHAPE'
 keymap cc   COMMAND 'SET_OPTION "color = toggle" ; RESHAPE'
 keymap ci   COMMAND 'SET_OPTION "display_image = toggle" ; RELOAD'
 keymap cb   COMMAND "SET_OPTION display_borders=toggle ; RESHAPE"
+
 # Treat URL-like strings as links in all pages (convert text to url)
+
 keymap cu   COMMAND "SET_OPTION mark_all_pages=toggle ; RELOAD"
 
 # opening {{{2
 
-# open in new buffer
+keymap  o   TAB_GOTO
+keymap  O   TAB_GOTO_RELATIVE
 
-keymap  o  TAB_GOTO
-
-keymap  C-o GOTO_HOME
-
-# open relative url
-
-keymap  go  TAB_GOTO_RELATIVE
+keymap  M-o  GOTO_HOME
 
 # open file
 
-keymap  O  LOAD
+keymap  C-o  LOAD
 
 # open with handlers
 
@@ -470,8 +473,13 @@ keymap  >   RIGHT
 
 keymap  d   NEXT_HALF_PAGE
 keymap  u   PREV_HALF_PAGE
+keymap  SPC NEXT_PAGE
+keymap  b   PREV_PAGE
 keymap  C-f NEXT_PAGE
 keymap  C-b PREV_PAGE
+
+keymap  gg  BEGIN
+keymap  G   END
 
 keymap z CURSOR_MIDDLE
 
@@ -496,8 +504,6 @@ keymap  -   PREV_LINK
 keymap  lg  LINK_BEGIN
 keymap  lG  LINK_END
 
-keymap  lt    TAB_LINK
-
 keymap  lp    EXTERN_LINK urlportal.sh
 
 # hint mode {{{3
@@ -506,53 +512,67 @@ keymap  lp    EXTERN_LINK urlportal.sh
 # follow mode, like in qutebrowser
 
 #### toggle hinting mode (vimium similar)
-keymap  SPC-SPC  COMMAND "SET_OPTION display_link_number=toggle ; RESHAPE"
-#### jump to link number (e.g press 3 SPC-j) and hide hinting mode (similar to gg in vim)
-keymap  SPC-j    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN"
+
+keymap  fn  COMMAND "SET_OPTION display_link_number=toggle ; RESHAPE"
+
+#### jump to link number (e.g press 3 fj) and hide hinting mode (similar to gg in vim)
+
+keymap  fj    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN"
+
 #### follow link : jump to link number and open it
-keymap  SPC-f    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; GOTO_LINK"
+
+keymap  ff    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; GOTO_LINK"
+
 #### jump to link number and open it in new tab
-keymap  SPC-t    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; TAB_LINK"
-#### copy link to clipboard (e.g press SPC-SPC then 4 SPC-y to yank url)
+
+keymap  ft    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; TAB_LINK"
+
+#### copy link to clipboard (e.g press fn then 4 fy to yank url)
 # doesnt work, why ?
-keymap  SPC-y    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; READ_SHELL ~/.w3m/cgi-bin/fn_yank_current_link.cgi ; BACK"
+
+keymap  fy    COMMAND "SET_OPTION display_link_number=0 ; RESHAPE ; LINK_BEGIN ; READ_SHELL ~/.w3m/cgi-bin/fn_yank_current_link.cgi ; BACK"
 
 # turn text into links {{{3
 
 # url like -> hyperlink
+
 keymap  lu    MARK_URL
+
 # word -> hyperlink
+
 keymap  lw   MARK_WORD
 
 # external browser {{{2
 
 # display current page in external browser
-keymap  ee    EXTERN 'qutebrowser'
+
 keymap  &     EXTERN 'qutebrowser'
+keymap  ep    EXTERN 'qutebrowser'
+
 # display link target in external browser
+
 keymap  el    EXTERN_LINK 'qutebrowser'
 
 # buffers {{{2
 
 # buffer menu
-keymap  bm  SELECT_MENU
-keymap  b=  SELECT_MENU
+
 keymap  =   SELECT_MENU
 
-# delete buffer and go to previous one
-keymap  bd BACK
+# back / forward
 
-keymap  bp  PREV
-keymap  bb  PREV
-keymap  bn  NEXT
+keymap  DEL PREV    # DEL = BackSpace
+keymap  TAB NEXT
 keymap  K   PREV
 keymap  J   NEXT
-# DEL = BackSpace
-keymap  DEL PREV
-keymap  TAB NEXT
 
-keymap | PIPE_BUF
-keymap b| PIPE_BUF
+# delete buffer and go to previous one
+
+keymap  D BACK
+
+# pipe
+
+keymap  | PIPE_BUF
 
 # history {{{2
 
@@ -560,19 +580,18 @@ keymap  h  HISTORY
 
 # bookmarks {{{2
 
-keymap  ma  ADD_BOOKMARK
-keymap  "'" VIEW_BOOKMARK
-keymap  mm      BOOKMARK
+keymap  M     ADD_BOOKMARK
+keymap  m     BOOKMARK
+keymap  "'"   VIEW_BOOKMARK
 
 # tabs {{{2
 
-keymap  tc  COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
-keymap  tt  COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
+keymap  th  COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
 
 keymap  tm    TAB_MENU
 keymap  t=    TAB_MENU
+keymap  tC-j  TAB_LINK    # t<enter>
 keymap  M-j   TAB_LINK
-keymap  tC-j  TAB_LINK
 keymap  \^    PREV_TAB
 keymap  $     NEXT_TAB
 keymap  C-p   PREV_TAB
@@ -591,19 +610,21 @@ keymap  X      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
 
 keymap  es  EDIT_SCREEN
 
-# save rendered document to file
+# save buffer = rendered document to text file
 
 keymap  w   PRINT
 
 # save source to file
 
-keymap  gd  DOWNLOAD
-keymap  fs  SAVE
+keymap  W  DOWNLOAD
+keymap  C-w  SAVE
 
 # diana is a front-end for aria2c
 
 keymap  aa      EXTERN_LINK     'diana add'
 keymap  aA      EXTERN_LINK     'diana --pause add'
+
+# transmission
 
 keymap  ta      EXTERN_LINK     'transmission-remote --add'
 
