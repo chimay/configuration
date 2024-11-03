@@ -1,5 +1,6 @@
 
 # default {{{1
+
 # This is an example of valid config file for Newsraft.
 # Note that config file is not required for Newsraft to work!
 # It's used only for overriding default settings and expanding functionality.
@@ -39,9 +40,9 @@ bind C exec $EDITOR ~/.config/newsraft/config
 
 # open with tui/gui web browser {{{2
 
-bind o exec w3m "%l"
+#bind O exec w3m "%l"
 #bind O exec $BROWSER "%l"
-bind O exec qutebrowser "%l"
+bind o exec qutebrowser "%l"
 
 # clipboard {{{2
 
