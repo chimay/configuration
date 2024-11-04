@@ -364,9 +364,12 @@
 # help {{{2
 
 keymap  ??  HELP
-keymap  ?k  COMMAND  "HELP; SEARCH ^User-Defined; CENTER_V"            # show user custom hotkeys binding
+keymap  ?u  COMMAND  "HELP; SEARCH ^User-Defined; CENTER_V"            # show user custom hotkeys binding
 keymap  ?i  COMMAND  "HELP; SEARCH ^Input Line Editing Mode; CENTER_V" # show field hotkeys binding
-keymap  ?m  COMMAND  "SHELL 'man w3m'"
+keymap  ?m  TAB_GOTO file:///usr/share/doc/w3m/MANUAL.html
+keymap  ?f  TAB_GOTO file:///usr/share/doc/w3m/README.func
+keymap  ?k  TAB_GOTO file:///usr/share/doc/w3m/README.keymap
+keymap  ?M  COMMAND  "SHELL 'man w3m'"
 
 # info {{{2
 
@@ -439,10 +442,12 @@ keymap  PP      GOTO        file:/cgi-bin/goto_clipboard.cgi
 
 keymap  r   RELOAD
 
-# yank {{{2
+# yank & paste {{{2
 
 keymap y   COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fn_yank_page_url.cgi ; BACK"
 keymap Y   COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fn_yank_current_link.cgi ; BACK"
+
+keymap p   COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fn_goto_x11_clipboard.cgi"
 
 # search engines {{{2
 
