@@ -150,16 +150,17 @@ MAILTO=$USER
 # Alimentation {{{2
 
 0	10	*	*	*		bell.zsh notification/plat-frigo.ogg &>>! ~/log/cron.log
-0	12	*	*	*		bell.zsh notification/plat-chauffer.ogg &>>! ~/log/cron.log
+0	12	*	*	1-5		bell.zsh notification/plat-chauffer.ogg &>>! ~/log/cron.log
 
 # École {{{2
 
-15	18	*	1-6,9-12	0,1,3,4		bell.zsh notification/portefeuille.ogg n=portefeuille volume=120 &>>! ~/log/cron.log
+30	18	*	1-6,9-12	0,1,3,4		bell.zsh notification/portefeuille.ogg n=portefeuille volume=120 &>>! ~/log/cron.log
 
 #5	14	*	1-6,9-12	0		bell.zsh notification/reveil.ogg n=reveil &>>! ~/log/cron.log
 
 # lundi, mardi, jeudi, vendredi
 
+25	12	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg n=ecole &>>! ~/log/cron.log
 55	15	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg n=ecole &>>! ~/log/cron.log
 
 # mercredi

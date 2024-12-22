@@ -599,6 +599,7 @@ hash -d system=~/racine/system
 hash -d template=~/racine/template
 hash -d trash=~/racine/trash
 hash -d varia=~/racine/varia
+hash -d wiki=~/racine/wiki
 
 #  Site {{{2
 

@@ -25,9 +25,6 @@ hyper + colon
 hyper + semicolon
 	dmenu-apps.sh
 
-# button9
-# 	rofi-meta.zsh
-
 super + colon
 	zshrun.sh
 
@@ -78,6 +75,9 @@ super + Tab
 
 # Alternate desktops
 hyper + asciicircum
+	bspc desktop -f last
+
+button9
 	bspc desktop -f last
 
 # Cycle through all windows
@@ -135,6 +135,9 @@ super + {_,shift + }F{1-9,10,11,12}
 # Circulate
 super + {Next,Prior}
 	bspc node @/ -C {forward,backward}
+
+button8
+	bspc node @/ -C forward
 
 # Rotate
 hyper + {Home,End}
@@ -253,9 +256,6 @@ hyper + mu
 
 shift + F12
 	urxvtc-dropdown.zsh
-
-# button8
-# 	urxvtc-dropdown.zsh
 
 hyper + equal
 	urxvtc-calculator.zsh

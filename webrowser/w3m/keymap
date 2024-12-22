@@ -447,7 +447,7 @@ keymap  r   RELOAD
 keymap y   COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fn_yank_page_url.cgi ; BACK"
 keymap Y   COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fn_yank_current_link.cgi ; BACK"
 
-keymap p   COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fn_goto_x11_clipboard.cgi"
+keymap p   COMMAND  "SHELL ~/.w3m/cgi-bin/fn_goto_x11_clipboard.cgi"
 
 # search engines {{{2
 

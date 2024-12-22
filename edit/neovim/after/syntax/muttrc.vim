@@ -17,6 +17,7 @@ hi muttrcRXString2			guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcShellString		guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcSimplePat			guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcSimplePatMetas		guifg=#5B3C11		guibg=default			gui=NONE
+hi muttrcString				guifg=#872e30		guibg=default			gui=NONE
 hi muttrcVariable			guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcVariableInner		guifg=#5B3C11		guibg=default			gui=NONE
 

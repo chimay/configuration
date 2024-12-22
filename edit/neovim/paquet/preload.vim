@@ -525,8 +525,9 @@ if ! exists("g:organ_loaded")
 	nnoremap <c-s-down> :<c-u>Organ org-to-markdown
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u
-	nmap ↓    <plug>(organ-unicode)
-	imap ↓    <plug>(organ-unicode)
+	nmap ↓     <plug>(organ-unicode)
+	imap ↓     <plug>(organ-unicode)
+	imap <m-x> <plug>(organ-expand-template)
 endif
 
 " vim markdown toc {{{2
