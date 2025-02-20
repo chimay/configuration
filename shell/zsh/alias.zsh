@@ -661,3 +661,7 @@ hash -d jazz=~/audio/artistes/jazz
 #  Synchronization {{{2
 
 hash -d syncthing=~/racine/syncron/syncthing
+
+# papier {{{2
+
+hash -d school=~/racine/papier/ecole

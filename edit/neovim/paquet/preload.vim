@@ -235,7 +235,7 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.storage.backups = 7
 
 	" Maximum number of elements in history
-	let g:wheel_config.maxim.history = 700
+	let g:wheel_config.maxim.history = 1200
 	" Maximum number of elements in input history
 	let g:wheel_config.maxim.input = 700
 

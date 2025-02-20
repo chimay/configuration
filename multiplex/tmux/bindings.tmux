@@ -86,7 +86,7 @@ bind -T custom '|' pipe-pane -o 'cat >> ~/racine/hist/tmux/#h-#S-#W-#P.pipe'
 
 # Pipe le pane vers w3m
 
-bind -T custom u capture-pane \; save-buffer /tmp/tmux-buffer \; \
+bind -T custom w capture-pane \; save-buffer /tmp/tmux-buffer \; \
 	new-window -n "w3m" '$SHELL -c "w3m < /tmp/tmux-buffer"'
 
 # Lock {{{1
