@@ -384,11 +384,11 @@ keymap  iU  PEEK_LINK
 
 # quit with confirmation
 
-keymap  q   QUIT
+#keymap  q   QUIT
 
 # quit at once
 
-keymap  Q   ABORT
+keymap  q   ABORT
 
 # execute a w3m command {{{2
 
@@ -594,7 +594,7 @@ keymap  "'"   VIEW_BOOKMARK
 
 # tabs {{{2
 
-keymap  th  COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/orgmode/bookmarks.html"
+keymap  th  COMMAND "NEW_TAB ; OPEN file:///home/david/racine/refer/bookmarks/index.html"
 
 keymap  tm    TAB_MENU
 keymap  t=    TAB_MENU

@@ -185,7 +185,7 @@ alias cdfzf='cd $(fzfz)'
 
 # Arborescence {{{2
 
-alias tree='tree -C -A'
+alias t='tree -C -A'
 
 # Place {{{2
 
@@ -276,7 +276,7 @@ alias pid=process-iden
 alias sa=signal-all
 alias psi=process-signal
 
-alias t=htop
+alias ht=htop
 
 alias ts='TS_SOCKET=~/racine/run/socket/task-spooler tsp'
 alias ts-1='TS_SOCKET=~/racine/run/socket/task-spooler-1 tsp'

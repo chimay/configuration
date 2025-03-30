@@ -13,7 +13,7 @@ MAILTO=$USER
 #MAILTO=$USER@$HOST
 #MAILTO=$USER@locahost
 
-# Documentation {{{1
+# documentation {{{1
 
 # Remarque : la substitution de variable ne semble pas fonctionner
 # D’où l’utilisation du script sed-vars.zsh (~/racine/automat/sed-vars.zsh)
@@ -69,12 +69,12 @@ MAILTO=$USER
 # plus every Friday.
 
 
-# Horodatage {{{1
+# horodatage {{{1
 
 0	*/1	*	*	*	horodate.zsh &>>! ~/log/cron.log
 
 
-# Self {{{1
+# self {{{1
 
 0	10	*	*	*	update-crontab.sh &>>! ~/log/cron.log
 
@@ -82,12 +82,11 @@ MAILTO=$USER
 #*	*	*	*	*	date
 
 
-# Shell {{{1
+# shell {{{1
 
 0	11	*	*	7	compile-zsh-autoload.zsh
 
-
-# Édition {{{1
+# édition {{{1
 
 0	12	*	*	5	update-locate-db.sh ~/racine/index/filesys/locate &>>! ~/log/locate.log
 
@@ -96,7 +95,7 @@ MAILTO=$USER
 20	12	*	*	7	gen-thesaurus.sed ~/racine/site/eclats2vers/generic/grimoire/litera-05-plumier.org >! ~/racine/index/dict/spell/synonymes.txt
 30	12	*	*	7	gen-dictionnaire.sh ~/racine/index/dict/spell/synonymes.txt >! ~/racine/index/dict/spell/dictionnaire.txt
 
-# Contrôle de version {{{1
+# contrôle de version {{{1
 
 0 	13	*	*	5		hg-commit.zsh
 
@@ -104,55 +103,54 @@ MAILTO=$USER
 55 	13	*	*	6		update-version.zsh ~/racine/plugin/manager/tmux/plugins
 
 
-# Logrotate {{{1
+# logrotate {{{1
 
 0	14	*	*	5	run-logrotate.zsh journal
 10	14	*	*	5	run-logrotate.zsh irc
 
 
-# Navigation {{{1
+# navigation {{{1
 
 0	16	*	*	*	qute-history.zsh 2>>! ~/log/qute-history.log
 
 
-# Multimédia {{{1
+# multimédia {{{1
 
 30	17	*	*	6	audio-perm.zsh ~/audio
 
 
-# Nettoyage {{{1
+# nettoyage {{{1
 
 10	18	*	*	*	clean-attic.zsh
 
-# Météo {{{1
+# météo {{{1
 
 #0	19	*	*	*	run-wego.zsh 2>&1 | tee -a ~/log/wego.log
 
 #0	19	*	*	*	run-wttr-in.zsh louvain-la-neuve &>>! ~/log/wttr-in.log
 
+# notifications {{{1
 
-# Notifications {{{1
-
-# Horloge {{{2
+# horloge {{{2
 
 # */15	9-18	*	*	1-5		clocher.zsh &>>! ~/log/clocher.log
 
-# Finance {{{2
+# finance {{{2
 
 30	11	*	*/3		4,5		semaine-du-mois.zsh &>>! ~/log/semaine-mois.log
 50	15	*	*		*		fin-mois-trimestre.zsh &>>! ~/log/fin-mois-trimestre.log
 
-# Backup {{{2
+# backup {{{2
 
 0	19	*	*	0		bell.zsh notification/sauvegarde-cle-usb.ogg volume=100 &>>! ~/log/cron.log
-30	9	*	*	5		bell.zsh notification/sauvegarde-cle-usb.ogg volume=100 &>>! ~/log/cron.log
+0	19	*	*	4		bell.zsh notification/sauvegarde-cle-usb.ogg volume=100 &>>! ~/log/cron.log
 
-# Alimentation {{{2
+# alimentation {{{2
 
 0	10	*	*	*		bell.zsh notification/plat-frigo.ogg &>>! ~/log/cron.log
 0	12	*	*	1-5		bell.zsh notification/plat-chauffer.ogg &>>! ~/log/cron.log
 
-# École {{{2
+# école {{{2
 
 30	18	*	1-6,9-12	0,1,3,4		bell.zsh notification/portefeuille.ogg n=portefeuille volume=120 &>>! ~/log/cron.log
 
@@ -178,20 +176,16 @@ MAILTO=$USER
 # 20	19	*	1-6,9-12	3		bell.zsh notification/sac-piscine.ogg n=piscine volume=100 &>>! ~/log/cron.log
 # 20	15	*	1-6,9-12	4		bell.zsh notification/sac-piscine.ogg n=piscine volume=100 &>>! ~/log/cron.log
 
-# Téléphone {{{2
+# téléphone {{{2
 
 25	14	*	*	0	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
 #05	19	*	*	2	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
 
-# Dents {{{2
-
-15	20	*	*	*	bell.zsh notification/laver-les-dents.ogg &>>! ~/log/cron.log
-
-# Courses {{{2
+# courses {{{2
 
 0	19	*	*	0		bell.zsh notification/activer-points-plus.ogg volume=100 &>>! ~/log/cron.log
 
-# Anniversaires {{{2
+# anniversaires {{{2
 
 0	19	7	1	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
 0	19	27	4	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"

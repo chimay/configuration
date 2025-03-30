@@ -508,7 +508,7 @@ export RUBYLIB=~/racine/ruby/lib
 export BROWSER=w3m
 
 #export WWW_HOME="file://$HOME/racine/site/orgmode/grimoire/index.html"
-export WWW_HOME="file://$HOME/racine/refer/orgmode/bookmarks.html"
+export WWW_HOME="file://$HOME/racine/refer/bookmarks/index.html"
 
 # Gestionnaire de signets
 
