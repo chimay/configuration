@@ -407,6 +407,7 @@ alias tms=timidity-segment.sh
 alias fp=fluid-player.sh
 
 alias µ='mpv --no-video'
+alias £=mplayer
 
 alias yt=ytfzf
 
@@ -652,6 +653,7 @@ hash -d rosegarden=~/racine/musica/rosegarden
 
 hash -d aartistes=~/audio/artistes
 hash -d abook=~/audio/book
+hash -d ahtml=~/audio/html
 hash -d anotif=~/audio/bell/notification
 
 hash -d classique=~/audio/artistes/classique

@@ -66,6 +66,7 @@ source_directories:
   - racine/site
   - racine/snippet
   - racine/system
+  - racine/wiki
 
 # A required list of local or remote repositories with paths and
 # optional labels (which can be used with the --repository flag to

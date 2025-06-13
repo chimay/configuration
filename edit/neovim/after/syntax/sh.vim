@@ -28,6 +28,7 @@ hi shSpecial 	  			guifg=#872e30		guibg=default			gui=NONE
 hi shStatement	   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shTestOpr	   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shTestPattern   			guifg=#5B3C11		guibg=default			gui=NONE
+hi shTestDoubleQuote 		guifg=#5B3C11		guibg=default			gui=NONE
 hi shVariable	   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shWrapLineOperator	   	guifg=#606060		guibg=default			gui=NONE
 

@@ -89,7 +89,7 @@ hi TermCursorNC		guifg=NONE			guibg=#B21818		gui=NONE
 
 hi TabLineSel		guifg=NONE		guibg=NONE			gui=bold
 hi TabLine			guifg=#000000	guibg=#503010		gui=bold
-hi TabLineFill		guifg=NONE		guibg=#151515		gui=NONE
+hi TabLineFill		guifg=NONE		guibg=#070707		gui=NONE
 
 " Barre de statut {{{2
 

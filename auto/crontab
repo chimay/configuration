@@ -149,32 +149,39 @@ MAILTO=$USER
 
 0	10	*	*	*		bell.zsh notification/plat-frigo.ogg &>>! ~/log/cron.log
 0	12	*	*	1-5		bell.zsh notification/plat-chauffer.ogg &>>! ~/log/cron.log
+0	12	*	*	0		bell.zsh notification/pistolets.ogg volume=150 &>>! ~/log/cron.log
 
 # école {{{2
 
-30	18	*	1-6,9-12	0,1,3,4		bell.zsh notification/portefeuille.ogg n=portefeuille volume=120 &>>! ~/log/cron.log
+30	18	*	1-6,9-12	0,1,3,4		bell.zsh notification/portefeuille.ogg notification=portefeuille volume=120 &>>! ~/log/cron.log
+30	18	*	1-6,9-12	2			bell.zsh notification/prendre-telephone.ogg notification=telephone volume=120 &>>! ~/log/cron.log
 
-#5	14	*	1-6,9-12	0		bell.zsh notification/reveil.ogg n=reveil &>>! ~/log/cron.log
+#5	14	*	1-6,9-12	0		bell.zsh notification/reveil.ogg notification=reveil &>>! ~/log/cron.log
 
 # lundi, mardi, jeudi, vendredi
 
-25	12	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg n=ecole &>>! ~/log/cron.log
-55	15	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg n=ecole &>>! ~/log/cron.log
+25	12	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+55	15	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+
+20	12	*	1-6,9-12	2,4,5		bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
+50	15	*	1-6,9-12	5			bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
 
 # mercredi
 
-#25	12	*	1-6,9-12	3			bell.zsh notification/ecole-arriver.ogg n=ecole &>>! ~/log/cron.log
-15	13	*	1-6,9-12	3			bell.zsh notification/ecole-arriver.ogg n=ecole &>>! ~/log/cron.log
+#25	12	*	1-6,9-12	3			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+15	13	*	1-6,9-12	3			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+
+10	13	*	1-6,9-12	3			bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
 
 # sac de gym
 
-30	19	*	1-6,9-12	0		bell.zsh notification/sac-gym.ogg n=gymnastique volume=100 &>>! ~/log/cron.log
-30	19	*	1-6,9-12	3		bell.zsh notification/sac-gym.ogg n=gymnastique volume=100 &>>! ~/log/cron.log
+30	19	*	1-6,9-12	0		bell.zsh notification/sac-gym.ogg notification=gymnastique volume=100 &>>! ~/log/cron.log
+30	19	*	1-6,9-12	3		bell.zsh notification/sac-gym.ogg notification=gymnastique volume=100 &>>! ~/log/cron.log
 
 # piscine
 
-# 20	19	*	1-6,9-12	3		bell.zsh notification/sac-piscine.ogg n=piscine volume=100 &>>! ~/log/cron.log
-# 20	15	*	1-6,9-12	4		bell.zsh notification/sac-piscine.ogg n=piscine volume=100 &>>! ~/log/cron.log
+# 20	19	*	1-6,9-12	3		bell.zsh notification/sac-piscine.ogg notification=piscine volume=100 &>>! ~/log/cron.log
+# 20	15	*	1-6,9-12	4		bell.zsh notification/sac-piscine.ogg notification=piscine volume=100 &>>! ~/log/cron.log
 
 # téléphone {{{2
 
@@ -187,10 +194,10 @@ MAILTO=$USER
 
 # anniversaires {{{2
 
-0	19	7	1	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
-0	19	27	4	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
-0	19	8	5	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
-0	19	9	6	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
-0	19	26	6	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
-0	19	18	11	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
-0	19	17	12	*	bell.zsh notification/anniversaire.ogg n="joyeux anniversaire"
+0	19	7	1	*	bell.zsh notification/anniversaire.ogg notification="joyeux anniversaire"
+0	19	27	4	*	bell.zsh notification/anniversaire.ogg notification="joyeux anniversaire"
+0	19	8	5	*	bell.zsh notification/anniversaire.ogg notification="joyeux anniversaire"
+0	19	9	6	*	bell.zsh notification/anniversaire.ogg notification="joyeux anniversaire"
+0	19	26	6	*	bell.zsh notification/anniversaire.ogg notification="joyeux anniversaire"
+0	19	18	11	*	bell.zsh notification/anniversaire.ogg notification="joyeux anniversaire"
+0	19	17	12	*	bell.zsh notification/anniversaire.ogg notification="joyeux anniversaire"

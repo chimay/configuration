@@ -221,6 +221,33 @@ snf () {
 		"$@"
 }
 
+# sl : symbolic link {{{2
+
+sl () {
+	local target=$1
+	local link=$2
+	local overwrite
+	(( $#link == 0 )) && link=${target##*/}
+	if [ -e $link ]
+	then
+		if [ -L $link ]
+		then
+			print -n "Link already exists. Overwrite ? (y/[N]) "
+			read overwrite
+			(( $#overwrite == 0 )) && overwrite=n
+			#echo "overwrite = $overwrite"
+			[ $overwrite = y* ] || return 0
+			echo "rm -f $link"
+			rm -f $link
+		else
+			echo "File already exists but is not a link."
+			return 0
+		fi
+	fi
+	echo "ln -s $target $link"
+	ln -s $target $link
+}
+
 # swap-files : échange des noms de fichiers {{{2
 
 swap-files () {
@@ -880,14 +907,6 @@ sshx() {
 	return $code
 }
 
-# mpv {{{2
-
-mpv () {
-	cd ~/graphix/screenshot
-	command mpv "$@"
-	cd -
-}
-
 # cmd-mpv {{{2
 
 cmd-mpv () {
@@ -941,6 +960,25 @@ listen-and-clean () {
 		fi
 		(( songnumber ++ ))
 	done
+}
+
+# unlock gnome keyring {{{2
+
+# credit : https://unix.stackexchange.com/questions/602313/unlock-gnome-keyring-daemon-from-command-line
+
+function unlock-gnome-keyring()
+{
+    local keyringPass=$(zenity --password)
+    echo -n "$keyringPass" | gnome-keyring-daemon -dr --unlock
+}
+
+# lock gnome keyring {{{2
+
+# credit : https://unix.stackexchange.com/questions/602313/unlock-gnome-keyring-daemon-from-command-line
+
+function lock-gnome-keyring()
+{
+    pkill -u "$(whoami)" -f gnome-keyring-daemon
 }
 
 #  automatic functions {{{1

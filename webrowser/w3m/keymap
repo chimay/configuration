@@ -555,7 +555,7 @@ keymap  lw   MARK_WORD
 # display current page in external browser
 
 keymap  &     EXTERN 'qutebrowser'
-keymap  ep    EXTERN 'qutebrowser'
+keymap  eq    EXTERN 'qutebrowser'
 
 # display link target in external browser
 

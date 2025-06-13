@@ -56,7 +56,10 @@ set confirm=permdelete
 
 set trash
 
-set trashdir=%r/.vifm-trash,$HOME/racine/trash/vifm
+" doesnt work any more
+"set trashdir=%r/.vifm-trash,$HOME/racine/trash/vifm
+
+set trashdir=$HOME/racine/trash/vifm
 
 " Automatically resolve symbolic links on l or Enter.
 
