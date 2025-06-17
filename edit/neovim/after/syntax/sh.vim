@@ -14,6 +14,7 @@ hi shEcho					guifg=#5B3C11		guibg=default			gui=NONE
 hi shExpr		   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shExprRegion	   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shFunction	   			guifg=#5B3C11		guibg=default			gui=NONE
+hi shFunctionKey   			guifg=#872e30		guibg=default			gui=NONE
 hi shIf			   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shOption		   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shQuote		   			guifg=#5B3C11		guibg=default			gui=NONE

@@ -118,16 +118,9 @@ bspc rule -a Caja                       state=floating
 bspc rule -a "Manjaro Settings Manager" state=floating
 bspc rule -a Asunder                    state=floating
 
-bspc rule -a net-sourceforge-jnlp-runtime-Boot state=floating
-bspc rule -a sun-awt-X11-XFramePeer            state=floating
-bspc rule -a com-itfinance-core-Starter        state=floating
-bspc rule -a java-lang-Thread                  state=floating
-
-bspc rule -a neochat state=floating
-bspc rule -a quassel state=floating
-bspc rule -a Element state=floating
-
 bspc rule -a Wihotspot-gui  state=floating rectangle=964x574+476+50
+
+bspc rule -a Element state=floating
 
 # dropdown {{{2
 

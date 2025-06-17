@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # this is a simple config for herbstluftwm
 
@@ -18,18 +18,23 @@ hc emit_hook reload
 
 #xsetroot -solid '#5A8E3A'
 
-# autostart script {{{1
+# tags, aka desktops aka workspaces {{{1
 
-# in cas of restart, we need to stop some processes first
-hlwm-autostop.zsh >>! ~/log/autostop.log 2>&1
-sleep 1
-hlwm-autostart.zsh >>! ~/log/autostart.log 2>&1
+tag_names=(term visu edit system browser office artisan video game)
+
+hc rename default $tag_names[1] || true
+
+for index in {1..9}
+do
+    hc add $tag_names[$index]
+done
 
 # keybindings {{{1
 
 # unbind {{{2
 
 # remove all existing keybindings
+
 hc keyunbind --all
 
 # modifiers {{{2
@@ -42,28 +47,26 @@ hc keyunbind --all
 super=Mod4   # Use the super key as the main modifier
 hyper=Mod3   # Use the super key as the main modifier
 
-# bind {{{2
+# self {{{2
 
-# herbstluft {{{3
+#hc keybind $hyper-Shift-q quit
+#hc keybind $super-Shift-q quit
 
-hc keybind $super-Shift-q quit
-hc keybind $super-Shift-r reload
-hc keybind $super-Shift-c close
-hc keybind $super-Return spawn "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
+hc keybind $hyper-r reload
 
-# movement {{{3
+hc keybind $hyper-Shift-x close_and_remove
 
-# basic movement in tiling and floating mode
-# focusing clients
+# focus {{{2
 
 hc keybind $super-Left  focus left
 hc keybind $super-Down  focus down
 hc keybind $super-Up    focus up
 hc keybind $super-Right focus right
-hc keybind $super-h     focus left
-hc keybind $super-j     focus down
-hc keybind $super-k     focus up
-hc keybind $super-l     focus right
+
+hc keybind $super-Prior cycle -1
+hc keybind $super-Next cycle 1
+
+# movement {{{2
 
 # moving clients in tiling and floating mode
 
@@ -71,78 +74,103 @@ hc keybind $super-Shift-Left  shift left
 hc keybind $super-Shift-Down  shift down
 hc keybind $super-Shift-Up    shift up
 hc keybind $super-Shift-Right shift right
-hc keybind $super-Shift-h     shift left
-hc keybind $super-Shift-j     shift down
-hc keybind $super-Shift-k     shift up
-hc keybind $super-Shift-l     shift right
 
-# splitting frames {{{3
+hc keybind $super-Tab spawn hlwm-swap.bash down
+hc keybind $super-BackSpace spawn hlwm-swap.bash up
+hc keybind $hyper-Tab spawn hlwm-swap.bash down
+
+# splitting frames {{{2
 
 # create an empty frame at the specified direction
-hc keybind $super-u       split   bottom  0.5
-hc keybind $super-o       split   right   0.5
+
+hc keybind $hyper-h       split   bottom  0.618
+hc keybind $hyper-v       split   right   0.618
+
 # let the current frame explode into subframes
+
 hc keybind $super-Control-space split explode
 
-# resizing frames and floating clients {{{3
+# resizing frames and floating clients {{{2
 
 resizestep=0.02
-hc keybind $super-Control-h       resize left +$resizestep
-hc keybind $super-Control-j       resize down +$resizestep
-hc keybind $super-Control-k       resize up +$resizestep
-hc keybind $super-Control-l       resize right +$resizestep
-hc keybind $super-Control-Left    resize left +$resizestep
-hc keybind $super-Control-Down    resize down +$resizestep
-hc keybind $super-Control-Up      resize up +$resizestep
-hc keybind $super-Control-Right   resize right +$resizestep
 
-# tags, aka desktops {{{3
+# hc keybind $super-Control-Left    resize left +$resizestep
+# hc keybind $super-Control-Down    resize down +$resizestep
+# hc keybind $super-Control-Up      resize up +$resizestep
+# hc keybind $super-Control-Right   resize right +$resizestep
 
-#tag_names=( {1..9} )
+#hc keybind $super-Control-h       resize left +$resizestep
+#hc keybind $super-Control-j       resize down +$resizestep
+#hc keybind $super-Control-k       resize up +$resizestep
+#hc keybind $super-Control-l       resize right +$resizestep
 
-tag_names=( term visu edit system browser office artisan video game )
-tag_keys=( {1..9} 0 )
+# tags, aka desktops aka workspaces {{{2
 
-hc rename default "${tag_names[0]}" || true
-for i in "${!tag_names[@]}" ; do
-    hc add "${tag_names[$i]}"
-    key="${tag_keys[$i]}"
-    if [ -n "$key" ] ; then
-        hc keybind "$super-$key" use_index "$i"
-        hc keybind "$super-Shift-$key" move_index "$i"
-    fi
+hc keybind $hyper-Prior use_index -1
+hc keybind $hyper-Next use_index +1
+
+for index in {1..9}
+do
+	key=F$index
+	(( workspace = index - 1 ))
+	hc keybind $super-$key use_index $workspace
+	hc keybind $super-Shift-$key move_index $workspace
 done
 
-# cycle through tags {{{3
+#tag_names=( {1..9} )
+#tag_keys=( {1..9} 0 )
 
-hc keybind $super-period use_index +1 --skip-visible
-hc keybind $super-comma  use_index -1 --skip-visible
+#hc rename default "${tag_names[0]}" || true
+#for i in "${!tag_names[@]}" ; do
+    #hc add "${tag_names[$i]}"
+    #key="${tag_keys[$i]}"
+    #if [ -n "$key" ] ; then
+        #hc keybind "$super-$key" use_index "$i"
+        #hc keybind "$super-Shift-$key" move_index "$i"
+    #fi
+#done
 
-# layouting {{{3
+# layouting {{{2
 
-hc keybind $super-r remove
-hc keybind $super-s floating toggle
-hc keybind $super-f fullscreen toggle
-hc keybind $super-Shift-f set_attr clients.focus.floating toggle
+hc keybind $hyper-Shift-r remove
+
+hc keybind $hyper-f floating toggle
+
+hc keybind $hyper-z fullscreen toggle
+
+#hc keybind $super-Shift-f set_attr clients.focus.floating toggle
 hc keybind $super-Shift-d set_attr clients.focus.decorated toggle
-hc keybind $super-Shift-m set_attr clients.focus.minimized true
-hc keybind $super-Control-m jumpto last-minimized
-hc keybind $super-p pseudotile toggle
+
+hc keybind $hyper-Shift-m set_attr clients.focus.minimized true
+hc keybind $hyper-Control-m jumpto last-minimized
+
+hc keybind $hyper-n pseudotile toggle
+
 # The following cycles through the available layouts within a frame, but skips
 # layouts, if the layout change wouldn't affect the actual window positions.
 # I.e. if there are two windows within a frame, the grid layout is skipped.
-hc keybind $super-space                                                           \
+
+hc keybind $hyper-l                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
                      . cycle_layout +1 vertical horizontal max vertical grid    \
                , cycle_layout +1
 
-# focus {{{3
+# focus {{{2
 
-hc keybind $super-BackSpace   cycle_monitor
-hc keybind $super-Tab         cycle_all +1
-hc keybind $super-Shift-Tab   cycle_all -1
-hc keybind $super-c cycle
-hc keybind $super-i jumpto urgent
+#hc keybind $super-BackSpace   cycle_monitor
+#hc keybind $super-Tab         cycle_all +1
+#hc keybind $super-Shift-Tab   cycle_all -1
+
+# hc keybind $super-c cycle
+# hc keybind $super-i jumpto urgent
+
+# applications {{{2
+
+#hc keybind $super-Return spawn "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
+
+hc keybind $hyper-Return spawn xterm -ls zsh
+hc keybind $hyper-exclam spawn urxvtc
+hc keybind $hyper-dollar spawn kitty
 
 # mouse bindings {{{1
 
@@ -154,46 +182,57 @@ hc mousebind $super-Button3 resize
 
 # options {{{1
 
+hc set tabbed_max 7
+
 hc set tree_style '╾│ ├└╼─┐'
 
 # theme {{{1
 
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color '#222222cc'
-hc set frame_border_normal_color '#101010cc'
-hc set frame_bg_normal_color '#565656aa'
-hc set frame_bg_active_color '#345F0Caa'
-hc set frame_border_width 1
+
 hc set show_frame_decorations 'focused_if_multiple'
+
+hc set frame_border_active_color '#5b3c11cc'
+hc set frame_bg_active_color '#5b3c11aa'
+hc set frame_border_normal_color '#5b3c11cc'
+hc set frame_bg_normal_color '#5b3c11aa'
+
+hc set frame_border_width 1
+hc set frame_gap 4
 hc set frame_bg_transparent on
 hc set frame_transparent_width 5
-hc set frame_gap 4
 
-hc attr theme.title_height 15
+hc attr theme.title_height 0
+hc attr theme.title_depth -40
 hc attr theme.title_when always
 hc attr theme.title_font 'Dejavu Sans:pixelsize=12'  # example using Xft
 # hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
 hc attr theme.title_depth 3  # space below the title's baseline
-hc attr theme.active.color '#345F0Cef'
-hc attr theme.title_color '#ffffff'
-hc attr theme.normal.color '#323232dd'
-hc attr theme.urgent.color '#7811A1dd'
-hc attr theme.tab_color '#1F1F1Fdd'
-hc attr theme.active.tab_color '#2B4F0Add'
-hc attr theme.active.tab_outer_color '#6C8257dd'
-hc attr theme.active.tab_title_color '#ababab'
-hc attr theme.normal.title_color '#898989'
+hc attr theme.active.color '#5b3c11'
+hc attr theme.title_color '#000000'
+hc attr theme.normal.color '#5b3c11dd'
+hc attr theme.urgent.color '#5b3c11dd'
+
+hc attr theme.tab_color '#000000dd'
+hc attr theme.active.tab_color '#000000dd'
+hc attr theme.active.tab_outer_color '#5b3c11dd'
+hc attr theme.active.tab_title_color '#5b3c11'
+
+hc attr theme.normal.title_color '#5b3c11'
 hc attr theme.inner_width 1
 hc attr theme.inner_color black
 hc attr theme.border_width 3
 hc attr theme.floating.border_width 4
 hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
-hc attr theme.active.inner_color '#789161'
-hc attr theme.urgent.inner_color '#9A65B0'
-hc attr theme.normal.inner_color '#606060'
+
+hc attr theme.normal.inner_color '#5b3c11'
+hc attr theme.active.inner_color '#7b3c11'
+hc attr theme.urgent.inner_color '#9b3c11'
+
 # copy inner color to outer_color
+
 for state in active urgent normal ; do
     hc substitute C theme.${state}.inner_color \
         attr theme.${state}.outer_color C
@@ -216,9 +255,10 @@ hc unrule -F
 # focus {{{2
 
 hc rule focus=on # normally focus new clients
+
 # give focus to most common terminals
 #hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
-hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+#hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 
 # desktops {{{2
 
@@ -249,6 +289,27 @@ hc rule class=wesnoth tag=game
 
 hc rule fixedsize floating=on
 hc rule floatplacement=smart
+
+hc rule instance=zshrun class=URxvt floating=on floatplacement=center
+hc rule instance=zshrunterm class=URxvt floating=on floatplacement=center
+hc rule instance=fzf-nova class=URxvt floating=on floatplacement=center
+hc rule instance=calculatrice class=URxvt floating=on floatplacement=center
+hc rule instance=meteo class=URxvt floating=on floatplacement=center
+hc rule instance=journal class=URxvt floating=on floatplacement=center
+hc rule instance=maintenance class=URxvt floating=on floatplacement=center
+hc rule instance=multimedia class=URxvt floating=on floatplacement=center
+
+hc rule class=Pavucontrol floating=on floatplacement=center
+hc rule class=QjackCtl floating=on floatplacement=center
+
+hc rule class=zenity floating=on floatplacement=center
+hc rule class=Xfce4-appfinder floating=on floatplacement=center
+hc rule class=Pamac-manager floating=on floatplacement=center
+hc rule class=Caja floating=on floatplacement=center
+hc rule class="Manjaro Settings Manager" floating=on floatplacement=center
+hc rule class=Asunder floating=on floatplacement=center
+hc rule class=Element floating=on floatplacement=center
+
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 
 # unmanaged {{{2
@@ -272,9 +333,9 @@ hc unlock
 
 # polybar {{{2
 
-# already done within hlwm-autostart.zsh
-
 #hc spawn polybar.zsh
+
+hlwm-polybar.zsh
 
 # dzen2 {{{2
 
@@ -285,3 +346,9 @@ hc unlock
 #     # start it on each monitor
 #     "$panel" "$monitor" &
 # done
+# autostart applications {{{1
+
+# in cas of restart, we need to stop some processes first
+hlwm-autostop.zsh >>! ~/log/autostop.log 2>&1
+sleep 1
+hlwm-autostart.zsh >>! ~/log/autostart.log 2>&1

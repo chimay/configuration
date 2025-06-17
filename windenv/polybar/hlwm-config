@@ -68,7 +68,7 @@ font-0 = fixed:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=12;1
 
-modules-left = menu-apps bspwm
+modules-left = menu-apps ewmh-workspaces
 modules-center = mpd
 modules-right = pulseaudio xbacklight minuterie temperature
 
@@ -76,13 +76,9 @@ tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
-;wm-restack = i3
+;wm-restack = ewmh-workspaces
 
 ;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
@@ -119,7 +115,7 @@ font-0 = fixed:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=12;1
 
-modules-left = bspwm
+modules-left = ewmh-workspaces
 modules-center = cpu memory batterie-script meteo
 modules-right = keyboard screens powermenu date
 
@@ -127,13 +123,9 @@ tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
-;wm-restack = i3
+;wm-restack = ewmh-workspaces
 
 ;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
@@ -171,7 +163,7 @@ font-0 = fixed:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=12;1
 
-modules-left = menu-apps bspwm
+modules-left = menu-apps ewmh-workspaces
 modules-center = mpd
 modules-right = pulseaudio xbacklight minuterie temperature
 
@@ -179,16 +171,9 @@ tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
-;wm-restack = i3
+;wm-restack = ewmh-workspaces
 
 ;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -224,7 +209,7 @@ font-0 = fixed:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=12;1
 
-modules-left = bspwm
+modules-left = ewmh-workspaces
 modules-center = cpu memory batterie-script meteo
 modules-right = powermenu date
 
@@ -232,21 +217,15 @@ tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
-;wm-restack = i3
+;wm-restack = ewmh-workspaces
 
 ;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
 [module/menu-apps]
+
 type = custom/menu
 
 ; If true, <label-toggle> will be to the left of the menu items (default).
@@ -324,11 +303,13 @@ menu-4-3-exec = menu-open-0
 ;format = <label-toggle> <menu>
 
 [module/keyboard]
+
 type = custom/text
 content = Keyboard
 click-left = keyboard-layout.zsh
 
 [module/screens]
+
 type = custom/menu
 
 expand-right = true
@@ -345,6 +326,7 @@ menu-0-1 = Adapt
 menu-0-1-exec = adapt-screens.zsh
 
 [module/powermenu]
+
 type = custom/menu
 
 expand-right = true
@@ -369,15 +351,32 @@ menu-0-1-exec = rofi-deconnexion.zsh
 menu-0-2 = Ordinateur
 menu-0-2-exec = rofi-eteindre.zsh
 
-[module/bspwm]
-type = internal/bspwm
+[module/ewmh-workspaces]
 
-pin-workspaces = true
+type = internal/xworkspaces
 
-label-focused = %name%
-label-focused-foreground = #000000
-label-focused-background = #5b3c11
-label-focused-padding = 2
+scroll-up = herbstclient use_index -1 --skip-visible &
+scroll-down = herbstclient use_index +1 --skip-visible &
+
+pin-workspaces = false
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+format = <label-state>
+label-monitor = %name%
+
+label-active = %name%
+label-active-foreground = #000000
+label-active-background = #5b3c11
+label-active-underline = #5b3c11
+label-active-padding = 2
+
+;label-focused = %name%
+;label-focused-foreground = #000000
+;label-focused-background = #5b3c11
+;label-focused-underline = #5b3c11
+;label-focused-padding = 2
 
 label-occupied = %name%
 label-occupied-foreground = #5b3c11
@@ -391,10 +390,11 @@ label-urgent-padding = 2
 
 label-empty = %name%
 label-empty-foreground = #5b3c11
+label-empty-background = #000000
 label-empty-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
+format-foreground = #5b3c11
+format-background = #000000
 
 [module/xwindow]
 type = internal/xwindow

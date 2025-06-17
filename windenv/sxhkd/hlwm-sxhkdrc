@@ -81,21 +81,6 @@ hyper + equal
 
 # applications {{{1
 
-hyper + {Return, exclam, dollar}
-	{xterm -ls zsh, urxvtc, kitty}
-
-hyper + shift + Return
-	tabbed -c -n "tabbed-xterm" xterm -into
-
-hyper + t ; U
-	tabbed -c -n "tabbed-urxvtc" urxvtc -embed
-
-hyper + t ; a
-	alacritty msg create-window || alacritty
-
-hyper + t ; A
-	tabbed -c -n "tabbed-alacritty" alacritty --embed
-
 super + ctrl + section
 	run-vifm.sh
 
