@@ -485,8 +485,6 @@ let s:dont_publish = [
 	\ '\m.*qutebrowser/config*',
 	\ '\m.*bookmark*',
 	\ '\m.*quickmark*',
-	\ '\m.*autostart*',
-	\ '\m.*autostop*',
 	\ '\m.*pass-to-gpg-symmetric*',
 	\ '\m.*pass-to-age*',
 	\ '\mGrenier',
