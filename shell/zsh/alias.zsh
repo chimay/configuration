@@ -490,6 +490,10 @@ alias 4=sc-im
 
 alias we=wego
 
+# window manager {{{1
+
+alias hc=herbstclient
+
 # applications {{{1
 
 alias nautilus='nautilus --no-desktop'

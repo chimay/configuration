@@ -2,9 +2,9 @@
 
 ! setxkbmap be ; xmodmap <ce fichier>
 
-! {{{ Modificateurs
+! Modificateurs {{{1
 
-! {{{ Clear
+! Clear {{{2
 
 clear shift
 clear control
@@ -16,9 +16,7 @@ clear mod3
 clear mod4
 clear mod5
 
-! }}}
-
-! {{{ Codes
+! Codes {{{2
 
 keycode   9 = Caps_Lock NoSymbol Caps_Lock
 
@@ -38,9 +36,7 @@ keycode 135 = Hyper_R NoSymbol Hyper_R
 
 keycode 108 = ISO_Level3_Shift NoSymbol ISO_Level3_Shift
 
-! }}}
-
-! {{{ Groupes
+! Groupes {{{2
 
 add Shift = Shift_L Shift_R
 
@@ -60,11 +56,7 @@ add mod3 = Hyper_R
 
 add mod5 = ISO_Level3_Shift Mode_switch
 
-! }}}
-
-! }}}
-
-! {{{ Delete, Insert, Print, Sys_Req, Scroll_Lock, Pause, Break
+! Delete, Insert, Print, Sys_Req, Scroll_Lock, Pause, Break {{{1
 
 ! Scroll Lock
 
@@ -84,9 +76,7 @@ keycode  78 = rightsinglequotemark at percent bracketright
 
 keycode 107 = Multi_key Sys_Req Multi_key Sys_Req
 
-! }}}
-
-! {{{ Chiffres
+! Chiffres {{{1
 
 ! keysym twosuperior = rightsinglequotemark grave rightsinglequotemark grave U2014
 
@@ -95,25 +85,17 @@ keysym twosuperior = asciitilde grave asciitilde grave U2014
 keycode  13 = apostrophe 4 apostrophe 4 rightsinglequotemark dollar onequarter
 keycode  21 = minus underscore minus underscore parenright dead_ogonek parenright
 
-! }}}
-
 ! Lettres {{{1
 
 keycode  54 = c C c C Multi_key copyright cent
 
-! }}}1
-
-! {{{ Droite des lettres
+! Droite des lettres {{{1
 
 keycode  34 = asciicircum dead_diaeresis asciicircum dead_diaeresis bracketleft dead_abovering bracketleft
 ! keycode  35 = dollar sterling dollar sterling bracketright dead_macron bracketright
 ! keycode  51 = asterisk mu asterisk mu exclam dead_breve exclam
 keycode  61 = equal plus equal plus asciitilde dead_abovedot asciitilde
 
-! }}}
-
-! {{{ Pavé numérique
+! Pavé numérique {{{1
 
 keycode  86 = plus plus plus plus plus plus XF86Next_VMode
-
-! }}}
