@@ -54,6 +54,7 @@ hyper=Mod3   # Use the super key as the main modifier
 
 hc keybind $hyper-r reload
 
+hc keybind $hyper-BackSpace close_and_remove
 hc keybind $hyper-Shift-x close_and_remove
 
 # focus {{{2
@@ -63,21 +64,23 @@ hc keybind $super-Down  focus down
 hc keybind $super-Up    focus up
 hc keybind $super-Right focus right
 
-hc keybind $super-Prior cycle -1
-hc keybind $super-Next cycle 1
+hc keybind $super-Tab cycle +1
+hc keybind $super-BackSpace cycle -1
 
 # movement {{{2
 
 # moving clients in tiling and floating mode
 
-hc keybind $super-Shift-Left  shift left
-hc keybind $super-Shift-Down  shift down
-hc keybind $super-Shift-Up    shift up
-hc keybind $super-Shift-Right shift right
+# with the option focus_crosses_monitor_boundaries,
+# can also move the window to another monitor
 
-hc keybind $super-Tab spawn hlwm-swap.bash down
-hc keybind $super-BackSpace spawn hlwm-swap.bash up
-hc keybind $hyper-Tab spawn hlwm-swap.bash down
+hc keybind $hyper-Left  shift left
+hc keybind $hyper-Down  shift down
+hc keybind $hyper-Up    shift up
+hc keybind $hyper-Right shift right
+
+hc keybind $super-Next spawn hlwm-swap.bash down
+hc keybind $super-Prior spawn hlwm-swap.bash up
 
 # splitting frames {{{2
 
@@ -94,15 +97,19 @@ hc keybind $super-Control-space split explode
 
 resizestep=0.02
 
-# hc keybind $super-Control-Left    resize left +$resizestep
-# hc keybind $super-Control-Down    resize down +$resizestep
-# hc keybind $super-Control-Up      resize up +$resizestep
-# hc keybind $super-Control-Right   resize right +$resizestep
+hc keybind $super-Control-Left    resize left +$resizestep
+hc keybind $super-Control-Down    resize down +$resizestep
+hc keybind $super-Control-Up      resize up +$resizestep
+hc keybind $super-Control-Right   resize right +$resizestep
 
-#hc keybind $super-Control-h       resize left +$resizestep
-#hc keybind $super-Control-j       resize down +$resizestep
-#hc keybind $super-Control-k       resize up +$resizestep
-#hc keybind $super-Control-l       resize right +$resizestep
+# focus {{{2
+
+#hc keybind $super-BackSpace   cycle_monitor
+#hc keybind $super-Tab         cycle_all +1
+#hc keybind $super-Shift-Tab   cycle_all -1
+
+#hc keybind $super-c cycle
+#hc keybind $super-i jumpto urgent
 
 # tags, aka desktops aka workspaces {{{2
 
@@ -132,10 +139,13 @@ done
 
 # layouting {{{2
 
-hc keybind $hyper-Shift-r remove
+hc keybind $hyper-Delete remove
 
 hc keybind $hyper-f floating toggle
 
+hc keybind $hyper-m chain , set_layout max , attr theme.title_height 13
+hc keybind $hyper-g chain , set_layout grid , attr theme.title_height 0
+hc keybind $hyper-Shift-m spawn hlwm-maximize.sh
 hc keybind $hyper-z fullscreen toggle
 
 #hc keybind $super-Shift-f set_attr clients.focus.floating toggle
@@ -144,25 +154,38 @@ hc keybind $super-Shift-d set_attr clients.focus.decorated toggle
 hc keybind $hyper-Shift-m set_attr clients.focus.minimized true
 hc keybind $hyper-Control-m jumpto last-minimized
 
-hc keybind $hyper-n pseudotile toggle
+hc keybind $hyper-p pseudotile toggle
+
+hc keybind $hyper-l cycle_layout +1 horizontal vertical grid max
 
 # The following cycles through the available layouts within a frame, but skips
 # layouts, if the layout change wouldn't affect the actual window positions.
 # I.e. if there are two windows within a frame, the grid layout is skipped.
 
-hc keybind $hyper-l                                                           \
-            or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
-               , cycle_layout +1
+# hc keybind $hyper-Shift-l                                                       \
+#             or , and . compare tags.focus.curframe_wcount = 2                   \
+#                      . cycle_layout +1 vertical horizontal max vertical grid    \
+#                , cycle_layout +1
 
-# focus {{{2
+# monitors {{{2
 
-#hc keybind $super-BackSpace   cycle_monitor
-#hc keybind $super-Tab         cycle_all +1
-#hc keybind $super-Shift-Tab   cycle_all -1
+# -- to move a window to another monitor,
+# -- see the movement keybindings
+#hc keybind $hyper-Left chain , shift_to_monitor -l , focus_monitor -l
+#hc keybind $hyper-Right chain , shift_to_monitor -r , focus_monitor -r
 
-# hc keybind $super-c cycle
-# hc keybind $super-i jumpto urgent
+hc keybind $super-End focus_monitor -1
+hc keybind $super-Home focus_monitor +1
+
+hc keybind $super-Shift-Left focus_monitor -l
+hc keybind $super-Shift-Right focus_monitor -r
+
+hc keybind $hyper-Tab use_previous
+hc keybind $hyper-asciicircum use_previous
+
+# scratchpad {{{2
+
+hc keybind Shift-F12 spawn hlwm-scratchpad.sh
 
 # applications {{{2
 
@@ -182,7 +205,16 @@ hc mousebind $super-Button3 resize
 
 # options {{{1
 
+# layout {{{2
+
 hc set tabbed_max 7
+
+# monitors {{{2
+
+hc set auto_detect_monitors 1
+hc set focus_crosses_monitor_boundaries 1
+
+# miscellaneous {{{2
 
 hc set tree_style '╾│ ├└╼─┐'
 
@@ -191,45 +223,65 @@ hc set tree_style '╾│ ├└╼─┐'
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 
+hc set frame_gap 5
 hc set show_frame_decorations 'focused_if_multiple'
 
-hc set frame_border_active_color '#5b3c11cc'
-hc set frame_bg_active_color '#5b3c11aa'
-hc set frame_border_normal_color '#5b3c11cc'
-hc set frame_bg_normal_color '#5b3c11aa'
+hc set frame_border_active_color '#7b3c11cc'
+hc set frame_bg_active_color '#000000aa'
+hc set frame_border_normal_color '#3b3c11cc'
+hc set frame_bg_normal_color '#000000aa'
 
 hc set frame_border_width 1
-hc set frame_gap 4
 hc set frame_bg_transparent on
 hc set frame_transparent_width 5
+hc set frame_padding 0
+hc set smart_frame_surroundings on
 
-hc attr theme.title_height 0
-hc attr theme.title_depth -40
-hc attr theme.title_when always
-hc attr theme.title_font 'Dejavu Sans:pixelsize=12'  # example using Xft
-# hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
-hc attr theme.title_depth 3  # space below the title's baseline
-hc attr theme.active.color '#5b3c11'
-hc attr theme.title_color '#000000'
-hc attr theme.normal.color '#5b3c11dd'
+hc set window_gap 0
+hc set mouse_recenter_gap 0
+hc set smart_window_surroundings off
+
+# alias for theme.active.color
+#hc set window_border_active_color '#7b3c11cc'
+# alias for theme.normal.color
+#hc set window_border_normal_color '#5b3c11cc'
+
+hc attr theme.active.color '#000000'
 hc attr theme.urgent.color '#5b3c11dd'
+hc attr theme.normal.color '#5b3c11dd'
 
-hc attr theme.tab_color '#000000dd'
+hc attr theme.active.inner_color '#7b3c11'
+hc attr theme.normal.inner_color '#5b3c11'
+hc attr theme.urgent.inner_color '#872e30'
+
+hc attr theme.inner_color '#5b3c11'
+hc attr theme.outer_color '#5b3c11'
+hc attr theme.background_color '#000000'
+
+hc attr theme.inner_width 1
+hc attr theme.border_width 3
+
+hc attr theme.active.title_color '#5b3c11'
+hc attr theme.normal.title_color '#000000'
+hc attr theme.title_height 0
+hc attr theme.title_depth 0
+hc attr theme.title_when always
+hc attr theme.active.title_font 'Dejavu Sans:pixelsize=12 Bold'  # example using Xft
+hc attr theme.title_font 'Dejavu Sans:pixelsize=12 Bold'  # example using Xft
+#hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+hc attr theme.title_depth 3  # space below the title's baseline
+
+hc attr theme.active.tab_title_color '#5b3c11'
+hc attr theme.tab_title_color '#000000'
 hc attr theme.active.tab_color '#000000dd'
 hc attr theme.active.tab_outer_color '#5b3c11dd'
-hc attr theme.active.tab_title_color '#5b3c11'
+hc attr theme.tab_color '#5b3c11dd'
 
-hc attr theme.normal.title_color '#5b3c11'
-hc attr theme.inner_width 1
-hc attr theme.inner_color black
-hc attr theme.border_width 3
+hc attr theme.tiling.outer_width 1
+
 hc attr theme.floating.border_width 4
 hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
-
-hc attr theme.normal.inner_color '#5b3c11'
-hc attr theme.active.inner_color '#7b3c11'
-hc attr theme.urgent.inner_color '#9b3c11'
 
 # copy inner color to outer_color
 
@@ -237,14 +289,6 @@ for state in active urgent normal ; do
     hc substitute C theme.${state}.inner_color \
         attr theme.${state}.outer_color C
 done
-hc attr theme.tiling.outer_width 1
-hc attr theme.background_color '#141414'
-
-hc set window_gap 0
-hc set frame_padding 0
-hc set smart_window_surroundings off
-hc set smart_frame_surroundings on
-hc set mouse_recenter_gap 0
 
 # rules {{{1
 
@@ -254,7 +298,8 @@ hc unrule -F
 
 # focus {{{2
 
-hc rule focus=on # normally focus new clients
+# normally focus new clients
+hc rule focus=on
 
 # give focus to most common terminals
 #hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
@@ -288,7 +333,7 @@ hc rule class=wesnoth tag=game
 # floating {{{2
 
 hc rule fixedsize floating=on
-hc rule floatplacement=smart
+hc rule floatplacement=center
 
 hc rule instance=zshrun class=URxvt floating=on floatplacement=center
 hc rule instance=zshrunterm class=URxvt floating=on floatplacement=center
@@ -312,9 +357,25 @@ hc rule class=Element floating=on floatplacement=center
 
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 
+# dropdown {{{2
+
+hc rule instance=kitty-dropdown floating=on floatplacement=center
+hc rule instance=urxvt-dropdown floating=on floatplacement=center
+hc rule instance=calc-dropdown floating=on floatplacement=center
+
 # unmanaged {{{2
 
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+# monitors {{{1
+
+# do multi monitor setup here, e.g.:
+
+#hc set_monitors 1280x1024+0+0 1280x1024+1280+0
+
+# or simply:
+
+hc detect_monitors
 
 # unlock {{{1
 
@@ -322,18 +383,13 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
 hc unlock
 
-# monitors {{{1
-
-# do multi monitor setup here, e.g.:
-# hc set_monitors 1280x1024+0+0 1280x1024+1280+0
-# or simply:
-# hc detect_monitors
-
 # panel {{{1
 
 # polybar {{{2
 
-#hc spawn polybar.zsh
+# must be launched before services that need system tray
+
+#hc spawn hlwm-polybar.zsh
 
 hlwm-polybar.zsh
 

@@ -64,20 +64,21 @@ hyper + p ; r
 
 # dropdown {{{1
 
-hyper + ugrave
-	kitty-dropdown.zsh
+# does not work
+# replace by herbstluftwm q3terminal script,
+# renamed as hlwm-sratchpad.sh
 
-hyper + asterisk
-	kitty-dropdown.zsh
+#hyper + ugrave
+	#tdrop --name=kitty-dropdown kitty
 
-hyper + mu
-	urxvtc-dropdown.zsh
+#hyper + mu
+	#tdrop --name=urxvt-dropdown urxvtc
 
-shift + F12
-	urxvtc-dropdown.zsh
+#shift + F12
+	#tdrop --name=urxvt-dropdown urxvtc
 
-hyper + equal
-	urxvtc-calculator.zsh
+#hyper + equal
+	#tdrop --name=calc-dropdown urxvtc -e calc
 
 # applications {{{1
 
