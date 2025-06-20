@@ -20,6 +20,9 @@ hc emit_hook reload
 
 # tags, aka desktops aka workspaces {{{1
 
+echo tags names
+echo
+
 tag_names=(term visu edit system browser office artisan video game)
 
 hc rename default $tag_names[1] || true
@@ -30,6 +33,9 @@ do
 done
 
 # keybindings {{{1
+
+echo keybindings
+echo
 
 # unbind {{{2
 
@@ -64,8 +70,21 @@ hc keybind $super-Down  focus down
 hc keybind $super-Up    focus up
 hc keybind $super-Right focus right
 
-hc keybind $super-Tab cycle +1
-hc keybind $super-BackSpace cycle -1
+# hc keybind $super-Tab cycle +1
+# hc keybind $super-BackSpace cycle -1
+
+# if more than one window in current frame, cycle them
+# else, go to previous workspace aka tag
+
+hc keybind $super-Tab                                           \
+            or , and . compare tags.focus.curframe_wcount ge 2  \
+                     . cycle +1                                 \
+               , use_previous
+
+hc keybind $super-BackSpace                                     \
+            or , and . compare tags.focus.curframe_wcount ge 2  \
+                     . cycle -1                                 \
+               , use_previous
 
 # movement {{{2
 
@@ -141,13 +160,12 @@ done
 
 hc keybind $hyper-Delete remove
 
-hc keybind $hyper-f floating toggle
-
-hc keybind $hyper-m chain , set_layout max , attr theme.title_height 13
+hc keybind $hyper-m chain , set_layout max , attr theme.title_height 17
 hc keybind $hyper-g chain , set_layout grid , attr theme.title_height 0
-hc keybind $hyper-Shift-m spawn hlwm-maximize.sh
-hc keybind $hyper-z fullscreen toggle
+hc keybind $hyper-z spawn hlwm-maximize.sh
+hc keybind $hyper-f fullscreen toggle
 
+hc keybind $hyper-Shift-f floating toggle
 #hc keybind $super-Shift-f set_attr clients.focus.floating toggle
 hc keybind $super-Shift-d set_attr clients.focus.decorated toggle
 
@@ -195,7 +213,17 @@ hc keybind $hyper-Return spawn xterm -ls zsh
 hc keybind $hyper-exclam spawn urxvtc
 hc keybind $hyper-dollar spawn kitty
 
+# theme {{{2
+
+hc keybind $hyper-t                                          \
+            or , and . compare theme.title_height = 0        \
+                     . attr theme.title_height 17            \
+               , attr theme.title_height 0
+
 # mouse bindings {{{1
+
+echo mouse bindings
+echo
 
 hc mouseunbind --all
 
@@ -204,6 +232,9 @@ hc mousebind $super-Button2 zoom
 hc mousebind $super-Button3 resize
 
 # options {{{1
+
+echo options
+echo
 
 # layout {{{2
 
@@ -220,13 +251,16 @@ hc set tree_style '╾│ ├└╼─┐'
 
 # theme {{{1
 
+echo theme
+echo
+
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 
 hc set frame_gap 5
 hc set show_frame_decorations 'focused_if_multiple'
 
-hc set frame_border_active_color '#7b3c11cc'
+hc set frame_border_active_color '#9b3c11cc'
 hc set frame_bg_active_color '#000000aa'
 hc set frame_border_normal_color '#3b3c11cc'
 hc set frame_bg_normal_color '#000000aa'
@@ -242,16 +276,31 @@ hc set mouse_recenter_gap 0
 hc set smart_window_surroundings off
 
 # alias for theme.active.color
-#hc set window_border_active_color '#7b3c11cc'
+#hc set window_border_active_color '#9b3c11cc'
 # alias for theme.normal.color
 #hc set window_border_normal_color '#5b3c11cc'
 
+hc attr theme.normal.color '#000000dd'
 hc attr theme.active.color '#000000'
 hc attr theme.urgent.color '#5b3c11dd'
-hc attr theme.normal.color '#5b3c11dd'
 
-hc attr theme.active.inner_color '#7b3c11'
+hc attr theme.normal.title_color '#5b3c11'
+hc attr theme.active.title_color '#9b3c11'
+hc attr theme.title_height 0
+hc attr theme.title_depth 0
+hc attr theme.title_when always
+hc attr theme.active.title_font 'Dejavu Sans:pixelsize=15 Bold'
+hc attr theme.title_font 'Dejavu Sans:pixelsize=15 Bold'
+#hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+hc attr theme.title_depth 3  # space below the title's baseline
+
+hc attr theme.active.tab_title_color '#9b3c11'
+hc attr theme.tab_title_color '#5b3c11'
+hc attr theme.active.tab_color '#000000'
+hc attr theme.tab_color '#121212'
+
 hc attr theme.normal.inner_color '#5b3c11'
+hc attr theme.active.inner_color '#8b3c11'
 hc attr theme.urgent.inner_color '#872e30'
 
 hc attr theme.inner_color '#5b3c11'
@@ -261,21 +310,7 @@ hc attr theme.background_color '#000000'
 hc attr theme.inner_width 1
 hc attr theme.border_width 3
 
-hc attr theme.active.title_color '#5b3c11'
-hc attr theme.normal.title_color '#000000'
-hc attr theme.title_height 0
-hc attr theme.title_depth 0
-hc attr theme.title_when always
-hc attr theme.active.title_font 'Dejavu Sans:pixelsize=12 Bold'  # example using Xft
-hc attr theme.title_font 'Dejavu Sans:pixelsize=12 Bold'  # example using Xft
-#hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
-hc attr theme.title_depth 3  # space below the title's baseline
-
-hc attr theme.active.tab_title_color '#5b3c11'
-hc attr theme.tab_title_color '#000000'
-hc attr theme.active.tab_color '#000000dd'
 hc attr theme.active.tab_outer_color '#5b3c11dd'
-hc attr theme.tab_color '#5b3c11dd'
 
 hc attr theme.tiling.outer_width 1
 
@@ -291,6 +326,9 @@ for state in active urgent normal ; do
 done
 
 # rules {{{1
+
+echo rules
+echo
 
 # unrule all {{{2
 
@@ -369,6 +407,9 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
 # monitors {{{1
 
+echo monitors
+echo
+
 # do multi monitor setup here, e.g.:
 
 #hc set_monitors 1280x1024+0+0 1280x1024+1280+0
@@ -383,7 +424,10 @@ hc detect_monitors
 
 hc unlock
 
-# panel {{{1
+# panels {{{1
+
+echo panels
+echo
 
 # polybar {{{2
 
@@ -405,6 +449,15 @@ hlwm-polybar.zsh
 # autostart applications {{{1
 
 # in cas of restart, we need to stop some processes first
+
+echo autostop
+echo
+
 hlwm-autostop.zsh >>! ~/log/autostop.log 2>&1
+
 sleep 1
+
+echo autostart
+echo
+
 hlwm-autostart.zsh >>! ~/log/autostart.log 2>&1

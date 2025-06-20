@@ -102,7 +102,6 @@ MAILTO=$USER
 50	13	*	*	6		update-version.zsh ~/racine/plugin/source
 55 	13	*	*	6		update-version.zsh ~/racine/plugin/manager/tmux/plugins
 
-
 # logrotate {{{1
 
 0	14	*	*	5	run-logrotate.zsh journal
