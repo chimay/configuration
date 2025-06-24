@@ -916,6 +916,10 @@ bindkey '\eC' capitalize-word
 
 # voir aussi <url:zshenv#tn=FZF_DEFAULT_OPTS>
 
+# mcfly {{{1
+
+#eval "$(mcfly init zsh)"
+
 # fzf tab completion {{{1
 
 #source ~/racine/shell/source/fzf-zsh-completion.sh

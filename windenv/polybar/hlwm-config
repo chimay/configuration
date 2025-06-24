@@ -70,15 +70,7 @@ font-2 = siji:pixelsize=12;1
 
 modules-left = menu-apps ewmh-workspaces
 modules-center = mpd
-modules-right = pulseaudio xbacklight minuterie temperature
-
-tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
-
-;wm-restack = ewmh-workspaces
-
-;override-redirect = true
+modules-right = pulseaudio xbacklight minuterie temperature tray
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -116,107 +108,15 @@ modules-left = ewmh-workspaces
 modules-center = cpu memory batterie-script meteo
 modules-right = keyboard screens powermenu date
 
-tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
-
-;wm-restack = ewmh-workspaces
-
-;override-redirect = true
-
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[bar/superieur_hdmi]
-enable-ipc = true
-;monitor = ${env:MONITOR:HDMI-1}
-monitor = HDMI1
-width = 95%
-height = 30
-offset-x = 2%
-;offset-y = 1%
-radius = 6.0
-fixed-center = false
+[module/tray]
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+type = internal/tray
 
-line-size = 3
-line-color = #f00
-
-border-size = 4
-border-color = #00000000
-
-padding-left = 0
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = fixed:pixelsize=12;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=12;1
-
-modules-left = menu-apps ewmh-workspaces
-modules-center = mpd
-modules-right = pulseaudio xbacklight minuterie temperature
-
-tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
-
-;wm-restack = ewmh-workspaces
-
-;override-redirect = true
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-[bar/inferieur_hdmi]
-enable-ipc = true
-bottom = true
-;monitor = ${env:MONITOR:HDMI-1}
-monitor = HDMI1
-width = 95%
-height = 30
-offset-x = 2%
-;offset-y = 1%
-radius = 6.0
-fixed-center = false
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-line-size = 3
-line-color = #f00
-
-border-size = 4
-border-color = #00000000
-
-padding-left = 0
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = fixed:pixelsize=12;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=12;1
-
-modules-left = ewmh-workspaces
-modules-center = cpu memory batterie-script meteo
-modules-right = powermenu date
-
-tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
-
-;wm-restack = ewmh-workspaces
-
-;override-redirect = true
-
-cursor-click = pointer
-cursor-scroll = ns-resize
+;format-margin = 8px
+tray-spacing = 8px
 
 [module/menu-apps]
 

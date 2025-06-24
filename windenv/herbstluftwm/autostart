@@ -23,7 +23,7 @@ hc emit_hook reload
 echo tags names
 echo
 
-tag_names=(term visu edit system browser office artisan video game)
+tag_names=(term view edit system browser office artisan video game)
 
 hc rename default $tag_names[1] || true
 
@@ -59,6 +59,7 @@ hyper=Mod3   # Use the super key as the main modifier
 #hc keybind $super-Shift-q quit
 
 hc keybind $hyper-r reload
+hc keybind $hyper-Shift-e wmexec
 
 hc keybind $hyper-BackSpace close_and_remove
 hc keybind $hyper-Shift-x close_and_remove
@@ -69,9 +70,6 @@ hc keybind $super-Left  focus left
 hc keybind $super-Down  focus down
 hc keybind $super-Up    focus up
 hc keybind $super-Right focus right
-
-# hc keybind $super-Tab cycle +1
-# hc keybind $super-BackSpace cycle -1
 
 # if more than one window in current frame, cycle them
 # else, go to previous workspace aka tag
@@ -86,6 +84,18 @@ hc keybind $super-BackSpace                                     \
                      . cycle -1                                 \
                , use_previous
 
+hc keybind $hyper-Tab use_previous
+hc keybind $hyper-asciicircum use_previous
+
+# hc keybind $super-Tab cycle +1
+# hc keybind $super-BackSpace cycle -1
+
+#hc keybind $super-Tab         cycle_all +1
+#hc keybind $super-Shift-Tab   cycle_all -1
+
+#hc keybind $super-c cycle
+#hc keybind $super-i jumpto urgent
+
 # movement {{{2
 
 # moving clients in tiling and floating mode
@@ -97,6 +107,11 @@ hc keybind $hyper-Left  shift left
 hc keybind $hyper-Down  shift down
 hc keybind $hyper-Up    shift up
 hc keybind $hyper-Right shift right
+
+hc keybind $super-Shift-Left  shift_edge left
+hc keybind $super-Shift-Down  shift_edge down
+hc keybind $super-Shift-Up    shift_edge up
+hc keybind $super-Shift-Right shift_edge right
 
 hc keybind $super-Next spawn hlwm-swap.bash down
 hc keybind $super-Prior spawn hlwm-swap.bash up
@@ -121,19 +136,10 @@ hc keybind $super-Control-Down    resize down +$resizestep
 hc keybind $super-Control-Up      resize up +$resizestep
 hc keybind $super-Control-Right   resize right +$resizestep
 
-# focus {{{2
-
-#hc keybind $super-BackSpace   cycle_monitor
-#hc keybind $super-Tab         cycle_all +1
-#hc keybind $super-Shift-Tab   cycle_all -1
-
-#hc keybind $super-c cycle
-#hc keybind $super-i jumpto urgent
-
 # tags, aka desktops aka workspaces {{{2
 
-hc keybind $hyper-Prior use_index -1
-hc keybind $hyper-Next use_index +1
+hc keybind $hyper-Prior use_index -1 --skip-visible
+hc keybind $hyper-Next use_index +1 --skip-visible
 
 for index in {1..9}
 do
@@ -169,8 +175,8 @@ hc keybind $hyper-Shift-f floating toggle
 #hc keybind $super-Shift-f set_attr clients.focus.floating toggle
 hc keybind $super-Shift-d set_attr clients.focus.decorated toggle
 
-hc keybind $hyper-Shift-m set_attr clients.focus.minimized true
-hc keybind $hyper-Control-m jumpto last-minimized
+hc keybind $hyper-ugrave set_attr clients.focus.minimized true
+hc keybind $hyper-mu jumpto last-minimized
 
 hc keybind $hyper-p pseudotile toggle
 
@@ -195,11 +201,10 @@ hc keybind $hyper-l cycle_layout +1 horizontal vertical grid max
 hc keybind $super-End focus_monitor -1
 hc keybind $super-Home focus_monitor +1
 
-hc keybind $super-Shift-Left focus_monitor -l
-hc keybind $super-Shift-Right focus_monitor -r
+#hc keybind $super-Shift-Left focus_monitor -l
+#hc keybind $super-Shift-Right focus_monitor -r
 
-hc keybind $hyper-Tab use_previous
-hc keybind $hyper-asciicircum use_previous
+#hc keybind $super-BackSpace   cycle_monitor
 
 # scratchpad {{{2
 
@@ -242,8 +247,12 @@ hc set tabbed_max 7
 
 # monitors {{{2
 
-hc set auto_detect_monitors 1
-hc set focus_crosses_monitor_boundaries 1
+hc set auto_detect_monitors true
+hc set focus_crosses_monitor_boundaries true
+
+# windows {{{2
+
+hc set focus_follows_mouse true
 
 # miscellaneous {{{2
 
@@ -284,6 +293,7 @@ hc attr theme.normal.color '#000000dd'
 hc attr theme.active.color '#000000'
 hc attr theme.urgent.color '#5b3c11dd'
 
+hc attr theme.title_align center
 hc attr theme.normal.title_color '#5b3c11'
 hc attr theme.active.title_color '#9b3c11'
 hc attr theme.title_height 0
@@ -297,7 +307,7 @@ hc attr theme.title_depth 3  # space below the title's baseline
 hc attr theme.active.tab_title_color '#9b3c11'
 hc attr theme.tab_title_color '#5b3c11'
 hc attr theme.active.tab_color '#000000'
-hc attr theme.tab_color '#121212'
+hc attr theme.tab_color '#010101'
 
 hc attr theme.normal.inner_color '#5b3c11'
 hc attr theme.active.inner_color '#8b3c11'
@@ -347,11 +357,11 @@ hc rule focus=on
 
 #hc rule class=XTerm tag=term # move all xterms to tag 3
 
-hc rule class=Zathura tag=visu
-hc rule class=Apvlv tag=visu
-hc rule class=feh tag=visu
-hc rule class=sxiv tag=visu
-hc rule class=vimiv tag=visu
+hc rule class=Zathura tag=view
+hc rule class=Apvlv tag=view
+hc rule class=feh tag=view
+hc rule class=Sxiv tag=view
+hc rule class=vimiv tag=view
 
 hc rule class=nvim-qt tag=edit
 
@@ -455,7 +465,10 @@ echo
 
 hlwm-autostop.zsh >>! ~/log/autostop.log 2>&1
 
-sleep 1
+echo sleep 5
+echo
+
+sleep 5
 
 echo autostart
 echo

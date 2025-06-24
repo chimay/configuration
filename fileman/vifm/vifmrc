@@ -794,7 +794,7 @@ nnoremap S :invert o<cr>
 nnoremap µ :view<cr>
 vnoremap µ :view<cr>gv
 
-" Focus sur les fichies <-> le panneau de visualisation
+" Focus sur les fichiers <-> le panneau de visualisation
 
 nnoremap % <s-tab>
 nnoremap <bs> <s-tab>
@@ -966,7 +966,7 @@ nnoremap <m-l> :link<cr>
 
 " Medias amovibles
 
-nnoremap <m-i> :media<cr>
+"nnoremap <m-i> :media<cr>
 
 " Papier peint
 

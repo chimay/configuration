@@ -227,6 +227,10 @@ sl () {
 	local target=$1
 	local link=$2
 	local overwrite
+	(( $#target == 0 )) && {
+		echo "Usage : sl target link"
+		return 0
+	}
 	(( $#link == 0 )) && link=${target##*/}
 	if [ -e $link ]
 	then
