@@ -84,7 +84,6 @@ hc keybind $super-BackSpace                                     \
                      . cycle -1                                 \
                , use_previous
 
-hc keybind $hyper-Tab use_previous
 hc keybind $hyper-asciicircum use_previous
 
 # hc keybind $super-Tab cycle +1
@@ -166,17 +165,33 @@ done
 
 hc keybind $hyper-Delete remove
 
-hc keybind $hyper-m chain , set_layout max , attr theme.title_height 17
-hc keybind $hyper-g chain , set_layout grid , attr theme.title_height 0
-hc keybind $hyper-z spawn hlwm-maximize.sh
-hc keybind $hyper-f fullscreen toggle
+# toggle grid <-> max = tab layou
+# max layout displaye windows as tabs when window titles height is > 0
 
-hc keybind $hyper-Shift-f floating toggle
+hc keybind $hyper-Tab                                                           \
+            or , and . compare tags.focus.tiling.focused_frame.algorithm = max  \
+                     . chain - set_layout grid - attr theme.title_height 0      \
+               , chain - set_layout max - attr theme.title_height 17
+
+hc keybind $hyper-i                                                             \
+            or , and . compare tags.focus.tiling.focused_frame.algorithm = max  \
+                     . chain - set_layout grid - attr theme.title_height 0      \
+               , chain - set_layout max - attr theme.title_height 17
+
+# toggle maximize over all the frames of the monitor, but don't overlap the panel(s)
+hc keybind $hyper-m spawn hlwm-maximize.sh
+# complete fullscreen
+hc keybind $hyper-z fullscreen toggle
+
+hc keybind $hyper-f floating toggle
 #hc keybind $super-Shift-f set_attr clients.focus.floating toggle
-hc keybind $super-Shift-d set_attr clients.focus.decorated toggle
+hc keybind $hyper-d set_attr clients.focus.decorated toggle
 
 hc keybind $hyper-ugrave set_attr clients.focus.minimized true
 hc keybind $hyper-mu jumpto last-minimized
+
+hc keybind $super-Control-BackSpace set_attr clients.focus.minimized true
+hc keybind $super-Control-Tab jumpto last-minimized
 
 hc keybind $hyper-p pseudotile toggle
 
