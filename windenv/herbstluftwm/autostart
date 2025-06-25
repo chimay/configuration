@@ -27,7 +27,7 @@ tag_names=(term view edit system browser office artisan video game)
 
 hc rename default $tag_names[1] || true
 
-for index in {1..9}
+for index in {2..9}
 do
     hc add $tag_names[$index]
 done
@@ -115,18 +115,22 @@ hc keybind $super-Shift-Right shift_edge right
 hc keybind $super-Next spawn hlwm-swap.bash down
 hc keybind $super-Prior spawn hlwm-swap.bash up
 
-# splitting frames {{{2
+# frames {{{2
 
 # create an empty frame at the specified direction
 
 hc keybind $hyper-h       split   bottom  0.618
 hc keybind $hyper-v       split   right   0.618
 
+# remove current frame
+
+hc keybind $hyper-Delete remove
+
 # let the current frame explode into subframes
 
 hc keybind $super-Control-space split explode
 
-# resizing frames and floating clients {{{2
+# resizing frames and floating clients
 
 resizestep=0.02
 
@@ -135,37 +139,14 @@ hc keybind $super-Control-Down    resize down +$resizestep
 hc keybind $super-Control-Up      resize up +$resizestep
 hc keybind $super-Control-Right   resize right +$resizestep
 
-# tags, aka desktops aka workspaces {{{2
-
-hc keybind $hyper-Prior use_index -1 --skip-visible
-hc keybind $hyper-Next use_index +1 --skip-visible
-
-for index in {1..9}
-do
-	key=F$index
-	(( workspace = index - 1 ))
-	hc keybind $super-$key use_index $workspace
-	hc keybind $super-Shift-$key move_index $workspace
-done
-
-#tag_names=( {1..9} )
-#tag_keys=( {1..9} 0 )
-
-#hc rename default "${tag_names[0]}" || true
-#for i in "${!tag_names[@]}" ; do
-    #hc add "${tag_names[$i]}"
-    #key="${tag_keys[$i]}"
-    #if [ -n "$key" ] ; then
-        #hc keybind "$super-$key" use_index "$i"
-        #hc keybind "$super-Shift-$key" move_index "$i"
-    #fi
-#done
-
 # layouting {{{2
 
-hc keybind $hyper-Delete remove
+# see also
+# <url:~/racine/config/windenv/sxhkd/hlwm-sxhkdrc#tn=herbstclient set_layout>
 
-# toggle grid <-> max = tab layou
+#hc keybind $hyper-l cycle_layout +1 horizontal vertical grid max
+
+# toggle grid <-> max = tabbed layout
 # max layout displaye windows as tabs when window titles height is > 0
 
 hc keybind $hyper-Tab                                                           \
@@ -195,8 +176,6 @@ hc keybind $super-Control-Tab jumpto last-minimized
 
 hc keybind $hyper-p pseudotile toggle
 
-hc keybind $hyper-l cycle_layout +1 horizontal vertical grid max
-
 # The following cycles through the available layouts within a frame, but skips
 # layouts, if the layout change wouldn't affect the actual window positions.
 # I.e. if there are two windows within a frame, the grid layout is skipped.
@@ -205,6 +184,32 @@ hc keybind $hyper-l cycle_layout +1 horizontal vertical grid max
 #             or , and . compare tags.focus.curframe_wcount = 2                   \
 #                      . cycle_layout +1 vertical horizontal max vertical grid    \
 #                , cycle_layout +1
+
+# tags, aka desktops aka workspaces {{{2
+
+hc keybind $hyper-Prior use_index -1 --skip-visible
+hc keybind $hyper-Next use_index +1 --skip-visible
+
+for index in {1..9}
+do
+	key=F$index
+	(( workspace = index - 1 ))
+	hc keybind $super-$key use_index $workspace
+	hc keybind $super-Shift-$key move_index $workspace
+done
+
+#tag_names=( {1..9} )
+#tag_keys=( {1..9} 0 )
+
+#hc rename default "${tag_names[0]}" || true
+#for i in "${!tag_names[@]}" ; do
+    #hc add "${tag_names[$i]}"
+    #key="${tag_keys[$i]}"
+    #if [ -n "$key" ] ; then
+        #hc keybind "$super-$key" use_index "$i"
+        #hc keybind "$super-Shift-$key" move_index "$i"
+    #fi
+#done
 
 # monitors {{{2
 
@@ -224,6 +229,14 @@ hc keybind $super-Home focus_monitor +1
 # scratchpad {{{2
 
 hc keybind Shift-F12 spawn hlwm-scratchpad.sh
+
+# does not work : no sticky attr
+
+# for key in F9 F10 F11 F12
+# do
+# 	hc keybind $super-$key spawn shvmsaini-add_scratchpad.sh $key "Add"
+# 	hc keybind $super-Shift-$key spawn shvmsaini-add_scratchpad.sh $key "Remove"
+# done
 
 # applications {{{2
 
@@ -258,7 +271,7 @@ echo
 
 # layout {{{2
 
-hc set tabbed_max 7
+hc set tabbed_max true
 
 # monitors {{{2
 
@@ -281,14 +294,8 @@ echo
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 
-hc set frame_gap 5
+hc set frame_gap 7
 hc set show_frame_decorations 'focused_if_multiple'
-
-hc set frame_border_active_color '#9b3c11cc'
-hc set frame_bg_active_color '#000000aa'
-hc set frame_border_normal_color '#3b3c11cc'
-hc set frame_bg_normal_color '#000000aa'
-
 hc set frame_border_width 1
 hc set frame_bg_transparent on
 hc set frame_transparent_width 5
@@ -299,18 +306,42 @@ hc set window_gap 0
 hc set mouse_recenter_gap 0
 hc set smart_window_surroundings off
 
+hc attr theme.inner_width 1
+hc attr theme.border_width 7
+hc attr theme.tiling.outer_width 1
+hc attr theme.floating.border_width 4
+hc attr theme.floating.outer_width 1
+
+hc attr theme.active.tab_title_color '#000000'
+hc attr theme.active.tab_color '#000000'
+hc attr theme.tab_title_color '#5b3c11'
+hc attr theme.tab_color '#000000'
+
+hc attr theme.inner_color '#5b3c11'
+hc attr theme.outer_color '#5b3c11'
+hc attr theme.background_color '#5b3c11'
+
+hc attr theme.normal.inner_color '#5b3c11'
+hc attr theme.active.inner_color '#7b3c11'
+hc attr theme.urgent.inner_color '#972e30'
+
+hc set frame_border_active_color '#9b3c11'
+hc set frame_bg_active_color '#000000'
+hc set frame_border_normal_color '#5b3c11'
+hc set frame_bg_normal_color '#000000'
+
 # alias for theme.active.color
 #hc set window_border_active_color '#9b3c11cc'
 # alias for theme.normal.color
 #hc set window_border_normal_color '#5b3c11cc'
 
-hc attr theme.normal.color '#000000dd'
-hc attr theme.active.color '#000000'
-hc attr theme.urgent.color '#5b3c11dd'
+hc attr theme.normal.color '#000000'
+hc attr theme.active.color '#5b3c11'
+hc attr theme.urgent.color '#872e30'
 
 hc attr theme.title_align center
 hc attr theme.normal.title_color '#5b3c11'
-hc attr theme.active.title_color '#9b3c11'
+hc attr theme.active.title_color '#000000'
 hc attr theme.title_height 0
 hc attr theme.title_depth 0
 hc attr theme.title_when always
@@ -319,28 +350,8 @@ hc attr theme.title_font 'Dejavu Sans:pixelsize=15 Bold'
 #hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
 hc attr theme.title_depth 3  # space below the title's baseline
 
-hc attr theme.active.tab_title_color '#9b3c11'
-hc attr theme.tab_title_color '#5b3c11'
-hc attr theme.active.tab_color '#000000'
-hc attr theme.tab_color '#010101'
-
-hc attr theme.normal.inner_color '#5b3c11'
-hc attr theme.active.inner_color '#8b3c11'
-hc attr theme.urgent.inner_color '#872e30'
-
-hc attr theme.inner_color '#5b3c11'
-hc attr theme.outer_color '#5b3c11'
-hc attr theme.background_color '#000000'
-
-hc attr theme.inner_width 1
-hc attr theme.border_width 3
-
 hc attr theme.active.tab_outer_color '#5b3c11dd'
 
-hc attr theme.tiling.outer_width 1
-
-hc attr theme.floating.border_width 4
-hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
 
 # copy inner color to outer_color
