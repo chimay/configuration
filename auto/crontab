@@ -184,7 +184,7 @@ MAILTO=$USER
 
 # téléphone {{{2
 
-35	14	*	*	0	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
+45	14	*	*	0	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
 #05	19	*	*	2	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
 
 # courses {{{2

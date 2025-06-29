@@ -119,8 +119,8 @@ hc keybind $super-Prior spawn hlwm-swap.bash up
 
 # create an empty frame at the specified direction
 
-hc keybind $hyper-h       split   bottom  0.618
-hc keybind $hyper-v       split   right   0.618
+hc keybind $hyper-v       split   bottom  0.618
+hc keybind $hyper-h       split   right   0.618
 
 # remove current frame
 

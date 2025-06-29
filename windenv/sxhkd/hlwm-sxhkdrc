@@ -56,13 +56,11 @@ hyper + k
 
 # herbstluftwm {{{1
 
-# vim like horizontal
 hyper + l ; h
-	herbstclient set_layout vertical
-
-# vim like vertical
-hyper + l ; v
 	herbstclient set_layout horizontal
+
+hyper + l ; v
+	herbstclient set_layout vertical
 
 hyper + l ; g
 	herbstclient chain - set_layout grid - attr theme.title_height 0

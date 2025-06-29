@@ -9,6 +9,8 @@ keymap = [
 	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
 	{ on = "q",     run = "quit",               desc = "Quit the process" },
 	{ on = "Q",     run = "quit --no-cwd-file", desc = "Quit without outputting cwd-file" },
+	#{ on = "Q",     run = "quit",               desc = "Quit the process" },
+	#{ on = "<c-q>", run = "quit --no-cwd-file", desc = "Quit without outputting cwd-file" },
 	{ on = "<C-c>", run = "close",              desc = "Close the current tab, or quit if it's last" },
 	{ on = "<C-z>", run = "suspend",            desc = "Suspend the process" },
 
@@ -124,11 +126,14 @@ keymap = [
 	{ on = [ ",", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
 
 	# Goto
-	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go home" },
-	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go ~/.config" },
-	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
 	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
+
+	# bookmarks
+	{ on = [ "'", "r" ],       run = "cd ~/racine",      desc = "Go to racine" },
+	{ on = [ "'", "c" ],       run = "cd ~/racine/config", desc = "Go to config" },
+	{ on = [ "'", "d" ],       run = "cd ~/racine/gate/download", desc = "Go to download" },
+	{ on = [ "'", "w" ],       run = "cd ~/racine/wiki/pedia", desc = "Go to wiki/pedia" },
 
 	# Tabs
 	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
@@ -143,11 +148,11 @@ keymap = [
 	{ on = "8", run = "tab_switch 7", desc = "Switch to eighth tab" },
 	{ on = "9", run = "tab_switch 8", desc = "Switch to ninth tab" },
 
-	{ on = "[", run = "tab_switch -1 --relative", desc = "Switch to previous tab" },
-	{ on = "]", run = "tab_switch 1 --relative",  desc = "Switch to next tab" },
+	{ on = "(", run = "tab_switch -1 --relative", desc = "Switch to previous tab" },
+	{ on = ")", run = "tab_switch 1 --relative",  desc = "Switch to next tab" },
 
-	{ on = "{", run = "tab_swap -1", desc = "Swap current tab with previous tab" },
-	{ on = "}", run = "tab_swap 1",  desc = "Swap current tab with next tab" },
+	{ on = "[", run = "tab_swap -1", desc = "Swap current tab with previous tab" },
+	{ on = "]", run = "tab_swap 1",  desc = "Swap current tab with next tab" },
 
 	# Tasks
 	{ on = "w", run = "tasks:show", desc = "Show task manager" },
@@ -155,6 +160,7 @@ keymap = [
 	# Help
 	{ on = "~",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
+	{ on = "<a-h>", run = "help", desc = "Open help" },
 ]
 
 [tasks]
