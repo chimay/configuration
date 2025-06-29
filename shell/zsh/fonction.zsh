@@ -474,6 +474,18 @@ locate-file () {
 	plocate -d $database -e -A $=options $=motifs | fzf | xclip -i -selection clipboard
 }
 
+# yazi file manager {{{2
+
+# 3 panes by default
+
+function 3 () {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
 # search in irc {{{2
 
 search-in-irc () {

@@ -244,8 +244,6 @@ alias st='run-syncthing.sh &'
 alias §=vifmrun
 alias fm=run-vifm
 
-alias f=yazi
-
 alias cf='clifm --no-color'
 
 alias mc='mc -b'
