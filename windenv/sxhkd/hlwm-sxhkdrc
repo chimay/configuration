@@ -22,6 +22,9 @@
 hyper + colon
 	rofi-meta.zsh
 
+hyper + equal
+	rofi-fenetres.zsh
+
 hyper + semicolon
 	dmenu-apps.sh
 
@@ -69,10 +72,16 @@ hyper + l ; t
 	herbstclient chain - set_layout max - attr theme.title_height 17
 
 hyper + l ; f
-	hlwm-shvmsaini-static-fibo.sh >& ~/log/misc.log
+	hlwm-shvmsaini-static-fibo.sh
 
 hyper + l ; m
-	hlwm-shvmsaini-static-master-stack.sh >& ~/log/misc.log
+	hlwm-shvmsaini-static-master-stack.sh
+
+hyper + g ; plus
+	hlwm-shvmsaini-gap_change.sh "+" >& ~/log/misc.log
+
+hyper + g ; minus
+	hlwm-shvmsaini-gap_change.sh "-" >& ~/log/misc.log
 
 # polybar {{{1
 

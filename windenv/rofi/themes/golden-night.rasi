@@ -21,7 +21,7 @@
     golden-night-red-dark:     #872e30;
     golden-night-red-light:    #88421d;
     golden-night-yellow-dark:  #d79921;
-    golden-night-yellow-light: #fabd2f;
+	golden-night-yellow-light: #fabd2f;
     golden-night-gray:         #754321;
 
     /* Theme colors */
@@ -36,15 +36,15 @@
     normal-foreground:           @foreground;
     alternate-normal-background: @golden-night-bg0-soft;
     alternate-normal-foreground: @foreground;
-    selected-normal-background:  @golden-night-fg0;
-    selected-normal-foreground:  @golden-night-bg0;
+    selected-normal-background:  @foreground;
+    selected-normal-foreground:  @background;
 
-    active-background:           @golden-night-yellow-dark;
-    active-foreground:           @background;
+    active-background:           @background;
+    active-foreground:           @foreground;
     alternate-active-background: @active-background;
     alternate-active-foreground: @active-foreground;
-    selected-active-background:  @golden-night-yellow-light;
-    selected-active-foreground:  @active-foreground;
+    selected-active-background:  @foreground;
+    selected-active-foreground:  @background;
 
     urgent-background:           @golden-night-red-dark;
     urgent-foreground:           @background;

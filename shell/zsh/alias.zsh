@@ -244,6 +244,8 @@ alias st='run-syncthing.sh &'
 alias §=vifmrun
 alias fm=run-vifm
 
+alias f=yazi
+
 alias cf='clifm --no-color'
 
 alias mc='mc -b'
@@ -331,9 +333,9 @@ alias rn=run-slrn.sh
 
 # fediverse {{{1
 
-alias f=tut
-alias F='BROWSER=qutebrowser toot tui'
-alias fl=neonmodem
+#alias f=tut
+#alias F='BROWSER=qutebrowser toot tui'
+#alias fl=neonmodem
 
 # navigation {{{1
 

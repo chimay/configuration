@@ -1,6 +1,7 @@
 " vim: set filetype=vim :
 
-hi shCaseEsac	   			guifg=#5B3C11		guibg=default			gui=NONE
+hi shArrayRegion   			guifg=#5B3C11		guibg=default			gui=NONE
+hi shArithmetic   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shParen		   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shSnglCase	   			guifg=#5B3C11		guibg=default			gui=NONE
 hi shCommandSub	   			guifg=#5B3C11		guibg=default			gui=NONE
