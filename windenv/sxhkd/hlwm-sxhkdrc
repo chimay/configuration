@@ -90,8 +90,14 @@ hyper + shift + b
 
 # dropdown {{{1
 
+super + ctrl + u
+	urxvt -name shell -e zsh -l
+
+super + ctrl + c
+	urxvt -name calc -e calc
+
 # does not work
-# replace by herbstluftwm q3terminal script,
+# replaced by herbstluftwm q3terminal script,
 # renamed as hlwm-sratchpad.sh
 
 #hyper + ugrave
@@ -111,12 +117,6 @@ hyper + shift + b
 super + ctrl + section
 	run-vifm.sh
 
-super + ctrl + p
-	pcmanfm
-
-super + ctrl + d
-	dolphin
-
 super + ctrl + g
 	run-gvim.sh -c "cd ~/racine/public"
 
@@ -126,14 +126,11 @@ super + ctrl + n
 super + ctrl + v
 	run-neovim-qt-client.sh
 
-# super + ctrl + v
-# 	run-within-kitty.sh vis
-
-super + ctrl + k
-	run-kitty-kak-client.sh
-
 super + ctrl + h
 	run-within-kitty.sh helix ~/racine/public/python-misc
+
+# super + ctrl + k
+# 	run-kitty-kak-client.sh
 
 super + ctrl + e
 	run-emacs-client.sh
@@ -144,14 +141,17 @@ super + ctrl + l
 super + ctrl + i
 	vimiv ~/photo/numerique
 
-super + ctrl + {q,f,x}
-	goto-or-run.sh {qutebrowser,falkon,firefox}
+super + ctrl + {q,x}
+	goto-or-run.sh {qutebrowser,firefox}
 
 # super + ctrl + n
 # 	run-with-log.sh nyxt
 
-# super + ctrl + t
+# super + ctrl + o
 # 	torbrowser-launcher
+
+super + ctrl + k
+	keepassxc
 
 super + ctrl + t
 	tradingview
@@ -159,20 +159,14 @@ super + ctrl + t
 super + ctrl + y
 	run-freetube.sh
 
-super + ctrl + mu
-	element-desktop
-
 super + ctrl + o
 	goto-or-run.sh libreoffice
 
 super + ctrl + m
 	goto-or-run.sh mscore
 
-# super + ctrl + f
-# 	run-frescobaldi.sh
-
-super + ctrl + r
-	goto-or-run.sh rosegarden
+super + ctrl + f
+	run-frescobaldi.sh
 
 super + ctrl + w
 	goto-or-run.sh wesnoth -d
