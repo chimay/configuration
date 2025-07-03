@@ -23,7 +23,7 @@ hyper + colon
 	rofi-meta.zsh
 
 hyper + equal
-	rofi-fenetres.zsh
+	rofi-windows.zsh
 
 hyper + semicolon
 	dmenu-apps.sh
@@ -36,7 +36,6 @@ hyper + comma
 
 hyper + ccedilla
 	rofi-clipmenu.zsh
-	#rofi-greenclip.zsh
 
 hyper + agrave
 	urxvtc -name fzf-nova -e ~/racine/infoman/unix/generic/gotbletu/fzf-nova/fzf-nova
@@ -45,11 +44,11 @@ hyper + agrave
 
 # Déconnexion
 hyper + shift + d
-	rofi-deconnexion.zsh
+	rofi-disconnect.zsh
 
 # Éteindre
 hyper + shift + q
-	rofi-eteindre.zsh
+	rofi-shutdown.zsh
 
 hyper + k
 	i3lock -c "#341207" -i ~/racine/pictura/i3lock/default
@@ -76,20 +75,17 @@ hyper + l ; m
 	hlwm-shvmsaini-static-master-stack.sh
 
 hyper + g ; plus
-	hlwm-shvmsaini-gap_change.sh "+" >& ~/log/misc.log
+	hlwm-shvmsaini-gap_change.sh "+"
 
 hyper + g ; minus
-	hlwm-shvmsaini-gap_change.sh "-" >& ~/log/misc.log
+	hlwm-shvmsaini-gap_change.sh "-"
 
 # polybar {{{1
 
 hyper + b
 	polybar-msg cmd toggle
 
-hyper + p ; t
-	polybar-msg cmd toggle
-
-hyper + p ; r
+hyper + shift + b
 	polybar-msg cmd restart
 
 # dropdown {{{1
@@ -221,6 +217,14 @@ hyper + o ; space
 hyper + a ; r
 	pkill -10 -f remind-server.zsh
 
+# pass {{{1
+
+# hyper + p
+# 	rofi-pass.zsh &>> ~/log/rofi-pass.log
+
+hyper + x
+	rofi-pass.zsh &>> ~/log/rofi-pass.log
+
 # network {{{1
 
 hyper + shift + w
@@ -314,9 +318,7 @@ hyper + shift + @z
 
 # aussi lancé par keynav
 # voir ~/racine/config/windenv/keynav/keynavrc
-
-hyper + x
-	xmouseless
+# edit : keynav désactivé dans autostart
 
 # multimédia {{{1
 

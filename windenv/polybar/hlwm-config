@@ -241,9 +241,9 @@ label-close = " <-|- "
 menu-0-0 = Fenêtre
 menu-0-0-exec = rofi-fermer.zsh
 menu-0-1 = Session
-menu-0-1-exec = rofi-deconnexion.zsh
+menu-0-1-exec = rofi-disconnect.zsh
 menu-0-2 = Ordinateur
-menu-0-2-exec = rofi-eteindre.zsh
+menu-0-2-exec = rofi-shutdown.zsh
 
 [module/ewmh-workspaces]
 

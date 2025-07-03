@@ -133,7 +133,8 @@ keymap = [
 	{ on = [ "'", "r" ],       run = "cd ~/racine",      desc = "Go to racine" },
 	{ on = [ "'", "c" ],       run = "cd ~/racine/config", desc = "Go to config" },
 	{ on = [ "'", "d" ],       run = "cd ~/racine/gate/download", desc = "Go to download" },
-	{ on = [ "'", "w" ],       run = "cd ~/racine/wiki/pedia", desc = "Go to wiki/pedia" },
+	{ on = [ "'", "e" ],       run = "cd ~/racine/wiki/pedia", desc = "Go to wiki/pedia" },
+	{ on = [ "'", "w" ],       run = "cd ~/graphix/wallpaper", desc = "Go to wiki/pedia" },
 
 	# Tabs
 	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },

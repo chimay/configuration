@@ -315,7 +315,7 @@ alias clc=calcurse
 # mail {{{1
 
 alias a="mail -Y 'h $'"
-alias àà=send-mail
+alias aa=send-mail
 
 alias nm=neomutt
 alias M=run-neomutt.zsh
@@ -331,9 +331,9 @@ alias rn=run-slrn.sh
 
 # fediverse {{{1
 
-#alias f=tut
-#alias F='BROWSER=qutebrowser toot tui'
-#alias fl=neonmodem
+alias f=tut
+alias F='BROWSER=qutebrowser toot tui'
+alias fl=neonmodem
 
 # navigation {{{1
 
