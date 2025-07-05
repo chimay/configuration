@@ -697,6 +697,9 @@ nnoremap @r :restart<cr>
 " Open editor to edit vifmrc and apply settings after returning to vifm
 
 nnoremap @e :write | edit $MYVIFMRC | restart<cr>
+
+" reload vifmrc
+
 nnoremap @s :source $MYVIFMRC<cr>
 
 " Quitter {{{2
@@ -966,7 +969,11 @@ nnoremap <m-l> :link<cr>
 
 " Medias amovibles
 
-"nnoremap <m-i> :media<cr>
+nnoremap <c-a> :media<cr>
+
+" Convert images in current dir subtree to webp
+
+nnoremap <m-i> :!images-to-webp.zsh &<cr>
 
 " Papier peint
 

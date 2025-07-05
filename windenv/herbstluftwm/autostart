@@ -243,8 +243,9 @@ hc keybind Shift-F12 spawn hlwm-scratchpad.sh
 #hc keybind $super-Return spawn "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
 
 hc keybind $hyper-Return spawn xterm -ls zsh
-hc keybind $hyper-exclam spawn urxvtc
+hc keybind $hyper-exclam spawn urxvtc -name shell -e zsh -l
 hc keybind $hyper-dollar spawn kitty
+hc keybind $hyper-a spawn alacritty
 
 # theme {{{2
 

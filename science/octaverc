@@ -6,5 +6,5 @@
 octave_core_file_name ("/home/david/racine/varia/data/octave-workspace")
 
 ## Begin savepath auto-created section, do not edit
-  addpath ('/home/david/racine/matemat/octave', '-begin');
+  addpath ('/home/david/racine/science/matemat/octave', '-begin');
 ## End savepath auto-created section

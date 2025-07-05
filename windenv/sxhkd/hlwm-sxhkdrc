@@ -37,7 +37,7 @@ hyper + comma
 hyper + ccedilla
 	rofi-clipmenu.zsh
 
-hyper + agrave
+hyper + section
 	urxvtc -name fzf-nova -e ~/racine/infoman/unix/generic/gotbletu/fzf-nova/fzf-nova
 
 # window environment {{{1
@@ -90,12 +90,6 @@ hyper + shift + b
 
 # dropdown {{{1
 
-super + ctrl + u
-	urxvt -name shell -e zsh -l
-
-super + ctrl + c
-	urxvt -name calc -e calc
-
 # does not work
 # replaced by herbstluftwm q3terminal script,
 # renamed as hlwm-sratchpad.sh
@@ -113,6 +107,9 @@ super + ctrl + c
 	#tdrop --name=calc-dropdown urxvtc -e calc
 
 # applications {{{1
+
+super + ctrl + equal
+	urxvt -name calc -e calc
 
 super + ctrl + section
 	run-vifm.sh
@@ -147,8 +144,8 @@ super + ctrl + {q,x}
 # super + ctrl + n
 # 	run-with-log.sh nyxt
 
-# super + ctrl + o
-# 	torbrowser-launcher
+super + ctrl + o
+	torbrowser-launcher
 
 super + ctrl + k
 	keepassxc
@@ -158,9 +155,6 @@ super + ctrl + t
 
 super + ctrl + y
 	run-freetube.sh
-
-super + ctrl + o
-	goto-or-run.sh libreoffice
 
 super + ctrl + m
 	goto-or-run.sh mscore
@@ -205,11 +199,6 @@ super + shift + grave
 # toggle active / pause
 hyper + o ; space
 	pkill -12 -f clock.zsh
-
-# agenda {{{1
-
-hyper + a ; r
-	pkill -10 -f remind-server.zsh
 
 # pass {{{1
 
