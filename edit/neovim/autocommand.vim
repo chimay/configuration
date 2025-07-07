@@ -34,6 +34,7 @@ augroup reload-service
 	autocmd BufWritePost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
 	autocmd BufWritePost ~/racine/config/windenv/picom.conf !restart-picom.zsh &
 	autocmd BufWritePost ~/racine/config/organizer/remind/* !pkill -10 -f remind-server
+	autocmd BufWritePost ~/racine/config/auto/crontab !update-crontab.sh &>> ~/log/cron.log &
 augroup END
 
 augroup quickfix-window

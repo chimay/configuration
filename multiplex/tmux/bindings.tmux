@@ -60,7 +60,7 @@ bind -T custom ';' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer
 
 # Sessions {{{1
 
-bind -T custom s split-window -l 30% 'exec ~/racine/shell/dialog/fzf-tmux-session.zsh'
+bind -T custom s split-window -l 30% 'exec ~/racine/shell/multiplex/fzf-tmux-session.zsh'
 
 bind -T custom S command-prompt -p 'Nom de la nouvelle session ? ' "new-session -s '%%'"
 bind -T custom M command-prompt -p 'Nouveau nom de la session ? ' "rename-session '%%'"
@@ -106,8 +106,8 @@ bind -T custom t command-prompt \
 
 bind -T custom M-t command-prompt -p 'Commande de la nouvelle fenêtre ? ' "new-window '%%'"
 
-bind -T custom M-Enter split-window -p 30 'exec ~/racine/shell/dialog/fzf-tmux-new-cli.zsh'
-bind -T custom M-! split-window -p 30 'exec ~/racine/shell/dialog/fzf-tmux-new-tui.zsh'
+bind -T custom M-Enter split-window -p 30 'exec ~/racine/shell/multiplex/fzf-tmux-new-cli.zsh'
+bind -T custom M-! split-window -p 30 'exec ~/racine/shell/multiplex/fzf-tmux-new-tui.zsh'
 
 bind -T custom m command-prompt -p 'Nouveau nom de la fenêtre ? ' "rename-window '%%'"
 

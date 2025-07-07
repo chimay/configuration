@@ -806,11 +806,11 @@ qnoremap % <s-tab>
 qnoremap <bs> <s-tab>
 
 nnoremap £ :!LESS= less %f<cr>
-" mc
+" midnight commander (mc) binding style
 nnoremap <f3> :!bat --paging always %f<cr>
 
 nnoremap <m-e> :edit<cr>
-" mc
+" midnight commander (mc) binding style
 nnoremap <f4> :edit<cr>
 
 " Ouverture
@@ -885,7 +885,7 @@ nnoremap X ds
 
 nnoremap àc :!tsp rsync -av --progress %f %D &<cr>
 nnoremap àm :!tsp rsync -av --progress --remove-source-files %f %D<cr>
-" mc
+" midnight commander (mc) binding style
 nnoremap <f5> :!tsp rsync -av --progress %f %D &<cr>
 nnoremap <f6> :!tsp rsync -av --progress --remove-source-files %f %D<cr>
 
@@ -893,17 +893,17 @@ nnoremap <f6> :!tsp rsync -av --progress --remove-source-files %f %D<cr>
 
 nnoremap àf :!tsp rsync -av --progress %f %D &<cr>
 nnoremap àd :!tsp rsync -av --progress %d/ %D &<cr>
-" mc
+" midnight commander (mc) binding style
 nnoremap <f2>f :!tsp rsync -av --progress %f %D &<cr>
 nnoremap <f2>d :!tsp rsync -av --progress %d/ %D &<cr>
 
 " Copier & Coller
 
 nnoremap àà :clone?<cr>
-" mc
+" midnight commander (mc) binding style
 nnoremap <f2>c :clone?<cr>
 
-" mc
+" midnight commander (mc) binding style
 nnoremap <f8> dd
 
 " Corbeille vifm
@@ -948,7 +948,7 @@ nnoremap <m-n> :!touch<space>
 " New dir
 
 nnoremap <m-d> :mkdir!<space>
-" mc
+" midnight commander (mc) binding style
 nnoremap <f7> :mkdir!<space>
 
 " Pack
@@ -973,7 +973,7 @@ nnoremap <c-a> :media<cr>
 
 " Convert images in current dir subtree to webp
 
-nnoremap <m-i> :!images-to-webp.zsh &<cr>
+nnoremap <m-i> :!images-to-webp.zsh > ~/log/images-to-webp.log 2>&1 &<cr>
 
 " Papier peint
 

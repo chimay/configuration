@@ -148,7 +148,7 @@ MAILTO=$USER
 
 0	10	*	*	*		bell.zsh notification/plat-frigo.ogg &>>! ~/log/cron.log
 0	12	*	*	1-5		bell.zsh notification/plat-chauffer.ogg &>>! ~/log/cron.log
-0	12	*	*	0		bell.zsh notification/pistolets.ogg volume=150 &>>! ~/log/cron.log
+45	11	*	*	0		bell.zsh notification/pistolets.ogg volume=120 &>>! ~/log/cron.log
 
 # école {{{2
 
