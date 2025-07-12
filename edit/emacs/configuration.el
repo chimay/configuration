@@ -76,16 +76,16 @@
 (setq visible-bell 1)
 (setq visible-bell 'top-bottom)
 
-;; (when (equal window-system 'x) (load-theme 'golden-night-gui t))
-;; (when (equal window-system nil) (load-theme 'golden-night-term t))
+(when (equal window-system 'x) (load-theme 'golden-night-gui t))
+(when (equal window-system nil) (load-theme 'golden-night-term t))
 
-;; (if (daemonp)
-;;   (add-hook 'after-make-frame-functions
-;;     #'(lambda (frame)
-;;      (with-selected-frame frame
-	;;  (when (equal window-system 'x) (load-theme 'golden-night-gui t))
-	;;  )))
-;;   (when (equal window-system 'x) (load-theme 'golden-night-gui t)))
+(if (daemonp)
+  (add-hook 'after-make-frame-functions
+    #'(lambda (frame)
+     (with-selected-frame frame
+	 (when (equal window-system 'x) (load-theme 'golden-night-gui t))
+	 )))
+  (when (equal window-system 'x) (load-theme 'golden-night-gui t)))
 
 (setq tags-add-tables nil)
 
@@ -906,9 +906,18 @@
 ;; Show full paths for refiling
 (setq org-refile-use-outline-path t)
 
+(use-package projectile
+  :bind (("M-s M-o" . projectile-multi-occur))
+  :custom ((projectile-indexing-method 'alien)
+	     (projectile-enable-caching t)
+	     (projectile-completion-system 'helm)
+	     (projectile-switch-project-action 'helm-projectile)
+	     (projectile-keymap-prefix (kbd "s-p")))
+  :config (projectile-global-mode))
+
 (use-package helm)
 ;;(use-package helm-gtags)
-;;(use-package helm-projectile)
+(use-package helm-projectile)
 ;;(use-package helm-swoop)
 
 (helm-mode 1)
