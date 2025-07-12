@@ -7,9 +7,9 @@ source ~/racine/config/cmdline/zsh/zprofile
 # Autostart {{{1
 
 # in cas of restart, we need to stop some processes first
-autostop.zsh >>! ~/log/autostop.log 2>&1
+bspwm-autostop.zsh >>! ~/log/autostop.log 2>&1
 sleep 1
-autostart.zsh >>! ~/log/autostart.log 2>&1
+bspwm-autostart.zsh >>! ~/log/autostart.log 2>&1
 
 # reset all rules {{{1
 

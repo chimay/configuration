@@ -133,7 +133,10 @@ super + ctrl + h
 # 	run-kitty-kak-client.sh
 
 super + ctrl + e
-	emacs
+	run-emacs-client.sh
+
+super + ctrl + s
+	run-emacs-server.sh
 
 super + ctrl + l
 	lite-xl

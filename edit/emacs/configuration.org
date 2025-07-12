@@ -826,7 +826,6 @@ Pour les fonctionnelles
   (setq lexical-binding t)
 #+end_src
 
-
 ** Fichier de configuration
 
 
@@ -1029,7 +1028,6 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 
 ** Tampons (buffers)
 
-
 *** Alterner les deux plus récents
 
 #+begin_src emacs-lisp
@@ -1038,7 +1036,6 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
    (interactive)
    (switch-to-buffer nil))
 #+end_src
-
 
 *** Fermer le tampon courant
 
@@ -1463,14 +1460,11 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 ** Tampons (buffers)
 
-
 *** Tampon précédent
 
 #+begin_src emacs-lisp
-  ;; Remplacé par torus-alternate
-  ;; (global-set-key (kbd "C-^") 'biblio/alterne-deux-derniers-tampons)
+  (global-set-key (kbd "C-^") 'biblio/alterne-deux-derniers-tampons)
 #+end_src
-
 
 *** Liste des tampons
 

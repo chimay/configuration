@@ -396,6 +396,7 @@ hc rule class=Sxiv tag=view
 hc rule class=vimiv tag=view
 
 hc rule class=nvim-qt tag=edit
+hc rule class=Emacs tag=edit
 
 hc rule class=TradingView tag=system
 
