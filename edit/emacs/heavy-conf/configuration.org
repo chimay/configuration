@@ -1662,7 +1662,6 @@ Infos sur les thèmes
 
 * Configuration des paquets
 
-
 ** Librairies
 
 #+begin_src emacs-lisp
@@ -1672,9 +1671,7 @@ Infos sur les thèmes
     (duo-init "duo-common" "duo-referen"))
 #+end_src
 
-
 ** Organisation
-
 
 *** Outline
 
@@ -1947,7 +1944,6 @@ heure.
 
 ** Exploration
 
-
 *** Projectile
 
 #+begin_src emacs-lisp
@@ -2185,7 +2181,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 ** Arborescence du système de fichiers
 
-
 *** Dired-hacks
 
 #+begin_src emacs-lisp
@@ -2230,7 +2225,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 
 ** Recherche
-
 
 *** Wgrep
 
@@ -2297,16 +2291,13 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 ** Registres
 
-
 *** Register list
 
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-x r L") 'register-list)
 #+end_src
 
-
 ** Complétion
-
 
 *** Company
 
@@ -2343,7 +2334,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 
 ** Contrôle de version
 
-
 *** Magit
 
 Activer ou désactiver magit-auto-revert-mode ?
@@ -2356,7 +2346,6 @@ Activer ou désactiver magit-auto-revert-mode ?
 
 
 ** Sélection
-
 
 *** Region-bindings-mode
 
@@ -2385,7 +2374,6 @@ Activer ou désactiver magit-auto-revert-mode ?
 
 
 ** Langages
-
 
 *** Smartparens
 
@@ -2421,7 +2409,6 @@ Langages, parenthèses
 
 ** Read Eval Print Loops
 
-
 *** Eval in REPL
 
 #+begin_src emacs-lisp
@@ -2431,7 +2418,6 @@ Langages, parenthèses
 
 ** Encodage
 
-
 ** Async
 
 #+begin_src emacs-lisp
@@ -2440,9 +2426,7 @@ Langages, parenthèses
   (async-bytecomp-package-mode 1)
 #+end_src
 
-
 ** Présentation
-
 
 *** Pretty mode
 
@@ -2451,9 +2435,7 @@ Langages, parenthèses
     :init (global-pretty-mode t))
 #+end_src
 
-
 ** Bindings
-
 
 *** Key-chord
 

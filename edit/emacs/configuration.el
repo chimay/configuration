@@ -11,6 +11,7 @@
 (unless (server-running-p) (server-start))
 
 (add-to-list 'load-path "~/racine/dotdir/emacs.d")
+(add-to-list 'load-path "~/racine/plugin/manager/emacs/miscellaneous")
 (add-to-list 'custom-theme-load-path "~/racine/config/edit/emacs/color")
 
 (setq custom-file "~/racine/config/edit/emacs/enligne.el")
@@ -38,7 +39,7 @@
 ;;(set-frame-font "monofur-14")
 ;;(add-to-list 'default-frame-alist '(font . "monofur-14" ))
 ;;(set-frame-font "Fantasque\ Sans\ Mono-12")
-(add-to-list 'default-frame-alist '(font . "Fantasque\ Sans\ Mono-12" ))
+(add-to-list 'default-frame-alist '(font . "Fantasque\ Sans\ Mono-14" ))
 
 (global-prettify-symbols-mode 1)
 
@@ -809,6 +810,37 @@
    (require 'outline-magic)
    (define-key outline-minor-mode-map (kbd "TAB") 'outline-cycle)))
 
+(require 'outline)
+(eval-after-load "outline" '(require 'foldout))
+(define-prefix-command 'outline/map)
+(global-set-key (kbd "s-o") 'outline/map)
+(global-set-key (kbd "M-n") 'outline-next-visible-heading)
+(global-set-key (kbd "M-p") 'outline-previous-visible-heading)
+(define-key outline/map (kbd "n") 'outline-next-visible-heading)
+(define-key outline/map (kbd "p") 'outline-previous-visible-heading)
+(define-key outline/map (kbd "f") 'outline-forward-same-level)
+(define-key outline/map (kbd "b") 'outline-backward-same-level)
+(define-key outline/map (kbd "u") 'outline-up-heading)
+(define-key outline/map (kbd "h") 'outline-hide-entry)
+(define-key outline/map (kbd "s") 'outline-show-entry)
+(define-key outline/map (kbd "H") 'outline-hide-body)
+(define-key outline/map (kbd "S") 'outline-show-all)
+(define-key outline/map (kbd "C-h") 'outline-hide-subtree)
+(define-key outline/map (kbd "C-s") 'outline-show-subtree)
+(define-key outline/map (kbd "M-s") 'outline-show-branches)
+(define-key outline/map (kbd "M-S-s") 'outline-show-children)
+(define-key outline/map (kbd "C-M-c") 'outline-hide-sublevels)
+(define-key outline/map (kbd "C-M-S-c") 'outline-hide-others)
+(define-key outline/map (kbd "l") 'outline-hide-leaves)
+(define-key outline/map (kbd "Z") 'foldout-zoom-subtree)
+(define-key outline/map (kbd "X") 'foldout-exit-fold)
+
+(add-hook
+ 'outline-minor-mode-hook
+ (lambda ()
+   (require 'outline-magic)
+   (define-key outline-minor-mode-map (kbd "TAB") 'outline-cycle)))
+
 (use-package org)
 
 (setq org-directory "~/racine/organ/orgmode/")
@@ -988,3 +1020,124 @@
 (define-key helm-map (kbd "C-z") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "<left>") 'helm-next-source)
 (define-key helm-map (kbd "<right>") 'helm-previous-source)
+
+(use-package switch-window
+  :custom ((switch-window-input-style 'minibuffer)
+	     (switch-window-increase 4)
+	     (switch-window-threshold 2)
+	     (switch-window-shortcut-style 'qwerty)
+	     (switch-window-qwerty-shortcuts
+	      '("0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))))
+(define-key global-map [remap other-window] 'switch-window)
+
+(use-package savekill
+  :custom ((save-kill-file-name (expand-file-name "yank-ring.el" user-emacs-directory))
+	     (savekill-max-saved-items 700)
+	     (save-kill-coding-system 'utf-8)
+	     (save-interprogram-paste-before-kill t)))
+
+;; Credit: https://emacs.stackexchange.com/questions/45721/how-to-properly-define-hydras-inside-use-package
+
+(use-package undo-tree
+  :bind (("<f11> u" . global-undo-tree-mode)
+	   ("C-x u" . undo-tree-visualize))
+  :custom
+  ((global-undo-tree-mode 1)
+   (undo-tree-auto-save-history t)
+   ;;(undo-tree-visualizer-timestamps t)
+   (undo-tree-history-directory-alist '((".*" . "~/racine/varia/undo/emacs/")))))
+
+(global-set-key (kbd "C-x r L") 'register-list)
+
+(use-package company
+  :custom ((company-idle-delay 1)
+	     (company-minimum-prefix-length 3))
+  :commands (company-mode)
+  :hook ((emacs-lisp-mode . company-mode))
+  :bind (:map company-active-map
+		("C-n" . company-select-next)
+		("C-p" . company-select-previous)
+		("SPC" . company-abort)))
+
+(use-package region-bindings-mode
+  :custom ((region-bindings-mode-disable-predicates ((lambda () buffer-read-only)))))
+(require 'region-bindings-mode)
+(region-bindings-mode-enable)
+(global-set-key (kbd "C-w") 'backward-kill-word)
+(define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
+
+(use-package smartparens)
+
+(smartparens-global-mode nil)
+(show-smartparens-global-mode nil)
+
+;;(require 'smartparens-config)
+
+(add-hook 'emacs-lisp-mode #'smartparens-strict-mode)
+
+(sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
+(sp-local-pair 'minibuffer-inactive-mode "\`" nil :actions nil)
+(sp-local-pair #'emacs-lisp-mode "'" nil :actions nil)
+(sp-local-pair #'emacs-lisp-mode "\`" nil :actions nil)
+(sp-local-pair #'inferior-emacs-lisp-mode "'" nil :actions nil)
+(sp-local-pair #'inferior-emacs-lisp-mode "\`" nil :actions nil)
+
+(global-set-key (kbd "<f11> p") 'smartparens-global-mode)
+
+(define-key sp-keymap (kbd "C-)") 'sp-forward-slurp-sexp)
+(define-key sp-keymap (kbd "C-(") 'sp-forward-barf-sexp)
+(define-key sp-keymap (kbd "C-M-(") 'sp-backward-slurp-sexp)
+(define-key sp-keymap (kbd "C-M-)") 'sp-backward-barf-sexp)
+(define-key sp-keymap (kbd "s-)") 'sp-split-sexp)
+(define-key sp-keymap (kbd "s-(") 'sp-splice-sexp)
+
+(autoload 'dired-async-mode "dired-async.el" nil t)
+(dired-async-mode 1)
+(async-bytecomp-package-mode 1)
+
+(use-package key-chord
+  :bind (("<f11> c" . key-chord-mode))
+  :custom ((key-chord-two-keys-delay 0.12)
+	     (key-chord-one-key-delay 0.12)))
+
+(key-chord-define-global "xc" 'helm-M-x)
+(key-chord-define-global "bn" 'helm-mini)
+(key-chord-define-global "df" 'helm-find-files)
+
+(key-chord-define-global "yz" 'undo-tree-visualize)
+
+(key-chord-define-global "wz" 'delete-other-windows)
+(key-chord-define-global "ws" 'split-window-below)
+(key-chord-define-global "wq" 'split-window-right)
+
+(key-chord-define-global "wx" #'(lambda () (interactive) (shrink-window-horizontally 5)))
+(key-chord-define-global "wc" #'(lambda () (interactive) (shrink-window 5)))
+(key-chord-define-global "wv" #'(lambda () (interactive) (enlarge-window 5)))
+(key-chord-define-global "wb" #'(lambda () (interactive) (enlarge-window-horizontally 5)))
+
+(key-chord-define-global "a^" (lambda () (interactive) (insert "â")))
+(key-chord-define-global "e^" (lambda () (interactive) (insert "ê")))
+(key-chord-define-global "i^" (lambda () (interactive) (insert "î")))
+(key-chord-define-global "o^" (lambda () (interactive) (insert "ô")))
+(key-chord-define-global "u^" (lambda () (interactive) (insert "û")))
+
+(use-package hydra)
+
+(use-package evil
+  :bind (("<f11> v" . evil-mode))
+  :custom ((evil-undo-system 'undo-tree)))
+
+(use-package powerline-evil)
+(powerline-evil-vim-theme)
+
+;; (use-package evil-org)
+;; (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
+;; (global-set-key (kbd "<f11> w") 'evil-org-mode)
+
+(use-package xah-math-input
+  :commands (xah-math-input-mode)
+  :bind (("<f11> x" . xah-math-input-mode)))
+
+(use-package which-key
+  :init (which-key-mode)
+  :custom ((which-key-idle-delay 1.0)))
