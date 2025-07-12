@@ -47,7 +47,7 @@ hyper + shift + d
 	rofi-disconnect.zsh
 
 # Éteindre
-hyper + shift + q
+hyper + q
 	rofi-shutdown.zsh
 
 hyper + k
@@ -114,6 +114,9 @@ super + ctrl + equal
 super + ctrl + section
 	run-vifm.sh
 
+super + ctrl + f
+	thunar || caja || pcmanfm
+
 super + ctrl + g
 	run-gvim.sh -c "cd ~/racine/public"
 
@@ -130,7 +133,7 @@ super + ctrl + h
 # 	run-kitty-kak-client.sh
 
 super + ctrl + e
-	run-emacs-client.sh
+	emacs
 
 super + ctrl + l
 	lite-xl
@@ -138,7 +141,7 @@ super + ctrl + l
 super + ctrl + i
 	vimiv ~/photo/numerique
 
-super + ctrl + {q,x}
+super + ctrl + {q,b}
 	goto-or-run.sh {qutebrowser,firefox}
 
 # super + ctrl + n
@@ -158,9 +161,6 @@ super + ctrl + y
 
 super + ctrl + m
 	goto-or-run.sh mscore
-
-super + ctrl + f
-	run-frescobaldi.sh
 
 super + ctrl + w
 	goto-or-run.sh wesnoth -d
@@ -202,11 +202,11 @@ hyper + o ; space
 
 # pass {{{1
 
+hyper + x
+	passmenu.bash
+
 # hyper + p
 # 	rofi-pass.zsh &>> ~/log/rofi-pass.log
-
-hyper + x
-	rofi-pass.zsh &>> ~/log/rofi-pass.log
 
 # network {{{1
 
@@ -249,12 +249,10 @@ hyper + o ; s
 
 # transparence {{{2
 
-# diaphane
-
-hyper + d ; Up
+meta + super + t ; Up
 	transset-df --inc 0.1
 
-hyper + d ; Down
+meta + super + t ; Down
 	transset-df --dec 0.1
 
 # luminosity {{{2
@@ -363,7 +361,7 @@ hyper + space ; m
 	urxvtc -name multimedia -e pulsemixer
 
 hyper + space ; M
-	pavucontrol
+	pavucontrol-qt
 
 hyper + space ; t
 	urxvtc -name multimedia -e ncmpcpp

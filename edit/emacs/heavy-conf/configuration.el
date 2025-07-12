@@ -29,9 +29,9 @@
 (setq inhibit-startup-screen t)
 (setq initial-buffer-choice t)
 (setq initial-scratch-message ";; Buffer for notes you don’t want to save.\n\n")
-;; (setq initial-buffer-choice (lambda ()
-;;     (org-agenda-list 30)
-;;     (get-buffer "*Org Agenda*")))
+(setq initial-buffer-choice (lambda ()
+    (org-agenda-list 30)
+    (get-buffer "*Org Agenda*")))
 
 ;;(set-frame-font "Monospace-11")
 ;;(add-to-list 'default-frame-alist '(font . "Monospace-11" ))
@@ -45,6 +45,13 @@
 (setq blink-cursor-mode nil)
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;; (require 'linum)
+;; (global-linum-mode 1)
+;; (setq line-number-display-limit nil)
+;; (line-number-mode t)
+;; (column-number-mode t)
+;; (global-hl-line-mode 0)
 
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'horizontal-scroll-bar-mode) (horizontal-scroll-bar-mode -1))
@@ -237,7 +244,7 @@
 (setq savehist-file (expand-file-name "savehist" user-emacs-directory))
 (setq savehist-autosave-interval 300)
 (setq save-place-file (expand-file-name "saveplace" user-emacs-directory))
-(setq-default save-place-mode t)
+(setq-default save-place t)
 ; Important de placer le require après la définition des variables
 (require 'saveplace)
 (savehist-mode 1)
@@ -772,47 +779,10 @@
 
 (global-set-key (kbd "<f6> c") 'biblio/style-sous-curseur)
 
-;; (fset 'efface-tag
-;;    (lambda (&optional arg) "Keyboard macro." (interactive "p")
-;;       (kmacro-exec-ring-item (quote ([19 60 return 2 134217828 134217828 134217828 4 4] 0 "%d")) arg)))
-;;
-;; (global-set-key (kbd "C-x C-k 0") 'efface-tag)
-
-(require 'outline)
-(eval-after-load "outline" '(require 'foldout))
-(define-prefix-command 'outline/map)
-(global-set-key (kbd "s-o") 'outline/map)
-(global-set-key (kbd "M-n") 'outline-next-visible-heading)
-(global-set-key (kbd "M-p") 'outline-previous-visible-heading)
-(define-key outline/map (kbd "n") 'outline-next-visible-heading)
-(define-key outline/map (kbd "p") 'outline-previous-visible-heading)
-(define-key outline/map (kbd "f") 'outline-forward-same-level)
-(define-key outline/map (kbd "b") 'outline-backward-same-level)
-(define-key outline/map (kbd "u") 'outline-up-heading)
-(define-key outline/map (kbd "h") 'outline-hide-entry)
-(define-key outline/map (kbd "s") 'outline-show-entry)
-(define-key outline/map (kbd "H") 'outline-hide-body)
-(define-key outline/map (kbd "S") 'outline-show-all)
-(define-key outline/map (kbd "C-h") 'outline-hide-subtree)
-(define-key outline/map (kbd "C-s") 'outline-show-subtree)
-(define-key outline/map (kbd "M-s") 'outline-show-branches)
-(define-key outline/map (kbd "M-S-s") 'outline-show-children)
-(define-key outline/map (kbd "C-M-c") 'outline-hide-sublevels)
-(define-key outline/map (kbd "C-M-S-c") 'outline-hide-others)
-(define-key outline/map (kbd "l") 'outline-hide-leaves)
-(define-key outline/map (kbd "Z") 'foldout-zoom-subtree)
-(define-key outline/map (kbd "X") 'foldout-exit-fold)
-
-(add-hook
- 'outline-minor-mode-hook
- (lambda ()
-   (require 'outline-magic)
-   (define-key outline-minor-mode-map (kbd "TAB") 'outline-cycle)))
-
 (use-package org)
 
-(setq org-directory "~/racine/organ/orgmode/")
-(setq org-archive-location "~/racine/organ/orgmode/archive.org::* Fichier %s")
+(setq org-directory "~/racine/plain/orgmode/")
+(setq org-archive-location "~/racine/plain/orgmode/archive.org::* Fichier %s")
 
 ;; Commandes org accessibles au 1er * de chaque titre
 (setq org-use-speed-commands t)
@@ -876,28 +846,28 @@
 ;;       (quote
 ;;        ((sequence "TODO(t!)" "DONE(d!)" "MAYBE(m!)" "WAIT(w@/!)" "|" "CANCELLED(c@)"))))
 
-(setq org-default-notes-file "~/racine/organ/orgmode/notes.org")
+(setq org-default-notes-file "~/racine/plain/orgmode/notes.org")
 (setq org-capture-templates
 	'(("a" "Agenda" entry
-	   (file+olp "~/racine/organ/orgmode/agenda.org" "Agenda" "Unique")
+	   (file+olp "~/racine/plain/orgmode/agenda.org" "Agenda" "Unique")
 	   "* TODO %?\nSCHEDULED: %^{Agenda}T \nLien : %a\n\n%i" :empty-lines 1)
 	  ("t" "Todo : Liste de tâches" entry
-	   (file+headline "~/racine/organ/orgmode/taches.org" "Tâches")
+	   (file+headline "~/racine/plain/orgmode/taches.org" "Tâches")
 	   "* TODO %?\n\nCréé le : %U\n\nLien : %a\n\n%i" :empty-lines 1)
 	  ("f" "Fix : Astuces, résolution de bugs" entry
-	   (file+headline "~/racine/organ/orgmode/astuces.org" "Astuces")
+	   (file+headline "~/racine/plain/orgmode/astuces.org" "Astuces")
 	   "* %?\n\nCréé le : %U\n\nLien : %a\n\n%i" :empty-lines 1)
 	  ("l" "Log : Journal de bord du capitaine" entry
-	   (file+olp+datetree "~/racine/organ/orgmode/journaldebord.org" "Journal")
+	   (file+olp+datetree "~/racine/plain/orgmode/journaldebord.org" "Journal")
 	   "* %?\n\nCréé le %U\n\nLien : %a\n\n%i" :empty-lines 1)
 	  ("d" "Dreamtime : Rêverie" entry
-	   (file+olp+datetree "~/racine/organ/orgmode/reverie.org" "Rêverie")
+	   (file+olp+datetree "~/racine/plain/orgmode/reverie.org" "Rêverie")
 	   "* %?" :empty-lines 1)
 	  ("e" "Éducation" entry
-	   (file+olp+datetree "~/racine/organ/orgmode/education.org" "Éducation")
+	   (file+olp+datetree "~/racine/plain/orgmode/education.org" "Éducation")
 	   "* %?" :empty-lines 1)
 	  ("n" "Notes" entry
-	   (file+headline "~/racine/organ/orgmode/notes.org" "Notes")
+	   (file+headline "~/racine/plain/orgmode/notes.org" "Notes")
 	   "* %?\n\nCréé le : %U\n\nLien : %a\n\n%i" :empty-lines 1)))
 
 ;; (setq org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9)))
@@ -906,76 +876,16 @@
 ;; Show full paths for refiling
 (setq org-refile-use-outline-path t)
 
-(use-package helm)
-;;(use-package helm-gtags)
-;;(use-package helm-projectile)
-;;(use-package helm-swoop)
+(setq org-list-demote-modify-bullet
+	'(("-" . "+") ("+" . "*") ("*" . "-")))
+(use-package org-bullets)
+(setq org-bullets-face-name (quote org-bullet-face))
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(setq org-bullets-bullet-list '("☯" "☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-(helm-mode 1)
-
-(setq helm-split-window-default-side 'other)
-(setq helm-split-window-in-side-p t)
-(setq helm-autoresize-mode t)
-(setq helm-autoresize-max-height 40)
-(setq helm-autoresize-min-height 30)
-(setq helm-move-to-line-cycle-in-source t)
-(setq helm-quick-update t)
-(setq helm-idle-delay 0.01)
-(setq helm-input-idle-delay 0.01)
-(setq helm-candidate-number-limit 200)
-(setq helm-scroll-amount 4)
-(setq helm-ff-file-name-history-use-recentf t)
-(setq helm-buffers-favorite-modes (append helm-buffers-favorite-modes '(picture-mode artist-mode)))
-(setq helm-ff-search-library-in-sexp t)
-
-;; (loop for ext in
-;;  '("\\.elc$" "\\.pyc$" "\\.git$" "\\.o$" "*~")
-;;  do (add-to-list 'helm-boring-file-regexp-list ext))
-
-(setq helm-mini-default-sources '(
-  helm-source-buffers-list
-  helm-source-recentf
-  helm-source-files-in-current-dir
-  helm-source-projectile-files-list
-  helm-source-projectile-projects
-  helm-source-buffer-not-found))
-
-(setq helm-M-x-requires-pattern 0)
-(setq helm-locate-command "locate -d ~/racine/index/locate/racine.db %s -e -A %s")
-(setq helm-ack-grep-executable "/usr/bin/vendor_perl/ack")
-
-(global-unset-key (kbd "C-x c"))
-
-(global-set-key (kbd "<f11> h") 'helm-mode)
-
-(global-set-key (kbd "M-X") 'helm-minibuffer-history)
-(global-set-key (kbd "s-ù") 'helm-mini)
-(global-set-key (kbd "M-x") 'helm-M-x)
-
-; Même idée qu’occur
-;;(global-set-key (kbd "s-é") 'helm-swoop)
-;;(global-set-key (kbd "s-è") 'helm-multi-swoop)
-
-(global-set-key (kbd "s-ç") 'helm-show-kill-ring)
-
-;; (global-set-key (kbd "M-s l") 'swiper-helm)
-
-(global-set-key (kbd "s-$") 'helm-etags-select)
-(global-set-key (kbd "s--") 'helm-locate)
-(global-set-key (kbd "s-<") 'helm-do-grep-ag)
-(global-set-key (kbd "s-&") 'helm-projectile-grep)
-(global-set-key (kbd "s-'") 'helm-all-mark-rings)
-
-;; To set and go to bookmarks
-(global-set-key (kbd "s-m") 'helm-filtered-bookmarks)
-
-(define-key global-map [remap find-file] 'helm-find-files)
-(define-key global-map [remap occur] 'helm-multi-occur-from-isearch)
-(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-(define-key global-map [remap bookmark-bmenu-list] 'helm-filtered-bookmarks)
-(define-key global-map [remap insert-register] 'helm-register)
-
-(define-key helm-map (kbd "s-z") 'helm-select-action)
-(define-key helm-map (kbd "C-z") 'helm-execute-persistent-action)
-(define-key helm-map (kbd "<left>") 'helm-next-source)
-(define-key helm-map (kbd "<right>") 'helm-previous-source)
+;; (fset 'efface-tag
+;;    (lambda (&optional arg) "Keyboard macro." (interactive "p")
+;;       (kmacro-exec-ring-item (quote ([19 60 return 2 134217828 134217828 134217828 4 4] 0 "%d")) arg)))
+;;
+;; (global-set-key (kbd "C-x C-k 0") 'efface-tag)

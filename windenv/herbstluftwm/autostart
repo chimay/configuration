@@ -12,6 +12,10 @@ hc() {
     herbstclient "$@"
 }
 
+# lock {{{1
+
+hc lock
+
 # hook {{{1
 
 hc emit_hook reload
@@ -166,7 +170,6 @@ hc keybind $hyper-z fullscreen toggle
 
 hc keybind $hyper-f floating toggle
 #hc keybind $super-Shift-f set_attr clients.focus.floating toggle
-hc keybind $hyper-d set_attr clients.focus.decorated toggle
 
 hc keybind $hyper-ugrave set_attr clients.focus.minimized true
 hc keybind $hyper-mu jumpto last-minimized
@@ -253,6 +256,8 @@ hc keybind $hyper-t                                          \
             or , and . compare theme.title_height = 0        \
                      . attr theme.title_height 17            \
                , attr theme.title_height 0
+
+hc keybind $hyper-d set_attr clients.focus.decorated toggle
 
 # mouse bindings {{{1
 
@@ -419,13 +424,13 @@ hc rule instance=journal class=URxvt floating=on floatplacement=center
 hc rule instance=maintenance class=URxvt floating=on floatplacement=center
 hc rule instance=multimedia class=URxvt floating=on floatplacement=center
 
-hc rule class=Pavucontrol floating=on floatplacement=center
 hc rule class=QjackCtl floating=on floatplacement=center
 
 hc rule class=zenity floating=on floatplacement=center
+hc rule class=pavucontrol floating=on floatplacement=center
+hc rule class=pavucontrol-qt floating=on floatplacement=center
 hc rule class=Xfce4-appfinder floating=on floatplacement=center
 hc rule class=Pamac-manager floating=on floatplacement=center
-hc rule class=Caja floating=on floatplacement=center
 hc rule class="Manjaro Settings Manager" floating=on floatplacement=center
 hc rule class=Asunder floating=on floatplacement=center
 hc rule class=Element floating=on floatplacement=center
@@ -457,8 +462,6 @@ hc detect_monitors
 
 # unlock {{{1
 
-# just to be sure
-
 hc unlock
 
 # panels {{{1
@@ -483,6 +486,7 @@ hlwm-polybar.zsh
 #     # start it on each monitor
 #     "$panel" "$monitor" &
 # done
+
 # autostart applications {{{1
 
 # in cas of restart, we need to stop some processes first

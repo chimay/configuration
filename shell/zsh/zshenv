@@ -12,6 +12,9 @@ then
 		*Arch*Linux*)
 			OPERASYS=arch
 			;;
+		*Artix*Linux*)
+			OPERASYS=artix
+			;;
 		*Manjaro*Linux*)
 			OPERASYS=manjaro
 			;;

@@ -1,0 +1,4470 @@
+?; -*- lisp -*-
+; vim: set filetype=lisp :
+
+;; * Php vers org sans niveau un
+
+(defun biblio/php-vers-org-sans-niveau-un ()
+
+  (interactive)
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "|" nil t)
+    (replace-match "¦" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "&nbsp;" nil t)
+    (replace-match " " t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "&ensp;" nil t)
+    (replace-match " " t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "&emsp;" nil t)
+    (replace-match " " t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "&mdash;" nil t)
+    (replace-match "—" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "&amp;" nil t)
+    (replace-match "&" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "&lt;" nil t)
+    (replace-match "<" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "&gt;" nil t)
+    (replace-match ">" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "&laquo;" nil t)
+    (replace-match "«" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "&raquo;" nil t)
+    (replace-match "»" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "<br />" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "</?p>" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "</?em>" nil t)
+    (replace-match "/" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "</?span\\( class=[^>]+\\)?>" nil t)
+    (replace-match "/" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "</?strong>" nil t)
+    (replace-match "*" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<!--.*-->
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp " fgcolor=[^ >]+" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp " bgcolor=[^ >]+" nil t)
+    (replace-match "" t nil))
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<\\?php[^>]*\\?>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<\\?php
+
+include.*
+charge.*
+
+\\?>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<!DOCTYPE[^>]*
+[^>]*>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<html xmlns=[^>]*>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^</?head>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<meta[^>]*/>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<link[^>]*/>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<script[^>]*>[^<]*</script>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<title[^>]*>[^<]*</title>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<body[^>]*>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^</body></html>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<a onClick=.interrupteur.*(.*).*>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<a onClick=.eventail.*(.*).*>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<pre class=.notes?.>$" nil t)
+    (replace-match "#+BEGIN_EXAMPLE" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^</pre>$" nil t)
+    (replace-match "#+END_EXAMPLE" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<div class=.*>
+\\(.+\\)
+</div>" nil t)
+    (replace-match (concat "#+BEGIN_EXAMPLE\n" (match-string 1) "\n#+END_EXAMPLE") t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<div class=.*>
+\\(.+\\)
+\\(.+\\)
+</div>" nil t)
+    (replace-match (concat "#+BEGIN_EXAMPLE\n" (match-string 1) "\n" (match-string 2) "\n#+END_EXAMPLE") t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<div class=.*>
+\\(.+\\)
+\\(.+\\)
+\\(.+\\)
+</div>" nil t)
+    (replace-match (concat "#+BEGIN_EXAMPLE\n"
+			   (match-string 1) "\n"
+			   (match-string 2) "\n"
+			   (match-string 3)
+			   "\n#+END_EXAMPLE") t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<div id=[^>]*>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<div class=[^>]*>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^</div[^>]*>
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^</div[^>]*> <!--.*-->
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^<a href=.#.*</a>\\(<br />\\)+
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^[[:space:]]*<h6[^>]*>\\([^<]+\\)</h6>.*$" nil t)
+    (replace-match (concat "\n***** " (match-string 1)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^[[:space:]]*<h5[^>]*>\\([^<]+\\)</h5>.*$" nil t)
+    (replace-match (concat "\n**** " (match-string 1)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^[[:space:]]*<h4[^>]*>\\([^<]+\\)</h4>.*$" nil t)
+    (replace-match (concat "\n*** " (match-string 1)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^[[:space:]]*<h3[^>]*>\\([^<]+\\)</h3>.*$" nil t)
+    (replace-match (concat "\n** " (match-string 1)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^[[:space:]]*<h2[^>]*>\\([^<]+\\)</h2>.*$" nil t)
+    (replace-match (concat "\n* " (match-string 1) "\n\n#+TOC: headlines 1 local") t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^</?ul>$" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^[[:space:]]*<li>\\(.+\\)</li>$" nil t)
+    (replace-match (concat "\n  - " (match-string 1)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^[[:space:]]*<li>\\(.+\\)
+\\(.+\\)</li>" nil t)
+    (replace-match (concat "\n  - " (match-string 1) " " (match-string 2)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^[[:space:]]*<li>\\(.+\\)
+\\(.+\\)
+\\(.*\\)</li>" nil t)
+    (replace-match (concat "\n  - " (match-string 1) " "
+			   (match-string 2) " "
+			   (match-string 3)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp " rowspan=." nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp " colspan=." nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "<tr>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)</td>
+</tr>" nil t)
+    (replace-match (concat "| " (match-string 1)
+			   "|" (match-string 2)
+			   "|" (match-string 3)
+			   "|" (match-string 4)
+			   "|" (match-string 5)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "<tr>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)</td>
+</tr>" nil t)
+    (replace-match (concat "| " (match-string 1)
+			   "|" (match-string 2)
+			   "|" (match-string 3)
+			   "|" (match-string 4)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "<tr>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)</td>
+</tr>" nil t)
+    (replace-match (concat "| " (match-string 1) "|" (match-string 2) "|" (match-string 3) "|") t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "<tr>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)</td>
+</tr>" nil t)
+    (replace-match (concat "| " (match-string 1) "|" (match-string 2) "|") t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "<tr>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)
+\\(.+\\)</td>
+</tr>" nil t)
+    (replace-match (concat "| " (match-string 1) "|" (match-string 2) (match-string 3) "|") t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "<tr>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*<td>\\(.+\\)
+\\(.+\\)
+\\(.+\\)</td>
+</tr>" nil t)
+    (replace-match (concat "| " (match-string 1) "|" (match-string 2)
+			   (match-string 3) (match-string 4) "|") t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "<tr>
+[[:space:]]*<td>\\(.+\\)</td>
+[[:space:]]*</tr>" nil t)
+    (replace-match (concat "| " (match-string 1) "||") t 'literal))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^[[:space:]]*</?table[^>]*>$" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^[[:space:]]*<h1[^>]*>\\([^>]+\\)</h1>.*
+" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "<br />" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "&nbsp;" nil t)
+    (replace-match " " t nil))
+
+  (goto-char (point-min))
+
+  (while (re-search-forward "^\\(.*\\)	+\\(.*\\)$" nil t)
+    (replace-match (concat (match-string 1) " " (match-string 2)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (re-search-forward "^|\\(.*\\)	+\\(|\\)?$" nil t)
+    (replace-match (concat "| " (match-string 1) " " (match-string 2)) t 'literal))
+
+  (goto-char (point-min))
+
+  (while (re-search-forward "^|\\(.*\\)[ 	]\\{2,\\}\\(.*\\)$" nil t)
+    (replace-match (concat "| " (match-string 1) " " (match-string 2)) t 'literal))
+
+  ;; Lignes simples
+
+  (goto-char (point-min))
+
+  (while (re-search-forward "\\(^\\s-*$\\)\n" nil t)
+    (replace-match "\n")
+    (forward-char 1))
+
+  (goto-char (point-min))
+)
+
+;; * Tex vers org
+
+(defun biblio/tex-vers-org ()
+
+  (interactive)
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\subsubsection[^{]*{\\([^}]+\\)}$" nil t)
+    (replace-match (concat "\n**** " (match-string 1)) t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\subsection[^{]*{\\([^}]+\\)}$" nil t)
+    (replace-match (concat "\n*** " (match-string 1)) t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\section[^{]*{\\([^}]+\\)}$" nil t)
+    (replace-match (concat "\n** " (match-string 1)) t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\chapter[^{]*{\\([^}]+\\)}$" nil t)
+    (replace-match (concat "\n* " (match-string 1)) t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\chapter[^{]*{\\([^}]+\\)}
+" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward "~" nil t)
+    (replace-match " " t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\begin{Eqts}" nil t)
+    (replace-match "#+BEGIN_CENTER\n\\\\(" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\end{Eqts}" nil t)
+    (replace-match "\\\\)\n#+END_CENTER" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\begin{itemize}
+" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\end{itemize}
+" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\item" nil t)
+    (replace-match "  -" t nil))
+
+  (goto-char (point-min))
+)
+
+;; * Tex vers org sans niveau un
+
+(defun biblio/tex-vers-org-sans-niveau-un ()
+  (interactive)
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\subsubsection[^{]*{\\([^}]+\\)}$" nil t)
+    (replace-match (concat "\n*** " (match-string 1)) t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\subsection[^{]*{\\([^}]+\\)}$" nil t)
+    (replace-match (concat "\n** " (match-string 1)) t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\section[^{]*{\\([^}]+\\)}$" nil t)
+    (replace-match (concat "\n* " (match-string 1)) t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\chapter[^{]*{\\([^}]+\\)}
+" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward "~" nil t)
+    (replace-match " " t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\begin{Eqts}" nil t)
+    (replace-match "#+BEGIN_CENTER\n\\\\(" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\end{Eqts}" nil t)
+    (replace-match "\\\\)\n#+END_CENTER" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\begin{itemize}
+" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\end{itemize}
+" nil t)
+    (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "^\\\\item" nil t)
+    (replace-match "  -" t nil))
+
+  (goto-char (point-min))
+)
+
+;; * Bouts de code
+
+;; (query-replace-regexp "^\\chapter{\([^}]*\)}$" "* \1" nil (point-min) (point-max))
+
+;; * Hydra
+
+(global-set-key
+ (kbd "C-n")
+ (defhydra hydra-move
+   (:body-pre (next-line))
+   "move"
+   ("n" next-line)
+   ("p" previous-line)
+   ("f" forward-char)
+   ("b" backward-char)
+   ("a" beginning-of-line)
+   ("e" move-end-of-line)
+   ("v" scroll-up-command)
+   ;; Converting M-v to V here by analogy.
+   ("V" scroll-down-command)
+   ("l" recenter-top-bottom)))
+
+; Lignes & Marques
+
+(defhydra hydra-goto-line (goto-map ""
+                           :pre (linum-mode 1)
+                           :post (linum-mode -1))
+  "goto-line"
+  ("g" goto-line "go")
+  ("m" set-mark-command "mark" :bind nil)
+  ("q" nil "quit"))
+
+; Déplacement de texte
+
+; (defhydra hydra-move-text ()
+;   "Move text"
+;   ("u" move-text-up "up")
+;   ("d" move-text-down "down"))
+
+; Outline mode
+
+; (defhydra hydra-outline (:color pink :hint nil)
+;   "
+; ^Hide^             ^Show^           ^Move
+; ^^^^^^------------------------------------------------------
+; _q_: sublevels     _a_: all         _u_: up
+; _t_: body          _e_: entry       _n_: next visible
+; _o_: other         _i_: children    _p_: previous visible
+; _c_: entry         _k_: branches    _f_: forward same level
+; _l_: leaves        _s_: subtree     _b_: backward same level
+; _d_: subtree
+;
+; "
+;   ;; Hide
+;   ("q" hide-sublevels)    ; Hide everything but the top-level headings
+;   ("t" hide-body)         ; Hide everything but headings (all body lines)
+;   ("o" hide-other)        ; Hide other branches
+;   ("c" hide-entry)        ; Hide this entry's body
+;   ("l" hide-leaves)       ; Hide body lines in this entry and sub-entries
+;   ("d" hide-subtree)      ; Hide everything in this entry and sub-entries
+;   ;; Show
+;   ("a" show-all)          ; Show (expand) everything
+;   ("e" show-entry)        ; Show this heading's body
+;   ("i" show-children)     ; Show this heading's immediate child sub-headings
+;   ("k" show-branches)     ; Show all sub-headings under this heading
+;   ("s" show-subtree)      ; Show (expand) everything in this heading & below
+;   ;; Move
+;   ("u" outline-up-heading)                ; Up
+;   ("n" outline-next-visible-heading)      ; Next
+;   ("p" outline-previous-visible-heading)  ; Previous
+;   ("f" outline-forward-same-level)        ; Forward - same level
+;   ("b" outline-backward-same-level)       ; Backward - same level
+;   ("z" nil "leave"))
+;
+; (global-set-key (kbd "C-c #") 'hydra-outline/body) ; by example
+
+;; * Helm
+
+; (require 'helm)
+; (require 'helm-config)
+; (require 'helm-eshell)
+; (require 'helm-files)
+; (require 'helm-grep)
+
+; Needed in helm-buffers-list
+(setq ido-use-virtual-buffers t)
+
+;(define-key helm-map (kbd "<S-tab>") 'helm-execute-persistent-action)
+
+	helm-source-etags-select
+	helm-source-moccur
+	helm-source-grep
+
+(define-key helm-map (kbd "C-x 2") 'helm-select-2nd-action)
+(define-key helm-map (kbd "C-x 3") 'helm-select-3rd-action)
+(define-key helm-map (kbd "C-x 4") 'helm-select-4rd-action)
+
+;(define-key helm-map (kbd "C-w")  'helm-find-files-up-one-level) ; aussi sur <left>
+
+(key-chord-define-global "fg" 'helm-for-files)
+
+(global-set-key (kbd "C-x <return>") 'helm-M-x)
+(global-set-key (kbd "C-x C-m") 'helm-M-x)
+
+(define-key global-map (kbd "H-f") 'helm-find)
+
+(define-key global-map (kbd "H-'") 'helm-all-mark-rings)
+
+(define-key global-map (kbd "H-o") 'helm-occur)
+(define-key global-map (kbd "H-m") 'helm-multi-occur)
+
+(global-set-key (kbd "C-c h s") 'helm-semantic-or-imenu)
+(global-set-key (kbd "C-c h l") 'helm-locate)
+
+(define-key 'help-command (kbd "C-f") 'helm-apropos)
+(define-key 'help-command (kbd "r") 'helm-info-emacs)
+
+; (setq helm-for-files-prefered-list
+;  '(
+; 	helm-source-buffers-list
+; 	helm-source-recentf
+; 	helm-source-bookmarks
+; 	helm-source-file-cache
+; 	helm-source-files-in-current-dir
+; 	helm-source-locate
+; 	helm-source-etags-select
+; 	helm-source-moccur
+; 	helm-source-grep
+; 	helm-source-buffer-not-found
+;  )
+; )
+
+(define-key helm-map (kbd "C-i")  'helm-select-action)
+
+(define-key helm-map (kbd "<backtab>") 'helm-execute-persistent-action) ; backtab = shift + tab
+
+(define-key helm-map (kbd "C-w")  'helm-yank-text-at-point)
+(define-key helm-map (kbd "M-w")  'helm-copy-to-buffer)
+
+(define-key helm-grep-mode-map (kbd "<return>")  'helm-grep-mode-jump-other-window)
+(define-key helm-grep-mode-map (kbd "n")  'helm-grep-mode-jump-other-window-forward)
+(define-key helm-grep-mode-map (kbd "p")  'helm-grep-mode-jump-other-window-backward)
+
+;; * Hooks
+
+;; use helm to list eshell history
+
+(add-hook 'eshell-mode-hook
+          #'(lambda ()
+              (define-key eshell-mode-map (kbd "H-h")  'helm-eshell-history)))
+
+;;; Save current position to mark ring
+
+(add-hook 'helm-goto-line-before-hook 'helm-save-current-pos-to-mark-ring)
+
+;; * Org-mode
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/install/emacs/site-lisp/org")
+
+;(add-to-list 'load-path "~/racine/extension/edit/emacs/source/org-mode/lisp")
+;(add-to-list 'load-path "~/racine/extension/edit/emacs/source/org-mode/contrib/lisp")
+
+(add-to-list 'Info-directory-list
+	(expand-file-name "~/racine/racine/extension/edit/emacs/install/info"))
+
+; (add-to-list 'Info-additional-directory-list
+; 	(expand-file-name "~/racine/racine/extension/edit/emacs/install/info"))
+
+; Doit venir après la configuration de org,
+; sinon fait planter le TAB dans les tableaux
+
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '(
+    (emacs-lisp . t)
+    (sh t)
+    (org t)
+    (lilypond t)))
+
+;; * Paredit
+
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+
+(add-hook 'lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook #'enable-paredit-mode)
+
+(eval-after-load 'paredit
+  '(progn
+     (define-key paredit-mode-map (kbd "<C-right>") nil)
+     (define-key paredit-mode-map (kbd "<C-left>") nil)))
+
+;; * Complétion
+
+;; * Dans les tampons
+
+;; * Auto-complete
+
+(global-set-key (kbd "<f12> c") 'auto-complete-mode)
+(key-chord-define-global "cm" 'auto-complete-mode)
+
+;(add-to-list 'ac-dictionary-directories "~/racine/extension/edit/emacs/dict")
+
+(ac-config-default)
+
+(auto-complete-mode 0)
+
+;; * En ligne de commande (minibuffer)
+
+;; * Flx
+
+; flx-ido
+
+(flx-ido-mode 1)
+
+(setq flx-ido-treshold 10000)
+
+(flx-ido-mode 1)
+
+;; * Gestionnaire de paquets
+; ------------------------------------------------------------------------
+
+(require 'package)
+
+;; * Dépôts
+
+(add-to-list 'package-archives '("gnu"         . "http://elpa.gnu.org/packages/") t)
+
+; (add-to-list 'package-archives '("melpa"       . "http://melpa.milkbox.net/packages/") t)
+
+; (add-to-list 'package-archives '("marmalade"   . "http://marmalade-repo.org/packages/") t)
+; (add-to-list 'package-archives '("original"    . "http://tromey.com/elpa/") t)
+
+;; * Auto-installation
+
+(defun perso-elpa-ensure-package (name)
+
+	"Make sure that a particular package is installed; if not then
+	automatically download, compile and install it.
+
+	This is primarily used by perso-elpa-require to allow deployment of
+	the configuration to a new machine - packages will therefore be
+	downloaded on that fresh machine (following installation they are
+	automatically kept up to date by the package manager).
+
+	Use this as follows:
+	(perso-elpa-ensure-package 'org)"
+
+	(if (not (package-installed-p name))
+	(package-install name))
+)
+
+(defun perso-elpa-require (name)
+
+	"A replacement for the standard Emacs 'require'
+	function. This uses perso-elpa-require to download and install a
+	package if necessary prior to using the standard 'require'
+	function to import it. This is useful to allow the configuration
+	to just 'perso-elpa-require' a package and not have to bother
+	checking whether it has been installed yet."
+
+	(perso-elpa-ensure-package name)
+	(require name)
+)
+
+;; * Initialisation
+
+(setq package-enable-at-startup nil)
+
+(package-initialize)
+
+;; * Copier & Coller
+
+;; * Rect mark (sélection rectangulaire)
+
+(global-set-key (kbd "H-SPC") 'rm-set-mark)
+(global-set-key (kbd "<H-r>")   'rm-kill-ring-save)
+(global-set-key (kbd "<H-backspace>")   'rm-kill-region)
+
+(global-set-key (kbd "H-x H-x")   'rm-exchange-point-and-mark)
+
+; (global-set-key [f5] 'kill-ring-save)
+; (global-set-key [f6] 'kill-region)
+; (global-set-key [f7] 'yank)
+; (global-set-key [f8] 'browse-kill-ring)
+
+;; * Exploration
+
+; Avantageusement remplacé par helm
+
+; (require 'ido)
+;
+; (setq ido-enable-flex-matching t)
+; (setq ido-everywhere t)
+;
+; (setq ido-use-filename-at-point 'guess)
+; (setq ido-create-new-buffer 'always)
+;
+; (setq ido-file-extensions-order '(".zsh" ".el" ".vim"))
+;
+; (setq ido-ignore-files '(".o" ".so" ".pyc" ".elc" "*.zwc"))
+; (setq ido-ignore-buffers '(".o" ".so" ".pyc" ".elc" "*.zwc"))
+; (setq ido-ignore-directories '(".git" ".hg" ".bzr"))
+;
+; (setq ido-use-virtual-buffers t)					; Needed in helm-buffers-list
+;
+; (setq ido-use-faces nil)
+;
+; (ido-mode 1)
+
+;; * Compatibilité
+
+;; * emacs-vim-modeline
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/emacs-vim-modeline")
+
+(byte-recompile-directory "~/racine/extension/edit/emacs/source/emacs-vim-modeline" 0)
+
+(add-to-list 'find-file-hook 'vim-modeline/do)
+
+;; * Bouts de code (snippets)
+
+;; * Yasnippet
+
+;(add-to-list 'load-path "~/racine/extension/edit/emacs/source/yasnippet")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/yasnippet" 0)
+
+;(require 'yasnippet)
+
+;(key-chord-define-global "sn" 'yas-global-mode)
+
+;(yas-global-mode 1)
+
+;; * Déplacement de texte
+
+; (global-set-key [H-up] 'move-text-up)
+; (global-set-key [H-down] 'move-text-down)
+
+;; * Ack-and-an-half
+
+;; Create shorter aliases
+
+; (defalias 'ack 'ack-and-a-half)
+; (defalias 'ack-same 'ack-and-a-half-same)
+; (defalias 'ack-find-file 'ack-and-a-half-find-file)
+; (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
+;
+; (setq ack-and-a-half-executable "/usr/bin/vendor_perl/ack")
+; (setq ack-and-a-half-prompt-for-directory t)
+
+;; * Projets
+
+;; * Projectile
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/projectile")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/projectile" 0)
+
+(setq projectile-indexing-method 'native)
+(setq projectile-enable-caching t)
+
+;(setq projectile-require-project-root nil)
+
+(setq projectile-completion-system 'ido)
+;(setq projectile-completion-system 'grizzl)
+
+;(add-hook 'ruby-mode-hook 'projectile-on)
+(projectile-global-mode)
+
+(global-set-key (kbd "H-p") 'helm-projectile)
+(global-set-key (kbd "C-c h p") 'helm-projectile)
+
+;; * Contrôle de version
+
+;; * Magit
+
+;(defconst perso-backup-dir (expand-file-name "~/racine/var/alter/edit/emacs.d/backup/"))
+
+;(defconst perso-autosave-dir  (expand-file-name "~/racine/var/alter/edit/emacs.d/autosave/"))
+
+;(setq savehist-file (expand-file-name "~/racine/data/alter/edit/emacs.d/hist/savehist"))
+;(setq save-place-file (expand-file-name "~/racine/data/alter/edit/emacs.d/hist/saveplace"))
+
+;(setq recentf-save-file (expand-file-name "~/racine/data/alter/edit/emacs.d/hist/recentf"))
+
+(el-get-bundle find-file-in-project)
+
+;;; * Find file in project
+
+(global-set-key (kbd "H-p") 'find-file-in-project)
+
+(setq ffip-project-root "~/racine")
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   (quote
+    ((ffip-project-root . "~/racine/bin")
+     (ffip-project-root . "~/racine/site")
+     (ffip-project-root . "~/racine/plain")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;(add-to-list 'mc/cursor-specific-vars 'iy-go-to-char-start-pos)
+
+; auto-complete
+; cl-lib
+; dash
+; db
+; elnode
+; emacs-async
+; emmet-mode
+; epl
+; f
+; fakir
+; flx
+; fuzzy
+; git-modes
+; grizzl
+; helm-swoop
+; kv
+; litable
+; magit
+; noflet
+; pkg-info
+; popup
+; s
+; web
+; with-editor
+
+;(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+
+;(global-set-key (kbd "H-r") 'cua-rectangle-mark-mode)
+
+;(setq org-export-html-style-include-scripts nil)
+;(setq org-export-html-style-include-default nil)
+
+;(setq org-export-html-style "<link rel=\"stylesheet\" type=\"text/css\" href=\"style/defaut.css\" />")
+
+; (setq org-format-latex-options
+; 	(:foreground default
+; 	 :background default
+; 	 :scale 1.0
+; 	 :html-foreground auto
+; 	 :html-background auto
+; 	 :html-scale 1.0
+; 	 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
+
+;; * Lisp
+
+;; * Litable
+
+;; * Grizzl
+
+; ?
+;(setq flx-ido-use-faces nil)
+
+; (defun query-replace-regexp-whole-buffer ()
+; 	"query-replace-regexp from the beginning of the buffer."
+; 	(interactive)
+; 	(goto-char (point-min))
+; 	(call-interactively 'query-replace-regexp)
+; )
+;
+; (global-set-key (kbd "M-%") 'query-replace-regexp-whole-buffer)
+
+;; * HTML
+
+;; * Elnode
+
+(perso-elpa-require 'elnode)
+
+;; * Onglets
+
+;; * Musique
+
+;; * Déplacement
+
+;; * Présentation
+
+;; * Gestionnaire de fichiers
+
+; ------------------------------------
+
+;; * Librairies requises
+
+;; * EPL
+
+; Requis par projectile
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/epl")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/epl" 0)
+
+;; * pkg-info
+
+; Requis par projectile
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/pkg-info.el")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/pkg-info.el" 0)
+
+;; * f.el
+
+; Requis par god-mode
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/f.el")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/f.el" 0)
+
+;; * Fakir
+
+; Requis par elnode
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/emacs-fakir")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/emacs-fakir" 0)
+
+;; * noflet
+
+; Requis par elnode
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/emacs-noflet")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/emacs-noflet" 0)
+
+;; * kv
+
+; Requis par elnode
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/emacs-kv")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/emacs-kv" 0)
+
+;; * web
+
+; Requis par elnode
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/emacs-web")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/emacs-web" 0)
+
+;; * db
+
+; Requis par expand-region
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/emacs-db")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/emacs-db" 0)
+
+;; * creole
+
+; Requis par elnode
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/creole-mode")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/creole-mode" 0)
+
+;; * Dash
+
+; Requis par litable
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/dash.el/")
+
+(byte-recompile-directory "~/racine/extension/edit/emacs/source/dash.el" 0)
+
+;; * Popup
+
+; Requis par auto-complete
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/popup-el")
+
+(byte-recompile-directory "~/racine/extension/edit/emacs/source/popup-el" 0)
+
+;; * s.el
+
+; Requis par projectile
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/s.el")
+
+(byte-recompile-directory "~/racine/extension/edit/emacs/source/s.el" 0)
+
+;; * Emmet
+
+; --> el-get
+
+;(add-to-list 'load-path "~/racine/extension/edit/emacs/source/emmet-mode")
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/source/emmet-mode" 0)
+
+;(require 'emmet-mode)
+
+; ------------
+
+;; * Suite
+
+;; * Prelude
+
+;(load "~/racine/extension/edit/emacs/source/prelude/init.el")
+
+;; * espuds
+
+; Requis par expand-region
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/espuds")
+
+(byte-recompile-directory "~/racine/extension/edit/emacs/source/espuds" 0)
+
+; (perso-elpa-require 'diminish)
+
+; (diminish 'undo-tree)
+; (diminish 'ac)
+
+;; * bindings.el
+
+;; * Défilement
+
+; (defun perso-scroll-up ()
+; 	"Scroll up"
+; 	(interactive)
+; 	(scroll-up 4)
+; )
+;
+; (defun perso-scroll-down ()
+; 	"Scroll down"
+; 	(interactive)
+; 	(scroll-down 4)
+; )
+;
+; (global-set-key (kbd "M-p") 'perso-scroll-down)
+; (global-set-key (kbd "M-n") 'perso-scroll-up)
+
+;(global-set-key [kp-home]   'beginning-of-buffer)
+;(global-set-key [kp-end]   'end-of-buffer)
+
+;(global-set-key (kbd "s-<") 'beginning-of-buffer)
+;(global-set-key (kbd "s->") 'end-of-buffer)
+
+(setq Info-use-header-line t)
+(setq Info-hide-note-references t)
+
+(setq Info-scroll-prefer-subnodes nil)
+
+(setq Info-isearch-search t)
+
+(setq Info-enable-active-nodes nil)
+
+;; * fichiers.el
+
+; stop creating those backup~ files
+
+;(setq make-backup-files nil)
+
+; stop creating those #autosave# files
+
+;(setq auto-save-default nil)
+
+;; * Sessions
+
+; -*- lisp -*-
+; vim: set filetype=lisp :
+
+;; * DeskTop
+
+(require 'desktop)
+
+(desktop-save-mode t)
+
+(setq desktop-path '("~/racine/extension/edit/emacs/session"))
+(setq desktop-dirname "~/racine/extension/edit/emacs/session")
+(setq desktop-base-file-name "desktop")
+
+(setq history-length 12743)
+
+(add-to-list 'desktop-globals-to-save 'file-name-history)
+(add-to-list 'desktop-globals-to-save 'buffer-name-history)
+
+; Empêche les simples fichiers texte d’être sauvés
+;(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+
+; Empêche les répertoires d’être sauvés
+;(add-to-list 'desktop-modes-not-to-save 'dired-mode)
+
+;(add-to-list 'desktop-modes-not-to-save 'Info-mode)
+;(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+
+; (setq desktop-buffers-not-to-save
+; 	(concat "\\("
+; 	"^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+; 	"\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+; 	"\\)$")
+; )
+
+; (defun my-desktop-save ()
+;   (interactive)
+;   ;; Don't call desktop-save-in-desktop-dir, as it prints a message.
+;   (if (eq (desktop-owner) (emacs-pid))
+;       (desktop-save (concat desktop-dirname "/" desktop-base-file-name))))
+
+; (add-hook 'auto-save-hook 'my-desktop-save)
+
+; ;;; desktop-override-stale-locks.el begins here
+; (defun emacs-process-p (pid)
+;   "If pid is the process ID of an emacs process, return t, else nil.
+; Also returns nil if pid is nil."
+;   (when pid
+;     (let* ((cmdline-file (concat "/proc/" (int-to-string pid) "/cmdline")))
+;       (when (file-exists-p cmdline-file)
+;         (with-temp-buffer
+;           (insert-file-contents-literally cmdline-file)
+;           (goto-char (point-min))
+;           (search-forward "emacs" nil t)
+;           pid)))))
+
+; (defadvice desktop-owner (after pry-from-cold-dead-hands activate)
+;   "Don't allow dead emacsen to own the desktop file."
+;   (when (not (emacs-process-p ad-return-value))
+;     (setq ad-return-value nil)))
+; ;;; desktop-override-stale-locks.el ends here
+
+; (defun emacs-process-p (pid)
+;   "If pid is the process ID of an emacs process, return t, else nil.
+; Also returns nil if pid is nil."
+;   (when pid
+;     (let ((attributes (process-attributes pid)) (cmd))
+;       (dolist (attr attributes)
+;         (if (string= "comm" (car attr))
+;             (setq cmd (cdr attr))))
+;       (if (and cmd (or (string= "emacs" cmd) (string= "emacs.exe" cmd))) t))))
+
+;; * emacs.el
+
+;(setq load-path (cons "/usr/local/src/w3" load-path))
+
+;(add-hook 'after-init-hook '(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t))
+
+;(eval-after-load "package"
+  ;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(background-color "#fdf6e3")
+ '(background-mode light)
+ '(cursor-color "#657b83")
+ '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
+ '(foreground-color "#657b83"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector (vector "#eaeaea" "#d54e53" "#b9ca4a" "#e7c547" "#7aa6da" "#c397d8" "#70c0b1" "#000000"))
+ '(ansi-term-color-vector [unspecified "#1F1611" "#660000" "#144212" "#EFC232" "#5798AE" "#BE73FD" "#93C1BC" "#E6E1DC"] t)
+ '(background-color "#002b36")
+ '(background-mode dark)
+ '(cursor-color "#839496")
+ '(custom-safe-themes (quote ("7968307b9baf28b10c9a66c95669a29c1e6b0823f96d24f46a8d46b5ece5f75e" "19ecb48fdb462beade360ee872e624de92bfa760ad5a504374d7def8cb9b8ffd" "0a304886896ff431f749000f92ab2153006c15b2179893461d50329268241255" "df0f104faa9d49e4ade34f2da8aadca1470c3ead586434443ea134b8a881ea10" "02e39a4cc07a3ac1bd18970487d2284c1d28b1604f51560cb32eb58057323f26" "07e0b21ed3e8f05e5e9916236ba9b01c368be6354012e27132c7c1087b2c4345" "52fef0f6ae4808bba48dff0bfb71158b7fe7240d7c1e005a4d5c7d3d67fdbbe9" "de38cfe1815933cb89c51a149349af6b7efc820b8a1751d9d3a7ca3854240597" "02f010ec1b7c5175b8ce4aa1b7e4f730e56a5b04ea7fe5908fb97853ebc24617" "211bb9b24001d066a646809727efb9c9a2665c270c753aa125bace5e899cb523" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "e9a1226ffed627ec58294d77c62aa9561ec5f42309a1f7a2423c6227e34e3581" "159bb8f86836ea30261ece64ac695dc490e871d57107016c09f286146f0dae64" "fca8ce385e5424064320d2790297f735ecfde494674193b061b9ac371526d059" "6cfe5b2f818c7b52723f3e121d1157cf9d95ed8923dbc1b47f392da80ef7495d" "3580fb8e37ee9e0bcb60762b81260290329a97f3ca19249569d404fce422342f" "5e1d1564b6a2435a2054aa345e81c89539a72c4cad8536cfe02583e0b7d5e2fa" "f38dd27d6462c0dac285aa95ae28aeb7df7e545f8930688c18960aeaf4e807ed" "967c58175840fcea30b56f2a5a326b232d4939393bed59339d21e46cf4798ecf" "27b53b2085c977a8919f25a3a76e013ef443362d887d52eaa7121e6f92434972" "6615e5aefae7d222a0c252c81aac52c4efb2218d35dfbb93c023c4b94d3fa0db" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "8281168b824a806489ca7d22e60bb15020bf6eecd64c25088c85b3fd806fc341" default)))
+ '(fci-rule-character-color "#452E2E")
+ '(fci-rule-color "#2a2a2a")
+ '(foreground-color "#839496"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(custom-safe-themes (quote ("59698644390ee2044cbcc7b3973894bfc308ec3cec6af54fa38a2c890902740d" "77de1e8b3fc3d573ba28f3954884bacb248fed295e618cf65179c4269a6ced63" "ab205938381bca4c12eecf10a89c818ef306c7b442c55d21848e150eb49ee10c" "3c7e42dacb07ff239cdf2364abd2ecc444c692e90e2cbc908fe92b1eebb15e9f" "4aa083ec73e50e50a83b6bb353c6da0a4b12af5182c76af1f91665fe1d007912" "e57ffd19f888aa669cafc30efdba3596740f21b199b0fac527adf9f7e88ea05f" "cc6d768cd3552b24929aafa4996b528e56cdb5b69c305c0ea45ba3b9f661e857" "29d62e7a093c7ad677167e7bcaa3538d5a28d837772517a5a176ddd2f548384b" "66bdd94a9fb649772dc60870a7b82a143d306bc61cbd2084ed91798a52ff71f6" "2e635fd3e4516f0ae781a8b62306f78264a3f0849bebf7d44676e16303b57682" "9faca73a356068de56c2b6810f83c60c7b03a2233aeb7a81d110425342c25cb2" "ff81bec5184d1cd59d6a9f3f24a0df1c6f19700d76c7e738b1e86206a9d11bda" "48b6b162181fbd17815bf9df2f4785d3f5ca93a5776e0c7fa4c7ca2b15b3adb2" "456242a31d2c14f0b7b2b0d92fbac9c9ee9a1111f1e2fc27107a31bbb15faf54" "8711d997c9480d1ac8b969c5565672b8f9e9d19c8fcb42ae5de025342f67541c" "411bff1ef20bc51c460cac8af9c9da9ad13e6a8e3f1c482ad7eea8c6d3b38512" "883c7d1184e943409ac5449767f77ab138493970073bac0faa67a39d294b5b46" "799007dfce99760edc7f88c8bfbe0f72ce246f41134e0b977f2fbbcacaf3f8ef" "42c0eb88a88c82941b473984a6bedb267cf0b6c5c5f176d202f85caecd54c100" "2e7ce1c917274a1947d792c5c3d0c1ca0c6d2e510a53da31f686ffc5d405d3b7" "f26cc2b0d008d4af3948ae178819efc6e70d0ef9e52ac854620f982ee7846bbe" "b91a41b164270648d8a0baf36153708a5684441a5ab145e8e0811e7b5127c2f0" "4d9cbad7b00b4c801a95f45e571a3b8da674b69b5d1e5da22f952c6aa30026c0" "79d1bef884c21b227c96d12ea1a2fd75ac8a3c029ccc54b24cf599c8d46ce18d" "ce27f0683aae4e4fa6e6969fdee5c6aa0383383c787dab19f1f54d3fec63fb38" "a9f7d6023aa7cb7925cb0c77eab619df58db87d2af961975674d28d78b3ae544" "f457a70d52d1b7b62af935df1e7f5a7e4d7d2ad6096777890641a16c938a99a4" "0aa5c539fec9feae580d586019720765b1fe4bcca38bca0936289942b8759376" "6f2619578000b7ffde00f9a77dbd5543d75d095bb57bcd715a28a088eecc211d" "f743f6c546b821569e7c466f5ce5571fba0fe099a27d889e47b6067da48355bb" "b8cbe72df2774b380d1e829372dcf808d9f1ca11ff196c9a89d0baf690b9c828" "1fb83178eb2efbd71357859b01bf630a80bbbed9e8f0776704d543ded1a2d8a0" "23fe2c7b13ae47a44294ae1a71d5acda32a86fb48dcfc3c3195b5684e5e77064" "a263c95822a6399c85115625f95f3a50cecf3cd0a78ff1a87f2aa3bd600fed63" "7968307b9baf28b10c9a66c95669a29c1e6b0823f96d24f46a8d46b5ece5f75e" default)))
+ '(icicle-mode t)
+ '(line-number-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; * paquets.el
+
+;; * Helm-cmd-t
+
+;(push “~/.emacs.d/helm-cmd-t” load-path)
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/helm-cmd-t")
+
+(byte-recompile-directory "~/racine/extension/edit/emacs/source/helm-cmd-t" 0)
+
+(require 'helm-config)
+(require 'helm-cmd-t)
+
+(global-set-key (kbd "H-f") 'helm-cmd-t)
+
+;; * Projectile
+
+(perso-elpa-require 'projectile)
+
+; (add-to-list 'load-path "~/racine/extension/edit/emacs/source/projectile")
+;
+; (byte-recompile-directory "~/racine/extension/edit/emacs/source/projectile" 0)
+;
+; (require 'projectile)
+
+(global-set-key (kbd "H-f") 'helm-projectile)
+
+(projectile-global-mode)
+
+;; * Expand-region
+
+; (perso-elpa-require 'expand-region)
+;
+; (global-set-key (kbd "C-=") 'er/expand-region)
+
+;; * Tabbar
+
+(perso-elpa-require 'tabbar)
+
+(require 'tabbar)
+
+(tabbar-mode)
+
+;; * Emms
+
+(require 'emms-setup)
+(emms-standard)
+(emms-default-players)
+
+;; * Zencoding
+
+;(perso-elpa-require 'zencoding-mode)
+
+;; * Emmet
+
+; (perso-elpa-require 'emmet-mode)
+;
+; (add-hook 'sgml-mode-hook 'emmet-mode)
+; (add-hook 'html-mode-hook 'emmet-mode)
+; (add-hook 'css-mode-hook  'emmet-mode)
+
+;; * dired-single
+
+; (perso-elpa-require 'dired-single)
+;
+; (autoload 'dired-single-buffer "dired-single" "" t)
+; (autoload 'dired-single-buffer-mouse "dired-single" "" t)
+; (autoload 'dired-single-magic-buffer "dired-single" "" t)
+; (autoload 'dired-single-toggle-buffer-name "dired-single" "" t)
+;
+; (setq dired-single-use-magic-buffer t)
+; (setq dired-single-magic-buffer-name "*dired*")
+
+;; * Eshell
+
+; (add-hook 'eshell-mode-hook
+; 	#'(lambda ()
+; 		(define-key eshell-mode-map
+; 		[remap eshell-pcomplete]
+; 		'helm-esh-pcomplete)
+; 	)
+; )
+
+; (add-hook 'eshell-mode-hook
+; 	#'(lambda ()
+; 		(define-key eshell-mode-map
+; 			(kbd "M-p")
+; 			'helm-eshell-history
+; 		)
+; 	)
+; )
+
+(add-to-list 'mc/cursor-specific-vars 'iy-go-to-char-start-pos)
+
+;; * Mark multiple
+
+(perso-elpa-require 'mark-multiple)
+
+;; * Ace-jump-mode
+
+(perso-elpa-require 'ace-jump-mode)
+
+(global-set-key (kbd "H-z") 'ace-jump-mode)
+
+;; * Iy-go-to-char
+
+; (perso-elpa-require 'iy-go-to-char)
+;
+; (key-chord-define-global "fg" 'iy-go-to-char)
+; (key-chord-define-global "fd" 'iy-go-to-char-backward)
+;
+; (key-chord-define-global ";;" 'iy-go-to-or-up-to-continue)
+; (key-chord-define-global ",," 'iy-go-to-or-up-to-continue-backward)
+;
+; (global-set-key (kbd "C-c f") 'iy-go-to-char)
+; (global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
+; (global-set-key (kbd "C-c t") 'iy-go-up-to-char)
+; (global-set-key (kbd "C-c T") 'iy-go-up-to-char-backward)
+;
+; (global-set-key (kbd "C-c ;") 'iy-go-to-or-up-to-continue)
+; (global-set-key (kbd "C-c ,") 'iy-go-to-or-up-to-continue-backward)
+
+;; * Browse kill ring
+
+(perso-elpa-require 'browse-kill-ring)
+
+(autoload 'browse-kill-ring "browse-kill-ring" "Browse kill ring" t)
+
+(global-set-key (kbd "H-y") 'browse-kill-ring)
+
+;; * Icicles (Icy)
+
+; (perso-elpa-require 'icicles)
+;
+; (autoload 'icicles "icicles" "Icicles" t)
+;
+; (key-chord-define-global "ty" 'icicle-mode)
+;
+; ;(icicle-mode 1)
+
+;; * Ac-complete
+
+(perso-elpa-require 'ac-helm)
+
+(define-key ac-complete-mode-map (kbd "H-:") 'ac-complete-with-helm)
+
+; Ne fonctionne pas
+;(global-set-key (kbd "H-:") 'ac-complete-with-helm)
+
+;; * Helm
+
+(perso-elpa-require 'helm)
+
+(require 'helm-config)
+
+(key-chord-define-global "hj" 'helm-mode)
+
+(global-set-key (kbd "<f1> <f1>") 'helm-mini)
+
+(global-set-key (kbd "µ") 'helm-mini)
+
+(global-set-key (kbd "C-c SPC") 'helm-all-mark-rings)
+
+(helm-mode 1)
+
+;; * Smex
+
+;(perso-elpa-require 'smex)
+
+;(setq smex-save-file "~/racine/data/alter/edit/emacs/addon/smex.save")
+;(require 'smex)
+;(smex-initialize)
+
+; Meta-Shift-x
+
+;(global-set-key (kbd "M-X") 'smex)
+
+;; * Zlc
+
+;(perso-elpa-require 'zlc)
+
+;(require 'zlc)
+;(autoload 'zlc "zlc" "Zlc" t)
+
+;(zlc-mode 1)
+
+;; * Complétion
+
+;(require 'auto-complete)
+;(global-auto-complete-mode 1)
+
+;; * Présentation
+
+(set-face-attribute 'tabbar-button
+	nil :inherit 'tabbar-default
+	:box '(:line-width 1 :color "gray30")
+)
+
+(set-face-attribute 'tabbar-default
+	nil :family "Courier"
+	:background "gray80" :foreground
+	"gray30" :height 1.1
+)
+
+(set-face-attribute 'tabbar-selected
+	nil :inherit 'tabbar-default
+	:foreground "DarkGreen"
+	:background "LightGoldenrod"
+	:box '(:line-width 2 :color "DarkGoldenrod")
+	;;:overline "black" :underline "black"
+	:weight 'bold
+)
+
+(set-face-attribute 'tabbar-unselected
+	nil :inherit 'tabbar-default
+	:box '(:line-width 2 :color "gray70")
+)
+
+;; * Butineurs
+
+(require 'moz)
+
+(autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
+
+(add-hook 'javascript-mode-hook 'javascript-custom-setup)
+
+(defun javascript-custom-setup () (moz-minor-mode 1))
+
+;; * Répertoires
+
+(require 'dired-single)
+
+(setq dired-single-use-magic-buffer t)
+(setq dired-single-magic-buffer-name "*dired*")
+
+(yas--initialize)
+
+; (require 'json)
+;
+; (defun moz-update (&rest ignored)
+;   "Update the remote mozrepl instance"
+;   (interactive)
+;   (comint-send-string (inferior-moz-process)
+;     (concat "content.document.body.innerHTML="
+;              (json-encode (buffer-string)) ";")))
+;
+; (defun moz-enable-auto-update ()
+;   "Automatically the remote mozrepl when this buffer changes"
+;   (interactive)
+;   (add-hook 'after-change-functions 'moz-update t t))
+;
+; (defun moz-disable-auto-update ()
+;   "Disable automatic mozrepl updates"
+;   (interactive)
+;   (remove-hook 'after-change-functions 'moz-update t))
+
+;(require 'tabbar-gui)
+;(require 'tabbar-settings)
+;(tabbar-mode)
+
+;; * Groupement emacs dired user
+
+; (defun tabbar-buffer-groups ()
+;   "Return the list of group names the current buffer belongs to.
+; This function is a custom function for tabbar-mode's tabbar-buffer-groups.
+; This function group all buffers into 3 groups:
+; Those Dired, those user buffer, and those emacs buffer.
+; Emacs buffer are those starting with “*”."
+;   (list
+;    (cond
+;     ((string-equal "*" (substring (buffer-name) 0 1))
+;      '("Emacs Buffer")
+;      )
+;     ((eq major-mode 'dired-mode)
+;      '("Dired")
+;      )
+;     (t
+;      '("User Buffer")
+;      )
+;     ))) ;; from Xah Lee
+
+;(setq tabbar-buffer-groups-function 'tabbar-buffer-groups)
+
+;; * Groupement proche de l’original
+
+; (defun tabbar-buffer-groups ()
+;      "Return the list of group names the current buffer belongs to.
+;    Return a list of one element based on major mode."
+;      (list
+;       (cond
+;        ((or (get-buffer-process (current-buffer))
+;             ;; Check if the major mode derives from `comint-mode' or
+;             ;; `compilation-mode'.
+;             (tabbar-buffer-mode-derived-p
+;              major-mode '(comint-mode compilation-mode)))
+;         "Process"
+;         )
+;        ;; ((member (buffer-name)
+;        ;;          '("*scratch*" "*Messages*" "*Help*"))
+;        ;;  "Common"
+;        ;;  )
+;        ((string-equal "*" (substring (buffer-name) 0 1))
+;         "Common"
+;         )
+;        ((member (buffer-name)
+;                 '("xyz" "day" "m3" "abi" "for" "nws" "eng" "f_g" "tim" "tmp"))
+;         "Main"
+;         )
+;        ((eq major-mode 'dired-mode)
+;         "Dired"
+;         )
+;        ((memq major-mode
+;               '(help-mode apropos-mode Info-mode Man-mode))
+;         "Common"
+;         )
+;        ((memq major-mode
+;               '(rmail-mode
+;                 rmail-edit-mode vm-summary-mode vm-mode mail-mode
+;                 mh-letter-mode mh-show-mode mh-folder-mode
+;                 gnus-summary-mode message-mode gnus-group-mode
+;                 gnus-article-mode score-mode gnus-browse-killed-mode))
+;         "Mail"
+;         )
+;        (t
+;         ;; Return `mode-name' if not blank, `major-mode' otherwise.
+;         (if (and (stringp mode-name)
+;                  ;; Take care of preserving the match-data because this
+;                  ;; function is called when updating the header line.
+;                  (save-match-data (string-match "[^ ]" mode-name)))
+;             mode-name
+;           (symbol-name major-mode))
+;         ))))
+
+;; * Toggle tabbar groups
+
+; (setq tbbr-md "all")
+;     (defun toggle-tabbar-mode ()
+;     "Toggles tabbar modes - all buffers vs. defined in the `tabbar-buffer-groups'."
+;       (interactive)
+;       (if (string= tbbr-md "groups")
+;           (progn ;; then
+;             (setq tabbar-buffer-groups-function
+;                   (lambda ()
+;                     (list "All")))
+;             (setq tbbr-md "all"))
+;           (progn ;; else
+;             (setq tabbar-buffer-groups-function 'tabbar-buffer-groups)
+;             (setq tbbr-md "groups"))))
+
+;; * Sort tabbar buffers by name
+
+; (defun tabbar-add-tab (tabset object &optional append_ignored)
+;   "Add to TABSET a tab with value OBJECT if there isn't one there yet.
+;  If the tab is added, it is added at the beginning of the tab list,
+;  unless the optional argument APPEND is non-nil, in which case it is
+;  added at the end."
+;   (let ((tabs (tabbar-tabs tabset)))
+;     (if (tabbar-get-tab object tabset)
+;         tabs
+;       (let ((tab (tabbar-make-tab object tabset)))
+;         (tabbar-set-template tabset nil)
+;         (set tabset (sort (cons tab tabs)
+;                           (lambda (a b) (string< (buffer-name (car a)) (buffer-name (car b))))))))))
+
+;; * clavier.el
+
+; -*- lisp -*-
+; vim : set filetype=lisp :
+
+; (global-set-key [(control tab)] 'other-window)
+; (global-set-key [?\C-c ?v] 'view-file)
+; (global-set-key [?\C-c ?o] 'bury-buffer)
+; (global-set-key [?\C-c ?k] 'kill-this-buffer)
+
+; (global-set-key (kbd "C-M-l") 'minh-kill-surrounding-parens)
+; (global-set-key [?\C-c ?z] 'just-no-space)
+; (global-set-key [?\M-z] 'zap-to-char)
+; (global-set-key [?\C-\M-z] 'zap-up-to-char)
+; (global-set-key [?\C-c ?x ?d] 'delete-region)
+
+; (global-set-key [?\C-c ?r] 'search-backward-regexp)
+; (global-set-key [?\C-c ?s] 'search-forward-regexp)
+; (global-set-key [?\C-c ?h] 'replace-string)
+; (global-set-key [?\C-c ?j] 'replace-regexp)
+; (global-set-key [?\C-c ?l] 'delete-indentation)
+
+; (global-set-key [?\C-c ?x ?\;] 'comment-region)
+; (global-set-key [?\C-c ?x ?d] 'delete-region)
+
+; (global-set-key "\"" 'skeleton-pair-insert-maybe)
+; (global-set-key (kbd "«") 'skeleton-pair-insert-maybe)
+; (global-set-key "(" 'skeleton-pair-insert-maybe)
+; (global-set-key "[" 'skeleton-pair-insert-maybe)
+; (global-set-key "{" 'skeleton-pair-insert-maybe)
+
+;; * Outline
+
+; (require 'org-install)
+; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+; (define-key global-map "\C-cl" 'org-store-link)
+; (define-key global-map "\C-ca" 'org-agenda)
+; (setq org-log-done t)
+
+;; * Parenthèses
+
+; (require 'autopair)
+; (autopair-global-mode)
+
+;; * Snippets
+
+; (require 'yasnippet) ;; not yasnippet-bundle
+
+;; * edition.el
+
+;; * Types de fichiers
+; ------------------------------------------------------------------------
+
+;; * C
+; ------------------------------------
+
+(setq c-default-style "k&r"
+      c-block-comment-prefix ""
+      c-basic-offset 8)
+
+;; * Shell
+; ------------------------------------
+
+(setq sh-basic-offset 4)
+(setq sh-indent-for-case-label 0)
+(setq sh-indent-for-case-alt '+)
+(setq sh-indent-for-continuation 4)
+
+;; * Slime
+; ------------------------------------
+
+(add-hook 'lisp-mode-hook 'slime-mode)
+
+;; * Latex
+; ------------------------------------
+
+(setq LaTeX-verbatim-regexp "[vV]erbatim\\*?")
+(setq font-latex-verbatim-environments '("verbatim" "verbatim*" "Verbatim"))
+
+(add-hook 'LaTeX-math-mode-hook
+	(lambda ()
+		(define-key LaTeX-math-mode-map "@" LaTeX-math-keymap)
+		(define-key LaTeX-math-keymap "@" 'self-insert-command)
+	)
+)
+
+(add-hook 'metapost-mode-hook
+	(lambda () (define-key meta-mode-map [?\C-m] 'newline)))
+
+;; * Correspondances de parenthèses
+; ------------------------------------------------------------------------
+
+;(electric-pair-mode t)
+
+; Recherche automatique des fermetures et ouvertures des parenthèses
+; Voir cette adresse pour quelquechose de plus fin :
+; http://www.linux-france.org/article/appli/emacs/faq/emacs-faq-7.html
+;(load-library "paren")
+;(show-paren-mode 1) ; turn on paren match highlighting
+
+;; * Folding
+
+;(if (load "folding" 'nomessage 'noerror)
+    ;(folding-mode-add-find-file-hook))
+
+;(folding-add-to-marks-list 'html-mode "{{{" "}}}" nil t)
+;(folding-add-to-marks-list 'python-mode "{{{" "}}}" nil t)
+;(folding-add-to-marks-list 'lisp-mode "{{{" "}}}" nil t)
+
+; Alt-x folding-mode
+; pour l’activer si ce n’est pas automatique
+
+;(add-hook 'html-mode-hook 'folding-mode)
+;(add-hook 'python-mode-hook 'folding-mode)
+;(add-hook 'lisp-mode-hook 'folding-mode)
+
+;; * Mode vim
+; ------------------------------------------------------------------------
+
+;(require 'vimpulse)
+
+;; * Undo-tree
+
+(load "elpa/undo-tree-0.5.3/undo-tree")
+;(autoload 'global-undo-tree-mode "elpa/undo-tree-0.5.3/undo-tree" "Undo tree." t)
+
+;; * completion.el
+
+;; * Minibuffer complete cycle
+
+; Ne fonctionne pas
+
+;(load "emacs-goodies-el/minibuffer-complete-cycle")
+
+;(require 'minibuffer-complete-cycle)
+
+;(set-variable 'minibuffer-complete-cycle t)
+
+;; * Smart tab
+
+;(require 'smart-tab)
+
+;(global-smart-tab-mode 1)
+
+;; * Predictive
+
+;(add-to-list 'load-path "~/racine/extension/edit/emacs/pack/predictive")
+;(autoload 'predictive-mode "predictive" "predictive" t)
+;(set-default 'predictive-auto-add-to-dict t)
+;(setq predictive-main-dict 'rpg-dictionary
+      ;predictive-auto-learn t
+      ;predictive-add-to-dict-ask nil
+      ;predictive-use-auto-learn-cache nil
+      ;predictive-which-dict t)
+
+(byte-recompile-directory "~/racine/extension/edit/emacs/pack/icicles")
+
+;; * courriel.el
+
+;(require 'notmuch)
+
+;; * historique.el
+
+;(setq save-visited-file "~/racine/extension/edit/emacs/emacs.d/savevisited")
+;(require 'save-visited-files)
+;(open-visited-files)
+;(save-visited-files-mode 1)
+
+;; * coquillage.el
+
+(setq eshell-cmpl-cycle-completions nil
+      eshell-save-history-on-exit t
+      eshell-cmpl-dir-ignore "\\`\\(\\.\\.?\\|CVS\\|\\.svn\\|\\.git\\)/\\'")
+
+(eval-after-load 'esh-opt
+  '(progn
+     (require 'em-cmpl)
+     (require 'em-prompt)
+     (require 'em-term)
+     ;; TODO: for some reason requiring this here breaks it, but
+     ;; requiring it after an eshell session is started works fine.
+     ;; (require 'eshell-vc)
+     (setenv "PAGER" "cat")
+     ; (set-face-attribute 'eshell-prompt nil :foreground "turquoise1")
+     (add-hook 'eshell-mode-hook ;; for some reason this needs to be a hook
+               '(lambda () (define-key eshell-mode-map "\C-a" 'eshell-bol)))
+     (add-to-list 'eshell-visual-commands "ssh")
+     (add-to-list 'eshell-visual-commands "tail")
+     (add-to-list 'eshell-command-completions-alist
+                  '("gunzip" "gz\\'"))
+     (add-to-list 'eshell-command-completions-alist
+                  '("tar" "\\(\\.tar|\\.tgz\\|\\.tar\\.gz\\)\\'"))
+     (add-to-list 'eshell-output-filter-functions 'eshell-handle-ansi-color)))
+
+;; * musique.el
+
+;; * Emms
+
+;(require 'emms-setup)
+;(emms-standard)
+;(emms-default-players)
+
+;(require 'emms-player-simple)
+;(require 'emms-source-file)
+;(require 'emms-source-playlist)
+
+;(setq emms-player-list
+	  ;'(emms-player-mpg321 emms-player-ogg123 emms-player-mplayer))
+
+;; * onglets.el
+
+;; * Tabbar
+; ------------------------------------
+
+;(tabbar-mode)
+
+;(set-face-attribute 'tabbar-button
+;nil :inherit 'tabbar-default
+;:box '(:line-width 1 :color "gray30")
+;)
+
+;(set-face-attribute 'tabbar-default
+;nil :family "Courier"
+;:background "gray80" :foreground
+;"gray30" :height 1.1)
+
+;(set-face-attribute 'tabbar-selected
+;nil :inherit 'tabbar-default
+;:foreground "DarkGreen"
+;:background "LightGoldenrod"
+;:box '(:line-width 2 :color "DarkGoldenrod")
+;;;:overline "black" :underline "black"
+;:weight 'bold)
+
+;(set-face-attribute 'tabbar-unselected
+;nil :inherit 'tabbar-default
+;:box '(:line-width 2 :color "gray70"))
+
+;; * presentation.el
+
+;; * Color-theme
+
+;(require 'color-theme)
+
+;(setq color-theme-is-global t)
+
+;(color-theme-initialize)
+
+;(color-theme-classic)
+
+;(setq ring-bell-function
+		;(lambda ()
+	;(unless (memq this-command
+		;'(isearch-abort abort-recursive-edit exit-minibuffer keyboard-quit))
+	;(ding))))
+
+;(setq ring-bell-function (lambda ()
+   ;(call-process-shell-command "xset led 3; xset -led 3" nil 0 nil)))
+
+;; * Curseur
+; ------------------------------------------------------------------------
+
+; Ne clignote pas
+
+(and (fboundp 'blink-cursor-mode) (blink-cursor-mode (- (*) (*) (*))))
+
+;; * Affichage
+; ------------------------------------------------------------------------
+
+;; Create display table to modify some display elements
+(or standard-display-table (setq standard-display-table (make-display-table)))
+
+;; Display page delimiter ^L as a horizontal line
+(aset standard-display-table ?\^L (vconcat (make-vector 64 ?-) "^L"))
+
+;; Display triangle for outline of invisible lines.
+;; For information, see (info "(elisp) Display Table Format")
+;; (from old code in faces.el in Emacs repo modified for Emacs 23)
+(if (facep 'escape-glyph)
+    (let* ((face (lsh (face-id 'escape-glyph) 22)) ;; 22 was 19 in Emacs 22
+           (backslash (+ face ?\\))
+           ;; TRIANGULAR BULLET keeps the default font height
+           (dot (+ face #x2023)))
+      ;; (aset standard-display-table 2208 (vector backslash ?\s)) ; no-break space
+      ;; (aset standard-display-table 2221 (vector backslash ?-))  ; soft hyphen
+      ;; (set-char-table-extra-slot standard-display-table 2 backslash) ; \364
+      ;; (set-char-table-extra-slot standard-display-table 3 (+ face ?^)) ; ^@
+      ;; (set-char-table-extra-slot standard-display-table 4 (vector dot dot dot))
+      (set-char-table-extra-slot standard-display-table 4 (vector dot))))
+
+;(and (fboundp 'menu-bar-mode)   (menu-bar-mode   -1))
+
+;(and (fboundp 'tool-bar-mode)   (tool-bar-mode   -1))
+;(and (fboundp 'tooltip-mode) (fboundp 'x-show-tip) (tooltip-mode -1))
+;(and (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+;; * Plus nécessaire dans emacs24
+
+; Les meilleurs :
+;
+; bharadwaj-slate billw blue-sea
+; charcoal-black classic
+; goldenrod gray30
+; infodoc
+; kingsajz
+; late-night
+; retro-orange robin-hood
+; shaman subtle-hacker
+;(require 'color-theme)
+
+;(color-theme-initialize)
+
+; Alt-x :
+
+; color-theme-select
+
+; pour sélectionner intéractivement
+
+;(color-theme-robin-hood)
+
+;(require 'color-theme-solarized)
+;(color-theme-solarized-dark)
+;(color-theme-solarized-light)
+
+;(color-theme-aalto-dark)
+;(color-theme-aalto-light)
+;(color-theme-aliceblue)
+;(color-theme-andreas)
+;(color-theme-bharadwaj)
+;(color-theme-bharadwaj-slate)
+;(color-theme-billw)
+;(color-theme-blippblopp)
+;(color-theme-blue-gnus)
+;(color-theme-blue-sea)
+;(color-theme-calm-forest)
+;(color-theme-charcoal-black)
+;(color-theme-classic)
+;(color-theme-comidia)
+;(color-theme-dark-blue2)
+;(color-theme-dark-font-lock)
+;(color-theme-dark-green)
+;(color-theme-dark-laptop)
+;(color-theme-deep-blue)
+;(color-theme-describe)
+;(color-theme-emacs21)
+;(color-theme-euphoria)
+;(color-theme-fischmeister)
+;(color-theme-gnome2)
+;(color-theme-gray1)
+;(color-theme-greiner)
+;(color-theme-goldenrod)
+;(color-theme-gray1)
+;(color-theme-gray30)
+;(color-theme-greiner)
+;(color-theme-high-contrast)
+;(color-theme-infodoc)
+;(color-theme-jb-simple)
+;(color-theme-jedit-grey)
+;(color-theme-jonadabian)
+;(color-theme-jonadabian-slate)
+;(color-theme-jsc-dark)
+;(color-theme-jsc-light)
+;(color-theme-jsc-light2)
+;(color-theme-katester)
+;(color-theme-kingsajz)
+;(color-theme-late-night)
+;(color-theme-lawrence)
+;(color-theme-lethe)
+;(color-theme-marine)
+;(color-theme-marquardt)
+;(color-theme-midnight)
+;(color-theme-mistyday)
+;(color-theme-montz)
+;(color-theme-parus)
+;(color-theme-pierson)
+;(color-theme-pok-wob)
+;(color-theme-pok-wog)
+;(color-theme-ramangalahy)
+;(color-theme-raspopovic)
+;(color-theme-resolve)
+;(color-theme-retro-green)
+;(color-theme-retro-orange)
+;(color-theme-robin-hood)
+;(color-theme-rotor)
+;(color-theme-scintilla)
+;(color-theme-shaman)
+;(color-theme-simple-1)
+;(color-theme-sitaramv-nt)
+;(color-theme-sitaramv-solaris)
+;(color-theme-snow)
+;(color-theme-snowish)
+;(color-theme-submit)
+;(color-theme-subtle-blue)
+;(color-theme-subtle-hacker)
+;(color-theme-taylor)
+;(color-theme-vim-colors)
+;(color-theme-wheat)
+;(color-theme-xemacs)
+
+;; * Solarized
+
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/theme/solarized")
+
+(load-theme 'solarized-dark t)
+;(load-theme 'solarized-light t)
+
+;; * Chemins
+
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-emacs-revert-theme-0.1/")
+
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-active-0.0.1/")
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-actress-0.2.1/")
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-blackboard-0.0.2/")
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-cobalt-0.0.2/")
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-colorful-obsolescence-0.0.1/")
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-complexity-0.1.0/")
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-dawn-night-1.0/")
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-dg-0.1.0/")
+
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-monokai-0.0.5/")
+(add-to-list 'custom-theme-load-path "~/racine/extension/edit/emacs/emacs.d/elpa/color-theme-railscasts-0.0.2/")
+
+# {{{ emacs24-starter-kit.el
+
+; vim : set filetype=lisp.emacs
+
+;(add-to-list 'load-path "~/racine/extension/edit/emacs/emacs24-starter-kit")
+
+(load "~/racine/extension/edit/emacs/emacs24-starter-kit/init.el")
+
+(setq autoload-file (concat starter-kit-dir "loaddefs.el"))
+(setq package-user-dir (concat starter-kit-dir "elpa"))
+(setq custom-file (concat starter-kit-dir "custom.el"))
+
+; Ubiquitous Packages which should be loaded on startup rather than autoloaded on demand
+; since they are likely to be used in every session.
+
+(require 'cl)
+(require 'saveplace)
+(require 'ffap)
+(require 'uniquify)
+(require 'ansi-color)
+(require 'recentf)
+
+; ELPA (Emacs Lisp Package Archive ) archive repositories and two packages to install by default.
+
+(setq package-archives
+      '(("original"    . "http://tromey.com/elpa/")
+        ("gnu"         . "http://elpa.gnu.org/packages/")
+        ("marmalade"   . "http://marmalade-repo.org/packages/")))
+(package-initialize)
+
+(defvar starter-kit-packages
+  (list 'yasnippet-bundle)
+  "Libraries that should be installed by default.")
+
+(unless package-archive-contents
+  (package-refresh-contents))
+(dolist (package starter-kit-packages)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+; Functions for loading other parts of the starter kit
+
+(defun starter-kit-load (file &optional header-or-tag)
+  "Load configuration from other starter-kit-*.org files.
+If the optional argument is the id of a subtree then only
+configuration from within that subtree will be loaded.  If it is
+not an id then it will be interpreted as a tag, and only subtrees
+marked with the given tag will be loaded.
+
+For example, to load all of starter-kit-lisp.org simply
+add (starter-kit-load \"lisp\") to your configuration.
+
+To load only the 'window-system' config from
+starter-kit-misc-recommended.org add
+ (starter-kit-load \"misc-recommended\" \"window-system\")
+to your configuration."
+  (let ((file (expand-file-name (if (string-match "starter-kit-.+\.org" file)
+                                    file
+                                  (format "starter-kit-%s.org" file))
+                                starter-kit-dir)))
+    (org-babel-load-file
+     (if header-or-tag
+         (let* ((base (file-name-nondirectory file))
+                (dir  (file-name-directory file))
+                (partial-file (expand-file-name
+                               (concat "." (file-name-sans-extension base)
+                                       ".part." header-or-tag ".org")
+                               dir)))
+           (unless (file-exists-p partial-file)
+             (with-temp-file partial-file
+               (insert
+                (with-temp-buffer
+                  (insert-file-contents file)
+                  (save-excursion
+                    (condition-case nil ;; collect as a header
+                        (progn
+                          (org-link-search (concat"#"header-or-tag))
+                          (org-narrow-to-subtree)
+                          (buffer-string))
+                      (error ;; collect all entries with as tags
+                       (let (body)
+                         (org-map-entries
+                          (lambda ()
+                            (save-restriction
+                              (org-narrow-to-subtree)
+                              (setq body (concat body "\n" (buffer-string)))))
+                          header-or-tag)
+                         body))))))))
+           partial-file)
+       file))))
+
+; Starter kit function definitions in starter-kit-defuns
+
+(starter-kit-load "starter-kit-defuns.org")
+
+; Key Bindings in starter-kit-bindings
+
+(starter-kit-load "starter-kit-bindings.org")
+
+; Miscellaneous settings in starter-kit-misc
+
+(starter-kit-load "starter-kit-misc.org")
+
+; Registers for jumping to commonly used files in starter-kit-registers
+
+(starter-kit-load "starter-kit-registers.org")
+
+; yasnippet is yet another snippet expansion system for Emacs.
+; It is inspired by TextMate's templating syntax.
+; load the yasnippet bundle
+
+(add-to-list 'load-path
+             (expand-file-name  "yasnippet"
+                                (expand-file-name "src"
+                                                  starter-kit-dir)))
+(require 'yasnippet)
+(yas/initialize)
+
+; load the snippets defined in the ./snippets/ directory
+
+(yas/load-directory (expand-file-name "snippets" starter-kit-dir))
+
+; The latest version of yasnippets doesn't play well with Org-mode, the following function allows these two to play nicely together.
+
+(defun yas/org-very-safe-expand ()
+  (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
+
+(defun yas/org-setup ()
+  ;; yasnippet (using the new org-cycle hooks)
+  (make-variable-buffer-local 'yas/trigger-key)
+  (setq yas/trigger-key [tab])
+  (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+  (define-key yas/keymap [tab] 'yas/next-field))
+
+(add-hook 'org-mode-hook #'yas/org-setup)
+
+; System/User specific customizations
+
+; You can keep system- or user-specific customizations here
+; in either raw emacs-lisp files or as embedded elisp in org-mode files (as done in this document).
+
+; You can keep elisp source in the src directory.
+; Packages loaded from here will override those installed by ELPA.
+; This is useful if you want to track the development versions of a project, or if a project is not in elpa.
+
+; After we've loaded all the Starter Kit defaults, lets load the User's stuff.
+
+(flet ((sk-load (base)
+         (let* ((path     (expand-file-name base starter-kit-dir))
+                (literate (concat path ".org"))
+                (plain    (concat path ".el")))
+           (cond
+            ((file-exists-p literate) (org-babel-load-file literate))
+            ((file-exists-p plain)    (load plain))))))
+  (let ((elisp-dir (expand-file-name "src" starter-kit-dir))
+        (user-dir (expand-file-name user-login-name starter-kit-dir)))
+    ;; add the src directory to the load path
+    (add-to-list 'load-path elisp-dir)
+    ;; load specific files
+    (when (file-exists-p elisp-dir)
+      (let ((default-directory elisp-dir))
+        (normal-top-level-add-subdirs-to-load-path)))
+    ;; load system-specific config
+    (sk-load system-name)
+    ;; load user-specific config
+    (sk-load user-login-name)
+    ;; load any files in the user's directory
+    (when (file-exists-p user-dir)
+      (add-to-list 'load-path user-dir)
+      (mapc #'sk-load
+            (remove-duplicates
+             (mapcar #'file-name-sans-extension
+                     (directory-files user-dir t ".*\.\\(org\\|el\\)$"))
+             :test #'string=)))))
+
+; Settings from M-x customize
+
+(load custom-file 'noerror)
+
+# }}}
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   (quote
+    ((ffip-project-root . "~/racine/install")
+     (outline-minor-mode-prefix kbd "C-c C-c")
+     (outline-minor-mode-prefix . " ")
+     (outline-minor-mode-prefix . "C-c C-c")
+     (ffip-project-root . "~/racine/bin")
+     (ffip-project-root . "~/racine/site")
+     (ffip-project-root . "~/racine/plain")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+(setq org-goto-interface "outline")
+(setq org-goto-interface "outline-path-completion")
+(setq org-goto-interface 'outline-path-completion org-goto-max-level 10)
+
+;; (setq org-log-done 'time)
+;; (setq org-log-done 'note)
+
+;;(setq org-bullets-bullet-list '("✙" "♱" "♰" "☥" "✞" "✟" "✝" "†" "✠" "✚" "✜" "✛" "✢" "✣" "✤" "✥"))
+;;(setq org-bullets-bullet-list '("✡" "⎈" "✽" "✲" "✱" "✻" "✼" "✽" "✾" "✿" "❀" "❁" "❂" "❃" "❄" "❅" "❆" "❇"))
+
+(global-set-key (kbd "H-SPC") 'helm-projectile)
+(global-set-key (kbd "M-s o") 'helm-swoop)
+(global-set-key (kbd "M-s M-o") 'helm-multi-swoop)
+(setq helm-google-suggest-use-curl-p t)
+(global-set-key (kbd "s-m") 'helm-mini)
+;; (global-set-key (kbd "M-/") 'helm-dabbrev
+; Supprime tous les espaces en fin de ligne
+; http://www.splode.com/users/friedman/software/emacs-lisp/
+
+(autoload 'nuke-trailing-whitespace "whitespace" nil t)
+
+(global-set-key (kbd "M-s O") 'occur)
+
+(el-get-bundle ggtags)
+;; (global-set-key (kbd "H-SPC") 'helm-buffers-list)
+
+;(global-set-key (kbd "C-x C-1") 'delete-other-windows)
+;(global-set-key (kbd "C-x C-2") 'split-window-below)
+;(global-set-key (kbd "C-x C-3") 'split-window-right)
+;(global-set-key (kbd "C-x C-0") 'delete-window)
+
+; (global-set-key (kbd "<C-f1>") 'delete-other-windows)
+; (global-set-key (kbd "<C-f2>") 'split-window-below)
+; (global-set-key (kbd "<C-f3>") 'split-window-right)
+; (global-set-key (kbd "<C-f4>") 'delete-window)
+
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+iy go to char
+
+C-c f
+C-c F
+C-c ;
+C-c ,
+
+;;; add new pairs
+
+(sp-add-local-pair "*" "*" 'org-mode)
+(sp-add-local-pair "$" "$" 'org-mode)
+
+(sp-add-local-pair "<" ">" 'html-mode)
+
+;;; global
+
+(sp-add-ban-insert-pair-in-string "'")
+
+;; you can also use the `sp-with-tag' macro. It will automatically add
+;; the tag to each function. Use this only with functions where the
+;; first argument is the opening pair! Here, we want to disable ' pair
+;; in a bunch of text modes
+
+(sp-with-tag "'"
+             (sp-add-local-ban-insert-pair 'markdown-mode)
+             (sp-add-local-ban-insert-pair 'tex-mode)
+             (sp-add-local-ban-insert-pair 'latex-mode)
+             (sp-add-local-ban-insert-pair 'text-mode)
+             (sp-add-local-ban-insert-pair 'log-edit-mode)
+             (sp-add-local-ban-insert-pair 'org-mode))
+
+;; now, we could've also done just this:
+;; (sp-add-local-ban-insert-pair "'"
+;;                               '(markdown-mode
+;;                                 ...))
+;; but I wanted to show you how to use the sp-with-tag macro :)
+
+;;; emacs-lisp-mode(s)
+
+(sp-with '(emacs-lisp-mode inferior-emacs-lisp-mode lisp-interaction-mode)
+         (sp-add-local-ban-insert-pair "'")
+         (sp-add-local-ban-insert-pair-in-code "`"))
+
+;;; markdown-mode
+;; you can also use the `sp-with' macro. It will automatically add the
+;; mode to the end of each call. How cool is that!
+
+(sp-with '(markdown-mode rst-mode)
+         (sp-add-local-pair "`" "`")
+         ;; this also disables '*' in all other modes
+         (sp-add-local-allow-insert-pair "*")
+         (sp-add-tag-pair "2" "**" "**" nil))
+
+;;; tex-mode latex-mode
+
+(sp-with '(tex-mode latex-mode) ;; yes, this works with lists too!
+         (sp-add-local-allow-insert-pair "$")
+         (sp-add-tag-pair "i" "\"<" "\">" nil))
+
+;;; python-mode
+
+(sp-with 'python-mode
+         (sp-add-local-ban-insert-pair "`"))
+
+;;; html-mode
+
+(sp-with '(html-mode sgml-mode)
+         (sp-add-local-allow-insert-pair "<"))
+
+;; --
+
+(smartparens-global-mode 1)
+
+(show-smartparens-global-mode t)
+
+
+(define-key sp-keymap (kbd "C-M-f") 'sp-forward-sexp)
+(define-key sp-keymap (kbd "C-M-b") 'sp-backward-sexp)
+
+(define-key sp-keymap (kbd "C-M-a") 'sp-backward-down-sexp)
+(define-key sp-keymap (kbd "C-M-e") 'sp-up-sexp)
+
+(define-key sp-keymap (kbd "C-M-d") 'sp-down-sexp)
+(define-key sp-keymap (kbd "C-M-u") 'sp-backward-up-sexp)
+(define-key sp-keymap (kbd "C-M-n") 'sp-next-sexp)
+(define-key sp-keymap (kbd "C-M-p") 'sp-previous-sexp)
+
+(define-key sp-keymap (kbd "C-M-k") 'sp-kill-sexp)
+
+(define-key sp-keymap (kbd "M-DEL") 'sp-unwrap-sexp)
+(define-key sp-keymap (kbd "<M-backspace>") 'sp-backward-unwrap-sexp)
+
+(define-key sp-keymap (kbd "M-D") 'sp-splice-sexp)
+(define-key sp-keymap (kbd "s-|") 'sp-split-sexp)
+
+(define-key sp-keymap (kbd "s-]") 'sp-select-next-thing)
+(define-key sp-keymap (kbd "s-[") 'sp-select-previous-thing)
+
+(define-key sp-keymap (kbd "<C-right>") 'sp-forward-slurp-sexp)
+(define-key sp-keymap (kbd "<C-left>") 'sp-forward-barf-sexp)
+(define-key sp-keymap (kbd "<C-M-left>") 'sp-backward-slurp-sexp)
+(define-key sp-keymap (kbd "<C-M-right>") 'sp-backward-barf-sexp)
+
+(global-set-key (kbd "<s-backspace>")   'kill-whole-line)
+
+;;(global-unset-key (kbd "C-z"))
+
+;;(el-get-bundle elscreen)
+;;(el-get-bundle escreen)
+;;(el-get-bundle paredit)
+
+;(byte-recompile-file "~/racine/config/edit/emacs/emacs.el" 0)
+
+;(byte-recompile-directory "~/racine/config/edit/emacs/color" 0)
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/emacs.d" 0)
+
+;(byte-recompile-directory "~/racine/extension/edit/emacs/pack" 0)
+
+;;(global-set-key (kbd "C-S-<pause>") 'wg-save-session)
+;;(global-set-key (kbd "s-z")         'wg-switch-to-workgroup)
+;;(global-set-key (kbd "s-/")         'wg-switch-to-previous-workgroup)
+
+;; ** Escreen
+
+;; (load "escreen")
+;; (escreen-install)
+
+;; (setq escreen-prefix-char (kbd "s-a"))
+;; (global-set-key escreen-prefix-char 'escreen-prefix)
+
+;; ** Elscreen
+
+;(elscreen-start)
+
+;(setq elscreen-display-tab nil)
+;(setq elscreen-tab-display-control nil)
+;(setq elscreen-tab-display-kill-screen nil)
+
+;(setq elscreen-prefix-key (kbd "C-z"))
+
+;(el-get-bundle persp-mode)
+
+(add-to-list 'load-path "~/racine/extension/edit/emacs/source/helm")
+
+;;(define-key region-bindings-mode-map (kbd "<H-right>") 'mc/mark-next-like-this)
+;;(define-key region-bindings-mode-map (kbd "<H-left>") 'mc/mark-previous-like-this)
+;;(global-set-key (kbd "s-µ") 'helm-projectile-switch-project)
+
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+
+(semantic-mode 1)
+
+(el-get-bundle visible-mark)
+;; ** Visible-marks
+
+(defface visible-mark-active ;; put this before (require 'visible-mark)
+  '((((type tty) (class mono)))
+    (t (:background "darkred"))) "")
+
+(require 'visible-mark)
+
+(global-visible-mark-mode 1)
+
+(setq visible-mark-max 2)
+(setq visible-mark-faces `(visible-mark-face1 visible-mark-face2))
+
+
+(key-chord-define-global "ii" "\C-x1")
+(key-chord-define-global "ik" "\C-x2")
+(key-chord-define-global "kl" "\C-x3")
+(key-chord-define-global "oo" "\C-x0")
+
+(key-chord-define-global "<<" "<>\C-b")
+
+;; Ne le trouve pas
+;; (add-hook 'outline-mode-hook
+;;           (lambda ()
+;;             (require 'outline-cycle)))
+
+;;(setq dired-listing-switches "-lFaGh1v --group-directories-first")
+
+(el-get-bundle bookmark+)
+(el-get-bundle dired+)
+
+;;(cd "~/plain")
+
+(el-get-bundle cedet)
+
+;;(setq vc-handled-backends nil)
+
+; Ne fonctionne pas :
+;
+; Symbol's value as variable is void: eshell-visual-command
+
+;(add-to-list 'eshell-visual-commands "top")
+;(add-to-list 'eshell-visual-commands "htop")
+
+;(add-to-list 'eshell-visual-commands "mutt")
+;(add-to-list 'eshell-visual-commands "slrn")
+;(add-to-list 'eshell-visual-commands "weechat")
+;; org-mu4e :
+
+;; (setq org-capture-templates
+;;       '(("t" "todo" entry
+;; 	 (file+headline "~/todo.org" "Tasks")
+;; 	 "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")))
+
+(el-get-bundle tabbar)
+(el-get-bundle tab-group)
+(el-get-bundle sunrise-commander)
+
+
+(setq org-capture-templates
+      (quote (("n" "note" entry (file (concat org-directory "/notes.org"))
+               "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+	      ("t" "todo" entry (file (concat org-directory "/todo.org"))
+               "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("j" "journal" entry (file+datetree (concat org-directory "/journal.org"))
+               "* %?\n%U\n" :clock-in t :clock-resume t)
+              )))
+
+;;(add-to-list 'load-path "~/racine/plugin/source/persp-mode.el")
+
+;;(el-get-bundle magit)
+
+;; * Persp-mode
+
+(setq persp-keymap-prefix (kbd "s-z"))
+
+(with-eval-after-load "persp-mode"
+  (setq persp-autokill-buffer-on-remove 'kill-weak)
+  (add-hook 'after-init-hook #'(lambda () (persp-mode 1))))
+
+(require 'persp-mode)
+
+(el-get-bundle helm-slime)
+(el-get-bundle slime)
+
+;;(setq helm-mode-fuzzy-match nil)
+
+;;(setq helm-ff-fuzzy-matching nil)
+;;(setq helm-buffers-fuzzy-matching nil)
+;;(setq helm-recentf-fuzzy-match nil)
+;;(setq helm-projectile-fuzzy-match nil)
+;;(setq helm-etags-fuzzy-match nil)
+;;(setq helm-gtags-fuzzy-match nil)
+;;(setq helm-locate-fuzz-ymatch nil)
+
+;;(setq helm-projectile-fuzzy-match nil)
+;;(setq helm-projectile-find-file-fuzzy-match nil)
+
+;;(global-set-key (kbd "M-s o") 'helm-occur)
+
+(el-get-bundle god-mode)
+
+;; ** God-mode
+
+(require 'god-mode)
+
+(global-set-key (kbd "s-c") 'god-local-mode)               ; Analogue à Ctrl-C = Escape
+
+(define-key god-local-mode-map (kbd "i") 'god-local-mode)  ; Analogue à i = Insert
+
+(define-key god-local-mode-map (kbd ".") 'repeat)
+
+;;(modalka-global-mode 1)
+
+;;(add-to-list 'modalka-excluded-modes 'lisp-mode)
+
+(setq-default cursor-type '(bar . 1))
+(setq modalka-cursor-type 'box)
+
+;; ** Linum-relative
+
+(require 'linum-relative)
+
+;;(linum-relative-toggle)
+
+;; (add-hook 'lisp-mode-hook #'modalka-mode)
+;; (add-hook 'org-mode-hook #'modalka-mode)
+
+(modalka-define-kbd "a" "C-a")
+(modalka-define-kbd "b" "C-b")
+(modalka-define-kbd "e" "C-e")
+(modalka-define-kbd "f" "C-f")
+(modalka-define-kbd "g" "C-g")
+(modalka-define-kbd "n" "C-n")
+(modalka-define-kbd "p" "C-p")
+(modalka-define-kbd "w" "C-w")
+(modalka-define-kbd "y" "C-y")
+
+(modalka-define-kbd "W" "M-w")
+(modalka-define-kbd "Y" "M-y")
+
+(global-set-key (kbd "<menu> v f") #'vimish-fold)
+(global-set-key (kbd "<menu> v v") #'vimish-fold-delete)
+
+(modalka-define-kbd "f" "M-f")
+(modalka-define-kbd "b" "M-b")
+
+;; ** Vimish-fold
+
+(require 'vimish-fold)
+
+(vimish-fold-global-mode 1)
+
+(global-set-key (kbd "s-z s-z") #'vimish-fold)
+(global-set-key (kbd "s-z a") #'vimish-fold-toggle)
+(global-set-key (kbd "s-z d") #'vimish-fold-delete)
+
+;; ** Origami
+
+(require 'origami)
+
+(global-origami-mode)
+
+(define-key origami-mode-map (kbd "s-z") 'origami-toggle-node)
+
+;; ** Folding
+
+(autoload 'folding-mode          "folding" "Folding mode" t)
+(autoload 'turn-off-folding-mode "folding" "Folding mode" t)
+(autoload 'turn-on-folding-mode  "folding" "Folding mode" t)
+
+(if (load "folding" 'nomessage 'noerror) (folding-mode-add-find-file-hook))
+
+(el-get-bundle folding)
+
+(defun charge-theme ()
+  (when (equal window-system 'x) (load-theme 'couleur-gui t))
+  (when (equal window-system nil) (load-theme 'couleur-term t))
+  )
+
+(add-hook 'after-init-hook 'charge-theme)
+
+
+;; (if window-system (progn
+;;   (setq initial-frame-alist '((width . 134) (height . 40)))
+;;   (setq initial-frame-alist '((top . 36) (left . 84) (width . 140) (height . 37)))
+;; ))
+
+(el-get-bundle frame-restore)
+
+(defun perso-taille-fenetre ()
+  (interactive)
+  (if window-system
+  (progn
+    ;; use 120 char wide window for largeish displays
+    ;; and smaller 80 column windows for smaller displays
+    ;; pick whatever numbers make sense for you
+    ;; 1280
+    (if (> (x-display-pixel-width) 700)
+           (add-to-list 'default-frame-alist (cons 'width 120))
+           (add-to-list 'default-frame-alist (cons 'width 100)))
+    ;; for the height, subtract a couple hundred pixels
+    ;; from the screen height (for panels, menubars and
+    ;; whatnot), then divide by the height of a char to
+    ;; get the height we want
+    (add-to-list 'default-frame-alist
+         (cons 'height (/ (- (x-display-pixel-height) 200)
+                             (frame-char-height)))))))
+
+(add-hook 'after-init-hook 'perso-taille-fenetre)
+
+(add-to-list 'default-frame-alist (cons 'width 120))
+
+;; (setq explicit-shell-filename "/bin/zsh")
+
+(setenv "ESHELL" shell-file-name)
+
+;; ** Modalka
+
+;;(require 'modalka)
+
+;; Analogue à Ctrl-C = Esc dans Vim
+
+;; (global-set-key (kbd "<f12> m") #'modalka-mode)
+
+;; (modalka-define-kbd "SPC" "C-SPC")
+
+;; (modalka-define-kbd "1" "C-1")
+;; (modalka-define-kbd "2" "C-2")
+;; (modalka-define-kbd "3" "C-3")
+;; (modalka-define-kbd "4" "C-4")
+;; (modalka-define-kbd "5" "C-5")
+;; (modalka-define-kbd "6" "C-6")
+;; (modalka-define-kbd "7" "C-7")
+;; (modalka-define-kbd "8" "C-8")
+;; (modalka-define-kbd "9" "C-9")
+
+;; (eval-after-load 'org
+;;   (progn
+;;     (define-key org-mode-map (kbd "C-c [") nil)
+;;     (define-key org-mode-map (kbd "C-c ]") nil)))
+
+;; /!\ Attention, variable sauvée dans customiseur :
+;; à effacer là-bas en cas de changement ici
+
+;; Fichier contenant la liste des fichiers org :
+
+;; (setq org-agenda-files (quote ("~/racine/plain/orgdir/")))
+
+;; (load-library "find-lisp")
+
+;; (setq org-agenda-files
+;;       (append (find-lisp-find-files "~/racine/plain" "\.org$" )
+;; 	      (find-lisp-find-files "~/racine/site/orgmode" "\.org$")))
+
+;; (setq arg-agenda-text-search-extra-files
+;;       (find-lisp-find-files "~/racine/site/orgmode" "\.org$"))
+
+;;(setq org-agenda-files "~/racine/plain/orgdir/fichiers.liste")
+
+(define-key smartparens-mode-map (kbd "C-M-a") 'sp-backward-down-sexp)
+(define-key smartparens-mode-map (kbd "C-M-e") 'sp-up-sexp)
+
+(define-key smartparens-mode-map (kbd "M-<delete>") 'sp-unwrap-sexp)
+(define-key smartparens-mode-map (kbd "M-<backspace>") 'sp-backward-unwrap-sexp)
+
+
+(el-get-bundle emacs-w3m)
+
+
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "
+
+
+
+
+
+
+
+
+
+" nil t)
+  (replace-match "" t nil))
+
+  (goto-char (point-min))
+
+  (while (search-forward-regexp "
+
+
+
+
+" nil t)
+  (replace-match "" t nil))
+
+; Pris par Helm
+
+;(define-key minibuffer-local-map (kbd "C-p") 'previous-complete-history-element)
+;(define-key minibuffer-local-map (kbd "C-n") 'next-complete-history-element)
+
+; (define-key minibuffer-local-map (kbd "<up>") 'previous-complete-history-element)
+; (define-key minibuffer-local-map (kbd "<down>") 'next-complete-history-element)
+
+	; Fait planter emacs à l’ouverture de fichiers .org
+				; Est pourtant pris en compte dans organisation.el
+
+;;(el-get-bundle workgroups2)
+
+; Fait planter emacs à la réouverture de certains fichiers org
+(add-to-list 'load-path "~/racine/plugin/source/xah-math-input")
+
+;;(add-to-list 'load-path "~/racine/plugin/source/origami.el")
+
+(el-get-bundle elscreen)
+
+(add-to-list 'load-path "~/racine/plugin/source/modalka")
+
+; ==
+
+(defadvice next-buffer (after avoid-messages-buffer-in-next-buffer)
+  (when (string= "*Messages*" (buffer-name)) (next-buffer))
+  (when (string= "*Completions*" (buffer-name)) (next-buffer))
+  (when (string= "*helm mini*" (buffer-name)) (next-buffer))
+  (when (string= "TAGS" (buffer-name)) (next-buffer))
+  (when (string-match "\*tramp.*\*" (buffer-name)) (previous-buffer)))
+
+(ad-activate 'next-buffer)
+
+(defadvice previous-buffer (after avoid-messages-buffer-in-next-buffer)
+  (when (string= "*Messages*" (buffer-name)) (previous-buffer))
+  (when (string= "*Completions*" (buffer-name)) (previous-buffer))
+  (when (string= "*helm mini*" (buffer-name)) (previous-buffer))
+  (when (string= "TAGS" (buffer-name)) (previous-buffer))
+  (when (string-match "\*tramp.*\*" (buffer-name)) (previous-buffer)))
+
+(ad-activate 'previous-buffer)
+
+; ==
+
+(global-set-key [remap next-buffer] 'my-next-buffer)
+(global-set-key [remap previous-buffer] 'my-previous-buffer)
+
+(defvar no-kill-buffers 'tampons-speciaux)
+
+(setq tampons-speciaux
+      '("*scratch*" "*Messages*" "*Completions*" "*Help*" "*Ibuffer*"))
+
+(defun change-tampon (change-buffer)
+  "Call CHANGE-BUFFER until current buffer is not in `tampons-speciaux'."
+  (let ((initial (current-buffer)))
+    (funcall change-buffer)
+    (let ((first-change (current-buffer)))
+      (catch 'loop
+        (while (member (buffer-name) tampons-speciaux)
+          (funcall change-buffer)
+          (when (eq (current-buffer) first-change)
+            (switch-to-buffer initial)
+            (throw 'loop t)))))))
+
+(defun tampon-suivant ()
+  "`next-buffer' that skips `tampons-speciaux'."
+  (interactive)
+  (change-tampon 'next-buffer))
+
+(defun tampon-precedent ()
+  "`previous-buffer' that skips `tampons-speciaux'."
+  (interactive)
+  (change-tampon 'previous-buffer))
+
+;; Informations sur le tampon courant
+
+(global-set-key (kbd "<f9>") 'buffer-file-name)
+
+;; ** Buffer ring
+
+;; (require 'buffer-ring)
+
+;; (global-set-key (kbd "s-z r") 'buffer-torus-list-rings)
+
+;; (global-set-key (kbd "s-z b") 'buffer-ring-list-buffers)
+
+;; (global-set-key (kbd "s-z d") 'buffer-torus-delete-ring)
+
+;; (global-set-key (kbd "s-z c") 'buffer-ring-cycle)
+
+;; (global-set-key (kbd "<s-insert>") 'buffer-ring-add)
+;; (global-set-key (kbd "<s-delete>") 'buffer-ring-delete)
+
+;; (global-set-key (kbd "<s-prior>") 'buffer-ring-prev-buffer)
+;; (global-set-key (kbd "<s-next>") 'buffer-ring-next-buffer)
+
+;; (global-set-key (kbd "<s-home>") 'buffer-torus-prev-ring)
+;; (global-set-key (kbd "<s-end>") 'buffer-torus-next-ring)
+
+;; ** Workgroups
+
+;; (require 'workgroups2)
+
+;; ;;(setq wg-session-load-on-start t)    ; default: (not (daemonp))
+
+;; (setq wg-prefix-key (kbd "s-a"))  ; Change prefix key (before activating WG)
+
+;; (setq wg-session-file "~/.emacs.d/emacs_workgroups")
+
+;; (setq wg-emacs-exit-save-behavior           'save)      ; Options: 'save 'ask nil
+;; (setq wg-workgroups-mode-exit-save-behavior 'save)      ; Options: 'save 'ask nil
+
+;; (setq wg-mode-line-display-on t)          ; Default: (not (featurep 'powerline))
+;; (setq wg-flag-modified t)                 ; Display modified flags as well
+;; (setq wg-mode-line-decor-left-brace "["
+;;       wg-mode-line-decor-right-brace "]"  ; how to surround it
+;;       wg-mode-line-decor-divider ":")
+
+;; (setq wg-morph-on nil)
+
+;; (global-set-key (kbd "s-=")     'wg-switch-to-workgroup)
+
+;; (global-set-key (kbd "s-a s-a")     'wg-switch-to-previous-workgroup)
+
+;; (global-set-key (kbd "s-a s-r")     'wg-reload-session)
+
+;; (global-set-key (kbd "s-a s-s")     'wg-save-session)
+
+;; (global-set-key (kbd "s-a s-n")     'wg-switch-to-workgroup-right)
+;; (global-set-key (kbd "s-a s-p")     'wg-switch-to-workgroup-left)
+
+;; (global-set-key (kbd "<C-next>")     'wg-switch-to-workgroup-right)
+;; (global-set-key (kbd "<C-prior>")     'wg-switch-to-workgroup-left)
+
+;; (global-set-key (kbd "s-a s-0") 'wg-switch-to-workgroup-at-index-0)
+;; (global-set-key (kbd "s-a s-1") 'wg-switch-to-workgroup-at-index-1)
+;; (global-set-key (kbd "s-a s-2") 'wg-switch-to-workgroup-at-index-2)
+;; (global-set-key (kbd "s-a s-3") 'wg-switch-to-workgroup-at-index-3)
+;; (global-set-key (kbd "s-a s-4") 'wg-switch-to-workgroup-at-index-4)
+;; (global-set-key (kbd "s-a s-5") 'wg-switch-to-workgroup-at-index-5)
+;; (global-set-key (kbd "s-a s-6") 'wg-switch-to-workgroup-at-index-6)
+;; (global-set-key (kbd "s-a s-7") 'wg-switch-to-workgroup-at-index-7)
+;; (global-set-key (kbd "s-a s-7") 'wg-switch-to-workgroup-at-index-7)
+;; (global-set-key (kbd "s-a s-8") 'wg-switch-to-workgroup-at-index-8)
+;; (global-set-key (kbd "s-a s-9") 'wg-switch-to-workgroup-at-index-9)
+
+;; (global-set-key (kbd "s-a <s-kp-0>") 'wg-switch-to-workgroup-at-index-0)
+;; (global-set-key (kbd "s-a <s-kp-1>") 'wg-switch-to-workgroup-at-index-1)
+;; (global-set-key (kbd "s-a <s-kp-2>") 'wg-switch-to-workgroup-at-index-2)
+;; (global-set-key (kbd "s-a <s-kp-3>") 'wg-switch-to-workgroup-at-index-3)
+;; (global-set-key (kbd "s-a <s-kp-4>") 'wg-switch-to-workgroup-at-index-4)
+;; (global-set-key (kbd "s-a <s-kp-5>") 'wg-switch-to-workgroup-at-index-5)
+;; (global-set-key (kbd "s-a <s-kp-6>") 'wg-switch-to-workgroup-at-index-6)
+;; (global-set-key (kbd "s-a <s-kp-7>") 'wg-switch-to-workgroup-at-index-7)
+;; (global-set-key (kbd "s-a <s-kp-7>") 'wg-switch-to-workgroup-at-index-7)
+;; (global-set-key (kbd "s-a <s-kp-8>") 'wg-switch-to-workgroup-at-index-8)
+;; (global-set-key (kbd "s-a <s-kp-9>") 'wg-switch-to-workgroup-at-index-9)
+
+;; (workgroups-mode 1)
+
+;; ** Perspective
+
+;; (persp-mode)
+
+;; (setq persp-mode-prefix-key  (kbd "s-a"))
+
+;; * Onglets
+
+;;(tabbar-mode)
+
+;; * Courriel
+
+(global-set-key (kbd "H-m") 'mu4e)
+
+(global-set-key (kbd "H-m") 'mtorus-switch-to-ring)
+
+(el-get-bundle dynamic-ring)		; pour buffer-ring
+
+;; ==============================
+
+;; * Vim
+
+(require 'personnel-vim "vim")
+
+;; * Documentation
+
+(require 'personnel-documentation "documentation")
+
+;; * Courriel, Usenet, RSS, ...
+
+(require 'personnel-courriel "courriel")
+
+;; * Mu4e
+
+;; (require 'mu4e)
+
+;; (setq
+;;   mu4e-maildir       "~/racine/mail/Maildir"            ;; top-level Maildir
+;;   mu4e-sent-folder   "/sent"	                        ;; folder for sent messages
+;;   mu4e-drafts-folder "/drafts"	                        ;; unfinished messages
+;;   mu4e-trash-folder  "/trash"	                        ;; trashed messages
+;;   mu4e-refile-folder "/archive")	                ;; saved messages
+
+;; (setq mu4e-maildir-shortcuts
+;;   '( ("/"         . ?i)
+;;      ("/sent"     . ?s)
+;;      ("/drafts"   . ?d)
+;;      ("/trash"    . ?t)
+;;      ("/archive"  . ?a)))
+
+;; (setq mu4e-get-mail-command "true")
+
+;; (setq mu4e-attachment-dir  "~/racine/mail/Attaches")
+
+;; (setq mu4e-view-show-images nil)
+
+; Remplacé par xah-math-input
+
+; (global-set-key (kbd "M-g a") "α")
+; (global-set-key (kbd "M-g b") "β")
+; (global-set-key (kbd "M-g g") "γ")
+; (global-set-key (kbd "M-g d") "δ")
+; (global-set-key (kbd "M-g e") "ε")
+; (global-set-key (kbd "M-g z") "ζ")
+; (global-set-key (kbd "M-g h") "η")
+; (global-set-key (kbd "M-g q") "θ")
+; (global-set-key (kbd "M-g M-t") "θ")
+; (global-set-key (kbd "M-g i") "ι")
+; (global-set-key (kbd "M-g k") "κ")
+; (global-set-key (kbd "M-g l") "λ")
+; (global-set-key (kbd "M-g m") "μ")
+; (global-set-key (kbd "M-g n") "ν")
+; (global-set-key (kbd "M-g x") "ξ")
+; (global-set-key (kbd "M-g o") "ο")
+; (global-set-key (kbd "M-g p") "π")
+; (global-set-key (kbd "M-g r") "ρ")
+; (global-set-key (kbd "M-g s") "σ")
+; (global-set-key (kbd "M-g t") "τ")
+; (global-set-key (kbd "M-g u") "υ")
+; (global-set-key (kbd "M-g f") "ϕ")
+; (global-set-key (kbd "M-g j") "φ")
+; (global-set-key (kbd "M-g M-f") "φ")
+; (global-set-key (kbd "M-g c") "χ")
+; (global-set-key (kbd "M-g M-k") "χ")
+; (global-set-key (kbd "M-g y") "ψ")
+; (global-set-key (kbd "M-g w") "ω")
+; (global-set-key (kbd "M-g A") "Α")
+; (global-set-key (kbd "M-g B") "Β")
+; (global-set-key (kbd "M-g G") "Γ")
+; (global-set-key (kbd "M-g D") "Δ")
+; (global-set-key (kbd "M-g E") "Ε")
+; (global-set-key (kbd "M-g Z") "Ζ")
+; (global-set-key (kbd "M-g H") "Η")
+; (global-set-key (kbd "M-g Q") "Θ")
+; (global-set-key (kbd "M-g M-T") "Θ")
+; (global-set-key (kbd "M-g I") "Ι")
+; (global-set-key (kbd "M-g K") "Κ")
+; (global-set-key (kbd "M-g L") "Λ")
+; (global-set-key (kbd "M-g M") "Μ")
+; (global-set-key (kbd "M-g N") "Ν")
+; (global-set-key (kbd "M-g X") "Ξ")
+; (global-set-key (kbd "M-g O") "Ο")
+; (global-set-key (kbd "M-g P") "Π")
+; (global-set-key (kbd "M-g R") "Ρ")
+; (global-set-key (kbd "M-g S") "Σ")
+; (global-set-key (kbd "M-g T") "Τ")
+; (global-set-key (kbd "M-g U") "Υ")
+; (global-set-key (kbd "M-g F") "Φ")
+; (global-set-key (kbd "M-g J") "Φ")
+; (global-set-key (kbd "M-g M-F") "Φ")
+; (global-set-key (kbd "M-g C") "Χ")
+; (global-set-key (kbd "M-g M-K") "Χ")
+; (global-set-key (kbd "M-g Y") "Ψ")
+; (global-set-key (kbd "M-g W") "Ω")
+
+
+
+;; * Vi style
+
+;; Remplacé par evil
+
+;(setq viper-toggle-key (kbd "<f12> v"))
+
+;(global-set-key (kbd "<f12> v") 'viper-mode)
+
+;(require 'outline)
+
+
+* Paquets
+
+
+** Gestionnaires de paquets
+
+
+*** Natif
+
+
+
+*** El-get
+
+
+** Listes de paquets
+
+
+
+** Configuration des paquets
+
+
+(require 'personnel-paquet-config "paquet-config")
+
+** Espaces de travail
+
+;; ** Elscreen
+
+;; (setq elscreen-display-tab nil)
+;; (setq elscreen-tab-display-control nil)
+;; (setq elscreen-tab-display-kill-screen nil)
+
+;; (setq elscreen-prefix-key (kbd "<s-home>"))
+
+;; (global-set-key (kbd "<s-insert>") 'elscreen-create)
+;; (global-set-key (kbd "<s-delete>") 'elscreen-kill)
+
+;; (global-set-key (kbd "<s-prior>") 'elscreen-previous)
+;; (global-set-key (kbd "<s-next>") 'elscreen-next)
+
+;; (elscreen-start)
+
+;; Courriel
+
+;;(require 'org-mu4e)
+
+;;(setq org-mu4e-convert-to-html t)
+
+;;(setq org-mu4e-link-query-in-headers-mode nil)
+
+;; * Autres paquets via source
+
+(add-to-list 'load-path "~/racine/plugin/source/mtorus")
+(add-to-list 'load-path "~/racine/plugin/source/xah-math-input")
+
+
+** Async
+
+#+begin_src emacs-lisp
+
+;;(autoload 'dired-async-mode "dired-async.el" nil t)
+
+;;(dired-async-mode 1)
+
+;;(async-bytecomp-package-mode 1)
+
+#+end_src
+
+(el-get-bundle emacs-async)
+
+(set-keyboard-coding-system 'utf-8-unix)
+
+;; Comment faire disparaître la notification ensuite ?
+;; Réglé en utilisant libnotify
+
+;; Fausse les alertes
+;;(setq org-agenda-start-day "-7d")
+
+;; Eval in REPL
+;; ------------------------------
+
+;;; cider support (for Clojure)
+;; (require 'cider) ; if not done elsewhere
+(require 'eval-in-repl-cider)
+(define-key clojure-mode-map (kbd "<C-return>") 'eir-eval-in-cider)
+
+;;; Geiser support (for Racket and Guile Scheme)
+;; When using this, turn off racket-mode and scheme supports
+;; (require 'geiser) ; if not done elsewhere
+(require 'eval-in-repl-geiser)
+(add-hook 'geiser-mode-hook
+		  '(lambda ()
+		     (local-set-key (kbd "<C-return>") 'eir-eval-in-geiser)))
+
+;;; racket-mode support (for Racket; if not using Geiser)
+;; (require 'racket-mode) ; if not done elsewhere
+;; (require 'eval-in-repl-racket)
+;; (define-key racket-mode-map (kbd "<C-return>") 'eir-eval-in-racket)
+
+;;; Scheme support (if not using Geiser))
+;; (require 'scheme)    ; if not done elsewhere
+;; (require 'cmuscheme) ; if not done elsewhere
+;; (require 'eval-in-repl-scheme)
+;; (add-hook 'scheme-mode-hook
+;; 	  '(lambda ()
+;; 	     (local-set-key (kbd "<C-return>") 'eir-eval-in-scheme)))
+
+;;; Hy support
+;; (require 'hy-mode) ; if not done elsewhere
+(require 'eval-in-repl-hy)
+(define-key hy-mode-map (kbd "<C-return>") 'eir-eval-in-hy)
+
+;;; SML support
+;; (require 'sml-mode) ; if not done elsewhere
+(require 'eval-in-repl-sml)
+(define-key sml-mode-map (kbd "<C-return>") 'eir-eval-in-sml)
+(define-key sml-mode-map (kbd "C-;") 'eir-send-to-sml-semicolon)
+
+;;; Prolog support (Contributed by m00nlight)
+;; if not done elsewhere
+;; (autoload 'run-prolog "prolog" "Start a Prolog sub-process." t)
+;; (autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
+;; (autoload 'mercury-mode "prolog" "Major mode for editing Mercury programs." t)
+;; (setq prolog-system 'swi)
+;; (setq auto-mode-alist (append '(("\\.pl$" . prolog-mode)
+;;                                 ("\\.m$" . mercury-mode))
+;;                                auto-mode-alist))
+(require 'eval-in-repl-prolog)
+(add-hook 'prolog-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "<C-return>") 'eir-eval-in-prolog)))
+
+;;; Javascript support
+;; (require 'js3-mode)  ; if not done elsewhere
+;; (require 'js2-mode)  ; if not done elsewhere
+;; (require 'js-comint) ; if not done elsewhere
+(with-eval-after-load 'js3-mode
+  (require 'eval-in-repl-javascript)
+  (define-key js3-mode-map (kbd "<C-return>") 'eir-eval-in-javascript))
+(with-eval-after-load 'js2-mode
+  (require 'eval-in-repl-javascript)
+  (define-key js2-mode-map (kbd "<C-return>") 'eir-eval-in-javascript))
+
+;;; Elixir support
+;; (require 'elixir-mode) ; if not done elsewhere
+;; (require 'alchemist)   ; if not done elsewhere
+(require 'eval-in-repl-ruby)
+(define-key elixir-mode-map (kbd "<C-return>") 'eir-eval-in-iex)
+
+;;; Erlang support
+;; (require 'erlang-mode) ; if not done elsewhere
+(require 'eval-in-repl-erlang)
+(define-key erlang-mode-map (kbd "<C-return>") 'eir-eval-in-erlang)
+
+;;; Elm support
+;; (require 'elm-mode) ; if not done elsewhere
+(require 'eval-in-repl-elm)
+(define-key elm-mode-map (kbd "<C-return>") 'eir-eval-in-elm)
+
+;;; Scala support
+;; (require 'ensime) ; if not done elsewhere
+(require 'eval-in-repl-scala)
+(define-key scala-mode-map (kbd "<C-return>") 'eir-eval-in-scala)
+
+;; for M-x info
+(define-key Info-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+
+;;; SLIME support (for Common Lisp)
+(require 'slime) ; if not done elsewhere
+(require 'eval-in-repl-slime)
+(add-hook 'lisp-mode-hook
+		  '(lambda ()
+		     (local-set-key (kbd "<C-return>") 'eir-eval-in-slime)))
+
+(el-get-bundle tuareg)
+
+;;; OCaml support
+(require 'tuareg) ; if not done elsewhere
+(require 'eval-in-repl-ocaml)
+(define-key tuareg-mode-map (kbd "<C-return>") 'eir-eval-in-ocaml)
+;; function to send a semicolon to OCaml REPL
+(define-key tuareg-mode-map (kbd "C-;") 'eir-send-to-ocaml-semicolon)
+
+
+------------
+
+I use a minor mode for all my "override" key bindings:
+
+(defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
+
+(define-key my-keys-minor-mode-map (kbd "C-i") 'some-function)
+
+(define-minor-mode my-keys-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  t " my-keys" 'my-keys-minor-mode-map)
+
+(my-keys-minor-mode 1)
+
+------------
+
+As an addition to scottfrazer's answer, I've written the following advice so that my keybindings
+retain precedence, even if subsequently-loaded libraries bring in new keymaps of their own.
+
+Because keymaps can be generated at compile time, load seemed like the best place to do this.
+
+(defadvice load (after give-my-keybindings-priority)
+  "Try to ensure that my keybindings always have priority."
+  (if (not (eq (car (car minor-mode-map-alist)) 'my-keys-minor-mode))
+      (let ((mykeys (assq 'my-keys-minor-mode minor-mode-map-alist)))
+        (assq-delete-all 'my-keys-minor-mode minor-mode-map-alist)
+        (add-to-list 'minor-mode-map-alist mykeys))))
+(ad-activate 'load)
+
+; ------------
+
+If you want to "always use the keybinds in the map, unless I explicitly override
+them for a specific mode-map", and assuming you are using scottfrazier's approach, you want:
+
+(defun locally-override (key cmd)
+  (unless (local-variable-p 'my-keys-minor-mode-map)
+    (set (make-variable-buffer-local 'my-keys-minor-mode-map)
+         (make-sparse-keymap))
+    (set-keymap-parent my-keys-minor-mode-map
+                       (default-value 'my-keys-minor-mode-map)))
+  (define-key my-keys-minor-mode-map key cmd))
+
+So
+
+(locally-override "\C-i" nil)
+
+should remove the "\C-i" binding from the minor mode in the current buffer only.
+Warning: this is completely untested, but seems like the right approach.
+The point of setting the parent rather than just coping the global value of
+my-keys-minor-mode-map is so any later changes to the global value are automatically
+reflected in the local value.
+
+;(setq resize-mini-windows "grow-only")
+
+(define-key region-bindings-mode-map (kbd "<H-return>") 'mc/mark-all-like-this)
+
+(global-set-key (kbd "H-insert") 'mtorus-update-current-marker)
+
+------------------------------------------------------------
+
+(define-key smartparens-mode-map (kbd "C-M-f") 'sp-forward-sexp)
+(define-key smartparens-mode-map (kbd "C-M-b") 'sp-backward-sexp)
+
+(define-key smartparens-mode-map (kbd "C-M-n") 'sp-next-sexp)
+(define-key smartparens-mode-map (kbd "C-M-p") 'sp-previous-sexp)
+
+(define-key smartparens-mode-map (kbd "C-M-<down>") 'sp-down-sexp)
+(define-key smartparens-mode-map (kbd "C-M-<up>") 'sp-up-sexp)
+
+(define-key smartparens-mode-map (kbd "C-M-d") 'sp-backward-down-sexp)
+(define-key smartparens-mode-map (kbd "C-M-u") 'sp-backward-up-sexp)
+
+(define-key smartparens-mode-map (kbd "C-S-f") 'sp-forward-symbol)
+(define-key smartparens-mode-map (kbd "C-S-b") 'sp-backward-symbol)
+
+(define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-slurp-sexp)
+(define-key smartparens-mode-map (kbd "H-<right>") 'sp-forward-barf-sexp)
+(define-key smartparens-mode-map (kbd "C-<left>") 'sp-backward-slurp-sexp)
+(define-key smartparens-mode-map (kbd "H-<left>") 'sp-backward-barf-sexp)
+
+(define-key smartparens-mode-map (kbd "C-s-t") 'sp-transpose-sexp)
+(define-key smartparens-mode-map (kbd "H-t") 'sp-transpose-hybrid-sexp)
+
+(define-key smartparens-mode-map (kbd "M-]") 'sp-unwrap-sexp)
+(define-key smartparens-mode-map (kbd "M-[") 'sp-backward-unwrap-sexp)
+
+(define-key smartparens-mode-map (kbd "C-M-k") 'sp-kill-sexp)
+(define-key smartparens-mode-map (kbd "H-k") 'sp-kill-hybrid-sexp)
+
+(define-key smartparens-mode-map (kbd "M-D") 'sp-splice-sexp)
+
+(define-key smartparens-mode-map (kbd "H-<delete>") 'sp-splice-sexp-killing-forward)
+(define-key smartparens-mode-map (kbd "H-<backspace>") 'sp-splice-sexp-killing-backward)
+(define-key smartparens-mode-map (kbd "C-H-<backspace>") 'sp-splice-sexp-killing-around)
+
+(define-key smartparens-mode-map (kbd "s-|") 'sp-split-sexp)
+
+(define-key smartparens-mode-map (kbd "s-]") 'sp-select-next-thing-exchange)
+(define-key smartparens-mode-map (kbd "s-[") 'sp-select-previous-thing)
+(define-key smartparens-mode-map (kbd "C-s-]") 'sp-select-next-thing)
+
+;;(global-set-key (kbd "M-TAB") 'pcomplete)
+
+;; (global-set-key [C-prior] 'mtorus-cycle-blist-prev)
+;; (global-set-key [C-next] 'mtorus-cycle-blist-next)
+
+;; (global-set-key (kbd "s-0") 'delete-window)
+;; (global-set-key (kbd "s-1") 'delete-other-windows)
+;; (global-set-key (kbd "s-2") 'split-window-below)
+;; (global-set-key (kbd "s-3") 'split-window-right)
+;; (global-set-key (kbd "s-5") 'other-window)
+
+(global-set-key (kbd "C-x S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-x S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-x S-C-<down>") 'shrink-window)
+(global-set-key (kbd "C-x S-C-<up>") 'enlarge-window)
+
+(global-set-key [C-home]      'beginning-of-line)
+(global-set-key [C-end]      'end-of-line)
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
+;(fset 'yes-or-no-p 'y-or-n-p)
+
+** Taille de la fenêtre
+
+#+begin_src emacs-lisp
+
+;; (defun perso/taille-fenetre ()
+;;   (interactive)
+;;   (if window-system
+;;   (progn
+;;     ;; use 120 char wide window for largeish displays
+;;     ;; and smaller 80 column windows for smaller displays
+;;     ;; pick whatever numbers make sense for you
+;;     ;; 1280
+;;     (if (> (x-display-pixel-width) 700)
+;;            (add-to-list 'default-frame-alist (cons 'width 140)))
+;;     ;; for the height, subtract a couple hundred pixels
+;;     ;; from the screen height (for panels, menubars and
+;;     ;; whatnot), then divide by the height of a char to
+;;     ;; get the height we want
+;;     (add-to-list 'default-frame-alist
+;;          (cons 'height (/ (- (x-display-pixel-height) 200)
+;;                              (frame-char-height)))))))
+;;
+;; (add-hook 'after-init-hook 'perso/taille-fenetre)
+;;
+;; (add-hook 'before-make-frame-hook
+;;           #'(lambda ()
+;;               (add-to-list 'default-frame-alist '(left   . 193))
+;;               (add-to-list 'default-frame-alist '(top    . 0))
+;;               (add-to-list 'default-frame-alist '(height . 37))
+;;               (add-to-list 'default-frame-alist '(width  . 140))))
+
+#+end_src
+
+
+;(toggle-scroll-bar nil)
+;(toggle-horizontal-scroll-bar nil)
+
+;(when (equal window-system 'x) (scroll-bar-mode -1))
+
+;(when (equal window-system 'x) (tool-bar-mode -1))
+
+** Choix dans le minibuffer
+
+Remplacé par icicles
+
+#+begin_src emacs-lisp
+
+;; (iswitchb-mode t)
+;; (setq iswitchb-use-frame-buffer-list t)
+;; (setq iswitchb-max-to-show 36)
+
+#+end_src
+
+  (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+
+(global-set-key (kbd "C-x <C-up>") 'windmove-up)
+(global-set-key (kbd "C-x <C-down>") 'windmove-down)
+(global-set-key (kbd "C-x <C-right>") 'windmove-right)
+(global-set-key (kbd "C-x <C-left>") 'windmove-left)
+
+(key-chord-define-global "wh" 'windmove-left)
+(key-chord-define-global "wj" 'windmove-down)
+(key-chord-define-global "wk" 'windmove-up)
+(key-chord-define-global "wl" 'windmove-right)
+
+* Aliases
+
+#+begin_src emacs-lisp
+
+(defalias 'eb 'eval-buffer)
+
+#+end_src
+
+;; (add-to-list 'org-structure-template-alist '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+
+(global-set-key [C-prior] 'previous-buffer)
+(global-set-key [C-next] 'next-buffer)
+
+(defconst perso-backup-dir
+ )
+
+*** Auto-complete
+
+#+begin_src emacs-lisp
+
+(ac-config-default)
+
+(setq-default ac-sources '(
+  ac-source-words-in-same-mode-buffers
+  ac-source-filename
+  ac-source-dictionary
+  ac-source-abbrev
+  ac-source-gtags
+  ac-source-yasnippet
+))
+
+(add-to-list 'ac-modes 'org-mode)
+
+(setq ac-expand-on-auto-complete nil)
+
+(setq ac-use-comphist t)
+
+(setq ac-comphist-file "~/racine/dotdir/emacs/ac-comphist")
+
+(setq ac-candidate-limit 500)
+
+(setq ac-use-menu-map t)
+
+(setq ac-auto-start 15)
+
+(setq ac-auto-show-menu 3.0)
+
+(setq ac-menu-height 10)
+
+(ac-set-trigger-key "s-n")
+
+(define-key ac-menu-map "\C-n" 'ac-next)
+(define-key ac-menu-map "\C-p" 'ac-previous)
+
+(append ac-user-dictionary-files '("~/racine/index/spell/dictionnaire.txt"))
+
+#+end_src
+
+(defconst biblio/undo-dir (expand-file-name "~/racine/varia/undo/"))
+
+*** Helm ag
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "S-s-g") 'helm-ag)
+
+#+end_src
+
+(el-get-bundle helm-ag)
+
+*** Tester avec xfontsel
+
+#+begin_src emacs-lisp
+
+;; (set-face-font 'default "-adobe-avant garde gothic-book-r-normal-*-17-120-100-100-p-*-*-*")
+
+#+end_src
+
+;(global-set-key (kbd "<f9> -") (lambda () (interactive) (insert "⟼")))
+;(global-set-key (kbd "<f9> =") (lambda () (interactive) (insert "⟻")))
+
+;;(el-get-bundle magit)
+
+  ;;(add-to-list 'recentf-exclude "*\\.html\\'")
+
+  ;;(global-set-key (kbd "<C-home>") (lambda () (interactive) (mtorus-cycle-ring-previous) (mtorus-cycle-marker-next)))
+  ;;(global-set-key (kbd "<C-end>") (lambda () (interactive) (mtorus-cycle-ring-next) (mtorus-cycle-marker-next)))
+
+  ;;(global-set-key (kbd "s-SPC") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
+  ;;(global-set-key (kbd "s-t S") (lambda () (interactive) (mtorus-switch-to-ring) (mtorus-cycle-marker-next)))
+
+*** MTorus
+
+Voir aussi key-chord & hydra dans la configuration des paquets
+
+#+begin_src emacs-lisp
+
+  (require 'mtorus)
+  (mtorus-init)
+
+  ;; (mtorus-install-suggested-bindings)
+
+  (global-set-key (kbd "s-t c") 'mtorus-new-ring)
+  (global-set-key (kbd "s-t m") 'mtorus-rename-ring)
+  (global-set-key (kbd "s-t D") 'mtorus-delete-ring)
+
+  (global-set-key (kbd "s-t a") 'mtorus-add-current-pos-to-current-ring)
+  (global-set-key (kbd "s-t u") 'mtorus-update-current-marker)
+  (global-set-key (kbd "s-t d") 'mtorus-delete-current-marker-from-current-ring)
+
+  (global-set-key (kbd "s-t p") 'mtorus-describe-current-ring)
+
+  (global-set-key (kbd "s-t j") 'mtorus-cycle-marker-next)
+  (global-set-key (kbd "s-t k") 'mtorus-cycle-marker-previous)
+
+  (global-set-key (kbd "s-t <down>") 'mtorus-cycle-marker-next)
+  (global-set-key (kbd "s-t <up>") 'mtorus-cycle-marker-previous)
+
+  (global-set-key (kbd "s-t l") 'mtorus-cycle-ring-next)
+  (global-set-key (kbd "s-t h") 'mtorus-cycle-ring-previous)
+
+  (global-set-key (kbd "s-t <right>") 'mtorus-cycle-ring-next)
+  (global-set-key (kbd "s-t <left>") 'mtorus-cycle-ring-previous)
+
+  (global-set-key (kbd "s-t S") 'mtorus-switch-to-ring)
+
+  (global-set-key (kbd "s-t s") 'mtorus-switch-to-marker)
+
+  (global-set-key (kbd "s-t i") 'mtorus-init)
+
+  (global-set-key (kbd "s-t w") 'mtorus-save-torus)
+  (global-set-key (kbd "s-t r") 'mtorus-read-torus)
+
+  (setq mtorus-switch-to-marker-when-cycling-p t)
+  (setq mtorus-update-marker-when-cycling-markers-p t)
+  (setq mtorus-update-marker-when-cycling-rings-p t)
+  (setq mtorus-switch-when-deleting-p t)
+
+  (setq mtorus-save-on-exit t)
+
+  (setq mtorus-dirname "~/racine/plugin/data/mtorus/")
+  (setq mtorus-file-name "mtorus.el")
+
+  ;; (mtorus-read-torus)
+
+#+end_src
+
+;; (setq outline-minor-mode-prefix (kbd "s-o"))
+
+** Mots-clé
+
+defun
+defalias
+defadvice
+
+add-hook
+
+(el-get-bundle magit)
+(el-get-bundle with-editor)
+
+*** Magit
+
+Activer ou désactiver magit-auto-revert-mode ?
+
+#+begin_src emacs-lisp
+  (require 'magit)
+  (global-set-key (kbd "C-x g") 'magit-status)
+#+end_src
+
+(el-get-bundle magit)
+(el-get-bundle magit-popup)
+(el-get-bundle with-editor)
+
+Ajuster les fenêtres
+
+#+begin_src emacs-lisp
+
+(require 'hydra-examples)
+
+(defhydra hydra-splitter (global-map "s-<")
+  "splitter"
+  ("h" hydra-move-splitter-left)
+  ("j" hydra-move-splitter-down)
+  ("k" hydra-move-splitter-up)
+  ("l" hydra-move-splitter-right))
+
+#+end_src
+
+   ;; ("n" next-line)
+   ;; ("p" previous-line)
+   ;; ("f" forward-char)
+   ;; ("b" backward-char)
+   ;; ("a" beginning-of-line)
+   ;; ("e" move-end-of-line)
+   ;; ("F" forward-word)
+   ;; ("B" backward-word)
+   ;; ("A" backward-sentence)
+   ;; ("E" forward-sentence)
+   ;; ("v" scroll-up-command)
+   ;; ("V" scroll-down-command)
+   ;; ("r" move-to-window-line-top-bottom)
+   ;; ("l" recenter-top-bottom)
+
+;; (global-set-key (kbd "C-f") #'hydra-move/forward-char)
+;; (global-set-key (kbd "C-b") #'hydra-move/backward-char)
+
+;; (global-set-key (kbd "M-f") #'hydra-move/forward-word)
+;; (global-set-key (kbd "M-b") #'hydra-move/backward-word)
+
+;; (global-set-key (kbd "C-n") #'hydra-move/next-line)
+;; (global-set-key (kbd "C-p") #'hydra-move/previous-line)
+;; (global-set-key (kbd "C-f") #'hydra-move/forward-char)
+;; (global-set-key (kbd "C-b") #'hydra-move/backward-char)
+;; (global-set-key (kbd "M-f") #'hydra-move/forward-word)
+;; (global-set-key (kbd "M-b") #'hydra-move/backward-word)
+;; (global-set-key (kbd "C-a") #'hydra-move/beginning-of-line)
+;; (global-set-key (kbd "C-e") #'hydra-move/move-end-of-line)
+;; (global-set-key (kbd "M-a") #'hydra-move/backward-sentence)
+;; (global-set-key (kbd "M-e") #'hydra-move/forward-sentence)
+;; (global-set-key (kbd "<C-up>") #'hydra-move/backward-paragraph)
+;; (global-set-key (kbd "<C-down>") #'hydra-move/forward-paragraph)
+;; (global-set-key (kbd "C-v") #'hydra-move/scroll-up-command)
+;; (global-set-key (kbd "M-v") #'hydra-move/scroll-down-command)
+
+;; (global-set-key (kbd "<prior>") #'hydra-move/scroll-down-command)
+;; (global-set-key (kbd "<next>") #'hydra-move/scroll-up-command)
+
+Fenêtres
+
+#+begin_src emacs-lisp
+
+;; (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
+
+;; (defhydra hydra-windmove ()
+;;    "windmove"
+;;    ("k" windmove-up)
+;;    ("j" windmove-down)
+;;    ("h" windmove-left)
+;;    ("l" windmove-right)
+;;    ("0" delete-window)
+;;    ("1" delete-other-windows)
+;;    ("2" split-window-below)
+;;    ("3" split-window-right)
+;;    ("<kp-0>" delete-window)
+;;    ("<kp-1>" delete-other-windows)
+;;    ("<kp-2>" split-window-below)
+;;    ("<kp-3>" split-window-right)
+;;    ("o" other-window))
+
+;; (global-set-key (kbd "C-x o") #'hydra-windmove/other-window)
+;; (global-set-key (kbd "C-x 2") #'hydra-windmove/split-window-below)
+;; (global-set-key (kbd "C-x 3") #'hydra-windmove/split-window-right)
+
+#+end_src
+
+;; (powerline-vim-theme)
+;; (powerline-nano-theme)
+;; (powerline-center-theme)
+;; (powerline-center-evil-theme)
+;; (powerline-default-theme)
+
+*** Ucs-cmds
+
+#+begin_src emacs-lisp
+
+;; (require 'ucs)
+
+;; (set-frame-font "DejaVu Sans Mono-10")
+;; (set-frame-font "DejaVu Sans 10")
+;; (set-frame-font "Arial Unicode MS")
+
+;; (ucsc-make-commands "^math")
+;; (ucsc-make-commands "latin")
+;; (ucsc-make-commands "arabic")
+;; (ucsc-make-commands "^cjk")
+;; (ucsc-make-commands "^box drawings ")
+;; (ucsc-make-commands "^greek [a-z]+ letter")
+;; (ucsc-make-commands "\\(^hangul\\|^circled hangul\\|^parenthesized hangul\\)")
+
+#+end_src
+
+;;  (define-key company-active-map (kbd "M-n") nil)
+;;  (define-key company-active-map (kbd "M-p") nil)
+
+**** Keep region when undoing in region
+
+#+begin_src emacs-lisp
+
+;; (defadvice undo-tree-undo (around keep-region activate)
+;;   (if (use-region-p)
+;;       (let ((m (set-marker (make-marker) (mark)))
+;;             (p (set-marker (make-marker) (point))))
+;;         ad-do-it
+;;         (goto-char p)
+;;         (set-mark m)
+;;         (set-marker p nil)
+;;         (set-marker m nil))
+;;     ad-do-it))
+
+#+end_src
+
+;; (setq dired-filter-group-saved-groups '(("defaut"
+;;   ("Org" (extension . "org"))
+;;   ("Lisp" (extension . "el"))
+;;   ("LaTeX" (extension "tex" "bib"))
+;;   ("PDF" (extension . "pdf"))
+;;   ("Archives" (extension "zip" "rar" "gz" "bz2" "tar")))))
+
+;; (setq projectile-globally-ignored-files '("*.elc"))
+;; (setq projectile-globally-ignored-directories '(".git"))
+
+;; (setq alert-default-style 'mode-line)
+;; (setq alert-default-style 'fringe)
+;; (setq alert-default-style 'message)
+
+;; use org-bullets-mode for utf8 symbols as org bullets
+
+;;(require 'org-bullets)
+
+;; make available "org-bullet-face" such that I can control the font size individually
+
+(setq projectile-globally-ignored-files (append '("*.html" "*.php" "*.pdf") projectile-globally-ignored-files))
+
+(setq projectile-globally-ignored-directories (append '(".git" ".hg" ".bzr") projectile-globally-ignored-directories))
+
+** Souris
+
+#+begin_src emacs-lisp
+
+;; Move the mouse to the screen corner on any keypress.
+
+; (when (and (display-mouse-p) (require 'avoid nil t))
+;
+; 	;; Move the mouse to the lower-right corner instead of default upper-right
+;
+; 	(defun mouse-avoidance-banish-destination ()
+; 		(cons (+ 3 (frame-width)) (frame-height))
+; 	)
+;
+; 	(mouse-avoidance-mode 'banish)
+; )
+
+#+end_src
+
+  ;; Ne fonctionne pas
+
+  ;; (add-hook
+  ;;  'lisp-mode-hook
+  ;;  (lambda ()
+  ;;    (setq-local electric-pair-inhibit-predicate
+  ;;                '(lambda (c)
+  ;;                   (if (char-equal c ?\') t (,electric-pair-inhibit-predicate c))))))
+
+* Usenet
+
+
+** Gnus
+
+
+*** Sources
+
+#+begin_src emacs-lisp
+
+;; (setq gnus-select-method '(nntp "news.gmane.org"))
+;; (setq gnus-secondary-select-methods '((nntp "news.gnus.org")))
+;; (add-to-list 'gnus-secondary-select-methods '(nnml ""))
+
+#+end_src
+
+
+*** Newsgroup
+
+#+begin_src emacs-lisp
+
+;; (setq gnus-startup-file (expand-file-name  "~/racine/config/news/gnus-newsrc"))
+;; (setq gnus-dribble-directory "~/racine/config/news")
+;;
+;; (setq gnus-check-new-newsgroups 'ask-server)
+;;
+;; (setq gnus-read-newsrc-file nil)
+;; (setq gnus-save-newsrc-file nil)
+;;
+;; (setq gnus-save-killed-list nil)
+;;
+;; (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+;;
+;; (setq gnus-subscribe-hierarchical-interactive t)
+
+#+end_src
+
+* Développement
+
+
+** CEDET
+
+Conflit avec org-mode/timestamp
+
+#+begin_src emacs-lisp
+
+;; (global-ede-mode)
+
+#+end_src
+
+**** MTorus
+
+#+begin_src emacs-lisp
+
+(key-chord-define-global "=c" 'mtorus-new-ring)
+(key-chord-define-global "=m" 'mtorus-rename-ring)
+(key-chord-define-global "=x" 'mtorus-delete-ring)
+
+(key-chord-define-global "=a" 'mtorus-add-current-pos-to-current-ring)
+(key-chord-define-global "=u" 'mtorus-update-current-marker)
+(key-chord-define-global "=d" 'mtorus-delete-current-marker-from-current-ring)
+
+(key-chord-define-global "=l" 'mtorus-describe-current-ring)
+
+(key-chord-define-global "=n" 'mtorus-cycle-marker-next)
+(key-chord-define-global "=p" 'mtorus-cycle-marker-previous)
+
+(key-chord-define-global "=j" 'mtorus-cycle-ring-next)
+(key-chord-define-global "=k" 'mtorus-cycle-ring-previous)
+
+(key-chord-define-global "=g" 'mtorus-switch-to-ring)
+
+(key-chord-define-global "=s" 'mtorus-save-torus)
+(key-chord-define-global "=r" 'mtorus-read-torus)
+
+#+end_src
+
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+
+  ;; (global-set-key (kbd "s-<") 'torus-alternate-circles)
+  ;; (global-set-key (kbd "s->") 'torus-alternate-in-same-circle)
+
+(setcdr (assoc "torus" (cdr (car torus-meta))) (copy-tree torus-torus))
+
+** Tampon précédent & suivant
+
+#+begin_src emacs-lisp
+
+(defadvice next-buffer (after avoid-messages-buffer-in-next-buffer)
+  (when (string= "*scratch*" (buffer-name)) (next-buffer))
+  (when (string= "*Messages*" (buffer-name)) (next-buffer))
+  (when (string= "*Completions*" (buffer-name)) (next-buffer))
+  (when (string= "*compilation*" (buffer-name)) (next-buffer))
+  (when (string= "*Help*" (buffer-name)) (next-buffer))
+  (when (string= "*Ibuffer*" (buffer-name)) (next-buffer))
+  (when (string-match "TAGS.*" (buffer-name)) (next-buffer))
+  (when (string-match "\*helm.*\*" (buffer-name)) (next-buffer)))
+
+(ad-activate 'next-buffer)
+
+(defadvice previous-buffer (after avoid-messages-buffer-in-previous-buffer)
+  (when (string= "*scratch*" (buffer-name)) (previous-buffer))
+  (when (string= "*Messages*" (buffer-name)) (previous-buffer))
+  (when (string= "*Completions*" (buffer-name)) (previous-buffer))
+  (when (string= "*compilation*" (buffer-name)) (previous-buffer))
+  (when (string= "*Help*" (buffer-name)) (previous-buffer))
+  (when (string= "*Ibuffer*" (buffer-name)) (previous-buffer))
+  (when (string-match "TAGS.*" (buffer-name)) (previous-buffer))
+  (when (string-match "\*helm.*\*" (buffer-name)) (previous-buffer)))
+
+(ad-activate 'previous-buffer)
+
+#+end_src
+
+  (global-set-key (kbd "<s-backspace>") 'kill-whole-line)
+
+  (require 'torus)
+
+  (setq torus-prefix-key (kbd "s-t"))
+
+  (setq torus-binding-level 3)
+
+  (setq torus-verbosity 2)
+
+  (setq torus-dirname "~/racine/plugin/data/torus")
+
+  (setq torus-load-on-startup t)
+  (setq torus-save-on-exit t)
+
+  (setq torus-autoread-file "~/racine/plugin/data/torus/dernier")
+  (setq torus-autowrite-file torus-autoread-file)
+
+  (setq torus-history-maximum-elements 30)
+
+  (setq torus-maximum-horizontal-split 3)
+  (setq torus-maximum-vertical-split 4)
+
+  (setq torus-prefix-separator " : ")
+  (setq torus-join-separator " - ")
+
+  (torus-init)
+
+  (torus-install-default-bindings)
+
+  (global-set-key (kbd "<S-s-insert>") 'torus-add-circle)
+  (global-set-key (kbd "<s-insert>") 'torus-add-location)
+
+  (global-set-key (kbd "<s-delete>") 'torus-delete-location)
+  (global-set-key (kbd "<S-s-delete>") 'torus-delete-circle)
+
+  (global-set-key (kbd "<C-prior>") 'torus-previous-location)
+  (global-set-key (kbd "<C-next>") 'torus-next-location)
+
+  (global-set-key (kbd "<C-home>") 'torus-previous-circle)
+  (global-set-key (kbd "<C-end>") 'torus-next-circle)
+
+  (global-set-key (kbd "<S-prior>") 'torus-history-newer)
+  (global-set-key (kbd "<S-next>") 'torus-history-older)
+
+  (global-set-key (kbd "C-^") 'torus-alternate)
+
+  (global-set-key (kbd "<S-home>") 'torus-alternate-circles)
+  (global-set-key (kbd "<S-end>") 'torus-alternate-in-same-circle)
+
+  (global-set-key (kbd "s-SPC") 'torus-switch-circle)
+  (global-set-key (kbd "s-=") 'torus-switch-location)
+  (global-set-key (kbd "s-^") 'torus-switch-torus)
+  (global-set-key (kbd "s-*") 'torus-search)
+  (global-set-key (kbd "s-/") 'torus-search-history)
+
+(use-package torus
+    :ensure t
+    :bind
+    (:map torus-map
+	  ("<S-s-insert>" . torus-add-circle)
+	  ("<s-insert>" . torus-add-location)
+	  ("<s-delete>" . torus-delete-location)
+	  ("<S-s-delete>" . torus-delete-circle)
+	  ("<C-prior>" . torus-previous-location)
+	  ("<C-next>" . torus-next-location)
+	  ("<C-home>" . torus-previous-circle)
+	  ("<C-end>" . torus-next-circle)
+	  ("<S-prior>" . torus-previous-history)
+	  ("<S-next>" . torus-next-history)
+	  ("C-^" . torus-alternate)
+	  ("<S-home>" . torus-alternate-circles)
+	  ("<S-end>" . torus-alternate-in-same-circle)
+	  ("<s-space>" . torus-switch-circle)
+	  ("s-=" . torus-switch-location)
+	  ("s-^" . torus-switch-torus)
+	  ("s-*" . torus-search)
+	  ("s-/" . torus-search-history))
+    :config
+    (setq torus-prefix-key (kbd "s-t"))
+    (setq torus-binding-level 3)
+    (setq torus-verbosity 2)
+    (setq torus-dirname "~/racine/plugin/data/torus")
+    (setq torus-load-on-startup t)
+    (setq torus-save-on-exit t)
+    (setq torus-autoread-file "~/racine/plugin/data/torus/dernier")
+    (setq torus-autowrite-file torus-autoread-file)
+    (setq torus-history-maximum-elements 30)
+    (setq torus-maximum-horizontal-split 3)
+    (setq torus-maximum-vertical-split 4)
+    (setq torus-prefix-separator " : ")
+    (setq torus-join-separator " - ")
+    (torus-init)
+    (torus-install-default-bindings))
+
+** Fonctions
+
+
+*** Rename modeline
+
+À quoi ça sert ?
+
+#+begin_src emacs-lisp
+
+(defmacro rename-modeline (package-name mode new-name)
+  `(eval-after-load ,package-name
+     '(defadvice ,mode (after rename-modeline activate)
+        (setq mode-name ,new-name))))
+
+#+end_src
+
+(if (require 'toc-org nil t)
+    (add-hook 'org-mode-hook 'toc-org-mode)
+  (warn "toc-org not found"))
+
+(setq projectile-indexing-method 'alien)
+;;(setq projectile-indexing-method 'native)
+(setq projectile-enable-caching t)
+(setq projectile-completion-system 'helm)
+(setq projectile-switch-project-action 'helm-projectile)
+(setq projectile-keymap-prefix (kbd "s-p"))
+(projectile-global-mode)
+
+*** Expand-region
+
+#+begin_src emacs-lisp
+  (use-package expand-region
+    :bind ("s-x" . er/expand-region))
+#+end_src
+
+** Read Eval Print Loops
+
+
+*** Eval in REPL
+
+#+begin_src emacs-lisp
+  ;; require the main file containing common functions
+  (require 'eval-in-repl)
+
+  ;; Uncomment if no need to jump after evaluating current line
+  ;; (setq eir-jump-after-eval nil)
+
+  ;; Uncomment if you want to always split the script window into two.
+  ;; This will just split the current script window into two without
+  ;; disturbing other windows.
+  ;; (setq eir-always-split-script-window t)
+
+  ;; Uncomment if you always prefer the two-window layout.
+  ;; (setq eir-delete-other-windows t)
+
+  ;; Place REPL on the left/right/top/bottom of the script window when splitting.
+  (setq eir-repl-placement 'bottom)
+
+  ;;; ielm support (for emacs lisp)
+  (require 'eval-in-repl-ielm)
+  ;; Evaluate expression in the current buffer.
+  (setq eir-ielm-eval-in-current-buffer t)
+  ;; for .el files
+  (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+  ;; for *scratch*
+  (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+
+  ;;; Python support
+  (require 'python) ; if not done elsewhere
+  (require 'eval-in-repl-python)
+  (add-hook 'python-mode-hook
+	    '(lambda ()
+	       (local-set-key (kbd "<C-return>") 'eir-eval-in-python)))
+
+  ;;; Ruby support
+  (require 'ruby-mode) ; if not done elsewhere
+  (require 'inf-ruby)  ; if not done elsewhere
+  (require 'eval-in-repl-ruby)
+  (define-key ruby-mode-map (kbd "<C-return>") 'eir-eval-in-ruby)
+
+  ;; Shell support
+  (require 'eval-in-repl-shell)
+  (add-hook 'sh-mode-hook
+	    '(lambda()
+	       (local-set-key (kbd "C-<return>") 'eir-eval-in-shell)))
+  ;; Version with opposite behavior to eir-jump-after-eval configuration
+  (defun eir-eval-in-shell2 ()
+    "eval-in-repl for shell script (opposite behavior)
+
+  This version has the opposite behavior to the eir-jump-after-eval
+  configuration when invoked to evaluate a line."
+    (interactive)
+    (let ((eir-jump-after-eval (not eir-jump-after-eval)))
+	 (eir-eval-in-shell)))
+  (add-hook 'sh-mode-hook
+	    '(lambda()
+	       (local-set-key (kbd "C-M-<return>") 'eir-eval-in-shell2)))
+#+end_src
+
+** Paires
+
+#+begin_src emacs-lisp
+  (defun biblio/elisp-inhibit-p (c)
+    (if (or (char-equal c ?\')
+	    (char-equal c ?`))
+	t
+      (electric-pair-default-inhibit c)))
+
+  (defun biblio/desactive-paire-in-lisp-mode ()
+      (setq-local electric-pair-inhibit-predicate #'biblio/elisp-inhibit-p))
+#+end_src
+
+  (add-hook 'emacs-lisp-mode-hook 'biblio/desactive-paire-in-lisp-mode)
+
+  (add-hook 'minibuffer-setup-hook '(lambda () (enlarge-window 12)))
+
+Mouvements
+
+#+begin_src emacs-lisp
+  ;; (defhydra hydra-move ()
+  ;;   "move"
+  ;;   ("<kp-6>" forward-word)
+  ;;   ("<kp-4>" backward-word)
+  ;;   ("<kp-7>" backward-sentence)
+  ;;   ("<kp-1>" forward-sentence)
+  ;;   ("<kp-8>" backward-paragraph)
+  ;;   ("<kp-2>" forward-paragraph)
+  ;;   ("<kp-9>" scroll-down-command)
+  ;;   ("<kp-3>" scroll-up-command)
+  ;;   ("<kp-5>" nil "quit" :color red)
+  ;;   ("q" nil "quit" :color red))
+
+  ;; (global-set-key (kbd "s-a") #'hydra-move/backward-paragraph)
+  ;; (global-set-key (kbd "s-e") #'hydra-move/forward-paragraph)
+#+end_src
+
+Copier & Coller
+
+#+begin_src emacs-lisp
+  ;; (defhydra hydra-yank ()
+  ;;   "yank"
+  ;;   ("C-y" yank nil)
+  ;;   ("M-y" yank-pop nil)
+  ;;   ("y" (yank-pop 1) "next")
+  ;;   ("Y" (yank-pop -1) "prev")
+  ;;   ("l" helm-show-kill-ring "list")
+  ;;   ("q" nil "quit" :color red))
+
+  ;; (global-set-key (kbd "M-y") #'hydra-yank/yank-pop)
+  ;; (global-set-key (kbd "C-y") #'hydra-yank/yank)
+#+end_src
+
+** Fichiers souvent utilisés
+
+#+begin_src emacs-lisp
+  (defun biblio/aller-au-grenier ()
+    (interactive)
+    (find-file "Grenier"))
+#+end_src
+
+  (global-set-key (kbd "<f9>")  'beginning-of-buffer)
+  (global-set-key (kbd "<f10>")  'end-of-buffer)
+
+;;; ** Use-package
+
+;; Voir straight
+
+;; (unless (package-installed-p 'use-package)
+;; 	(package-refresh-contents)
+;; 	(package-install 'use-package))
+
+;;; ** Liste de paquets
+
+;; (unless (package-installed-p 'magit)
+;; 	(package-refresh-contents)
+;; 	(package-install 'magit))
+
+;; (straight-use-package 'async)
+;; (straight-use-package 'bind-key)
+;; (straight-use-package 'lv)
+;; (straight-use-package 'transient)
+;; (straight-use-package 'with-editor)
+
+;;; *** Liste principale
+
+;; (el-get-bundle auctex)
+;; (el-get-bundle tabbar)
+;; (el-get-bundle command-log-mode)
+;; (el-get-bundle ggtags)
+;; (el-get-bundle ruby-mode)
+;; (el-get-bundle vimish-fold)
+;; (el-get-bundle ztree)
+
+(straight-use-package '(ox-twbs :type git :host github :repo "marsmining/ox-twbs"))
+
+(el-get-bundle eval-in-repl)
+(el-get-bundle xah-math-input)
+
+;; (el-get-bundle auctex)
+;; (el-get-bundle tabbar)
+;; (el-get-bundle command-log-mode)
+;; (el-get-bundle ggtags)
+;; (el-get-bundle ruby-mode)
+;; (el-get-bundle vimish-fold)
+;; (el-get-bundle ztree)
+
+(el-get-bundle avy)
+
+(el-get-bundle evil-org-mode-somelauw)
+
+
+  ;;(add-hook 'org-mode-hook 'evil-org-mode)
+  ;;(evil-org-set-key-theme '(navigation insert textobjects additional calendar))
+  ;;(require 'evil-org-agenda)
+  ;;(evil-org-agenda-set-keys)
+
+;; (require 'hydra)
+
+Transposition (échange de caractères, mots, ...)
+
+#+begin_src emacs-lisp
+    (global-set-key
+     (kbd "C-c t")
+     (defhydra hydra-transpose ()
+       "Transpose"
+       ("c" transpose-chars "characters")
+       ("w" transpose-words "words")
+       ("o" org-transpose-words "Org mode words")
+       ("l" transpose-lines "lines")
+       ("s" transpose-sentences "sentences")
+       ("e" org-transpose-elements "Org mode elements")
+       ("p" transpose-paragraphs "paragraphs")
+       ("t" org-table-transpose-table-at-point "Org mode table")
+       ("q" nil "quit" :color red)))
+#+end_src
+;;; *** Langages
+
+;; (straight-use-package 'inf-perl)
+;; (straight-use-package 'inf-ruby)
+;; (straight-use-package 'python)
+
+(straight-use-package 'org-publish)
+
+(use-package org-publish)
+(setq org-publish-project-alist
+'(("eclats de vers"
+ :base-directory "~/racine/site/orgmode"
+ :base-extension "org"
+ :publishing-directory "~/racine/site/publish"
+ :recursive t
+ :publishing-function org-twbs-publish-to-html
+ :headline-levels 6             ; Just the default for this project.
+ :auto-preamble t
+ ))
+)
+
+**** Org mode
+
+#+begin_src emacs-lisp
+  (use-package evil-org)
+  (require 'evil-org)
+  (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
+  (global-set-key (kbd "<f11> w") 'evil-org-mode)
+#+end_src
+
+;; <- opposite ->
+(setq package-enable-at-startup nil)
+
+;; (unless (package-installed-p 'magit)
+;; 	(package-refresh-contents)
+;; 	(package-install 'magit))
+
+  (use-package swiper)
+  (global-set-key (kbd "<f11> i") 'ivy-mode)
+  (eval-after-load "ivy"
+   '(progn
+     (define-key ivy-minibuffer-map (kbd "s-o")  'ivy-dispatching-done)
+     (define-key ivy-minibuffer-map (kbd "M-o")  'ivy-dispatching-done)
+     (define-key ivy-minibuffer-map (kbd "C-n")  'ivy-next-line)
+     (define-key ivy-minibuffer-map (kbd "C-p")  'ivy-previous-line)
+     (define-key ivy-minibuffer-map (kbd "M-<")  'ivy-beginning-of-buffer)
+     (define-key ivy-minibuffer-map (kbd "M->")  'ivy-end-of-buffer)
+     (define-key ivy-minibuffer-map (kbd "C-v")  'ivy-scroll-up-command)
+     (define-key ivy-minibuffer-map (kbd "M-v")  'ivy-scroll-down-command)))
+  (setq ivy-height 20)
+  (setq ivy-wrap t)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-use-virtual-buffers t)
+  (global-set-key (kbd "s-F") 'counsel-find-file)
+  (global-set-key (kbd "s-B") 'ivy-switch-buffer)
+  (global-set-key (kbd "s-X") 'counsel-M-x)
+  (global-set-key (kbd "s-S") 'swiper)
+  (global-set-key (kbd "s->") 'counsel-ag)
+
+  ;; Inclus dans helm-mini
+  ;; (global-set-key (kbd "s-°") 'helm-projectile)
+
+  ;; (global-set-key (kbd "s-^") 'helm-projectile-find-file)
+  ;; (global-set-key (kbd "C-c s-°") 'helm-projectile-recentf)
+  ;; (global-set-key (kbd "s-p s-f") 'helm-projectile-find-file-in-known-projects)
+
+  ;;(require 'register-list)
+
+  ;(define-key evil-normal-state-map (kbd "<s-z>") 'evil-emacs-state)
+  ;(define-key evil-emacs-state-map (kbd "<s-z>") 'evil-normal-state)
+
+(require 'evil-org)
+
+(concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/savehist")
+(concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/saveplace")
+(concat (getenv "HOME") "/racine/dotdir/emacs.d/hist/recentf")
+"~/.emacs.d/yank-ring.el"
+"~/racine/dotdir/emacs.d"
+
+	   ("<C-S-prior>" . torus-alternate-in-same-torus)
+	   ("<C-S-next>" . torus-alternate-in-same-circle)
+	   ("<C-S-home>" . torus-alternate-in-other-torus)
+	   ("<C-S-end>" . torus-alternate-in-other-circle)
+	   ("<C-M-prior>" . torus-move-location-backward)
+	   ("<C-M-next>" . torus-move-location-forward)
+	   ("<S-s-prior>" . torus-rotate-circle-left)
+	   ("S-s-end>" . torus-rotate-circle-right)
+
+  ; Il semble que les variables doivent être modifiées avant org-alert-enable
+  ;;(setq org-alert-interval 3600)
+  ;;(setq org-alert-headline-regexp "\\(Sched.+:.+\\|Deadline:.+\\)")
+  ;;(org-alert-enable)
+  ;;(org-alert-disable)
+
+;; from orgconfig.el
+;; (use-package org)
+
+;; from init.el
+;;; * Paquets
+
+(require 'personnel/paquets "paquets")
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("062cb1e0edbbcb23601a1e1749f2f0f419342c4c4a38be64ec73ab8210c31ba3" "cbcb9648578d87bbb1a0d35ebfaf604ac39db57cb8f707a38715849569e40824" "cd6ba7f81c2b0096c23dfadb382fab8bdb4a82a61c27e4cfa55c02a18b210f36" "d0d28778c8450067c19ff7e0211df5d97d15ff0a3b012d4dd3580370d4f8d496" "739a4291e3d26a9d7819a3a35105206022584941e2f047fb55a6b35bd44552c8" "6fe2fcbdd1664eb9c66ae204bdde6861fce4c89ae46d6b504c645681baa5ee04" "2b387e94e2e629adf083e71e070e004d9c29781ed490d3e89b6c24bfb12a3245" "aa43f0edb3f597710798a15844a1616fd24999caf6a93432a0a2a0fb7d7e74fa" "eb9d4520e904071bb79e6d0f1e49e4827137d6ba13af5f45da72148f961184ef" "46f5622799085379df59bcdcb04d07ee157b5be0b0801ba16a78d05c1ca77497" "02c5a10185ea96ddb771b8b2f4398c6649890090b029d1fbf1db2bc1336e6485" "e28c36c92a7f26abc11cb826e0d9685578412b8aa293840c858170f009ecbf5d" "0897e39e2f73345a23b74e9b61290d986574eb835b29ddd6652ddea2686f4969" "89ef9221827e3d8fb03283acb0d4f88eae243b293a3fe48408a2756dabbe771b" default))
+ '(ggtags-completing-read-function nil t)
+ '(global-undo-tree-mode 1 nil nil "Customized with use-package undo-tree")
+ '(key-chord-one-key-delay 0.12 nil nil "Customized with use-package key-chord")
+ '(key-chord-two-keys-delay 0.12 nil nil "Customized with use-package key-chord")
+ '(org-agenda-files
+   '("~/racine/plain/orgmode/agenda.org" "~/racine/plain/orgmode/taches.org"))
+ '(package-selected-packages '("magit" "magit" magit switch-window async use-package))
+ '(region-bindings-mode-disable-predicates ((lambda nil buffer-read-only)) nil nil "Customized with use-package region-bindings-mode")
+ '(safe-local-variable-values
+   '((eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
+	   (add-hook 'write-contents-functions
+		     (lambda nil
+		       (delete-trailing-whitespace)
+		       nil))
+	   (require 'whitespace)
+	   "Sometimes the mode needs to be toggled off and on."
+	   (whitespace-mode 0)
+	   (whitespace-mode 1))
+     (whitespace-line-column . 80)
+     (whitespace-style face tabs trailing lines-tail)
+     (ffip-project-root . "~/racine/artist")
+     (ffip-project-root . "~/racine/bin")
+     (ffip-project-root . "~/racine/plain")))
+ '(switch-window-increase 4 t nil "Customized with use-package switch-window")
+ '(undo-tree-auto-save-history t nil nil "Customized with use-package undo-tree")
+ '(undo-tree-history-directory-alist '((".*" . "~/racine/varia/undo/emacs/")) nil nil "Customized with use-package undo-tree")
+ '(warning-suppress-log-types '((comp))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(setq inhibit-startup-message t)
+(setq inhibit-splash-screen t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(helm helm-org)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+

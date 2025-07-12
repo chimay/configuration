@@ -1,10 +1,5 @@
 ;; -*- mode: lisp -*-
 
-;; * Complétion
-
-(require 'ido)
-(ido-mode t)
-
 ;; * Thème
 
 (add-to-list 'custom-theme-load-path "~/racine/config/edit/emacs/color")
@@ -132,7 +127,7 @@
 
 (setq org-list-use-circular-motion t)
 
-(setq org-archive-location "~/racine/organ/orgmode/archive.org::* Fichier %s")
+(setq org-archive-location "~/racine/plain/orgmode/archive.org::* Fichier %s")
 
 (setq org-export-preserve-breaks nil)
 

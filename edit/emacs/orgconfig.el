@@ -4,8 +4,7 @@
 
 (setq use-package-verbose t)
 
-(use-package org)
-;; (require 'org)
+(require 'org)
 
 (org-babel-load-file "~/racine/config/edit/emacs/configuration.org")
 

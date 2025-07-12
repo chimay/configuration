@@ -83,6 +83,7 @@
 
 	'(mode-line ((t (
 		:background nil :foreground nil :inverse-video t
+		:box '(:line-width -1 :style released-button)
 		:height 1.0
 	))))
 
@@ -97,10 +98,12 @@
 
 	'(mode-line-highlight ((t (
 		:box (:line-width 2 :color nil
+		:style released-button :height 0.9
 	)))))
 
 	'(mode-line-inactive ((t (
 		:background "#070707" :foreground nil
+		:box '(:line-width -1 :color nil)
 		:weight light :height 0.9
 	))))
 
@@ -164,6 +167,7 @@
 
 	'(custom-button-face ((t (
 		:background nil :foreground nil
+		:box '(:line-width 2 :style released-button)
 	))))
 
 	'(custom-button-pressed ((t (:border nil :background nil :foreground nil))))
@@ -190,6 +194,7 @@
 	'(custom-variable-button-face ((t (
 		:bold t :underline t :weight bold
 		:background nil :foreground nil
+		:box '(:line-width 2 :style released-button)
 	))))
 
 	'(custom-variable-tag-face ((t (:bold t :foreground nil :weight bold :height 1.2))))

@@ -1,0 +1,558 @@
+# vim: set ft=lisp :
+
+;; * Ido
+
+	'(ido-first-match ((t (:bold t :weight bold))))
+	'(ido-incomplete-regexp ((t (:bold t :weight bold :foreground "#5B3C11"))))
+	'(ido-indicator ((t (:background "black" :foreground "#5B3C11" :width condensed))))
+	'(ido-only-match ((t (:foreground "#5B3C11"))))
+	'(ido-subdir ((t (:foreground "#5B3C11"))))
+
+; }}}
+
+;; * Vim
+
+	'(viper-minibuffer-emacs ((t (:background "black" :foreground "#5B3C11"))))
+	'(viper-minibuffer-insert ((t (:background "black" :foreground "#5B3C11"))))
+	'(viper-minibuffer-vi ((t (:background "black" :foreground "#5B3C11"))))
+	'(viper-replace-overlay ((t (:background "black" :foreground "#5B3C11"))))
+	'(viper-search ((t (:background "black" :foreground "#5B3C11"))))
+
+; }}}
+
+;; * Auto-complete
+
+	'(ac-candidate-face ((t (:background "#070707" :foreground "#88421D"))))
+	'(ac-selection-face ((t (:background "#5B3C11" :foreground "black"))))
+	'(ac-completion-face ((t (:underline t :background "black" :foreground "#5B3C11"))))
+
+; }}}
+
+;; * Icicles
+
+	'(icicle-Completions-instruction-1 ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-Completions-instruction-2 ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-annotation ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-candidate-part ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-common-match-highlight-Completions ((t (:italic t :background "black" :foreground "#5B3C11"))))
+	'(icicle-complete-input ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-completion ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-current-candidate-highlight ((t (:bold t :background "#5B3C11" :foreground "black"))))
+	'(icicle-extra-candidate ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-historical-candidate ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-historical-candidate-other ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-input-completion-fail ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-input-completion-fail-lax ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-key-complete-menu ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-key-complete-menu-local ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-match-highlight-Completions ((t (:italic t :background "black" :foreground "#5B3C11"))))
+	'(icicle-match-highlight-minibuffer ((t (:italic t :background "black" :foreground "#5B3C11"))))
+	'(icicle-mode-line-help ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-msg-emphasis ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-multi-command-completion ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-mustmatch-completion ((t (:italic t :background "black" :foreground "#5B3C11"))))
+	'(icicle-proxy-candidate ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-saved-candidate ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-context-level-1 ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-context-level-2 ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-context-level-3 ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-context-level-4 ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-context-level-5 ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-context-level-6 ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-context-level-7 ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-context-level-8 ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-current-input ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-main-regexp-current ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-search-main-regexp-others ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-special-candidate ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+	'(icicle-whitespace-highlight ((t (:bold nil :background "black" :foreground "#5B3C11"))))
+
+; }}}
+
+;; * Tabbar
+
+	'(tabbar-default ((t (:box "black" :background "black" :foreground "#5B3C11"))))
+	'(tabbar-selected ((t (:box nil :background "#5B3C11" :foreground "black" :bold t :inverse-video))))
+	'(tabbar-unselected ((t (:box nil :background "black" :foreground "#5B3C11" :bold t))))
+	'(tabbar-separator ((t (:box nil :background "#5B3C11" :foreground "black" :bold t))))
+	'(tabbar-button ((t (:box nil :background "black" :foreground "#5B3C11"))))
+	'(tabbar-button-highlight ((t (:box nil :background "black" :foreground "#5B3C11"))))
+
+; }}}
+
+;; * Gui
+
+;;; personnel-gui-theme.el --- port of vim's personnel-gui theme
+;; Author: martin haesler
+;; URL: http://github.com/mswift42/personnel-gui-theme
+;; Version: 20130920.1739
+;;; X-Original-Version: 0.3
+
+;; original vim theme by Henrique C.Alves
+;;(http://hcalves.deviantart.com/art/personnel-gui-Vim-Colorspcheme-98974484)
+
+; Utiliser
+;	M-x list-faces-display
+; pour afficher les réglages courants
+; et
+;	M-x list-colors-display
+; pour afficher les couleurs disponibles
+
+(deftheme personnel-gui)
+
+(custom-theme-set-faces 'personnel-gui
+
+	'(default ((t (:background "#000000" :foreground "#5b3c11"))))
+
+	'(header-line ((t (:bold t :background "#000000" :foreground "#5b3c11"))))
+	'(font-lock-builtin-face ((t (:foreground "#5b3c11"))))
+	'(region ((t (:bold t :background "#5b3c11" :foreground "#000000"))))
+	'(highlight ((t (:background "#050505"))))
+	'(hl-line ((t (:background "#000000"))))
+	'(fringe ((t (:background "#232323" :foreground "#cfbfad"))))
+	'(cursor ((t (:background "#5b3c11"))))
+	'(show-paren-match-face ((t (:bold t :background "#000000" :foreground "darkred"))))
+	'(isearch ((t (:bold t :foreground "#000000" :background "#5b3c11"))))
+	'(mode-line ((t (:bold t :foreground "#5b3c11" :background "#000000"))))
+	'(mode-line-inactive ((t (:foreground "#5b3c11" :background "#000000"))))
+	'(mode-line-buffer-id ((t (:bold t :foreground "#5b3c11" :background "#000000"))))
+	'(minibuffer-prompt ((t (:bold t :foreground "#5b3c11"))))
+	'(default-italic ((t (:italic t))))
+
+	'(custom-button ((t (:border nil :background "#000000" :foreground "#5b3c11"))))
+	'(custom-button-mouse ((t (:border nil :background "#000000" :foreground "#5b3c11"))))
+	'(custom-button-pressed ((t (:border nil :background "#000000" :foreground "#5b3c11"))))
+	'(custom-button-pressed-unraised ((t (:border nil :background "#000000" :foreground "#5b3c11"))))
+	'(custom-button-unraised ((t (:border nil :background "#000000" :foreground "#5b3c11"))))
+	'(custom-set ((t (:background "#000000" :foreground "#5b3c11"))))
+	'(custom-themed ((t (:background "#000000" :foreground "#5b3c11"))))
+
+	'(font-lock-comment-face ((t (:italic t :foreground "#5b3c11"))))
+	'(font-lock-negation-char-face ((t (:foreground "5b3c11"))))
+	'(font-lock-reference-face ((t (:foreground "#5b3c11"))))
+	'(font-lock-comment-delimiter-face ((t (:foreground "#5b3c11"))))
+	'(font-lock-constant-face ((t (:foreground "#5b3c11"))))
+	'(font-lock-doc-face ((t (:foreground "#5b3c11"))))
+	'(font-lock-function-name-face ((t (:foreground "#5b3c11"))))
+	'(font-lock-keyword-face ((t (:bold t :foreground "#5b3c11"))))
+	'(font-lock-preprocessor-face ((t (:foreground "#5b3c11"))))
+	'(font-lock-reference-face ((t (:bold t :foreground "#5b3c11"))))
+	'(font-lock-string-face ((t (:foreground "#5b3c11"))))
+	'(font-lock-type-face ((t (:foreground "#5b3c11"))))
+	'(font-lock-variable-name-face ((t (:foreground "#5b3c11"))))
+	'(font-lock-warning-face ((t (:foreground "#5b3c11" :background "#000000"))))
+
+	'(link ((t (:foreground "#5b3c11"))))
+
+	'(org-hide ((t (:foreground "#5b3c11"))))
+	'(org-level-1 ((t (:bold nil :foreground "#5b3c11" :height 1.0))))
+	'(org-level-2 ((t (:bold nil :foreground "#5b3c11" :height 1.0))))
+	'(org-level-3 ((t (:bold nil :foreground "#5b3c11" :height 1.0))))
+	'(org-level-4 ((t (:bold nil :foreground "#5b3c11" :height 1.0))))
+	'(org-date ((t (:underline t :foreground "#5b3c11") :height 1.0)))
+	'(org-footnote  ((t (:underline t :foreground "#5b3c11"))))
+	'(org-link ((t (:underline t :foreground "#5b3c11" ))))
+	'(org-special-keyword ((t (:foreground "#5b3c11"))))
+	'(org-verbatim ((t (:italic t :foreground "#5b3c11" :underline t :slant italic))))
+	'(org-block ((t (:foreground "#5b3c11"))))
+	'(org-quote ((t (:inherit org-block :slant italic))))
+	'(org-verse ((t (:inherit org-block :slant italic))))
+	'(org-todo ((t (:bold t :foreground "#5b3c11"))))
+	'(org-done ((t (:bold t :foreground "#5b3c11"))))
+	'(org-warning ((t (:underline t :foreground "#5b3c11"))))
+	'(org-agenda-structure ((t (:weight bold :foreground "#5b3c11"))))
+	'(org-agenda-date ((t (:foreground "#5b3c11" :height 1.2))))
+	'(org-agenda-date-weekend ((t (:weight normal :foreground "#5b3c11"))))
+	'(org-agenda-date-today ((t (:weight bold :foreground "#5b3c11" :height 1.4))))
+	'(org-scheduled ((t (:foreground "#5b3c11"))))
+	'(org-sexp-date ((t (:foreground "#5b3c11"))))
+
+	'(font-latex-bold-face ((t (:bold t))))
+	'(font-latex-italic-face ((t (:italic t))))
+	'(font-latex-string-face ((t (:foreground "#5b3c11"))))
+	'(font-latex-match-reference-keywords ((t (:foreground "#5b3c11"))))
+	'(font-latex-match-variable-keywords ((t (:foreground "#5b3c11"))))
+
+	'(ido-only-match ((t (:foreground "#5b3c11"))))
+	'(ido-first-match ((t (:foreground "#5b3c11"))))
+
+	'(mu4e-view-url-number-face ((t (:foreground "#5b3c11"))))
+	'(mu4e-cited-1-face ((t (:foreground "#5b3c11"))))
+	'(mu4e-cited-7-face ((t (:foreground "#5b3c11"))))
+
+	'(slime-repl-inputed-output-face ((t (:foreground "#5b3c11"))))
+	'(fringe ((t (:background "#000000" :foreground "#5b3c11"))))
+	'(linum ((t (:background "#000000" :foreground "#5b3c11"))))
+	'(error ((t (:background "#000000" :foreground "darkred"))))
+	'(compilation-error ((t (:background "#000000" :foreground "darkred"))))
+	'(compilation-info ((t (:background "#000000" :foreground "#5b3c11"))))
+	'(tooltip ((t (:background "#000000" :foreground "#5b3c11"))))
+	'(tool-bar ((t (:background "#000000" :foreground "#5b3c11"))))
+
+	'(eshell-prompt ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-archive ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-backup ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-clutter ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-directory ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-executable ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-missing ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-product ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-readonly ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-special ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-symlink ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(eshell-ls-unreadable ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+
+	'(tabbar-default ((t (:box "black" :background "#000000" :foreground "#5b3c11"))))
+	'(tabbar-selected ((t (:box nil :background "#5b3c11" :foreground "#000000" :bold t :inverse-video))))
+	'(tabbar-unselected ((t (:box nil :background "#000000" :foreground "#5b3c11" :bold t))))
+	'(tabbar-separator ((t (:box nil :background "#5b3c11" :foreground "#000000" :bold t))))
+	'(tabbar-button ((t (:box nil :background "#000000" :foreground "#5b3c11"))))
+	'(tabbar-button-highlight ((t (:box nil :background "#000000" :foreground "#5b3c11"))))
+
+	'(undo-tree-visualizer-default-face ((t (:background "#000000" :foreground "#5b3c11"))))
+	'(undo-tree-visualizer-unmodified-face ((t (:background "#000000" :foreground "#5b3c11"))))
+	'(undo-tree-visualizer-current-face ((t (:bold t :underline nil :background "#000000" :foreground "darkred"))))
+	'(undo-tree-visualizer-register-face ((t (:background "#000000" :foreground "#5b3c11"))))
+	'(undo-tree-visualizer-active-branch-face ((t (:background "#000000" :foreground "#5b3c11"))))
+
+	'(icicle-Completions-instruction-1 ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-Completions-instruction-2 ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-annotation ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-candidate-part ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-common-match-highlight-Completions ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-complete-input ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-completion ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-current-candidate-highlight ((t (:bold nil :background "#000000" :foreground "darkred"))))
+	'(icicle-extra-candidate ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-historical-candidate ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-historical-candidate-other ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-input-completion-fail ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-input-completion-fail-lax ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-key-complete-menu ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-key-complete-menu-local ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-match-highlight-Completions ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-match-highlight-minibuffer ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-mode-line-help ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-msg-emphasis ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-multi-command-completion ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-mustmatch-completion ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-proxy-candidate ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-saved-candidate ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-context-level-1 ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-context-level-2 ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-context-level-3 ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-context-level-4 ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-context-level-5 ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-context-level-6 ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-context-level-7 ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-context-level-8 ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-current-input ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-main-regexp-current ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-search-main-regexp-others ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-special-candidate ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+	'(icicle-whitespace-highlight ((t (:bold nil :background "#000000" :foreground "#5b3c11"))))
+)
+
+;;;###autoload
+(when load-file-name
+  (add-to-list 'custom-theme-load-path
+               (file-name-as-directory (file-name-directory load-file-name))))
+
+(provide-theme 'personnel-gui)
+
+;; * Divers
+
+; (set-background-color "#000000")
+; (set-foreground-color "#5B3C11")
+; (set-border-color "gold")
+; (set-cursor-color "#5B3C11")
+; (set-cursor-type box)
+; (set-mouse-color gold)
+
+;(set-face-attribute 'hl-line nil :background "#000000")
+
+;(set-face-attribute 'font-lock-comment-face nil :foreground "default")
+;(set-face-attribute 'font-lock-comment-face nil :bold t)
+
+; }}}
+
+;;; personnel-gui-theme.el ends here
+
+; }}}
+
+;; * Ido
+
+	'(ido-first-match ((t (:bold t :weight bold))))
+	'(ido-incomplete-regexp ((t (:bold t :weight bold :foreground nil))))
+	'(ido-indicator ((t (:background "black" :foreground nil :width condensed))))
+	'(ido-only-match ((t (:foreground nil))))
+	'(ido-subdir ((t (:foreground nil))))
+
+; }}}
+
+;; * Vim
+
+	'(viper-minibuffer-emacs ((t (:background "black" :foreground nil))))
+	'(viper-minibuffer-insert ((t (:background "black" :foreground nil))))
+	'(viper-minibuffer-vi ((t (:background "black" :foreground nil))))
+	'(viper-replace-overlay ((t (:background "black" :foreground nil))))
+	'(viper-search ((t (:background "black" :foreground nil))))
+
+; }}}
+
+;; * Auto-complete
+
+	'(ac-candidate-face ((t (:background "black" :foreground nil))))
+	'(ac-selection-face ((t (:background "yellow" :foreground "black"))))
+	'(ac-completion-face ((t (:underline t :background "black" :foreground nil))))
+
+; }}}
+
+;; * Icicles
+
+	'(icicle-Completions-instruction-1 ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-Completions-instruction-2 ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-annotation ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-candidate-part ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-common-match-highlight-Completions ((t (:italic t :background "black" :foreground nil))))
+	'(icicle-complete-input ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-completion ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-current-candidate-highlight ((t (:bold t :background nil :foreground "black"))))
+	'(icicle-extra-candidate ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-historical-candidate ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-historical-candidate-other ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-input-completion-fail ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-input-completion-fail-lax ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-key-complete-menu ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-key-complete-menu-local ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-match-highlight-Completions ((t (:italic t :background "black" :foreground nil))))
+	'(icicle-match-highlight-minibuffer ((t (:italic t :background "black" :foreground nil))))
+	'(icicle-mode-line-help ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-msg-emphasis ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-multi-command-completion ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-mustmatch-completion ((t (:italic t :background "black" :foreground nil))))
+	'(icicle-proxy-candidate ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-saved-candidate ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-context-level-1 ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-context-level-2 ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-context-level-3 ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-context-level-4 ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-context-level-5 ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-context-level-6 ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-context-level-7 ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-context-level-8 ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-current-input ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-main-regexp-current ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-search-main-regexp-others ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-special-candidate ((t (:bold nil :background "black" :foreground nil))))
+	'(icicle-whitespace-highlight ((t (:bold nil :background "black" :foreground nil))))
+
+; }}}
+
+;; * Tabbar
+
+	'(tabbar-default ((t (:box "black" :background "black" :foreground nil))))
+	'(tabbar-selected ((t (:box nil :background nil :foreground "black" :bold t :inverse-video))))
+	'(tabbar-unselected ((t (:box nil :background "black" :foreground nil :bold t))))
+	'(tabbar-separator ((t (:box nil :background nil :foreground "black" :bold t))))
+	'(tabbar-button ((t (:box nil :background "black" :foreground nil))))
+	'(tabbar-button-highlight ((t (:box nil :background "black" :foreground nil))))
+
+; }}}
+
+;; * Term
+
+;;; personnel-term-theme.el --- port of vim's personnel-term theme
+;; Author: martin haesler
+;; URL: http://github.com/mswift42/personnel-term-theme
+;; Version: 20130920.1739
+;;; X-Original-Version: 0.3
+
+;; original vim theme by Henrique C.Alves
+;;(http://hcalves.deviantart.com/art/personnel-term-Vim-Colorspcheme-98974484)
+
+; Utiliser
+;	M-x list-faces-display
+; pour afficher les réglages courants
+; et
+;	M-x list-colors-display
+; pour afficher les couleurs disponibles
+
+(deftheme personnel-term)
+
+(custom-theme-set-faces 'personnel-term
+	'(default ((t (:background "black" :foreground "default"))))
+	'(header-line ((t (:bold t :background "black" :foreground "default"))))
+	'(font-lock-builtin-face ((t (:foreground "default"))))
+	'(region ((t (:bold t :background "default" :foreground "black"))))
+	'(highlight ((t (:background "#050505"))))
+	'(hl-line ((t (:background "black"))))
+	'(fringe ((t (:background "#232323" :foreground "#cfbfad"))))
+	'(cursor ((t (:background "default"))))
+	'(show-paren-match-face ((t (:bold t :background "black" :foreground "darkred"))))
+	'(isearch ((t (:bold t :foreground "black" :background "default"))))
+	'(mode-line ((t (:bold t :foreground "default" :background "black"))))
+	'(mode-line-inactive ((t (:foreground "default" :background "black"))))
+	'(mode-line-buffer-id ((t (:bold t :foreground "default" :background "black"))))
+	'(minibuffer-prompt ((t (:bold t :foreground "default"))))
+	'(default-italic ((t (:italic t))))
+	'(font-lock-comment-face ((t (:bold t :foreground "default"))))
+	'(font-lock-negation-char-face ((t (:foreground "5b3c11"))))
+	'(font-lock-reference-face ((t (:foreground "default"))))
+	'(font-lock-comment-delimiter-face ((t (:foreground "default"))))
+	'(font-lock-constant-face ((t (:foreground "default"))))
+	'(font-lock-doc-face ((t (:foreground "default"))))
+	'(font-lock-function-name-face ((t (:foreground "default"))))
+	'(font-lock-keyword-face ((t (:bold t :foreground "default"))))
+	'(font-lock-preprocessor-face ((t (:foreground "default"))))
+	'(font-lock-reference-face ((t (:bold t :foreground "default"))))
+	'(font-lock-string-face ((t (:foreground "default"))))
+	'(font-lock-type-face ((t (:foreground "default"))))
+	'(font-lock-variable-name-face ((t (:foreground "default"))))
+	'(font-lock-warning-face ((t (:foreground "default" :background "black"))))
+	'(link ((t (:foreground "default"))))
+	'(org-hide ((t (:foreground "default"))))
+	'(org-level-1 ((t (:bold nil :foreground "default" :height 1.0))))
+	'(org-level-2 ((t (:bold nil :foreground "default" :height 1.0))))
+	'(org-level-3 ((t (:bold nil :foreground "default" :height 1.0))))
+	'(org-level-4 ((t (:bold nil :foreground "default" :height 1.0))))
+	'(org-date ((t (:underline t :foreground "default") :height 1.0)))
+	'(org-footnote  ((t (:underline t :foreground "default"))))
+	'(org-link ((t (:underline t :foreground "default" ))))
+	'(org-special-keyword ((t (:foreground "default"))))
+	'(org-verbatim ((t (:italic t :foreground "default" :underline t :slant italic))))
+	'(org-block ((t (:foreground "default"))))
+	'(org-quote ((t (:inherit org-block :slant italic))))
+	'(org-verse ((t (:inherit org-block :slant italic))))
+	'(org-todo ((t (:bold t :foreground "default"))))
+	'(org-done ((t (:bold t :foreground "default"))))
+	'(org-warning ((t (:underline t :foreground "default"))))
+	'(org-agenda-structure ((t (:weight bold :foreground "default"))))
+	'(org-agenda-date ((t (:foreground "default" :height 1.2))))
+	'(org-agenda-date-weekend ((t (:weight normal :foreground "default"))))
+	'(org-agenda-date-today ((t (:weight bold :foreground "default" :height 1.4))))
+	'(org-scheduled ((t (:foreground "default"))))
+	'(org-sexp-date ((t (:foreground "default"))))
+	'(font-latex-bold-face ((t (:bold t))))
+	'(font-latex-italic-face ((t (:italic t))))
+	'(font-latex-string-face ((t (:foreground "default"))))
+	'(font-latex-match-reference-keywords ((t (:foreground "default"))))
+	'(font-latex-match-variable-keywords ((t (:foreground "default"))))
+	'(ido-only-match ((t (:foreground "default"))))
+	'(ido-first-match ((t (:foreground "default"))))
+	'(mu4e-view-url-number-face ((t (:foreground "default"))))
+	'(mu4e-cited-1-face ((t (:foreground "default"))))
+	'(mu4e-cited-7-face ((t (:foreground "default"))))
+	'(slime-repl-inputed-output-face ((t (:foreground "default"))))
+	'(fringe ((t (:background "black" :foreground "default"))))
+	'(linum ((t (:background "black" :foreground "default"))))
+	'(error ((t (:background "black" :foreground "darkred"))))
+	'(compilation-error ((t (:background "black" :foreground "darkred"))))
+	'(compilation-info ((t (:background "black" :foreground "default"))))
+	'(tooltip ((t (:background "black" :foreground "default"))))
+	'(tool-bar ((t (:background "black" :foreground "default"))))
+	'(tabbar-default ((t (:box "black" :background "black" :foreground "default"))))
+	'(tabbar-selected ((t (:box nil :background "default" :foreground "black" :bold t))))
+	'(tabbar-unselected ((t (:box nil :background "black" :foreground "default" :bold t))))
+	'(tabbar-separator ((t (:box nil :background "default" :foreground "black" :bold t))))
+	'(tabbar-button ((t (:box nil :background "black" :foreground "default"))))
+	'(tabbar-button-highlight ((t (:box nil :background "black" :foreground "default"))))
+	'(undo-tree-visualizer-default-face ((t (:background "black" :foreground "default"))))
+	'(undo-tree-visualizer-unmodified-face ((t (:background "black" :foreground "default"))))
+	'(undo-tree-visualizer-current-face ((t (:bold t :underline nil :background "black" :foreground "darkred"))))
+	'(undo-tree-visualizer-register-face ((t (:background "black" :foreground "default"))))
+	'(undo-tree-visualizer-active-branch-face ((t (:background "black" :foreground "default"))))
+	'(eshell-prompt ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-archive ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-backup ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-clutter ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-directory ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-executable ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-missing ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-product ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-readonly ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-special ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-symlink ((t (:bold nil :background "black" :foreground "default"))))
+	'(eshell-ls-unreadable ((t (:bold nil :background "black" :foreground "default"))))
+)
+
+;;;###autoload
+(when load-file-name
+  (add-to-list 'custom-theme-load-path
+               (file-name-as-directory (file-name-directory load-file-name))))
+
+(provide-theme 'personnel-term)
+
+;;; personnel-term-theme.el ends here
+
+; }}}
+
+	'(term-color-black ((t (:foreground "#3F3F3F" :background "#2B2B2B"))))
+	'(term-color-red ((t (:foreground "#AC7373" :background "#8C5353"))))
+	'(term-color-green ((t (:foreground "#7F9F7F" :background "#9FC59F"))))
+	'(term-color-yellow ((t (:foreground "#DFAF8F" :background "#9FC59F"))))
+	'(term-color-blue ((t (:foreground "#7CB8BB" :background "#4C7073"))))
+	'(term-color-magenta ((t (:foreground "#DC8CC3" :background "#CC9393"))))
+	'(term-color-cyan ((t (:foreground "#93E0E3" :background "#8CD0D3"))))
+	'(term-color-white ((t (:foreground "#DCDCCC" :background "#656555"))))
+
+	'(term-default-fg-color ((t (:inherit term-color-white))))
+	'(term-default-bg-color ((t (:inherit term-color-black))))
+
+;; * Modeline
+
+	'(mode-line ((t (
+		:background "#070707" :foreground "#5B3C11"
+		:box '(:line-width -1 :style released-button)
+		:height 1.0
+	))))
+
+	'(mode-line-buffer-id ((t (
+		:background "black" :foreground "#5B3C11"
+		:bold t :weight bold :height 0.9
+	))))
+
+	'(mode-line-inactive ((t (:foreground "#5B3C11" :background "black"))))
+
+	'(mode-line-emphasis ((t (:bold t :weight bold))))
+
+	'(mode-line-highlight ((t (
+		:box (:line-width 2 :color "#5B3C11"
+		:style released-button :height 0.9
+	)))))
+
+	'(mode-line-inactive ((t (
+		:background "black" :foreground "#5B3C11"
+		:box '(:line-width -1 :color "#5B3C11")
+		:weight light :height 0.9
+	))))
+
+;; * Marge
+
+	'(linum ((t (:background "black" :foreground "#5B3C11"))))
+	'(fringe ((t (:background "#070707" :foreground "#5B3C11"))))
+
+	'(mode-line-buffer-id ((t (
+		:background "#070707" :foreground nil
+		:bold t :height 1.0
+	))))
+
+	'(mode-line-inactive ((t (:foreground nil :background "#070707"))))
+
+	'(mode-line-inactive ((t (
+		:background "#070707" :foreground nil
+		:box '(:line-width -1 :color nil)
+		:weight light :height 0.9
+	))))
+
+	'(mode-line-highlight ((t (
+		:box (:line-width 2 :color nil
+		:style released-button :height 0.9
+	)))))
+
+	'(mode-line ((t (
+		:background nil :foreground nil :inverse-video t :bold t
+		:box '(:line-width -1 :style released-button)
+		:height 1.0
+	))))
+
