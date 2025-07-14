@@ -65,9 +65,6 @@ hyper=Mod3   # Use the super key as the main modifier
 hc keybind $hyper-r reload
 hc keybind $hyper-Shift-e wmexec
 
-hc keybind $hyper-BackSpace close_and_remove
-hc keybind $hyper-Shift-x close_and_remove
-
 # focus {{{2
 
 hc keybind $super-Left  focus left
@@ -187,6 +184,14 @@ hc keybind $hyper-p pseudotile toggle
 #             or , and . compare tags.focus.curframe_wcount = 2                   \
 #                      . cycle_layout +1 vertical horizontal max vertical grid    \
 #                , cycle_layout +1
+
+# windows {{{2
+
+# close window
+hc keybind $hyper-Shift-x close
+
+# close window and remove frame
+hc keybind $hyper-BackSpace close_and_remove
 
 # tags, aka desktops aka workspaces {{{2
 

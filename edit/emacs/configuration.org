@@ -3,7 +3,6 @@
 
 * Documentation
 
-
 ** Aide en ligne
 
 C-h i   : lecteur info (très pratique)
@@ -38,7 +37,6 @@ C-h C-a : information à propos d’emacs
 C-h C-f : emacs FAQ
 C-h C-p : known problems
 
-
 ** Modificateurs disponibles
 
 M = Méta
@@ -58,48 +56,44 @@ H = Hyper
 
 (autoload 'symbole "chemin" "description" t)
 
+** Orgmode et Elisp
+
+Ce fichier est converti en Configuration.el par :
+
+(org-babel-load-file "~/racine/config/edit/emacs/configuration.org")
+
+Les bouts de codes sont plus facilement édité dans un autre tampon,
+avec gestion des tabulations, par "C-c '". Meme raccourci pour revenir
+au tampon principal.
 
 ** Keybindings
 
 [[https://stackoverflow.com/questions/683425/globally-override-key-binding-in-emacs/683575#683575]]
 
-
 ** Booléens
 
 use “t” for true, “nil” for false
-
 
 ** Historique
 
 Minibuffer :
 
   - M-p, up (previous-history-element) : retrieve the input before the one currently in the minibuffer
-
   - M-n, down (next-history-element) : retrieve the input after the one currently in the minibuffer
-
   - M-r (previous-matching-history-element) : Move to an earlier item in the minibuffer history that matches a regexp you enter.
-
   - M-s (next-matching-history-element) : Move to a later item in the minibuffer history that matches a regexp you enter.
-
 
 * Info
 
 #+begin_src emacs-lisp
-
-(setq Info-use-header-line t)
-(setq Info-hide-note-references t)
-
-(setq Info-scroll-prefer-subnodes nil)
-
-(setq Info-isearch-search t)
-
-(setq Info-enable-active-nodes nil)
-
+  (setq Info-use-header-line t)
+  (setq Info-hide-note-references t)
+  (setq Info-scroll-prefer-subnodes nil)
+  (setq Info-isearch-search t)
+  (setq Info-enable-active-nodes nil)
 #+end_src
 
-
 * Interne
-
 
 ** Serveur
 
@@ -107,7 +101,6 @@ Minibuffer :
   (require 'server)
   (unless (server-running-p) (server-start))
 #+end_src
-
 
 ** Chemins d’accès
 
@@ -163,7 +156,10 @@ Désactivé car induisant parfois en erreur.
   (setq inhibit-splash-screen t)
   (setq inhibit-startup-screen t)
   (setq initial-buffer-choice t)
-  (setq initial-scratch-message ";; Buffer for notes you don’t want to save.\n\n")
+  (setq initial-scratch-message
+        ";; Scratch buffer for notes you don’t want to save.
+  ;; Lisp mode is enabled, you can run lisp code with C-x C-e just after a parenthesis.\n\n")
+
   ;; (setq initial-buffer-choice (lambda ()
   ;;     (org-agenda-list 30)
   ;;     (get-buffer "*Org Agenda*")))
@@ -207,14 +203,15 @@ Désactivé car induisant parfois en erreur.
 
 Mode hl-line activé/désactivé via un binding (voir [[*Apparence][bindings/apparence]])
 
-;; #+begin_src emacs-lisp
-;;   (require 'linum)
-;;   (global-linum-mode 1)
-;;   (setq line-number-display-limit nil)
-;;   (line-number-mode t)
-;;   (column-number-mode t)
-;;   (global-hl-line-mode 0)
-;; #+end_src
+#+begin_src emacs-lisp
+  ;;   (require 'linum)
+  ;;   (global-linum-mode 1)
+  ;;   (setq line-number-display-limit nil)
+  ;;   (line-number-mode t)
+  ;;   (column-number-mode t)
+  ;;   (global-hl-line-mode 0)
+  (global-display-line-numbers-mode)
+#+end_src
 
 
 ** Barres de défilement
@@ -1207,7 +1204,6 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
   (global-unset-key (kbd "C-x C-z"))
 #+end_src
 
-
 ** Modificateurs
 
 X-Y, où X est un des éléments de la liste ci-dessous :
@@ -1236,6 +1232,11 @@ H = Hyper
   (global-set-key (kbd "<f5> r") 'biblio/recharge-configuration-org)
 #+end_src
 
+*** Liste des paquets
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<f12> l") 'list-packages)
+#+end_src
 
 *** Recharger un fichier lisp
 
@@ -1442,10 +1443,10 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "<s-kp-3>") 'biblio/scinde-et-suit-verticalement)
   (global-set-key (kbd "<s-kp-7>") 'other-window)
   (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
-  (global-set-key (kbd "<S-up>") 'windmove-up)
-  (global-set-key (kbd "<S-down>") 'windmove-down)
-  (global-set-key (kbd "<S-right>") 'windmove-right)
-  (global-set-key (kbd "<S-left>") 'windmove-left)
+  (global-set-key (kbd "<C-up>") 'windmove-up)
+  (global-set-key (kbd "<C-down>") 'windmove-down)
+  (global-set-key (kbd "<C-right>") 'windmove-right)
+  (global-set-key (kbd "<C-left>") 'windmove-left)
   (global-set-key (kbd "<s-kp-8>") 'windmove-up)
   (global-set-key (kbd "<s-kp-5>") 'windmove-down)
   (global-set-key (kbd "<s-kp-6>") 'windmove-right)
@@ -1535,12 +1536,12 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "C-=") 'eval-expression)
   (global-set-key (kbd "C-M-u") 'backward-up-list)
   (global-set-key (kbd "C-M-d") 'down-list)
-  (global-set-key (kbd "<C-up>") 'backward-up-list)
-  (global-set-key (kbd "<C-down>") 'down-list)
+  (global-set-key (kbd "<S-up>") 'backward-up-list)
+  (global-set-key (kbd "<S-down>") 'down-list)
   (global-set-key (kbd "C-M-f") 'forward-sexp)
   (global-set-key (kbd "C-M-b") 'backward-sexp)
-  (global-set-key (kbd "<C-right>") 'forward-sexp)
-  (global-set-key (kbd "<C-left>") 'backward-sexp)
+  (global-set-key (kbd "<S-right>") 'forward-sexp)
+  (global-set-key (kbd "<S-left>") 'backward-sexp)
   (global-set-key (kbd "C-M-n") 'forward-list)
   (global-set-key (kbd "C-M-p") 'backward-list)
   (global-set-key (kbd "<C-M-right>") 'forward-list)
@@ -1659,12 +1660,12 @@ Infos sur les thèmes
 
 ** Librairies
 
-;; #+begin_src emacs-lisp
-;;   (require 'cl)
+#+begin_src emacs-lisp
+  (require 'cl-lib)
 ;;   (use-package duo
 ;;     :config
 ;;     (duo-init "duo-common" "duo-referen"))
-;; #+end_src
+#+end_src
 
 *** Outline
 
@@ -1964,9 +1965,9 @@ Nécessite org-tempo
   (setq helm-buffers-favorite-modes (append helm-buffers-favorite-modes '(picture-mode artist-mode)))
   (setq helm-ff-search-library-in-sexp t)
 
-  ;; (loop for ext in
-  ;;  '("\\.elc$" "\\.pyc$" "\\.git$" "\\.o$" "*~")
-  ;;  do (add-to-list 'helm-boring-file-regexp-list ext))
+  (cl-loop for ext in
+    '("\\.elc$" "\\.pyc$" "\\.git$" "\\.o$" "*~")
+    do (add-to-list 'helm-boring-file-regexp-list ext))
 
   (setq helm-mini-default-sources '(
     helm-source-buffers-list

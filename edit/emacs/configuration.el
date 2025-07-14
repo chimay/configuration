@@ -1,10 +1,7 @@
 (setq Info-use-header-line t)
 (setq Info-hide-note-references t)
-
 (setq Info-scroll-prefer-subnodes nil)
-
 (setq Info-isearch-search t)
-
 (setq Info-enable-active-nodes nil)
 
 (require 'server)
@@ -29,7 +26,10 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-screen t)
 (setq initial-buffer-choice t)
-(setq initial-scratch-message ";; Buffer for notes you don’t want to save.\n\n")
+(setq initial-scratch-message
+      ";; Scratch buffer for notes you don’t want to save.
+;; Lisp mode is enabled, you can run lisp code with C-x C-e just after a parenthesis.\n\n")
+
 ;; (setq initial-buffer-choice (lambda ()
 ;;     (org-agenda-list 30)
 ;;     (get-buffer "*Org Agenda*")))
@@ -46,6 +46,14 @@
 (setq blink-cursor-mode nil)
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;;   (require 'linum)
+;;   (global-linum-mode 1)
+;;   (setq line-number-display-limit nil)
+;;   (line-number-mode t)
+;;   (column-number-mode t)
+;;   (global-hl-line-mode 0)
+(global-display-line-numbers-mode)
 
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'horizontal-scroll-bar-mode) (horizontal-scroll-bar-mode -1))
@@ -570,6 +578,8 @@
 
 (global-set-key (kbd "<f5> r") 'biblio/recharge-configuration-org)
 
+(global-set-key (kbd "<f12> l") 'list-packages)
+
 (global-set-key (kbd "<f7> e") 'eval-buffer)
 
 (global-set-key (kbd "<f6> t") 'list-faces-display)
@@ -670,10 +680,10 @@
 (global-set-key (kbd "<s-kp-3>") 'biblio/scinde-et-suit-verticalement)
 (global-set-key (kbd "<s-kp-7>") 'other-window)
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
-(global-set-key (kbd "<S-up>") 'windmove-up)
-(global-set-key (kbd "<S-down>") 'windmove-down)
-(global-set-key (kbd "<S-right>") 'windmove-right)
-(global-set-key (kbd "<S-left>") 'windmove-left)
+(global-set-key (kbd "<C-up>") 'windmove-up)
+(global-set-key (kbd "<C-down>") 'windmove-down)
+(global-set-key (kbd "<C-right>") 'windmove-right)
+(global-set-key (kbd "<C-left>") 'windmove-left)
 (global-set-key (kbd "<s-kp-8>") 'windmove-up)
 (global-set-key (kbd "<s-kp-5>") 'windmove-down)
 (global-set-key (kbd "<s-kp-6>") 'windmove-right)
@@ -684,8 +694,7 @@
 (global-set-key (kbd "C-x {") 'shrink-window-horizontally)
 (global-set-key (kbd "<f11> f") 'follow-mode)
 
-;; Remplacé par torus-alternate
-;; (global-set-key (kbd "C-^") 'biblio/alterne-deux-derniers-tampons)
+(global-set-key (kbd "C-^") 'biblio/alterne-deux-derniers-tampons)
 
 (define-key global-map [remap list-buffers] 'ibuffer)
 
@@ -710,12 +719,12 @@
 (global-set-key (kbd "C-=") 'eval-expression)
 (global-set-key (kbd "C-M-u") 'backward-up-list)
 (global-set-key (kbd "C-M-d") 'down-list)
-(global-set-key (kbd "<C-up>") 'backward-up-list)
-(global-set-key (kbd "<C-down>") 'down-list)
+(global-set-key (kbd "<S-up>") 'backward-up-list)
+(global-set-key (kbd "<S-down>") 'down-list)
 (global-set-key (kbd "C-M-f") 'forward-sexp)
 (global-set-key (kbd "C-M-b") 'backward-sexp)
-(global-set-key (kbd "<C-right>") 'forward-sexp)
-(global-set-key (kbd "<C-left>") 'backward-sexp)
+(global-set-key (kbd "<S-right>") 'forward-sexp)
+(global-set-key (kbd "<S-left>") 'backward-sexp)
 (global-set-key (kbd "C-M-n") 'forward-list)
 (global-set-key (kbd "C-M-p") 'backward-list)
 (global-set-key (kbd "<C-M-right>") 'forward-list)
@@ -778,6 +787,11 @@
 ;;       (kmacro-exec-ring-item (quote ([19 60 return 2 134217828 134217828 134217828 4 4] 0 "%d")) arg)))
 ;;
 ;; (global-set-key (kbd "C-x C-k 0") 'efface-tag)
+
+(require 'cl-lib)
+;;   (use-package duo
+;;     :config
+;;     (duo-init "duo-common" "duo-referen"))
 
 (require 'outline)
 (eval-after-load "outline" '(require 'foldout))
@@ -969,9 +983,9 @@
 (setq helm-buffers-favorite-modes (append helm-buffers-favorite-modes '(picture-mode artist-mode)))
 (setq helm-ff-search-library-in-sexp t)
 
-;; (loop for ext in
-;;  '("\\.elc$" "\\.pyc$" "\\.git$" "\\.o$" "*~")
-;;  do (add-to-list 'helm-boring-file-regexp-list ext))
+(cl-loop for ext in
+  '("\\.elc$" "\\.pyc$" "\\.git$" "\\.o$" "*~")
+  do (add-to-list 'helm-boring-file-regexp-list ext))
 
 (setq helm-mini-default-sources '(
   helm-source-buffers-list

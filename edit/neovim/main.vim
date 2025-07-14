@@ -345,7 +345,7 @@ set wildignorecase
 
 set completeopt=menu
 
-set pumheight=30
+set pumheight=12
 
 " Compléter par quoi lors d'un ctrl-n/p ? {{{3
 

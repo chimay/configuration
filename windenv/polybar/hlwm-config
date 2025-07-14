@@ -104,8 +104,9 @@ font-0 = fixed:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=12;1
 
-modules-left = ewmh-workspaces
-modules-center = cpu memory batterie-script meteo
+;modules-left = ewmh-workspaces
+modules-left = cpu memory batterie-script
+modules-center = meteo
 modules-right = keyboard screens powermenu date
 
 cursor-click = pointer
