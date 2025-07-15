@@ -333,8 +333,8 @@ export TS_SOCKET=~/racine/run/socket/task-spooler
 
 #  Utilitaires {{{1
 
-#eval $(dircolors -b $RACINE_ZSH/../utils/dircolors.conf)
-
+# eval $(dircolors -b $RACINE_ZSH/../utils/dircolors.conf)
+#
 # output de dircolors -b ...
 # fonctionne aussi avec alacritty
 

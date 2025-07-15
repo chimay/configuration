@@ -29,6 +29,7 @@ source_directories:
   - racine/dotdir/emacs.d
   - racine/dotdir/nb
   - racine/dotdir/neovim
+  - racine/example
   - racine/feder
   - racine/fun
   - racine/hist

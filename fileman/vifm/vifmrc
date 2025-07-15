@@ -181,6 +181,7 @@ set vifminfo=
 			\cs,
 			\chistory,
 			\dhistory,
+			\ehistory,
 			\dirstack,
 			\fhistory,
 			\phistory,
@@ -194,24 +195,7 @@ set vifminfo=
 			\filetypes,
 			\commands
 
-set sessionoptions=
-			\bmarks,
-			\bookmarks,
-			\cs,
-			\chistory,
-			\dhistory,
-			\dirstack,
-			\fhistory,
-			\phistory,
-			\registers,
-			\savedirs,
-			\shistory,
-			\state,
-			\tabs,
-			\tui,
-			\options,
-			\filetypes,
-			\commands
+set sessionoptions=savedirs,tabs,tui
 
 " Marques {{{1
 
