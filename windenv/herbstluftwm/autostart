@@ -406,6 +406,7 @@ hc rule class=Emacs tag=edit
 hc rule class=TradingView tag=system
 
 hc rule class=qutebrowser tag=browser
+hc rule class=firefox tag=browser
 
 hc rule class=libreoffice-startcenter tag=office
 

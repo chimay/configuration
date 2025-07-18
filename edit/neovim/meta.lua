@@ -1,3 +1,4 @@
 -- vim: set filetype=lua:
 
-require('paquets')
+require('config.options')
+require('config.keybinds')

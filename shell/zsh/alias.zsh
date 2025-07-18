@@ -112,6 +112,7 @@ alias nv=nvim
 alias ns='run-neovim-server.sh &'
 alias nvc=run-neovim-client.sh
 alias nvqc=run-neovim-qt-client.sh
+alias nvl='NVIM_APPNAME=nvim-lua nvim'
 
 # -- neovim remote
 
@@ -626,6 +627,7 @@ hash -d zdot=~/racine/dotdir/zsh
 
 hash -d vimconf=~/racine/config/edit/vim
 hash -d neovimconf=~/racine/config/edit/neovim
+hash -d neovimconf-lua=~/racine/config/edit/neovim-lua
 hash -d kakconf=~/racine/config/edit/kak
 hash -d emacsconf=~/racine/config/edit/emacs
 

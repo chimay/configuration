@@ -277,7 +277,7 @@ set mousehide					" Cache le pointeur de souris lorsque l'on tape
 set mousemodel=extend				" Clic droit modifie sélection
 "set mousemodel=popup_setpos		" Clic droit menu
 
-set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up-arrow,v:rightup-arrow
+"set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up-arrow,v:rightup-arrow
 
 " Sélection {{{2
 
@@ -1438,3 +1438,7 @@ set shada=
 " recherches, nombre de lignes d’entrée
 
 set history=10000
+
+" Lua {{{1
+
+source ~/racine/config/edit/neovim/meta.lua

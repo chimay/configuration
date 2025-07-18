@@ -37,7 +37,7 @@ source ~/racine/config/edit/neovim/autocommand.vim
 
 " python {{{1
 
-if ['arch', 'manjaro', 'mint', 'ubuntu', 'linux']->index($OPERASYS) >= 0
+if ['arch', 'manjaro', 'artix', 'void', 'ubuntu', 'linux']->index($OPERASYS) >= 0
 	let g:python3_host_prog = '/bin/python3'
 	let g:python_host_prog = '/bin/python2'
 elseif $OPERASYS == 'freebsd'
@@ -59,8 +59,6 @@ packloadall
 source ~/racine/config/edit/neovim/paquet/postload.vim
 
 " maps replacing plugins ones {{{1
-
-nunmap <f5>
 
 nnoremap <c-left> <c-w>h
 nnoremap <c-down> <c-w>j
