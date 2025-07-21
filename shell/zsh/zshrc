@@ -986,7 +986,10 @@ setopt rc_quotes
 # a='un deux'
 # print -l $=a
 
-unsetopt sh_word_split
+# pose des problèmes avec les lignes de commandes
+# dans les fichiers desktop de /usr/share/xsessions ?
+
+#unsetopt sh_word_split
 
 # commands associative arrays {{{1
 

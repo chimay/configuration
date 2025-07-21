@@ -112,7 +112,11 @@ alias nv=nvim
 alias ns='run-neovim-server.sh &'
 alias nvc=run-neovim-client.sh
 alias nvqc=run-neovim-qt-client.sh
-alias nvl='NVIM_APPNAME=nvim-lua nvim'
+
+alias nvl='NVIM_APPNAME=nvim-lua nvim --listen ~/racine/run/socket/neovim-lua'
+alias nvlz='NVIM_APPNAME=lazyvim nvim --listen ~/racine/run/socket/lazyvim'
+alias nvcd='NVIM_APPNAME=nvchad nvim --listen ~/racine/run/socket/nvchad'
+alias nvas='NVIM_APPNAME=astronvim nvim --listen ~/racine/run/socket/astronvim'
 
 # -- neovim remote
 

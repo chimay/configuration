@@ -52,7 +52,7 @@ source_directories:
   - racine/plain
   - racine/plugin/manager/neovim/pack
   - racine/plugin/manager/vim/pack
-  - racine/plugin/manager/neovim/lazy.nvim
+  - racine/plugin/manager/emacs/elpaca
   - racine/plugin/manager/kak/plug.kak
   - racine/plugin/manager/tmux/plugins
   - racine/plugin/data

@@ -106,7 +106,6 @@ Minibuffer :
 
 #+begin_src emacs-lisp
   (add-to-list 'load-path "~/racine/dotdir/emacs.d")
-  (add-to-list 'load-path "~/racine/plugin/manager/emacs/miscellaneous")
   (add-to-list 'custom-theme-load-path "~/racine/config/edit/emacs/color")
 #+end_src
 
@@ -169,12 +168,12 @@ Désactivé car induisant parfois en erreur.
 ** Police
 
 #+begin_src emacs-lisp
-  ;;(set-frame-font "Monospace-11")
-  ;;(add-to-list 'default-frame-alist '(font . "Monospace-11" ))
+  (set-frame-font "Monospace-12")
+  (add-to-list 'default-frame-alist '(font . "Monospace-12" ))
   ;;(set-frame-font "monofur-14")
   ;;(add-to-list 'default-frame-alist '(font . "monofur-14" ))
   ;;(set-frame-font "Fantasque\ Sans\ Mono-12")
-  (add-to-list 'default-frame-alist '(font . "Fantasque\ Sans\ Mono-14" ))
+  ;;(add-to-list 'default-frame-alist '(font . "Fantasque\ Sans\ Mono-14" ))
 #+end_src
 
 
@@ -1190,7 +1189,6 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 
 * Bindings
 
-
 ** Libération
 
 #+begin_src emacs-lisp
@@ -1215,16 +1213,13 @@ A = Alt
 s = Super
 H = Hyper
 
-
 ** Fichier de configuration
-
 
 *** Éditer ce fichier
 
 #+begin_src emacs-lisp
   (global-set-key (kbd "<f5> e") 'biblio/edite-configuration-org)
 #+end_src
-
 
 *** Recharger ce fichier
 
@@ -1235,7 +1230,9 @@ H = Hyper
 *** Liste des paquets
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f12> l") 'list-packages)
+  ;;(global-set-key (kbd "<f12> l") 'list-packages)
+  (global-set-key (kbd "<f12> e") 'elpaca-manager)
+  (global-set-key (kbd "<f12> u") 'elpaca-update-all)
 #+end_src
 
 *** Recharger un fichier lisp
@@ -1260,7 +1257,6 @@ H = Hyper
   ;;(define-key minibuffer-local-map (kbd "M-;") 'minibuffer-keyboard-quit)
 #+end_src
 
-
 ** Historique
 
 #+begin_src emacs-lisp
@@ -1273,7 +1269,6 @@ H = Hyper
   (define-key minibuffer-local-map (kbd "<down>") 'next-complete-history-element)
 #+end_src
 
-
 ** Quitter
 
 Client et serveur
@@ -1282,13 +1277,11 @@ Client et serveur
   (global-set-key (kbd "s-z s-z") 'save-buffers-kill-emacs)
 #+end_src
 
-
 ** Exploration
 
 #+begin_src emacs-lisp
   ;;(global-set-key (kbd "s-*") 'find-name-dired)
 #+end_src
-
 
 *** Navigation
 
@@ -1297,6 +1290,8 @@ Client et serveur
   (global-set-key [prior]    'biblio/demi-page-haut)
   (global-set-key [kp-next]  'biblio/demi-page-bas)
   (global-set-key [next]     'biblio/demi-page-bas)
+  ;;(global-set-key (kbd "C-<home>"   'beginning-of-buffer)
+  ;;(global-set-key (kbd "C-<end>"   'end-of-buffer)
   (global-set-key (kbd "C-v") 'scroll-up-command)
   (global-set-key (kbd "M-v") 'scroll-down-command)
   (global-set-key (kbd "s-a") 'backward-paragraph)
@@ -1304,6 +1299,28 @@ Client et serveur
   (global-set-key (kbd "C-$")  'biblio/debut-fin-fichier)
 #+end_src
 
+*** Onglets, tabs
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-<next>") 'tab-next)
+  (global-set-key (kbd "C-<prior>") 'tab-previous)
+  (global-set-key (kbd "C-S-<next>") 'tab-bar-new-tab)
+  (global-set-key (kbd "C-S-<prior>") 'tab-bar-close-tab)
+  (global-set-key (kbd "s-=") 'tab-bar-select-tab-by-name)
+  (global-set-key (kbd "s-<delete>") 'tab-bar-close-tab)
+
+  (define-prefix-command 'tabbar/map)
+  (global-set-key (kbd "s-t") 'tabbar/map)
+  (define-key tabbar/map (kbd "m") 'tab-bar-mode)
+  (define-key tabbar/map (kbd "r") 'tab-bar-rename-tab)
+  (define-key tabbar/map (kbd "R") 'tab-bar-rename-tab-by-name)
+  (define-key tabbar/map (kbd "x") 'tab-bar-close-tab-by-name)
+  (define-key tabbar/map (kbd "1") 'tab-bar-close-other-tabs)
+
+  (define-prefix-command 'tabline/map)
+  (global-set-key (kbd "s-T") 'tabline/map)
+  (define-key tabline/map (kbd "m") 'tab-line-mode)
+#+end_src
 
 *** Signets
 
@@ -1313,7 +1330,6 @@ Voir aussi the [[*Helm][Helm]] section
   (global-set-key (kbd "s-\"") 'bookmark-set)
   (global-set-key (kbd "s-3")   'bookmark-bmenu-list)
 #+end_src
-
 
 *** Labels (etags, emacs tags)
 
@@ -1707,7 +1723,6 @@ Infos sur les thèmes
      (define-key outline-minor-mode-map (kbd "TAB") 'outline-cycle)))
 #+end_src
 
-
 ** Organisation
 
 *** Outline
@@ -1923,6 +1938,13 @@ Nécessite org-tempo
 ;;   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 ;; #+end_src
 
+*** Toc-org
+
+#+begin_src emacs-lisp
+  (use-package toc-org
+    :hook (org-mode . toc-org-mode))
+#+end_src
+
 ** Exploration
 
 *** Projectile
@@ -1936,6 +1958,36 @@ Nécessite org-tempo
 	     (projectile-switch-project-action 'helm-projectile)
 	     (projectile-keymap-prefix (kbd "s-p")))
     :config (projectile-global-mode))
+#+end_src
+
+*** Counsel, Ivy, Swiper
+
+#+begin_src emacs-lisp
+  (use-package ivy
+    :bind (("<f11> i" . ivy-mode)
+	   ("s-F" . counsel-find-file)
+	   ("s-B" . ivy-switch-buffer)
+	   ("s-X" . counsel-M-x)
+	   ("s-S" . swiper)
+	   ("s->" . counsel-ag)
+	   :map ivy-minibuffer-map
+	   ("M-o" . ivy-dispatching-done)
+	   ("C-n" . ivy-next-line)
+	   ("C-p" . ivy-previous-line)
+	   ("M-<" . ivy-beginning-of-buffer)
+	   ("M->" . ivy-end-of-buffer)
+	   ("C-v" . ivy-scroll-up-command)
+	   ("M-v" . ivy-scroll-down-command))
+    :custom ((ivy-height 20)
+	     (ivy-wrap t)
+	     (ivy-count-format "(%d/%d) ")
+	     (ivy-use-virtual-buffers t)))
+  (use-package ivy-rich
+    :after (ivy))
+  (use-package swiper
+    :after (ivy))
+  (use-package counsel
+    :after (ivy))
 #+end_src
 
 *** Helm
@@ -2030,6 +2082,44 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (define-key helm-map (kbd "<right>") 'helm-previous-source)
 #+end_src
 
+*** Helm projectile
+
+#+begin_src emacs-lisp
+  (require 'helm-projectile)
+  (helm-projectile-on)
+#+end_src
+
+*** Ibuffer-vc
+
+#+begin_src emacs-lisp
+  (defun ibuffer-vc--hook ()
+      (ibuffer-vc-set-filter-groups-by-vc-root)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+	(ibuffer-do-sort-by-alphabetic)))
+  (add-hook 'ibuffer-hook 'ibuffer-vc--hook)
+#+end_src
+
+** Arborescence du système de fichiers
+
+*** Dired-hacks
+
+#+begin_src emacs-lisp
+  (use-package dired-filter
+    :bind (:map dired-mode-map
+		("é f" . dired-filter-map)
+		("é m" . dired-filter-mark-map)
+		("é g" . dired-filter-group-mode)))
+  (use-package dired-subtree
+    :bind (:map dired-mode-map
+	   ("<tab>" . dired-subtree-toggle)
+	   ("<backtab>" . dired-subtree-cycle)))
+  (use-package dired-narrow
+    :bind (:map dired-mode-map
+		("C-c C-n" . dired-narrow)
+		("C-c C-f" . dired-narrow-fuzzy)
+		("C-c C-r" . dired-narrow-regexp)))
+#+end_src
+
 ** Windows (panels)
 
 #+begin_src emacs-lisp
@@ -2041,6 +2131,16 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 	     (switch-window-qwerty-shortcuts
 	      '("0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))))
   (define-key global-map [remap other-window] 'switch-window)
+#+end_src
+
+** Recherche
+
+*** Wgrep
+
+#+begin_src emacs-lisp
+  (use-package wgrep
+    :custom ((wgrep-auto-save-buffer t)
+	     (wgrep-enable-key "e")))
 #+end_src
 
 ** Yank
@@ -2107,6 +2207,19 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (region-bindings-mode-enable)
   (global-set-key (kbd "C-w") 'backward-kill-word)
   (define-key region-bindings-mode-map (kbd "C-w") 'kill-region)
+#+end_src
+
+*** Multiple cursors (mc)
+
+#+begin_src emacs-lisp
+  (use-package multiple-cursors
+    :commands (mc/mark-next-like-this
+	       mc/mark-more-like-this-extended
+	       mc/edit-lines)
+    :bind (:map region-bindings-mode-map
+		("s-n" . 'mc/mark-next-like-this)
+		("s-SPC" . 'mc/mark-more-like-this-extended)
+		("s-=" . 'mc/edit-lines)))
 #+end_src
 
 ** Languages

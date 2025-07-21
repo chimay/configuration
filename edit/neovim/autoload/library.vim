@@ -482,13 +482,14 @@ if exists('s:dont_publish')
 endif
 let s:dont_publish = [
 	\ '\m.*perso.*',
-	\ '\m.*qutebrowser/config*',
-	\ '\m.*bookmark*',
-	\ '\m.*quickmark*',
-	\ '\m.*pass-to-gpg-symmetric*',
-	\ '\m.*pass-to-age*',
-	\ '\m.*rofi-pass*',
-	\ '\m.*torrc*',
+	\ '\m.*qutebrowser/config.*',
+	\ '\m.*bookmark.*',
+	\ '\m.*quickmark.*',
+	\ '\m.*pass-to-gpg-symmetric.*',
+	\ '\m.*pass-to-age.*',
+	\ '\m.*rofi-pass.*',
+	\ '\m.*torrc.*',
+	\ '\m.*install-essential-folders.*',
 	\ '\mGrenier',
 	\ ]
 lockvar! s:dont_publish

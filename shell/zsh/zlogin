@@ -1,15 +1,12 @@
 #!/bin/zsh
 
 # [[ $OPERASYS = *linux* ]] && {
-#
 # 	screenfetch -N
 # }
-#
+
 # [[ $OPERASYS = *bsd* ]] && {
-#
 # 	bsdinfo
 # }
-
 
 [[ -d $dirstack[1] ]] && cd $dirstack[1]
 

@@ -62,7 +62,7 @@ run-ed () {
 	eval $runme
 }
 
-#  mvr : move with rsync {{{2
+# mvr : move with rsync {{{2
 
 mvr () {
 	rsync \
@@ -84,7 +84,7 @@ mvr () {
 		"$@"
 }
 
-#  cp : copy with rsync {{{2
+# cp : copy with rsync {{{2
 
 cp () {
 	rsync \
@@ -106,7 +106,7 @@ cp () {
 		"$@"
 }
 
-#  cpr : copy with rsync, relative path {{{2
+# cpr : copy with rsync, relative path {{{2
 
 cpr () {
 	rsync \
@@ -129,7 +129,7 @@ cpr () {
 		"$@"
 }
 
-#  cpf : copy with rsync, force overwrite {{{2
+# cpf : copy with rsync, force overwrite {{{2
 
 cpf () {
 	rsync \
@@ -151,7 +151,7 @@ cpf () {
 		"$@"
 }
 
-#  sn : sync with rsync {{{2
+# sn : sync with rsync {{{2
 
 sn () {
 	rsync \
@@ -174,7 +174,7 @@ sn () {
 		"$@"
 }
 
-#  sn : sync with rsync, relative path {{{2
+# snr : sync with rsync, relative path {{{2
 
 snr () {
 	rsync \

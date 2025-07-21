@@ -84,6 +84,24 @@
 	'(widget-single-line-field ((t (:background "black" :foreground "#5B3C11"))))
 	'(widget-documentation ((t (:background "black" :foreground "#5B3C11"))))
 
+;; * Tab bar
+
+	'(tab-bar ((t (:background "black" :foreground "#5B3C11" :bold t))))
+	'(tab-bar-tab ((t (:background "#5B3C11" :foreground "black" :bold t))))
+	'(tab-bar-tab-group-current ((t (:background "black" :foreground "#5B3C11" :bold t))))
+	'(tab-bar-tab-group-inactive ((t (:background "black" :foreground "#5B3C11" :bold t))))
+	'(tab-bar-tab-inactive ((t (:background "black" :foreground "#5B3C11" :bold t))))
+
+;; Tab line	
+
+	'(tab-line ((t (:background "black" :foreground "#5B3C11" :bold t))))
+	'(tab-line-hihglight ((t (:background "black" :foreground "#5B3C11" :bold t))))
+	'(tab-line-tab ((t (:background "black" :foreground "#5B3C11"))))
+	'(tab-line-tab-current ((t (:background "#5B3C11" :foreground "black"))))
+	'(tab-line-tab-group ((t (:background "black" :foreground "#5B3C11"))))
+	'(tab-line-tab-inactive ((t (:background "black" :foreground "#5B3C11"))))
+	'(tab-line-tab-inactive-alternate ((t (:background "black" :foreground "#5B3C11"))))
+
 ;; * Infra
 
 ;; * Modeline

@@ -10,7 +10,8 @@
 
 ;;; * Paquets
 
-(require 'personnel/paquets-natif "paquets-natif")
+;;(require 'personnel/paquets-natif "paquets-natif")
+(require 'personnel/paquets-elpaca "paquets-elpaca")
 
 ;;; * Perso
 
