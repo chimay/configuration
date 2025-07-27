@@ -10,7 +10,11 @@ hi muttrcCommand	   		guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcEmail		   		guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcEscape		   		guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcKeyName			guifg=#88421D		guibg=default			gui=NONE
+hi muttrcKeySpecial			guifg=#88421D		guibg=default			gui=NONE
 hi muttrcMacroBody			guifg=#5B3C11		guibg=default			gui=NONE
+hi muttrcMacroBodyNL		guifg=#5b3c11		guibg=default			gui=NONE
+hi muttrcMacroDescr			guifg=#872E30		guibg=default			gui=NONE
+hi muttrcMacroDescrNL		guifg=#5b3c11		guibg=default			gui=NONE
 hi muttrcPattern	   		guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcRXChars		   	guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcRXString2			guifg=#5B3C11		guibg=default			gui=NONE

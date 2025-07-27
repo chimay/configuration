@@ -97,6 +97,8 @@ repositories:
       label: shari-ssh
     - path: ssh://david@tixu//home/david/backup/borg
       label: tixu-ssh
+    - path: /run/media/david/sdb1/david/backup/borg
+      label: mandala-usb-disc
 
 # Working directory for the "borg create" command. Tildes are
 # expanded. Useful for backing up using relative paths. See

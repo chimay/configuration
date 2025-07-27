@@ -416,7 +416,7 @@ export EDIR_EDITOR=vim
 
 # Pour helm
 
-export EMACSLOADPATH="~/racine/plugin/manager/el-get/emacs-async:"
+#export EMACSLOADPATH="~/racine/dotdir/emacs.d/lisp:"
 
 # Eshell
 

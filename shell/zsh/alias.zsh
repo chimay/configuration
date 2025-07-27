@@ -649,7 +649,7 @@ hash -d pdata=~/racine/plugin/data
 hash -d vimpackager=~/racine/plugin/manager/vim/pack/packager
 hash -d neovimpackager=~/racine/plugin/manager/neovim/pack/packager
 
-# hash -d elpaca=~/racine/plugin/manager/emacs/elpaca
+hash -d elpaca=~/racine/plugin/manager/emacs/elpaca
 # hash -d straight=~/racine/plugin/manager/emacs/straight
 # hash -d elget=~/racine/plugin/manager/emacs/el-get
 
