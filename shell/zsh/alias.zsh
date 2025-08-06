@@ -282,6 +282,7 @@ alias sa=signal-all
 alias psi=process-signal
 
 alias ht=htop
+alias bt=btop
 
 alias ts='TS_SOCKET=~/racine/run/socket/task-spooler tsp'
 alias ts-1='TS_SOCKET=~/racine/run/socket/task-spooler-1 tsp'
