@@ -27,8 +27,7 @@
     /* Theme colors */
     background:                  @golden-night-bg0;
     background-color:            @background;
-	//foreground:                  @golden-night-fg1;
-	foreground:                  @background;
+    foreground:                  @golden-night-fg1;
     border-color:                @golden-night-gray;
     separatorcolor:              @border-color;
     scrollbar-handle:            @border-color;
@@ -59,6 +58,7 @@ window {
     background-color: @background;
     border:           2;
     padding:          2;
+	height:           30;
 }
 
 mainbox {
@@ -74,7 +74,7 @@ message {
 
 textbox {
     highlight:  @highlight;
-	text-color: @foreground;
+    text-color: @foreground;
 }
 
 listview {
@@ -155,13 +155,11 @@ inputbar {
     children:   [ prompt, textbox-prompt-sep, entry, case-indicator ];
 }
 
-inputbar.entry {
-    background-color: @background;
-    text-color: @background;
+entry {
+	enabled: false;
 }
 
 case-indicator,
-entry,
 prompt,
 button {
     spacing:    0;
