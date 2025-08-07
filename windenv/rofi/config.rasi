@@ -1,11 +1,11 @@
 /* vim: set filetype=c : */
 
 configuration {
-	modi: "combi,run,window,ssh,keys";
+	modi: "window,windowcd,filebrowser,recursivebrowser,ssh,run,drun,keys,combi";
 	width: 60;
 	lines: 30;
 /*	columns: 1;*/
-	font: "mono 11";
+	font: "mono 12";
 /*	bw: 1;*/
 	location: 0;
 /*	padding: 5;*/
@@ -33,8 +33,9 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-	combi-modi: "window,run,ssh";
+	combi-modi: "window,ssh";
 	matching: "glob";
+/*	tokenize: true;*/
 /*	m: "-5";*/
 /*	line-margin: 2;*/
 /*	line-padding: 1;*/

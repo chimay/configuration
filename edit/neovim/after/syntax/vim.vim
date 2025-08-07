@@ -52,6 +52,10 @@ hi vimSynReg		   	guifg=#88421D		guibg=default			gui=NONE
 hi vimSynRegOpt		   	guifg=#88421D		guibg=default			gui=NONE
 hi vimTodo				guifg=#88421D		guibg=default			gui=NONE
 hi vimUserAttrb		   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimUserCmd		   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimUserCmdAttr	   	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimUserCmdAttrNargs 	guifg=#5B3C11		guibg=default			gui=NONE
+hi vimUserCmdAttrCmplt 	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimUserAttrbCmplt   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimUserAttrbCmpltFunc guifg=#5B3C11		guibg=default			gui=NONE
 hi vimVar			   	guifg=#5B3C11		guibg=default			gui=NONE

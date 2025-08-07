@@ -23,7 +23,7 @@ hyper + colon
 	rofi-meta.zsh
 
 hyper + equal
-	rofi-windows.zsh
+	rofi-find.zsh
 
 hyper + semicolon
 	dmenu-apps.sh
