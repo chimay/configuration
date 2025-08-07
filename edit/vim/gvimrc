@@ -16,15 +16,13 @@ set guioptions+=A
 
 " Fonte {{{1
 
-set guifont=Monospace\ 11
-
+set guifont=Monospace\ 12
 
 " Onglets {{{1
 
 " Sans les onglets graphiques, affiche les onglets comme dans un terminal
 
 set guioptions-=e
-
 
 " Boites de dialogue {{{1
 
