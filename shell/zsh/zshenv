@@ -216,6 +216,9 @@ export HOSTNAME=$HOST
 #export XCOMPOSEFILE=~/racine/config/windenv/XCompose
 #export GTK_IM_MODULE=xim
 
+GTK_THEME=Adwaita:dark
+QT_STYLE_OVERRIDE=Adwaita-Dark
+
 # Perso {{{1
 
 source $RACINE_ZSH/perso.zsh

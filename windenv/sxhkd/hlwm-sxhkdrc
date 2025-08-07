@@ -115,7 +115,7 @@ super + ctrl + section
 	run-vifm.sh
 
 super + ctrl + f
-	thunar || caja || pcmanfm
+	GTK_THEME=Adwaita:dark thunar || GTK_THEME=Adwaita:dark caja || pcmanfm
 
 super + ctrl + g
 	run-gvim.sh -c "cd ~/racine/public"
