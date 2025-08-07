@@ -22,11 +22,11 @@
 hyper + colon
 	rofi-meta.zsh
 
-hyper + equal
-	rofi-find.zsh
-
 hyper + semicolon
 	dmenu-apps.sh
+
+hyper + equal
+	rofi-find.zsh
 
 super + colon
 	zshrun.sh

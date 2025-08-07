@@ -109,7 +109,6 @@ Minibuffer :
   (add-to-list 'custom-theme-load-path "~/racine/config/edit/emacs/color")
 #+end_src
 
-
 ** Configuration automatique
 
 Fichier utilisé par customize
@@ -118,7 +117,6 @@ Fichier utilisé par customize
   (setq custom-file "~/racine/config/edit/emacs/enligne.el")
   (load custom-file)
 #+end_src
-
 
 ** Messages
 
@@ -203,12 +201,6 @@ Désactivé car induisant parfois en erreur.
 Mode hl-line activé/désactivé via un binding (voir [[*Apparence][bindings/apparence]])
 
 #+begin_src emacs-lisp
-  ;;   (require 'linum)
-  ;;   (global-linum-mode 1)
-  ;;   (setq line-number-display-limit nil)
-  ;;   (line-number-mode t)
-  ;;   (column-number-mode t)
-  ;;   (global-hl-line-mode 0)
   (global-display-line-numbers-mode)
 #+end_src
 
@@ -555,16 +547,13 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
    wdired-allow-to-redirect-links t)
 #+end_src
 
-
 * Tampons (buffers)
-
 
 ** Tampon contenant la liste des tampons
 
 #+begin_src emacs-lisp
   (autoload 'ibuffer "ibuffer" "List buffers." t)
 #+end_src
-
 
 ** Tampons inactifs
 
@@ -575,14 +564,12 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
   (setq clean-buffer-list-delay-special (* 12 3600))
 #+end_src
 
-
 ** Min windows
 
 #+begin_src emacs-lisp
   (setq resize-mini-windows t)
   (setq max-mini-window-height 30)
 #+end_src
-
 
 ** Minibuffer
 
@@ -591,9 +578,7 @@ Ils sont normalement supportés par votre distribution mais on ne sait jamais
   (setq minibuffer-auto-raise t)
 #+end_src
 
-
 * Historique
-
 
 ** Sauvegarde
 
@@ -1474,13 +1459,14 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "<f11> f") 'follow-mode)
 #+end_src
 
-
 ** Tampons (buffers)
 
 *** Tampon précédent
 
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-^") 'biblio/alterne-deux-derniers-tampons)
+  (global-set-key (kbd "s-b") 'switch-to-buffer)
+  (global-set-key (kbd "s-s") 'save-some-buffers)
 #+end_src
 
 *** Liste des tampons
@@ -1678,9 +1664,6 @@ Infos sur les thèmes
 
 #+begin_src emacs-lisp
   (require 'cl-lib)
-;;   (use-package duo
-;;     :config
-;;     (duo-init "duo-common" "duo-referen"))
 #+end_src
 
 *** Outline
