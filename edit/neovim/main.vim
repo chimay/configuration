@@ -90,8 +90,8 @@ set clipboard=unnamedplus
 
 "  Chemins de recherche des fichiers {{{2
 
-set path=.,,
-"set path=**
+"set path=.,,
+set path=.,,**
 
 "  Chemins de recherche des répertoires {{{2
 
@@ -667,6 +667,9 @@ set ttimeoutlen=50
 
 " Remarque : certains mapleaders causent des problèmes avec l’indentation <<
 
+let g:mapleader="\\"
+let g:maplocalleader="_"
+
 " let mapleader="\<d-,>"
 " let maplocalleader="\<d-,>"
 
@@ -708,7 +711,8 @@ nnoremap <kEnter> <cmd>call library#write_all()<cr>
 
 " Fichier courant aussi disponible dans le registre %
 " Fichier alternatif aussi disponible dans le registre #
-nnoremap <C-G> <cmd>let @" = expand("%:p:~")<cr>2<C-G>
+
+nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
 nnoremap <f2>n <cmd>new <bar> only<cr>
 nnoremap <f2>e :e <c-r>=expand('%:p:h') . '/' <cr>
@@ -879,6 +883,9 @@ inoremap <S-Down> <C-o>gj
 " Voir plugin textmanip
 
 " Echange {{3
+
+" see also
+" <url:~/racine/config/edit/neovim/lua/config/keybinds.lua#tn=Move lines up/down>
 
 " chars
 nnoremap <f4>c xp
@@ -1139,7 +1146,6 @@ nnoremap <f3>f :GuiFont DejaVu Sans Mono:h12
 " Émulateur de terminal {{{2
 
 nnoremap <C-!> <cmd>call library#terminal()<cr>
-nnoremap ŧ <cmd>call library#terminal()<cr>
 
 " Passer en mode normal
 

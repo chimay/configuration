@@ -1215,9 +1215,10 @@ H = Hyper
 *** Liste des paquets
 
 #+begin_src emacs-lisp
+  ;; see hydra
   ;;(global-set-key (kbd "<f12> l") 'list-packages)
-  (global-set-key (kbd "<f12> e") 'elpaca-manager)
-  (global-set-key (kbd "<f12> u") 'elpaca-update-all)
+  ;;(global-set-key (kbd "<f12> e") 'elpaca-manager)
+  ;;(global-set-key (kbd "<f12> u") 'elpaca-update-all)
 #+end_src
 
 *** Recharger un fichier lisp
@@ -1948,11 +1949,11 @@ Nécessite org-tempo
 #+begin_src emacs-lisp
   (use-package ivy
     :bind (("<f11> i" . ivy-mode)
-	   ("s-F" . counsel-find-file)
+	   ("s-f" . counsel-fzf)
 	   ("s-B" . ivy-switch-buffer)
 	   ("s-X" . counsel-M-x)
-	   ("s-S" . swiper)
-	   ("s->" . counsel-ag)
+	   ("s-é" . swiper)
+	   ("s-è" . counsel-ag)
 	   :map ivy-minibuffer-map
 	   ("M-o" . ivy-dispatching-done)
 	   ("C-n" . ivy-next-line)
@@ -2124,6 +2125,17 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (use-package wgrep
     :custom ((wgrep-auto-save-buffer t)
 	     (wgrep-enable-key "e")))
+#+end_src
+
+*** Rg
+
+Ripgrep
+
+#+begin_src emacs-lisp
+  ;; (use-package rg
+  ;;   :after wgrep
+  ;;   :config
+  ;;   (rg-enable-default-bindings))
 #+end_src
 
 ** Yank
@@ -2305,6 +2317,26 @@ Ralentit la frappe : activer seulement lorsque nécessaire
 
 #+begin_src emacs-lisp
     (use-package hydra)
+#+end_src
+
+#+begin_src emacs-lisp
+  (defhydra hydra-elpaca-helper (:hint nil)
+    "
+  _e_lpaca manager  |_u_pdate        | _U_pdate all   |
+  _r_ebuild         |_d_elete        | _i_nfo         |
+  ----------------^^+--------------^^+----------------||_q_uit||
+  _l_og             |_L_og update    |_v_isit          |"
+    ("e" elpaca-manager)
+    ("u" elpaca-update)
+    ("U" elpaca-update-all)
+    ("r" elpaca-rebuild)
+    ("d" elpaca-delete)
+    ("i" elpaca-info)
+    ("l" elpaca-log)
+    ("L" elpaca-log-updates)
+    ("v" elpaca-visit)
+    ("q" nil))
+  (global-set-key (kbd "<f12>") 'hydra-elpaca-helper/body)
 #+end_src
 
 *** Evil

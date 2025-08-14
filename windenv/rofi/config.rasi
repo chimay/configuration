@@ -1,7 +1,7 @@
 /* vim: set filetype=c : */
 
 configuration {
-	modi: "window,windowcd,filebrowser,recursivebrowser,ssh,run,drun,keys,combi";
+	modi: "window,ssh,recursivebrowser,run,drun,filebrowser,windowcd,combi,keys";
 	width: 60;
 	lines: 30;
 /*	columns: 1;*/

@@ -159,11 +159,11 @@ let g:sneak#textobject_z = 1
 let g:sneak#use_ic_scs   = 1
 let g:sneak#map_netrw    = 1
 
-highlight Sneak guibg=black guifg=#7b3c11 gui=bold,underline,italic
-highlight SneakScope guibg=#5b3c11 guifg=black gui=bold,underline,italic
+highlight Sneak guibg=black guifg=#7b3c11 gui=underline,italic
+highlight SneakCurrent guibg=black guifg=#5b3c11 gui=default
 
-highlight Sneak cterm=reverse
-highlight SneakScope cterm=reverse
+highlight Sneak cterm=bold
+highlight SneakCurrent cterm=default
 
 " highlight link Sneak None
 " " Needed if a plugin sets the colorscheme dynamically:
@@ -198,11 +198,12 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.display.sign    = {}
 
 	" The bigger it is, the more mappings available
-	let g:wheel_config.mappings = 20
+	"let g:wheel_config.mappings = 20
+	let g:wheel_config.mappings = 2
 	" Prefix for mappings
-	let g:wheel_config.prefix = '<d-w>'
+	let g:wheel_config.prefix = '<space>'
 	" Locate database ; default one if left empty
-	let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
+	let g:wheel_config.locate_db = '~/racine/index/filesys/locate/racine.db'
 	" Grep command : :grep or :vimpgrep
 	let g:wheel_config.grep = 'vimgrep'
 
@@ -290,29 +291,29 @@ if ! exists("g:wheel_loaded")
 
 	set tabline=%!wheel#status#tabline()
 
-	nnoremap <space>          :<c-u>Wheel<space>
+	nnoremap <tab>          :<c-u>Wheel<space>
 	" altgr-r
 	nmap ¶                    <plug>(wheel-prompt-read-session)
 
 	nnoremap <silent> <c-l>   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
 	inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 
+	nmap <silent> ù           <plug>(wheel-menu-main)
+	nmap <silent> <m-ù>       <plug>(wheel-menu-meta)
+
 	nmap <silent> §           <plug>(wheel-dedibuf-index-tree)
-	nmap <silent> ù           <plug>(wheel-dedibuf-frecency)
+
 	nmap <silent> µ           <plug>(wheel-dedibuf-buffer-all)
+	nmap <silent> <m-µ>       <plug>(wheel-dedibuf-buffer)
+
 	nmap <silent> £           <plug>(wheel-dedibuf-tabwin-tree)
+
 	nmap <silent> é           <plug>(wheel-dedibuf-grep)
 	nmap <silent> è           <plug>(wheel-dedibuf-narrow-circle)
 	nmap <silent> à           <plug>(wheel-dedibuf-narrow-operator)
 	vmap <silent> à           <plug>(wheel-dedibuf-narrow)
 
-	nmap <silent> <m-ù>       <plug>(wheel-dedibuf-mru)
-	nmap <silent> <m-µ>       <plug>(wheel-dedibuf-buffer)
-
 	nmap <silent> <c-bs>      <plug>(wheel-prompt-outline)
-
-	" altgr-o
-	nmap <silent> œ           <plug>(wheel-prompt-occur)
 
 	nmap <silent> <c-p>       <plug>(wheel-prompt-yank-plain-linewise-before)
 	nmap <silent> <c-n>       <plug>(wheel-prompt-yank-plain-linewise-after)
@@ -325,17 +326,28 @@ if ! exists("g:wheel_loaded")
 	" altgr-p
 	nmap <silent> þ           <plug>(wheel-prompt-yank-plain-charwise-after)
 
+	nmap <c-^>                <plug>(wheel-alternate-anywhere)
+	nmap <m-^>                <plug>(wheel-alternate-same-circle)
+	nmap <m-c-^>              <plug>(wheel-alternate-same-torus-other-circle)
 	nmap <silent> <d-^>       <plug>(wheel-alternate-window)
 	nmap <silent> <d-e>       <plug>(wheel-dedibuf-frecency)
+
+	nmap <m-pagedown>         <plug>(wheel-next-location)
+	nmap <m-pageup>           <plug>(wheel-previous-location)
+	nmap <m-cr>               <plug>(wheel-prompt-location)
+	nmap <m-space>            <plug>(wheel-dedibuf-location)
+
+	nmap <m-x>                <plug>(wheel-prompt-index)
 	" altgr-x
     nmap <silent> »          <cmd>call wheel#vortex#helix('tab')<cr>
 	nmap <silent> <d-x>       <plug>(wheel-prompt-index-circles)
 
-	" altgr-h
 	nmap <silent> <d-cr>      <cmd>call wheel#waterclock#history('tab')<cr>
-	nmap <silent> ħ           <cmd>call wheel#waterclock#history('tab')<cr>
+	" altgr-h
+	nmap <silent> ħ           <plug>(wheel-prompt-history)
 	nmap <silent> <d-h>       <plug>(wheel-dedibuf-history)
 
+	nmap <m-v>                <plug>(wheel-prompt-tabwin)
 	nmap <silent> <d-v>       <plug>(wheel-dedibuf-tabwin)
 
     nmap <silent> <d-o>       <plug>(wheel-dedibuf-occur)
@@ -354,8 +366,10 @@ if ! exists("g:wheel_loaded")
 	nmap <silent> <d-u>       <plug>(wheel-dedibuf-undo-list)
 	nmap <silent> <d-r>       <plug>(wheel-dedibuf-reorg-tabwin)
 
-	nmap <silent> <d-space>   <plug>(wheel-mandala-forward)
-	nmap <silent> <d-s-space> <plug>(wheel-mandala-backward)
+	nmap <silent> <d-space>      <plug>(wheel-mandala-forward)
+	nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
+	nmap <silent> <m-tab>        <plug>(wheel-mandala-add)
+	nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
 endif
 
 " Liens {{{1
@@ -521,7 +535,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.completion.fuzzy = 0
 	let g:organ_config.completion.scores = 0
 	" maps
-	nnoremap <tab> :<c-u>Organ<space>
+	nnoremap <leader>o :<c-u>Organ<space>
 	nnoremap <c-s-down> :<c-u>Organ org-to-markdown
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u

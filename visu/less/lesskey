@@ -1,7 +1,7 @@
 # vim: set filetype=conf :
 # vim: set wrap :
 
-#  {{{ Documentation
+# documentation {{{1
 
 # \b BACKSPACE
 # \e ESCAPE
@@ -18,11 +18,9 @@
 # \ke END
 # \kx DELETE
 
-# }}}
+# commands {{{1
 
-#  {{{ Commandes
-
-# La ligne #command est nécessaire.
+# la ligne #command est nécessaire.
 
 #command
 \r	forw-line
@@ -141,11 +139,9 @@ Q	quit
 :Q	quit
 ZZ	quit
 
-# }}}
+# command line edition {{{1
 
-#  {{{ Edition de ligne de commande
-
-# La ligne #line-edit est nécessaire.
+# la ligne #line-edit est nécessaire.
 
 #line-edit
 \t	forw-complete
@@ -178,12 +174,9 @@ ZZ	quit
 \kd	down
 ^G	abort
 
-# }}}
+# environnement {{{1
 
-#  {{{ Environnement
-# ------------------------------------------------------------------------
-
-# La ligne #env est nécessaire.
+# la ligne #env est nécessaire.
 
 #env
 
@@ -192,7 +185,7 @@ ZZ	quit
 
 # LESS = --no-init --quit-if-one-screen --raw-control-chars --ignore-case --buffers=360 --tabs=4 --jump-target=.36 --window=-4 --shift=.36 --max-forw-scroll=36 --max-back-scroll=36 --LONG-PROMPT --prompt=M?f%f:[Tube]. ?m (%x) No %i/%m:. ?ljLigne %l.?L/%L:. ?djPage %dj:.?D/%D:. ?pPct %pj:.
 
-# Lesspipe, open & close
+# lesspipe, open & close
 
 LESSOPEN = || zsh ~/racine/shell/visu/lesspipe.zsh %s
 

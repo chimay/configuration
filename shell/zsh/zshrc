@@ -860,9 +860,9 @@ bindkey "." biblio-three-dots
 
 bindkey -M isearch "." self-insert
 
-zle -N biblio-three-commas
+zle -N biblio-two-commas
 
-bindkey "," biblio-three-commas
+bindkey "," biblio-two-commas
 
 bindkey -M isearch "," self-insert
 
@@ -880,7 +880,7 @@ zle -N biblio-repertoires
 
 # folders stack
 
-bindkey "^F" biblio-repertoires
+bindkey "^X^F" biblio-repertoires
 
 #  Éditeur externe {{{3
 
@@ -958,7 +958,7 @@ zle -N biblio-zoxide-interactive
 
 # folders stack
 
-bindkey "^X^F" biblio-zoxide-interactive
+bindkey "^F" biblio-zoxide-interactive
 
 # ------------------------------------------------------------
 

@@ -459,10 +459,11 @@ export UNISON=~/racine/config/sync/unison/archive/$HOST
 
 #export UNISONLOCALHOSTNAME=$HOST
 
-#  Backup {{{1
+# Backup {{{1
 
 # export BORG_REPO=ssh://user@host.tld:23/./borg
 # export BORG_BASE_DIR=/mnt/nvme/borgdata
+
 export BORG_PASSCOMMAND='pass show backup/borg/main'
 export BORG_RELOCATED_REPO_ACCESS_IS_OK=yes
 

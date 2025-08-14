@@ -1,3 +1,4 @@
+require('config.global')
 require('config.option')
 require('config.keybind')
 

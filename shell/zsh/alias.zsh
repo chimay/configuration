@@ -118,6 +118,8 @@ alias nvlz='NVIM_APPNAME=lazyvim nvim --listen ~/racine/run/socket/lazyvim'
 alias nvcd='NVIM_APPNAME=nvchad nvim --listen ~/racine/run/socket/nvchad'
 alias nvas='NVIM_APPNAME=astronvim nvim --listen ~/racine/run/socket/astronvim'
 
+alias nvrl='NVIM_APPNAME=neovim-radley-lewis nvim --listen ~/racine/run/socket/neovim-radley-lewis'
+
 # -- neovim remote
 
 alias nr=nvr
