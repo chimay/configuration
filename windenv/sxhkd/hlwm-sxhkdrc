@@ -173,29 +173,11 @@ super + ctrl + shift + v
 
 # notifications {{{1
 
-hyper + minus ; x
-	dunstctl close
-
-hyper + minus ; X
-	dunstctl close-all
-
-hyper + minus ; h
+super + F11
 	dunstctl history-pop
 
-hyper + minus ; c
-	dunstctl context
-
-# ctrl + space
-# 	dunstctl close
-
-ctrl + shift + space
+super + F12
 	dunstctl close-all
-
-super + asciitilde
-	dunstctl history-pop
-
-super + shift + grave
-	dunstctl context
 
 # clock {{{1
 

@@ -352,11 +352,13 @@ export PAGER=less
 export MANPAGER=less
 export BAT_PAGER=less
 
+export LESS="--no-init --raw-control-chars --ignore-case --buffers=360 --tabs=4 --jump-target=.36 --window=-4 --shift=.36 --max-forw-scroll=36 --max-back-scroll=36 --LONG-PROMPT --prompt=M?f%f:[Tube]. ?m (%x) No %i/%m:. ?ljLigne %l.?L/%L:. ?djPage %dj:.?D/%D:. ?pPct %pj:.$"
+
+export LESSCHARSET="utf-8"
+
 export LESSKEYIN=~/racine/config/visu/less/lesskey
 
-export LESS="--no-init --raw-control-chars --ignore-case --buffers=360 --tabs=4 --jump-target=.36 --window=-4 --shift=.36 --max-forw-scroll=36 --max-back-scroll=36 --LONG-PROMPT --prompt=M?f%f:[Tube]. ?m (%x) No %i/%m:. ?ljLigne %l.?L/%L:. ?djPage %dj:.?D/%D:. ?pPct %pj:."
-
-# Voir ~/racine/config/visu/less/lesskey
+# see ~/racine/config/visu/less/lesskey
 #
 # export LESSOPEN="|| ~/bin/shell/visu/lesspipe.sh %s"
 # export LESSCLOSE="-"

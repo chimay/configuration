@@ -196,7 +196,7 @@ alias t='tree -C -A'
 
 # Place {{{2
 
-alias df='df -h'
+alias df='df -hT'
 alias dfc='dfc -c never'
 
 alias du='du -sh'

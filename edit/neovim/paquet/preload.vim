@@ -288,89 +288,90 @@ if ! exists("g:wheel_loaded")
 	"let g:wheel_config.display.sign.native_settings = { 'text' : '*' }
 
 	"let g:wheel_config.debug = 1
-
-	set tabline=%!wheel#status#tabline()
-
-	nnoremap <tab>          :<c-u>Wheel<space>
-	" altgr-r
-	nmap ¶                    <plug>(wheel-prompt-read-session)
-
-	nnoremap <silent> <c-l>   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
-	inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
-
-	nmap <silent> ù           <plug>(wheel-menu-main)
-	nmap <silent> <m-ù>       <plug>(wheel-menu-meta)
-
-	nmap <silent> §           <plug>(wheel-dedibuf-index-tree)
-
-	nmap <silent> µ           <plug>(wheel-dedibuf-buffer-all)
-	nmap <silent> <m-µ>       <plug>(wheel-dedibuf-buffer)
-
-	nmap <silent> £           <plug>(wheel-dedibuf-tabwin-tree)
-
-	nmap <silent> é           <plug>(wheel-dedibuf-grep)
-	nmap <silent> è           <plug>(wheel-dedibuf-narrow-circle)
-	nmap <silent> à           <plug>(wheel-dedibuf-narrow-operator)
-	vmap <silent> à           <plug>(wheel-dedibuf-narrow)
-
-	nmap <silent> <c-bs>      <plug>(wheel-prompt-outline)
-
-	nmap <silent> <c-p>       <plug>(wheel-prompt-yank-plain-linewise-before)
-	nmap <silent> <c-n>       <plug>(wheel-prompt-yank-plain-linewise-after)
-	nmap <silent> g<c-p>      <plug>(wheel-prompt-yank-plain-charwise-before)
-	nmap <silent> g<c-n>      <plug>(wheel-prompt-yank-plain-charwise-after)
-	nmap <silent> ç           <plug>(wheel-prompt-yank-plain-linewise-after)
-	nmap <silent> gç          <plug>(wheel-prompt-yank-plain-charwise-after)
-	" altgr-y
-	nmap <silent> ←           <plug>(wheel-prompt-yank-plain-charwise-before)
-	" altgr-p
-	nmap <silent> þ           <plug>(wheel-prompt-yank-plain-charwise-after)
-
-	nmap <c-^>                <plug>(wheel-alternate-anywhere)
-	nmap <m-^>                <plug>(wheel-alternate-same-circle)
-	nmap <m-c-^>              <plug>(wheel-alternate-same-torus-other-circle)
-	nmap <silent> <d-^>       <plug>(wheel-alternate-window)
-	nmap <silent> <d-e>       <plug>(wheel-dedibuf-frecency)
-
-	nmap <m-pagedown>         <plug>(wheel-next-location)
-	nmap <m-pageup>           <plug>(wheel-previous-location)
-	nmap <m-cr>               <plug>(wheel-prompt-location)
-	nmap <m-space>            <plug>(wheel-dedibuf-location)
-
-	nmap <m-x>                <plug>(wheel-prompt-index)
-	" altgr-x
-    nmap <silent> »          <cmd>call wheel#vortex#helix('tab')<cr>
-	nmap <silent> <d-x>       <plug>(wheel-prompt-index-circles)
-
-	nmap <silent> <d-cr>      <cmd>call wheel#waterclock#history('tab')<cr>
-	" altgr-h
-	nmap <silent> ħ           <plug>(wheel-prompt-history)
-	nmap <silent> <d-h>       <plug>(wheel-dedibuf-history)
-
-	nmap <m-v>                <plug>(wheel-prompt-tabwin)
-	nmap <silent> <d-v>       <plug>(wheel-dedibuf-tabwin)
-
-    nmap <silent> <d-o>       <plug>(wheel-dedibuf-occur)
-    nmap <silent> <d-b>       <plug>(wheel-dedibuf-buffer-all)
-	nmap <silent> <d-k>       <plug>(wheel-dedibuf-marker)
-	nmap <silent> <d-j>       <plug>(wheel-dedibuf-jump)
-	nmap <silent> <d-c>       <plug>(wheel-dedibuf-change)
-	nmap <silent> <d-t>       <plug>(wheel-dedibuf-tag)
-
-	nmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow-operator)
-	vmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow)
-
-	nmap <silent> <d-y>       <plug>(wheel-dedibuf-yank-plain)
-	nmap <silent> <d-p>       <plug>(wheel-dedibuf-yank-list)
-
-	nmap <silent> <d-u>       <plug>(wheel-dedibuf-undo-list)
-	nmap <silent> <d-r>       <plug>(wheel-dedibuf-reorg-tabwin)
-
-	nmap <silent> <d-space>      <plug>(wheel-mandala-forward)
-	nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
-	nmap <silent> <m-tab>        <plug>(wheel-mandala-add)
-	nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
 endif
+
+set tabline=%!wheel#status#tabline()
+
+nnoremap <c-space>          :<c-u>Wheel<space>
+
+" altgr-r
+nmap ¶                    <plug>(wheel-prompt-read-session)
+
+nnoremap <silent> <c-l>   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
+inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
+
+nmap <silent> ù           <plug>(wheel-menu-main)
+nmap <silent> <m-ù>       <plug>(wheel-menu-meta)
+
+nmap <silent> §           <plug>(wheel-dedibuf-index-tree)
+
+nmap <silent> µ           <plug>(wheel-dedibuf-buffer-all)
+nmap <silent> <m-µ>       <plug>(wheel-dedibuf-buffer)
+
+nmap <silent> £           <plug>(wheel-dedibuf-tabwin-tree)
+
+nmap <silent> é           <plug>(wheel-dedibuf-grep)
+nmap <silent> è           <plug>(wheel-dedibuf-narrow-circle)
+nmap <silent> à           <plug>(wheel-dedibuf-narrow-operator)
+vmap <silent> à           <plug>(wheel-dedibuf-narrow)
+
+nmap <silent> <c-bs>      <plug>(wheel-prompt-outline)
+
+nmap <silent> <c-p>       <plug>(wheel-prompt-yank-plain-linewise-before)
+nmap <silent> <c-n>       <plug>(wheel-prompt-yank-plain-linewise-after)
+nmap <silent> g<c-p>      <plug>(wheel-prompt-yank-plain-charwise-before)
+nmap <silent> g<c-n>      <plug>(wheel-prompt-yank-plain-charwise-after)
+nmap <silent> ç           <plug>(wheel-prompt-yank-plain-linewise-after)
+nmap <silent> gç          <plug>(wheel-prompt-yank-plain-charwise-after)
+" altgr-y
+nmap <silent> ←           <plug>(wheel-prompt-yank-plain-charwise-before)
+" altgr-p
+nmap <silent> þ           <plug>(wheel-prompt-yank-plain-charwise-after)
+
+nmap <c-^>                <plug>(wheel-alternate-anywhere)
+nmap <m-^>                <plug>(wheel-alternate-same-circle)
+nmap <m-c-^>              <plug>(wheel-alternate-same-torus-other-circle)
+nmap <silent> <d-^>       <plug>(wheel-alternate-window)
+nmap <silent> <d-e>       <plug>(wheel-dedibuf-frecency)
+
+nmap <m-pagedown>         <plug>(wheel-next-location)
+nmap <m-pageup>           <plug>(wheel-previous-location)
+nmap <m-cr>               <plug>(wheel-prompt-location)
+nmap <m-space>            <plug>(wheel-dedibuf-location)
+
+nmap <m-x>                <plug>(wheel-prompt-index)
+" altgr-x
+nmap <silent> »          <cmd>call wheel#vortex#helix('tab')<cr>
+nmap <silent> <d-x>       <plug>(wheel-prompt-index-circles)
+
+nmap <silent> <d-cr>      <cmd>call wheel#waterclock#history('tab')<cr>
+" altgr-h
+nmap <silent> ħ           <plug>(wheel-prompt-history)
+nmap <silent> <d-h>       <plug>(wheel-dedibuf-history)
+
+nmap <m-v>                <plug>(wheel-prompt-tabwin)
+nmap <silent> <d-v>       <plug>(wheel-dedibuf-tabwin)
+
+nmap <silent> <d-o>       <plug>(wheel-dedibuf-occur)
+nmap <silent> <d-b>       <plug>(wheel-dedibuf-buffer-all)
+nmap <silent> <d-k>       <plug>(wheel-dedibuf-marker)
+nmap <silent> <d-j>       <plug>(wheel-dedibuf-jump)
+nmap <silent> <d-c>       <plug>(wheel-dedibuf-change)
+nmap <silent> <d-t>       <plug>(wheel-dedibuf-tag)
+
+nmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow-operator)
+vmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow)
+
+nmap <silent> <d-y>       <plug>(wheel-dedibuf-yank-plain)
+nmap <silent> <d-p>       <plug>(wheel-dedibuf-yank-list)
+
+nmap <silent> <d-u>       <plug>(wheel-dedibuf-undo-list)
+nmap <silent> <d-r>       <plug>(wheel-dedibuf-reorg-tabwin)
+
+nmap <silent> <d-space>      <plug>(wheel-mandala-forward)
+nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
+nmap <silent> <m-tab>        <plug>(wheel-mandala-add)
+nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
 
 " Liens {{{1
 
@@ -535,7 +536,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.completion.fuzzy = 0
 	let g:organ_config.completion.scores = 0
 	" maps
-	nnoremap <leader>o :<c-u>Organ<space>
+	nnoremap <tab> :<c-u>Organ<space>
 	nnoremap <c-s-down> :<c-u>Organ org-to-markdown
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u
