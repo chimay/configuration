@@ -40,10 +40,22 @@ fun! library#manual ()
 	exe "normal! \<c-w>T"
 endfun
 
-fun! library#manual_toc ()
+fun! library#manual_sections ()
 	" -- vimgrep / copen for quickfix or
 	" -- lvimgrep / lopen for location list of current window
 	lvimgrep /^[A-Z][A-Z ]*$/ %
+	lopen
+	" -- uncomment to put the list on the left side
+	"wincmd H
+	"vert resize 35
+	" -- back to man page window
+	"wincmd p
+endfun
+
+fun! library#manual_options ()
+	" -- vimgrep / copen for quickfix or
+	" -- lvimgrep / lopen for location list of current window
+	lvimgrep /^\s*--\?[a-zA-Z-]\+\%(\s\|,\)/ %
 	lopen
 	" -- uncomment to put the list on the left side
 	"wincmd H

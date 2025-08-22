@@ -119,8 +119,9 @@ augroup END
 augroup man-pages
     autocmd!
     if has('nvim')
-        autocmd FileType man nnoremap <buffer> t <cmd>call library#manual_toc()<cr>
+        autocmd FileType man nnoremap <buffer> s <cmd>call library#manual_sections()<cr>
         autocmd FileType man nnoremap <buffer> l <cmd>call library#manual_links()<cr>
+        autocmd FileType man nnoremap <buffer> - <cmd>call library#manual_options()<cr>
         autocmd FileType man nnoremap <buffer> o <cmd>call library#manual_open_list()<cr>
         autocmd FileType man nnoremap <buffer> x <cmd>call library#manual_close_list()<cr>
         autocmd FileType man nnoremap <buffer> q <cmd>bdelete<cr>
