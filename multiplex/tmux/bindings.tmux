@@ -142,6 +142,8 @@ bind -T custom M-v command-prompt -p 'Commande pour le nouveau panel ? ' "split-
 
 bind -T custom "'" display-panes
 
+# not C-arrows because vim uses it
+
 bind -n S-Left  select-pane -L
 bind -n S-Down  select-pane -D
 bind -n S-Up    select-pane -U

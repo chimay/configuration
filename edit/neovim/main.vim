@@ -686,9 +686,14 @@ inoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
 vnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
 nnoremap <M-F1> <cmd>call library#helptags()<cr>
 
-nnoremap K K<c-w>T
+"nnoremap K K<c-w>T
+
 " does not work
 "nnoremap K <cmd>tab normal! K<cr>
+
+" Manuels {{{2
+
+nnoremap gm <cmd>call library#manual()<cr>
 
 " Quitter {{{2
 

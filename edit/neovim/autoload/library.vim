@@ -32,6 +32,50 @@ fun! library#highlight_group ()
 	return
 endfun
 
+" ---- man
+
+fun! library#manual ()
+	let arguments = input('Man args : ')
+	exe 'Man' arguments
+	exe "normal! \<c-w>T"
+endfun
+
+fun! library#manual_toc ()
+	" -- vimgrep / copen for quickfix or
+	" -- lvimgrep / lopen for location list of current window
+	lvimgrep /^[A-Z][A-Z ]*$/ %
+	lopen
+	" -- uncomment to put the list on the left side
+	"wincmd H
+	"vert resize 35
+	" -- back to man page window
+	"wincmd p
+endfun
+
+fun! library#manual_links ()
+	" -- vimgrep / copen for quickfix or
+	" -- lvimgrep / lopen for location list of current window
+	lvimgrep /\w\+([0-9])/ %
+	lopen
+	" -- uncomment to put the list on the left side
+	"wincmd H
+	"vert resize 35
+	" -- back to man page window
+	"wincmd p
+endfun
+
+fun! library#manual_open_list ()
+	" -- copen for quickfix or lopen for location list of current window
+	lopen
+endfun
+
+fun! library#manual_close_list ()
+	" -- cclose for quickfix or lclose for location list of current window
+	lclose
+endfun
+
+" ---- moon
+
 fun! library#moonphase ()
 	" Moonphase, based on moonphase.py
 	" Credit : http://inamidst.com/code/moonphase.py

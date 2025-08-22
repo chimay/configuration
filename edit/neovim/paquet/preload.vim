@@ -107,14 +107,14 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " 2-character Sneak (default)
 
-nmap ) <Plug>Sneak_s
-nmap ( <Plug>Sneak_S
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
 
-xmap ) <Plug>Sneak_s
-xmap ( <Plug>Sneak_S
+xmap s <Plug>Sneak_s
+xmap S <Plug>Sneak_S
 
-omap ) <Plug>Sneak_s
-omap ( <Plug>Sneak_S
+omap s <Plug>Sneak_s
+omap S <Plug>Sneak_S
 
 omap ; <Plug>Sneak_;
 omap , <Plug>Sneak_,
@@ -143,8 +143,8 @@ omap T <Plug>Sneak_T
 
 " label-mode
 
-nmap zl <Plug>SneakLabel_s
-nmap zL <Plug>SneakLabel_S
+nmap gs <Plug>SneakLabel_s
+nmap gS <Plug>SneakLabel_S
 
 " Options {{{3
 
@@ -160,10 +160,10 @@ let g:sneak#use_ic_scs   = 1
 let g:sneak#map_netrw    = 1
 
 highlight Sneak guibg=black guifg=#7b3c11 gui=underline,italic
-highlight SneakCurrent guibg=black guifg=#5b3c11 gui=default
+highlight SneakCurrent guibg=black guifg=#5b3c11 gui=NONE
 
 highlight Sneak cterm=bold
-highlight SneakCurrent cterm=default
+highlight SneakCurrent cterm=NONE
 
 " highlight link Sneak None
 " " Needed if a plugin sets the colorscheme dynamically:
@@ -294,6 +294,9 @@ set tabline=%!wheel#status#tabline()
 
 nnoremap <c-space>          :<c-u>Wheel<space>
 
+nnoremap <m-$>           <plug>(wheel-sync-down)
+nnoremap <c-$>           <plug>(wheel-sync-up)
+
 " altgr-r
 nmap ¶                    <plug>(wheel-prompt-read-session)
 
@@ -337,6 +340,8 @@ nmap <silent> <d-e>       <plug>(wheel-dedibuf-frecency)
 nmap <m-pagedown>         <plug>(wheel-next-location)
 nmap <m-pageup>           <plug>(wheel-previous-location)
 nmap <m-cr>               <plug>(wheel-prompt-location)
+nmap <c-cr>               <plug>(wheel-prompt-circle)
+nmap <s-cr>               <plug>(wheel-prompt-torus)
 nmap <m-space>            <plug>(wheel-dedibuf-location)
 
 nmap <m-x>                <plug>(wheel-prompt-index)
@@ -372,6 +377,9 @@ nmap <silent> <d-space>      <plug>(wheel-mandala-forward)
 nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
 nmap <silent> <m-tab>        <plug>(wheel-mandala-add)
 nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
+
+" debug mappings
+call wheel#centre#mappings (20)
 
 " Liens {{{1
 
@@ -460,6 +468,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.prefix = '<m-o>'
 	let g:organ_config.prefixless = 1
 	let g:organ_config.prefixless_plugs.normal = [
+		\ 'organ-info',
 		\ 'organ-next',
 		\ 'organ-parent',
 		\ 'organ-loose-child',

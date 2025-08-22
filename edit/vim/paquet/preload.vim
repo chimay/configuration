@@ -18,7 +18,7 @@ if ! exists("g:wheel_loaded")
 	" The bigger it is, the more mappings available
 	let g:wheel_config.mappings = 2
 	" Prefix for mappings
-	let g:wheel_config.prefix = '<m-w>'
+	let g:wheel_config.prefix = '<space>'
 	" Locate database ; default one if left empty
 	let g:wheel_config.locate_db = '~/racine/index/locate/racine.db'
 	" Grep command : :grep or :vimpgrep
@@ -34,7 +34,7 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.project.auto_chdir = 1
 
 	" The folder where toruses and circles will be stored and read
-	let g:wheel_config.storage.wheel.folder = '~/racine/plugin/data/wheel/vim'
+	let g:wheel_config.storage.wheel.folder = '~/racine/plugin/data/vim/wheel'
 	" Name of the default wheel file
 	let g:wheel_config.storage.wheel.name = 'roue.vim'
 	" Auto read wheel file on startup if > 0
@@ -42,7 +42,7 @@ if ! exists("g:wheel_loaded")
 	" Auto write wheel file on exit if > 0
 	let g:wheel_config.storage.wheel.autowrite = 1
 	" The folder where sessions will be stored and read
-	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/wheel/vim/session'
+	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/vim/wheel/session'
 	" Name of the default session file
 	let g:wheel_config.storage.session.name = 'layout.vim'
 	" Auto read default session file on startup if > 0
@@ -105,7 +105,7 @@ if ! exists("g:wheel_loaded")
 
 	set tabline=%!wheel#status#tabline()
 
-	nnoremap <space>w :<c-u>Wheel<space>
+	nnoremap <m-w> :<c-u>Wheel<space>
 
 	nmap <silent> <c-l> <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
 	imap <silent> <c-l> <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
@@ -208,7 +208,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.completion.fuzzy = 0
 	let g:organ_config.completion.scores = 0
 	" maps
-	nnoremap <space>o :<c-u>Organ<space>
+	nnoremap <tab> :<c-u>Organ<space>
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u
 	nmap ↓    <plug>(organ-unicode)
@@ -217,7 +217,6 @@ endif
 " fixkey (drmikehenry/vim-fixkey) {{{1
 
 let g:Fixkey_setupDelay = 500
-
 
 " LineJuggler (inkarkat/vim-LineJuggler)  {{{1
 

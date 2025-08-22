@@ -517,7 +517,8 @@ label = %time% %date%
 [module/mpd]
 type = internal/mpd
 ;format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-format-online =  <icon-prev> <icon-stop> <toggle> <icon-next> <label-song>
+;format-online =  <icon-prev> <icon-stop> <toggle> <icon-next> <label-song>
+format-online =  <icon-prev> <icon-stop> <toggle> <icon-next>
 
 icon-prev = " << "
 icon-stop = " # "

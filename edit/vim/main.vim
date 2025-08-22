@@ -376,7 +376,7 @@ nnoremap ZQ :qa!<cr>
 
 "  Fichiers {{{2
 
-nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
+nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
 nnoremap \n :new <bar> only<cr>
 nnoremap \e :e <C-R>=expand('%:p:h') . '/' <CR><C-D>

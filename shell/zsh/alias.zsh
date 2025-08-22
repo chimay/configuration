@@ -249,6 +249,7 @@ alias st='run-syncthing.sh &'
 # Gestionnaires de fichiers {{{2
 
 alias §=vifmrun
+alias 2=vifmrun
 alias fm=run-vifm
 
 alias cf='clifm --no-color'
@@ -618,6 +619,7 @@ hash -d wiki=~/racine/wiki
 
 hash -d eclats2vers=~/racine/site/eclats2vers/generic
 hash -d equa6on=~/racine/site/equa6on/generic
+hash -d blog=~/racine/site/blog
 
 # Terminal {{{2
 

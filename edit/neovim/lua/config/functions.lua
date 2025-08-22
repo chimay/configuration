@@ -1,6 +1,20 @@
 -- vim: set filetype=lua:
 
 -- ============================================================================
+-- MAN TOC
+-- ============================================================================
+
+--function man_toc ()
+	--M = require('man')
+	--vim.cmd.normal(vim.api.nvim_replace_termcodes("<c-w>T",  true,  true,  true))
+	--M.show_toc() ;
+	--vim.cmd("nnoremap <buffer> l <Enter>")
+	--vim.cmd("wincmd H")
+	--vim.cmd("vert resize 35")
+	--vim.cmd("wincmd p")
+--end
+
+-- ============================================================================
 -- FLOATING TERMINAL
 -- ============================================================================
 

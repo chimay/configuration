@@ -318,6 +318,7 @@
     # Close all notifications. Equivalent dunstctl command:
     # dunstctl close-all
     # close_all = ctrl+shift+space
+    # obsolete, see ~/racine/config/windenv/sxhkd/hlwm-sxhkdrc
     # close_all = mod4+F12
 
     # Redisplay last message(s). Equivalent dunstctl command:
