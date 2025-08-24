@@ -31,6 +31,7 @@ hi vimHiTerm		   	guifg=#872E30		guibg=default			gui=NONE
 hi vimLetHereDoc		guifg=#5b3c11		guibg=default			gui=NONE
 hi vimLetHereDocStart	guifg=#5b3c11		guibg=default			gui=NONE
 hi vimLetHereDocStop	guifg=#5b3c11		guibg=default			gui=NONE
+hi vimLetRegister	   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimLuaRegion		   	guifg=#5b3c11		guibg=default			gui=NONE
 hi vimMapModKey		   	guifg=#872E30		guibg=default			gui=NONE
 hi vimNotation		   	guifg=#872E30		guibg=default			gui=NONE

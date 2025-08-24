@@ -35,9 +35,16 @@ endfun
 " ---- man
 
 fun! library#manual ()
-	let arguments = input('Man args : ')
+	let arguments = input('Man args : ', '', 'shellcmd')
 	exe 'Man' arguments
 	exe "normal! \<c-w>T"
+endfun
+
+fun! library#manual_argv ()
+	let argv = argv()
+	let arguments = join(argv, ' ')
+	exe 'Man' arguments
+	only
 endfun
 
 fun! library#manual_sections ()
@@ -45,6 +52,9 @@ fun! library#manual_sections ()
 	" -- lvimgrep / lopen for location list of current window
 	lvimgrep /^[A-Z][A-Z ]*$/ %
 	lopen
+	" -- add regex to search register
+	" -- to be able tu use n/N to search next or previous
+	let @/ = '^[A-Z][A-Z ]*$'
 	" -- uncomment to put the list on the left side
 	"wincmd H
 	"vert resize 35
@@ -57,6 +67,9 @@ fun! library#manual_options ()
 	" -- lvimgrep / lopen for location list of current window
 	lvimgrep /^\s*--\?[a-zA-Z-]\+,\?\s/ %
 	lopen
+	" -- add regex to search register
+	" -- to be able tu use n/N to search next or previous
+	let @/ = '^\s*--\?[a-zA-Z-]\+,\?\s'
 	" -- uncomment to put the list on the left side
 	"wincmd H
 	"vert resize 35
@@ -69,6 +82,9 @@ fun! library#manual_links ()
 	" -- lvimgrep / lopen for location list of current window
 	lvimgrep /\w\+([0-9])/ %
 	lopen
+	" -- add regex to search register
+	" -- to be able tu use n/N to search next or previous
+	let @/ = '\w\+([0-9])'
 	" -- uncomment to put the list on the left side
 	"wincmd H
 	"vert resize 35

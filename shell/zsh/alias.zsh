@@ -24,7 +24,7 @@ alias rr='builtin r'
 
 # self {{{1
 
-alias cm='chezmoi -c ~/racine/self/chezmoi/config/chezmoi.toml -S ~/racine/self/chezmoi/source -D ~'
+
 
 # meta with completion {{{1
 
@@ -301,12 +301,9 @@ alias fini='mpv ~/audio/sonnerie/notification/fini.ogg'
 # manual & info {{{1
 
 alias rh=run-help
-
 alias m=man
-#alias m=w3mman
-
+alias vm='vim +"call library#manual_argv()"'
 alias mw=w3mman
-
 alias in=info
 
 # searching {{{1
