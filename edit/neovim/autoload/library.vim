@@ -55,7 +55,7 @@ endfun
 fun! library#manual_options ()
 	" -- vimgrep / copen for quickfix or
 	" -- lvimgrep / lopen for location list of current window
-	lvimgrep /^\s*--\?[a-zA-Z-]\+\%(\s\|,\)/ %
+	lvimgrep /^\s*--\?[a-zA-Z-]\+,\?\s/ %
 	lopen
 	" -- uncomment to put the list on the left side
 	"wincmd H

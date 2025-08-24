@@ -294,8 +294,8 @@ set tabline=%!wheel#status#tabline()
 
 nnoremap <c-space>          :<c-u>Wheel<space>
 
-nnoremap <m-$>           <plug>(wheel-sync-down)
-nnoremap <c-$>           <plug>(wheel-sync-up)
+nnoremap <m-$>           <plug>(wheel-sync-up)
+nnoremap <c-$>           <plug>(wheel-sync-down)
 
 " altgr-r
 nmap ¶                    <plug>(wheel-prompt-read-session)

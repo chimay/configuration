@@ -1452,4 +1452,5 @@ set history=10000
 
 " Lua {{{1
 
-source ~/racine/config/edit/neovim/meta.lua
+"source ~/racine/config/edit/neovim/meta.lua
+lua require('meta')

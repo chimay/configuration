@@ -369,6 +369,12 @@ set ttimeoutlen=50
 nnoremap <F1> :tab help<space>
 nnoremap <S-F1> :tab helpgrep<space>
 
+" Manuels {{{2
+
+runtime ftplugin/man.vim
+packadd helptoc
+nnoremap gm <cmd>call library#manual()<cr>
+
 " Quitter {{{2
 
 nnoremap ZZ :qa<cr>
