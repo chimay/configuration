@@ -116,6 +116,12 @@ augroup file-audio
 	autocmd BufEnter ~/racine/musica/list/*.meta lcd ~/audio
 augroup END
 
+augroup file-help
+	autocmd!
+	autocmd FileType help setlocal keywordprg=:help
+	autocmd FileType help nnoremap <buffer> t <cmd>HelpToc<cr>
+augroup end
+
 augroup man-pages
 	autocmd!
 	autocmd FileType man setlocal keywordprg=:Man
