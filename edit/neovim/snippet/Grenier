@@ -1,0 +1,320 @@
+# vim: set ft=snippets.conf :
+# vim: set fdm=marker :
+
+# {{{ Html
+
+# {{{ Todo
+
+snippet af "Todo" b!
+<!-- TODO : ${1:Description}  |  `echo $USER`  |  `!v strftime("[=] %A %d %B %Y  (o) %H:%M")` -->
+$0
+endsnippet
+
+# }}}
+
+# {{{ Ponctuation
+# ------------------------------------
+
+snippet - "Tiret court"
+&ndash;
+endsnippet
+
+snippet -- "Tiret long"
+&mdash;
+endsnippet
+
+snippet ...
+&hellip;
+endsnippet
+
+snippet !-
+&iexcl;
+endsnippet
+
+snippet ?-
+&iquest;
+endsnippet
+
+#  }}}
+
+# {{{ Ligatures
+# ------------------------------------
+
+snippet ae
+&aelig;
+endsnippet
+
+snippet oe
+&oelig;
+endsnippet
+
+snippet n~
+&ntilde;
+endsnippet
+
+#  }}}
+
+# {{{ Maths
+# ------------------------------------
+
+snippet O/
+&empty;
+endsnippet
+
+snippet A-
+&forall;
+endsnippet
+
+snippet E
+&exists;
+endsnippet
+
+snippet 8
+&infin;
+endsnippet
+
+snippet Ec
+&isin;
+endsnippet
+
+snippet !Ec
+&notin;
+endsnippet
+
+snippet ==
+&equiv;
+endsnippet
+
+snippet < "<" i
+&lt;
+endsnippet
+
+snippet > ">" i
+&gt;
+endsnippet
+
+snippet <>
+&lt;${0}&gt;
+endsnippet
+
+snippet <=
+&le;
+endsnippet
+
+snippet >=
+&ge;
+endsnippet
+
+snippet <c
+&sub;
+endsnippet
+
+snippet >c
+&sup;
+endsnippet
+
+snippet <=c
+&sube;
+endsnippet
+
+snippet >=c
+&supe;
+endsnippet
+
+snippet !<c
+&nsub;
+endsnippet
+
+snippet uc
+&cup;
+endsnippet
+
+snippet éc
+&cap;
+endsnippet
+
+snippet +-
+&plusmn;
+endsnippet
+
+snippet .
+&bull;
+endsnippet
+
+snippet x
+&times;
+endsnippet
+
+snippet /
+&divide;
+endsnippet
+
+snippet +o
+&oplus;
+endsnippet
+
+snippet xo
+&otimes;
+endsnippet
+
+snippet *
+&lowast;
+endsnippet
+
+snippet ms
+&sum;
+endsnippet
+
+snippet mp
+&prod;
+endsnippet
+
+snippet mS
+&int;
+endsnippet
+
+snippet mdp
+&part;
+endsnippet
+
+snippet mD
+&nabla;
+endsnippet
+
+snippet d+
+&dagger;
+endsnippet
+
+snippet d++
+&Dagger;
+endsnippet
+
+snippet %0
+&permil;
+endsnippet
+
+snippet L
+&perp;
+endsnippet
+
+#  }}}
+
+# {{{ Lettres grecques
+# ------------------------------------
+
+snippet ga "" iw
+&alpha;
+endsnippet
+
+snippet gb "" iw
+&beta;
+endsnippet
+
+snippet gg "" iw
+&gamma;
+endsnippet
+
+snippet gd "" iw
+&delta;
+endsnippet
+
+snippet ge "" iw
+&epsilon;
+endsnippet
+
+snippet gt "" iw
+&theta;
+endsnippet
+
+snippet gtt "" iw
+&thetasym;
+endsnippet
+
+snippet gl "" iw
+&lambda;
+endsnippet
+
+snippet gm "" iw
+&mu;
+endsnippet
+
+snippet gp "" iw
+&pi;
+endsnippet
+
+snippet gpp "" iw
+&piv;
+endsnippet
+
+snippet gs "" iw
+&sigma;
+endsnippet
+
+snippet gss "" iw
+&sigmaf;
+endsnippet
+
+snippet gf "" iw
+&phi;
+endsnippet
+
+snippet gx "" iw
+&chi;
+endsnippet
+
+snippet gps "" iw
+&psi;
+endsnippet
+
+snippet go "" iw
+&omega;
+endsnippet
+
+snippet gG "" iw
+&Gamma;
+endsnippet
+
+snippet gD "" iw
+&Delta;
+endsnippet
+
+snippet gT "" iw
+&Theta;
+endsnippet
+
+snippet gL "" iw
+&Lambda;
+endsnippet
+
+snippet gP "" iw
+&Pi;
+endsnippet
+
+snippet gS "" iw
+&Sigma;
+endsnippet
+
+snippet gF "" iw
+&Phi;
+endsnippet
+
+snippet gX "" iw
+&Khi;
+endsnippet
+
+snippet gPS "" iw
+&Psi;
+endsnippet
+
+snippet gO "" iw
+&Omega;
+endsnippet
+
+#  }}}
+
+#  {{{ Balises
+# ------------------------------------------------------------------------
+
+#  }}}
+
+# }}}

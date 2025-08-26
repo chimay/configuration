@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/david/racine/config/edit/neovim-lua/lua/meta'
+let g:netrw_dirhist_7='/home/david/racine/gate/download/freshrss_chimay_2025-07-06_export'
+let g:netrw_dirhist_6='/home/david/racine/archive'
+let g:netrw_dirhist_5='/home/david/Documents/test'
+let g:netrw_dirhist_4='/home/david/racine/infoman/unix/generic/www.linuxtricks.fr'
+let g:netrw_dirhist_3='/home/david/racine/site/eclats2vers/generic/musica/template/lilypond'
+let g:netrw_dirhist_2='/home/david/racine/config/multiplex/tmux/plugins'
+let g:netrw_dirhist_1='/home/david/racine/config/mail'
+let g:netrw_dirhist_0='/home/david/mount/export/samba'
+let g:netrw_dirhist_9='/home/david/racine/list/backup/restic'

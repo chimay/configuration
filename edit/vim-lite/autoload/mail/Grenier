@@ -1,0 +1,5 @@
+" vim: set filetype=vim:
+
+" Remplace
+" noremap ,mag :!mutt -a % -s "archives : %" orduval@gmail.com < ~/art/eclats2vers/message-commit<cr>
+

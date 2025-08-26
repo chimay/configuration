@@ -1,0 +1,846 @@
+" vim: set ft=vim :
+" vim: set foldlevel=10 :
+
+	" {{{ Par projet
+
+	" Peut être remplacé par amiorin/vim-project
+
+	au BufEnter ~/notes/**  cd ~/notes
+	au BufEnter ~/artist/** cd ~/artist
+	au BufEnter ~/scien/**  cd ~/scien
+	au BufEnter ~/racine/config/** cd ~/racine/config
+	au BufEnter ~/bin/**    cd ~/bin
+
+	" }}}
+
+"  {{{ Émulation
+" ------------------------------------------------------------------------
+
+" Shift + Tab = Backtab
+
+inoremap <S-Tab> <BS>
+
+" }}}
+
+source ~/racine/config/edit/vim/paquet/dein.vim
+
+" 	set statusline+=\ \ %{strftime('%H:%M\ %a\ %d\ %b\ %Y')}
+" 	set statusline+=\ \ %{strftime('%H:%M')}
+" 	set statusline+=\ \ Car\ %2.2B
+" 	set statusline+=\ \ Car\ %3.3b\ x\ %2.2B
+
+"highlight statut ctermfg=green guifg=green
+"highlight statut ctermbg=black guibg=black
+"highlight statut cterm=bold gui=bold
+
+source ~/racine/config/edit/vim/paquet/plugged.vim
+
+# Ancien rc-vimail.vim {{{1
+
+set nocompatible
+
+syntax enable
+
+set runtimepath+=~/racine/config/edit/vim
+set runtimepath+=~/racine/plugin/manager/vim-plugged/vim-fixkey
+
+set backspace=indent,eol,start
+
+set foldmethod=marker
+
+set wildmenu
+set wildmode=list:full
+
+set wildchar=<tab>
+set wildcharm=<c-t>
+
+set completeopt=menu,preview
+
+set complete=.,w,b,u,t,i,s,k
+
+set whichwrap=<,>,[,],~,b,s,h,l
+
+set infercase
+
+set number
+
+set hidden
+set bufhidden=hide
+
+set hlsearch
+
+set number
+set relativenumber
+
+set linespace=5
+
+set wrap
+
+set display+=lastline
+
+set linebreak
+set showbreak=┅
+set breakat=" ^I!@*-+;:,./?"
+
+set matchpairs=(:),{:},[:],<:>
+
+set showmatch
+
+set matchtime=7
+
+set scroll=12
+set sidescroll=12
+set scrolloff=7
+set sidescrolloff=84
+
+set listchars=tab:▶\ ,eol:╋
+set listchars+=trail:\ ,nbsp:▒
+set listchars+=precedes:←,extends:→
+
+set nostartofline
+
+set report=0
+
+set ruler
+
+set showcmd
+
+set history=1234
+
+set laststatus=2
+
+set cmdheight=4
+
+colo personnel
+
+nnoremap <m-t> :tabnew<cr>
+
+nnoremap <S-Left> gT
+nnoremap <S-Right> gt
+
+nnoremap \s :tabe ~/racine/snippet/shell/hist-$OPERASYS.zsh<cr>
+nnoremap \w :w! >> ~/racine/snippet/shell/hist-$OPERASYS.zsh<cr>
+
+nnoremap \h :tabe ~/racine/hist/zsh/$HOST<cr>
+
+set textwidth=72
+set formatprg='fmt'
+
+set foldmethod=manual
+
+" {{{ Autocommandes
+
+augroup FichiersCourriel
+
+	au!
+
+	" Lignes consécutives vides --> une seule ligne vide
+	" ------------------------------------
+
+	au Filetype mail g/^$/,/./-j
+
+	" Va à la première ligne vide
+	" ------------------------------------
+
+	au BufRead mutt-* call mail#library#ligneEdition()
+
+	" Efface les signatures citées
+	" ------------------------------------
+
+	au Filetype mail nnoremap ,mds :call mail#library#supprimeSignaturesCitees()<cr>
+
+	" Efface les > des lignes vides
+	" ------------------------------------
+
+	au Filetype mail nnoremap ,mdel :%s/^>\s*$//e<cr>
+	au Filetype mail nnoremap ,mgdel :g/^>\s*$/d<cr>
+
+augroup END
+
+" }}}
+
+# }}}
+
+source ~/racine/config/edit/vim/defaut.vim
+
+let t_Co = 256
+
+"  Onglets {{{2
+
+nnoremap <m-t> :tabnew<cr>
+
+nnoremap <m-s-t> :tabe <C-R>=expand("%:p:h") . "/*" <CR><C-D>
+
+nnoremap <C-PageUp> gT
+nnoremap <C-PageDown> gt
+
+nnoremap <C-Left> gT
+nnoremap <C-Right> gt
+
+nnoremap <C-Home> :tabm -1<cr>
+nnoremap <C-End> :tabm +1<cr>
+
+nnoremap [t gT
+nnoremap ]t gt
+
+nnoremap [T :tabm -1<cr>
+nnoremap ]T :tabm +1<cr>
+
+nnoremap [<c-t> :tabfirst<cr>
+nnoremap ]<c-t> :tablast<cr>
+
+" }}}2
+
+nnoremap <S-Up> gk
+nnoremap <S-Down> gj
+
+" C-I = Tab = saut suivant
+" C-O = C-H = Backspace = saut précédent
+
+nnoremap <m-n> :new <bar> only<cr>
+
+vnoremap <C-Insert> "*y
+
+nnoremap <S-Insert> "*p
+
+inoremap <S-Insert> <C-O>"*p
+
+" noremap <S-Insert> <MiddleMouse>
+
+" Sauts {{{3
+
+nnoremap <BS> <C-O>
+
+" }}}3
+
+nnoremap <m-space>  <c-w><up>
+nnoremap <bs>       <c-w><down>
+
+nnoremap <m-tab>  <c-w>w
+nnoremap <s-tab>  <c-w>p
+
+nnoremap <C-Left> gT
+nnoremap <C-Right> gt
+
+nnoremap <C-Up> :tabm -1<cr>
+nnoremap <C-Down> :tabm +1<cr>
+
+" Grep {{{3
+
+com! -nargs=0 libraryGrep call library#grep()
+
+nnoremap \g :libraryGrep<cr>
+
+" }}}3
+
+" library {{{4
+
+"com! -nargs=0 libraryRemplacement call library#remplacement()
+
+"nnoremap \R :libraryRemplacement<cr>
+
+"com! -nargs=0 libraryRemplacementSed call library#remplacementSed()
+
+"nnoremap \S :libraryRemplacementSed<cr>
+
+" }}}4
+
+"call library#sourceRepertoire('~/racine/config/edit/vim/types2fichiers')
+
+"nnoremap \c :silent call library#alterneHauteurCommande()<cr>
+
+nnoremap \it :echo library#tailleFichier()<cr>
+
+" Courriel {{{2
+
+nnoremap \m :call mail#library#envoieArchive()<cr>
+
+" }}}2
+
+"nnoremap <m-s-v> :silent execute '! rotation.zsh ' . expand('%:p:h') . '/.vim/backup &> ~/log/edit/rotation-backup.log'<cr>
+
+"  Fichiers {{{2
+
+nnoremap <C-G> :let @" = expand("%:p")<cr><C-G>
+
+nnoremap <c-cr> :wa<cr>
+
+nnoremap <F4> :e ~/racine/config/edit/vim/vimrc<cr>
+inoremap <F4> :e ~/racine/config/edit/vim/vimrc<cr>
+
+nnoremap <F5> :so ~/racine/config/edit/vim/vimrc<cr>
+inoremap <F5> :so ~/racine/config/edit/vim/vimrc<cr>
+
+command -nargs=? -complete=filetype EditSyntaxPlugin
+\ exe 'keepjumps vsplit ~/racine/config/edit/vim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
+
+command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
+
+nnoremap <F6>s :<c-u>EditSyntaxPlugin<cr>
+
+nnoremap \n :new <bar> only<cr>
+nnoremap \e :e!<cr>
+
+nnoremap <m-e> :e <C-R>=expand('%:p:h') . '/*' <CR><C-D>
+nnoremap <m-s-e> :e **/*
+
+nnoremap <m-f> :find<space>
+nnoremap <m-g> :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
+
+nnoremap <m-r> :r <C-R>=expand('%:p:h') . '/*' <CR><C-D>
+
+nnoremap <m-d> :cd <C-R>=expand('%:p:h') . '/'<CR>
+
+nnoremap <m-w> :wa<cr>
+nnoremap <m-s-w> :w <C-R>=expand('%:p:h') . '/' <CR>
+
+nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR>
+
+nnoremap \g :e <C-R>=expand('%:p:h') . '/Grenier'<cr><cr>
+
+" }}}2
+
+" Remplacé par Unite output
+
+"nnoremap <m-l> :ls!<cr>
+
+" Remplacé par CtrlSpaceGo[Up/Down]
+
+"noremap <M-PageUp> :bp<cr>
+"noremap <M-PageDown> :bn<cr>
+
+nnoremap <m-r> :r <C-R>=expand('%:p:h') . '/*' <CR><C-D>
+nnoremap <m-s-r> :r **/*
+
+nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR><C-D>
+
+nnoremap <m-f> :find **
+nnoremap <m-g> :silent grep!<space>
+
+nnoremap <m-d> :lcd <C-R>=expand('%:p:h') . '/'<CR>
+
+nnoremap <m-b> :ls!<cr>:b<space>
+nnoremap <m-s-b> :ls!<cr>:tab sb<space>
+
+nnoremap <m-left>  <C-W><Left>
+nnoremap <m-right> <C-W><Right>
+nnoremap <m-up>    <C-W><Up>
+nnoremap <m-down>  <C-W><Down>
+
+" Désactiver la surbrillance du dernier motif recherché {{{3
+
+nnoremap <silent> <M-u> :noh<CR>
+
+" }}}3
+
+let mapleader = "\<C-F12>\<C-F12>\<C-F12>"
+let maplocalleader = "\<C-F12>\<C-F12>\<C-F12>"
+
+let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
+
+command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
+
+" set guicursor=
+"
+" set guicursor+=n:block-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+" set guicursor+=o:hor35-blinkwait700-blinkon700-blinkoff250-Cursor
+"
+" set guicursor+=v:block-blinkon0-vCursor/lCursor
+" set guicursor+=ve:ver35-blinkon0-vCursor
+"
+" set guicursor+=i:ver25-blinkwait700-blinkon700-blinkoff250-iCursor/lCursor
+" set guicursor+=r:hor20-blinkwait700-blinkon700-blinkoff250-iCursor/lCursor
+"
+" set guicursor+=sm:block-blinkwait175-blinkoff150-blinkon175-Cursor
+"
+" set guicursor+=c:block-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+" set guicursor+=ci:ver25-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+" set guicursor+=cr:hor20-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+
+" Comme commande externe
+
+nnoremap <m-!> :exe '!'.getline('.')<CR>
+
+"  Explorateur de fichier {{{2
+
+" Répertoire de départ
+" ------------------------------------
+
+set browsedir=current
+"set browsedir=buffer
+"set browsedir=last
+
+" }}}2
+
+" Grep {{{2
+
+" if executable('rg')
+" 	set grepprg=rg\ --vimgrep\ --smart-case\ $*
+" 	set grepformat=%f:%l:%c:%m
+" elseif executable('ag')
+" 	set grepprg=ag\ --nocolor\ --vimgrep\ --smart-case\ $*
+" 	set grepformat=%f:%l:%c:%m
+" elseif executable('ack')
+" 	set grepprg=ack\ --nocolor\ --nogroup\ --column\ --smart-case\ $*
+" 	set grepformat=%f:%l:%c:%m
+" elseif executable('grep')
+" 	set grepprg=grep\ --line-number\ --ignore-case\ --no-messages\ $*\ /dev/null
+" 	set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
+" else
+" 	set grepprg=internal
+" endif
+
+" }}}2
+
+"  Autocommandes {{{2
+
+augroup Pliage
+
+	au BufEnter,BufRead *.snippets set foldlevel=2
+
+augroup END
+
+" }}}2
+
+" Fautes de frappe courantes {{{2
+
+iab totu tout
+iab sosu sous
+
+" }}}2
+
+" Chemins de chargement {{{1
+
+" set runtimepath+=~/racine/config/edit/vim
+
+" }}}1
+
+" Debug {{{1
+
+" 	>= 1	When theviminfo file is read or written.
+" 	>= 2	When a file is ":source"'ed.
+" 	>= 5	Every searched tags file and include file.
+" 	>= 8	Files for which a group of autocommands is executed.
+" 	>= 9	Every executed autocommand.
+" 	>= 12	Every executed function.
+" 	>= 13	When an exception is thrown, caught, finished, or discarded.
+" 	>= 14	Anything pending in a ":finally" clause.
+" 	>= 15	Every executed Ex command (truncated at 200 characters).
+
+"set verbose=9
+
+"set verbosefile=~/Documentsvim.log
+
+" }}}1
+
+"  Caractères utilisés dans les mots {{{1
+
+"set iskeyword=48-57, ,192-255,@,:,/,-,_
+
+" }}}1
+
+"  Chemins de recherche des répertoires {{{2
+
+" set cdpath=.
+" 
+" set cdpath+=~/racine
+" set cdpath+=~
+
+" }}}2
+
+"  Répertoire du fichier courant {{{2
+
+" Se place dans le répertoire du fichier courant
+" ------------------------------------------------------------
+
+" Voir aussi autocommandes.vim
+
+"set autochdir
+
+" }}}2
+
+"set autowrite				" Sauvegarde automatique des fichiers lors de navigation
+							" dans les arguments, :stop, :suspend, :tag, :!, :make, ^],
+							" ou quand un :buffer, ctrl-^, ^O, ^I ou une marque dirige vers un autre fichier
+
+"set autowriteall			" Sauvegarde automatique des fichiers aussi pour :e, :enew, :q, :qall, :x, :recover
+
+"  Lecture / Écriture {{{2
+
+set autoread
+
+" }}}2
+
+" Patchmode {{{2
+
+"set patchmode=.original
+
+" }}}2
+
+"  Définition {{{2
+
+" Convertir les codes hexadécimaux de wikipédia en codes décimaux
+" via par exemple :
+" python -c "print 0x<code>"
+
+" Alphabet phonétique {{{3
+
+"dig ia 0592			" ɐ
+"dig oo 0596			" ɔ
+"dig ee 0601			" ə
+"dig ep 0603			" ɛ
+"dig in 0643			" ʃ
+"dig zd 0658			" ʒ
+"dig ER 0640			" ʀ
+"dig Gn 0626			" ɲ
+"dig Ng 0627			" ɳ
+"dig uu 0613			" ɥ
+"dig ?? 0660			" ʔ
+
+" }}}3
+
+" Divers {{{3
+
+" dig -n 8208				" ‐
+" dig -m 8211				" –
+
+"dig ~~ 0771			" tilde supérieur
+
+" }}}3
+
+" }}}2
+
+" Sélection {{{2
+
+"set selectmode+=key
+"set selectmode+=mouse
+
+"set keymodel+=startsel
+"set keymodel+=stopsel
+
+" }}}2
+
+" Compléter par quoi lors d'un ctrl-n/p ? {{{3
+
+"    This option specifies how keyword completion works
+"	when CTRL-P or CTRL-N are used.  It is also used for whole-line
+"	completion |i_CTRL-X_CTRL-L|.  It indicates the type of completion
+"	and the places to scan.  It is a comma separated list of flags:
+"
+"	.	scan the current buffer ('wrapscan' is ignored)
+"	w	scan buffers from other windows
+"	b	scan other loaded buffers that are in the buffer list
+"	u	scan the unloaded buffers that are in the buffer list
+"	U	scan the buffers that are not in the buffer list
+"	k	scan the files given with the 'dictionary' option
+"	kspell  use the currently active spell checking |spell|
+"	k{dict}	scan the file {dict}.  Several "k" flags can be given,
+"		patterns are valid too.  For example: :set cpt=k/usr/dict/*,k~/spanish
+"	s	scan the files given with the 'thesaurus' option
+"	s{tsr}	scan the file {tsr}.  Several "s" flags can be given, patterns
+"		are valid too.
+"	i	scan current and included files
+"	d	scan current and included files for defined name or macro
+"	]	tag completion
+"	t	same as "]"
+
+" }}}3
+
+"if has("autocmd") && exists("+omnifunc")
+	"autocmd Filetype *
+	"\ if &omnifunc == "" |
+	"\ setlocal omnifunc=syntaxcomplete#Complete |
+	"\ endif
+"endif
+
+" Complétion personalisée, gérée par certains plugins comme neocomplete
+
+"set completefunc=
+
+" 'wildmode' 'wim'	string	vim default: "full")
+" 			global
+" 			{not in Vi}
+" 	Completion mode that is used for the character specified with
+" 	'wildchar'.  It is a comma separated list of up to four parts.  Each
+" 	part specifies what to do for each consecutive use of 'wildchar'.  The
+" 	first part specifies the behavior for the first use of 'wildchar',
+" 	The second part for the second use, etc.
+" 	These are the possible values for each part:
+" 	""				Complete only the first match.
+" 	"full"			Complete the next full match.  After the last match,
+" 					the original string is used and then the first match again.
+" 	"longest"		Complete till longest common string.  If this doesn't
+" 					result in a longer string, use the next part.
+" 	"longest:full"	Like "longest", but also start 'wildmenu' if it is enabled.
+" 	"list"			When more than one match, list all matches.
+" 	"list:full"		When more than one match, list all matches and
+" 					complete first match.
+" 	"list:longest"	When more than one match, list all matches and
+" 					complete till longest common string.
+
+" set wildmode=list:longest,full
+
+"set cinkeys=0{,0},0),:,0#,!^F,o,O,e
+
+" Indentation basée sur l’évaluation d’une expression
+
+"set indentexpr=
+
+"set foldlevelstart=0
+
+" Commandes ouvrant automatiquement un pli
+
+" set foldopen=all
+
+" Fermeture automatique
+
+" Si curseur en-dehors et > à foldlevel
+
+" set foldclose=all
+
+"set confirm
+
+" 0: never
+" 1: only if there are at least two tab pages
+" 2: always
+
+"  Tags {{{2
+
+" Voir autocommandes.vim
+
+"set tags=./tags,tags
+
+"set tags=./tags,./TAGS,tags,TAGS
+
+" }}}2
+
+"  Cscope {{{2
+
+set cscopeverbose
+
+" Relatif au basename de cscope.out ?
+
+"set cscoperelative
+
+" Utilisation de la fenêtre quickfix
+
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+" Tags ordinaires puis tags cscope
+
+set cscopetagorder=1
+
+" On utilise gtags pour remplacer cscope
+
+set cscopeprg=gtags-cscope
+
+" Nombre de répertoires à afficher
+
+set cscopepathcomp=0
+
+"cs add cscope.out %:p:h
+
+"cd ~/bin
+
+"cs add GTAGS
+"cs add GRTAGS
+"cs add GPATH
+"cs add GSYMS
+
+" }}}2
+
+" set makeef='make-errors-##'
+
+" Mapping with Meta/Alt key {{{2
+
+" Xterm, by default, sets eightBitInput to true, meaning that the eighth
+"bit is set for meta characters (combinations with the Alt key, for
+"instance). Not all terminals have this feature enabled by default, and
+"therefore work differently (they send an Esc before the character key).
+"
+" So for the xterm, with enables the eight bit, you can just do
+"something like:
+"
+" map <m-a> ggVG
+"
+" However, with a terminal that is in 7 bit mode, you have to do this:
+"
+" set <m-a> = ^[a map <m-a> ggVG " the ^[ is an Esc char that comes
+"before the 'a' In most default configs, ^[a may be typed by pressing
+"first <C-v>, then <M-a>
+
+" }}}2
+
+" Préfixe pour les plugins {{{2
+
+" Remarque : certains mapleaders causent des problèmes avec l’indentation <<
+
+" let mapleader = "\<C-F12>"
+" let maplocalleader = "\<C-F12>"
+
+" }}}2
+
+"nnoremap <F1> <nop>
+
+"nnoremap ]z ]]
+"nnoremap [z [[
+
+" Fichier courant aussi disponible dans le registre %
+" Fichier alternatif aussi disponible dans le registre #
+
+" Lecture seule {{{3
+
+nnoremap <f2>o :call ToggleReadonly()<cr>
+
+fun! ToggleReadonly()
+	if &modifiable || ! &readonly
+		setlocal readonly nomodifiable
+	else
+		setlocal noreadonly modifiable
+	endif
+	setlocal readonly? modifiable?
+endfun
+
+" }}}3
+
+nnoremap \s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \h :tabe ~/racine/hist/zsh/$HOST<cr>
+
+"  Abréviations {{{1
+
+" Abréviations {{{2
+
+iab cad c’est-à-dire
+iab dd <c-r>=strftime("%H : %M %a %d %b %Y")<cr>
+
+" Remplacé par le plugin cmdalias
+
+"cab hh tab help
+"cab dd <c-r>=strftime("[=] %A %d %B %Y  (o) %H : %M : %S  %z")<cr>
+
+" }}}2
+
+" }}}1
+
+" Mets en évidence la ligne courante
+" ------------------------------------
+
+"set cursorline
+
+" Mets en évidence la colonne courante
+" ------------------------------------
+
+"set cursorcolumn
+
+" Commandes {{{2
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+" }}}2
+
+tnoremap <s-tab> <C-W>N<C-W>w
+
+tnoremap <f2> <C-W>N
+tnoremap <m-i> <C-W>N
+
+tnoremap <m-q> <C-W>N:ls!<cr>:silent bw!<space>
+
+" Couleurs dans le terminal {{{2
+
+if has("termguicolors")
+	set termguicolors
+endif
+
+if &term =~# '^tmux'
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+" }}}2
+
+" Vim Markdown Folding {{{1
+
+au BufEnter *.md setlocal foldmethod=expr
+
+" }}}1
+
+
+" {{{ Netrw
+
+augroup ExtensionNetRW
+	au!
+	au FileType netrw nmap <buffer> <kEnter> <Enter>
+augroup END
+
+" }}}
+
+	autocmd BufReadPost *.md setlocal foldmethod=expr
+				\ foldexpr=biblio#markdown_folding_expr(v:lnum)
+				\ foldtext=biblio#markdown_folding_text()
+	autocmd BufReadPost *.org setlocal foldmethod=expr
+				\ foldexpr=biblio#org_folding_expr(v:lnum)
+				\ foldtext=biblio#org_folding_text()
+	autocmd BufNewFile,BufRead *.org setfiletype org
+	"autocmd BufNewFile,BufRead *.htm*,*.php,*.phtm* setfiletype html.php
+
+"  ultisnips (SirVer/ultisnips) {{{1
+
+" Mappings {{{2
+
+" Si tab est défini ici, le commenter dans Neocomplcache
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<m-tab>"
+
+let g:UltiSnipsListSnippets='<F8>l'
+
+nnoremap <F8>e <cmd>UltiSnipsEdit<cr>
+nnoremap <F8>a <cmd>UltiSnipsAddFiletypes<space>
+
+
+" Données {{{2
+
+let g:UltiSnipsSnippetDirectories=['snippet', 'UltiSnips']
+
+
+let g:UltiSnipsEditSplit = 'horizontal'
+
+nnoremap \r :so ~/racine/config/edit/vim/vimrc<cr>
+inoremap \r :so ~/racine/config/edit/vim/vimrc<cr>
+
+nnoremap <f3>n :new <bar> only<cr>
+nnoremap <f3>r :e!<cr>
+nnoremap <f3>w :wa<cr>
+
+nnoremap <f3>! :e!<cr>
+
+nnoremap <kenter> :wa<cr>
+
+vnoremap <f3>: :<C-U>exe join(getline("'<","'>"),'<Bar>')<CR>
+
+nnoremap <s-tab>  <c-w>w
+nnoremap <m-s-tab>  <c-w>p
+
+nnoremap <C-G> :let @" = expand("%:p")<cr>2<C-G>
+
+augroup man-pages
+    autocmd!
+    if has('nvim')
+        autocmd FileType man
+            \ call man#show_toc() |
+            \ nnoremap <buffer> l <Enter> |
+            \ wincmd H |
+            \ vert resize 35 |
+            \ wincmd p
+    endif
+augroup end
+

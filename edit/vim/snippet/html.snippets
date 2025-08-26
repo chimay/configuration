@@ -1,0 +1,378 @@
+# vim: set filetype=snippets.conf :
+# vim: set fdm=marker foldlevel=0 :
+
+# {{{ Espaces
+# ------------------------------------
+
+snippet -s "Espace simple" i
+&ensp;
+endsnippet
+
+snippet -d "Espace double" i
+&emsp;
+endsnippet
+
+snippet -i "Espace insécable" i
+&nbsp;
+endsnippet
+
+#  }}}
+
+# {{{ Ponctuation
+# ------------------------------------
+
+snippet - "Tiret court"
+&ndash;
+endsnippet
+
+snippet -- "Tiret long"
+&mdash;
+endsnippet
+
+#  }}}
+
+#  {{{ Symboles
+# ------------------------------------------------------------------------
+
+snippet &
+&amp;
+endsnippet
+
+snippet §
+&sect;
+endsnippet
+
+snippet ip
+&para;
+endsnippet
+
+# }}}
+
+# {{{ Entourer
+# ------------------------------------------------------------------------
+
+snippet "
+&quot;${VISUAL}${1}&quot;
+endsnippet
+
+snippet ""
+&laquo;&nbsp;${VISUAL}${1}&nbsp;&raquo;
+endsnippet
+
+snippet #
+<!-- ${1} -->
+endsnippet
+
+#  }}}
+
+# {{{ Balises
+
+# {{{ Ancres
+# ------------------------------------
+
+snippet a
+<a href="#${VISUAL}$1">$1</a><br />
+endsnippet
+
+#  }}}
+
+# {{{ Titres
+# ------------------------------------
+
+snippet h "Titres" b
+
+<h$1>${VISUAL}$2</h$1>
+
+$0
+endsnippet
+
+snippet hid "Titres avec identifiant" b
+
+<h$1 id="${2:titre}">${VISUAL}$3</h$1>
+
+$0
+endsnippet
+
+#  }}}
+
+# {{{ Paragraphes
+# ------------------------------------
+
+snippet p "Paragraphe" b!
+<p>${VISUAL}$1</p>
+endsnippet
+
+snippet p: "Paragraphe" b
+<p>${VISUAL}$1&nbsp;:</p>
+endsnippet
+
+#  }}}
+
+# {{{ Gras, italique
+# ------------------------------------
+
+snippet it "Italique" i
+<em>${VISUAL}$1</em>
+endsnippet
+
+snippet gr "Gras" i
+<strong>${VISUAL}$1</strong>
+endsnippet
+
+#  }}}
+
+# {{{ Indices inf/sup
+# ------------------------------------
+
+snippet _ "Indice inférieur" i
+<sub>${VISUAL}$1</sub>
+endsnippet
+
+snippet ^ "Indice supérieur / exposant" i
+<sup>${VISUAL}$1</sup>
+endsnippet
+
+snippet Ne "Nième"
+<span class="rouge">N</span><sup>ième</sup>
+endsnippet
+
+#  }}}
+
+# {{{ Barres inf/sup/médiane
+# ------------------------------------
+
+snippet _b "Barre inférieure" i
+<span class="souligne">$1</span>
+endsnippet
+
+snippet ^b "Barre supérieure" i
+<span class="surligne">$1</span>
+endsnippet
+
+snippet -b "Barre médiane" i
+<span class="barre">$1</span>
+endsnippet
+
+#  }}}
+
+# {{{ Retours ligne
+# ------------------------------------
+
+snippet nl "Br multiligne" w
+<br />
+$0
+endsnippet
+
+snippet nlu "Br uniligne" w
+<br />
+endsnippet
+
+#  }}}
+
+# {{{ Listes à puces
+# ------------------------------------
+
+snippet ul "Liste non ordonnee - 2 elements" b
+<ul>
+	<li>$1</li>
+	<li>$2</li>
+</ul>
+$0
+endsnippet
+
+snippet ul "Liste non ordonnee - 3 elements" b
+<ul>
+	<li>$1</li>
+	<li>$2</li>
+	<li>$3</li>
+</ul>
+$0
+endsnippet
+
+snippet ul "Liste non ordonnee - 4 elements" b
+<ul>
+	<li>$1</li>
+	<li>$2</li>
+	<li>$3</li>
+	<li>$4</li>
+</ul>
+$0
+endsnippet
+
+snippet ol "Liste ordonnee - 2 elements" b
+<ol>
+	<li>$1</li>
+	<li>$2</li>
+</ol>
+$0
+endsnippet
+
+snippet ol "Liste ordonnee - 3 elements" b
+<ol>
+	<li>$1</li>
+	<li>$2</li>
+	<li>$3</li>
+</ol>
+$0
+endsnippet
+
+snippet ol "Liste ordonnee - 4 elements" b
+<ol>
+	<li>$1</li>
+	<li>$2</li>
+	<li>$3</li>
+	<li>$4</li>
+</ol>
+$0
+endsnippet
+
+#  }}}
+
+# {{{ Tableaux
+# ------------------------------------
+
+snippet ta "Tableaux" b
+<table>
+<tr>
+	<td>$1</td>
+	<td>$2</td>
+</tr>
+</table>
+endsnippet
+
+#  }}}
+
+# {{{ Span
+# ------------------------------------
+
+snippet sp "Span" i
+<span class="$1">$2</span>
+endsnippet
+
+snippet sb "Span bleu" i
+<span class="bleu">$1</span>
+endsnippet
+
+snippet sr "Span rouge" i
+<span class="rouge">$1</span>
+endsnippet
+
+snippet sv "Span vert" i
+<span class="vert">$1</span>
+endsnippet
+
+#  }}}
+
+# {{{ Div
+# ------------------------------------
+
+snippet d "Div" b
+<div class="$1">
+$2
+</div>
+endsnippet
+
+snippet ds "Div sommaire" b
+<div class="sommaire">
+${1}
+</div>
+endsnippet
+
+snippet dn "Div notes" b
+<div class="notes">
+${1}
+</div>
+endsnippet
+
+snippet dce "Div centre" b
+<div class="centre">
+${1}
+</div>
+endsnippet
+
+snippet dco "Div code" b
+<div class="code">
+${1}
+</div>
+endsnippet
+
+snippet di "Div indentation"
+<div class="indentation">
+${1}
+</div>
+endsnippet
+
+snippet deq "Div equations" b
+<div class="equations">
+${1}
+</div>
+endsnippet
+
+#  }}}
+
+# {{{ Pre
+
+snippet eee "***" b
+<pre class="centre">*
+* *</pre>
+$0
+endsnippet
+
+# }}}
+
+
+
+# }}}
+
+#  {{{ Blocs
+# ------------------------------------------------------------------------
+
+snippet bracine "Racine" b
+<!-- {{{ ${1:Titre} -->
+
+<a onClick="interrupteurRacine('$1');">
+<h1 id="${1/\w+\s*/\l$0/}">$1</h1></a>
+
+<div id="$1">
+
+$0
+
+</div> <!-- $1 -->
+
+<a onClick="eventail();">
+<h1>$1</h1></a>
+
+<!-- }}} -->
+endsnippet
+
+snippet bbranche "Branche" b
+<!-- {{{ ${1:Titre} -->
+
+<a onClick="interrupteurBranche('$1');">
+<h2 id="${1/\w+\s*/\l$0/}">$1</h2></a>
+
+<div id="$1">
+
+$0
+
+</div> <!-- $1 -->
+
+<!-- }}} -->
+endsnippet
+
+snippet bfeuille "Feuille" b
+<!-- {{{ ${1:Titre}${2:SousTitre} -->
+
+<a onClick="interrupteurFeuille('$1$2');">
+<h3 id="${1/\w+\s*/\l$0/}$2">$2</h3></a>
+
+<div id="$1$2">
+
+$0
+
+</div> <!-- $1$2 -->
+
+<!-- }}} -->
+endsnippet
+
+#  }}}

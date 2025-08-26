@@ -1,0 +1,1054 @@
+" vim: set filetype=vim :
+" vim: set foldlevel=10:
+
+" Lancer :
+" set guifont=*
+" pour afficher une boîte de dialogue permettant
+" de sélectionner la fonte
+
+set guifont=Monospace\ 10
+
+" Fonte cursive
+" set guifont=Purisa\ 10
+
+"	set viminfo=
+"		\!,									" Variables globales
+"		\f1,                                " Marques globales (A...Z, 0_...9)
+"		\%,                                 " Sauve la liste des tampons
+"		\c,                                 " Encodage
+"		\h,                                 " Pas de mise en évidence au démarrage
+"		\<84,								" Maximum de lignes par registre
+"		\'290,                              " Nombre de fichiers où se rappeler les signets
+"		\:4312,                             " Nombre de lignes de commandes
+"		\/4312,                             " Nombre de recherches
+"		\@4312,                             " Nombre de lignes d'entrée
+"		\n~/racine/data/edit/neovim/info/neoviminfo       " Fichier
+
+" Pas besoin
+"set runtimepath+=~/racine/config/edit/neovim/after
+
+" {{{ modeles.vim
+
+" vim: set filetype=vim :
+
+"  {{{ Utilise le plugin tSkeleton
+" ------------------------------------------------------------------------
+
+
+" }}}
+
+"  {{{ Ancienne méthode
+" ------------------------------------------------------------------------
+
+"augroup Modeles
+
+	"au!
+
+	"autocmd! BufNewFile *.sh 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+	"autocmd! BufNewFile *.zsh 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+	"autocmd! BufNewFile *.bash 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+
+	"autocmd! BufNewFile *.sed 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+	"autocmd! BufNewFile *.awk 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+
+	"autocmd! BufNewFile *.py 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+	"autocmd! BufNewFile *.pl 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+
+	"autocmd! BufNewFile *.htm,*.html 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+	"autocmd! BufNewFile *.php 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+	"autocmd! BufNewFile *.js 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+
+	"autocmd! BufNewFile * silent! 0r ~/racine/config/editneovim/tmpl/tmpl.%:e
+
+"augroup END
+
+" }}}
+
+" }}}
+
+" {{{ apps.vim
+
+"  {{{ Applications externes
+" ------------------------------------------------------------------------
+
+source ~/racine/config/edit/neovim/apps.vim
+
+" }}}
+
+" }}}
+
+" {{{ Sommaire HTML / JS
+
+"com! -nargs=* Sommaire :call html#bibliotheque#sommaire(<f-args>)
+
+"nnoremap \s :Sommaire<space>
+
+" }}}
+
+"  {{{ Rendu
+" ------------------------------------------------------------------------
+
+" Html
+" ------------------------------------
+
+com! -nargs=0 BibliothequeRenduHtml call bibliotheque#renduHtml()
+
+nnoremap \rh :BibliothequeRenduHtml<cr>
+
+" }}}
+
+nnoremap <d-v> :se ro! ma!<cr>
+nnoremap <m-v> :se ro! ma!
+nnoremap \r :se ro! ma!
+
+" {{{ Documents
+
+set path+=~/racine/notes
+set path+=~/racine/site
+
+set path+=~/notes/artist
+set path+=~/notes/scien
+set path+=~/notes/unix
+set path+=~/notes/home
+
+set path+=~/artist/eclats2vers
+set path+=~/artist/eclats2vers/theorie
+set path+=~/artist/eclats2vers/opus
+set path+=~/artist/composition
+
+set path+=~/scien/math
+set path+=~/scien/physics
+set path+=~/scien/finance
+
+" }}}
+
+" {{{ Logiciels
+
+" {{{ Zsh
+
+set path+=~/racine/racine/config/cmdline/zsh
+
+set path+=~/racine/extension/cmdline/zsh
+set path+=~/racine/racine/extension/cmdline/zsh/autoload
+set path+=~/racine/racine/extension/cmdline/zsh/completion
+
+set path+=~/bin/zsh
+
+" }}}
+
+" {{{ Tmux
+
+set path+=~/racine/racine/config/cmdline/tmux
+
+" }}}
+
+" {{{ Neovim
+
+set path+=~/racine/racine/config/edit/neovim
+
+set path+=~/racine/extension/edit/neovim/varia
+
+set path+=~/racine/data/edit/neovim
+
+" }}}
+
+" {{{ Emacs
+
+set path+=~/racine/racine/config/edit/emacs
+set path+=~/racine/extension/edit/emacs
+
+" }}}
+
+" }}}
+
+" {{{ Scripts
+
+set path+=~/bin
+set path+=~/install
+
+" }}}
+
+" {{{ Configuration
+
+set path+=~/racine/config
+
+set path+=~/racine/racine/config/cmdline
+
+set path+=~/racine/racine/config/edit
+
+set path+=~/racine/racine/config/webrowser
+
+set path+=~/racine/racine/config/mail
+set path+=~/racine/racine/racine/config/mail/muttrc
+
+set path+=~/racine/racine/config/sync/unison-pour-synchro
+
+set path+=~/racine/racine/config/xwin
+set path+=~/racine/racine/racine/config/xwin/winman
+
+" }}}
+
+" {{{ Multimédia
+
+set path+=~/music/list
+
+" }}}
+
+	" {{{ Backup
+
+	" Le plugin Ozzy essaie de faire setlocal nobackup,
+	" mais backup ne semble pas être une option locale
+
+	"au BufEnter * set backup
+
+	" }}}
+
+"  {{{ Déclenchement
+" ------------------------------------------------------------------------
+
+" augroup Syntaxe
+" 	"au BufRead,BufNewFile * runtime! syntax/tousneovim
+" 	au BufRead,BufNewFile * source ~/racine/extension/edit/neovim/perso/syntax/tousneovim
+" augroup END
+
+" }}}
+
+	" Plus nécessaire avec CtrlSpace
+
+	" au BufEnter ~/notes/**  cd ~/notes
+	" au BufEnter ~/artist/** cd ~/artist
+	" au BufEnter ~/scien/**  cd ~/scien
+	" au BufEnter ~/racine/config/** cd ~/racine/config
+	" au BufEnter ~/bin/**    cd ~/bin
+
+	" au BufEnter ~/racine/extension/cmdline/**  cd ~/racine/extension/cmdline
+
+"nnoremap \<lt> :BibliothequeRedirToBuffer<space>
+
+"  {{{ Émulation
+" ------------------------------------------------------------------------
+
+" Shift + Tab = Backtab
+
+inoremap <S-Tab> <BS>
+
+" }}}
+
+"  {{{ Variables d'environnement
+" ------------------------------------------------------------------------
+
+" let $LC_NUMERIC='C'
+" let $LC_NUMERIC = 'en_US.utf8'
+
+" }}}
+
+" Trop lourd
+"set path+=~
+
+set path-=/usr/include
+
+"source ~/racine/config/edit/neovim/paquet/dein.vim
+
+"source ~/racine/config/edit/neovim/paquet/neobundle.vim
+
+"nnoremap zx zMzx[z
+
+"nnoremap zj zjzx]z[z
+"nnoremap zk zkzx[z
+
+" Pliage automatique / manuel
+
+"nnoremap \za :set foldopen=all foldclose=all<cr>
+"nnoremap \zm :set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo foldclose=<cr>
+
+" Neovim-qt Guifont command
+"command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
+" Set the font to DejaVu Sans Mono:h13
+"Guifont DejaVu Sans Mono:h13
+Guifont Monospace:h12
+
+"  {{{ Fonte
+" ------------------------------------------------------------------------
+
+"let g:Guifont=Monospace:h11
+
+"command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
+
+"Guifont DejaVu\ Sans\ Mono:h11
+
+" }}}
+
+" En référence (inversée) à Ctrl-Q / Ctrl-S
+
+"tnoremap <C-q> <C-\><C-n>
+
+" Analogue à Ctrl-C
+
+tnoremap <D-c> <C-\><C-n>
+
+"let $TERM=neovim
+
+"nnoremap \a :se fo+=a<cr>
+"nnoremap \A :se fo-=a<cr>
+
+nnoremap <m-f> :find */*
+nnoremap <m-s-f> :tabfind */*
+
+set wildignore+=*.o,*.so
+set wildignore+=*.dll,*.obj,*.bak,*.exe
+
+nnoremap \t :tabe ~/racine/log/todo<cr>
+
+" Contourner les petits défauts des plugins {{{2
+
+" Comme @: ne fonctionne plus avec yankring :
+
+" nnoremap @: :<c-r>:<cr>
+
+" }}}2
+
+"  Fortunes de Bram Moolenaar {{{2
+" ------------------------------------------------------------------------
+
+" _f : Add a fortune and advance to the next one
+" mX			mark where we are
+" :sp ~/.fortunes<CR>	open a window on ~/.fortunes
+" gg			go to first line
+" d/^--/<CR>		delete until the next line starting with "--"
+" Gp			Go to the end and put the just deleted text there
+" :wq<CR>		Write the ~/.fortunes file and close the window
+" 'XG			Go to the last line of the original file
+" A<CR><Esc>		Add an empty line
+" p			put the fortune text
+" `X			return to where we started
+
+map \f mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
+
+" }}}2
+
+source ~/racine/config/edit/neovim/paquet/dein.vim
+
+" Ne s’installe pas, voir dein
+
+"set cpoptions+=A
+
+" {{{ Fonte
+
+set guifont=Monospace\ 11
+
+" }}}
+
+
+" Version de vim
+
+" {{{ Console
+
+set guipty
+
+" }}}
+
+"  {{{ Sélections
+" ------------------------------------------------------------------------
+
+set guioptions+=a
+
+" Pour le modeless (normalement inclus dans le flag a)
+set guioptions+=A
+
+" }}}
+
+" {{{ Onglets
+
+" Sans les onglets graphiques, affiche les onglets comme dans un terminal
+
+"set guioptions+=e
+set guioptions-=e
+
+" }}}
+
+" {{{ Boites de dialogue
+
+" Dialogues simples en format texte
+set guioptions+=c
+
+set guioptions-=v
+set guioptions-=p
+
+" }}}
+
+" {{{ Avant-plan
+
+set guioptions+=f
+
+" }}}
+
+"  {{{ Fenêtre
+" ------------------------------------------------------------------------
+
+if has("gui_running")
+  set lines=43
+  set columns=150
+endif
+
+" }}}
+
+" {{{ Curseur
+
+" set guicursor=
+"
+" set guicursor+=n:block-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+" set guicursor+=o:hor35-blinkwait700-blinkon700-blinkoff250-Cursor
+"
+" set guicursor+=v:block-blinkon0-vCursor/lCursor
+" set guicursor+=ve:ver35-blinkon0-vCursor
+"
+" set guicursor+=i:ver25-blinkwait700-blinkon700-blinkoff250-iCursor/lCursor
+" set guicursor+=r:hor20-blinkwait700-blinkon700-blinkoff250-iCursor/lCursor
+"
+" set guicursor+=sm:block-blinkwait175-blinkoff150-blinkon175-Cursor
+"
+" set guicursor+=c:block-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+" set guicursor+=ci:ver25-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+" set guicursor+=cr:hor20-blinkwait700-blinkon700-blinkoff250-Cursor/lCursor
+
+" }}}
+
+"  {{{ Barres de défilement
+" ------------------------------------------------------------------------
+
+" Barre de défilement verticale
+
+set guioptions-=r
+set guioptions-=l
+
+" Barre de défilement horizontale
+
+set guioptions-=b
+set guioptions-=h
+
+" }}}
+
+"  {{{ Barre de menu
+" ------------------------------------------------------------------------
+
+set guioptions-=m
+
+set guioptions-=t
+set guioptions-=g
+
+" }}}
+
+"  {{{ Barre d'outils
+" ------------------------------------------------------------------------
+
+" Pas de barre d'outils
+
+set guioptions-=T
+
+" }}}
+
+"  {{{ Icone
+" ------------------------------------------------------------------------
+
+set guioptions-=i
+
+" }}}
+
+source ~/racine/config/edit/neovim/defaut.vim
+
+"tnoremap <C-q> <C-\><C-n>
+
+if has('multi_byte_ime')
+	highlight Cursor	guifg=NONE	guibg=#5b3c11
+	highlight CursorIM	guifg=NONE 	guibg=#5b3c11
+endif
+
+source ~/racine/config/edit/neovim/paquet/plugged.vim
+
+"nnoremap <D-t> :split \| terminal<cr>
+
+nnoremap <D-t> :split \| e term://
+
+tnoremap <D-s> <C-\><C-n>
+
+" cnoremap <C-^> <C-Left>
+" cnoremap <C-@> <C-Right>
+
+nnoremap <S-Up> gk
+nnoremap <S-Down> gj
+
+" C-I = saut suivant
+" C-O = saut précédent
+
+" Dans un terminal, on a :
+"
+" C-I = Tab
+" C-O = C-H = Backspace
+
+nnoremap <Tab> <C-W><C-W>
+
+vnoremap <M-:> :<C-U>exe getreg("*")<CR>
+
+" Commande externe {{{3
+
+" }}}3
+
+nnoremap <m-!> :!<space>
+
+" Gui {{{2
+
+" nvim-qt
+
+nnoremap <D-c> :call GuiClose()
+
+" }}}2
+
+nnoremap <C-Home>  :tabfirst<cr>
+nnoremap <C-End> :tablast<cr>
+
+nnoremap <F7> :wa<cr>
+inoremap <F7> <esc>:wa<cr>
+
+"let mapleader = "\<C-F12>\<C-F12>\<C-F12>"
+"let maplocalleader = "\<C-F12>\<C-F12>\<C-F12>"
+
+"let g:mapleader = "\<C-F12>\<C-F12>\<C-F12>"
+
+noremap <D-^> <C-^>
+
+"  Redirection {{{2
+
+com! -nargs=* -complete=command BibliothequeRedirToBuffer call bibliotheque#redirToBuffer(<f-args>)
+
+nnoremap <D-lt> :BibliothequeRedirToBuffer<space>
+
+" }}}2
+
+nnoremap <D-,> /\<\><left><left>
+vnoremap <D-,> /\<\><left><left>
+
+" Vimgrep {{{3
+
+com! -nargs=0 BibliothequeVimgrep call bibliotheque#vimgrep()
+
+nnoremap <D-G> :BibliothequeVimgrep<cr>
+
+" }}}3
+
+nnoremap <D-;> :s:\<\>::<left><left><left><left>
+vnoremap <D-;> :s:\<\>::<left><left><left><left>
+
+nnoremap <silent> <D-o> :setlocal spell!<cr>
+
+nnoremap <D-l> :set cursorline!<cr>
+
+nnoremap <D-w>  <C-W>w
+
+" Sauts {{{3
+
+nnoremap <BS> <C-O>
+
+" }}}3
+
+"inoremap <BS> <C-G>u<BS> inoremap <Del> <C-G>u<Del>
+
+" Édition {{{2
+
+" nnoremap <m-a> :se fo+=a<cr>
+" nnoremap <m-s-a> :se fo-=a<cr>
+
+" }}}2
+
+nnoremap <m-r> :r <C-R>=expand('%:p:h') . '/*' <CR><C-D>
+
+nnoremap <m-w> :wa<cr>
+nnoremap <m-w> :w <C-R>=expand('%:p:h') . '/' <CR>
+
+"nnoremap <m-s> :sav <C-R>=expand('%:p:h') . '/' <CR>
+
+"nnoremap <m-s-v> :silent execute '! rotation.zsh ' . expand('%:p:h') . '/.neovim/backup &> ~/log/edit/rotation-backup.log'<cr>
+
+"  Informations {{{2
+
+nnoremap <C-G> 2<C-G>
+
+" }}}2
+
+" Les mouvements directionnels sont aussi accessible via h j k l
+
+nnoremap <left>  <c-w><left>
+nnoremap <right> <c-w><right>
+nnoremap <up>    <c-w><up>
+nnoremap <down>  <c-w><down>
+
+" Bibliotheque {{{4
+
+"com! -nargs=0 BibliothequeRemplacement call bibliotheque#remplacement()
+
+"nnoremap \R :BibliothequeRemplacement<cr>
+
+"com! -nargs=0 BibliothequeRemplacementSed call bibliotheque#remplacementSed()
+
+"nnoremap \S :BibliothequeRemplacementSed<cr>
+
+" }}}4
+
+"nnoremap \c :silent call bibliotheque#alterneHauteurCommande()<cr>
+
+nnoremap <C-Left> gT
+nnoremap <C-Right> gt
+
+nnoremap <C-Up> :tabm -1<cr>
+nnoremap <C-Down> :tabm +1<cr>
+
+" Répétition en mode visuel
+
+"vnoremap . :normal .<CR>
+
+	" Semblable à autochdir {{{2
+
+	"au BufEnter * lcd %:p:h
+
+	" }}}2
+
+	" Par projet {{{2
+
+	"au BufEnter ~/racine/plain/**/*     set tags=~/racine/plain/tags
+	"au BufEnter ~/racine/site/**/*     set tags=~/racine/site/tags
+
+	"au BufEnter ~/racine/shell/**/*     set tags=~/racine/shell/tags
+
+	"au BufEnter ~/racine/config/cmdline/**/*     set tags=~/racine/config/cmdline/tags
+	"au BufEnter ~/racine/config/edit/**/*     set tags=~/racine/config/edit/tags
+
+	" }}}2
+
+	" Basé sur tab directory {{{2
+
+	" Interfère avec ctrlspace
+
+	"function! OnTabEnter(path)
+		"if isdirectory(a:path)
+			"let dirname = a:path
+		"else
+			"let dirname = fnamemodify(a:path, ":h")
+		"endif
+		"execute "tcd ". dirname
+	"endfunction
+
+	"autocmd TabNewEntered * call OnTabEnter(expand("<amatch>"))
+
+	" }}}2
+
+	"au BufWritePre *.vim call bibliotheque#dateModification()
+
+	" Restore le curseur {{{2
+
+	autocmd BufReadPost *
+		\ if line("'\"") > 1 && line("'\"") <= line("$") |
+		\ 	exe "normal! g`\"" |
+		\ endif
+
+	" }}}2
+
+	" Crée le répertoire de backup s’il n’existe pas encore {{{2
+
+" 	autocmd BufReadPost *
+" 		\ if filewritable(expand('%:p:h')) && ! isdirectory(expand('%:p:h') . '/.neovim/backup/ancien') |
+" 		\	call mkdir(expand('%:p:h') . '/.neovim/backup/ancien', 'p') |
+" 		\ endif
+
+	" }}}2
+
+
+	"au Filetype html,php command! PliageExpresso call bibliotheque#pliageParExpression()
+	"au Filetype html,php command! PliageMarqueurs call bibliotheque#pliageParMarqueurs()
+
+            " \ setlocal laststatus=0 nonumber norelativenumber |
+
+	"au BufWritePre newsrc silent! %s/[^:]$/&:/g
+
+	"au BufWritePost irssi.configuration w! config
+	"au BufWritePost irssi.theme         w! themes/personnel.theme
+
+	"  Ne déplace pas le curseur lorsque la fenêtre gagne le focus
+	"au FocusGained * call getchar(0)
+	"au CmdwinEnter [:/?]  startinsert
+
+" Démarrage {{{1
+
+augroup Demarrage
+	au!
+	"au VimEnter * cd ~/racine/plain
+augroup END
+
+" }}}1
+
+"  Tous les fichiers {{{1
+
+augroup TousLesFichiers
+	au!
+augroup END
+
+" }}}1
+
+" Répertoires de travail {{{1
+
+augroup RepertoiresDeTravail
+	au!
+augroup END
+
+" }}}1
+
+" Grep {{{3
+
+com! -nargs=0 BibliothequeGrep call biblio#grep()
+
+nnoremap \g :BibliothequeGrep<cr>
+
+" }}}3
+
+nnoremap \it :echo biblio#tailleFichier()<cr>
+
+" Courriel {{{2
+
+nnoremap \m :call mail#biblio#envoieArchive()<cr>
+
+" }}}2
+
+"call biblio#sourceRepertoire('~/racine/config/edit/neovim/types2fichiers')
+
+cnoremap <C-B> <Left>
+cnoremap <C-F> <Right>
+
+" Disable gui tabs
+call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
+
+nnoremap <m-h> h
+nnoremap <m-j> j
+nnoremap <m-k> k
+nnoremap <m-l> l
+
+"noremap <M-PageUp> :bp<cr>
+"noremap <M-PageDown> :bn<cr>
+
+nnoremap <m-b> :ls!<cr>:b<space>
+nnoremap <m-s-b> :ls!<cr>:tab sb<space>
+
+nnoremap <m-r> :r <c-r>=expand('%:p:h') . '/*' <cr><c-d>
+nnoremap <m-s-r> :r **/*
+
+nnoremap <m-s> :sav <c-r>=expand('%:p:h') . '/' <cr><c-d>
+
+" Remplacé par wheel find
+"nnoremap <m-f> :find **
+
+" Remplacé par wheel grep
+"nnoremap <m-g> :silent grep!<space>
+
+" Plus besoin avec wheel
+nnoremap <m-d> :lcd <c-r>=expand('%:p:h') . '/'<CR>
+
+nnoremap <m-left>  <c-w><left>
+nnoremap <m-right> <c-w><right>
+nnoremap <m-up>    <c-w><up>
+nnoremap <m-down>  <c-w><down>
+
+nnoremap <m-s-t> :tabe <C-R>=expand("%:p:h") . "/*" <CR><C-D>
+
+nnoremap <C-Home> gT
+nnoremap <C-End> gt
+
+" Désactiver la surbrillance du dernier motif recherché {{{3
+
+nnoremap <silent> <M-u> :noh<CR>
+
+" }}}3
+
+"cmap <lt>ff <c-r>=expand('%:t')<cr>
+"cmap <lt>fp <c-r>=expand('%:p')<cr>
+"cmap <lt>fd <c-r>=expand('%:p:h').'/'<cr>
+
+"nnoremap <m-a> :tabe man://
+
+command -nargs=? -complete=filetype Esy EditSyntaxPlugin <args>
+
+" Delete all buffer except current one
+nnoremap <m-s-q> :1,.-bwipe <bar> .+,$bwipe<cr>
+
+"nnoremap ]z ]]
+"nnoremap [z [[
+
+"set listchars+=nbsp:▒
+"set listchars+=trail:•
+"set listchars+=tab:>-,trail:-
+"set listchars+=tab:>─
+"set listchars+=eol:¬
+"set listchars+=precedes:←,extends:→
+
+"set listchars+=tab:▶\ ,trail:•
+"set listchars+=eol:╋
+
+" sous le curseur
+
+" works by default
+" nnoremap <kmultiply> *
+
+" ne marche pas
+nnoremap <kdivide> #
+
+nnoremap <m-q> :ls!<cr>:silent bwipe!<space>
+
+"  Copies provenant d’un autre logiciel
+
+nnoremap <f2>p :set paste!<cr>
+
+nnoremap <m-left>  <c-w><left>
+nnoremap <m-right> <c-w><right>
+nnoremap <m-up>    <c-w><up>
+nnoremap <m-down>  <c-w><down>
+
+" Enlever un élément dans le chemin d’un fichier {{{3
+
+cnoremap <C-BS> <C-\>e(<SID>RemoveLastPathComponent())<CR>
+
+function! s:RemoveLastPathComponent()
+  return substitute(getcmdline(), '\%(\\ \|[\\/]\@!\f\)\+[\\/]\=$\|.$', '', '')
+endfunction
+
+" }}}3
+
+" nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/*' <cr><c-d>
+" nnoremap <m-s-e> :e **/*
+
+nnoremap <m-e> :e <c-r>=expand('%:p:h') . '/' <cr>
+
+nnoremap <f2>r <cmd>e!<cr>
+nnoremap <f2>w <cmd>wa<cr>
+
+nnoremap <C-!> <cmd>term $SHELL -l<cr>
+
+" 	set statusline+=%(%{(col(\'.\')==virtcol(\'.\')?\"\":\"/\".virtcol(\'.\'))}%)
+" 	set statusline+=\ \ %{strftime('%H:%M\ %a\ %d\ %b\ %Y')}
+" 	set statusline+=\ \ %{strftime('%H:%M')}
+" 	set statusline+=\ \ Car\ %2.2B
+" 	set statusline+=\ \ Car\ %3.3b\ x\ %2.2B
+
+"highlight statut ctermfg=green guifg=green
+"highlight statut ctermbg=black guibg=black
+"highlight statut cterm=bold gui=bold
+
+"vnoremap <m-:> <cmd>exe join(getline("'<","'>"),'<Bar>')<CR>
+
+source ~/racine/config/edit/neovim/paquet/plugged.vim
+source ~/racine/config/edit/neovim/paquet/minpac.vim
+
+"  Shell {{{1
+
+let g:terminal_scrollback_buffer_size = 50000
+
+" }}}1
+
+"  Explorateur de fichier {{{2
+
+" Répertoire de départ
+
+set browsedir=current
+"set browsedir=buffer
+"set browsedir=last
+
+" }}}2
+
+tnoremap <D-q> <C-\><C-n>:ls!<cr>:bw!<cr>
+
+augroup social
+	autocmd!
+	autocmd BufWritePost alias.conf.perso   w! ~/racine/config/social/weechat/alias.conf
+	autocmd BufWritePost aspell.conf.perso  w! ~/racine/config/social/weechat/aspell.conf
+	autocmd BufWritePost buffers.conf.perso w! ~/racine/config/social/weechat/buffers.conf
+	autocmd BufWritePost cron.txt.perso     w! ~/racine/config/social/weechat/cron.txt
+	autocmd BufWritePost irc.conf.perso     w! ~/racine/config/social/weechat/irc.conf
+	autocmd BufWritePost iset.conf.perso    w! ~/racine/config/social/weechat/iset.conf
+	autocmd BufWritePost jabber.conf.perso  w! ~/racine/config/social/weechat/jabber.conf
+	autocmd BufWritePost logger.conf.perso  w! ~/racine/config/social/weechat/logger.conf
+	autocmd BufWritePost plugins.conf.perso w! ~/racine/config/social/weechat/plugins.conf
+	autocmd BufWritePost relay.conf.perso   w! ~/racine/config/social/weechat/relay.conf
+	autocmd BufWritePost script.conf.perso  w! ~/racine/config/social/weechat/script.conf
+	autocmd BufWritePost weechat.conf.perso w! ~/racine/config/social/weechat/weechat.conf
+	autocmd BufWritePost xfer.conf.perso    w! ~/racine/config/social/weechat/xfer.conf
+augroup END
+
+augroup news
+	autocmd!
+	autocmd BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs\s/ :&/
+	autocmd BufWritePre newsrc silent! %g!/:/s/\%(\w\+\.\)*\w\+\zs$/ :&/
+augroup END
+
+augroup word-doc-files
+	autocmd!
+	autocmd BufReadPre *.doc setlocal readonly
+	autocmd BufReadPost *.doc %!antiword "%" | fmt
+augroup END
+
+augroup FichiersHtml
+	autocmd!
+	autocmd Filetype html,php nnoremap <silent> [h ?^<h[1-6]<cr>:nohlsearch<cr>
+	autocmd Filetype html,php nnoremap <silent> ]h /^<h[1-6]<cr>:nohlsearch<cr>
+augroup END
+
+augroup FichiersSlang
+	autocmd!
+	autocmd Filetype slang set commentstring=%\ %s
+augroup END
+
+	" ---- customisations based on house-style (arbitrary)
+	autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
+	autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
+	autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+
+"  Cscope {{{2
+
+set cscopeverbose
+
+" Relatif au basename de cscope.out ?
+
+"set cscoperelative
+
+" Utilisation de la fenêtre quickfix
+
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+" Tags ordinaires puis tags cscope
+
+set cscopetagorder=1
+
+" On utilise gtags pour remplacer cscope
+
+set cscopeprg=gtags-cscope
+
+" Nombre de répertoires à afficher
+
+set cscopepathcomp=0
+
+"cs add cscope.out %:p:h
+
+"cd ~/bin
+
+"cs add GTAGS
+"cs add GRTAGS
+"cs add GPATH
+"cs add GSYMS
+
+" }}}2
+
+-- lazy.nvim {{{1
+
+-- court-circuite tout l’init et wheel ne fonctionne pas
+
+-- local lazypath = vim.fn.expand("~/racine/plugin/manager/lazy.nvim")
+-- if not vim.loop.fs_stat(lazypath) then
+--   vim.fn.system({
+--     "git",
+--     "clone",
+--     "--filter=blob:none",
+--     "https://github.com/folke/lazy.nvim.git",
+--     "--branch=stable", -- latest stable release
+--     lazypath,
+--   })
+-- end
+-- vim.opt.rtp:prepend(lazypath)
+
+-- require("lazy").setup(lazynvim)
+
+-- }}}1
+
+"filetype plugin indent on
+
+	autocmd BufNewFile,BufRead *.org setfiletype org
+
+" nnoremap <s-tab>  <c-w>w
+" nnoremap <m-s-tab>  <c-w>p
+
+" nnoremap <s-left> <c-w><left>
+" nnoremap <s-right> <c-w><right>
+" nnoremap <s-up> <c-w><up>
+" nnoremap <s-down> <c-w><down>
+
+	"autocmd BufNewFile,BufRead *.htm*,*.php,*.phtm* setfiletype html.php
+	autocmd BufNewFile,BufRead *.htm*			setfiletype html
+	autocmd BufNewFile,BufRead *.php,*.phtm*	setfiletype html.php
+	autocmd BufNewFile,BufRead *.rss,*.atom     setfiletype xml
+
+inoremap <f2>i <cmd>tabedit ~/racine/config/edit/neovim/init.vim<cr>
+
+" not a good idea, strange effect
+" nnoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
+" inoremap <f2>r <cmd>so ~/racine/config/edit/neovim/init.vim<cr>
+
+"nnoremap <f4>w wdwbPl
+
+" nnoremap <c-left> gT
+" nnoremap <c-right> gt
+
+" nnoremap <c-s-left> <cmd>tabmove -1<cr>
+" nnoremap <c-s-right> <cmd>tabmove +1<cr>
+
+"set makeprg='make -k'
+
+nnoremap <c-p> gT
+nnoremap <c-n> gt
+
+"if has("autocmd") && exists("+omnifunc")
+	"autocmd Filetype *
+	"\ if &omnifunc == "" |
+	"\ setlocal omnifunc=syntaxcomplete#Complete |
+	"\ endif
+"endif
+
+"nnoremap <C-G> <cmd>let @" = expand("%:p:~")<cr>2<C-G>
+"set path=**
+"let mapleader="-"
+
+augroup man-pages
+    autocmd!
+    if has('nvim')
+        autocmd FileType man
+            \ call man#show_toc() |
+            \ nnoremap <buffer> l <Enter> |
+            \ wincmd H |
+            \ vert resize 35 |
+            \ wincmd p
+    endif
+augroup end
+
+        autocmd FileType man nnoremap <buffer> m <cmd>lua man_toc()<cr>
+	autocmd FileType man nnoremap <buffer> d <cmd>bdelete<cr>
+
+" does not work, vim9script
+"packadd helptoc
+
+"source ~/racine/config/edit/neovim/meta.lua
+
+" if has('statusline')
+" 	set statusline=
+" 	"set statusline+=%#statut#
+" 	set statusline+=\ %.43F
+" 	set statusline+=%(\ %m%)
+" 	set statusline+=%(\ %r%)
+" 	set statusline+=\ \ Tamp\ %n
+" 	set statusline+=%(%a%)
+" 	set statusline+=\ \ %(%{(&filetype==\"\"?\"\":\"Type\")}\ %Y\ %)
+" 	set statusline+=\ \ Enc\ %{(&fenc==\"\"?&enc:&fenc)}
+" 	set statusline+=\ \ Pos
+" 	set statusline+=\ %P\ /\ %l\ x\ %v
+" 	set statusline+=%(%{(virtcol(\'.\')==col(\'.\')?\"\":\"\ /\ \".col(\'.\'))}%)
+" 	set statusline+=\ %=
+" 	set statusline+=\ \ Color\ %{g:colors_name}
+" 	set statusline+=\ \ \ \ |
+" 	set statusline+=%<
+" endif
+
+" ~/.vim -> ~/racine/config/edit/vim
+set runtimepath-=~/.vim
+set runtimepath+=~/racine/config/edit/vim
+

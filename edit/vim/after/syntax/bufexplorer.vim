@@ -1,0 +1,37 @@
+" vim: set filetype=vim :
+
+hi bufExplorerActBuf			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerAltBuf			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerBufNbr			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerCurBuf			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerHelp				guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerHidBuf			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerLockedBuf			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerMapping			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerModBuf			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerOpenIn			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerSortBy			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerSortType			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerSplit				guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerTitle				guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerToggleOpen		guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerToggleSplit		guifg=#5B3C11		guibg=NONE			gui=NONE
+hi bufExplorerUnlBuf			guifg=#5B3C11		guibg=NONE			gui=NONE
+
+hi bufExplorerActBuf			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerAltBuf			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerBufNbr			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerCurBuf			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerHelp				ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerHidBuf			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerLockedBuf			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerMapping			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerModBuf			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerOpenIn			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerSortBy			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerSortType			ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerSplit				ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerTitle				ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerToggleOpen		ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerToggleSplit		ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi bufExplorerUnlBuf			ctermfg=NONE		ctermbg=NONE		cterm=NONE

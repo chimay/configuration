@@ -1,0 +1,5 @@
+
+
+" custom maps {{{1
+
+nnoremap <buffer> <f5> <cmd>call library#make_midi()<cr>

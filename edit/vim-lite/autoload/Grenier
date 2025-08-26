@@ -1,0 +1,556 @@
+" vim: set filetype=vim :
+
+	if motif[0] == "'" && motif[-1:] = "'"
+		motif = motif[1:-2]
+	endif
+
+"  {{{ Remplacement
+" ------------------------------------------------------------------------
+
+fu! bibliotheque#remplacement()
+
+	let l:motif = input('Motif ? ')
+	let l:remplace = input('Remplacement ? ')
+
+	let l:fichiers = input('Fichiers ? ')
+
+	if l:fichiers == ''
+		let l:fichiers = '**'
+	endif
+
+	let l:separateurs = ['/', ':', '-', '_', ',', ';', '?']
+
+	let l:sep = ''
+
+	for l:candide in l:separateurs
+		if ! (l:motif =~ l:candide)
+			let l:sep = l:candide
+			break
+		endif
+	endfor
+
+	if l:sep == ''
+		echoe 'Impossible de trouver un séparateur pour la substitution'
+		return 1
+	endif
+
+	let l:chaine  = 'argdo %s'
+	let l:chaine .= l:sep
+	let l:chaine .= l:motif
+	let l:chaine .= l:sep
+	let l:chaine .= l:remplace
+	let l:chaine .= l:sep
+	let l:chaine .= 'ge'
+
+	arglocal
+
+	exe 'ar' l:fichiers
+	exe l:chaine
+
+	argglobal
+
+endfu
+
+" {{{ Ancien
+
+"fu bibliotheque#remplacement(motif, remplace, ...)
+
+	"if len(a:000) >= 1
+		"let l:fichiers = ''
+		"for l:f in a:000
+			"let l:fichiers .= ' ' . l:f
+		"endfor
+	"else
+		"let l:fichiers = '**/*'
+	"endif
+
+	"let l:separateurs = ['/', '?', ':', ';', '-']
+
+	"let l:sep = ''
+
+	"for l:candide in l:separateurs
+		"if ! (a:motif =~ l:candide)
+			"let l:sep = l:candide
+			"break
+		"endif
+	"endfor
+
+	"if l:sep == ''
+		"echoe 'Impossible de trouver un séparateur pour la substitution'
+		"return 1
+	"endif
+
+	"let l:chaine  = 'argdo %s'
+	"let l:chaine .= l:sep
+	"let l:chaine .= a:motif
+	"let l:chaine .= l:sep
+	"let l:chaine .= a:remplace
+	"let l:chaine .= l:sep
+	"let l:chaine .= 'g'
+
+	"let l:arguments = []
+	"let l:i = 0
+	"let l:N = argc()
+	"while l:i < l:N
+		"let l:arguments += [argv(l:i)]
+		"let l:i = l:i + 1
+	"endwhile
+
+	"exe 'ar' l:fichiers
+	"exe l:chaine
+	"exe 'ar' join(l:arguments)
+
+"endfu
+
+" }}}
+
+" }}}
+
+" {{{ fu bibliotheque#vimGrep(...)
+
+" fu bibliotheque#vimGrep(...)
+
+	"if len(a:000) >= 1
+		"let l:fichiers = ''
+		"for l:f in a:000
+			"let l:fichiers .= ' ' . l:f
+		"endfor
+	"else
+		"let l:fichiers = '**/*'
+	"endif
+
+	"let l:motif = input('Motif ? ')
+
+	"exe 'vimgrep! /' . l:motif . '/j' l:fichiers
+	"cope 12
+
+"endfu
+
+" }}}
+
+"  {{{ Helpgrep
+" ------------------------------------------------------------------------
+
+fu! bibliotheque#helpGrep(motif)
+
+	exe 'tab helpgrep' a:motif
+	cope 12
+
+endfu
+
+" }}}
+
+"  {{{ RedirToBufferByRegister
+" ------------------------------------------------------------------------
+
+" fu! bibliotheque#redirToBufferByRegister(commande,...)
+
+" 	if a:0 > 0
+" 		let registre = a:1
+" 	else
+" 		let registre = 'a'
+" 	endif
+
+" 	exec 'redir @' . registre . '>'
+
+" 	echo 'Commande :' a:commande
+" 	echo 'Registre :' registre
+" 	echo ''
+
+" 	exec 'silent ' . a:commande
+
+" 	redir END
+
+" 	exec 'put ' . registre
+
+" endfu
+
+" }}}
+
+"  {{{ RedirToTarget
+" ------------------------------------------------------------------------
+
+" fu! bibliotheque#redirToTarget(commande, cible)
+
+" 	exec 'redir ' . a:cible
+
+" 	echo 'Commande :' a:commande
+" 	echo 'Cible de redirection :' a:cible
+" 	echo ''
+
+" 	exec 'silent ' . a:commande
+
+" 	redir END
+
+" endfu
+
+" }}}
+
+" {{{ TransposeBlocs, TransposePars
+
+fun bibliotheque#transposeBlocs(...) range
+
+	if a:0 > 0
+		let Nblocs = a:1
+	else
+		call bibliotheque#transposePars()
+		return 0
+	endif
+
+	let lignes = getline(a:firstline, a:lastline)
+
+	call filter(lignes, 'v:val != ""')
+
+	echo lignes
+
+	let Nlignes = len(lignes)
+
+	let lonBloc = Nlignes / Nblocs
+
+	if Nlignes % Nblocs != 0
+		let lonBloc += 1
+	endif
+
+	echo Nlignes Nblocs lonBloc
+
+	let indice = 0
+	let indligne = 0
+	let depart = 0
+
+	while indice < Nlignes
+
+		echo indligne
+
+		call setline(a:firstline + indice, lignes[indligne])
+
+		let indice += 1
+
+		let indligne += lonBloc
+
+		if indligne >= Nlignes
+
+			let depart += 1
+
+			let indligne = depart
+
+		endif
+
+	endwhile
+
+	let vide = a:firstline + Nlignes
+
+	if vide <= a:lastline
+		exe vide . ',' . a:lastline . 'delete'
+	endif
+
+endfun
+
+fun bibliotheque#transposePars() range
+
+endfun
+
+" }}}
+
+"  {{{ Génération de nombres aléatoires
+" ------------------------------------------------------------------------
+
+" Trouvé sur le web
+" ------------------------------------
+
+fu! bibliotheque#aleatoire(max)
+
+   if exists('*Rndm')
+
+		return Rndm() % a:max
+
+	else
+
+		redir => l:alea
+
+			ruby << EOF
+
+				rmax = VIM::evaluate("a:max")
+				rmax = nil if rmax == ""
+				printf rand(rmax).to_s
+
+EOF
+
+		redir END
+
+		return strpart(l:alea, 1, strlen(l:alea) - 1)
+
+	endif
+
+endfu
+
+" }}}
+
+"  {{{ Date de modification
+" ------------------------------------------------------------------------
+
+fu! bibliotheque#dateModification()
+
+	let ligne = line('.')
+	let colonne = col('.')
+	keepjumps normal gg
+
+	if search('\c^[#"%] Last change:')
+
+		"let dateHeure = strftime("%d-%m-%Y %H:%M:%S")
+		let dateHeure = strftime("%A %d %B %Y, %H:%M")
+
+		"exe 's/\c^" Last change:\s\+\zs..[-/]..[-/].. ..:..:../' . dateHeure . '/'
+		"exe 's/\c^" Last change:\s\+\zs.*..:..:...*/' . dateHeure . '/'
+		"exe 's/\c^" Last change:\s\+\zs.*\d\d:\d\d:\d\d.*/' . dateHeure . '/'
+		"exe 's/\c^" Last change:\s\+\zs.*\d\d.*\d\{2,4}.*\d\d:\d\d:\d\d.*/' . dateHeure . '/'
+		"exe 's/\c^" Last change:\s\+\zs.*\d\d.*\d\d\%(\d\d\)\?.*\d\d:\d\d:\d\d.*/' . dateHeure . '/'
+		exe 's/\c^" Last change:\s\+\zs.*$/' . dateHeure . '/'
+	endif
+
+	keepjumps call cursor(ligne, colonne)
+	norm zz
+	"keepjumps exe "normal " . ligne . "G"
+	"keepjumps exe "normal " . colonne . "|"
+
+endfu
+
+" }}}
+
+"  {{{ Interrupteur background
+" ------------------------------------------------------------------------
+
+" function! bibliotheque#interrupteurBackground()
+
+" 	if &background == "light"
+" 		set background=dark
+" 	else
+" 		set background=light
+" 	endif
+
+" endfunction
+
+" }}}
+
+"  {{{ Fonction de complétion des fichiers dans le &path
+" ------------------------------------------------------------------------
+
+" Voir aussi :h :command puis recherche custom completion
+
+fu! bibliotheque#editFileComplete(argument, cmdline, curseur)
+
+	return split(globpath(&path, a:argument), "\n")
+
+endfu
+
+" }}}
+
+"  {{{ Source répertoire
+" ------------------------------------------------------------------------
+
+" fu! bibliotheque#sourceRepertoire(repertoire)
+
+" 	for l:fichier in split(glob(a:repertoire . '/**/*.vim'), '\n')
+
+" 		exe 'source ' . l:fichier
+
+" 	endfor
+
+" endfu
+
+" }}}
+
+"  {{{ Shell
+" ------------------------------------------------------------------------
+
+" fu! bibliotheque#runShellCommand(cmdline)
+
+" 	echo a:cmdline
+
+" 	let expanded_cmdline = a:cmdline
+
+" 	for part in split(a:cmdline, ' ')
+
+" 		if part[0] =~ '\v[%#<]'
+" 			let expanded_part = fnameescape(expand(part))
+" 			let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
+" 		endif
+
+" 	endfor
+
+" 	botright new
+
+" 	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+
+" 	call setline(1, 'You entered:    ' . a:cmdline)
+" 	call setline(2, 'Expanded Form:  ' .expanded_cmdline)
+" 	call setline(3,substitute(getline(2),'.','=','g'))
+
+" 	execute '$read !'. expanded_cmdline
+
+" 	setlocal nomodifiable
+
+" 	1
+
+" endfu
+
+" À placer dans maps.vim pour activer
+
+" command! -complete=shellcmd -nargs=+ Shell call bibliotheque#runShellCommand(<q-args>)
+
+" command! -complete=file -nargs=* Git call bibliotheque#runShellCommand('git '.<q-args>)
+" command! -complete=file -nargs=* Svn call bibliotheque#runShellCommand('svn '.<q-args>)
+" command! -complete=file -nargs=* Bzr call bibliotheque#runShellCommand('bzr '.<q-args>)
+" command! -complete=file -nargs=* Hg  call bibliotheque#runShellCommand('hg '.<q-args>)
+
+" }}}
+
+"  {{{ Rendu HTML
+" ------------------------------------------------------------------------
+
+fu! bibliotheque#renduHtml()
+
+	let l:motif = '<[/?]\?[^>]\+>'
+
+	let l:ligne = getline('.')
+
+	if l:ligne =~ l:motif
+		let l:ligne = substitute(l:ligne, l:motif, '', 'g')
+	endif
+
+	let @/ = ligne
+
+	let fichier = '.' . expand('%') . '.renduHtml'
+
+	exe '!elinks -force-html -dump-width 84 -dump file://' . expand('%:p') '>|' fichier
+
+	exe 'e' fichier
+
+	norm gg
+
+	if @/ != ''
+		silent! norm n
+	endif
+
+endfu
+
+" }}}
+
+"  {{{ Navigation entre les tampons
+" ------------------------------------------------------------------------
+
+" Trouvé dans les vim tips
+" Le but est de définir :
+" nnoremap <silent> <C-n> :call bibliotheque#switchToNextBuffer(1)<CR>
+" nnoremap <silent> <C-p> :call bibliotheque#switchToNextBuffer(-1)<CR>
+" ------------------------------------
+
+"fu! bibliotheque#switchToNextBuffer(incr)
+	"let help_buffer = (&filetype == 'help')
+	"let current = bufnr("%")
+	"let last = bufnr("$")
+	"let new = current + a:incr
+	"while 1
+		"if new != 0 && bufexists(new) && ((getbufvar(new, "&filetype") == 'help') == help_buffer)
+			"execute ":buffer ".new
+			"break
+		"else
+			"let new = new + a:incr
+			"if new < 1
+				"let new = last
+			"elseif new > last
+				"let new = 1
+			"endif
+			"if new == current
+				"break
+			"endif
+		"endif
+	"endwhile
+"endfu
+
+" }}}
+
+"  {{{ Déplacement des onglets
+" ------------------------------------------------------------------------
+
+fu! bibliotheque#deplacementDesOnglets(delta)
+	let N = tabpagenr() - 1 + a:delta
+	echo N
+	let N = max([N,0])
+	exe "tabm" N
+endfu
+
+" }}}
+
+"  {{{ Espace = nohlsearch / Ctrl-F
+" ------------------------------------------------------------------------
+
+" Ne fonctionne pas
+
+" let s:recherche = ''
+"
+" fu! bibliotheque#nohlsearchOuCtrlF()
+"
+" 	if s:recherche != @/
+"
+" 		let s:recherche = @/
+"
+" 		nohlsearch
+" 	else
+" 		exe "norm! \<C-F>"
+" 	endif
+"
+" endfu
+
+" }}}
+
+fu! biblio#pliageParExpression()
+	setlocal foldmethod=expr
+	setlocal foldexpr=biblio#niveauDePliage(v:lnum)
+endfu
+
+fu! biblio#pliageParMarqueurs()
+	setlocal foldmethod=marker
+	setlocal foldmarker={{{,}}}
+endfun
+
+fu! biblio#niveauDePliage(noDeLigne)
+	let ligne = getline(a:noDeLigne)
+	for niveau in range(1,6)
+		let expresso = '<h' . niveau . '.*>'
+		if ligne =~? expresso
+			return '>' . string(niveau)
+		endif
+	endfor
+	let ligne = getline(a:noDeLigne + 1)
+	for niveau in range(1,6)
+		let expresso = '<h' . niveau . '.*>'
+		if ligne =~? expresso
+			return '<' . string(niveau)
+		endif
+	endfor
+	return -1
+endfu
+
+
+fu! biblio#tabline ()
+	let s = ''
+	for i in range(tabpagenr('$'))
+		" select the highlighting
+		if i + 1 == tabpagenr()
+			let s .= '%#TabLineSel#'
+		else
+			let s .= '%#TabLine#'
+		endif
+		" set the tab page number (for mouse clicks)
+		let s .= '%' . (i + 1) . 'T'
+		" the label is made by MyTabLabel()
+		let s .= ' %{biblio#tablabel(' . (i + 1) . ')} '
+	endfor
+	" after the last tab fill with TabLineFill and reset tab page nr
+	let s .= '%#TabLineFill#%T'
+	" right-align the label to close the current tab page
+	if tabpagenr('$') > 1
+	let s .= '%=%#TabLine#%999X[X]'
+	endif
+	return s
+endfu

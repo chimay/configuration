@@ -1,0 +1,1 @@
+/home/david/racine/config/edit/neovim/autoload/library.vim
