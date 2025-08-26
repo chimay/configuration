@@ -1,0 +1,36 @@
+" vim: set filetype=vim :
+
+hi zshCommands		guifg=brown			guibg=NONE			gui=NONE
+hi zshConditional	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi zshDelimiter		guifg=#5B3C11		guibg=NONE			gui=NONE
+hi zshDeref			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi zshException		guifg=#9B3C11		guibg=NONE			gui=NONE
+hi zshJobSpec		guifg=#5B3C11		guibg=NONE			gui=NONE
+hi zshKeyword		guifg=#872E30		guibg=NONE			gui=NONE
+hi zshOptStart		guifg=#872E30		guibg=NONE			gui=NONE
+hi zshPreCommand	guifg=brown			guibg=NONE			gui=NONE
+hi zshPreProc		guifg=brown			guibg=NONE			gui=NONE
+hi zshQuoted		guifg=#5B3C11		guibg=NONE			gui=NONE
+hi zshRedir			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi zshRepeat		guifg=#5B3C11		guibg=NONE			gui=NONE
+hi zshShortDeref	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi zshSubst			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi zshTodo			guifg=#872E30		guibg=NONE			gui=NONE
+hi zshTypes			guifg=#88421D		guibg=NONE			gui=NONE
+
+hi zshCommands		ctermfg=brown		ctermbg=black			cterm=NONE
+hi zshConditional	ctermfg=NONE		ctermbg=black			cterm=NONE
+hi zshDelimiter		ctermfg=NONE		ctermbg=black			cterm=NONE
+hi zshDeref			ctermfg=NONE		ctermbg=black			cterm=NONE
+hi zshJobSpec		ctermfg=NONE		ctermbg=black			cterm=NONE
+hi zshKeyword		ctermfg=brown		ctermbg=black			cterm=NONE
+hi zshOptStart		ctermfg=brown		ctermbg=black			cterm=NONE
+hi zshPreCommand	ctermfg=brown		ctermbg=black			cterm=NONE
+hi zshPreProc		ctermfg=brown		ctermbg=black			cterm=NONE
+hi zshQuoted		ctermfg=NONE		ctermbg=black			cterm=NONE
+hi zshRedir			ctermfg=NONE		ctermbg=black			cterm=NONE
+hi zshRepeat		ctermfg=NONE		ctermbg=black			cterm=NONE
+hi zshShortDeref	ctermfg=NONE		ctermbg=black			cterm=NONE
+hi zshSubst			ctermfg=NONE		ctermbg=black			cterm=NONE
+hi zshTodo			ctermfg=brown		ctermbg=black			cterm=NONE
+hi zshTypes			ctermfg=NONE		ctermbg=black			cterm=NONE

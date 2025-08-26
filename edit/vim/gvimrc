@@ -16,7 +16,9 @@ set guioptions+=A
 
 " Fonte {{{1
 
-set guifont=Monospace\ 12
+set guifont=DejaVu\ Sans\ Mono\ 13
+"set guifont=Monospace\ 12
+"set guifont=Adwaita\ Mono\ 12
 
 " Onglets {{{1
 
@@ -38,7 +40,6 @@ set guioptions-=p
 
 set guioptions+=f
 
-
 "  Fenêtre {{{1
 
 if has("gui_running")
@@ -49,30 +50,41 @@ endif
 
 " Curseur {{{1
 
+" set guicursor=
+" 			\n:block-Cursor/lCursor-blinkon700-blinkoff700,
+" 			\v:block-vCursor,
+" 			\i:ver25-iCursor,
+" 			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
+" 			\r:hor15-iCursor,
+" 			\c:block-Cursor,
+" 			\ci:ver25,
+" 			\cr:hor25,
+" 			\sm:block
+
 set guicursor=
-			\n:block-Cursor/lCursor-blinkon700-blinkoff700,
+			\n:block-Cursor/lCursor-blinkon0,
 			\v:block-vCursor,
 			\i:ver25-iCursor,
-			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
+			\o:hor50-Cursor-blinkwait100-blinkon0,
 			\r:hor15-iCursor,
 			\c:block-Cursor,
 			\ci:ver25,
 			\cr:hor25,
 			\sm:block
 
-
 "  Barres de défilement {{{1
 
 " Barre de défilement verticale
 
 set guioptions-=r
+set guioptions-=R
 set guioptions-=l
+set guioptions-=L
 
 " Barre de défilement horizontale
 
 set guioptions-=b
 set guioptions-=h
-
 
 "  Barre de menu {{{1
 

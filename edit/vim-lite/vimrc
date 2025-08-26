@@ -1,0 +1,51 @@
+" vim: set filetype=vim :
+
+" paths {{{1
+
+set runtimepath-=~/.vim
+set runtimepath+=~/racine/config/edit/vim-lite
+
+" plugins needed before config {{{1
+
+" main {{{1
+
+source ~/racine/config/edit/vim-lite/main.vim
+
+packadd! matchit
+
+" plugins {{{1
+
+source ~/racine/config/edit/vim-lite/paquet/packager.vim
+
+source ~/racine/config/edit/vim-lite/paquet/preload.vim
+
+" On charge tout, pour pouvoir utiliser certaines fonctions
+" de configuration
+
+packloadall
+
+" Les appels aux fonctions autoload des plugins
+" doivent se situer après packloadall
+
+source ~/racine/config/edit/vim-lite/paquet/postload.vim
+
+" maps replacing plugins ones {{{1
+
+nnoremap <c-pageup> gT
+nnoremap <c-pagedown> gt
+
+nnoremap <c-p> gT
+nnoremap <c-n> gt
+
+nnoremap <c-home> <cmd>tabfirst<cr>
+nnoremap <c-end> <cmd>tablast<cr>
+
+nnoremap <s-pageup> <cmd>tabmove -1<cr>
+nnoremap <s-pagedown> <cmd>tabmove +1<cr>
+
+" nnoremap <c-s-pageup> <cmd>tabmove -1<cr>
+" nnoremap <c-s-pagedown> <cmd>tabmove +1<cr>
+
+" plugins auto-commands {{{1
+
+source ~/racine/config/edit/vim-lite/paquet/autocmd-plugin.vim

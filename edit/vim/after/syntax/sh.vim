@@ -1,6 +1,7 @@
 " vim: set filetype=vim :
 
-hi shCaseEsac	   			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi shArrayRegion   			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi shArithmetic   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shParen		   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shSnglCase	   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shCommandSub	   			guifg=#5B3C11		guibg=NONE			gui=NONE
@@ -10,9 +11,11 @@ hi shDeref		   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shDerefOp	   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shDerefVar	   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shDoubleQuote			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi shEcho					guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shExpr		   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shExprRegion	   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shFunction	   			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi shFunctionKey   			guifg=#872e30		guibg=NONE			gui=NONE
 hi shIf			   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shOption		   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shQuote		   			guifg=#5B3C11		guibg=NONE			gui=NONE
@@ -22,8 +25,12 @@ hi shRedir		   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shRepeat		   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shSet		   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shSetList	   			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi shSingleQuote   			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi shSpecial 	  			guifg=#872e30		guibg=NONE			gui=NONE
 hi shStatement	   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shTestOpr	   			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi shTestPattern   			guifg=#5B3C11		guibg=NONE			gui=NONE
+hi shTestDoubleQuote 		guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shVariable	   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shWrapLineOperator	   	guifg=#606060		guibg=NONE			gui=NONE
 

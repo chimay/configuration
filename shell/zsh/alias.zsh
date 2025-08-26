@@ -66,8 +66,6 @@ alias pp='pager +G'
 alias q='most -C'
 
 alias vp=vimpager
-alias nvp=nvimpager
-alias nvm=nviman.sh
 
 alias tt='multitail'
 alias taco='multitail -C -ts'
@@ -97,8 +95,8 @@ alias ed=run-ed
 
 # Vim {{{2
 
-alias v=vim
-alias vi=vim
+alias v='vim -u ~/racine/config/edit/vim-lite/vimrc'
+alias vi='vim -u ~/racine/config/edit/vim-lite/vimrc'
 
 alias vid=vimdiff
 
@@ -302,7 +300,7 @@ alias fini='mpv ~/audio/sonnerie/notification/fini.ogg'
 
 alias rh=run-help
 alias m=man
-alias vm='vim +"call library#manual_argv()"'
+alias vm='vim -u ~/racine/config/edit/vim-lite/vimrc +"call library#manual_argv()"'
 alias mw=w3mman
 alias in=info
 
@@ -632,8 +630,8 @@ hash -d zdot=~/racine/dotdir/zsh
 # Edit {{{2
 
 hash -d vimconf=~/racine/config/edit/vim
+hash -d vimliteconf=~/racine/config/edit/vim-lite
 hash -d neovimconf=~/racine/config/edit/neovim
-hash -d neovimconf-lua=~/racine/config/edit/neovim-lua
 hash -d kakconf=~/racine/config/edit/kak
 hash -d emacsconf=~/racine/config/edit/emacs
 

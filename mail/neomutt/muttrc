@@ -163,7 +163,7 @@ set pager=builtin
 
 #set editor=builtin
 
-set editor='vim -u ~/racine/config/edit/vim/rc-vimail.vim'
+set editor='vim -u ~/racine/config/edit/vim-mail/vimrc'
 
 #  Localisation {{{2
 

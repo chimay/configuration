@@ -1,36 +1,98 @@
 " vim: set filetype=vim :
 
-"  Compatibilité {{{1
+" documentation {{{1
 
-set nocompatible
+" ab = abbreviation
+" au = autocmd
 
-"set cpoptions=aABceFs
+" norm = normal
+" exe = execute
+
+" fu = function
+
+" setf = setfiletype
+
+" sy = syntax
+" hi = highlight
+
+" debug {{{1
+
+" 	>= 1	When the viminfo file is read or written.
+" 	>= 2	When a file is ":source"'ed.
+" 	>= 5	Every searched tags file and include file.
+" 	>= 8	Files for which a group of autocommands is executed.
+" 	>= 9	Every executed autocommand.
+" 	>= 12	Every executed function.
+" 	>= 13	When an exception is thrown, caught, finished, or discarded.
+" 	>= 14	Anything pending in a ":finally" clause.
+" 	>= 15	Every executed Ex command (truncated at 200 characters).
+
+"set verbose=9
+
+"set verbosefile=~/Documents/vim.log
 
 " ------------------------------------
 
-" Terminal {{{1
+"  compatibility {{{1
 
-set ttyfast
+"set cpoptions-=C
 
-" Pageur {{{1
+"  word chars {{{1
+
+"set iskeyword=@,48-57,_,192-255
+"set iskeyword=48-57,_,192-255
+
+set iskeyword-=/,:,#,@,-
+
+" internal pager {{{1
 
 set more
 
-" Couper, copier, coller {{{1
+" insertion {{{1
+
+" nostop = don’t stop at beginning of insert
+
+set backspace=indent,eol,start
+
+" cut, copy, paste {{{1
 
 "set clipboard=
+
 set clipboard=unnamedplus
 
-"  Environnement {{{1
+"  environment {{{1
 
 "  Chemins de recherche des fichiers {{{2
 
-" Permet une recherche récursive avec :find
+"set path=.,,
+set path=.,,**
 
-set path=.,,
-"set path=**
+"  Chemins de recherche des répertoires {{{2
 
-"  Système de fichier {{{1
+"set cdpath=,
+
+"set cdpath+=~/racine
+"set cdpath+=~
+
+"  filesystem {{{1
+
+"  Répertoire du fichier courant {{{2
+
+" Se place dans le répertoire du fichier courant
+
+" Voir aussi autocommand.vim
+
+"set autochdir
+
+"  Lecture / Écriture {{{2
+
+"set autowrite				" Sauvegarde automatique des fichiers lors de navigation
+							" dans les arguments, :stop, :suspend, :tag, :!, :make, ^],
+							" ou quand un :buffer, ctrl-^, ^O, ^I ou une marque dirige vers un autre fichier
+
+"set autowriteall			" Sauvegarde automatique des fichiers aussi pour :e, :enew, :q, :qall, :x, :recover
+
+"set autoread
 
 "  Sauvegardes {{{2
 
@@ -42,7 +104,11 @@ set backupext=~
 
 set writebackup
 
-set backupskip=/tmp/*,/etc/*,neomutt-*-*-*-*
+set backupskip=/tmp/*,/etc/*,mutt-*-*-*-*
+
+" Patchmode {{{2
+
+"set patchmode=.original
 
 "  Fichier de récupération en cas de crash {{{2
 
@@ -52,12 +118,11 @@ set directory=~/racine/varia/autosave/vim
 "set noswapfile
 
 " Fréquence de sauvegarde
-" ------------------------------------
 
 set updatecount=100			" Nombre de caractères
 set updatetime=1000			" Millisecondes
 
-"  Annulation {{{1
+" undos {{{1
 
 set undolevels=1234
 
@@ -67,7 +132,7 @@ if exists("&undofile")
 	set undodir=~/racine/varia/undo/vim,.
 endif
 
-"  Session {{{1
+"  session {{{1
 
 set sessionoptions=
 
@@ -86,47 +151,70 @@ set sessionoptions+=unix
 set sessionoptions+=winpos
 set sessionoptions+=winsize
 
-"  Encodage {{{1
-
-set encoding=utf-8
+"  encodage {{{1
 
 setglobal fileencoding=utf-8
 setglobal fileencodings=utf-8
 
+" Digraph {{{2
+
 " Disponible avec <C-K> char1 char2
-
-" Backspace {{{2
-
-set backspace=indent,eol,start
 
 " Cette option active l’accès au digraph par char1 <BS> char2
 
 "set digraph
 
-"  Orthographe {{{1
+" Convertir les codes hexadécimaux de wikipédia en codes décimaux via
+" par exemple : python -c "print 0x<code>"
+
+" Alphabet phonétique {{{3
+
+"dig ia 0592			" ɐ
+"dig oo 0596			" ɔ
+"dig ee 0601			" ə
+"dig ep 0603			" ɛ
+"dig in 0643			" ʃ
+"dig zd 0658			" ʒ
+"dig ER 0640			" ʀ
+"dig Gn 0626			" ɲ
+"dig Ng 0627			" ɳ
+"dig uu 0613			" ɥ
+"dig ?? 0660			" ʔ
+
+" Divers {{{3
+
+" dig -n 8208				" ‐
+" dig -m 8211				" –
+
+"dig ~~ 0771			" tilde supérieur
+
+"  language {{{1
 
 set spelllang=fr,en
 
 set spellsuggest=best
 
-"  Dictionnaire {{{1
+"set imsearch
+"set keymap=french-azerty
+
+"  dictionary {{{1
 
 " Complétion par dictionnaire et synonymes
 
 " Dictionnaires {{{2
 
-set dictionary+=fr-classique+reforme1990.dic
-set dictionary+=en_GB.dic
+set dictionary+=~/racine/index/dict/spell/dictionnaire.txt
+set dictionary+=~/racine/index/dict/spell/fr-classique+reforme1990.dic
+set dictionary+=~/racine/index/dict/spell/en_GB.dic
 
-" Thesaurus (dictionnaires de synonymes) {{{2
+" Thesaurus (synonymes) {{{2
 
-" Personnel
+" personal
 set thesaurus+=~/racine/index/dict/spell/synonymes.txt
-
-" Officiel
+" french
 set thesaurus+=~/racine/index/dict/spell/thes_fr.dat
 
-"  Modes {{{1
+" modes {{{1
 
 set virtualedit=block,onemore
 "set virtualedit=block,insert,onemore
@@ -134,14 +222,12 @@ set virtualedit=block,onemore
 
 set selection=inclusive
 
-" Lignes d'instructionvim dans
-" les fichiers édités
-" ------------------------------------
+" Lignes d'instruction vim dans les fichiers édités
 
 set modeline
 set modelines=7
 
-"  Périphériques {{{1
+" devices {{{1
 
 "  Clavier {{{2
 
@@ -159,30 +245,56 @@ set noerrorbells
 set mouse=a
 
 set mousefocus
-set mousehide					
+
+set mousehide					" Cache le pointeur de souris lorsque l'on tape
+
 set mousemodel=extend				" Clic droit modifie sélection
 "set mousemodel=popup_setpos		" Clic droit menu
-set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up-arrow,v:rightup-arrow
 
-"  Recherche {{{1
+"set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up-arrow,v:rightup-arrow
+
+" Sélection {{{2
+
+"set selectmode+=key
+"set selectmode+=mouse
+
+"set keymodel+=startsel
+"set keymodel+=stopsel
+
+" search {{{1
 
 " Casse {{{2
-
-set hlsearch
-set incsearch
 
 " Ignore la casse
 
 set ignorecase
 
-" Recherche intelligente : ignore la casse sauf si	des majuscules sont présentes dans le motif
+" Recherche intelligente : ignore la casse sauf si
+" des majuscules sont présentes dans le motif
 
 set smartcase
 
-"  Complétion {{{1
+" Grep {{{2
+
+if executable('rg')
+	set grepprg=rg\ --vimgrep\ --smart-case\ $*
+	set grepformat=%f:%l:%c:%m
+elseif executable('ag')
+	set grepprg=ag\ --nocolor\ --vimgrep\ --smart-case\ $*
+	set grepformat=%f:%l:%c:%m
+elseif executable('ack')
+	set grepprg=ack\ --nocolor\ --nogroup\ --column\ --smart-case\ $*
+	set grepformat=%f:%l:%c:%m
+elseif executable('grep')
+	set grepprg=grep\ --line-number\ --ignore-case\ --no-messages\ $*\ /dev/null
+	set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
+else
+	set grepprg=internal
+endif
+
+" completion {{{1
 
 " Fichiers à ignorer {{{2
-" ------------------------------------
 
 set wildignore=
 
@@ -197,7 +309,6 @@ set wildignore+=*.wav,*.flac,*.ogg,*.mp3
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj
 
 " Casse {{{2
-" ------------------------------------
 
 set wildignorecase
 
@@ -210,11 +321,38 @@ set completeopt=menu
 
 set pumheight=12
 
-set complete=.,w,b,u,U,
-			\s~/racine/index/dict/spell/synonymes.txt,
-			\k~/racine/index/dict/spell/fr-classique+reforme1990.dic,
-			\k~/racine/index/dict/spell/en_GB.dic,
-			\t,i,d
+" Compléter par quoi lors d'un ctrl-n/p ? {{{3
+
+"    This option specifies how keyword completion works
+"	when CTRL-P or CTRL-N are used.  It is also used for whole-line
+"	completion |i_CTRL-X_CTRL-L|.  It indicates the type of completion
+"	and the places to scan.  It is a comma separated list of flags:
+"
+"	.	scan the current buffer ('wrapscan' is ignored)
+"	w	scan buffers from other windows
+"	b	scan other loaded buffers that are in the buffer list
+"	u	scan the unloaded buffers that are in the buffer list
+"	U	scan the buffers that are not in the buffer list
+"	k	scan the files given with the 'dictionary' option
+"	kspell  use the currently active spell checking |spell|
+"	k{dict}	scan the file {dict}.  Several "k" flags can be given,
+"		patterns are valid too.  For example: :set cpt=k/usr/dict/*,k~/spanish
+"	s	scan the files given with the 'thesaurus' option
+"	s{tsr}	scan the file {tsr}.  Several "s" flags can be given, patterns
+"		are valid too.
+"	i	scan current and included files
+"	d	scan current and included files for defined name or macro
+"	]	tag completion
+"	t	same as "]"
+
+" set complete=.,w,b,u,U,
+" 			\s~/racine/index/dict/spell/synonymes.txt,
+" 			\k~/racine/index/dict/spell/fr-classique+reforme1990.dic,
+" 			\k~/racine/index/dict/spell/en_GB.dic,
+" 			\t,i,d
+
+set complete=.,b,u,U,i,d
+" use c-x c-k for dictionary and c-x c-t for thesaurus
 
 " Casse intelligente pour les complétions {{{3
 
@@ -224,20 +362,46 @@ set infercase
 
 set omnifunc=syntaxcomplete#Complete
 
+" Complétion personalisée, gérée par certains plugins comme neocomplete
+
+"set completefunc=
+
 "  Complétion dans la ligne de commande {{{2
 
-set wildmenu
-
 set wildchar=<tab>
+
+" set wildcharm=<C-Z>
 set wildcharm=<tab>
 
 set wildoptions=pum,tagfile
 
 " Wildmode {{{3
 
+" 'wildmode' 'wim'	string	vim default: "full")
+" 			global
+" 			{not in Vi}
+" 	Completion mode that is used for the character specified with
+" 	'wildchar'.  It is a comma separated list of up to four parts.  Each
+" 	part specifies what to do for each consecutive use of 'wildchar'.  The
+" 	first part specifies the behavior for the first use of 'wildchar',
+" 	The second part for the second use, etc.
+" 	These are the possible values for each part:
+" 	""				Complete only the first match.
+" 	"full"			Complete the next full match.  After the last match,
+" 					the original string is used and then the first match again.
+" 	"longest"		Complete till longest common string.  If this doesn't
+" 					result in a longer string, use the next part.
+" 	"longest:full"	Like "longest", but also start 'wildmenu' if it is enabled.
+" 	"list"			When more than one match, list all matches.
+" 	"list:full"		When more than one match, list all matches and
+" 					complete first match.
+" 	"list:longest"	When more than one match, list all matches and
+" 					complete till longest common string.
+
+"set wildmode=longest,full
 set wildmode=full
 
-"  Formattage du texte {{{1
+" text formatting {{{1
 
 set textwidth=72
 set wrapmargin=7
@@ -262,7 +426,7 @@ set formatexpr=
 set formatprg=fmt
 "set formatprg=par\ -w85rjq
 
-"  Indentation {{{1
+" indentation {{{1
 
 " Tabulation {{{2
 
@@ -290,21 +454,47 @@ set indentkeys=!^F,*<Return>,:,o,O,{,0=},0=#,e,=fi,=esac,=done
 
 set cindent
 
-"  Pliage {{{1
+"set cinkeys=0{,0},0),:,0#,!^F,o,O,e
 
-set foldenable
+" Indentation basée sur l’évaluation d’une expression
+
+"set indentexpr=
+
+" folding {{{1
 
 "  Options {{{2
 
 set foldenable
 
+" Nombre minimum de lignes
+
 set foldminlines=1
+
+" Nombre de niveaux visibles
 
 set foldlevel=0
 
+"set foldlevelstart=0
+
+" Ouverture automatique
+
+" Commandes ouvrant automatiquement un pli
+
+" set foldopen=all
+
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
+" Fermeture automatique
+
+" Si curseur en-dehors et > à foldlevel
+
+" set foldclose=all
+
+" Nombre de colonnes pour afficher l'arborescence
+
 set foldcolumn=7
+
+" Titre des textes pliés
 
 set foldtext=library#folding_text()
 
@@ -314,18 +504,29 @@ set foldmethod=marker
 
 set foldmarker={{{,}}}
 
-"  Tampons {{{1
+" buffers {{{1
+
+" Autorise les fichiers modifiés à être cachés
 
 set hidden
 set bufhidden=hide
 
-"  Onglets {{{1
+" Demande si il faut sauver un buffer avant de le cacher
+
+"set confirm
+
+" tabs (onglets) {{{1
 
 " Barre d'onglets {{{2
 
-set tabline=%!library#tablabel()
+" managed by wheel
+"set tabline=%!library#tabline()
 
-set guitablabel=%N\ %t\ %m
+"set guitablabel=%N\ %t\ %m
+
+" 0: never
+" 1: only if there are at least two tab pages
+" 2: always
 
 set showtabline=1
 
@@ -337,19 +538,91 @@ set switchbuf=usetab
 
 set tabpagemax=50
 
-"  Différences entre fichiers {{{1
+" diff between files {{{1
 
 set diffopt=filler,context:4,vertical,foldcolumn:2
 
-"  Labels, etiquettes {{{1
+" tags (labels, etiquettes) {{{1
 
-"  Compilation de fichiers {{{1
+"  Tags {{{2
 
-set makeprg='make'
+" Voir autocommand.vim
+
+"set tags=./tags,tags
+
+"set tags=./tags,./TAGS,tags,TAGS
+
+" compilation {{{1
+
+set makeprg=make
 
 set makeef=
+" set makeef='make-errors-##'
 
-"  Maps {{{1
+" maps {{{1
+
+" Idées de touches pour maps / préfixes de maps {{{2
+
+" ’ : non utilisé
+" ` : map ' = `
+
+" <cr> = <enter>
+" <s-cr>
+" <m-cr>
+" <c-cr>
+
+" <m-!>
+" <c-!>
+
+" <m-$>
+" <c-$>
+
+" <m-=>
+" <c-=>
+
+" <space>
+" <s-space>
+" <m-space>
+" <c-space>
+
+" <tab>
+" <s-tab>
+" <m-tab>
+" <c-tab>
+
+" <bs> = backspace
+" <s-bs>
+" <m-bs>
+" <c-bs>
+
+" <Bar> = |
+" <Bslash> = \
+
+" <Bar> = |
+" <Bslash> = \
+
+" <m-_>
+" <c-_>
+
+" altgr-...
+
+" Mapping with Meta/Alt key {{{2
+
+" Xterm, by default, sets eightBitInput to true, meaning that the eighth
+" bit is set for meta characters (combinations with the Alt key, for
+" instance). Not all terminals have this feature enabled by default, and
+" therefore work differently (they send an Esc before the character key).
+"
+" So for the xterm, with enables the eight bit, you can just do
+"something like:
+"
+" map <m-a> ggVG
+"
+" However, with a terminal that is in 7 bit mode, you have to do this:
+"
+" set <m-a> = ^[a map <m-a> ggVG " the ^[ is an Esc char that comes
+" before the 'a' In most default configs, ^[a may be typed by pressing
+" first <C-v>, then <M-a>
 
 "  Options {{{2
 
@@ -364,94 +637,151 @@ set ttimeout
 
 set ttimeoutlen=50
 
+" Préfixe pour les plugins {{{2
+
+" Remarque : certains mapleaders causent des problèmes avec l’indentation <<
+
+let g:mapleader="\\"
+let g:maplocalleader="_"
+
+" let mapleader="\<d-,>"
+" let maplocalleader="\<d-,>"
+
 "  Aide {{{2
+
+" Voir <url:paquet/postload.vim#tn=Denite>
+
+"nnoremap <F1> <nop>
 
 nnoremap <F1> :tab help<space>
 nnoremap <S-F1> :tab helpgrep<space>
+nnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
+inoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
+vnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
+nnoremap <M-F1> <cmd>call library#helptags()<cr>
+
+"nnoremap K K<c-w>T
+
+" does not work
+"nnoremap K <cmd>tab normal! K<cr>
 
 " Manuels {{{2
 
 runtime ftplugin/man.vim
-packadd helptoc
+packadd! helptoc
 nnoremap gm <cmd>call library#manual()<cr>
 
 " Quitter {{{2
 
-nnoremap ZZ :qa<cr>
-nnoremap ZQ :qa!<cr>
+nnoremap ZZ <cmd>qa<cr>
+nnoremap ZQ <cmd>qa!<cr>
+
+" Phrases {{{2
+
+" noremap <f5>s (
+" noremap <f6>s )
+
+" vnoremap <f5>s (
+" vnoremap <f6>s )
 
 "  Fichiers {{{2
 
+nnoremap <kEnter> <cmd>call library#write_all()<cr>
+
+"nnoremap <C-G> 2<C-G>
+
+" Fichier courant aussi disponible dans le registre %
+" Fichier alternatif aussi disponible dans le registre #
+
 nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
-nnoremap \n :new <bar> only<cr>
-nnoremap \e :e <C-R>=expand('%:p:h') . '/' <CR><C-D>
-nnoremap \r :r <C-R>=expand('%:p:h') . '/' <CR><C-D>
-nnoremap \g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
-nnoremap \v :tabe ~/racine/config/edit/vim/main.vim<cr>
+nnoremap <f2>n <cmd>new <bar> only<cr>
+nnoremap <f2>e :e <c-r>=expand('%:p:h') . '/' <cr>
+nnoremap <f2>r :r <c-r>=expand('%:p:h') . '/' <cr>
+nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
+nnoremap <f2>v <cmd>tabedit ~/racine/config/edit/vim/main.vim<cr>
+nnoremap <f2>c <cmd>tabedit ~/racine/plain/organize/cronos.org<cr>
+nnoremap <f2>d <cmd>call library#dream()<cr>
+nnoremap <f2>f <cmd>tabedit ~/racine/plain/orgmode/fix.org <bar> normal ggzx<cr>
+nnoremap <f2>l <cmd>tabedit ~/racine/log/ship/captain.md <bar> normal ggzx<cr>
+nnoremap <f2>t <cmd>tabedit ~/racine/plain/orgmode/tasks.org <bar> normal ggzx<cr>
 
-command -nargs=? -complete=filetype EditSyntaxPlugin
+command! -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/vim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
-nnoremap <f2>s :<c-u>EditSyntaxPlugin<cr>
+nnoremap <f2>s <cmd>EditSyntaxPlugin<cr>
 
-nnoremap \m <cmd>make -k<cr>
-nnoremap \x <cmd>call library#text_to_password()<cr>
-nnoremap \X <cmd>call library#password_to_text()<cr>
+nnoremap <f2>x <cmd>call library#chmodexec()<cr>
+
+" figlet banner
+nnoremap <f3>b <cmd>call library#figlet()<cr>
+
+nnoremap <f3>x <cmd>call library#text_to_password()<cr>
+nnoremap <f3>X <cmd>call library#password_to_text()<cr>
+
+nnoremap <f3>m :make! -k<space>
+
+" lilypond
+nnoremap <f9>m <cmd>call library#make_midi()<cr>
+nnoremap <f9>o <cmd>call library#make_ogg()<cr>
+nnoremap <f9>p <cmd>call library#display_pdf()<cr>
 
 " Arguments {{{2
 
-nnoremap <f7>a :previous<cr>
-nnoremap <f8>a :next<cr>
+"nnoremap <f5>a <cmd>previous<cr>
+"nnoremap <f6>a <cmd>next<cr>
 
-nnoremap <f7>A :first<cr>
-nnoremap <f8>A :last<cr>
+"nnoremap <f5>A <cmd>first<cr>
+"nnoremap <f6>A <cmd>last<cr>
 
-" Tampons {{{2
+" Tampons (buffers) {{{2
 
-nnoremap <f7>b :bprevious<cr>
-nnoremap <f8>b :bnext<cr>
+"nnoremap <f5>b <cmd>bprevious<cr>
+"nnoremap <f6>b <cmd>bnext<cr>
 
-nnoremap <f7>B :bfirst<cr>
-nnoremap <f8>B :blast<cr>
+"nnoremap <f5>B <cmd>bfirst<cr>
+"nnoremap <f6>B <cmd>blast<cr>
 
-nnoremap <m-q> <cmd>bw!<cr>
-nnoremap <m-s-q> <cmd>bw! #<cr>
+" wipe buffer
+nnoremap <m-q> <cmd>bwipe!<cr>
+" wipe alternate buffer
+nnoremap <d-q> <cmd>bwipe! #<cr>
+" wipe all buffers
+nnoremap <m-s-q> <cmd>%bwipe<cr>
 
 nnoremap <f3>s <cmd>%sort<cr>
 
+" Lecture seule {{{3
+
+nnoremap <f3>r <cmd>call library#toggle_readonly()<cr>
+
 " Fenêtres {{{2
 
-nnoremap <c-right> <c-w>l
-nnoremap <c-down>  <c-w>j
-nnoremap <c-up>    <c-w>k
-nnoremap <c-left>  <c-w>h
+" nnoremap <s-tab>  <c-w>w
+" nnoremap <m-s-tab>  <c-w>p
 
-" Les mouvements directionnels sont aussi accessible via h j k l
+" nnoremap <s-left> <c-w><left>
+" nnoremap <s-right> <c-w><right>
+" nnoremap <s-up> <c-w><up>
+" nnoremap <s-down> <c-w><down>
 
-nnoremap <m-left>  <c-w><left>
-nnoremap <m-right> <c-w><right>
-nnoremap <m-up>    <c-w><up>
-nnoremap <m-down>  <c-w><down>
-
-nnoremap <s-left>  <c-w><left>
-nnoremap <s-right> <c-w><right>
-nnoremap <s-up>    <c-w><up>
-nnoremap <s-down>  <c-w><down>
+" doesnt work
+" nnoremap <d-7>  <c-w>w
+" nnoremap <d-4> <c-w><left>
+" nnoremap <d-6> <c-w><right>
+" nnoremap <d-8> <c-w><up>
+" nnoremap <d-5> <c-w><down>
 
 "  Onglets {{{2
 
 nnoremap <f3>t <cmd>tabnew<cr>
 nnoremap <f3>T :tabedit<space>
 
-nnoremap <f7>T <cmd>tabfirst<cr>
-nnoremap <f8>T <cmd>tablast<cr>
+"nnoremap <f5>T <cmd>tabfirst<cr>
+"nnoremap <f6>T <cmd>tablast<cr>
 
-nnoremap <f7>t <cmd>tabmove -1<cr>
-nnoremap <f8>t <cmd>tabmove +1<cr>
-
-nnoremap <c-s-left> <cmd>tabmove -1<cr>
-nnoremap <c-s-right> <cmd>tabmove +1<cr>
+"nnoremap <f5>t <cmd>tabmove -1<cr>
+"nnoremap <f6>t <cmd>tabmove +1<cr>
 
 nnoremap <F3>= <cmd>call library#equal_windows()<cr>
 
@@ -460,25 +790,25 @@ nnoremap <leader><right> <cmd>call library#win2next_tab()<cr>
 
 " Liste quickfix {{{2
 
-nnoremap <f7>q <cmd>cprevious<cr>
-nnoremap <f8>q <cmd>cnext<cr>
+"nnoremap <f5>q <cmd>cprevious<cr>
+"nnoremap <f6>q <cmd>cnext<cr>
 
-nnoremap <f7>Q <cmd>cfirst<cr>
-nnoremap <f8>Q <cmd>clast<cr>
+"nnoremap <f5>Q <cmd>cfirst<cr>
+"nnoremap <f6>Q <cmd>clast<cr>
 
-nnoremap <f7><c-q> <cmd>cpfile<cr>
-nnoremap <f8><c-q> <cmd>cnfile<cr>
+"nnoremap <f5><c-q> <cmd>cpfile<cr>
+"nnoremap <f6><c-q> <cmd>cnfile<cr>
 
 " Listes locales {{{2
 
-nnoremap <f7>l <cmd>lprevious<cr>
-nnoremap <f8>l <cmd>lnext<cr>
+"nnoremap <f5>l <cmd>lprevious<cr>
+"nnoremap <f6>l <cmd>lnext<cr>
 
-nnoremap <f7>L <cmd>lfirst<cr>
-nnoremap <f8>L <cmd>llast<cr>
+"nnoremap <f5>L <cmd>lfirst<cr>
+"nnoremap <f6>L <cmd>llast<cr>
 
-nnoremap <f7><c-l> <cmd>lpfile<cr>
-nnoremap <f8><c-l> <cmd>lnfile<cr>
+"nnoremap <f5><c-l> <cmd>lpfile<cr>
+"nnoremap <f6><c-l> <cmd>lnfile<cr>
 
 " Anciens fichiers {{{2
 
@@ -486,29 +816,25 @@ nnoremap <f8><c-l> <cmd>lnfile<cr>
 
 " Voir la configuration de la librairie tlib
 
-"nnoremap <m-o> :browse oldfiles<cr>
+"nnoremap <m-o> <cmd>browse oldfiles<cr>
 
 "  Tags {{{2
 
-nnoremap <f7><m-t> <cmd>tprevious<cr>
-nnoremap <f8><m-t> <cmd>tnext<cr>
+"nnoremap <f5><m-t> <cmd>tprevious<cr>
+"nnoremap <f6><m-t> <cmd>tnext<cr>
 
-nnoremap <f7><m-s-t> <cmd>tfirst<cr>
-nnoremap <f8><m-s-t> <cmd>tlast<cr>
+"nnoremap <f5><m-s-t> <cmd>tfirst<cr>
+"nnoremap <f6><m-s-t> <cmd>tlast<cr>
 
 nnoremap <f3>j <cmd>tj /
 nnoremap <f3>J <cmd>tab tj /
-
-"  Informations {{{2
-
-nnoremap <C-G> 2<C-G>
 
 "  Déplacements & Copie {{{2
 
 " Début & Fin de fichier {{{3
 
 nnoremap gg gg0
-nnoremap G G$zt
+nnoremap G G$
 
 " Pages {{{3
 
@@ -527,12 +853,31 @@ nnoremap <silent> <down> <cmd>call library#wrap_down()<cr>
 nnoremap + gj
 nnoremap - gk
 
+nnoremap <kplus> gj
+nnoremap <kminus> gk
+
 inoremap <S-Up> <C-o>gk
 inoremap <S-Down> <C-o>gj
 
 " Déplacement de lignes {{{3
 
 " Voir plugin textmanip
+
+" Echange {{3
+
+" see also
+" <url:~/racine/config/edit/vim/lua/config/keybinds.lua#tn=Move lines up/down>
+
+" chars
+nnoremap <f4>c xp
+nnoremap <f4>C Xp
+" words
+nnoremap <f4>w bdwelp
+" lines
+nnoremap <f4>l ddp
+nnoremap <f4>L ddkP
+" paragraphs
+nnoremap <f4>p {dap}P{
 
 " Signets {{{3
 
@@ -561,57 +906,89 @@ vnoremap <f3>; :%s/\<\>//<left><left><left><left>
 
 "  Copie jusqu'à la fin de la ligne pour rester consistant avec D et C
 
-nnoremap Y y$
+" by default in vim
+"nnoremap Y y$
 
-"  Copies provenant d’un autre logiciel
+" Copie de toutes les lignes correspondant à un motif
+
+command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
+
+nnoremap <f3>y :GlobalYank<space>
+
+" Couper toutes les lignes correspondant à un motif
+
+command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
+
+nnoremap <f3>d :GlobalDelete<space>
+
+" Option paste
 
 nnoremap <f3>p :set paste!<cr>
 
-" Permet le shift-insert fonctionnel comme dans les Xterm
+" Comme dans les Xterm
 
+" c-insert = yank
+" s-insert = paste
+
+nnoremap <C-Insert> ^"+y$
 vnoremap <C-Insert> "+y
-nnoremap <C-Insert> "+yy
-inoremap <C-Insert> <esc>"+yy
+inoremap <C-Insert> <esc>l"+y$ha
 
-snoremap <S-Insert> <C-R>+
-vnoremap <S-Insert> c<C-R>+
-nnoremap <S-Insert> "+p
-inoremap <S-Insert> <C-R>+
+nnoremap <C-Delete> ^d$
+vnoremap <C-Delete> "+d
+inoremap <C-Delete> <esc>l"+d$ha
 
-"  Annulation {{{2
+nnoremap <C-S-Insert> ggyG''
 
-" <C-G>u entame un nouvel atome d'undo {{{3
+nnoremap <C-S-Delete> ggdG
+
+nnoremap <silent> <S-Insert> "+p
+vnoremap <silent> <S-Insert> c<C-R>+
+snoremap <silent> <S-Insert> <C-R>+
+inoremap <silent> <S-Insert> <C-R>+
+cnoremap <silent> <S-Insert> <C-R>+
+
+" noremap <S-Insert> <MiddleMouse>
+
+ "  Annulation {{{2
+
+inoremap <c-z> <cmd>undo<cr>
+inoremap <m-z> <cmd>redo<cr>
+
+" <C-G>u entame un nouvel atome d'undo
 
 inoremap <m-u> <c-g>u
 
-"inoremap <BS> <C-G>u<BS>
-"inoremap <Del> <C-G>u<Del>
-
-inoremap <C-U> <C-G>u<C-U>
-inoremap <C-W> <C-G>u<C-W>
-
-" Répétition en mode visuel
-
-vnoremap . :normal .<CR>
+" by default in vim
+"inoremap <C-U> <C-G>u<C-U>
+"inoremap <C-W> <C-G>u<C-W>
 
 "  Pliage {{{2
 
 nnoremap ]] ]z
 nnoremap [[ [z
 
-nnoremap <f7>z ]z
-nnoremap <f8>z [z
+nnoremap ]f ]]
+nnoremap [f [[
 
-vnoremap <f7>z ]z
-vnoremap <f8>z [z
+"nnoremap <f5>z ]z
+"nnoremap <f6>z [z
 
-nnoremap <f7>) zjzx]z
-nnoremap <f8>( zkzx[z
+"vnoremap <f5>z ]z
+"vnoremap <f6>z [z
 
-vnoremap <f7>) zjzx]z
-vnoremap <f8>( zkzx[z
+"nnoremap <f5>) zjzx]z
+"nnoremap <f6>( zkzx[z
+
+"vnoremap <f5>) zjzx]z
+"vnoremap <f6>( zkzx[z
 
 nnoremap zo zCzO
+
+" Insertion {{{2
+
+" Date
+inoremap <d-d> <c-r>=strftime("%a %d %b %Y")<cr>
 
 "  Complétion {{{2
 
@@ -623,27 +1000,23 @@ inoremap <expr> <tab> library#smart_tab()
 "inoremap <C-Space> <C-X><C-O>
 "inoremap <M-Space> <C-X><C-L>
 
+cnoremap <PageUp> <C-P>
+cnoremap <PageDown> <C-N>
+
 " Ligne de commande {{{2
 
 " Complétion {{{3
 
+" insère tous
 cnoremap <C-X><C-A> <C-A>
+" affiche les candidats
 cnoremap <C-X><C-D> <C-D>
+" insère le plus long
 cnoremap <C-X><C-L> <C-L>
-
-" C-D & wildcharm = C-Z
-
-"cnoremap <C-Z> <C-D><C-Z>
 
 " Déplacement {{{3
 
-cnoremap <C-B> <Left>
-cnoremap <C-F> <Right>
-
 " Mot suivant / précédent
-
-" cnoremap <C-^> <C-Left>
-" cnoremap <C-@> <C-Right>
 
 cnoremap <m-b> <C-Left>
 cnoremap <m-f> <C-Right>
@@ -662,18 +1035,13 @@ cnoremap <C-A> <C-B>
 
 cnoremap <m-,> <c-r>=expand('%:p:h') . '/'<cr>
 
-" Enlever un élément dans le chemin d’un fichier {{{3
-
-cnoremap <C-BS> <C-\>e(<SID>RemoveLastPathComponent())<CR>
-
-function! s:RemoveLastPathComponent()
-  return substitute(getcmdline(), '\%(\\ \|[\\/]\@!\f\)\+[\\/]\=$\|.$', '', '')
-endfunction
+" Effacer {{{3
 
 cmap <m-d> <c-right><c-w>
 
 " Mode ex {{{3
 
+" Q ou gQ : mode ex
 " On en sort par :vi
 
 nnoremap QQ gQ
@@ -686,19 +1054,20 @@ nnoremap <f3>c :set cmdheight=
 
 " Comme commande ex
 
-nnoremap <f3>: <cmd>exe getline(".")<CR>
+nnoremap <m-:> <cmd>exe getline(".")<CR>
+
+" Comme commande externe
+
+nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
+
+"  Orthographe {{{2
+
+" underline ~~~ wrong words
+nnoremap <silent> <f3>~ <cmd>setlocal spell!<cr>
 
 "  Informations {{{2
 
 nnoremap <f3>ig <cmd>call library#highlight_group()<cr>
-
-" Émulateur de terminal {{{2
-
-nnoremap <C-!> <cmd>call library#terminal()<cr>
-
-set termwinkey=<C-W>
-
-tnoremap <f3>n <c-\><c-n>
 
 "  Shell {{{2
 
@@ -706,9 +1075,14 @@ nnoremap \s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 nnoremap \S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
 nnoremap \h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
 
+" Journal de bord {{{2
+
+nnoremap <f3>L <cmd>tabe ~/racine/omni/log/captain<cr>
+
 " Pavé numérique {{{2
 
-nmap <kEnter> <Enter>
+" used for :wa
+" nmap <kEnter> <Enter>
 
 nmap <k0> 0
 nmap <k1> 1
@@ -723,20 +1097,93 @@ nmap <k9> 9
 
 " Présentation {{{2
 
-nnoremap <f3>l :set cursorline!<cr>
+" Numérotation des lignes {{{3
 
-"  Présentation {{{1
+nnoremap <silent> <D-l> <cmd>call library#toggle_relative_linum()<cr>
+
+" Curseur {{{3
+
+set guicursor=
+			\n:block-Cursor/lCursor,
+			\v:block-vCursor,
+			\i:ver25-iCursor,
+			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
+			\r:hor15-iCursor,
+			\c:block-Cursor,
+			\ci:ver25,
+			\cr:hor25,
+			\sm:block
+
+set termguicolors
+
+nnoremap <f3>l <cmd>set cursorline!<cr>
+
+" Fonte de caractères {{{3
+
+" dans vim-qt
+
+nnoremap <f3>f :GuiFont DejaVu Sans Mono:h12
+
+" Émulateur de terminal {{{2
+
+nnoremap <C-!> <cmd>call library#terminal()<cr>
+
+" Passer en mode normal
+
+" En référence à Ctrl-Q / Ctrl-S
+
+tnoremap <D-n> <C-\><C-n>
+tnoremap <D-v> <C-\><C-n>
+tnoremap <D-i> <C-\><C-n>
+
+tnoremap <D-^> <C-\><C-n><C-^>
+
+tnoremap <m-tab> <C-\><C-n><C-W>w
+
+tnoremap <D-w> <C-\><C-n><C-W>w
+
+tnoremap <D-h> <C-\><C-n><C-W><Left>
+tnoremap <D-j> <C-\><C-n><C-W><Down>
+tnoremap <D-k> <C-\><C-n><C-W><Up>
+tnoremap <D-l> <C-\><C-n><C-W><Right>
+
+" abbreviations {{{1
+
+" Abréviations {{{2
+
+"iab cad c’est-à-dire
+
+"iab dd <c-r>=strftime("%H : %M %a %d %b %Y")<cr>
+
+" Remplacé par le plugin cmdalias
+
+"cab hh tab help
+"cab dd <c-r>=strftime("[=] %A %d %B %Y  (o) %H : %M : %S  %z")<cr>
+
+" Fautes de frappe courantes {{{2
+
+iab totu tout
+iab sosu sous
+
+" display {{{1
 
 "  Lignes {{{2
 
 " Numérotation
 
 set number
+
 set relativenumber
 
-set linespace=1
+" Espacement
+
+set linespace=3
+
+" Longues lignes occupent plusieurs lignes (wrap) écran ou une seule (nowrap)
 
 set wrap
+
+" Coupe aux caractères donnés par breakat
 
 set linebreak
 set showbreak=┅
@@ -745,12 +1192,11 @@ set breakat=" ^I!@*-+;:,./?"
 
 "  Caractères non imprimables {{{2
 
-set display=lastline
+"set display+=uhex
 
 "  Mise en évidence {{{2
 
 " Souligne une colonne après textwidth
-" ------------------------------------
 
 "if exists("&colorcolumn")
 	"set colorcolumn=+1
@@ -777,17 +1223,17 @@ set scroll=12
 
 " Nombre minimal de colonnes qui défilent
 
-set sidescroll=7
+set sidescroll=3
 
 " Minimum de lignes visibles à l'écran
 " au-dessus et en-dessous du curseur
 
-set scrolloff=7
+set scrolloff=3
 
 " Minimum de colonnes visibles à l'écran
 " à gauche et à droite du curseur
 
-set sidescrolloff=84
+set sidescrolloff=15
 
 " Saut lorsque le curseur dépasse les limites hauts / bas
 
@@ -795,11 +1241,16 @@ set scrolljump=1
 
 "  Tabulation et espaces de fin de lignes {{{2
 
+" non breakable space : ctrl-k puis <space><space>
+
 set list
 
 set listchars=
 
-set listchars+=tab:┆\ ,nbsp:▒
+"set listchars+=tab:>\ ,nbsp:▒
+"set listchars+=tab:>\ ,nbsp:‗
+
+set listchars+=tab:>\ ,nbsp:_
 set listchars+=precedes:❮,extends:❯
 set listchars+=conceal:Δ
 
@@ -809,6 +1260,14 @@ set listchars+=conceal:Δ
 " quand on change de ligne
 
 set nostartofline
+
+" Mets en évidence la ligne courante
+
+"set cursorline
+
+" Mets en évidence la colonne courante
+
+"set cursorcolumn
 
 " Mise en évidence {{{2
 
@@ -838,17 +1297,14 @@ set showmode
 set laststatus=2
 
 " Affiche la position du curseur ligne, colonne
-" ------------------------------------
 
 set ruler
 
 " Affiche les commandes incomplètes
-" ------------------------------------
 
 set showcmd
 
 " Affiche une barre de statut en bas de l'écran
-" ------------------------------------
 
 if ! exists("g:colors_name")
 	let g:colors_name = ''
@@ -860,15 +1316,15 @@ if has('statusline')
 	set statusline+=\ %.43F
 	set statusline+=%(\ %m%)
 	set statusline+=%(\ %r%)
-	set statusline+=\ \ Tamp\ %n
+	set statusline+=\ \ buf\ %n
+	set statusline+=\ \ win\ %{winnr()}/%{win_getid()}
 	set statusline+=%(%a%)
-	set statusline+=\ \ %(%{(&filetype==\"\"?\"\":\"Type\")}\ %Y\ %)
-	set statusline+=\ \ Enc\ %{(&fenc==\"\"?&enc:&fenc)}
-	set statusline+=\ \ Pos
-	set statusline+=\ %P\ /\ %l\ x\ %v
-	set statusline+=%(%{(virtcol(\'.\')==col(\'.\')?\"\":\"\ /\ \".col(\'.\'))}%)
+	set statusline+=\ \ %(%{(&filetype==\"\"?\"\":\"ft\")}\ %Y\ %)
+	set statusline+=\ \ enc\ %{(&fenc==\"\"?&enc:&fenc)}
+	set statusline+=\ \ pos
+	set statusline+=\ %P\ %l\ x\ %c
 	set statusline+=\ %=
-	set statusline+=\ \ Color\ %{g:colors_name}
+	set statusline+=\ \ col\ %{g:colors_name}
 	set statusline+=\ \ \ \ |
 	set statusline+=%<
 endif
@@ -876,17 +1332,16 @@ endif
 "  Zone de commande {{{2
 
 " Hauteur
-" ------------------------------------
 
 set cmdheight=3
 
 " Conceal {{{2
 
-"set conceallevel=1
+"set conceallevel=0
 
 "set concealcursor=i
 
-" Voir aussi ~/racine/config/edit/vim/after/syntax/html/concealvim
+" Voir aussi ~/racine/config/edit/vim/after/syntax/html/conceal/vim
 
 " Couleurs dans le terminal {{{2
 
@@ -894,12 +1349,7 @@ if has("termguicolors")
 	set termguicolors
 endif
 
-if &term =~# '^tmux'
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-
-"  Syntaxe {{{1
+" syntax {{{1
 
 "  Activation {{{2
 
@@ -912,7 +1362,10 @@ syntax enable
 syntax sync minlines=7
 syntax sync maxlines=84
 
-" Ligne de commande :ex {{{1
+" :ex commandline {{{1
+
+" Hauteur de la fenêtre d'historique
+set cmdwinheight=15
 
 " Édition de la ligne de commande avec l’historique dans un tampon
 " Défaut = <C-F>
@@ -920,38 +1373,55 @@ syntax sync maxlines=84
 "set cedit=<Esc>
 "set cedit=<Ins>
 
-"  Auto-commandes {{{1
+" Prévisualisation du résultat {{{2
 
-source ~/racine/config/edit/vim/autocommand.vim
+" neovim only
+"set inccommand=split
 
-"  Types de fichiers {{{1
+" Commandes {{{2
 
-"filetype plugin indent on
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+" terminal {{{1
+
+" filetypes {{{1
 
 filetype on
 filetype plugin on
 filetype indent on
 
-"  Thèmes {{{1
+" themes {{{1
 
-colo golden-night
+colorscheme golden-night
+"colorscheme Atelier_ForestLight
+"colorscheme Atelier_HeathDark
+"colorscheme Atelier_SeasideLight
+"colorscheme zazen
 
-"  Historique {{{1
+"  {{{ Historique
 
 set viminfo=
 	\!,
 	\f1,
-	\c,
 	\h,
 	\<12,
 	\s12,
-	\'60,
-	\:7543,
-	\/1234,
-	\@1234,
-	\n~/racine/session/vim/main.info
+	\'120,
+	\:10000,
+	\/10000,
+	\@10000,
+	\n~/racine/session/vim/main.viminfo
 
-" Remplacé par neomru
+"set viminfofile=~/racine/session/vim/main.viminfo
+
+" Remplacé par wheel mru
 " 	\%30,
 
 " Nombre par défaut pour lignes de commande,
@@ -959,5 +1429,6 @@ set viminfo=
 
 set history=10000
 
-" ------------------------------------
+" Lua {{{1
 
+"lua require('meta')

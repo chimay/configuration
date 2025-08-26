@@ -9,6 +9,7 @@ hi link		vimOper			Normal
 hi sedBranch		   	guifg=#5b3c11		guibg=NONE			gui=NONE
 hi sedAddress		   	guifg=#5b3c11		guibg=NONE			gui=NONE
 hi sedRegexpMeta	   	guifg=#5b3c11		guibg=NONE			gui=NONE
+hi sedRegexp47		   	guifg=NONE			guibg=NONE	   			gui=NONE
 hi sedReplacement47 	guifg=#5b3c11		guibg=NONE			gui=NONE
 hi sedSpecial		   	guifg=#5b3c11		guibg=NONE			gui=NONE
 hi sedLabel			   	guifg=#5b3c11		guibg=NONE			gui=NONE
@@ -19,6 +20,7 @@ hi sedFlag			   	guifg=#5b3c11		guibg=NONE			gui=NONE
 hi sedBranch		   	ctermfg=NONE		ctermbg=NONE	   	cterm=NONE
 hi sedAddress		   	ctermfg=NONE		ctermbg=NONE	   	cterm=NONE
 hi sedRegexpMeta	   	ctermfg=NONE		ctermbg=NONE	   	cterm=NONE
+hi sedRegexp47		   	ctermfg=NONE		ctermbg=NONE	   	cterm=NONE
 hi sedSpecial		   	ctermfg=NONE		ctermbg=NONE	   	cterm=NONE
 hi sedLabel			   	ctermfg=NONE		ctermbg=NONE	   	cterm=NONE
 hi sedFunction		   	ctermfg=NONE		ctermbg=NONE	   	cterm=NONE

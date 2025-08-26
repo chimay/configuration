@@ -174,7 +174,7 @@ MAILTO=$USER
 
 # sac de gym
 
-30	19	*	1-6,9-12	0		bell.zsh notification/sac-gym.ogg notification=gymnastique volume=100 &>>! ~/log/cron.log
+30	19	*	1-6,9-12	2		bell.zsh notification/sac-gym.ogg notification=gymnastique volume=100 &>>! ~/log/cron.log
 30	19	*	1-6,9-12	3		bell.zsh notification/sac-gym.ogg notification=gymnastique volume=100 &>>! ~/log/cron.log
 
 # piscine

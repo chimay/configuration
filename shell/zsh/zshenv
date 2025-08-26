@@ -292,7 +292,7 @@ export RLWRAP_HOME=~/racine/hist/rlwrap
 # Édition de la ligne de commande readline dans un éditeur externe,
 # activé par Ctrl-^ par défaut
 
-export RLWRAP_EDITOR='vim "+call cursor(%L,%C)" %F'
+export RLWRAP_EDITOR='vim -u ~/racine/config/edit/vim-lite/vimrc "+call cursor(%L,%C)" %F'
 
 export FZF_DEFAULT_OPTS='
 	-i
@@ -394,22 +394,22 @@ export LESS_TERMCAP_se=$'\e[0m'
 
 # Most {{{2
 
-export MOST_EDITOR='vim'
+export MOST_EDITOR='vim -u ~/racine/config/edit/vim-lite/vimrc'
 export MOST_SWITCHES='-s'
 
 #  Editeurs {{{1
 
 # un VRAI éditeur de texte ;)
 
-export VISUAL=vim
+export VISUAL='vim -u ~/racine/config/edit/vim-lite/vimrc'
 
-export EDITOR=vim
+export EDITOR='vim -u ~/racine/config/edit/vim-lite/vimrc'
 
-export DIFFPROG=vimdiff
+export DIFFPROG='vimdiff -u ~/racine/config/edit/vim-lite/vimrc'
 
-export FCEDIT=vim
+export FCEDIT='vim -u ~/racine/config/edit/vim-lite/vimrc'
 
-export SUDO_EDITOR=vim
+export SUDO_EDITOR='vim -u ~/racine/config/edit/vim-lite/vimrc'
 
 # Pour nvr, neovim-remote
 
@@ -417,7 +417,7 @@ export NVIM_LISTEN_ADDRESS=~/racine/run/socket/neovim
 
 # Pour edir
 
-export EDIR_EDITOR=vim
+export EDIR_EDITOR='vim -u ~/racine/config/edit/vim-lite/vimrc'
 
 # Pour helm
 

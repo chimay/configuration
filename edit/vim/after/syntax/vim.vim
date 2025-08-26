@@ -10,6 +10,7 @@ hi vimBracket		   	guifg=#872E30		guibg=NONE			gui=NONE
 hi vimCmplxRepeat	   	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimCommand		   	guifg=brown			guibg=NONE			gui=NONE
 hi vimCommentTitle	   	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi vimString		   	guifg=#872E30		guibg=NONE			gui=NONE
 hi vimEnvVar		   	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimEscape		   	guifg=#88421d		guibg=NONE			gui=NONE
 hi vimFuncBody		   	guifg=#5B3C11		guibg=NONE			gui=NONE
@@ -30,6 +31,7 @@ hi vimHiTerm		   	guifg=#872E30		guibg=NONE			gui=NONE
 hi vimLetHereDoc		guifg=#5b3c11		guibg=NONE			gui=NONE
 hi vimLetHereDocStart	guifg=#5b3c11		guibg=NONE			gui=NONE
 hi vimLetHereDocStop	guifg=#5b3c11		guibg=NONE			gui=NONE
+hi vimLetRegister	   	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimLuaRegion		   	guifg=#5b3c11		guibg=NONE			gui=NONE
 hi vimMapModKey		   	guifg=#872E30		guibg=NONE			gui=NONE
 hi vimNotation		   	guifg=#872E30		guibg=NONE			gui=NONE
@@ -51,6 +53,10 @@ hi vimSynReg		   	guifg=#88421D		guibg=NONE			gui=NONE
 hi vimSynRegOpt		   	guifg=#88421D		guibg=NONE			gui=NONE
 hi vimTodo				guifg=#88421D		guibg=NONE			gui=NONE
 hi vimUserAttrb		   	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi vimUserCmd		   	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi vimUserCmdAttr	   	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi vimUserCmdAttrNargs 	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi vimUserCmdAttrCmplt 	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimUserAttrbCmplt   	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimUserAttrbCmpltFunc guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimVar			   	guifg=#5B3C11		guibg=NONE			gui=NONE

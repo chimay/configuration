@@ -80,7 +80,3 @@ nnoremap <s-pagedown> <cmd>tabmove +1<cr>
 " plugins auto-commands {{{1
 
 source ~/racine/config/edit/neovim/paquet/autocmd-plugin.vim
-
-" lua {{{1
-
-source ~/racine/config/edit/neovim/meta.lua

@@ -59,6 +59,7 @@ hi Statement		guifg=#5B3C11		guibg=black			gui=NONE
 " More prompt {{{2
 
 hi MoreMsg			guifg=#872E30		guibg=black			gui=NONE
+hi ModeMsg			guifg=#872E30		guibg=black			gui=NONE
 hi Question			guifg=#872E30		guibg=black			gui=NONE
 
 " Erreurs {{{2

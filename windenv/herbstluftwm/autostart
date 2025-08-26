@@ -150,10 +150,16 @@ hc keybind $super-Control-Right   resize right +$resizestep
 # toggle grid <-> max = tabbed layout
 # max layout displaye windows as tabs when window titles height is > 0
 
+# hc keybind $hyper-Tab                                                           \
+#             or , and . compare tags.focus.tiling.focused_frame.algorithm = max  \
+#                      . chain - set_layout grid - attr theme.title_height 0      \
+#                , chain - set_layout max - attr theme.title_height 17
+
+# title is not necessary
 hc keybind $hyper-Tab                                                           \
             or , and . compare tags.focus.tiling.focused_frame.algorithm = max  \
-                     . chain - set_layout grid - attr theme.title_height 0      \
-               , chain - set_layout max - attr theme.title_height 17
+                     . chain - set_layout grid                                  \
+               , chain - set_layout max
 
 hc keybind $hyper-i                                                             \
             or , and . compare tags.focus.tiling.focused_frame.algorithm = max  \

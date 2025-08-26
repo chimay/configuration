@@ -1359,7 +1359,7 @@ set cmdheight=3
 
 " Conceal {{{2
 
-"set conceallevel=1
+"set conceallevel=0
 
 "set concealcursor=i
 
@@ -1452,5 +1452,4 @@ set history=10000
 
 " Lua {{{1
 
-"source ~/racine/config/edit/neovim/meta.lua
 lua require('meta')

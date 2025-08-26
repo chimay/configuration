@@ -499,19 +499,19 @@ vim-quickfix () {
 	if command -v rg &> /dev/null
 	then
 		echo Using ripgrep
-		vim +cope -q <(rg --vimgrep --smart-case "$@")
+		vim -u ~/racine/config/edit/vim-lite/vimrc +cope -q <(rg --vimgrep --smart-case "$@")
 	elif command -v ag &> /dev/null
 	then
 		echo Using silver searcher
-		vim +cope -q <(ag --nocolor --vimgrep --smart-case "$@")
+		vim -u ~/racine/config/edit/vim-lite/vimrc +cope -q <(ag --nocolor --vimgrep --smart-case "$@")
 	elif command -v ack &> /dev/null
 	then
 		echo Using ack
-		vim +cope -q <(ack --nocolor --nogroup --column --smart-case "$@")
+		vim -u ~/racine/config/edit/vim-lite/vimrc +cope -q <(ack --nocolor --nogroup --column --smart-case "$@")
 	elif command -v grep &> /dev/null
 	then
 		echo Using grep
-		vim +cope -q <(grep --line-number --ignore-case --no-messages "$@")
+		vim -u ~/racine/config/edit/vim-lite/vimrc +cope -q <(grep --line-number --ignore-case --no-messages "$@")
 	fi
 }
 

@@ -1,10 +1,12 @@
 " vim: set filetype=vim :
 
 hi zshCommands		guifg=brown			guibg=NONE			gui=NONE
+hi zshString		guifg=brown			guibg=NONE			gui=NONE
 hi zshConditional	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi zshDelimiter		guifg=#5B3C11		guibg=NONE			gui=NONE
 hi zshDeref			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi zshException		guifg=#9B3C11		guibg=NONE			gui=NONE
+hi zshHereDoc		guifg=#5B3C11		guibg=NONE			gui=NONE
 hi zshJobSpec		guifg=#5B3C11		guibg=NONE			gui=NONE
 hi zshKeyword		guifg=#872E30		guibg=NONE			gui=NONE
 hi zshOptStart		guifg=#872E30		guibg=NONE			gui=NONE

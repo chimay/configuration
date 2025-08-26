@@ -6,33 +6,36 @@ endif
 
 augroup source-file
 	autocmd!
-	autocmd BufWritePost ~/racine/config/edit/neovim/after/syntax/** source %
-	autocmd BufWritePost ~/racine/config/edit/neovim/autoload/** source %
+	autocmd BufWritePost ~/racine/config/edit/vim/after/syntax/** source %
+	autocmd BufWritePost ~/racine/config/edit/vim/autoload/** source %
 	autocmd BufWritePost ~/racine/public/wheel/autoload/**.vim source %
 	autocmd BufWritePost ~/racine/public/organ/autoload/**.vim source %
-	autocmd BufWritePost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
+	autocmd BufWritePost ~/racine/config/edit/vim/colors/ornuit.vim colorscheme ornuit
 augroup END
 
 augroup publish-in-repo
 	autocmd!
 	autocmd BufWritePost ~/racine/config/** call library#publish ()
+	autocmd BufWritePost ~/racine/fun/** call library#publish ()
+	autocmd BufWritePost ~/racine/self/bin/** call library#publish ()
 	autocmd BufWritePost ~/racine/shell/** call library#publish ()
 	autocmd BufWritePost ~/racine/automat/** call library#publish ()
+	autocmd BufWritePost ~/racine/snippet/** call library#publish ()
+	autocmd BufWritePost ~/racine/site/**/*Makefile* call library#publish ()
+	autocmd BufWritePost ~/racine/musica/lilypond/template/** call library#publish ()
 augroup END
 
-augroup resload-service
+augroup reload-service
 	autocmd!
-	autocmd BufWritePost ~/racine/config/system/dunst/dunstrc !restart-dunst.zsh &
+	"autocmd BufWritePost ~/racine/config/system/dunst/dunstrc !restart-dunst.sh &
+	autocmd BufWritePost ~/racine/config/system/dunst/dunstrc !dunstctl reload &
 	autocmd BufWritePost ~/racine/config/windenv/sxhkd/sxhkdrc !pkill -10 -f sxhkd
+	autocmd BufWritePost ~/racine/config/windenv/sxhkd/hlwm-sxhkdrc !pkill -10 -f sxhkd
 	autocmd BufWritePost ~/racine/config/windenv/keynav/keynavrc !pkill -1 -f keynav
 	autocmd BufWritePost ~/racine/config/windenv/polybar/config !polybar-msg cmd restart
 	autocmd BufWritePost ~/racine/config/windenv/picom.conf !restart-picom.zsh &
 	autocmd BufWritePost ~/racine/config/organizer/remind/* !pkill -10 -f remind-server
-augroup END
-
-augroup shell-history
-	autocmd!
-	autocmd BufEnter historique.zsh setlocal nofoldenable
+	autocmd BufWritePost ~/racine/config/auto/crontab !update-crontab.sh &>> ~/log/cron.log &
 augroup END
 
 augroup quickfix-window
@@ -56,7 +59,6 @@ augroup END
 
 augroup tabulation
 	autocmd!
-	" ---- syntax of these languages is fussy over tabs Vs spaces
 	autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
 	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd FileType org,markdown setlocal ts=2 sts=2 sw=2 expandtab
@@ -67,6 +69,7 @@ augroup folding
 	autocmd BufReadPost ~/public/wheel/**.vim setlocal foldmethod=indent
 	autocmd BufReadPost ~/public/organ/**.vim setlocal foldmethod=indent
 	autocmd BufReadPost *.snippets setlocal nofoldenable
+	autocmd BufEnter historique.zsh setlocal nofoldenable
 augroup END
 
 augroup file-detection
@@ -96,6 +99,13 @@ augroup file-image
 	autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!exiv2 pr "%"
 augroup END
 
+augroup file-music
+	" see ~/racine/config/edit/vim/after/ftplugin/lilypond.vim
+	"autocmd BufReadPost *.ly setlocal commentstring=%%s
+	"autocmd BufReadPost *.ly nnoremap <buffer> <f5> <cmd>call library#make_midi()<cr>
+	autocmd BufReadPost *.ly nnoremap <buffer> µ <cmd>call library#make_midi()<cr>
+augroup END
+
 augroup file-audio
 	autocmd!
 	autocmd BufReadPost *.flac %!metaflac --list "%"
@@ -121,6 +131,7 @@ augroup man-pages
 	autocmd FileType man nnoremap <buffer> - <cmd>call library#manual_options()<cr>
 	autocmd FileType man nnoremap <buffer> o <cmd>call library#manual_open_list()<cr>
 	autocmd FileType man nnoremap <buffer> x <cmd>call library#manual_close_list()<cr>
+	autocmd FileType man nnoremap <buffer> D <cmd>bdelete<cr>
 	autocmd FileType man nnoremap <buffer> q <cmd>quit<cr>
 	autocmd FileType man nnoremap <buffer> <cr> <cmd>silent! normal K<cr>
 	autocmd FileType man nnoremap <buffer> b <c-b>

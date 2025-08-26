@@ -1,0 +1,95 @@
+" vim: set filetype=vim :
+
+" Console {{{1
+
+set guipty
+
+
+"  Sélections {{{1
+
+set guioptions+=a
+
+" Pour le modeless (normalement inclus dans le flag a)
+
+set guioptions+=A
+
+
+" Fonte {{{1
+
+set guifont=Monospace\ 13
+
+" Onglets {{{1
+
+" Sans les onglets graphiques, affiche les onglets comme dans un terminal
+
+set guioptions-=e
+
+" Boites de dialogue {{{1
+
+" Dialogues simples en format texte
+
+set guioptions+=c
+
+set guioptions-=v
+set guioptions-=p
+
+
+" Avant-plan {{{1
+
+set guioptions+=f
+
+
+"  Fenêtre {{{1
+
+if has("gui_running")
+  set lines=37
+  set columns=135
+endif
+
+
+" Curseur {{{1
+
+set guicursor=
+			\n:block-Cursor/lCursor-blinkon700-blinkoff700,
+			\v:block-vCursor,
+			\i:ver25-iCursor,
+			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
+			\r:hor15-iCursor,
+			\c:block-Cursor,
+			\ci:ver25,
+			\cr:hor25,
+			\sm:block
+
+
+"  Barres de défilement {{{1
+
+" Barre de défilement verticale
+
+set guioptions-=r
+set guioptions-=l
+
+" Barre de défilement horizontale
+
+set guioptions-=b
+set guioptions-=h
+
+
+"  Barre de menu {{{1
+
+set guioptions-=m
+
+set guioptions-=t
+set guioptions-=g
+
+
+"  Barre d'outils {{{1
+
+" Pas de barre d'outils
+
+set guioptions-=T
+
+
+"  Icone {{{1
+
+set guioptions-=i
+
