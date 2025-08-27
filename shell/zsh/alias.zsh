@@ -98,7 +98,8 @@ alias ed=run-ed
 alias v='vim -u ~/racine/config/edit/vim-lite/vimrc'
 alias vi='vim -u ~/racine/config/edit/vim-lite/vimrc'
 
-alias vid=vimdiff
+alias vid='vimdiff -u ~/racine/config/edit/vim-lite/vimrc'
+alias vimdiff='vimdiff -u ~/racine/config/edit/vim-lite/vimrc'
 
 alias vq=vim-quickfix
 

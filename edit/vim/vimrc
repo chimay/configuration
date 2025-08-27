@@ -78,4 +78,4 @@ source ~/racine/config/edit/vim/paquet/autocmd-plugin.vim
 
 " lua {{{1
 
-"lua require('meta')
+lua require('meta')

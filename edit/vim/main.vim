@@ -859,9 +859,22 @@ nnoremap <kminus> gk
 inoremap <S-Up> <C-o>gk
 inoremap <S-Down> <C-o>gj
 
+" Indentation {{{3
+
+" Better indenting in visual mode
+
+vnoremap <lt> <lt>gv
+vnoremap > >gv
+
 " Déplacement de lignes {{{3
 
-" Voir plugin textmanip
+nnoremap <m-j> <cmd>move .+1<cr>==
+nnoremap <m-k> <cmd>move .-2<cr>==
+
+vnoremap <m-down> :move '>+1<cr>gv=gv
+vnoremap <m-up> :move '<lt>-2<cr>gv=gv
+
+nnoremap J mzJ`z
 
 " Echange {{3
 
@@ -1428,7 +1441,3 @@ set viminfo=
 " recherches, nombre de lignes d’entrée
 
 set history=10000
-
-" Lua {{{1
-
-"lua require('meta')

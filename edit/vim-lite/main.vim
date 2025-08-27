@@ -339,7 +339,13 @@ set tabpagemax=50
 
 "  Différences entre fichiers {{{1
 
-set diffopt=filler,context:4,vertical,foldcolumn:2
+set diffopt=
+			\filler,
+			\context:4,
+			\vertical,
+			\foldcolumn:2,
+			\algorithm:patience,
+			\linematch:60
 
 "  Labels, etiquettes {{{1
 

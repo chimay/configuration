@@ -675,10 +675,6 @@ let g:maplocalleader="_"
 
 "  Aide {{{2
 
-" Voir <url:paquet/postload.vim#tn=Denite>
-
-"nnoremap <F1> <nop>
-
 nnoremap <F1> :tab help<space>
 nnoremap <S-F1> :tab helpgrep<space>
 nnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
@@ -883,14 +879,24 @@ nnoremap <kminus> gk
 inoremap <S-Up> <C-o>gk
 inoremap <S-Down> <C-o>gj
 
+" Indentation {{{3
+
+" Better indenting in visual mode
+
+vnoremap <lt> <lt>gv
+vnoremap > >gv
+
 " Déplacement de lignes {{{3
 
-" Voir plugin textmanip
+nnoremap <m-j> <cmd>move .+1<cr>==
+nnoremap <m-k> <cmd>move .-2<cr>==
+
+vnoremap <m-down> :move '>+1<cr>gv=gv
+vnoremap <m-up> :move '<lt>-2<cr>gv=gv
+
+nnoremap J mzJ`z
 
 " Echange {{3
-
-" see also
-" <url:~/racine/config/edit/neovim/lua/config/keybinds.lua#tn=Move lines up/down>
 
 " chars
 nnoremap <f4>c xp
@@ -1450,6 +1456,3 @@ set shada=
 
 set history=10000
 
-" Lua {{{1
-
-lua require('meta')
