@@ -324,6 +324,7 @@
     # Redisplay last message(s). Equivalent dunstctl command:
     # dunstctl history-pop
     # history = ctrl+grave
+    # obsolete, see ~/racine/config/windenv/sxhkd/hlwm-sxhkdrc
     # history = mod4+F11
 
     # Context menu. Equivalent dunstctl command:

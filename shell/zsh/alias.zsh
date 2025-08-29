@@ -145,7 +145,7 @@ alias esrv=run-emacs-server.sh
 
 alias emx='emacs -nw'
 
-alias mx='emacs -nw -q -l ~/racine/config/edit/emacs/leger.el'
+alias mx='emacs -nw -q --no-splash -l ~/racine/config/edit/emacs-lite/init.el'
 
 # Emacs : client graphique, voir ~/racine/shell/run/run-emacs-client.zsh
 
@@ -635,6 +635,7 @@ hash -d vimliteconf=~/racine/config/edit/vim-lite
 hash -d neovimconf=~/racine/config/edit/neovim
 hash -d kakconf=~/racine/config/edit/kak
 hash -d emacsconf=~/racine/config/edit/emacs
+hash -d emacsliteconf=~/racine/config/edit/emacs-lite
 
 hash -d mdot=~/racine/dotdir/emacs.d
 

@@ -154,28 +154,6 @@ highlight SignColumn	guifg=#5B3C11		guibg=black			gui=NONE
 
 " Plugins {{{2
 
-" Bufferline {{{3
-
-hi Bufferline_Inactive	ctermfg=NONE			ctermbg=NONE	cterm=NONE
-hi Bufferline_Active	ctermfg=NONE			ctermbg=NONE	cterm=reverse
-
-" CtrlP {{{3
-
-hi CtrlPMatch		guifg=brown			guibg=black			gui=NONE
-hi CtrlPPrtCursor	guifg=brown			guibg=black			gui=NONE
-
-" CtrlSpace {{{3
-
-hi	CtrlSpaceSearch		guifg=#5B3C11	guibg=black		gui=NONE
-hi	CtrlSpaceStatus		guifg=#5B3C11	guibg=black		gui=NONE
-hi	CtrlSpaceSelected	guifg=black		guibg=#5B3C11	gui=bold
-
-hi	link CtrlSpaceNormal	Normal
-hi	link CtrlSpaceFound		Visual
-
-"hi	link CtrlSpaceSelected	Visual
-"hi	link CtrlSpaceStatus	StatusLine
-
 " Exchange {{{3
 
 hi ExchangeRegion	guifg=brown			guibg=black			gui=NONE
@@ -183,13 +161,6 @@ hi ExchangeRegion	guifg=brown			guibg=black			gui=NONE
 " Highlighted Yank {{{3
 
 hi HighlightedyankRegion		guifg=#921717		guibg=black			gui=NONE
-
-" Visual multi {{{3
-
-hi VisualMultiMono			guifg=black			guibg=#4a1c07		gui=bold
-hi VisualMultiExtend		guifg=darkgreen		guibg=#120705		gui=NONE
-hi VisualMultiExtendCursors	guifg=darkgreen		guibg=#120705		gui=italic,underline
-hi VisualMultiInsert		guifg=darkred		guibg=#120705		gui=italic,underline
 
 " Showtrailingwhitespace {{{3
 
@@ -202,11 +173,6 @@ hi SneakPluginScope		guifg=black			guibg=#872E30	gui=underline
 
 hi SneakStreakTarget	guifg=#872E30		guibg=NONE		gui=underline
 hi SneakStreakMask		guifg=NONE			guibg=NONE		gui=underline
-
-" Table mode {{{3
-
-hi Table			guifg=#5B3C11	guibg=NONE		gui=NONE
-hi TableSeparator	guifg=#5B3C11	guibg=NONE		gui=NONE
 
 " Utl {{{3
 

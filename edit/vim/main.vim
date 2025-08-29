@@ -755,24 +755,43 @@ nnoremap <f3>s <cmd>%sort<cr>
 
 nnoremap <f3>r <cmd>call library#toggle_readonly()<cr>
 
-" Fenêtres {{{2
+" windows (fenêtres) {{{2
 
-" nnoremap <s-tab>  <c-w>w
-" nnoremap <m-s-tab>  <c-w>p
+nnoremap <c-left> <c-w>h
+nnoremap <c-down> <c-w>j
+nnoremap <c-up> <c-w>k
+nnoremap <c-right> <c-w>l
 
-" nnoremap <s-left> <c-w><left>
-" nnoremap <s-right> <c-w><right>
-" nnoremap <s-up> <c-w><up>
-" nnoremap <s-down> <c-w><down>
+nnoremap <c-s-down> <cmd>resize +2<cr>
+nnoremap <c-s-up> <cmd>resize -2<cr>
+nnoremap <c-s-right> <cmd>vertical resize +2<cr>
+nnoremap <c-s-left> <cmd>vertical resize -2<cr>
+
+"nnoremap <s-tab>  <c-w>w
+"nnoremap <m-s-tab>  <c-w>p
+
+"nnoremap <s-left> <c-w><left>
+"nnoremap <s-right> <c-w><right>
+"nnoremap <s-up> <c-w><up>
+"nnoremap <s-down> <c-w><down>
 
 " doesnt work
-" nnoremap <d-7>  <c-w>w
-" nnoremap <d-4> <c-w><left>
-" nnoremap <d-6> <c-w><right>
-" nnoremap <d-8> <c-w><up>
-" nnoremap <d-5> <c-w><down>
+"nnoremap <d-7>  <c-w>w
+"nnoremap <d-4> <c-w><left>
+"nnoremap <d-6> <c-w><right>
+"nnoremap <d-8> <c-w><up>
+"nnoremap <d-5> <c-w><down>
 
 "  Onglets {{{2
+
+nnoremap <c-pageup> gT
+nnoremap <c-pagedown> gt
+
+nnoremap <c-home> <cmd>tabfirst<cr>
+nnoremap <c-end> <cmd>tablast<cr>
+
+nnoremap <s-pageup> <cmd>tabmove -1<cr>
+nnoremap <s-pagedown> <cmd>tabmove +1<cr>
 
 nnoremap <f3>t <cmd>tabnew<cr>
 nnoremap <f3>T :tabedit<space>
@@ -871,8 +890,8 @@ vnoremap > >gv
 nnoremap <m-j> <cmd>move .+1<cr>==
 nnoremap <m-k> <cmd>move .-2<cr>==
 
-vnoremap <m-down> :move '>+1<cr>gv=gv
-vnoremap <m-up> :move '<lt>-2<cr>gv=gv
+vnoremap <m-j> :move '>+1<cr>gv=gv
+vnoremap <m-k> :move '<lt>-2<cr>gv=gv
 
 nnoremap J mzJ`z
 
@@ -1116,19 +1135,6 @@ nnoremap <silent> <D-l> <cmd>call library#toggle_relative_linum()<cr>
 
 " Curseur {{{3
 
-set guicursor=
-			\n:block-Cursor/lCursor,
-			\v:block-vCursor,
-			\i:ver25-iCursor,
-			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
-			\r:hor15-iCursor,
-			\c:block-Cursor,
-			\ci:ver25,
-			\cr:hor25,
-			\sm:block
-
-set termguicolors
-
 nnoremap <f3>l <cmd>set cursorline!<cr>
 
 " Fonte de caractères {{{3
@@ -1142,8 +1148,6 @@ nnoremap <f3>f :GuiFont DejaVu Sans Mono:h12
 nnoremap <C-!> <cmd>call library#terminal()<cr>
 
 " Passer en mode normal
-
-" En référence à Ctrl-Q / Ctrl-S
 
 tnoremap <D-n> <C-\><C-n>
 tnoremap <D-v> <C-\><C-n>
@@ -1403,6 +1407,8 @@ if !exists(":DiffOrig")
 endif
 
 " terminal {{{1
+
+set termguicolors
 
 " filetypes {{{1
 

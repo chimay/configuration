@@ -36,8 +36,8 @@ endfun
 
 fun! library#manual ()
 	let arguments = input('Man args : ', '', 'shellcmd')
-	exe 'Man' arguments
-	exe "normal! \<c-w>T"
+	execute 'Man' arguments
+	execute "normal! \<c-w>T"
 endfun
 
 fun! library#manual_argv ()
@@ -400,12 +400,24 @@ endfu
 
 fun! library#terminal ()
 	" Run terminal in new split
-	let shell = input('Shell to use ? ', 'zsh -l')
+	if has('nvim')
+		let default_shell = 'zsh -l'
+	else
+		let default_shell = 'bash -l'
+	endif
+	let shell = input('Shell to use ? ', default_shell)
 	if empty(shell)
 		return
 	endif
-	tabnew
-	execute 'terminal' shell
+	if has('nvim')
+		tabnew
+		execute 'terminal' shell
+	else
+		execute 'terminal ++close' shell
+		" if terminal is the only window,
+		" it causes strange characters on gvim window on quit
+		"execute "normal! \<c-w>T"
+	endif
 endfun
 
 " ---- disc operations

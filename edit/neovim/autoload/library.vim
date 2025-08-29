@@ -35,12 +35,14 @@ endfun
 " ---- man
 
 fun! library#manual ()
+	" Open a manual tab
 	let arguments = input('Man args : ', '', 'shellcmd')
-	exe 'Man' arguments
-	exe "normal! \<c-w>T"
+	execute 'Man' arguments
+	execute "normal! \<c-w>T"
 endfun
 
 fun! library#manual_argv ()
+	" Open a manual tab from vim command arguments
 	let argv = argv()
 	let arguments = join(argv, ' ')
 	exe 'Man' arguments
@@ -48,6 +50,7 @@ fun! library#manual_argv ()
 endfun
 
 fun! library#manual_sections ()
+	" Uses location list to display a manual page sections
 	" -- vimgrep / copen for quickfix or
 	" -- lvimgrep / lopen for location list of current window
 	lvimgrep /^[A-Z][A-Z ]*$/ %
@@ -63,6 +66,7 @@ fun! library#manual_sections ()
 endfun
 
 fun! library#manual_options ()
+	" Uses location list to display a manual page options
 	" -- vimgrep / copen for quickfix or
 	" -- lvimgrep / lopen for location list of current window
 	lvimgrep /^\s*--\?[a-zA-Z-]\+,\?\s/ %
@@ -78,6 +82,8 @@ fun! library#manual_options ()
 endfun
 
 fun! library#manual_links ()
+	" Uses location list to display a manual page links
+	" to other manual pages
 	" -- vimgrep / copen for quickfix or
 	" -- lvimgrep / lopen for location list of current window
 	lvimgrep /\w\+([0-9])/ %
@@ -93,11 +99,13 @@ fun! library#manual_links ()
 endfun
 
 fun! library#manual_open_list ()
+	" open location list in man page
 	" -- copen for quickfix or lopen for location list of current window
 	lopen
 endfun
 
 fun! library#manual_close_list ()
+	" close location list in man page
 	" -- cclose for quickfix or lclose for location list of current window
 	lclose
 endfun
@@ -400,12 +408,28 @@ endfu
 
 fun! library#terminal ()
 	" Run terminal in new split
-	let shell = input('Shell to use ? ', 'zsh -l')
+	if has('nvim')
+		let default_shell = 'zsh -l'
+	else
+		if executable('fish')
+			let default_shell = 'fish -l'
+		else
+			let default_shell = 'bash -l'
+		endif
+	endif
+	let shell = input('Shell to use ? ', default_shell)
 	if empty(shell)
 		return
 	endif
-	tabnew
-	execute 'terminal' shell
+	if has('nvim')
+		tabnew
+		execute 'terminal' shell
+	else
+		execute 'terminal ++close' shell
+		" if terminal is the only window,
+		" it causes strange characters on gvim window on quit
+		"execute "normal! \<c-w>T"
+	endif
 endfun
 
 " ---- disc operations
