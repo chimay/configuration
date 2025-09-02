@@ -32,7 +32,7 @@ set shell=/bin/zsh
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
-set vicmd=vim
+set vicmd='vim -u ~/racine/config/edit/vim-lite/vimrc'
 
 " Mieux dans un terminal
 "set vixcmd=gvim

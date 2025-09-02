@@ -27,3 +27,4 @@
 # ====================================
 
 # exec bspwm
+exec herbstluftwm

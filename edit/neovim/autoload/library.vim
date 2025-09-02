@@ -369,7 +369,7 @@ fun! library#tablabel (tabnum)
 	let winnr = tabpagewinnr(tabnum)
 	let buffernr = buflist[winnr - 1]
 	let buffername = bufname(buffernr)
-	let filename = fnamemodify(buffername, ':t')
+	let filename = fnamemodify(buffername, ':t')[0:14]
 	let label = ''
 	for bufnr in buflist
 		if getbufvar(bufnr, "&modified")

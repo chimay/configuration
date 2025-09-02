@@ -221,6 +221,28 @@ snf () {
 		"$@"
 }
 
+# remove-file {{{2
+
+remove-file () {
+	local arguments="$@"
+	[ $arguments = "*" ] && {
+		echo I refuse to remove all files/folder in a directory.
+		echo Please narrow at least to files only with '*(.)'.
+		echo
+		return 1
+	}
+	local targets=($~arguments)
+	[ $#targets -eq 0 ] && {
+		echo No file/folder found.
+		echo
+		return 1
+	}
+	echo "trash-put -v $=targets"
+	echo
+	trash-put -v $=targets
+	return 0
+}
+
 # sl : symbolic link {{{2
 
 sl () {

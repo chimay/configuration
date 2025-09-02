@@ -203,8 +203,14 @@ hyper + shift + w
 hyper + c ; s
 	notify-send "$(cpupower-gui profile save | head -n 1)"
 
+hyper + c ; c
+	notify-send "$(cpupower-gui profile conservative | head -n 1)"
+
 hyper + c ; d
 	notify-send "$(cpupower-gui profile demand | head -n 1)"
+
+hyper + c ; u
+	notify-send "$(cpupower-gui profile userspace | head -n 1)"
 
 # screen {{{1
 

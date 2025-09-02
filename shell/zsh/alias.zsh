@@ -220,10 +220,10 @@ alias mcp='qcp -d'
 
 # Suppression {{{2
 
-alias rm=trash-put
-
 alias tls=trash-list
 alias trs=trash-restore
+
+alias rm='noglob remove-file'
 
 alias tremove=trash-rm
 alias tempty=trash-empty

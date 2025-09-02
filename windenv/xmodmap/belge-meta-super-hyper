@@ -78,9 +78,9 @@ keycode 107 = Multi_key Sys_Req Multi_key Sys_Req
 
 ! Chiffres {{{1
 
-! keysym twosuperior = rightsinglequotemark grave rightsinglequotemark grave U2014
+! keysym twosuperior = rightsinglequotemark grave rightsinglequotemark grave
 
-keysym twosuperior = asciitilde grave asciitilde grave U2014
+keysym twosuperior = asciitilde grave asciitilde grave
 
 keycode  13 = apostrophe 4 apostrophe 4 rightsinglequotemark dollar onequarter
 keycode  21 = minus underscore minus underscore parenright dead_ogonek parenright

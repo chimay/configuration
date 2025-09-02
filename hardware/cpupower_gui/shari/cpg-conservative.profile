@@ -1,0 +1,11 @@
+# name: conservative
+
+# CPU	Min	Max	Governor	Online
+0	1200	2700	conservative	True
+1	1200	2700	conservative	True
+2	1200	2700	conservative	True
+3	1200	2700	conservative	True
+4	1200	2700	conservative	True
+5	1200	2700	conservative	True
+6	1200	2700	conservative	True
+7	1200	2700	conservative	True
