@@ -406,6 +406,7 @@ hc rule class=feh tag=view
 hc rule class=Sxiv tag=view
 hc rule class=vimiv tag=view
 
+hc rule class=Gvim tag=edit
 hc rule class=nvim-qt tag=edit
 hc rule class=Emacs tag=edit
 

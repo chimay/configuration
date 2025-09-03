@@ -67,7 +67,7 @@ set guicursor=
 			\i:ver25-iCursor,
 			\o:hor50-Cursor-blinkwait100-blinkon0,
 			\r:hor15-iCursor,
-			\c:block-Cursor,
+			\c:block-Cursor-blinkon0,
 			\ci:ver25,
 			\cr:hor25,
 			\sm:block

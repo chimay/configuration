@@ -225,18 +225,21 @@ snf () {
 
 remove-file () {
 	local arguments="$@"
+	# -- safeguard
 	[ $arguments = "*" ] && {
 		echo I refuse to remove all files/folder in a directory.
 		echo Please narrow at least to files only with '*(.)'.
 		echo
 		return 1
 	}
+	# -- no file found
 	local targets=($~arguments)
 	[ $#targets -eq 0 ] && {
 		echo No file/folder found.
 		echo
 		return 1
 	}
+	# -- trash files
 	echo "trash-put -v $=targets"
 	echo
 	trash-put -v $=targets
