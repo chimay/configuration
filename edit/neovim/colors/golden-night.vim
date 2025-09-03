@@ -102,6 +102,9 @@ hi StatusLine		guifg=NONE		guibg=NONE			gui=reverse,bold
 
 hi WheelStatusLine		guifg=#5b3c11	guibg=NONE		gui=NONE
 
+hi WinBarNC		guifg=#5b3c11	guibg=#120705		gui=bold
+hi WinBar		guifg=NONE		guibg=NONE			gui=reverse,bold
+
 " Menu de complétion en mode insertion {{{2
 
 hi Pmenu			guifg=#88421D		guibg=#070707		gui=NONE

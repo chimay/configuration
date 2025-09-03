@@ -564,7 +564,7 @@ set switchbuf=usetab
 
 set tabpagemax=50
 
-" Diff between files {{{1
+" diff between files {{{1
 
 set diffopt=filler,context:4,vertical,foldcolumn:2
 
@@ -1357,24 +1357,45 @@ if ! exists("g:colors_name")
 	let g:colors_name = ''
 endif
 
-if has('statusline')
-	set statusline=
-	"set statusline+=%#statut#
-	set statusline+=\ %.43F
-	set statusline+=%(\ %m%)
-	set statusline+=%(\ %r%)
-	set statusline+=\ \ buf\ %n
-	set statusline+=\ \ win\ %{winnr()}/%{win_getid()}
-	set statusline+=%(%a%)
-	set statusline+=\ \ %(%{(&filetype==\"\"?\"\":\"ft\")}\ %Y\ %)
-	set statusline+=\ \ enc\ %{(&fenc==\"\"?&enc:&fenc)}
-	set statusline+=\ \ pos
-	set statusline+=\ %P\ %l\ x\ %c
-	set statusline+=\ %=
-	set statusline+=\ \ col\ %{g:colors_name}
-	set statusline+=\ \ \ \ |
-	set statusline+=%<
-endif
+" common status line for all windows
+" only useful if winbar is not empty
+"set laststatus=3
+
+set statusline=
+"set statusline+=%#statut#
+set statusline+=\ %.43F
+set statusline+=%(\ %m%)
+set statusline+=%(\ %r%)
+set statusline+=\ \ buf\ %n
+set statusline+=\ \ win\ %{winnr()}/%{win_getid()}
+set statusline+=%(%a%)
+set statusline+=\ \ %(%{(&filetype==\"\"?\"\":\"ft\")}\ %Y\ %)
+set statusline+=\ \ enc\ %{(&fenc==\"\"?&enc:&fenc)}
+set statusline+=\ \ pos
+set statusline+=\ %P\ %l\ x\ %c
+set statusline+=\ %=
+set statusline+=\ \ col\ %{g:colors_name}
+set statusline+=\ \ \ \ |
+set statusline+=%<
+
+" Barre de fenêtre {{{2
+
+" set winbar=
+" "set winbar+=%#statut#
+" set winbar+=\ %.43F
+" set winbar+=%(\ %m%)
+" set winbar+=%(\ %r%)
+" set winbar+=\ \ buf\ %n
+" set winbar+=\ \ win\ %{winnr()}/%{win_getid()}
+" set winbar+=%(%a%)
+" set winbar+=\ \ %(%{(&filetype==\"\"?\"\":\"ft\")}\ %Y\ %)
+" set winbar+=\ \ enc\ %{(&fenc==\"\"?&enc:&fenc)}
+" set winbar+=\ \ pos
+" set winbar+=\ %P\ %l\ x\ %c
+" set winbar+=\ %=
+" set winbar+=\ \ col\ %{g:colors_name}
+" set winbar+=\ \ \ \ |
+" set winbar+=%<
 
 "  Zone de commande {{{2
 
