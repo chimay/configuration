@@ -25,12 +25,12 @@ endfun
 fun! library#highlight_group ()
 	" Display highlight group under cursor
 	if !exists("*synstack")
-		return
+		return 'no synstack'
 	endif
 	let group = map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 	let @+ = join(group, ' ')
-	echomsg group
-	return
+	"echomsg group
+	return group
 endfun
 
 " ---- man
