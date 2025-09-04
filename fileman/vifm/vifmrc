@@ -790,11 +790,11 @@ qnoremap % <s-tab>
 qnoremap <bs> <s-tab>
 
 nnoremap £ :!LESS= less %f<cr>
-" midnight commander (mc) binding style
+" midnight commander (mc) binding style : view
 nnoremap <f3> :!bat --paging always %f<cr>
 
 nnoremap <m-e> :edit<cr>
-" midnight commander (mc) binding style
+" midnight commander (mc) binding style : edit
 nnoremap <f4> :edit<cr>
 
 " Ouverture
@@ -852,9 +852,7 @@ nnoremap A cw
 nnoremap cv :rename<cr>
 nnoremap cr :rename!<cr>
 
-" Copier, Coller, Supprimer {{{2
-
-" Copier & Déplacer
+" Copier & Déplacer  {{{2
 
 " Copier la sélection
 
@@ -869,8 +867,9 @@ nnoremap X ds
 
 nnoremap àc :!tsp rsync -av --progress %f %D &<cr>
 nnoremap àm :!tsp rsync -av --progress --remove-source-files %f %D<cr>
-" midnight commander (mc) binding style
+" midnight commander (mc) binding style : copy
 nnoremap <f5> :!tsp rsync -av --progress %f %D &<cr>
+" midnight commander (mc) binding style : move
 nnoremap <f6> :!tsp rsync -av --progress --remove-source-files %f %D<cr>
 
 " Sync with Rsync
@@ -881,16 +880,30 @@ nnoremap àd :!tsp rsync -av --progress %d/ %D &<cr>
 nnoremap <f2>f :!tsp rsync -av --progress %f %D &<cr>
 nnoremap <f2>d :!tsp rsync -av --progress %d/ %D &<cr>
 
-" Copier & Coller
-
 nnoremap àà :clone?<cr>
 " midnight commander (mc) binding style
 nnoremap <f2>c :clone?<cr>
 
-" midnight commander (mc) binding style
+" Presse-papier {{{2
+
+" Nom du chemin, fichier, répertoire -> clipboard
+
+if executable('xclip')
+	map çç :!echo -n %d/%c | xclip ; xclip -o | xclip %i<cr>
+	map çf :!echo -n %c    | xclip ; xclip -o | xclip %i<cr>
+	map çd :!echo -n %d    | xclip ; xclip -o | xclip %i<cr>
+elseif executable('xsel')
+	map çç :!echo -n %d/%c | xsel -i; xsel -o | xsel -i -b<cr>
+	map çf :!echo -n %c    | xsel -i; xsel -o | xsel -i -b<cr>
+	map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
+endif
+
+" Supprimer {{{2
+
+" midnight commander (mc) binding style : delete
 nnoremap <f8> dd
 
-" Corbeille vifm
+" Corbeille vifm {{{3
 
 " dd : envoie vers corbeille vifm
 "
@@ -906,22 +919,10 @@ nnoremap > :trashes<cr>
 nnoremap <m-q> :lstrash<cr>
 nnoremap <c-q> :trashes?<cr>
 
-" Corbeille générale
+" Corbeille générale {{{3
 
 nnoremap <delete> :!tsp trash-put %f<cr>
 nnoremap dr :!tsp trash-restore <cr>
-
-" Nom du chemin, fichier, répertoire -> clipboard
-
-if executable('xclip')
-	map çç :!echo -n %d/%c | xclip ; xclip -o | xclip %i<cr>
-	map çf :!echo -n %c    | xclip ; xclip -o | xclip %i<cr>
-	map çd :!echo -n %d    | xclip ; xclip -o | xclip %i<cr>
-elseif executable('xsel')
-	map çç :!echo -n %d/%c | xsel -i; xsel -o | xsel -i -b<cr>
-	map çf :!echo -n %c    | xsel -i; xsel -o | xsel -i -b<cr>
-	map çd :!echo -n %d    | xsel -i; xsel -o | xsel -i -b<cr>
-endif
 
 " Autres opérations sur fichiers {{{2
 
@@ -932,7 +933,7 @@ nnoremap <m-n> :!touch<space>
 " New dir
 
 nnoremap <m-d> :mkdir!<space>
-" midnight commander (mc) binding style
+" midnight commander (mc) binding style : mkdir
 nnoremap <f7> :mkdir!<space>
 
 " Pack

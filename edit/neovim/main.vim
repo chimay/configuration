@@ -1353,13 +1353,14 @@ set showcmd
 
 " Affiche une barre de statut en bas de l'écran
 
-if ! exists("g:colors_name")
-	let g:colors_name = ''
-endif
-
-" common status line for all windows
-" only useful if winbar is not empty
-"set laststatus=3
+" The value of this option influences when the last window will have a
+" status line:
+"  	0: never
+"  	1: only if there are at least two windows
+"  	2: always
+"  	3: always and ONLY the last window
+"	   common status line for all windows
+set laststatus=3
 
 set statusline=
 "set statusline+=%#statut#
