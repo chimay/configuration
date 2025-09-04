@@ -1099,7 +1099,7 @@ nnoremap <silent> <f3>~ <cmd>setlocal spell!<cr>
 
 "  Informations {{{2
 
-nnoremap <f3>ig <cmd>call library#highlight_group()<cr>
+nnoremap <f3>ig <cmd>echo library#highlight_group()<cr>
 
 "  Shell {{{2
 
