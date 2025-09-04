@@ -611,6 +611,8 @@ bind compose ç write-fcc
 
 bind compose a noop
 
+bind compose x pgp-menu
+
 bind compose & attach-file
 
 bind compose aa attach-file

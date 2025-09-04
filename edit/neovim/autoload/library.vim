@@ -28,6 +28,7 @@ fun! library#highlight_group ()
 		return
 	endif
 	let group = map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+	let @+ = join(group, ' ')
 	echomsg group
 	return
 endfun

@@ -160,11 +160,11 @@ MAILTO=$USER
 # lundi, mardi, jeudi, vendredi
 
 30	12	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
-55	15	*	1-6,9-12	2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+00	16	*	1-6,9-12	2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
 45	16	*	1-6,9-12	1			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
 
-25	12	*	1-6,9-12	1,2,4,5		bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
-50	15	*	1-6,9-12	5			bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
+25	12	*	1-6,9-12	1,2,5		bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
+55	15	*	1-6,9-12	5			bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
 40	16	*	1-6,9-12	1			bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
 
 # mercredi

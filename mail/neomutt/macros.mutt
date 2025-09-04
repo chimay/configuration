@@ -226,3 +226,8 @@ macro pager \< '<enter-command>source $my_muttroot/scripts/decremente-index-page
 
 macro pager @= '<enter-command>set pager_index_lines='
 
+# Chiffrement {{{1
+
+# Inclure la signature PGP dans le corps du message en tapant Ctrl-p :
+# macro compose \Cp "F/usr/bin/pgps\ny"
+

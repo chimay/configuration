@@ -18,6 +18,7 @@ hi muttrcMacroDescrNL		guifg=#5b3c11		guibg=default			gui=NONE
 hi muttrcPattern	   		guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcRXChars		   	guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcRXString2			guifg=#5B3C11		guibg=default			gui=NONE
+hi muttrcSetStrAssignment	guifg=#88421D		guibg=default			gui=NONE
 hi muttrcShellString		guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcSimplePat			guifg=#5B3C11		guibg=default			gui=NONE
 hi muttrcSimplePatMetas		guifg=#5B3C11		guibg=default			gui=NONE
