@@ -23,13 +23,12 @@ fun! library#toggle_help_filetype ()
 endfun
 
 fun! library#highlight_group ()
-	" Display highlight group under cursor
+	" Returns highlight groups under cursor
 	if !exists("*synstack")
-		return 'no synstack'
+		return 'synstack does not exist'
 	endif
 	let group = map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 	let @+ = join(group, ' ')
-	"echomsg group
 	return group
 endfun
 
