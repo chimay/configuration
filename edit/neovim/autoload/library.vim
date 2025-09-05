@@ -23,7 +23,7 @@ fun! library#toggle_help_filetype ()
 endfun
 
 fun! library#highlight_group ()
-	" Returns highlight groups under cursor
+	" Yanks and returns highlight group under cursor
 	if !exists("*synstack")
 		return 'synstack does not exist'
 	endif

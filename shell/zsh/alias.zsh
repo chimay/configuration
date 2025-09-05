@@ -34,6 +34,9 @@ alias fn=fzf-nova
 
 # Remplacement pour gksu, kdesu
 
+alias sudologin='sudo -i'
+alias sudoshell='sudo -s'
+alias visudo='sudo -E visudo'
 alias gsu=pkexec
 
 # display {{{1

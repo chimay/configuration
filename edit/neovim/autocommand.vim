@@ -87,11 +87,6 @@ augroup file-markdown
 	"autocmd bufwritepost **.md !pandoc -t html % -o %:r.html
 augroup END
 
-augroup file-lua
-	autocmd!
-	autocmd FileType lua lua vim.treesitter.stop()
-augroup end
-
 augroup file-libreoffice
 	autocmd!
 	autocmd BufReadPre *.odt,*.ods set ro
@@ -141,4 +136,10 @@ augroup man-pages
 	autocmd FileType man nnoremap <buffer> <cr> <cmd>silent! normal K<cr>
 	autocmd FileType man nnoremap <buffer> b <c-b>
 	autocmd FileType man nnoremap <buffer> u <c-u>
+augroup end
+
+augroup treesitter-stop
+	autocmd!
+	autocmd FileType lua lua vim.treesitter.stop()
+	autocmd FileType help lua vim.treesitter.stop()
 augroup end
