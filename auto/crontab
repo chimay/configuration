@@ -81,7 +81,6 @@ MAILTO=$USER
 # test mail
 #*	*	*	*	*	date
 
-
 # shell {{{1
 
 0	11	*	*	7	compile-zsh-autoload.zsh
@@ -107,16 +106,17 @@ MAILTO=$USER
 0	14	*	*	5	run-logrotate.zsh journal
 10	14	*	*	5	run-logrotate.zsh irc
 
+# synchronization {{{1
+
+0 	15	*	*	5		save-unison-config.sh
 
 # navigation {{{1
 
 0	16	*	*	*	qute-history.zsh 2>>! ~/log/qute-history.log
 
-
 # multimédia {{{1
 
 30	17	*	*	6	audio-perm.zsh ~/audio
-
 
 # nettoyage {{{1
 
