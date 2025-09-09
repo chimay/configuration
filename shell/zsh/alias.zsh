@@ -145,22 +145,23 @@ alias xx=helix
 # Emacs {{{2
 
 alias esrv=run-emacs-server.sh
+# client graphique, voir ~/racine/shell/run/run-emacs-client.sh
 
-alias emx='emacs -nw'
+alias emx='emacs -nw --init-directory ~/racine/dotdir/emacs.d'
 
-alias mx='emacs -nw -q --no-splash -l ~/racine/config/edit/emacs-lite/init.el'
+alias mx='emacs --no-window-system --init-directory ~config/edit/emacs-lite'
+#alias mx='emacs -nw -q --no-splash -l ~/racine/config/edit/emacs-lite/init.el'
 
-# Emacs : client graphique, voir ~/racine/shell/run/run-emacs-client.zsh
-
-# Client terminal
-
+# client terminal
 alias em='emacsclient -t'
 
-# Se connecte à un frame existant
-
+# se connecte à un frame existant
 alias emopen='emacsclient'
 
-alias test-emacs='cd ~/racine/test/emacs && HOME=~/racine/test/emacs emacs'
+#alias test-emacs='cd ~/racine/test/emacs && HOME=~/racine/test/emacs emacs'
+
+# doom emacs
+alias doom=~/racine/dotdir/emacs.doom/bin/doom
 
 # file system {{{1
 

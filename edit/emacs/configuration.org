@@ -1,6 +1,154 @@
 
 #+STARTUP: showall
 
+* Table of contents                                                     :toc:
+- [[#documentation][Documentation]]
+  - [[#aide-en-ligne][Aide en ligne]]
+  - [[#modificateurs-disponibles][Modificateurs disponibles]]
+  - [[#chargement][Chargement]]
+  - [[#orgmode-et-elisp][Orgmode et Elisp]]
+  - [[#keybindings][Keybindings]]
+  - [[#booléens][Booléens]]
+  - [[#historique][Historique]]
+- [[#info][Info]]
+- [[#interne][Interne]]
+  - [[#serveur][Serveur]]
+  - [[#chemins-daccès][Chemins d’accès]]
+  - [[#configuration-automatique][Configuration automatique]]
+  - [[#messages][Messages]]
+  - [[#optimisation][Optimisation]]
+  - [[#compilation-bytecode][Compilation bytecode]]
+- [[#présentation][Présentation]]
+  - [[#démarrage][Démarrage]]
+  - [[#police][Police]]
+  - [[#symboles][Symboles]]
+  - [[#curseur][Curseur]]
+  - [[#menus][Menus]]
+  - [[#lignes-et-colonnes][Lignes et colonnes]]
+  - [[#barres-de-défilement][Barres de défilement]]
+  - [[#coloration-syntaxique][Coloration syntaxique]]
+  - [[#barre-doutil][Barre d'outil]]
+  - [[#beep][Beep]]
+  - [[#thème][Thème]]
+- [[#fenêtres][Fenêtres]]
+  - [[#winner][Winner]]
+- [[#édition][Édition]]
+  - [[#labels-tags][Labels (tags)]]
+  - [[#commandes][Commandes]]
+  - [[#lignes-visuelles][Lignes visuelles]]
+  - [[#indentation][Indentation]]
+  - [[#format][Format]]
+  - [[#sélection][Sélection]]
+  - [[#correspondances---][Correspondances (), [], ...]]
+  - [[#recherche--remplacement][Recherche & Remplacement]]
+  - [[#annulation][Annulation]]
+  - [[#copier--coller][Copier & Coller]]
+  - [[#confirmation][Confirmation]]
+  - [[#sélection-en-rectangle][Sélection en rectangle]]
+  - [[#chiffrement][Chiffrement]]
+- [[#fichiers][Fichiers]]
+  - [[#backup][Backup]]
+  - [[#autosave][Autosave]]
+  - [[#autoread][Autoread]]
+  - [[#encodage][Encodage]]
+  - [[#accents][Accents]]
+  - [[#compression][Compression]]
+  - [[#accès-à-distance][Accès à distance]]
+- [[#répertoires][Répertoires]]
+- [[#tampons-buffers][Tampons (buffers)]]
+  - [[#tampon-contenant-la-liste-des-tampons][Tampon contenant la liste des tampons]]
+  - [[#tampons-inactifs][Tampons inactifs]]
+  - [[#min-windows][Min windows]]
+  - [[#minibuffer][Minibuffer]]
+- [[#historique-1][Historique]]
+  - [[#sauvegarde][Sauvegarde]]
+  - [[#tampons-buffers-1][Tampons, Buffers]]
+  - [[#fichiers-récents][Fichiers récents]]
+- [[#contrôle-de-version][Contrôle de version]]
+- [[#terminal--shell][Terminal & Shell]]
+  - [[#ansi][ANSI]]
+  - [[#shell-bash-zsh-etc][Shell bash, zsh, etc]]
+  - [[#eshell][Eshell]]
+  - [[#ielm--interactive-emacs-lisp-mode][IELM : Interactive Emacs-Lisp Mode]]
+- [[#courriel][Courriel]]
+  - [[#données][Données]]
+  - [[#receive][Receive]]
+  - [[#send][Send]]
+  - [[#read][Read]]
+- [[#programmes-externes][Programmes externes]]
+  - [[#compilation][Compilation]]
+  - [[#impression][Impression]]
+  - [[#navigation][Navigation]]
+- [[#modes][Modes]]
+  - [[#python][Python]]
+- [[#orthographe][Orthographe]]
+- [[#fonctions][Fonctions]]
+  - [[#fichier-de-configuration][Fichier de configuration]]
+  - [[#affiche-nom-fichier][Affiche nom fichier]]
+  - [[#début--fin-de-fichier][Début & fin de fichier]]
+  - [[#demi-pages][Demi-pages]]
+  - [[#efface-le-mot][Efface le mot]]
+  - [[#efface-jusquau-début-de-la-ligne][Efface jusqu’au début de la ligne]]
+  - [[#efface-le-contenu-de-la-ligne][Efface le contenu de la ligne]]
+  - [[#copie-le-mot][Copie le mot]]
+  - [[#copie-jusquau-début-de-la-ligne][Copie jusqu’au début de la ligne]]
+  - [[#copie-jusquà-la-fin-de-la-ligne][Copie jusqu’à la fin de la ligne]]
+  - [[#copie-le-contenu-dune-ligne][Copie le contenu d’une ligne]]
+  - [[#copie-une-ligne][Copie une ligne]]
+  - [[#copie-la-phrase][Copie la phrase]]
+  - [[#copie-une-expression-lisp-simple][Copie une expression lisp simple]]
+  - [[#tampons-buffers-2][Tampons (buffers)]]
+  - [[#fenêtres-1][Fenêtres]]
+  - [[#insertion-date][Insertion date]]
+  - [[#insertion-date-jour][Insertion date jour]]
+  - [[#insertion-date-jour-heure][Insertion date jour heure]]
+  - [[#style-du-texte-sous-le-curseur][Style du texte sous le curseur]]
+  - [[#lignes-vides-simples][Lignes vides simples]]
+  - [[#lignes-doubles-avant-titres][Lignes doubles avant titres]]
+  - [[#autres][Autres]]
+- [[#bindings][Bindings]]
+  - [[#libération][Libération]]
+  - [[#modificateurs][Modificateurs]]
+  - [[#fichier-de-configuration-1][Fichier de configuration]]
+  - [[#exécution-de-fonction-intéractive][Exécution de fonction intéractive]]
+  - [[#info-1][Info]]
+  - [[#pages-de-manuel][Pages de manuel]]
+  - [[#historique-2][Historique]]
+  - [[#quitter][Quitter]]
+  - [[#exploration][Exploration]]
+  - [[#insertion][Insertion]]
+  - [[#annulation-1][Annulation]]
+  - [[#effacer-couper][Effacer, Couper]]
+  - [[#copier][Copier]]
+  - [[#rectangle][Rectangle]]
+  - [[#répétition][Répétition]]
+  - [[#recherche--remplacement-1][Recherche & Remplacement]]
+  - [[#complétion][Complétion]]
+  - [[#orthographe-1][Orthographe]]
+  - [[#fenêtres-2][Fenêtres]]
+  - [[#tampons-buffers-3][Tampons (buffers)]]
+  - [[#langages][Langages]]
+  - [[#outils][Outils]]
+  - [[#souris][Souris]]
+  - [[#apparence][Apparence]]
+- [[#macros-enregistrées][Macros enregistrées]]
+- [[#configuration-des-paquets][Configuration des paquets]]
+  - [[#librairies][Librairies]]
+  - [[#organisation][Organisation]]
+  - [[#exploration-1][Exploration]]
+  - [[#arborescence-du-système-de-fichiers][Arborescence du système de fichiers]]
+  - [[#windows-panels][Windows (panels)]]
+  - [[#recherche][Recherche]]
+  - [[#yank][Yank]]
+  - [[#undo][Undo]]
+  - [[#registers][Registers]]
+  - [[#completion][Completion]]
+  - [[#selection][Selection]]
+  - [[#languages][Languages]]
+  - [[#async][Async]]
+  - [[#bindings-1][Bindings]]
+- [[#fin][Fin]]
+
 * Documentation
 
 ** Aide en ligne
@@ -102,13 +250,6 @@ Minibuffer :
   (unless (server-running-p) (server-start))
 #+end_src
 
-** Chemins d’accès
-
-#+begin_src emacs-lisp
-  (add-to-list 'load-path "~/racine/dotdir/emacs.d")
-  (add-to-list 'custom-theme-load-path "~/racine/config/edit/emacs/color")
-#+end_src
-
 ** Configuration automatique
 
 Fichier utilisé par customize
@@ -142,9 +283,7 @@ Désactivé car induisant parfois en erreur.
   ;;(byte-recompile-directory "~/racine/config/edit/emacs" 0)
 #+end_src
 
-
 * Présentation
-
 
 ** Démarrage
 
@@ -162,7 +301,6 @@ Désactivé car induisant parfois en erreur.
   ;;     (org-agenda-list 30)
   ;;     (get-buffer "*Org Agenda*")))
 #+end_src
-
 
 ** Police
 
@@ -715,7 +853,6 @@ If getmail or fetchmail or ... is not installed
   ;;(setq send-mail-function 'smtpmail-send-it)
   ;;(setq message-send-mail-function 'smtpmail-send-it)
 #+end_src
-
 
 ** Read
 
@@ -1759,7 +1896,7 @@ Infos sur les thèmes
 
 #+begin_src emacs-lisp
   (use-package org)
-  ;;(with-eval-after-load 'org (global-org-modern-mode))
+  (with-eval-after-load 'org (global-org-modern-mode))
 #+end_src
 
 **** Options

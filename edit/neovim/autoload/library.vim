@@ -69,7 +69,7 @@ fun! library#manual_options ()
 	" Uses location list to display a manual page options
 	" -- vimgrep / copen for quickfix or
 	" -- lvimgrep / lopen for location list of current window
-	lvimgrep /^\s*--\?[a-zA-Z-]\+,\?\s/ %
+	lvimgrep /^\s*--\?[a-zA-Z][a-zA-Z-]*,\?\s/ %
 	lopen
 	" -- add regex to search register
 	" -- to be able tu use n/N to search next or previous
@@ -108,6 +108,12 @@ fun! library#manual_close_list ()
 	" close location list in man page
 	" -- cclose for quickfix or lclose for location list of current window
 	lclose
+endfun
+
+fun! library#manual_quit ()
+	" quit manual buffer
+	silent! lclose
+	quit
 endfun
 
 " ---- moon

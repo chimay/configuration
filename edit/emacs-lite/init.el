@@ -7,6 +7,14 @@
 (add-to-list 'custom-theme-load-path "~/racine/config/edit/emacs-lite/color")
 (when (equal window-system nil) (load-theme 'golden-night-leger t))
 
+;; * Startup
+
+(setq inhibit-startup-message t)
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-screen t)
+;;(setq initial-buffer-choice t)
+;;(setq initial-buffer-choice 'eshell)
+
 ;; * Répertoires
 
 (require 'dired-x)

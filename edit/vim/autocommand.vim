@@ -132,7 +132,7 @@ augroup man-pages
 	autocmd FileType man nnoremap <buffer> o <cmd>call library#manual_open_list()<cr>
 	autocmd FileType man nnoremap <buffer> x <cmd>call library#manual_close_list()<cr>
 	autocmd FileType man nnoremap <buffer> D <cmd>bdelete<cr>
-	autocmd FileType man nnoremap <buffer> q <cmd>quit<cr>
+	autocmd FileType man nnoremap <buffer> q <cmd>call library#manual_quit()<cr>
 	autocmd FileType man nnoremap <buffer> <cr> <cmd>silent! normal K<cr>
 	autocmd FileType man nnoremap <buffer> b <c-b>
 	autocmd FileType man nnoremap <buffer> u <c-u>

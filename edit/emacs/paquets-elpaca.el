@@ -3,7 +3,7 @@
 ;;; * Gestionnaire de paquets elpaca
 
 (defvar elpaca-installer-version 0.11)
-(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
+(defvar elpaca-directory (expand-file-name "~/racine/plugin/manager/emacs/elpaca/"))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
@@ -53,13 +53,16 @@
 (elpaca helm-org)
 (elpaca helm-projectile)
 (elpaca hydra)
+(elpaca ivy-rich)
 (elpaca ibuffer-vc)
 (elpaca key-chord)
 (elpaca multiple-cursors)
+(elpaca org-modern)
 (elpaca outline-magic)
 (elpaca powerline-evil)
 (elpaca projectile)
 (elpaca register-list)
+(elpaca rg)
 (elpaca smartparens)
 (elpaca queue)
 (elpaca region-bindings-mode)

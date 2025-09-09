@@ -6,11 +6,11 @@
 
 ;;; * Chemin d’accès aux fichiers à charger
 
-(add-to-list 'load-path "~/racine/config/edit/emacs")
+(add-to-list 'load-path (expand-file-name "~/racine/config/edit/emacs"))
+(add-to-list 'custom-theme-load-path (expand-file-name "~/racine/config/edit/emacs/color"))
 
 ;;; * Paquets
 
-;;(require 'personnel/paquets-natif "paquets-natif")
 (require 'personnel/paquets-elpaca "paquets-elpaca")
 
 ;;; * Perso
