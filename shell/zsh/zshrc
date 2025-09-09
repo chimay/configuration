@@ -484,8 +484,7 @@ bindkey '^L' clear-screen
 # Undo {{{2
 
 bindkey '^Xu' undo
-bindkey '^X^U' undo
-bindkey '^X^R' redo
+bindkey '^X^U' redo
 
 # Mots {{{2
 
@@ -543,9 +542,11 @@ bindkey '^E' end-of-line
 
 # Pris par fzf
 #bindkey '\ec' capitalize-word
+bindkey '\eC' capitalize-word
 
 # Pris par fzf
 #bindkey '^T' transpose-chars
+bindkey '\e^T' transpose-chars
 
 bindkey '\et' transpose-words
 
@@ -592,7 +593,7 @@ autoload -U predict-on
 zle -N predict-on
 zle -N predict-off
 bindkey '^Xp' predict-on
-bindkey '^X^P' predict-off
+bindkey '^XP' predict-off
 
 # Recherche incrémentale {{{3
 
@@ -874,7 +875,7 @@ bindkey "*" biblio-two-stars
 
 bindkey -M isearch "*" self-insert
 
-# Changement de répertoire avec fzf {{{3
+# Changement de répertoire {{{3
 
 zle -N biblio-repertoires
 
@@ -890,9 +891,9 @@ zle -N biblio-edit-command-line
 
 bindkey '\ee' biblio-edit-command-line
 
-# ------------------------------------------------------------
+# filters {{{1
 
-# fzf : fuzzy finder {{{1
+# fzf : fuzzy finder {{{2
 
 # Définit les raccourcis :
 #
@@ -911,22 +912,15 @@ bindkey '\ee' biblio-edit-command-line
 source ~/racine/shell/source/fzf-key-bindings.zsh
 source ~/racine/shell/source/fzf-completion.zsh
 
-bindkey '\e^T' transpose-chars
-bindkey '\eC' capitalize-word
-
 # voir aussi <url:zshenv#tn=FZF_DEFAULT_OPTS>
 
-# mcfly {{{1
-
-#eval "$(mcfly init zsh)"
-
-# fzf tab completion {{{1
+# fzf tab completion {{{3
 
 #source ~/racine/shell/source/fzf-zsh-completion.sh
 
 #bindkey '^X^I' fzf_completion
 
-# git & fzf {{{1
+# git & fzf {{{3
 
 # credit : https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
 
@@ -950,13 +944,20 @@ bindkey '\eC' capitalize-word
 # bind-git-helper f b t r h s
 # unset -f bind-git-helper
 
-# zoxide {{{1
+# fzy {{{2
+
+source ~/racine/shell/source/zsh-fzy.plugin.zsh
+
+bindkey '^X\ec' fzy-cd-widget
+bindkey '^X^T'  fzy-file-widget
+bindkey '^X^R'  fzy-history-widget
+bindkey '^X^P'  fzy-proc-widget
+
+# zoxide {{{2
 
 eval "$(zoxide init zsh)"
 
 zle -N biblio-zoxide-interactive
-
-# folders stack
 
 bindkey "^F" biblio-zoxide-interactive
 

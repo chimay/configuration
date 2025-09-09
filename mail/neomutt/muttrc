@@ -240,7 +240,8 @@ set use_threads='threads'
 #  Tri {{{2
 
 set sort='reverse-last-date'
-set sort_aux='reverse-last-date'
+set sort_aux='last-date'
+#set sort_aux='reverse-last-date'
 
 #  Options {{{2
 

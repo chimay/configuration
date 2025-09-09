@@ -66,6 +66,9 @@ source_directories:
   - racine/shell
   - racine/site
   - racine/snippet
+  - racine/syncron/cloud
+  - racine/syncron/rclone
+  - racine/syncron/unison
   - racine/system
   - racine/wiki
 

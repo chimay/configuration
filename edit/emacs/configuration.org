@@ -152,7 +152,8 @@ Désactivé car induisant parfois en erreur.
   (setq inhibit-startup-message t)
   (setq inhibit-splash-screen t)
   (setq inhibit-startup-screen t)
-  (setq initial-buffer-choice t)
+  ;;(setq initial-buffer-choice t)
+  (setq initial-buffer-choice 'eshell)
   (setq initial-scratch-message
         ";; Scratch buffer for notes you don’t want to save.
   ;; Lisp mode is enabled, you can run lisp code with C-x C-e just after a parenthesis.\n\n")
@@ -666,7 +667,6 @@ Penser à exécuter recentf-cleanup de temps en temps
 
 ** Eshell
 
-
 *** Visual commands
 
 #+begin_src emacs-lisp
@@ -678,16 +678,13 @@ Penser à exécuter recentf-cleanup de temps en temps
   (setq eshell-smart-space-goes-to-end t)
 #+end_src
 
-
 ** IELM : Interactive Emacs-Lisp Mode
 
 #+begin_src emacs-lisp
   ;; Nothing yet
 #+end_src
 
-
 * Courriel
-
 
 ** Données
 
@@ -1243,6 +1240,19 @@ H = Hyper
   ;;(define-key minibuffer-local-map (kbd "M-;") 'minibuffer-keyboard-quit)
 #+end_src
 
+** Info
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "s-i") 'info)
+#+end_src
+
+** Pages de manuel
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "s-m") 'man)
+  (global-set-key (kbd "s-w") 'woman)
+#+end_src
+
 ** Historique
 
 #+begin_src emacs-lisp
@@ -1390,7 +1400,6 @@ CUA mode est mieux
   ;;(global-set-key (kbd "C-x s-r") 'string-rectangle)
 #+end_src
 
-
 ** Répétition
 
 #+begin_src emacs-lisp
@@ -1405,7 +1414,6 @@ CUA mode est mieux
   ;;(define-key isearch-mode-map (kbd "M-n") 'isearch-ring-advance)
   (global-set-key (kbd "s-r") 'rgrep)
 #+end_src
-
 
 ** Complétion
 
@@ -1520,7 +1528,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "<f7> g") 'biblio/aller-au-tampon-grenier)
 #+end_src
 
-
 *** Divers
 
 #+begin_src emacs-lisp
@@ -1578,7 +1585,6 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "s-!") 'eshell)
   (global-set-key (kbd "<s-kp-enter>") 'ansi-term)
 #+end_src
-
 
 *** Compilation
 
@@ -1749,11 +1755,11 @@ Infos sur les thèmes
      (define-key outline-minor-mode-map (kbd "TAB") 'outline-cycle)))
 #+end_src
 
-
-*** Org-mode
+*** Org mode
 
 #+begin_src emacs-lisp
   (use-package org)
+  ;;(with-eval-after-load 'org (global-org-modern-mode))
 #+end_src
 
 **** Options
@@ -1778,7 +1784,6 @@ Infos sur les thèmes
   (setq org-export-with-smart-quotes t)
 #+end_src
 
-
 **** Org goto
 
 #+begin_src emacs-lisp
@@ -1786,7 +1791,6 @@ Infos sur les thèmes
   (setq org-goto-interface 'outline-path-completionp)
   (setq org-outline-path-complete-in-steps nil)
 #+end_src
-
 
 **** Bindings
 
@@ -1811,7 +1815,6 @@ Infos sur les thèmes
       (define-key org-mode-map (kbd "<C-M-return>") 'org-liste-espacee)))
 #+end_src
 
-
 **** Modules
 
 #+begin_src emacs-lisp
@@ -1826,7 +1829,6 @@ Infos sur les thèmes
   ;;(require 'org-checklist)
   (require 'org-tempo)
 #+end_src
-
 
 **** Exportation
 
@@ -1849,7 +1851,6 @@ Voir C-c [ & C-c ] pour la gestion de org-agenda-files
   (setq org-agenda-include-diary nil)
 #+end_src
 
-
 **** Complétion
 
 Nécessite org-tempo
@@ -1857,7 +1858,6 @@ Nécessite org-tempo
 #+begin_src emacs-lisp
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 #+end_src
-
 
 **** Liste de choses à faire
 
@@ -1868,7 +1868,6 @@ Nécessite org-tempo
   ;;       (quote
   ;;        ((sequence "TODO(t!)" "DONE(d!)" "MAYBE(m!)" "WAIT(w@/!)" "|" "CANCELLED(c@)"))))
 #+end_src
-
 
 **** Capture
 
@@ -1898,7 +1897,6 @@ Nécessite org-tempo
 	   "* %?\n\nCréé le : %U\n\nLien : %a\n\n%i" :empty-lines 1)))
 #+end_src
 
-
 **** Refile
 
 #+begin_src emacs-lisp
@@ -1908,7 +1906,6 @@ Nécessite org-tempo
   ;; Show full paths for refiling
   (setq org-refile-use-outline-path t)
 #+end_src
-
 
 **** Présentation
 
@@ -2047,7 +2044,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
    (global-set-key (kbd "s-'") 'helm-all-mark-rings)
 
    ;; To set and go to bookmarks
-   (global-set-key (kbd "s-m") 'helm-filtered-bookmarks)
+   (global-set-key (kbd "s-M") 'helm-filtered-bookmarks)
 
    (define-key global-map [remap find-file] 'helm-find-files)
    (define-key global-map [remap occur] 'helm-multi-occur-from-isearch)
@@ -2354,7 +2351,6 @@ Ralentit la frappe : activer seulement lorsque nécessaire
   (powerline-evil-vim-theme)
 #+end_src
 
-
 **** Org mode
 
 #+begin_src emacs-lisp
@@ -2362,7 +2358,6 @@ Ralentit la frappe : activer seulement lorsque nécessaire
   ;; (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
   ;; (global-set-key (kbd "<f11> w") 'evil-org-mode)
 #+end_src
-
 
 *** Xah-math-input
 

@@ -728,19 +728,19 @@ nnoremap <f9>p <cmd>call library#display_pdf()<cr>
 
 " Arguments {{{2
 
-"nnoremap <f5>a <cmd>previous<cr>
-"nnoremap <f6>a <cmd>next<cr>
+nnoremap [a <cmd>previous<cr>
+nnoremap ]a <cmd>next<cr>
 
-"nnoremap <f5>A <cmd>first<cr>
-"nnoremap <f6>A <cmd>last<cr>
+nnoremap [A <cmd>first<cr>
+nnoremap ]A <cmd>last<cr>
 
 " Tampons (buffers) {{{2
 
-"nnoremap <f5>b <cmd>bprevious<cr>
-"nnoremap <f6>b <cmd>bnext<cr>
+nnoremap [b <cmd>bprevious<cr>
+nnoremap ]b <cmd>bnext<cr>
 
-"nnoremap <f5>B <cmd>bfirst<cr>
-"nnoremap <f6>B <cmd>blast<cr>
+nnoremap [B <cmd>bfirst<cr>
+nnoremap ]B <cmd>blast<cr>
 
 " wipe buffer
 nnoremap <m-q> <cmd>bwipe!<cr>
@@ -786,7 +786,6 @@ nnoremap <c-s-left> <cmd>vertical resize -2<cr>
 
 nnoremap <c-pageup> gT
 nnoremap <c-pagedown> gt
-
 nnoremap <c-home> <cmd>tabfirst<cr>
 nnoremap <c-end> <cmd>tablast<cr>
 
@@ -795,13 +794,6 @@ nnoremap <s-pagedown> <cmd>tabmove +1<cr>
 
 nnoremap <f3>t <cmd>tabnew<cr>
 nnoremap <f3>T :tabedit<space>
-
-"nnoremap <f5>T <cmd>tabfirst<cr>
-"nnoremap <f6>T <cmd>tablast<cr>
-
-"nnoremap <f5>t <cmd>tabmove -1<cr>
-"nnoremap <f6>t <cmd>tabmove +1<cr>
-
 nnoremap <F3>= <cmd>call library#equal_windows()<cr>
 
 nnoremap <leader><left> <cmd>call library#win2prev_tab()<cr>
@@ -809,25 +801,25 @@ nnoremap <leader><right> <cmd>call library#win2next_tab()<cr>
 
 " Liste quickfix {{{2
 
-"nnoremap <f5>q <cmd>cprevious<cr>
-"nnoremap <f6>q <cmd>cnext<cr>
+nnoremap [q <cmd>cprevious<cr>
+nnoremap ]q <cmd>cnext<cr>
 
-"nnoremap <f5>Q <cmd>cfirst<cr>
-"nnoremap <f6>Q <cmd>clast<cr>
+nnoremap [Q <cmd>cfirst<cr>
+nnoremap ]Q <cmd>clast<cr>
 
-"nnoremap <f5><c-q> <cmd>cpfile<cr>
-"nnoremap <f6><c-q> <cmd>cnfile<cr>
+nnoremap [<c-q> <cmd>cpfile<cr>
+nnoremap ]<c-q> <cmd>cnfile<cr>
 
 " Listes locales {{{2
 
-"nnoremap <f5>l <cmd>lprevious<cr>
-"nnoremap <f6>l <cmd>lnext<cr>
+nnoremap [l <cmd>lprevious<cr>
+nnoremap ]l <cmd>lnext<cr>
 
-"nnoremap <f5>L <cmd>lfirst<cr>
-"nnoremap <f6>L <cmd>llast<cr>
+nnoremap [L <cmd>lfirst<cr>
+nnoremap ]L <cmd>llast<cr>
 
-"nnoremap <f5><c-l> <cmd>lpfile<cr>
-"nnoremap <f6><c-l> <cmd>lnfile<cr>
+nnoremap [<c-l> <cmd>lpfile<cr>
+nnoremap ]<c-l> <cmd>lnfile<cr>
 
 " Anciens fichiers {{{2
 
@@ -839,11 +831,11 @@ nnoremap <leader><right> <cmd>call library#win2next_tab()<cr>
 
 "  Tags {{{2
 
-"nnoremap <f5><m-t> <cmd>tprevious<cr>
-"nnoremap <f6><m-t> <cmd>tnext<cr>
+nnoremap [t <cmd>tprevious<cr>
+nnoremap ]t <cmd>tnext<cr>
 
-"nnoremap <f5><m-s-t> <cmd>tfirst<cr>
-"nnoremap <f6><m-s-t> <cmd>tlast<cr>
+nnoremap [T <cmd>tfirst<cr>
+nnoremap ]T <cmd>tlast<cr>
 
 nnoremap <f3>j <cmd>tj /
 nnoremap <f3>J <cmd>tab tj /
@@ -1103,13 +1095,13 @@ nnoremap <f3>ig <cmd>echo library#highlight_group()<cr>
 
 "  Shell {{{2
 
-nnoremap \s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap \S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap \h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap \s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap \S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap \h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
 
 " Journal de bord {{{2
 
-nnoremap <f3>L <cmd>tabe ~/racine/omni/log/captain<cr>
+nnoremap <f3>L <cmd>tabedit ~/racine/omni/log/captain<cr>
 
 " Pavé numérique {{{2
 

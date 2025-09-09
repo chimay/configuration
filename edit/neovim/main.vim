@@ -1120,13 +1120,13 @@ nnoremap <f3>ig <cmd>echo library#highlight_group()<cr>
 
 "  Shell {{{2
 
-nnoremap \s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap \S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap \h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap \s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap \S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap \h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
 
 " Journal de bord {{{2
 
-nnoremap <f3>L <cmd>tabe ~/racine/omni/log/captain<cr>
+nnoremap <f3>L <cmd>tabedit ~/racine/omni/log/captain<cr>
 
 " Pavé numérique {{{2
 

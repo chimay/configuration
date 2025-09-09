@@ -708,8 +708,8 @@ tnoremap <f3>n <c-\><c-n>
 
 "  Shell {{{2
 
-nnoremap \s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
-nnoremap \S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap \s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap \S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
 nnoremap \h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
 
 " Pavé numérique {{{2

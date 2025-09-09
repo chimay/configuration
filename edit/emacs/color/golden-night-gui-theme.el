@@ -57,7 +57,7 @@
 
 ;; * Highlight
 
-	'(highlight ((t (:background nil :underline t))))
+	'(highlight ((t (:background unspecified :underline t))))
 	'(hl-line ((t (:background "#120507" :underline nil))))
 
 ;; * Parenthèses
@@ -92,7 +92,7 @@
 	'(tab-bar-tab-group-inactive ((t (:background "black" :foreground "#5B3C11" :bold t))))
 	'(tab-bar-tab-inactive ((t (:background "black" :foreground "#5B3C11" :bold t))))
 
-;; Tab line	
+;; Tab line
 
 	'(tab-line ((t (:background "black" :foreground "#5B3C11" :bold t))))
 	'(tab-line-hihglight ((t (:background "black" :foreground "#5B3C11" :bold t))))
@@ -107,17 +107,17 @@
 ;; * Modeline
 
 	'(mode-line ((t (
-		:background nil :foreground nil :inverse-video t :bold t
+		:background unspecified :foreground unspecified :inverse-video t :bold t
 		;; :box '(:line-width -1 :style released-button)
 		:height 1.0
 	))))
 
 	'(mode-line-buffer-id ((t (
-		:background "#070707" :foreground nil
+		:background "#070707" :foreground unspecified
 		:bold t :height 1.0
 	))))
 
-	'(mode-line-inactive ((t (:foreground nil :background "#070707"))))
+	'(mode-line-inactive ((t (:foreground unspecified :background "#070707"))))
 
 	'(mode-line-emphasis ((t (:bold t :weight bold))))
 
@@ -126,7 +126,7 @@
 	))))
 
 	'(mode-line-inactive ((t (
-		:background "#070707" :foreground nil
+		:background "#070707" :foreground unspecified
 		;; :box '(:line-width 0 :color nil)
 		:weight light :height 0.9
 	))))

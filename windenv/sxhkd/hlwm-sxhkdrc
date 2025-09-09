@@ -201,13 +201,16 @@ hyper + shift + w
 # cpus {{{1
 
 hyper + c ; s
-	notify-send "$(cpupower-gui profile save | head -n 1)"
+	notify-send "$(cpupower-gui profile powersave | head -n 1)"
 
 hyper + c ; c
 	notify-send "$(cpupower-gui profile conservative | head -n 1)"
 
 hyper + c ; d
 	notify-send "$(cpupower-gui profile demand | head -n 1)"
+
+hyper + c ; p
+	notify-send "$(cpupower-gui profile performance | head -n 1)"
 
 hyper + c ; u
 	notify-send "$(cpupower-gui profile userspace | head -n 1)"
@@ -285,6 +288,11 @@ hyper + s ; plus
 
 hyper + shift + @z
 	sleep 1 ; xset dpms force off
+
+# screenshot {{{2
+
+hyper + s ; s
+	screenshot.sh 7 ~/racine/pictura/screenshot/screen-$(date +"%Y-%m-%d-%H-%M").jpg &> ~/log/screenshot.log
 
 # mouse {{{1
 

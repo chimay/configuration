@@ -194,7 +194,7 @@ alias cdfzf='cd $(fzfz)'
 
 # Arborescence {{{2
 
-alias t='tree -C -A'
+alias t='tree -C'
 
 # Place {{{2
 

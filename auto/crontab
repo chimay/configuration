@@ -152,7 +152,7 @@ MAILTO=$USER
 
 # école {{{2
 
-30	18	*	1-6,9-12	0,1,3,4		bell.zsh notification/portefeuille.ogg notification=portefeuille volume=120 &>>! ~/log/cron.log
+#30	18	*	1-6,9-12	0,1,3,4		bell.zsh notification/portefeuille.ogg notification=portefeuille volume=120 &>>! ~/log/cron.log
 30	18	*	1-6,9-12	2			bell.zsh notification/prendre-telephone.ogg notification=telephone volume=120 &>>! ~/log/cron.log
 
 #5	14	*	1-6,9-12	0		bell.zsh notification/reveil.ogg notification=reveil &>>! ~/log/cron.log
@@ -161,11 +161,11 @@ MAILTO=$USER
 
 30	12	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
 00	16	*	1-6,9-12	2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
-45	16	*	1-6,9-12	1			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+50	16	*	1-6,9-12	1			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
 
 25	12	*	1-6,9-12	1,2,5		bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
 55	15	*	1-6,9-12	5			bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
-40	16	*	1-6,9-12	1			bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
+45	16	*	1-6,9-12	1			bell.zsh notification/cale-porte.ogg notification=cale volume=150 &>>! ~/log/cron.log
 
 # mercredi
 

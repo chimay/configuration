@@ -39,6 +39,7 @@ set -g @plugin 'tmux-plugins/tmux-copycat'
 set -g @plugin 'tmux-plugins/tmux-logging'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'laktak/extrakto'
 set -g @plugin 'wfxr/tmux-fzf-url'
 set -g @plugin 'whame/tmux-modal'
 
@@ -53,6 +54,13 @@ set -g @prefix_highlight_show_copy_mode 'on'
 set -g @prefix_highlight_fg '1'
 set -g @prefix_highlight_bg 'default'
 set -g @prefix_highlight_copy_mode_attr 'none,fg=1,bg=default'
+
+#set -g @extrakto_split_size "15"
+#set -g @extrakto_clip_tool "xsel --input --clipboard" # works better for nvim
+#set -g @extrakto_copy_key "tab"      # use tab to copy to clipboard
+#set -g @extrakto_insert_key "enter"  # use enter to insert selection
+#set -g @extrakto_fzf_unset_default_opts "false"  # keep our custom FZF_DEFAULT_OPTS
+#set -g @extrakto_fzf_header "i c f g" # for small screens shorten the fzf header
 
 set -g @fzf-url-bind 'u'
 set -g @fzf-url-history-limit '900'
