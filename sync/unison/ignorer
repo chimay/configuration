@@ -64,22 +64,8 @@ ignore = Path racine/mail/system/dead.letter
 #ignore = Path racine/plugin/manager/neovimpack/*
 #ignore = Path racine/plugin/manager/neovimpack/.*
 
-#ignore = Path racine/plugin/manager/plugged/*
-#ignore = Path racine/plugin/manager/plugged/.*
-
 ignore = Path racine/plugin/manager/elpaca/*
 ignore = Path racine/plugin/manager/elpaca/.*
-
-ignore = Path racine/plugin/manager/straight/*
-ignore = Path racine/plugin/manager/straight/.*
-
-ignore = Path racine/plugin/manager/el-get/*
-ignore = Path racine/plugin/manager/el-get/.*
-
-# ignore = Path racine/plugin/source/*
-# ignore = Path racine/plugin/source/.*
-
-#ignore = Path racine/share/astronvim
 
 # Source {{{1
 

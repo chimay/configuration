@@ -1,0 +1,97 @@
+# vim: set filetype=tmux.conf :
+
+#new-session -s balmus -n shell
+
+rename-session balmus
+rename-window shell
+
+#new-window -d -n courriel 'zsh -c "mutt -y"'
+
+new-window -d -n musique
+
+split-window -h -d -t balmus:musique 'alsamixer -c 0'
+split-window -v -d -t balmus:musique 'ncmpcpp'
+#swap-pane -s balmus:musique.1 -t balmus:musique.2
+resize-pane -D -t balmus:musique.1 5
+resize-pane -R -t balmus:musique.3 43
+
+new-window -d -n courriel 'lance-mutt.zsh -y'
+new-window -d -n nouvelles 'lance-slrn.zsh -n --nntp'
+
+new-window -d -n chaton 'lance-weechat.zsh -a'
+
+set-window-option -t balmus:courriel monitor-activity on
+#set-window-option -t balmus:musique monitor-silence 12
+
+#select-pane -t balmus:shell.1
+# vim: set filetype=tmux.conf :
+
+#new-session -s balmus -n shell
+
+rename-session cle
+rename-window localhost
+
+new-window -d -n wave 'ssh tixu'
+
+#set status off
+# vim: set filetype=tmux.conf :
+
+#new-session -s reseau -n shell
+
+rename-session reseau
+rename-window shell
+
+#new-window -d -n courriel 'zsh -c "mutt -y"'
+
+new-window -d -n navigateur 'elinks'
+new-window -d -n courriel 'lance-mutt.zsh -y'
+new-window -d -n nouvelles 'lance-slrn.zsh -n --nntp'
+
+#new-window -d -n message 'irssi -!'
+new-window -d -n message 'lance-weechat.zsh -a'
+
+new-window -d -n musique 'ncmpcpp'
+
+split-window -d -t reseau:musique
+swap-pane -s reseau:musique.1 -t reseau:musique.2
+resize-pane -U -t reseau:musique.2 7
+
+set-window-option -t reseau:courriel monitor-activity on
+#set-window-option -t reseau:musique monitor-silence 12
+
+rename-window -t reseau:5 message
+
+#select-pane -t reseau:shell.1
+
+new-window -d -n musique 'cmus'
+
+set-window-option -t principal:freenode allow-rename off
+
+new-window -d -n webrowser 'elinks'
+
+new-window -d -n calcul 'calc'
+
+split-window -h -d -t principal:monitor 'cmus'
+
+split-window -v -d -t principal:monitor 'ncmpcpp'
+
+select-pane -t principal:monitor.2
+
+#new-window -d -n monitor 'alarm-sensor.zsh +80 ++85 -30'
+
+#split-window -h -d -t principal:monitor 'ncmpcpp'
+
+#resize-pane -L -t principal:monitor.1 65
+
+#new-window -d -n musique 'ncmpcpp'
+
+#new-window -d -n nouveau 'newsboat -c ~/racine/index/newsboat/cache.db'
+
+#new-window -d -n freenode 'run-weechat.zsh -a'
+#new-window -d -n clifm 'clifm ~/racine'
+
+# new-window -d -n lazygit 'lazygit'
+# new-window -d -n clifm 'clifm --fzftab --no-color ~/racine'
+# new-window -d -n neomutt 'run-neomutt.zsh'
+
+# set-window-option -t principal:neomutt monitor-activity on

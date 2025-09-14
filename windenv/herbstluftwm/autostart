@@ -125,7 +125,7 @@ hc keybind $hyper-h       split   right   0.618
 
 # remove current frame
 
-hc keybind $hyper-Delete remove
+hc keybind $hyper-BackSpace remove
 
 # let the current frame explode into subframes
 
@@ -193,11 +193,13 @@ hc keybind $hyper-p pseudotile toggle
 
 # windows {{{2
 
-# close window
-hc keybind $hyper-Shift-x close
-
 # close window and remove frame
-hc keybind $hyper-BackSpace close_and_remove
+
+hc keybind $hyper-Shift-x close_and_remove
+
+# close window
+
+hc keybind $hyper-Delete close
 
 # tags, aka desktops aka workspaces {{{2
 
@@ -416,6 +418,7 @@ hc rule class=qutebrowser tag=browser
 hc rule class=firefox tag=browser
 
 hc rule class=libreoffice-startcenter tag=office
+hc rule class=octave-gui tag=office
 
 hc rule class=frescobaldi tag=artisan
 

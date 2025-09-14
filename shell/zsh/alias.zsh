@@ -54,7 +54,7 @@ alias azer="setxkbmap be ; xmodmap ~/racine/config/windenv/xmodmap/belge-meta-su
 
 alias g=git
 alias r=lazygit
-alias 9=tig
+alias gg=tig
 
 #alias diff='diff -BN'
 
@@ -118,9 +118,6 @@ alias nvqc=run-neovim-qt-client.sh
 alias nvl='NVIM_APPNAME=nvim-lua nvim --listen ~/racine/run/socket/neovim-lua'
 alias nvlz='NVIM_APPNAME=lazyvim nvim --listen ~/racine/run/socket/lazyvim'
 alias nvcd='NVIM_APPNAME=nvchad nvim --listen ~/racine/run/socket/nvchad'
-alias nvas='NVIM_APPNAME=astronvim nvim --listen ~/racine/run/socket/astronvim'
-
-alias nvrl='NVIM_APPNAME=neovim-radley-lewis nvim --listen ~/racine/run/socket/neovim-radley-lewis'
 
 # -- neovim remote
 
@@ -375,7 +372,7 @@ alias tmt=tremc
 
 # gemini
 
-alias gg=amfora
+alias afr=amfora
 
 # chat {{{1
 
@@ -450,6 +447,7 @@ alias pc=playerctl
 # science {{{1
 
 alias 8='octave --no-gui --quiet'
+alias 9='octave --gui'
 
 # system {{{1
 
@@ -605,7 +603,6 @@ hash -d science=~/racine/science
 hash -d self=~/racine/self
 hash -d session=~/racine/session
 hash -d shell=~/racine/shell
-hash -d site=~/racine/site
 hash -d snippet=~/racine/snippet
 hash -d source=~/racine/source
 hash -d syncron=~/racine/syncron
@@ -615,24 +612,28 @@ hash -d trash=~/racine/trash
 hash -d varia=~/racine/varia
 hash -d wiki=~/racine/wiki
 
-#  Site {{{2
+#  public {{{2
 
-hash -d eclats2vers=~/racine/site/eclats2vers/generic
-hash -d equa6on=~/racine/site/equa6on/generic
-hash -d blog=~/racine/site/blog
+hash -d eclats2vers=~/racine/public/eclats2vers/generic
+hash -d equa6on=~/racine/public/equa6on/generic
+hash -d blog=~/racine/public/blog
 
-# Terminal {{{2
+# refer {{{2
+
+hash -d bookmarks=~/racine/refer/bookmarks
+
+# terminal {{{2
 
 hash -d tmuxconf=~/racine/config/multiplex/tmux
 
-# Shell, Script {{{2
+# shell, script {{{2
 
 hash -d historique=~/racine/dotdir/zsh
 
 hash -d zconf=$RACINE_ZSH
 hash -d zdot=~/racine/dotdir/zsh
 
-# Edit {{{2
+# edit {{{2
 
 hash -d vimconf=~/racine/config/edit/vim
 hash -d vimliteconf=~/racine/config/edit/vim-lite
@@ -643,11 +644,11 @@ hash -d emacsliteconf=~/racine/config/edit/emacs-lite
 
 hash -d mdot=~/racine/dotdir/emacs.d
 
-# Mail {{{2
+# mail {{{2
 
 hash -d muttconf=~/racine/config/mail/neomutt
 
-# Plugins {{{2
+# plugins {{{2
 
 hash -d pman=~/racine/plugin/manager
 hash -d pdata=~/racine/plugin/data
@@ -656,16 +657,16 @@ hash -d vimpackager=~/racine/plugin/manager/vim/pack/packager
 hash -d neovimpackager=~/racine/plugin/manager/neovim/pack/packager
 
 hash -d elpaca=~/racine/plugin/manager/emacs/elpaca
-# hash -d straight=~/racine/plugin/manager/emacs/straight
-# hash -d elget=~/racine/plugin/manager/emacs/el-get
 
-# Artisan {{{2
+hash -d tpm=~/racine/plugin/manager/tmux/tmux-plugin-manager/plugins
+
+# artisan {{{2
 
 hash -d lilypond=~/racine/musica/lilypond
 hash -d musescore=~/racine/musica/musescore
 hash -d rosegarden=~/racine/musica/rosegarden
 
-# Multimedia {{{2
+# multimedia {{{2
 
 hash -d aartistes=~/audio/artistes
 hash -d abook=~/audio/book
@@ -676,7 +677,7 @@ hash -d classique=~/audio/artistes/classique
 
 hash -d jazz=~/audio/artistes/jazz
 
-#  Synchronization {{{2
+# synchronization {{{2
 
 hash -d syncthing=~/racine/syncron/syncthing
 

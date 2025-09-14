@@ -31,6 +31,15 @@
 # -- copy mode
 # prefix Y : copy & paste
 
+# ---- extrakto
+# - press tmux prefix + tab to start extrakto
+# - fuzzy find the text/path/url/line
+# - use custom filters (ctrl + f)
+# - press
+#     + tab to insert it to the current pane,
+#     + enter to copy it to the clipboard,
+#     + see other features in HELP (press ctrl-h in extrakto)
+
 # plugin list {{{1
 
 set -g @plugin 'tmux-plugins/tpm'
@@ -88,10 +97,11 @@ set -g @yank_selection 'clipboard'
 # automatic install {{{1
 
 # if "test ! -d ~/.tmux/plugins/tpm" \
-#    "run-shell 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
+#    "run-shell \
+#    'git clone https://github.com/tmux-plugins/tpm ~/racine/plugin/manager/tmux/tmux-plugin-manager/plugins/tpm && ~/racine/plugin/manager/tmux/tmux-plugin-manager/plugins/tpm/bin/install_plugins'"
 
 # initialization {{{1
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 
-run-shell '~/racine/plugin/manager/tmux/plugins/tpm/tpm'
+run-shell ~/racine/plugin/manager/tmux/tmux-plugin-manager/plugins/tpm/tpm

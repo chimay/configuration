@@ -42,7 +42,7 @@ set -g set-titles-string '#{pane_title}'
 
 set-environment -g HOME $HOME
 
-set-environment -g PATH "$HOME/perl5/bin:$HOME/.pip/bin:$HOME/racine/self/bin/build:$HOME/racine/self/bin/filesys:$HOME/racine/self/bin/install:$HOME/racine/self/bin/system:$HOME/racine/self/bin/version:$HOME/racine/automat:$HOME/racine/pack/bin:$HOME/racine/shell/alarm:$HOME/racine/shell/backup:$HOME/racine/shell/convert:$HOME/racine/shell/crypte:$HOME/racine/shell/dialog:$HOME/racine/shell/directory:$HOME/racine/shell/disk:$HOME/racine/shell/fileman:$HOME/racine/shell/generic:$HOME/racine/shell/math:$HOME/racine/shell/multimedia:$HOME/racine/shell/network:$HOME/racine/shell/pack:$HOME/racine/shell/process:$HOME/racine/shell/run:$HOME/racine/shell/search:$HOME/racine/shell/source:$HOME/racine/shell/sync:$HOME/racine/shell/version:$HOME/racine/shell/visu:$HOME/racine/shell/windenv:$HOME/racine/shell/directory/fzf-nova:$HOME/racine/shell/directory/fzf-speed:$HOME/racine/prolang/interpreted/perl:$HOME/racine/prolang/interpreted/python/bin:$HOME/racine/prolang/interpreted/pip/bin:$HOME/racine/prolang/interpreted/ruby/bin:$HOME/racine/prolang/interpreted/gem/ruby/3.0.0/bin:$HOME/racine/prolang/compiled/clang:$HOME/racine/prolang/compiled/rust:$HOME/racine/prolang/compiled/go/bin:$HOME/racine/prolang/compiled/misc:$HOME/racine/bin/fzf-nova:$HOME/racine/local/bin:$HOME/racine/matemat/octave:$HOME/racine/config/webrowser/w3m/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/bin/core_perl:/usr/bin/site_perl:/usr/bin/vendor_perl:/snap/bin:/var/lib/flatpak/exports/bin"
+set-environment -g PATH "$HOME/perl5/bin:$HOME/.pip/bin:$HOME/racine/self/bin/build:$HOME/racine/self/bin/filesys:$HOME/racine/self/bin/install:$HOME/racine/self/bin/system:$HOME/racine/self/bin/version:$HOME/racine/automat:$HOME/racine/pack/bin:$HOME/racine/shell/alarm:$HOME/racine/shell/backup:$HOME/racine/shell/calendar:$HOME/racine/shell/convert:$HOME/racine/shell/crypte:$HOME/racine/shell/data:$HOME/racine/shell/dialog:$HOME/racine/shell/directory:$HOME/racine/shell/disk:$HOME/racine/shell/edit:$HOME/racine/shell/example:$HOME/racine/shell/fileman:$HOME/racine/shell/filesys:$HOME/racine/shell/generic:$HOME/racine/shell/math:$HOME/racine/shell/multimedia:$HOME/racine/shell/multiplex:$HOME/racine/shell/network:$HOME/racine/shell/node_modules:$HOME/racine/shell/pack:$HOME/racine/shell/process:$HOME/racine/shell/run:$HOME/racine/shell/search:$HOME/racine/shell/source:$HOME/racine/shell/sync:$HOME/racine/shell/version:$HOME/racine/shell/visu:$HOME/racine/shell/windenv:$HOME/racine/shell/directory/fzf-nova:$HOME/racine/shell/directory/fzf-speed:$HOME/racine/prolang/interpreted/perl:$HOME/racine/prolang/interpreted/ruby/bin:$HOME/racine/prolang/interpreted/gem/ruby/3.4.0/bin:$HOME/racine/prolang/compiled/clang:$HOME/racine/prolang/compiled/rust:$HOME/racine/prolang/compiled/go/bin:$HOME/racine/prolang/compiled/misc:$HOME/racine/bin/fzf-nova:$HOME/racine/local/bin:$HOME/racine/matemat/octave:$HOME/racine/config/webrowser/w3m/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/bin/core_perl:/usr/bin/site_perl:/usr/bin/vendor_perl:/snap/bin:/var/lib/flatpak/exports/bin"
 
 # shell {{{1
 
@@ -70,15 +70,10 @@ set -g message-limit 84
 # status bar {{{1
 
 set -g status-position bottom
-
 set -g display-time 1234
-
 set -g status on
-
 set -g status-interval 15
-
 set -g status-justify centre
-
 set -g status-left-length 45
 set -g status-right-length 40
 

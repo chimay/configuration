@@ -150,11 +150,14 @@ super + ctrl + {q,b}
 # super + ctrl + n
 # 	run-with-log.sh nyxt
 
-super + ctrl + o
-	torbrowser-launcher
+# super + ctrl + o
+# 	torbrowser-launcher
 
 super + ctrl + k
 	keepassxc
+
+super + ctrl + o
+	octave --gui
 
 super + ctrl + t
 	tradingview

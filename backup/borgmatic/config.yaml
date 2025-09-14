@@ -64,7 +64,6 @@ source_directories:
   - racine/self
   - racine/session
   - racine/shell
-  - racine/site
   - racine/snippet
   - racine/syncron/cloud
   - racine/syncron/rclone

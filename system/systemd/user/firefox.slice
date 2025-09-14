@@ -1,0 +1,4 @@
+[Slice]
+CPUQuota=30%
+AllowedCPUs=0-1
+MemoryHigh=3G

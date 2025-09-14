@@ -1,0 +1,822 @@
+# vim: set filetype=conf:
+# vim: set foldlevel=10:
+
+# move around panes with hjkl, as one would in vim after pressing ctrl-w
+
+#bind M-h select-pane -L
+#bind M-j select-pane -D
+#bind M-k select-pane -U
+#bind M-l select-pane -R
+
+#set -g mouse-resize-pane on
+
+#set -g mouse-select-window on
+#set -g mouse-select-pane on
+
+
+# {{{ Powerline
+
+#source ~/racine/extension/edit/vim/addon/vim-addon-manager/powerline/powerline/bindings/tmux/powerline.conf
+
+# }}}
+
+#set -g prefix C-b
+
+#set -g prefix M-:
+
+bind 'b' send-prefix
+
+# Copier vers tmux uniquement
+# ------------------------------------
+
+#bind-key -T copy-mode-vi 'y'  copy-selection
+
+#unbind -t vi-copy Enter
+#bind -t vi-copy Enter cursor-down
+
+#bind-key -t vi-copy 'C-W' copy-pipe "xclip" \; run-shell "firefox -new-tab $(tmux show-buffer)"
+
+#bind-key 'P' run "tmux set-buffer -- \"$(xclip -o -selection clipboard)\""
+
+set -g set-remain-on-exit off
+
+# bind-key -T copy-mode-vi q  send -X cancel
+#
+# bind-key -T copy-mode-vi 'PageUp' send -X  page-up
+# bind-key -T copy-mode-vi 'PageDown' send -X  page-down
+#
+# bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle
+# bind-key -T copy-mode-vi 'V'  send -X rectangle-toggle
+
+#bind -T copy-mode-vi Enter send -X copy-pipe "xclip"
+
+#set -g bell-on-alert on
+
+#set -g status-right "#(date +'%H:%M %A %d %B %Y') "
+
+set -g status-left " #[fg=#844A3B]Sess #[fg=#B36700]#S #[fg=#845A3B]Fn #[fg=#B36700]#W #[fg=#845A3B]Pn #[fg=#B36700]#P"
+
+set -g prefix M-x
+
+bind M-x send-prefix
+
+bind 'y' copy-mode
+
+# Sessions prédéfinies dans des fichiers
+
+#bind 'f' command-prompt -p 'Session ? ' "source-file ~/racine/config/multiplex/tmux/session/'%%'.tmux"
+
+#bind 's' choose-list -l balmus,cle,reseau \
+#"source-file ~/racine/config/multiplex/tmux/session/'%%'.tmux"
+
+#bind 'n' command-prompt -p 'Commande de la nouvelle fenêtre ? ' "new-window -c '#{pane_current_path}' '%%'"
+
+#bind '$' choose-list -l zsh,'sudo -s','ssh tixu',\
+#htop,python,ipython,\
+#'vim -u ~/racine/config/edit/vim/maxivim.vim',\
+#'emacs -nw',\
+#elinks,'lance-mutt.zsh -y','lance-slrn.zsh -n --nntp','lance-weechat.zsh -a',\
+#ncmpcpp,alsamixer \
+#"new-window -n '%1' '%1'"
+
+# bind -n C-Left previous-window
+# bind -n C-Right next-window
+
+#bind -n C-PageUp select-window -t :-1
+#bind -n C-PageDown select-window -t :+1
+
+#unbind Tab
+#bind Tab select-window -t:+1
+
+#unbind BTab
+#bind BTab select-window -t:-1
+
+#unbind BSpace
+#bind BSpace select-window -t:-1
+
+# bind M-h command-prompt -p 'Commande pour le nouveau panel ? ' "split-window -h -c '#{pane_current_path}' '%%'"
+# bind M-v command-prompt -p 'Commande pour le nouveau panel ? ' "split-window -v -c '#{pane_current_path}' '%%'"
+
+#bind C-h set default-path $PWD \; split-window -v \; set default-path ~/
+#bind C-v set default-path $PWD \; split-window -h \; set default-path ~/
+
+# Tab, S-Tab, BS
+
+#unbind Tab
+#bind Tab select-pane -t:.+
+
+#unbind BTab
+#bind BTab select-pane -t:.-
+
+#unbind BSpace
+#bind BSpace select-pane -t:.-
+
+# bind -r Up resize-pane -U 2
+# bind -r Down resize-pane -D 2
+# bind -r Left resize-pane -L 2
+# bind -r Right resize-pane -R 2
+
+# Copier vers tmux & le clipboard de X Window
+# ------------------------------------
+
+bind -T copy-mode-vi 'y' send -X copy-pipe "xclip"
+
+# Tmux <--> X clipboard
+# ------------------------------------
+
+# Note: xsel is a handy little program for scripting the X selections;
+# people who like to use xclip instead can just replace xsel with xclip.
+
+# copy tmux's selection buffer into the primary X selection
+
+bind-key 'Y' run "tmux show-buffer | xclip -i -selection clipboard"
+
+# copy primary X selection into tmux's selection buffer
+
+bind-key 'P' run "xclip -o -selection clipboard | tmux paste-buffer -"
+
+bind 'F5' source-file ~/racine/config/multiplex/tmux/session/leger.tmux \; \
+		display-message 'Fichier de session léger chargé'
+
+bind 'F6' source-file ~/racine/config/multiplex/tmux/session/principal.tmux \; \
+		display-message 'Fichier de session principal chargé'
+
+jbnicolai
+
+# Adaptation des exemples dans /usr/share/doc/tmux/examples
+
+bind-key "f" capture-pane -J \\\; \
+		save-buffer "${TMPDIR:-/tmp}/tmux-buffer" \\\; \
+		delete-buffer \\\; \
+		new-window -n fpp -c "#{pane_current_path}" "sh -c 'cat \"${TMPDIR:-/tmp}/tmux-buffer\" | ~/racine/shell/disk/fpp ; rm \"${TMPDIR:-/tmp}/tmux-buffer\"'"
+
+# Commande par défaut {{{1
+
+# Fait planter l’ouverture de nouveaux terminaux
+
+# Commande par défaut pour :
+#
+# 	* les nouvelles sessions
+# 	* les nouvelles fenêtres
+# 	* les nouveaux panels
+
+	set -g default-command "/bin/zsh -l"
+
+# Shell
+
+		set -g default-shell "/bin/zsh -l"
+
+# }}}1
+
+# Exemples provenant de /usr/share/doc/tmux/examples
+
+# {{{ Han Boetes
+# ====================================================================================
+
+# $Id: h-boetes.conf,v 1.2 2009-10-25 21:45:26 nicm Exp $
+#
+# From Han Boetes.
+
+	set -g default-command zsh
+		set -g status-right "#(uptime|awk '{print $11}') #(date)"
+
+# Statusbar properties.
+		set -g display-time 3000
+		set -g status-bg black
+		set -g status-fg cyan
+		set-window-option -g window-status-current-attr bright,reverse
+		set-window-option -g window-status-current-bg cyan
+		set-window-option -g window-status-current-fg black
+
+# Use c-t instead of c-b as the prefix
+		unbind C-b
+		set -g prefix C-t
+		bind C-t send-prefix
+		bind t send-prefix
+
+# Bind function keys.
+		bind -n F1 select-window -t 1
+		bind -n F2 select-window -t 2
+		bind -n F3 select-window -t 3
+		bind -n F4 select-window -t 4
+		bind -n F5 select-window -t 5
+		bind -n F6 select-window -t 6
+		bind -n F7 select-window -t 7
+		bind -n F8 select-window -t 8
+
+# All new windows started at startup.
+		new emacs
+		neww irssi
+		neww mutt
+		neww
+		neww
+		neww
+		neww
+		neww
+
+		select-window -t 1
+
+# }}}
+
+# {{{ Nicholas Marriott
+# ====================================================================================
+
+# $Id: n-marriott.conf,v 1.11 2009-11-24 19:03:59 nicm Exp $
+#
+# By Nicholas Marriott. Public domain.
+
+# Default global options.
+	set -g status-bg green
+		set -g status-right "%H:%M" # %d-%b-%y
+		set -g bell-action none
+		set -g lock-after-time 1800
+
+# Default global window options.
+		setw -g remain-on-exit on
+		setw -g window-status-current-attr "underscore"
+#setw -g xterm-keys on
+
+# Prefix key.
+		set -g prefix C-a
+		unbind C-b
+		bind C-a send-prefix
+
+# Keys to switch session.
+		bind Q switchc -t0
+		bind W switchc -t1
+		bind E switchc -t2
+
+# Other key bindings.
+		bind F1 selectw -t:10
+		bind F2 selectw -t:11
+		bind F3 selectw -t:12
+		bind F4 selectw -t:13
+		bind F5 selectw -t:14
+		bind F6 selectw -t:15
+		bind F7 selectw -t:16
+		bind F8 selectw -t:17
+		bind F9 selectw -t:18
+		bind F10 selectw -t:19
+		bind F11 selectw -t:20
+		bind F12 selectw -t:21
+
+		bind m setw monitor-activity
+
+		bind y setw force-width 81
+		bind u setw force-width 0
+
+		bind -n F1 run-shell 'mpc toggle >/dev/null 2>&1'
+		bind -n F2 run-shell 'mpc'
+		bind -n F3 run-shell 'mpc prev >/dev/null 2>&1'
+		bind -n F4 run-shell 'mpc next >/dev/null 2>&1'
+		bind -n F5 run-shell 'mpc volume -5 >/dev/null 2>&1'
+		bind -n F6 run-shell 'mpc volume +5 >/dev/null 2>&1'
+
+# Hide and show window name from status line
+		bind '-' setw window-status-format '#I'\; setw window-status-current-format '#I'
+		bind '+' setw window-status-format '#I:#W#F'\; setw window-status-current-format '#I:#W#F'
+
+# First session.
+		new -d -s0 -nirssi 'exec ssh -t natalya exec sh ~/bin/tmux-start'
+		setw -t0:0 monitor-activity on
+		setw -t0:0 aggressive-resize on
+		set -t0 status-bg green
+		neww -d -ntodo 'exec emacs ~/TODO'
+		setw -t0:1 aggressive-resize on
+		neww -d -ntodo2 'exec emacs ~/TODO2'
+		setw -t0:2 aggressive-resize on
+		neww -d -nncmpc 'exec ncmpc -f ~/.ncmpc.conf'
+		setw -t0:3 aggressive-resize on
+		neww -d -nmutt 'exec mutt'
+		setw -t0:4 aggressive-resize on
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+
+# Second session.
+		new -d -s1
+		set -t1 status-bg cyan
+		linkw -dk -t0 -s0:0
+		linkw -dk -t1 -s0:1
+		linkw -dk -t2 -s0:2
+		linkw -dk -t3 -s0:3
+		linkw -dk -t4 -s0:4
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+
+# Third session.
+		new -d -s2
+		set -t2 status-bg yellow
+		linkw -dk -t0 -s0:0
+		linkw -dk -t1 -s0:1
+		linkw -dk -t2 -s0:2
+		linkw -dk -t3 -s0:3
+		linkw -dk -t4 -s0:4
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+		neww -d
+
+# }}}
+
+# {{{ Nicholas Marriott, screen keys
+# ====================================================================================
+
+# $Id: screen-keys.conf,v 1.7 2010-07-31 11:39:13 nicm Exp $
+#
+# By Nicholas Marriott. Public domain.
+#
+# This configuration file binds many of the common GNU screen key bindings to
+# appropriate tmux key bindings. Note that for some key bindings there is no
+# tmux analogue and also that this set omits binding some commands available in
+# tmux but not in screen.
+#
+# Note this is only a selection of key bindings and they are in addition to the
+# normal tmux key bindings. This is intended as an example not as to be used
+# as-is.
+
+# Set the prefix to ^A.
+	unbind C-b
+		set -g prefix ^A
+		bind a send-prefix
+
+# Bind appropriate commands similar to screen.
+# lockscreen ^X x
+		unbind ^X
+		bind ^X lock-server
+		unbind x
+		bind x lock-server
+
+# screen ^C c
+		unbind ^C
+		bind ^C new-window
+		unbind c
+		bind c new-window
+
+# detach ^D d
+		unbind ^D
+		bind ^D detach
+
+# displays *
+		unbind *
+		bind * list-clients
+
+# next ^@ ^N sp n
+		unbind ^@
+		bind ^@ next-window
+		unbind ^N
+		bind ^N next-window
+		unbind " "
+		bind " " next-window
+		unbind n
+		bind n next-window
+
+# title A
+		unbind A
+		bind A command-prompt "rename-window %%"
+
+# other ^A
+		unbind ^A
+		bind ^A last-window
+
+# prev ^H ^P p ^?
+		unbind ^H
+		bind ^H previous-window
+		unbind ^P
+		bind ^P previous-window
+		unbind p
+		bind p previous-window
+		unbind BSpace
+		bind BSpace previous-window
+
+# windows ^W w
+		unbind ^W
+		bind ^W list-windows
+		unbind w
+		bind w list-windows
+
+# quit \
+		unbind \
+		bind \ confirm-before "kill-server"
+
+# kill K k
+		unbind K
+		bind K confirm-before "kill-window"
+		unbind k
+		bind k confirm-before "kill-window"
+
+# redisplay ^L l
+		unbind ^L
+		bind ^L refresh-client
+		unbind l
+		bind l refresh-client
+
+# split -v |
+		unbind |
+		bind | split-window
+
+# :kB: focus up
+		unbind Tab
+		bind Tab select-pane -t:.+
+		unbind BTab
+		bind BTab select-pane -t:.-
+
+# " windowlist -b
+		unbind '"'
+		bind '"' choose-window
+
+# }}}
+
+# {{{ Thayer Williams
+# ====================================================================================
+
+# $Id: t-williams.conf,v 1.1 2009-11-02 18:59:28 nicm Exp $
+#
+# ~/.tmux.conf - tmux terminal multiplexer config
+# Thayer Williams (http://cinderwick.ca)
+# "Feel free to do whatever you like with it."
+
+# I typically start tmux from ~/.xinitrc with the following:
+#
+#   urxvt -e bash -c "tmux attach -d -t mysession" &
+#
+# and recall it any time thereafter with xbindkeys (Mod4+s):
+#
+#   "urxvt -e bash -c 'tmux attach -d -t mysession'"
+#     m:0x50 + c:39
+
+
+# set prefix key to ctrl+a until I have time to adapt
+	unbind C-b
+		set -g prefix C-a
+
+# send the prefix to client inside window (ala nested sessions)
+		bind-key a send-prefix
+
+# toggle last window like screen
+		bind-key C-a last-window
+
+# confirm before killing a window or the server
+		bind-key k confirm kill-window
+		bind-key K confirm kill-server
+
+# toggle statusbar
+		bind-key b set-option status
+
+# ctrl+left/right cycles thru windows
+		bind-key -n C-right next
+		bind-key -n C-left prev
+
+# open a man page in new window
+		bind / command-prompt "split-window 'exec man %%'"
+
+# quick view of processes
+		bind '~' split-window "exec htop"
+
+# scrollback buffer n lines
+		set -g history-limit 5000
+
+# listen for activity on all windows
+		set -g bell-action any
+
+# on-screen time for display-panes in ms
+		set -g display-panes-time 2000
+
+# start window indexing at one instead of zero
+		set -g base-index 1
+
+# enable wm window titles
+		set -g set-titles on
+
+# wm window title string (uses statusbar variables)
+		set -g set-titles-string "tmux.#I.#W"
+
+# session initialization
+		new -s mysession mutt
+		neww -t 2
+		neww -d -t 3
+		neww -d -t 5 mocp
+		neww -d -t 6 rtorrent
+		selectw -t 1
+
+# statusbar --------------------------------------------------------------
+
+		set -g display-time 2000
+
+# default statusbar colors
+		set -g status-fg white
+		set -g status-bg default
+		set -g status-attr default
+
+# default window title colors
+		set-window-option -g window-status-fg cyan
+		set-window-option -g window-status-bg default
+		set-window-option -g window-status-attr dim
+
+# active window title colors
+		set-window-option -g window-status-current-fg white
+		set-window-option -g window-status-current-bg default
+		set-window-option -g window-status-current-attr bright
+
+# command/message line colors
+		set -g message-fg white
+		set -g message-bg black
+		set -g message-attr bright
+
+# center align the window list
+		set -g status-justify centre
+
+# show some useful stats but only when tmux is started
+# outside of Xorg, otherwise dwm statusbar shows these already
+		set -g status-right ""
+		set -g status-left ""
+		if '[ -z "$DISPLAY" ]' 'set -g status-left "[#[fg=green] #H #[default]]"'
+			if '[ -z "$DISPLAY" ]' 'set -g status-right "[ #[fg=magenta]#(cat /proc/loadavg | cut -d \" \" -f 1,2,3)#[default] ][ #[fg=cyan,bright]%a %Y-%m-%d %H:%M #[default]]"'
+				if '[ -z "$DISPLAY" ]' 'set -g status-right-length 50'
+
+# }}}
+
+# {{{ Daniel Thau, vim keys
+# ====================================================================================
+
+# $Id: vim-keys.conf,v 1.2 2010-09-18 09:36:15 nicm Exp $
+#
+# vim-keys.conf, v1.2 2010/09/12
+#
+# By Daniel Thau.  Public domain.
+#
+# This configuration file binds many vi- and vim-like bindings to the
+# appropriate tmux key bindings.  Note that for many key bindings there is no
+# tmux analogue.  This is intended for tmux 1.3, which handles pane selection
+# differently from the previous versions
+
+# split windows like vim
+# vim's definition of a horizontal/vertical split is reversed from tmux's
+	bind s split-window -v
+		bind v split-window -h
+
+# move around panes with hjkl, as one would in vim after pressing ctrl-w
+		bind h select-pane -L
+		bind j select-pane -D
+		bind k select-pane -U
+		bind l select-pane -R
+
+# resize panes like vim
+# feel free to change the "1" to however many lines you want to resize by, only
+# one at a time can be slow
+		bind < resize-pane -L 1
+		bind > resize-pane -R 1
+		bind - resize-pane -D 1
+		bind + resize-pane -U 1
+
+# bind : to command-prompt like vim
+# this is the default in tmux already
+		bind : command-prompt
+
+# vi-style controls for copy mode
+		setw -g mode-keys vi
+
+# }}}
+
+# Les programmes ne peuvent pas changer le nom de la fenêtre
+
+#set -g default-command "~/racine/config/multiplex/tmux/tmux-commande"
+
+#bind -n C-^ last-window
+
+		bind 'F3' command-prompt -p 'Session ? ' "source-file ~/racine/config/multiplex/tmux/session/'%%'.tmux"
+
+		bind 'F3' split-window \; send-keys -t .2 "dialog-session.zsh" Enter
+
+		bind 'F3' split-window -p 75 'exec ~/racine/shell/dialog/dialog-session.zsh'
+
+		bind '=' split-window -p 50 'exec ~/racine/shell/dialog/fzf-tmux-menu.zsh'
+
+		bind-key é command-prompt -p 'save history to filename:' -I '~/racine/hist/tmux/#h-#S-#W-#P.history' 'capture-pane -p -S - >! %1'
+
+set -g mode-attr dim
+
+set -g mode-fg black
+set -g mode-bg colour3
+
+set -g status-fg '#B36700'
+
+set -g status-bg 'black'
+
+set -g status-left-fg '#B36700'
+
+set -g status-left-bg 'black'
+
+set -g status-right-fg '#B36700'
+
+set -g status-right-bg 'black'
+
+set -g message-fg '#B36700'
+
+set -g message-bg '#070707'
+
+set -g message-command-fg green
+set -g message-command-bg black
+
+#set -g window-status-bell-attr underscore,blink
+#set -g window-status-bell-attr underscore
+
+#set -g window-status-activity-attr underscore,blink
+#set -g window-status-activity-attr underscore
+
+#set -g window-status-content-attr underscore,blink
+#set -g window-status-content-attr underscore
+#set -g window-status-content-attr blink
+#set -g window-status-content-fg '#F7230C'
+#set -g window-status-content-bg black
+
+set -g status-style 'fg=#B36700'
+set -ag status-style 'bg=black'
+
+#set -g alternate-screen on
+
+bind -n C-End last-window
+
+bind '[' swap-pane -U
+bind ']' swap-pane -D
+
+bind -n C-Home last-pane
+
+#set -g lock-command "cmatrix -s -a -b -u 3 -C green"
+
+# Pas nécessaire avec zsh qui sauve et restore la pile de répertoire
+
+bind 'H' split-window -h -c '#{pane_current_path}'
+bind 'V' split-window -v -c '#{pane_current_path}'
+
+
+# Recherche {{{2
+
+bind '/' command-prompt -p 'Recherche de la fenêtre ? ' "find-window '%%'"
+
+# }}}2
+
+#{s/root//:client_key_table}
+
+bind -n C-Left previous-window
+bind -n C-Right next-window
+
+#set -g message-style 'fg=#9b3c11,dim'
+bind -n F6 send-keys '~/racine/shell/dialog/fzf-tmux-menu.zsh' Enter
+
+# }}}2
+
+# Canalise la sortie d’un panel {{{2
+
+# }}}2
+
+#bind @ send-keys "tmux capture-pane -S - -p | w3m" Enter
+
+# vim: set filetype=tmux.conf :
+
+rename-session leger
+
+kill-window -a
+
+rename-window shell
+
+new-window -d -n sand
+
+new-window -d -n wave
+
+new-window -d -n monitor '~/racine/shell/alarm/alarm-sensor.zsh +80 ++85 -30 7'
+
+split-window -h -d -t leger:monitor 'cmus'
+
+select-pane -t leger:monitor.2
+
+split-window -v -d -t leger:monitor 'ncmpcpp'
+
+resize-pane -L -t leger:monitor.1 54
+
+# vim: set filetype=tmux.conf :
+
+rename-session principal
+
+kill-window -a
+
+rename-window shell
+
+new-window -d -n sand
+
+new-window -d -n wave
+
+new-window -d -n calcul 'calc'
+
+new-window -d -n courriel 'lance-neomutt.zsh'
+
+set-window-option -t principal:courriel monitor-activity on
+
+new-window -d -n rss 'newsboat -c ~/racine/index/newsboat/cache.db'
+
+new-window -d -n monitor 'alarm-sensor.zsh +80 ++85 -30'
+
+split-window -h -d -t principal:monitor 'cmus'
+
+select-pane -t principal:monitor.2
+
+split-window -v -d -t principal:monitor 'ncmpcpp'
+
+resize-pane -L -t principal:monitor.1 65
+
+new-window -d -n freenode 'lance-weechat.zsh -a'
+
+bind , send-keys '~/racine/shell/dialog/skim-tmux-command.zsh' Enter
+bind ';' send-keys '~/racine/shell/dialog/skim-tmux-command.zsh -s' Enter
+
+bind ù send-keys '~/racine/shell/dialog/skim-tmux-history.zsh' Enter
+bind µ send-keys '~/racine/shell/dialog/skim-tmux-history.zsh -s' Enter
+
+bind -n M-0 select-window -t 0
+bind -n M-1 select-window -t 1
+bind -n M-2 select-window -t 2
+bind -n M-3 select-window -t 3
+bind -n M-4 select-window -t 4
+bind -n M-5 select-window -t 5
+bind -n M-6 select-window -t 6
+bind -n M-7 select-window -t 7
+bind -n M-8 select-window -t 8
+bind -n M-9 select-window -t 9
+
+set -g @plugin 'tmux-plugins/tmux-fpp'
+
+# Ne fonctionne pas
+#set -g @plugin 'tmux-plugins/tmux-open'
+
+# set -g @open-S 'https://www.duckduckgo.com/'
+
+set -g @fpp-key 'f'
+
+unbind M-l
+
+# commande par défaut ???
+# Fait planter l’ouverture de nouveaux terminaux
+
+bind -T custom T split-window -p 30 'exec ~/racine/shell/dialog/fzf-tmux-session.zsh'
+
+# set -g set-titles-string '#h-#S-#W-#P-#T'
+
+# set -g @open 'o'
+# set -g @open-editor 'C-o'
+# set -g @urlview-key 'u'
+
+#set -g @plugin 'tmux-plugins/tmux-urlview'
+#set -g @plugin 'laktak/extrakto'
+
+# set -g @extrakto_key 'tab'
+# set -g @extrakto_split_direction 'p'
+# set -g @extrakto_split_size '50%'
+# set -g @extrakto_popup_size '90%'
+
+# Urls {{{1
+
+# -- doesnt work, freeze tmux
+#bind -T custom u "tmux capture-pane -J -p | grep -oE '(https?):\/\/.*[^>]' | fzf-tmux -d20 --multi --bind alt-a:select-all,alt-d:deselect-all | xargs open"
+bind -T custom u run-shell "tmux capture-pane -J -p | grep -oE '(https?):\/\/.*[^>]' | fzf-tmux | xargs xdg-open"
+
+bind -n M-Down rotate-window -D
+bind -n M-Up rotate-window -U
+
+bind -n M-Left  swap-pane -D
+bind -n M-Right swap-pane -U
+
+bind -n C-Down rotate-window -D
+bind -n C-Up rotate-window -U
+
+bind -n C-Left  swap-pane -D
+bind -n C-Right swap-pane -U
+
+# record in shell history
+bind -T custom ':' send-keys '~/racine/shell/dialog/fzf-tmux-command.zsh' Enter
+# no shell history
+bind -T custom ';' send-keys '~/racine/shell/dialog/fzf-tmux-command.zsh -s' Enter
+
+bind -T custom ':' send-keys '~/racine/shell/dialog/fzf-tmux-command.zsh' Enter
+bind -T custom µ send-keys '~/racine/shell/dialog/fzf-tmux-history.zsh' Enter
+bind -T custom £ send-keys '~/racine/shell/dialog/fzf-tmux-history.zsh -s' Enter
+
+#set -g visual-content on
+
+#set status-position top
+
+
