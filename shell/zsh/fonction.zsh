@@ -225,6 +225,12 @@ snf () {
 
 remove-file () {
 	local arguments="$@"
+	# -- at least one argument
+	[ $#arguments -eq 0 ] && {
+		echo Usage : remove-file file(s)
+		echo
+		return 1
+	}
 	# -- safeguard
 	[ $arguments = "*" ] && {
 		echo I refuse to remove all files/folder in a directory.

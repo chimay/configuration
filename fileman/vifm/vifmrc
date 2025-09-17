@@ -928,7 +928,7 @@ nnoremap dr :!tsp trash-restore <cr>
 
 " New file
 
-nnoremap <m-n> :!touch<space>
+nnoremap <m-n> :touch<space>
 
 " New dir
 
@@ -942,7 +942,7 @@ nnoremap <m-p> :!apack %c.txz %c<cr>
 
 " Drag & drop
 
-nnoremap <m-x> :!dragon.sh -a -x %f<cr>
+nnoremap <m-g> :!dragon.sh -a -x %f<cr>
 
 " Vimdiff
 
@@ -950,7 +950,11 @@ nnoremap <m-x> :!dragon.sh -a -x %f<cr>
 
 " Symlink
 
-nnoremap <m-l> :link<cr>
+nnoremap <m-l> :rlink<cr>
+
+" Detox file names
+
+nnoremap <m-x> :!detox * >>! ~/log/detox.log 2>&1 &<cr>
 
 " Medias amovibles
 
@@ -958,7 +962,7 @@ nnoremap <c-a> :media<cr>
 
 " Convert images in current dir subtree to webp
 
-nnoremap <m-i> :!images-to-webp.zsh > ~/log/images-to-webp.log 2>&1 &<cr>
+nnoremap <m-i> :!images-to-webp.zsh >>! ~/log/images-to-webp.log 2>&1 &<cr>
 
 " Papier peint
 

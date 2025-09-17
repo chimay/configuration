@@ -1,16 +1,136 @@
 # vim: set filetype=conf
 
+# Vim backup
+
+.vim
+.neovim
+
+.#*
+
+# Vim presub
+
+*.pre-sub
+
+# Emacs backup
+
+*~
+
+# Unison backup
+
+.unison
+
+# Exported Ps / Pdf files
+
+*.ps
+*.pdf
+
+*.PDF
+
+# Livres epub
+
+*.epub
+
+# Images
+
+*.jpg
+*.png
+
+*.gif
+
+# Audio
+
+*.midi
+
+*.wav
+*.flac
+
+*.ogg
+*.mp3
+
+# Soundfont
+
+*.sf2
+*.SF2
+
+# Archives
+
+*.gz
+*.bz2
+*.xz
+
+*.7z
+*.zip
+
+*.tar
+*.cpio
+
+*.tar.*
+*.cpio.*
+
+# Tags
+
+tags
+TAGS
+gtags.files
+GTAGS
+GRTAGS
+GPATH
+ID
+
+**/*=+tags
+
 # Autres VCS
 
 *,v
 RCS
-
 CVS
-
 .hg
-
 .bzr
-
 _MTN
-
 _darcs
+
+# Log
+
+*.log
+
+# Quickfix
+
+*.qfix
+
+# Chiffré
+
+*.cpt
+*.gpg
+
+# Compiled
+
+*.elc
+
+*.pyc
+*.zwc
+
+*.dvi
+
+*.o
+*.so
+
+*.dll
+*.obj
+*.bak
+*.exe
+*.run
+
+*.aux
+*.out
+*.maf
+*.toc
+*.ptc*
+*.mtc*
+
+*.dvi
+
+# Divers
+
+*.doc
+*.xls
+*.rtf

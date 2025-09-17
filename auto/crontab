@@ -106,21 +106,21 @@ MAILTO=$USER
 0	14	*	*	5	run-logrotate.zsh journal
 10	14	*	*	5	run-logrotate.zsh irc
 
-# synchronization {{{1
-
-0 	15	*	*	5		save-unison-config.sh
-
 # navigation {{{1
 
-0	16	*	*	*	qute-history.zsh 2>>! ~/log/qute-history.log
+0	15	*	*	*	qute-history.zsh 2>>! ~/log/qute-history.log
 
 # multimédia {{{1
 
-30	17	*	*	6	audio-perm.zsh ~/audio
+#00	16	*	*	6	audio-perm.zsh ~/audio
+
+# synchronization {{{1
+
+30 	16	*	*	*		save-unison-config.sh
 
 # nettoyage {{{1
 
-10	18	*	*	*	clean-attic.zsh
+0	17	*	*	*	clean-attic.zsh
 
 # météo {{{1
 
