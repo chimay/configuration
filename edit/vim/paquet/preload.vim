@@ -585,3 +585,15 @@ nmap yrr <plug>(ripple_send_line)
 nmap yr<cr> <plug>(ripple_send_buffer)
 nmap yp <plug>(ripple_send_previous)
 vmap R <plug>(ripple_send_selection)
+
+" vim-tmux-navigator {{{1
+
+let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_save_on_switch = 2
+
+nnoremap <silent> <C-Left> :<C-U>TmuxNavigateLeft<cr>
+nnoremap <silent> <C-Right> :<C-U>TmuxNavigateRight<cr>
+nnoremap <silent> <C-Down> :<C-U>TmuxNavigateDown<cr>
+nnoremap <silent> <C-Up> :<C-U>TmuxNavigateUp<cr>
+
+"nnoremap <silent> C-Left :<C-U>TmuxNavigatePrevious<cr>

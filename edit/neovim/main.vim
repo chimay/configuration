@@ -777,10 +777,12 @@ nnoremap <f3>r <cmd>call library#toggle_readonly()<cr>
 
 " window (fenêtres) {{{2
 
-nnoremap <c-left> <c-w>h
-nnoremap <c-down> <c-w>j
-nnoremap <c-up> <c-w>k
-nnoremap <c-right> <c-w>l
+" see paquets/preload.vim : vim-tmux-navigator
+"
+"nnoremap <c-left> <c-w>h
+"nnoremap <c-down> <c-w>j
+"nnoremap <c-up> <c-w>k
+"nnoremap <c-right> <c-w>l
 
 nnoremap <c-s-down> <cmd>resize +2<cr>
 nnoremap <c-s-up> <cmd>resize -2<cr>

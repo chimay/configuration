@@ -42,6 +42,7 @@ fun! PackagerInit ()
 	call packager#add('vim-scripts/utl.vim', always)
 	call packager#add('wellle/targets.vim', always)
 	call packager#add('McSinyx/vim-octave', always)
+	call packager#add('christoomey/vim-tmux-navigator', always)
 	" -- plugins with deps
 	call packager#add('vim-scripts/LineJuggler', {
 				\ 'type' : 'start',

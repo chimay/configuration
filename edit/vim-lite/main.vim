@@ -429,7 +429,7 @@ nnoremap <f3>s <cmd>%sort<cr>
 " Fenêtres {{{2
 
 " see paquets/preload.vim : vim-tmux-navigator
-
+"
 "nnoremap <c-right> <c-w>l
 "nnoremap <c-down>  <c-w>j
 "nnoremap <c-up>    <c-w>k

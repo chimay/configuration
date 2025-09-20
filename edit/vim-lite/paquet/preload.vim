@@ -229,6 +229,7 @@ nmap ) ]
 " vim-tmux-navigator {{{1
 
 let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_save_on_switch = 2
 
 nnoremap <silent> <C-Left> :<C-U>TmuxNavigateLeft<cr>
 nnoremap <silent> <C-Right> :<C-U>TmuxNavigateRight<cr>
