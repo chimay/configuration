@@ -65,6 +65,19 @@ fun! library#manual_sections ()
 	"wincmd p
 endfun
 
+fun! library#manual_commands ()
+	" Uses location list to display a manual page sections
+	" -- vimgrep / copen for quickfix or
+	" -- lvimgrep / lopen for location list of current window
+	lvimgrep /^\s*[a-z-]\+\s\+/ %
+	lopen
+	" -- add regex to search register
+	" -- to be able tu use n/N to search next or previous
+	let @/ = '^\s*[a-z-]\+\s\+'
+	" -- back to man page window
+	"wincmd p
+endfun
+
 fun! library#manual_options ()
 	" Uses location list to display a manual page options
 	" -- vimgrep / copen for quickfix or
@@ -73,10 +86,7 @@ fun! library#manual_options ()
 	lopen
 	" -- add regex to search register
 	" -- to be able tu use n/N to search next or previous
-	let @/ = '^\s*--\?[a-zA-Z-]\+,\?\s'
-	" -- uncomment to put the list on the left side
-	"wincmd H
-	"vert resize 35
+	let @/ = '^\s*--\?[a-zA-Z][a-zA-Z-]*,\?\s'
 	" -- back to man page window
 	"wincmd p
 endfun
@@ -91,9 +101,6 @@ fun! library#manual_links ()
 	" -- add regex to search register
 	" -- to be able tu use n/N to search next or previous
 	let @/ = '\w\+([0-9])'
-	" -- uncomment to put the list on the left side
-	"wincmd H
-	"vert resize 35
 	" -- back to man page window
 	"wincmd p
 endfun

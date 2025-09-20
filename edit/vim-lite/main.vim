@@ -428,10 +428,12 @@ nnoremap <f3>s <cmd>%sort<cr>
 
 " Fenêtres {{{2
 
-nnoremap <c-right> <c-w>l
-nnoremap <c-down>  <c-w>j
-nnoremap <c-up>    <c-w>k
-nnoremap <c-left>  <c-w>h
+" see paquets/preload.vim : vim-tmux-navigator
+
+"nnoremap <c-right> <c-w>l
+"nnoremap <c-down>  <c-w>j
+"nnoremap <c-up>    <c-w>k
+"nnoremap <c-left>  <c-w>h
 
 " Les mouvements directionnels sont aussi accessible via h j k l
 

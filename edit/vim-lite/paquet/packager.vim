@@ -26,6 +26,7 @@ fun! PackagerInit ()
 				\ 'type' : 'start',
 				\ 'requires' : ['vim-scripts/ingo-library', 'vim-scripts/LineJugglerCommands']
 				\ })
+	call packager#add('christoomey/vim-tmux-navigator', always)
 	" ---- optional plugins, loaded on some filetypes
 	call packager#add('vim-latex/vim-latex', optional)
 	" ---- optional plugins loaded manually
@@ -73,4 +74,3 @@ nnoremap <F12>i <cmd>PackagerInstall<cr>
 nnoremap <F12>u <cmd>PackagerUpdate<cr>
 nnoremap <F12>c <cmd>PackagerClean<cr>
 nnoremap <F12>s <cmd>PackagerStatus<cr>
-

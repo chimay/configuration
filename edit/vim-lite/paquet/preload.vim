@@ -226,4 +226,13 @@ let g:Fixkey_setupDelay = 500
 nmap ( [
 nmap ) ]
 
+" vim-tmux-navigator {{{1
 
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-Left> :<C-U>TmuxNavigateLeft<cr>
+nnoremap <silent> <C-Right> :<C-U>TmuxNavigateRight<cr>
+nnoremap <silent> <C-Down> :<C-U>TmuxNavigateDown<cr>
+nnoremap <silent> <C-Up> :<C-U>TmuxNavigateUp<cr>
+
+"nnoremap <silent> C-Left :<C-U>TmuxNavigatePrevious<cr>

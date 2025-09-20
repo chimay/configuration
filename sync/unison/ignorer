@@ -69,8 +69,8 @@ ignore = Path racine/plugin/manager/elpaca/.*
 
 # Source {{{1
 
-ignore = Path racine/pack/aur/*
-ignore = Path racine/pack/aur/.*
+#ignore = Path racine/pack/aur/*
+#ignore = Path racine/pack/aur/.*
 
 # ignore = Path racine/source/*
 # ignore = Path racine/source/.*

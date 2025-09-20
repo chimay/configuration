@@ -39,6 +39,10 @@ alias sudoshell='sudo -s'
 alias visudo='sudo -E visudo'
 alias gsu=pkexec
 
+# encryption {{{1
+
+
+
 # display {{{1
 
 alias e='print -l'
@@ -98,11 +102,11 @@ alias ed=run-ed
 
 # Vim {{{2
 
-alias v='vim -u ~/racine/config/edit/vim-lite/vimrc'
-alias vi='vim -u ~/racine/config/edit/vim-lite/vimrc'
+alias v=vim-lite
+alias vi=vim-lite
 
-alias vid='vimdiff -u ~/racine/config/edit/vim-lite/vimrc'
-alias vimdiff='vimdiff -u ~/racine/config/edit/vim-lite/vimrc'
+alias vid='vim-lite -d'
+alias vimdiff='vim-lite -d'
 
 alias vq=vim-quickfix
 
@@ -224,7 +228,7 @@ alias mcp='qcp -d'
 alias rm='noglob remove-file'
 
 alias tls=trash-list
-alias trs=trash-restore
+alias trestore=trash-restore
 
 alias tremove=trash-rm
 alias tempty=trash-empty
@@ -654,6 +658,7 @@ hash -d pman=~/racine/plugin/manager
 hash -d pdata=~/racine/plugin/data
 
 hash -d vimpackager=~/racine/plugin/manager/vim/pack/packager
+hash -d vimlitepackager=~/racine/plugin/manager/vim-lite/pack/packager
 hash -d neovimpackager=~/racine/plugin/manager/neovim/pack/packager
 
 hash -d elpaca=~/racine/plugin/manager/emacs/elpaca

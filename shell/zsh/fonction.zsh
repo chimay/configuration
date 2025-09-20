@@ -62,6 +62,15 @@ run-ed () {
 	eval $runme
 }
 
+# vim-lite {{{2
+
+vim-lite () {
+	vim \
+		-u ~/racine/config/edit/vim-lite/vimrc \
+		--cmd 'let &rtp = substitute(&rtp, $HOME."/\.vim", "$HOME/.vim-lite", "g")' \
+		"$@"
+}
+
 # mvr : move with rsync {{{2
 
 mvr () {
@@ -225,7 +234,7 @@ snf () {
 
 remove-file () {
 	local arguments="$@"
-	# -- at least one argument
+	# -- avoid empty argument
 	[ $#arguments -eq 0 ] && {
 		echo Usage : remove-file file(s)
 		echo
@@ -234,7 +243,7 @@ remove-file () {
 	# -- safeguard
 	[ $arguments = "*" ] && {
 		echo I refuse to remove all files/folder in a directory.
-		echo Please narrow at least to files only with '*(.)'.
+		echo Please use at least a filter, like narrowing to files only with '*(.)'.
 		echo
 		return 1
 	}

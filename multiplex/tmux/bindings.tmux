@@ -133,6 +133,8 @@ bind -T custom 0 select-window -t :=10
 
 # Tmux panes = windows {{{1
 
+# split {{{2
+
 # h & v like vim
 bind -T custom 'h' split-window -v
 bind -T custom 'v' split-window -h
@@ -140,28 +142,56 @@ bind -T custom 'v' split-window -h
 bind -T custom M-h command-prompt -p 'Commande pour le nouveau panel ? ' "split-window -h '%%'"
 bind -T custom M-v command-prompt -p 'Commande pour le nouveau panel ? ' "split-window -v '%%'"
 
+# navigation {{{2
+
+#bind -n C-Left  select-pane -L
+#bind -n C-Down  select-pane -D
+#bind -n C-Up    select-pane -U
+#bind -n C-Right select-pane -R
+
 bind -T custom "'" display-panes
-
-# not C-arrows because vim uses it
-
-bind -n S-Left  select-pane -L
-bind -n S-Down  select-pane -D
-bind -n S-Up    select-pane -U
-bind -n S-Right select-pane -R
 
 bind -T custom '$' last-pane
 bind -n C-End last-pane
 
-bind -n S-PageDown rotate-window -D
-bind -n S-PageUp rotate-window -U
-bind -n S-Home  swap-pane -D
-bind -n S-End swap-pane -U
+# Seamless navigation with tmux panes and vim windows
+# Smart pane switching with awareness of Vim splits.
+#
+# credit : https://github.com/christoomey/vim-tmux-navigator
+
+vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzf)(diff)?(-wrapped)?'
+
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +${vim_pattern}$'"
+
+bind-key -n 'C-Left'  if-shell "$is_vim" 'send-keys C-Left'  'select-pane -L'
+bind-key -n 'C-Right' if-shell "$is_vim" 'send-keys C-Right'  'select-pane -R'
+bind-key -n 'C-Down'  if-shell "$is_vim" 'send-keys C-Down'  'select-pane -D'
+bind-key -n 'C-Up'    if-shell "$is_vim" 'send-keys C-UP'  'select-pane -U'
+
+bind-key -T copy-mode-vi 'C-Left'  select-pane -L
+bind-key -T copy-mode-vi 'C-Right' select-pane -R
+bind-key -T copy-mode-vi 'C-Down'  select-pane -D
+bind-key -T copy-mode-vi 'C-Up'    select-pane -U
+
+# move {{{2
+
+bind -n S-Down rotate-window -D
+bind -n S-Up rotate-window -U
+bind -n S-Left  swap-pane -D
+bind -n S-Right swap-pane -U
+
+# layout {{{2
 
 bind -T custom l next-layout
 # current pane to new window
 bind -T custom T break-pane
 
+# synchronize {{{2
+
 bind -T custom M-$ set -w synchronize-panes
+
+# resize {{{2
 
 bind -T custom z resize-pane -Z
 

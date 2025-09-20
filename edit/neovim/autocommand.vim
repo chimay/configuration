@@ -127,6 +127,7 @@ augroup man-pages
 	autocmd FileType man setlocal keywordprg=:Man
 	autocmd FileType man nnoremap <buffer> t <cmd>HelpToc<cr>
 	autocmd FileType man nnoremap <buffer> s <cmd>call library#manual_sections()<cr>
+	autocmd FileType man nnoremap <buffer> $ <cmd>call library#manual_commands()<cr>
 	autocmd FileType man nnoremap <buffer> l <cmd>call library#manual_links()<cr>
 	autocmd FileType man nnoremap <buffer> - <cmd>call library#manual_options()<cr>
 	autocmd FileType man nnoremap <buffer> o <cmd>call library#manual_open_list()<cr>

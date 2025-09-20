@@ -1,10 +1,5 @@
 " vim: set filetype=vim :
 
-" paths {{{1
-
-set runtimepath-=~/.vim
-set runtimepath+=~/racine/config/edit/vim-lite
-
 " plugins needed before config {{{1
 
 " main {{{1
