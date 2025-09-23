@@ -1,0 +1,19 @@
+" vim: set filetype=vim :
+
+hi dtGroup			   guifg=#872e30		guibg=default			gui=NONE
+hi dtLocaleString	   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtLocaleStringKey   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtExec			   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtExecKey		   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtBoolean		   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtBooleanKey		   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtType			   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtTypeKey		   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtString			   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtStringKey		   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtIconString		   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtIconStringKey	   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtCategories		   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtCategoriesKey	   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtExec			   guifg=#5B3C11		guibg=default			gui=NONE
+hi dtExecParam		   guifg=#5B3C11		guibg=default			gui=NONE

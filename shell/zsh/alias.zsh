@@ -119,9 +119,9 @@ alias ns='run-neovim-server.sh &'
 alias nvc=run-neovim-client.sh
 alias nvqc=run-neovim-qt-client.sh
 
-alias nvl='NVIM_APPNAME=nvim-lua nvim --listen ~/racine/run/socket/neovim-lua'
-alias nvlz='NVIM_APPNAME=lazyvim nvim --listen ~/racine/run/socket/lazyvim'
-alias nvcd='NVIM_APPNAME=nvchad nvim --listen ~/racine/run/socket/nvchad'
+alias nvl='NVIM_APPNAME=nvim-lua nvim --listen /run/user/$UID/neovim-lua'
+alias nvlz='NVIM_APPNAME=lazyvim nvim --listen /run/user/$UID/lazyvim'
+alias nvcd='NVIM_APPNAME=nvchad nvim --listen /run/user/$UID/nvchad'
 
 # -- neovim remote
 
@@ -150,8 +150,7 @@ alias esrv=run-emacs-server.sh
 
 alias emx='emacs -nw --init-directory ~/racine/dotdir/emacs.d'
 
-alias mx='emacs --no-window-system --init-directory ~config/edit/emacs-lite'
-#alias mx='emacs -nw -q --no-splash -l ~/racine/config/edit/emacs-lite/init.el'
+alias mx=emacs-lite.sh
 
 # client terminal
 alias em='emacsclient -t'
@@ -291,9 +290,9 @@ alias psi=process-signal
 alias ht=htop
 alias bt=btop
 
-alias ts='TS_SOCKET=~/racine/run/socket/task-spooler tsp'
-alias ts-1='TS_SOCKET=~/racine/run/socket/task-spooler-1 tsp'
-alias ts-2='TS_SOCKET=~/racine/run/socket/task-spooler-2 tsp'
+alias ts='TS_SOCKET=$SOCKETDIR/task-spooler-socket tsp'
+alias ts-1='TS_SOCKET=$SOCKETDIR/task-spooler-socket-1 tsp'
+alias ts-2='TS_SOCKET=$SOCKETDIR/task-spooler-socket-2 tsp'
 
 # watch
 alias wa=viddy
@@ -573,7 +572,6 @@ hash -d wallpaper=~/graphix/wallpaper
 hash -d archive=~/racine/archive
 hash -d artisan=~/racine/artisan
 hash -d automat=~/racine/automat
-hash -d bridge=~/racine/bridge
 hash -d common=~/racine/common
 hash -d config=~/racine/config
 hash -d dotdir=~/racine/dotdir
@@ -582,7 +580,6 @@ hash -d feder=~/racine/feder
 hash -d fun=~/racine/fun
 hash -d gate=~/racine/gate
 hash -d hist=~/racine/hist
-hash -d hub=~/racine/hub
 hash -d index=~/racine/index
 hash -d infoman=~/racine/infoman
 hash -d litera=~/racine/litera
@@ -615,6 +612,11 @@ hash -d template=~/racine/template
 hash -d trash=~/racine/trash
 hash -d varia=~/racine/varia
 hash -d wiki=~/racine/wiki
+
+# gate {{{2
+
+hash -d bridge=~/racine/gate/bridge
+hash -d hub=~/racine/gate/hub
 
 #  public {{{2
 

@@ -388,12 +388,6 @@ clifm() {
 # run-vifm {{{2
 
 run-vifm () {
-	local dir=$(pwd)
-	cd ~/racine/config/fileman/vifm
-	vifm-clean-matchers.sh vifminfo.json
-	cd sessions
-	vifm-clean-matchers.sh *.json
-	cd $dir
 	vifmrun
 }
 
@@ -967,7 +961,8 @@ sshx() {
 # cmd-mpv {{{2
 
 cmd-mpv () {
-	echo $* > ~/racine/run/fifo/mpv
+	local uid=$(id -u)
+	echo $* > /run/user/$uid/mpv-fifo
 }
 
 

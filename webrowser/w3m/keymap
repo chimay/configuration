@@ -638,8 +638,8 @@ keymap  ta      EXTERN_LINK     'transmission-remote --add'
 
 # readability {{{2
 
-keymap C-r  COMMAND "SHELL 'readable $W3M_URL > ~/racine/varia/cache/readable/last.html' ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
-keymap R COMMAND "READ_SHELL 'python3 -m readability.readability -u $W3M_URL 2>/dev/null 1>~/racine/varia/cache/readable/last.html' ; BACK ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
+keymap R  COMMAND "SHELL 'readable $W3M_URL > ~/racine/varia/cache/readable/last.html' ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
+keymap C-r COMMAND "READ_SHELL 'python3 -m readability.readability -u $W3M_URL 2>/dev/null 1>~/racine/varia/cache/readable/last.html' ; BACK ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
 
 # text to speech {{{2
 

@@ -23,7 +23,6 @@ source_directories:
   - racine/README.org
   - racine/artisan
   - racine/automat
-  - racine/bridge
   - racine/common
   - racine/config
   - racine/dotdir/emacs.d
@@ -32,8 +31,8 @@ source_directories:
   - racine/example
   - racine/feder
   - racine/fun
+  - racine/gate
   - racine/hist
-  - racine/hub
   - racine/index
   - racine/infoman
   - racine/litera
@@ -50,11 +49,13 @@ source_directories:
   - racine/papier
   - racine/pictura
   - racine/plain
-  - racine/plugin/manager/neovim/pack
-  - racine/plugin/manager/vim/pack
-  - racine/plugin/manager/emacs/elpaca
-  - racine/plugin/manager/kak/plug.kak
-  - racine/plugin/manager/tmux/plugins
+  - racine/plugin/manager/emacs
+  - racine/plugin/manager/kak
+  - racine/plugin/manager/lite-xl
+  - racine/plugin/manager/neovim
+  - racine/plugin/manager/tmux
+  - racine/plugin/manager/vim
+  - racine/plugin/manager/vim-lite
   - racine/plugin/data
   - racine/prolang
   - racine/public

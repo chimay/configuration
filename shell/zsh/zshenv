@@ -41,6 +41,19 @@ fi
 
 export OPERASYS
 
+# Utilisateur {{{1
+
+export UID=$(id -u)
+
+RUNUSERDIR=/run/user/$UID
+
+if [ -d $RUNUSERDIR ]
+then
+	export SOCKETDIR=$RUNUSERDIR
+else
+	export SOCKETDIR=~/racine/run/socket
+fi
+
 #  Type de terminal {{{1
 
 # Nécessaire pour une bonne gestion des couleurs dans tmux, mutt
@@ -292,7 +305,7 @@ export RLWRAP_HOME=~/racine/hist/rlwrap
 # Édition de la ligne de commande readline dans un éditeur externe,
 # activé par Ctrl-^ par défaut
 
-export RLWRAP_EDITOR='vim -u ~/racine/config/edit/vim-lite/vimrc "+call cursor(%L,%C)" %F'
+export RLWRAP_EDITOR='vim-lite.sh "+call cursor(%L,%C)" %F'
 
 export FZF_DEFAULT_OPTS='
 	-i
@@ -326,17 +339,20 @@ export FZFZ_RECENT_DIRS_TOOL=z
 
 export CLIFM_FZF_HEIGHT=70
 
-export CM_MAX_CLIPS=300
-export CM_SELECTIONS="clipboard primary secondary"
-export CM_IGNORE_WINDOW=".*[Pp]inentry.*"
-export CM_LAUNCHER=rofi
-export CM_HISTLENGTH=17
-export CM_DIR=~/racine/hist/clipmenu
+# see also <url:~/racine/shell/run/run-clipmenud.sh>
+# for configuration
+#
+#export CM_MAX_CLIPS=300
+#export CM_SELECTIONS="clipboard primary secondary"
+#export CM_IGNORE_WINDOW=".*[Pp]inentry.*"
+#export CM_LAUNCHER=rofi
+#export CM_HISTLENGTH=17
+#export CM_DIR=~/racine/hist/clipmenu
 
 # processus {{{1
 
 export TS_SLOTS=7
-export TS_SOCKET=~/racine/run/socket/task-spooler
+export TS_SOCKET=$SOCKETDIR/task-spooler-socket
 
 # Recherche {{{1
 
@@ -394,30 +410,29 @@ export LESS_TERMCAP_se=$'\e[0m'
 
 # Most {{{2
 
-export MOST_EDITOR='vim -u ~/racine/config/edit/vim-lite/vimrc'
+export MOST_EDITOR=vim-lite.sh
 export MOST_SWITCHES='-s'
 
 #  Editeurs {{{1
 
 # un VRAI éditeur de texte ;)
 
-export VISUAL='vim -u ~/racine/config/edit/vim-lite/vimrc'
+export VISUAL=vim-lite.sh
+export EDITOR=vim-lite.sh
 
-export EDITOR='vim -u ~/racine/config/edit/vim-lite/vimrc'
+export DIFFPROG=vim-lite.sh
 
-export DIFFPROG='vimdiff -u ~/racine/config/edit/vim-lite/vimrc'
+export FCEDIT=vim-lite.sh
 
-export FCEDIT='vim -u ~/racine/config/edit/vim-lite/vimrc'
-
-export SUDO_EDITOR='vim -u ~/racine/config/edit/vim-lite/vimrc'
+export SUDO_EDITOR=vim-lite.sh
 
 # Pour nvr, neovim-remote
 
-export NVIM_LISTEN_ADDRESS=~/racine/run/socket/neovim
+export NVIM_LISTEN_ADDRESS=/run/user/$UID/neovim-socket
 
 # Pour edir
 
-export EDIR_EDITOR='vim -u ~/racine/config/edit/vim-lite/vimrc'
+export EDIR_EDITOR=vim-lite.sh
 
 # Pour helm
 

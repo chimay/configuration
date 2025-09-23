@@ -32,10 +32,10 @@ set shell=/bin/zsh
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
-set vicmd='vim -u ~/racine/config/edit/vim-lite/vimrc'
+set vicmd=vim-lite.sh
 
 " Mieux dans un terminal
-"set vixcmd=gvim
+"set vixcmd=gvim-lite.sh
 
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
@@ -147,7 +147,7 @@ set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -execu
 
 set locateprg="locate -d ~/racine/index/locate/racine.db %a"
 
-set fusehome="~/racine/bridge/fuse"
+set fusehome="~/racine/gate/bridge/fuse"
 
 " Environnement {{{1
 
@@ -192,7 +192,6 @@ set vifminfo=
 			\tabs,
 			\tui,
 			\options,
-			\filetypes,
 			\commands
 
 set sessionoptions=savedirs,tabs,tui
@@ -300,7 +299,7 @@ mark D ~/Documents
 
 " Org mode
 
-filetype *.org emacs -nw -q -l ~/racine/config/edit/emacs/leger.el %c
+filetype *.org gvim-lite.sh %c &
 
 " Man page
 
@@ -434,13 +433,13 @@ fileviewer <image/*>
 
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
         \ {View in sxiv}
-        \ sxiv %f &,
+        \ sxiv %f 2>>! ~/log/sxiv.log &,
         \ {View in vimiv}
         \ vimiv %f &,
 
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
         \ {View in sxiv}
-        \ sxiv %f &,
+        \ sxiv %f 2>>! ~/log/sxiv.log &,
         \ {View in vimiv}
         \ vimiv %f &,
         \ {View in gpicview}
@@ -556,8 +555,8 @@ filetype *.ftp
 
 " Default
 
-filetype * vim %c
-filextype * gvim %c &
+filetype * vim-lite.sh %c
+filextype * gvim-lite.sh %c &
 
 " Thème {{{1
 
@@ -633,7 +632,7 @@ command! ln ln -s %D %d
 command! mkcd :mkdir %a | cd %a
 command! print lp %f
 command! rln :rlink %D %d
-command! vgrep vim "+grep %a"
+command! vgrep vim-lite.sh "+grep %a"
 
 " Mappings {{{1
 

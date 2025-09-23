@@ -1,30 +1,20 @@
 # vim: set filetype=mailcap:
 
 #  {{{ Texte simple
-# ------------------------------------------------------------------------
 
 text/plain; less %s; needsterminal;
 
-# }}}
-
-# {{{ Diff
-# ------------------------------------
+# Diff {{{1
 
 text/x-diff; less %s; needsterminal
 
-# }}}
-
-# {{{ Patchs
-# ------------------------------------
+# Patchs {{{1
 
 text/x-patch; less %s; needsterminal
 text/x-darcs-patch; less %s; needsterminal
 text/x-csrc; less %s; needsterminal
 
-# }}}
-
-# {{{ Html
-# ------------------------------------
+# Html {{{1
 
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
 
@@ -34,10 +24,7 @@ text/html; w3m -I %{charset} -T text/html; copiousoutput;
 
 application/javascript; cat %s; copiousoutput;
 
-# }}}
-
-# {{{ Documents
-# ------------------------------------
+# Documents {{{1
 
 application/postscript; ps2ascii %s; copiousoutput
 application/pdf;        pdftotext -layout '%s' -; copiousoutput
@@ -46,19 +33,13 @@ application/msword; antiword '%s'; copiousoutput; description="Microsoft Word"; 
 
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; docx2txt '%s' -; copiousoutput; description="Microsoft Word Docx"; nametemplate=%s.doc
 
-# }}}
-
-# {{{ Archives
-# ------------------------------------
+# Archives {{{1
 
 application/x-shar; less %s; needsterminal
 application/x-gunzip; zcat; copiousoutput
 application/x-tar-gz; gunzip -c %s | tar -tf - ; copiousoutput
 
-# }}}
-
-# {{{ Images
-# ------------------------------------
+# Images {{{1
 
 #image/*; display %s ; test=test -n "$DISPLAY"
 
@@ -66,18 +47,10 @@ application/x-tar-gz; gunzip -c %s | tar -tf - ; copiousoutput
 
 image/*; exiv2 pr %s ; copiousoutput
 
-# }}}
-
-# {{{ Audio
-# ------------------------------------
+# Audio {{{1
 
 audio/*; mpv '%s'
 
-# }}}
-
-# {{{ Vidéo
-# ------------------------------------
+# Vidéo {{{1
 
 video/*; mpv %s
-
-# }}}
