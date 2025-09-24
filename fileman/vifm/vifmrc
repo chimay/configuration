@@ -145,7 +145,7 @@ set grepprg="rg --vimgrep --smart-case %i %a %s"
 
 set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -executable -o -path './.*' \\) -prune"
 
-set locateprg="locate -d ~/racine/index/locate/racine.db %a"
+set locateprg="locate -d ~/racine/index/filesys/locate/racine.db %a"
 
 set fusehome="~/racine/gate/bridge/fuse"
 
@@ -433,15 +433,15 @@ fileviewer <image/*>
 
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
         \ {View in sxiv}
-        \ sxiv %f 2>>! ~/log/sxiv.log &,
+        \ sxiv %f %i &,
         \ {View in vimiv}
-        \ vimiv %f &,
+        \ vimiv %f %i &,
 
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
         \ {View in sxiv}
-        \ sxiv %f 2>>! ~/log/sxiv.log &,
+        \ sxiv %f %i &,
         \ {View in vimiv}
-        \ vimiv %f &,
+        \ vimiv %f %i &,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in shotwell}
@@ -921,7 +921,7 @@ nnoremap <c-q> :trashes?<cr>
 " Corbeille générale {{{3
 
 nnoremap <delete> :!tsp trash-put %f<cr>
-nnoremap dr :!tsp trash-restore <cr>
+nnoremap dr :!trash-restore<cr>
 
 " Autres opérations sur fichiers {{{2
 

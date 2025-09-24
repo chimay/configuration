@@ -357,7 +357,7 @@ alias dg='BROWSER=qutebrowser ddgr'
 
 # Navigateurs
 
-alias w=w3m
+alias w=w3m-textwidth
 alias ww=elinks
 
 alias www='lynx -cfg=~/racine/config/webrowser/lynx/lynx.cfg -lss=~/racine/config/webrowser/lynx/lynx.lss'

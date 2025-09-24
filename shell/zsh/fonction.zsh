@@ -776,6 +776,13 @@ webreader () {
 	#readable $1 -p html-title,html-content | w3m -T text/html
 }
 
+# w3m-textwidth {{{2
+
+w3m-textwidth () {
+	stty cols 120
+	w3m "$@"
+	stty cols 0
+}
 
 # mail {{{2
 

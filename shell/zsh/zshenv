@@ -449,6 +449,14 @@ export GTAGSCONF=~/racine/config/edit/labels/gtags.conf
 export GTAGSLABEL=native
 #export GTAGSLABEL=ctags
 
+# fx, json editor
+
+export FX_SHOW_SIZE=true
+export FX_LINE_NUMBERS=true
+export FX_COLLAPSED=true
+export FX_INDENT=2
+export FX_THEME="1"
+
 # Gestionnaires de fichiers {{{1
 
 export QT_QPA_PLATFORMTHEME=qt5ct

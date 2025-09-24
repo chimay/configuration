@@ -87,6 +87,34 @@ augroup file-markdown
 	"autocmd bufwritepost **.md !pandoc -t html % -o %:r.html
 augroup END
 
+augroup json
+	autocmd!
+	autocmd FileType json %!jq '.'
+augroup end
+
+augroup file-help
+	autocmd!
+	autocmd FileType help setlocal keywordprg=:help
+	autocmd FileType help nnoremap <buffer> t <cmd>HelpToc<cr>
+augroup end
+
+augroup man-pages
+	autocmd!
+	autocmd FileType man setlocal keywordprg=:Man
+	autocmd FileType man nnoremap <buffer> t <cmd>HelpToc<cr>
+	autocmd FileType man nnoremap <buffer> s <cmd>call library#manual_sections()<cr>
+	autocmd FileType man nnoremap <buffer> $ <cmd>call library#manual_commands()<cr>
+	autocmd FileType man nnoremap <buffer> l <cmd>call library#manual_links()<cr>
+	autocmd FileType man nnoremap <buffer> - <cmd>call library#manual_options()<cr>
+	autocmd FileType man nnoremap <buffer> o <cmd>call library#manual_open_list()<cr>
+	autocmd FileType man nnoremap <buffer> x <cmd>call library#manual_close_list()<cr>
+	autocmd FileType man nnoremap <buffer> D <cmd>bdelete<cr>
+	autocmd FileType man nnoremap <buffer> q <cmd>call library#manual_quit()<cr>
+	autocmd FileType man nnoremap <buffer> <cr> <cmd>silent! normal K<cr>
+	autocmd FileType man nnoremap <buffer> b <c-b>
+	autocmd FileType man nnoremap <buffer> u <c-u>
+augroup end
+
 augroup file-libreoffice
 	autocmd!
 	autocmd BufReadPre *.odt,*.ods set ro
@@ -115,29 +143,6 @@ augroup file-audio
 	autocmd BufEnter ~/racine/pictura/list/*.meta lcd ~/graphix
 	autocmd BufEnter ~/racine/musica/list/*.meta lcd ~/audio
 augroup END
-
-augroup file-help
-	autocmd!
-	autocmd FileType help setlocal keywordprg=:help
-	autocmd FileType help nnoremap <buffer> t <cmd>HelpToc<cr>
-augroup end
-
-augroup man-pages
-	autocmd!
-	autocmd FileType man setlocal keywordprg=:Man
-	autocmd FileType man nnoremap <buffer> t <cmd>HelpToc<cr>
-	autocmd FileType man nnoremap <buffer> s <cmd>call library#manual_sections()<cr>
-	autocmd FileType man nnoremap <buffer> $ <cmd>call library#manual_commands()<cr>
-	autocmd FileType man nnoremap <buffer> l <cmd>call library#manual_links()<cr>
-	autocmd FileType man nnoremap <buffer> - <cmd>call library#manual_options()<cr>
-	autocmd FileType man nnoremap <buffer> o <cmd>call library#manual_open_list()<cr>
-	autocmd FileType man nnoremap <buffer> x <cmd>call library#manual_close_list()<cr>
-	autocmd FileType man nnoremap <buffer> D <cmd>bdelete<cr>
-	autocmd FileType man nnoremap <buffer> q <cmd>call library#manual_quit()<cr>
-	autocmd FileType man nnoremap <buffer> <cr> <cmd>silent! normal K<cr>
-	autocmd FileType man nnoremap <buffer> b <c-b>
-	autocmd FileType man nnoremap <buffer> u <c-u>
-augroup end
 
 augroup treesitter-stop
 	autocmd!

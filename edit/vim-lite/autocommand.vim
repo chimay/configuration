@@ -84,27 +84,10 @@ augroup file-markdown
 	"autocmd bufwritepost **.md !pandoc -t html % -o %:r.html
 augroup END
 
-augroup file-libreoffice
+augroup json
 	autocmd!
-	autocmd BufReadPre *.odt,*.ods set ro
-	autocmd BufReadPost *.odt,*.ods %!odt2txt "%"
-augroup END
-
-augroup file-image
-	autocmd!
-	"autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!identify -verbose "%"
-	autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!exiv2 pr "%"
-augroup END
-
-augroup file-audio
-	autocmd!
-	autocmd BufReadPost *.flac %!metaflac --list "%"
-	autocmd BufReadPost *.ogg %!ogginfo "%"
-	autocmd BufReadPost *.mp3 %!mp3info -x "%"
-	" ---- playlists
-	autocmd BufEnter ~/racine/pictura/list/*.meta lcd ~/graphix
-	autocmd BufEnter ~/racine/musica/list/*.meta lcd ~/audio
-augroup END
+	autocmd FileType json %!jq '.'
+augroup end
 
 augroup file-help
 	autocmd!
@@ -128,3 +111,25 @@ augroup man-pages
 	autocmd FileType man nnoremap <buffer> b <c-b>
 	autocmd FileType man nnoremap <buffer> u <c-u>
 augroup end
+
+augroup file-libreoffice
+	autocmd!
+	autocmd BufReadPre *.odt,*.ods set ro
+	autocmd BufReadPost *.odt,*.ods %!odt2txt "%"
+augroup END
+
+augroup file-image
+	autocmd!
+	"autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!identify -verbose "%"
+	autocmd BufReadPost *.svg,*.png,*.jpg,*.jpeg,*.gif %!exiv2 pr "%"
+augroup END
+
+augroup file-audio
+	autocmd!
+	autocmd BufReadPost *.flac %!metaflac --list "%"
+	autocmd BufReadPost *.ogg %!ogginfo "%"
+	autocmd BufReadPost *.mp3 %!mp3info -x "%"
+	" ---- playlists
+	autocmd BufEnter ~/racine/pictura/list/*.meta lcd ~/graphix
+	autocmd BufEnter ~/racine/musica/list/*.meta lcd ~/audio
+augroup END
