@@ -507,10 +507,6 @@ nnoremap <f8><m-s-t> <cmd>tlast<cr>
 nnoremap <f3>j <cmd>tj /
 nnoremap <f3>J <cmd>tab tj /
 
-"  Informations {{{2
-
-nnoremap <C-G> 2<C-G>
-
 "  Déplacements & Copie {{{2
 
 " Début & Fin de fichier {{{3

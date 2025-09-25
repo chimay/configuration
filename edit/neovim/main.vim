@@ -708,8 +708,6 @@ nnoremap ZQ <cmd>qa!<cr>
 
 nnoremap <kEnter> <cmd>call library#write_all()<cr>
 
-"nnoremap <C-G> 2<C-G>
-
 " Fichier courant aussi disponible dans le registre %
 " Fichier alternatif aussi disponible dans le registre #
 

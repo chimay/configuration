@@ -292,6 +292,8 @@ exclude_if_present:
 # encryption_passphrase takes precedence. Defaults to not set.
 # encryption_passcommand: secret-tool lookup borg-repository repo-name
 
+# see also <url:~/racine/config/shell/zsh/zshenv#tn=BORG_PASSCOMMAND>
+
 encryption_passcommand: pass show backup/borg/main
 
 # Passphrase to unlock the encryption key with. Only use on

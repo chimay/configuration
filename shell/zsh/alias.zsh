@@ -317,9 +317,9 @@ alias lc=locate-file
 
 # organization {{{1
 
-alias ta=task
+#alias ta=task
 
-alias clc=calcurse
+#alias caltui=calcurse
 
 # mail {{{1
 
@@ -478,7 +478,8 @@ alias ds=sdcv
 alias dt=translator
 alias dy=synonym
 
-alias ç=calculator
+alias ç=calc
+alias clc=calculator
 
 alias wk=wikicurses
 alias wka='wikicurses --wiki ArchWiki'

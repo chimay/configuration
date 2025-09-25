@@ -813,7 +813,6 @@ calculator () {
 	EOF
 }
 
-
 # translator {{{2
 
 translator () {

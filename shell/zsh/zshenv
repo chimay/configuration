@@ -489,8 +489,8 @@ export UNISON=~/racine/config/sync/unison/archive/$HOST
 # export BORG_REPO=ssh://user@host.tld:23/./borg
 # export BORG_BASE_DIR=/mnt/nvme/borgdata
 
-export BORG_PASSCOMMAND='pass show backup/borg/main'
 export BORG_RELOCATED_REPO_ACCESS_IS_OK=yes
+export BORG_PASSCOMMAND='pass show backup/borg/main'
 
 export RESTIC_REPOSITORY=~/backup/restic
 export RESTIC_PASSWORD_COMMAND='pass show backup/restic/main'
