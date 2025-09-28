@@ -35,6 +35,12 @@ let g:no_plugin_maps = 1
 
 " ------------------------------------
 
+" Maps {{{1
+
+" vim-which-key {{{2
+
+source ~/racine/config/edit/vim/paquet/vim-which-key.vim
+
 " Bouts de code (snippets, bits, modèles) {{{1
 
 " miniSnip (Jorengarenar/miniSnip) {{{2
@@ -47,7 +53,7 @@ let g:miniSnip_extends = {
 			\ "cpp" : [ "objc", "c" ],
 			\ }
 
-nnoremap <f10>e :e ~/racine/plugin/data/vim/miniSnip/
+nnoremap <f6>e :e ~/racine/plugin/data/vim/miniSnip/
 
 " Commentaires {{{1
 
@@ -59,10 +65,16 @@ map <d-;> <plug>NERDCommenterToggle
 
 "  TComment (tomtom/tcomment_vim) {{{2
 
+let g:tcomment_maps = 1
+let g:tcomment_mapleader1 = '<f10>-'
+let g:tcomment_mapleader2 = '<f10>_'
+let g:tcomment_opleader1 = 'gc'
+
+let g:tcomment_textobject_inlinecomment = '<f10>-i'
+let g:tcomment_mapleader_comment_anyway = '<f10>-ca'
+let g:tcomment_mapleader_uncomment_anyway = '<f10>-ua'
+
 let g:tcomment#blank_lines = 0
-let g:tcomment_textobject_inlinecomment = '\tci'
-let g:tcomment_mapleader_comment_anyway = '\tcca'
-let g:tcomment_mapleader_uncomment_anyway = '\tcua'
 
 let g:tcomment#options = {
 	\ 'col': 1

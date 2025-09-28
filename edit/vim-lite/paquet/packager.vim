@@ -21,12 +21,13 @@ fun! PackagerInit ()
 	call packager#add('jamessan/vim-gnupg', always)
 	call packager#add('nishigori/increment-activator', always)
 	call packager#add('vim-scripts/VisIncr', always)
+	call packager#add('liuchengxu/vim-which-key', always)
+	call packager#add('christoomey/vim-tmux-navigator', always)
 	" -- plugins with deps
 	call packager#add('vim-scripts/LineJuggler', {
 				\ 'type' : 'start',
 				\ 'requires' : ['vim-scripts/ingo-library', 'vim-scripts/LineJugglerCommands']
 				\ })
-	call packager#add('christoomey/vim-tmux-navigator', always)
 	" ---- optional plugins, loaded on some filetypes
 	call packager#add('vim-latex/vim-latex', optional)
 	" ---- optional plugins loaded manually

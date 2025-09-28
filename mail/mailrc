@@ -261,7 +261,8 @@ set folder=racine/mail
 set inbox=+system/inbox
 set MBOX=/var/spool/mail/$USER
 
-set DEAD=+system/dead.letter
+#set DEAD=+system/dead.letter
+set DEAD=+system/unfinished
 
 set record=+system/sent
 
@@ -365,7 +366,6 @@ set keepsave
 
 set showto
 
-
 # Affichage de messages {{{1
 
 # Only include the selected header fields when printing messages
@@ -387,12 +387,12 @@ retain date sender from to cc subject message-id mail-followup-to reply-to
 
 # Envoi de messages {{{1
 
-set from="user_name <user_name@mail_server.org>"
+set from="David <fa981522@skynet.be>"
 
 # Serveur smtp ?
 # Commenter pour utiliser openSmtpd
 
-# set mta='smtp://relay.mail_server.org'
+# set mta='smtp://relay.skynet.be'
 # set smtp-auth=none
 
 # Ask for a message subject.
@@ -467,13 +467,9 @@ set history-file=+.s-nailhist
 
 commandalias h headers
 commandalias ù newmail
-
-# f = find
 commandalias f from
 commandalias é search
-
 commandalias § file
-
 
 # Mailing lists {{{1
 

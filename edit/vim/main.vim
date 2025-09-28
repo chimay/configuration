@@ -676,14 +676,6 @@ nnoremap gm <cmd>call library#manual()<cr>
 nnoremap ZZ <cmd>qa<cr>
 nnoremap ZQ <cmd>qa!<cr>
 
-" Phrases {{{2
-
-" noremap <f5>s (
-" noremap <f6>s )
-
-" vnoremap <f5>s (
-" vnoremap <f6>s )
-
 "  Fichiers {{{2
 
 nnoremap <kEnter> <cmd>call library#write_all()<cr>
@@ -693,31 +685,25 @@ nnoremap <kEnter> <cmd>call library#write_all()<cr>
 
 nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
-nnoremap <f2>n <cmd>new <bar> only<cr>
-nnoremap <f2>e :e <c-r>=expand('%:p:h') . '/' <cr>
-nnoremap <f2>r :r <c-r>=expand('%:p:h') . '/' <cr>
-nnoremap <f2>g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
-nnoremap <f2>v <cmd>tabedit ~/racine/config/edit/vim/main.vim<cr>
-nnoremap <f2>c <cmd>tabedit ~/racine/plain/organize/cronos.org<cr>
-nnoremap <f2>d <cmd>call library#dream()<cr>
-nnoremap <f2>f <cmd>tabedit ~/racine/plain/orgmode/fix.org <bar> normal ggzx<cr>
-nnoremap <f2>l <cmd>tabedit ~/racine/log/ship/captain.md <bar> normal ggzx<cr>
-nnoremap <f2>t <cmd>tabedit ~/racine/plain/orgmode/tasks.org <bar> normal ggzx<cr>
+" see also <url:~/racine/config/edit/neovim/paquet/preload.vim#tn=f7 prefix>
 
-command! -nargs=? -complete=filetype EditSyntaxPlugin
-\ exe 'keepjumps vsplit ~/racine/config/edit/vim/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
+nnoremap <f5> <cmd>source %<cr>
 
-nnoremap <f2>s <cmd>EditSyntaxPlugin<cr>
+nnoremap <leader>v <cmd>call library#edit_myvimrc()<cr>
 
-nnoremap <f2>x <cmd>call library#chmodexec()<cr>
+nnoremap <leader>n <cmd>new <bar> only<cr>
+nnoremap <leader>e <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <leader>r <cmd>call library#read_in_current_file_subtree()<cr>
 
-" figlet banner
-nnoremap <f3>b <cmd>call library#figlet()<cr>
+nnoremap <leader>g <cmd>call library#edit_attic()<cr>
+nnoremap <leader>c <cmd>call library#edit_cronos()<cr>
+nnoremap <leader>d <cmd>call library#edit_dream()<cr>
+nnoremap <leader>f <cmd>call library#edit_fix()<cr>
+nnoremap <leader>l <cmd>call library#edit_ship_log()<cr>
+nnoremap <leader>s <cmd>call library#edit_syntax_plugin()<cr>
+nnoremap <leader>t <cmd>call library#edit_tasks()<cr>
 
-nnoremap <f3>x <cmd>call library#text_to_password()<cr>
-nnoremap <f3>X <cmd>call library#password_to_text()<cr>
-
-nnoremap <f3>m :make! -k<space>
+nnoremap <leader>x <cmd>call library#chmodexec()<cr>
 
 " lilypond
 nnoremap <f9>m <cmd>call library#make_midi()<cr>
@@ -747,12 +733,6 @@ nnoremap <d-q> <cmd>bwipe! #<cr>
 " wipe all buffers
 nnoremap <m-s-q> <cmd>%bwipe<cr>
 
-nnoremap <f3>s <cmd>%sort<cr>
-
-" Lecture seule {{{3
-
-nnoremap <f3>r <cmd>call library#toggle_readonly()<cr>
-
 " windows (fenêtres) {{{2
 
 " see paquets/preload.vim : vim-tmux-navigator
@@ -770,18 +750,6 @@ nnoremap <c-s-left> <cmd>vertical resize -2<cr>
 "nnoremap <s-tab>  <c-w>w
 "nnoremap <m-s-tab>  <c-w>p
 
-"nnoremap <s-left> <c-w><left>
-"nnoremap <s-right> <c-w><right>
-"nnoremap <s-up> <c-w><up>
-"nnoremap <s-down> <c-w><down>
-
-" doesnt work
-"nnoremap <d-7>  <c-w>w
-"nnoremap <d-4> <c-w><left>
-"nnoremap <d-6> <c-w><right>
-"nnoremap <d-8> <c-w><up>
-"nnoremap <d-5> <c-w><down>
-
 "  Onglets {{{2
 
 nnoremap <c-pageup> gT
@@ -791,13 +759,6 @@ nnoremap <c-end> <cmd>tablast<cr>
 
 nnoremap <s-pageup> <cmd>tabmove -1<cr>
 nnoremap <s-pagedown> <cmd>tabmove +1<cr>
-
-nnoremap <f3>t <cmd>tabnew<cr>
-nnoremap <f3>T :tabedit<space>
-nnoremap <F3>= <cmd>call library#equal_windows()<cr>
-
-nnoremap <leader><left> <cmd>call library#win2prev_tab()<cr>
-nnoremap <leader><right> <cmd>call library#win2next_tab()<cr>
 
 " Liste quickfix {{{2
 
@@ -837,8 +798,8 @@ nnoremap ]t <cmd>tnext<cr>
 nnoremap [T <cmd>tfirst<cr>
 nnoremap ]T <cmd>tlast<cr>
 
-nnoremap <f3>j <cmd>tj /
-nnoremap <f3>J <cmd>tab tj /
+nnoremap <leader>j <cmd>tj /
+nnoremap <leader>J <cmd>tab tj /
 
 "  Déplacements & Copie {{{2
 
@@ -887,22 +848,6 @@ vnoremap <m-k> :move '<lt>-2<cr>gv=gv
 
 nnoremap J mzJ`z
 
-" Echange {{3
-
-" see also
-" <url:~/racine/config/edit/vim/lua/config/keybinds.lua#tn=Move lines up/down>
-
-" chars
-nnoremap <f4>c xp
-nnoremap <f4>C Xp
-" words
-nnoremap <f4>w bdwelp
-" lines
-nnoremap <f4>l ddp
-nnoremap <f4>L ddkP
-" paragraphs
-nnoremap <f4>p {dap}P{
-
 " Signets {{{3
 
 " ` = ' : plus pratique sur les claviers be, fr
@@ -918,13 +863,13 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f3>, /\<\><left><left>
-vnoremap <f3>, /\<\><left><left>
+nnoremap <leader>, /\<\><left><left>
+vnoremap <leader>, /\<\><left><left>
 
 "  Remplacement {{{3
 
-nnoremap <f3>; :%s/\<\>//<left><left><left><left>
-vnoremap <f3>; :%s/\<\>//<left><left><left><left>
+nnoremap <leader>; :%s/\<\>//<left><left><left><left>
+vnoremap <leader>; :%s/\<\>//<left><left><left><left>
 
 "  Copier / Coller {{{2
 
@@ -937,17 +882,13 @@ vnoremap <f3>; :%s/\<\>//<left><left><left><left>
 
 command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
 
-nnoremap <f3>y :GlobalYank<space>
+nnoremap <leader>Y :GlobalYank<space>
 
 " Couper toutes les lignes correspondant à un motif
 
 command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
 
-nnoremap <f3>d :GlobalDelete<space>
-
-" Option paste
-
-nnoremap <f3>p :set paste!<cr>
+nnoremap <leader>D :GlobalDelete<space>
 
 " Comme dans les Xterm
 
@@ -1072,36 +1013,28 @@ nnoremap QQ gQ
 
 " Hauteur de la fenêtre de commande {{{3
 
-nnoremap <f3>c :set cmdheight=
+nnoremap <leader>C :set cmdheight=
 
 " Ligne ou sélection courante {{{3
 
 " Comme commande ex
 
 nnoremap <m-:> <cmd>exe getline(".")<CR>
+nnoremap <leader>: <cmd>exe getline(".")<CR>
 
 " Comme commande externe
 
 nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 
-"  Orthographe {{{2
-
-" underline ~~~ wrong words
-nnoremap <silent> <f3>~ <cmd>setlocal spell!<cr>
-
 "  Informations {{{2
 
-nnoremap <f3>ig <cmd>echo library#highlight_group()<cr>
+nnoremap <leader>ig <cmd>echo library#highlight_group()<cr>
 
 "  Shell {{{2
 
-nnoremap \s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap \S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap \h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
-
-" Journal de bord {{{2
-
-nnoremap <f3>L <cmd>tabedit ~/racine/omni/log/captain<cr>
+nnoremap <leader>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <leader>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <leader>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
 
 " Pavé numérique {{{2
 
@@ -1125,15 +1058,11 @@ nmap <k9> 9
 
 nnoremap <silent> <D-l> <cmd>call library#toggle_relative_linum()<cr>
 
-" Curseur {{{3
-
-nnoremap <f3>l <cmd>set cursorline!<cr>
-
 " Fonte de caractères {{{3
 
 " dans vim-qt
 
-nnoremap <f3>f :GuiFont DejaVu Sans Mono:h12
+nnoremap <leader>F :GuiFont DejaVu Sans Mono:h12
 
 " Émulateur de terminal {{{2
 

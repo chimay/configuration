@@ -357,6 +357,7 @@ alias dg='BROWSER=qutebrowser ddgr'
 
 # Navigateurs
 
+#alias w=w3m
 alias w=w3m-textwidth
 alias ww=elinks
 

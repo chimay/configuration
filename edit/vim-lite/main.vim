@@ -390,41 +390,38 @@ nnoremap ZQ :qa!<cr>
 
 nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
-nnoremap \n :new <bar> only<cr>
-nnoremap \e :e <C-R>=expand('%:p:h') . '/' <CR><C-D>
-nnoremap \r :r <C-R>=expand('%:p:h') . '/' <CR><C-D>
-nnoremap \g <c-w>v:e <c-r>=expand('%:p:h') . '/Grenier'<cr><cr>G
-nnoremap \v :tabe ~/racine/config/edit/vim-lite/main.vim<cr>
+nnoremap <f5> <cmd>source %<cr>
+
+nnoremap <leader>v <cmd>call library#edit_myvimrc()<cr>
+
+nnoremap <leader>n :new <bar> only<cr>
+nnoremap <leader>e <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <leader>r <cmd>call library#read_in_current_file_subtree()<cr>
+nnoremap <leader>g <cmd>call library#edit_attic()<cr>
+
+nnoremap <leader>x <cmd>call library#chmodexec()<cr>
 
 command -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/vim-lite/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
-nnoremap <f2>s :<c-u>EditSyntaxPlugin<cr>
-
-nnoremap \m <cmd>make -k<cr>
-nnoremap \x <cmd>call library#text_to_password()<cr>
-nnoremap \X <cmd>call library#password_to_text()<cr>
-
 " Arguments {{{2
 
-nnoremap <f7>a :previous<cr>
-nnoremap <f8>a :next<cr>
+nnoremap [a :previous<cr>
+nnoremap ]a :next<cr>
 
-nnoremap <f7>A :first<cr>
-nnoremap <f8>A :last<cr>
+nnoremap [A :first<cr>
+nnoremap ]A :last<cr>
 
 " Tampons {{{2
 
-nnoremap <f7>b :bprevious<cr>
-nnoremap <f8>b :bnext<cr>
+nnoremap [b :bprevious<cr>
+nnoremap ]b :bnext<cr>
 
-nnoremap <f7>B :bfirst<cr>
-nnoremap <f8>B :blast<cr>
+nnoremap [B :bfirst<cr>
+nnoremap ]B :blast<cr>
 
 nnoremap <m-q> <cmd>bw!<cr>
 nnoremap <m-s-q> <cmd>bw! #<cr>
-
-nnoremap <f3>s <cmd>%sort<cr>
 
 " Fenêtres {{{2
 
@@ -435,58 +432,32 @@ nnoremap <f3>s <cmd>%sort<cr>
 "nnoremap <c-up>    <c-w>k
 "nnoremap <c-left>  <c-w>h
 
-" Les mouvements directionnels sont aussi accessible via h j k l
-
-nnoremap <m-left>  <c-w><left>
-nnoremap <m-right> <c-w><right>
-nnoremap <m-up>    <c-w><up>
-nnoremap <m-down>  <c-w><down>
-
-nnoremap <s-left>  <c-w><left>
-nnoremap <s-right> <c-w><right>
-nnoremap <s-up>    <c-w><up>
-nnoremap <s-down>  <c-w><down>
-
-"  Onglets {{{2
-
-nnoremap <f3>t <cmd>tabnew<cr>
-nnoremap <f3>T :tabedit<space>
-
-nnoremap <f7>T <cmd>tabfirst<cr>
-nnoremap <f8>T <cmd>tablast<cr>
-
-nnoremap <f7>t <cmd>tabmove -1<cr>
-nnoremap <f8>t <cmd>tabmove +1<cr>
-
-nnoremap <c-s-left> <cmd>tabmove -1<cr>
-nnoremap <c-s-right> <cmd>tabmove +1<cr>
-
-nnoremap <F3>= <cmd>call library#equal_windows()<cr>
-
-nnoremap <leader><left> <cmd>call library#win2prev_tab()<cr>
-nnoremap <leader><right> <cmd>call library#win2next_tab()<cr>
+nnoremap <c-s-down> <cmd>resize +2<cr>
+nnoremap <c-s-up> <cmd>resize -2<cr>
+nnoremap <c-s-right> <cmd>vertical resize +2<cr>
+nnoremap <c-s-left> <cmd>vertical resize -2<cr>
 
 " Liste quickfix {{{2
 
-nnoremap <f7>q <cmd>cprevious<cr>
-nnoremap <f8>q <cmd>cnext<cr>
+nnoremap [q <cmd>cprevious<cr>
+nnoremap ]q <cmd>cnext<cr>
 
-nnoremap <f7>Q <cmd>cfirst<cr>
-nnoremap <f8>Q <cmd>clast<cr>
+nnoremap [Q <cmd>cfirst<cr>
+nnoremap ]Q <cmd>clast<cr>
 
-nnoremap <f7><c-q> <cmd>cpfile<cr>
-nnoremap <f8><c-q> <cmd>cnfile<cr>
+nnoremap [<c-q> <cmd>cpfile<cr>
+nnoremap ]<c-q> <cmd>cnfile<cr>
 
 " Listes locales {{{2
 
-nnoremap <f7>l <cmd>lprevious<cr>
-nnoremap <f8>l <cmd>lnext<cr>
+nnoremap [l <cmd>lprevious<cr>
+nnoremap ]l <cmd>lnext<cr>
 
-nnoremap <f7>L <cmd>lfirst<cr>
-nnoremap <f8>L <cmd>llast<cr>
+nnoremap [L <cmd>lfirst<cr>
+nnoremap ]L <cmd>llast<cr>
 
-nnoremap <f7><c-l> <cmd>lpfile<cr>
-nnoremap <f8><c-l> <cmd>lnfile<cr>
+nnoremap [<c-l> <cmd>lpfile<cr>
+nnoremap ]<c-l> <cmd>lnfile<cr>
 
 " Anciens fichiers {{{2
 
@@ -498,14 +469,14 @@ nnoremap <f8><c-l> <cmd>lnfile<cr>
 
 "  Tags {{{2
 
-nnoremap <f7><m-t> <cmd>tprevious<cr>
-nnoremap <f8><m-t> <cmd>tnext<cr>
+nnoremap [t <cmd>tprevious<cr>
+nnoremap ]t <cmd>tnext<cr>
 
-nnoremap <f7><m-s-t> <cmd>tfirst<cr>
-nnoremap <f8><m-s-t> <cmd>tlast<cr>
+nnoremap [T <cmd>tfirst<cr>
+nnoremap ]T <cmd>tlast<cr>
 
-nnoremap <f3>j <cmd>tj /
-nnoremap <f3>J <cmd>tab tj /
+nnoremap <leader>j <cmd>tj /
+nnoremap <leader>J <cmd>tab tj /
 
 "  Déplacements & Copie {{{2
 
@@ -553,23 +524,19 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f3>, /\<\><left><left>
-vnoremap <f3>, /\<\><left><left>
+nnoremap <leader>, /\<\><left><left>
+vnoremap <leader>, /\<\><left><left>
 
 "  Remplacement {{{3
 
-nnoremap <f3>; :%s/\<\>//<left><left><left><left>
-vnoremap <f3>; :%s/\<\>//<left><left><left><left>
+nnoremap <leader>; :%s/\<\>//<left><left><left><left>
+vnoremap <leader>; :%s/\<\>//<left><left><left><left>
 
 "  Copier / Coller {{{2
 
 "  Copie jusqu'à la fin de la ligne pour rester consistant avec D et C
 
 nnoremap Y y$
-
-"  Copies provenant d’un autre logiciel
-
-nnoremap <f3>p :set paste!<cr>
 
 " Permet le shift-insert fonctionnel comme dans les Xterm
 
@@ -603,17 +570,17 @@ vnoremap . :normal .<CR>
 nnoremap ]] ]z
 nnoremap [[ [z
 
-nnoremap <f7>z ]z
-nnoremap <f8>z [z
+nnoremap [z ]z
+nnoremap ]z [z
 
-vnoremap <f7>z ]z
-vnoremap <f8>z [z
+vnoremap [z ]z
+vnoremap ]z [z
 
-nnoremap <f7>) zjzx]z
-nnoremap <f8>( zkzx[z
+nnoremap [) zjzx]z
+nnoremap ]( zkzx[z
 
-vnoremap <f7>) zjzx]z
-vnoremap <f8>( zkzx[z
+vnoremap [) zjzx]z
+vnoremap ]( zkzx[z
 
 nnoremap zo zCzO
 
@@ -666,14 +633,6 @@ cnoremap <C-A> <C-B>
 
 cnoremap <m-,> <c-r>=expand('%:p:h') . '/'<cr>
 
-" Enlever un élément dans le chemin d’un fichier {{{3
-
-cnoremap <C-BS> <C-\>e(<SID>RemoveLastPathComponent())<CR>
-
-function! s:RemoveLastPathComponent()
-  return substitute(getcmdline(), '\%(\\ \|[\\/]\@!\f\)\+[\\/]\=$\|.$', '', '')
-endfunction
-
 cmap <m-d> <c-right><c-w>
 
 " Mode ex {{{3
@@ -684,17 +643,17 @@ nnoremap QQ gQ
 
 " Hauteur de la fenêtre de commande {{{3
 
-nnoremap <f3>c :set cmdheight=
+nnoremap <leader>C :set cmdheight=
 
 " Ligne ou sélection courante {{{3
 
 " Comme commande ex
 
-nnoremap <f3>: <cmd>exe getline(".")<CR>
+nnoremap <leader>: <cmd>exe getline(".")<CR>
 
 "  Informations {{{2
 
-nnoremap <f3>ig <cmd>call library#highlight_group()<cr>
+nnoremap <leader>ig <cmd>call library#highlight_group()<cr>
 
 " Émulateur de terminal {{{2
 
@@ -702,13 +661,13 @@ nnoremap <C-!> <cmd>call library#terminal()<cr>
 
 set termwinkey=<C-W>
 
-tnoremap <f3>n <c-\><c-n>
+tnoremap <leader>N <c-\><c-n>
 
 "  Shell {{{2
 
-nnoremap \s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap \S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap \h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <leader>s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <leader>S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <leader>h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
 
 " Pavé numérique {{{2
 
@@ -724,10 +683,6 @@ nmap <k6> 6
 nmap <k7> 7
 nmap <k8> 8
 nmap <k9> 9
-
-" Présentation {{{2
-
-nnoremap <f3>l :set cursorline!<cr>
 
 "  Présentation {{{1
 

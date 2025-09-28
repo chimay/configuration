@@ -43,6 +43,7 @@ fun! PackagerInit ()
 	call packager#add('wellle/targets.vim', always)
 	call packager#add('McSinyx/vim-octave', always)
 	call packager#add('christoomey/vim-tmux-navigator', always)
+	call packager#add('liuchengxu/vim-which-key', always)
 	" -- plugins with deps
 	call packager#add('vim-scripts/LineJuggler', {
 				\ 'type' : 'start',
@@ -64,7 +65,6 @@ fun! PackagerInit ()
 	call packager#add('water-sucks/darkrose.nvim', optional)
 	call packager#add('justinmk/vim-dirvish', optional)
 	call packager#add('kana/vim-submode', optional)
-	call packager#add('liuchengxu/vim-which-key', optional)
 	call packager#add('machakann/vim-textobj-delimited', optional)
 	call packager#add('skywind3000/asyncrun.vim', optional)
 	call packager#add('stefandtw/quickfix-reflector.vim', optional)

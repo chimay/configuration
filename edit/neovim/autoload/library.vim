@@ -1,5 +1,13 @@
 " vim: set ft=vim fdm=indent iskeyword&:
 
+" ---- helpers
+
+fun! library#execute (command)
+	" Execute command in argument
+	" Wrapper for vim-which-key
+	execute a:command
+endfun
+
 " ---- help, informations
 
 fun! library#helptags ()
@@ -150,6 +158,102 @@ fun! library#moonphase ()
 	return moonphase
 endfun
 
+" ---- file
+
+fun! library#complete_file_in_current_subtree (arglead, cmdline, cursorpos)
+	" Complete with file name
+	" Use glob(expr, nosuf, list, alllinks)
+	" nosuf, list, alllinks = false by default
+	let cmdline = a:cmdline
+	let arglead = a:arglead
+	let cursorpos = a:cursorpos
+	" ---- get tree of files & directories
+	let path = expand('%:p:h') . '/'
+	execute 'lcd' path
+	let tree = glob('**', v:false, v:true)
+	eval tree->filter({ _, v -> v =~ cmdline})
+	return tree
+endfun
+
+fun! library#edit_in_current_file_subtree ()
+	" Edit file with completion in current file subtree
+	let complete = 'customlist,library#complete_file_in_current_subtree'
+	let file = input('Edit file : ', '', complete)
+	let path = expand('%:p:h') . '/'
+	execute 'edit' .. path .. file
+endfun
+
+fun! library#read_in_current_file_subtree ()
+	" Read file with completion in current file subtree
+	let complete = 'customlist,library#complete_file_in_current_subtree'
+	let file = input('Read file : ', '', complete)
+	let path = expand('%:p:h') . '/'
+	execute 'read' .. path .. file
+endfun
+
+" -- quick access to particular files
+
+fun! library#edit_myvimrc ()
+	" Edit $MYVIMRC
+	tabedit $MYVIMRC
+endfun
+
+fun! library#reload_myvimrc ()
+	" Reload $MYVIMRC
+	source $MYVIMRC
+endfun
+
+fun! library#edit_attic ()
+	" Edit attic (Grenier)
+	vsplit
+	let attic = expand('%:p:h') . '/Grenier'
+	execute 'edit' attic
+	normal G
+endfun
+
+fun! library#edit_cronos ()
+	" Edit cronos.org
+	tabedit ~/racine/plain/organize/cronos.org
+endfun
+
+fun! library#edit_dream ()
+	" Edit dream.org
+	tabedit ~/racine/plain/orgmode/dream.org
+	let end = line('$')
+	let today = strftime('%A %d')
+	let heading = '*** ' .. today
+	let moonphase = library#moonphase ()
+	call append(end, ['', heading, '', '', '', moonphase])
+	let curline = line('$') - 2
+	call cursor(curline, 1)
+	normal zx
+endfun
+
+fun! library#edit_fix ()
+	" Edit fix.org
+	tabedit ~/racine/plain/orgmode/fix.org
+	normal ggzx
+endfun
+
+fun! library#edit_ship_log ()
+	" Edit ship log
+	tabedit ~/racine/log/ship/captain.md
+	normal ggzx
+endfun
+
+fun! library#edit_syntax_plugin ()
+	" Edit syntax plugin file
+	let file = expand('~/racine/config/edit/neovim/after/syntax/')
+	let file = file .. &filetype .. '.vim'
+	execute 'keepjumps vsplit' file
+endfun
+
+fun! library#edit_tasks ()
+	" Edit tasks.org
+	tabedit ~/racine/plain/orgmode/tasks.org
+	normal ggzx
+endfun
+
 " ---- buffer
 
 fun! library#write_all ()
@@ -246,6 +350,40 @@ fun! library#smart_tab ()
 	endif
 endfun
 
+" -- exchange
+
+fun! library#swap (object, with = 'after')
+	" Swap with object after or before current one
+	let object = a:object
+	" ---- with : swap with object after or before current one
+	let with = a:with
+	if object ==# 'characters'
+		if with ==# 'after'
+			normal xp
+		else
+			normal Xp
+		endif
+	elseif object ==# 'words'
+		if with ==# 'after'
+			normal bdwelp
+		else
+			return 'not implemented'
+		endif
+	elseif object ==# 'lines'
+		if with ==# 'after'
+			normal ddp
+		else
+			normal ddkP
+		endif
+	elseif object ==# 'paragraphs'
+		if with ==# 'after'
+			normal {dap}P{
+		else
+			return 'not implemented'
+		endif
+	endif
+endfun
+
 " -- global actions on buffer lines
 
 fun! library#global_yank (pattern, ...)
@@ -304,20 +442,6 @@ fun! library#password_to_text ()
 	silent! % substitute/£/l/g
 	silent! % substitute/0/o/g
 	silent! % substitute/\$/s/g
-endfun
-
-" -- quick access to particular files
-
-fun! library#dream ()
-	tabedit ~/racine/plain/orgmode/dream.org
-	let end = line('$')
-	let today = strftime('%A %d')
-	let heading = '*** ' .. today
-	let moonphase = library#moonphase ()
-	call append(end, ['', heading, '', '', '', moonphase])
-	let curline = line('$') - 2
-	call cursor(curline, 1)
-	normal zx
 endfun
 
 " ---- windows & tabs
@@ -585,6 +709,8 @@ fun! library#copy (source, destination, ask = 'confirm')
 	endif
 	return 'success'
 endfun
+
+" -- publish
 
 if exists('s:dont_publish')
 	unlockvar! s:dont_publish

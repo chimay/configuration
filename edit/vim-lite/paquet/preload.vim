@@ -1,5 +1,9 @@
 " vim: set filetype=vim :
 
+" vim-which-key {{{2
+
+source ~/racine/config/edit/vim-lite/paquet/vim-which-key.vim
+
 " wheel {{{1
 
 if ! exists("g:wheel_loaded")

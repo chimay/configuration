@@ -16,7 +16,7 @@ set guioptions+=A
 
 " Fonte {{{1
 
-set guifont=DejaVu\ Sans\ Mono\ 13
+set guifont=DejaVu\ Sans\ Mono\ 12
 "set guifont=Monospace\ 12
 "set guifont=Adwaita\ Mono\ 12
 

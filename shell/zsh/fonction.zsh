@@ -768,20 +768,22 @@ process-signal () {
 	kill -$signal $=identifiants
 }
 
+# w3m-textwidth {{{2
+
+w3m-textwidth () {
+	local integer columns=$(stty size | cut -d ' ' -f 2)
+	local integer limit
+	(( limit = columns * 3 / 4 ))
+	stty cols $limit
+	w3m "$@"
+	stty cols $columns
+}
 
 # webreader : using readable & w3m {{{2
 
 webreader () {
 	readable $1 | w3m -T text/html
 	#readable $1 -p html-title,html-content | w3m -T text/html
-}
-
-# w3m-textwidth {{{2
-
-w3m-textwidth () {
-	stty cols 120
-	w3m "$@"
-	stty cols 0
 }
 
 # mail {{{2
