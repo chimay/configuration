@@ -74,8 +74,8 @@ let g:which_key_return_map.t = {
 let g:which_key_return_map.w = {
 	\ 'name' : '+windows' ,
 	\ '=' : ['library#equal_windows()'      , 'equal wins']      ,
-	\ '<left>' : ['library#win2prev_tab()'  , 'win to prev tab'] ,
-	\ '<right>' : ['library#win2next_tab()' , 'win to next tab'] ,
+	\ 'p' : ['library#win2prev_tab()'  , 'win to prev tab'] ,
+	\ 'n' : ['library#win2next_tab()' , 'win to next tab'] ,
 	\ }
 
 let g:which_key_return_map.c = {
@@ -107,10 +107,14 @@ let g:which_key_return_map.s = {
 
 let g:which_key_return_map.q = {
 	\ 'name' : '+quickfix' ,
-	\ 'p' : ['cprevious' , 'previous in quickfix']      ,
-	\ 'n' : ['cnext'     , 'next in quickfix']          ,
-	\ 'f' : ['cpfile'    , 'previous file in quickfix'] ,
-	\ 'b' : ['cnfile'    , 'next file in quickfix']     ,
+	\ 'o' : ['copen'     , 'open quickfix']                  ,
+	\ 'c' : ['cclose'    , 'close quickfix']                 ,
+	\ 'p' : ['cprevious' , 'previous in quickfix']           ,
+	\ 'n' : ['cnext'     , 'next in quickfix']               ,
+	\ 'f' : ['cpfile'    , 'previous file in quickfix']      ,
+	\ 'b' : ['cnfile'    , 'next file in quickfix']          ,
+	\ 'O' : ['lopen'     , 'open location list']             ,
+	\ 'C' : ['lclose'    , 'close location list']            ,
 	\ 'P' : ['lprevious' , 'previous in location list']      ,
 	\ 'N' : ['lnext'     , 'next in location list']          ,
 	\ 'F' : ['lpfile'    , 'previous file in location list'] ,
@@ -120,4 +124,5 @@ let g:which_key_return_map.q = {
 let g:which_key_return_map['!'] = {
 	\ 'name' : '+shell_command' ,
 	\ 'm' : ["library#execute('make -k')"  , 'make']  ,
+	\ 'l' : ["library#execute('!ls -l')"  , 'ls -l']  ,
 	\ }
