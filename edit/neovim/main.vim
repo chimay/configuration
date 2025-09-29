@@ -680,7 +680,6 @@ nnoremap <S-F1> :tab helpgrep<space>
 nnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
 inoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
 vnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
-nnoremap <M-F1> <cmd>call library#helptags()<cr>
 
 "nnoremap K K<c-w>T
 
@@ -724,8 +723,6 @@ nnoremap <leader>s <cmd>call library#edit_syntax_plugin()<cr>
 nnoremap <leader>t <cmd>call library#edit_tasks()<cr>
 
 nnoremap <leader>x <cmd>call library#chmodexec()<cr>
-
-nnoremap <leader>m :make! -k<space>
 
 " lilypond
 nnoremap <f9>m <cmd>call library#make_midi()<cr>
@@ -878,18 +875,6 @@ vnoremap <leader>; :%s/\<\>//<left><left><left><left>
 
 " by default in neovim
 "nnoremap Y y$
-
-" Copie de toutes les lignes correspondant à un motif
-
-command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
-
-nnoremap <leader>y :GlobalYank<space>
-
-" Couper toutes les lignes correspondant à un motif
-
-command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
-
-nnoremap <leader>D :GlobalDelete<space>
 
 " Comme dans les Xterm
 

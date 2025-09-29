@@ -470,6 +470,9 @@ fun! library#global_delete (pattern, ...)
 	exe 'global/' . a:pattern . '/delete ' . toupper(register)
 endfun
 
+command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
+command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
+
 " -- banner
 
 fun! library#figlet ()
@@ -507,6 +510,7 @@ endfun
 " ---- windows & tabs
 
 fun! library#equal_windows ()
+	" Equalize windows on all tabs
 	let current_tab = tabpagenr()
 	tabdo wincmd =
 	execute current_tab .. 'tabnext'

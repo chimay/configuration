@@ -658,7 +658,6 @@ nnoremap <S-F1> :tab helpgrep<space>
 nnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
 inoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
 vnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
-nnoremap <M-F1> <cmd>call library#helptags()<cr>
 
 "nnoremap K K<c-w>T
 
@@ -875,20 +874,7 @@ vnoremap <leader>; :%s/\<\>//<left><left><left><left>
 
 "  Copie jusqu'à la fin de la ligne pour rester consistant avec D et C
 
-" by default in vim
-"nnoremap Y y$
-
-" Copie de toutes les lignes correspondant à un motif
-
-command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
-
-nnoremap <leader>Y :GlobalYank<space>
-
-" Couper toutes les lignes correspondant à un motif
-
-command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
-
-nnoremap <leader>D :GlobalDelete<space>
+nnoremap Y y$
 
 " Comme dans les Xterm
 

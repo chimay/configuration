@@ -27,6 +27,26 @@ nnoremap <silent> <cr> <cmd>WhichKey! g:which_key_return_map<cr>
 
 let g:which_key_return_map = {}
 
+" help {{{2
+
+let g:which_key_return_map.h = {
+	\ 'name' : '+help',
+	\ 'h' : ["library#feedkeys(':tab help ')", 'help'],
+	\ 'g' : ["library#feedkeys(':tab helpgrep ')", 'helpgrep'],
+	\ 'f' : ['library#toggle_help_filetype()', 'toggle help filetype'],
+	\ 't' : ['library#helptags()', 'help tags'],
+	\ 'm' : ['library#manual()', 'help tags'],
+	\ }
+
+" display {{{2
+
+let g:which_key_return_map.d = {
+	\ 'name' : '+display',
+	\ 'l' : ['library#toggle_relative_linum()', 'toggle relative line numbers'],
+	\ }
+
+" file {{{2
+
 let g:which_key_return_map.f = {
 	\ 'name' : '+file',
 	\ 'e' : ['library#edit_in_current_file_subtree()', 'edit in subtree'],
@@ -44,6 +64,8 @@ let g:which_key_return_map.f = {
 	\ 'S' : ['library#source_current_file()', 'source current file'],
 	\ }
 
+" argument {{{2
+
 " which key hangs with g:which_key_return_map.a
 
 let g:which_key_return_map['$'] = {
@@ -54,30 +76,42 @@ let g:which_key_return_map['$'] = {
 	\ '$' : ['last'     , 'last argument']     ,
 	\ }
 
+" buffer {{{2
+
 let g:which_key_return_map.b = {
 	\ 'name' : '+buffer' ,
-	\ 'N' : ['new <bar> only' , 'new buffer']    ,
-	\ 'p' : ['bprevious'      , 'previous buffer']  ,
-	\ 'n' : ['bnext'          , 'next buffer']  ,
-	\ '^' : ['bfirst'         , 'first buffer']  ,
-	\ '$' : ['blast'          , 'last buffer']   ,
-	\ 'd' : ['bd'             , 'delete buffer'] ,
+	\ 'N' : ['new <bar> only'      , 'new buffer']        ,
+	\ 'p' : ['bprevious'           , 'previous buffer']   ,
+	\ 'n' : ['bnext'               , 'next buffer']       ,
+	\ '^' : ['bfirst'              , 'first buffer']      ,
+	\ '$' : ['blast'               , 'last buffer']       ,
+	\ 'd' : ['bd'                  , 'delete buffer']     ,
+	\ 'w' : ['library#write_all()' , 'write all buffers'] ,
 	\ }
 
-let g:which_key_return_map.t = {
-	\ 'name' : '+tab' ,
-	\ 'n' : ['tabnew'   , 'new tab']         ,
-	\ 'e' : ['tabedit'  , 'edit in new tab'] ,
-	\ '^' : ['tabfirst' , 'tab first']       ,
-	\ '$' : ['tablast'  , 'tab last']        ,
-	\ }
+" window {{{2
 
 let g:which_key_return_map.w = {
 	\ 'name' : '+windows' ,
-	\ '=' : ['library#equal_windows()' , 'equal wins']      ,
-	\ 'p' : ['library#win2prev_tab()'  , 'win to prev tab'] ,
-	\ 'n' : ['library#win2next_tab()'  , 'win to next tab'] ,
+	\ '=' : ["library#execute('wincmd =')" , 'equalize windows'] ,
+	\ '|' : ["library#execute('wincmd |')" , 'maximize width'] ,
+	\ '-' : ["library#execute('wincmd _')" , 'maximize height'] ,
+	\ 'p' : ['library#win2prev_tab()'      , 'win to prev tab']  ,
+	\ 'n' : ['library#win2next_tab()'      , 'win to next tab']  ,
 	\ }
+
+" tab, onglet {{{2
+
+let g:which_key_return_map.t = {
+	\ 'name' : '+tab' ,
+	\ 'n' : ['tabnew'                  , 'new tab']                      ,
+	\ 'e' : ['tabedit'                 , 'edit in new tab']              ,
+	\ '^' : ['tabfirst'                , 'tab first']                    ,
+	\ '$' : ['tablast'                 , 'tab last']                     ,
+	\ '=' : ['library#equal_windows()' , 'equalize windows on all tabs'] ,
+	\ }
+
+" content {{{2
 
 let g:which_key_return_map.c = {
 	\ 'name' : '+content' ,
@@ -90,11 +124,25 @@ let g:which_key_return_map.c = {
 	\ 'i' : ['library#highlight_group()'          , 'highlight group']   ,
 	\ }
 
+" global {{{2
+
+" strange mappings added with g:which_key_return_map.g
+
+let g:which_key_return_map['='] = {
+	\ 'name' : '+global' ,
+	\ 'y' : [ "library#feedkeys(':GlobalYank ')"   , 'global yank']   ,
+	\ 'd' : [ "library#feedkeys(':GlobalDelete ')" , 'global delete'] ,
+	\ }
+
+" encryption {{{2
+
 let g:which_key_return_map.x = {
 	\ 'name' : '+encryption' ,
 	\ 'x' : ['library#text_to_password()' , 'text to password'] ,
 	\ 'X' : ['library#password_to_text()' , 'password to text'] ,
 	\ }
+
+" swap {{{2
 
 let g:which_key_return_map.s = {
 	\ 'name' : '+swap' ,
@@ -106,6 +154,8 @@ let g:which_key_return_map.s = {
 	\ 'p' : ["library#swap('paragraphs')" , 'paragraphs'] ,
 	\ }
 
+" quickfix {{{2
+
 let g:which_key_return_map.q = {
 	\ 'name' : '+quickfix' ,
 	\ 'o' : ['copen'     , 'open quickfix']                  ,
@@ -116,7 +166,9 @@ let g:which_key_return_map.q = {
 	\ 'f' : ['cnfile'    , 'next file in quickfix']          ,
 	\ }
 
-let g:which_key_return_map.q = {
+" location list {{{2
+
+let g:which_key_return_map.l = {
 	\ 'name' : '+location_list' ,
 	\ 'o' : ['lopen'     , 'open location list']             ,
 	\ 'c' : ['lclose'    , 'close location list']            ,
@@ -126,8 +178,20 @@ let g:which_key_return_map.q = {
 	\ 'f' : ['lnfile'    , 'next file in location list']     ,
 	\ }
 
+" external command {{{2
+
 let g:which_key_return_map['!'] = {
 	\ 'name' : '+shell_command' ,
-	\ 'm' : ["library#execute('make -k')"  , 'make']  ,
+	\ 'm' : ["library#feedkeys(':make -k ')"  , 'make']  ,
 	\ 'l' : ["library#execute('!ls -l')"  , 'ls -l']  ,
+	\ '!' : ['library#terminal()'  , 'ls -l']  ,
+	\ }
+
+" music {{{2
+
+let g:which_key_return_map.m = {
+	\ 'name' : '+music' ,
+	\ 'm' : ['library#make_midi()'   , 'make'] ,
+	\ 'p' : ['library#display_pdf()' , 'make'] ,
+	\ 'o' : ['library#make_ogg()'    , 'make'] ,
 	\ }
