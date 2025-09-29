@@ -631,7 +631,7 @@ set makeef=
 
 set timeout
 
-set timeoutlen=12750
+set timeoutlen=1275
 
 set ttimeout
 

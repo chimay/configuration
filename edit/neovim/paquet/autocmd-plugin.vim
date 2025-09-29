@@ -28,6 +28,8 @@ augroup wheel
 	"autocmd BufEnter * call wheel#projection#follow()
 	autocmd BufRead * call wheel#attic#record()
 	autocmd TextYankPost * call wheel#codex#add()
+	" overwrite generic <cr> mapping
+	"autocmd filetype wheel nnoremap <buffer> <cr> <cr>
 augroup END
 
 augroup organ

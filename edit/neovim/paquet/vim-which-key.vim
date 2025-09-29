@@ -22,6 +22,7 @@ let g:which_key_exit = "\<esc>"
 " main prefix {{{1
 
 nnoremap <silent> <leader> <cmd>WhichKey! g:which_key_main_map<cr>
+nnoremap <silent> <cr> <cmd>WhichKey! g:which_key_main_map<cr>
 
 let g:which_key_main_map = {}
 
@@ -220,3 +221,24 @@ let g:which_key_main_map.p = {
 	\ 'name' : '+plugin' ,
 	\ 'm' : ['library#edit_minisnip_file()'   , 'edit minisnip file'] ,
 	\ }
+
+" function keys {{{2
+
+" for help
+"nnoremap <silent> <f1> <cmd>WhichKey '<f1>'<cr>
+
+nnoremap <silent> <f2> <cmd>WhichKey '<f2>'<cr>
+nnoremap <silent> <f3> <cmd>WhichKey '<f3>'<cr>
+nnoremap <silent> <f4> <cmd>WhichKey '<f4>'<cr>
+
+" source current file
+"nnoremap <silent> <f5> <cmd>WhichKey '<f5>'<cr>
+
+nnoremap <silent> <f6> <cmd>WhichKey '<f6>'<cr>
+nnoremap <silent> <f7> <cmd>WhichKey '<f7>'<cr>
+nnoremap <silent> <f8> <cmd>WhichKey '<f8>'<cr>
+
+nnoremap <silent> <f9> <cmd>WhichKey '<f9>'<cr>
+nnoremap <silent> <f10> <cmd>WhichKey '<f10>'<cr>
+nnoremap <silent> <f11> <cmd>WhichKey '<f11>'<cr>
+nnoremap <silent> <f12> <cmd>WhichKey '<f12>'<cr>
