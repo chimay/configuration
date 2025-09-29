@@ -15,7 +15,20 @@ fun! library#feedkeys (keys)
 endfun
 
 fun! library#complete_file_in_current_subtree (arglead, cmdline, cursorpos)
-	" Complete with file name
+	" Complete with file name in current subtree
+	" Use glob(expr, nosuf, list, alllinks)
+	" nosuf, list, alllinks = false by default
+	let cmdline = a:cmdline
+	let arglead = a:arglead
+	let cursorpos = a:cursorpos
+	" ---- get tree of files & directories
+	let tree = glob('**', v:false, v:true)
+	eval tree->filter({ _, v -> v =~ cmdline})
+	return tree
+endfun
+
+fun! library#complete_file_in_current_file_subtree (arglead, cmdline, cursorpos)
+	" Complete with file name in current file subtree
 	" Use glob(expr, nosuf, list, alllinks)
 	" nosuf, list, alllinks = false by default
 	let cmdline = a:cmdline
@@ -237,10 +250,21 @@ endfun
 
 fun! library#edit_in_current_file_subtree ()
 	" Edit file with completion in current file subtree
-	let complete = 'customlist,library#complete_file_in_current_subtree'
+	let complete = 'customlist,library#complete_file_in_current_file_subtree'
 	let file = input('Edit file : ', '', complete)
 	let path = expand('%:p:h') . '/'
 	execute 'edit' .. path .. file
+endfun
+
+fun! library#edit_minisnip_file ()
+	" Edit file with completion in miniSnip subtree
+	"let directory = getcwd()
+	let minisnip_directory = '~/racine/plugin/data/neovim/miniSnip/'
+	execute 'lcd' minisnip_directory
+	echomsg getcwd()
+	let complete = 'customlist,library#complete_file_in_current_subtree'
+	let file = input('Edit miniSnip file : ', '', complete)
+	execute 'edit' .. minisnip_directory .. file
 endfun
 
 fun! library#read_in_current_file_subtree ()

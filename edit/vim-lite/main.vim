@@ -392,14 +392,14 @@ nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
 nnoremap <f5> <cmd>source %<cr>
 
-nnoremap <leader>v <cmd>call library#edit_myvimrc()<cr>
+nnoremap <f11>v <cmd>call library#edit_myvimrc()<cr>
 
-nnoremap <leader>n :new <bar> only<cr>
-nnoremap <leader>e <cmd>call library#edit_in_current_file_subtree()<cr>
-nnoremap <leader>r <cmd>call library#read_in_current_file_subtree()<cr>
-nnoremap <leader>g <cmd>call library#edit_attic()<cr>
+nnoremap <f11>n :new <bar> only<cr>
+nnoremap <f11>e <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <f11>r <cmd>call library#read_in_current_file_subtree()<cr>
+nnoremap <f11>g <cmd>call library#edit_attic()<cr>
 
-nnoremap <leader>x <cmd>call library#chmodexec()<cr>
+nnoremap <f11>x <cmd>call library#chmodexec()<cr>
 
 command -nargs=? -complete=filetype EditSyntaxPlugin
 \ exe 'keepjumps vsplit ~/racine/config/edit/vim-lite/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
@@ -475,9 +475,6 @@ nnoremap ]t <cmd>tnext<cr>
 nnoremap [T <cmd>tfirst<cr>
 nnoremap ]T <cmd>tlast<cr>
 
-nnoremap <leader>j <cmd>tj /
-nnoremap <leader>J <cmd>tab tj /
-
 "  Déplacements & Copie {{{2
 
 " Début & Fin de fichier {{{3
@@ -524,13 +521,13 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <leader>, /\<\><left><left>
-vnoremap <leader>, /\<\><left><left>
+nnoremap <f11>, /\<\><left><left>
+vnoremap <f11>, /\<\><left><left>
 
 "  Remplacement {{{3
 
-nnoremap <leader>; :%s/\<\>//<left><left><left><left>
-vnoremap <leader>; :%s/\<\>//<left><left><left><left>
+nnoremap <f11>; :%s/\<\>//<left><left><left><left>
+vnoremap <f11>; :%s/\<\>//<left><left><left><left>
 
 "  Copier / Coller {{{2
 
@@ -641,19 +638,15 @@ cmap <m-d> <c-right><c-w>
 
 nnoremap QQ gQ
 
-" Hauteur de la fenêtre de commande {{{3
-
-nnoremap <leader>C :set cmdheight=
-
 " Ligne ou sélection courante {{{3
 
 " Comme commande ex
 
-nnoremap <leader>: <cmd>exe getline(".")<CR>
+nnoremap <f11>: <cmd>exe getline(".")<CR>
 
 "  Informations {{{2
 
-nnoremap <leader>ig <cmd>call library#highlight_group()<cr>
+nnoremap <f11>ig <cmd>call library#highlight_group()<cr>
 
 " Émulateur de terminal {{{2
 
@@ -661,13 +654,13 @@ nnoremap <C-!> <cmd>call library#terminal()<cr>
 
 set termwinkey=<C-W>
 
-tnoremap <leader>N <c-\><c-n>
+tnoremap <f11>N <c-\><c-n>
 
 "  Shell {{{2
 
-nnoremap <leader>s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <leader>S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <leader>h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f11>s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f11>S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f11>h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
 
 " Pavé numérique {{{2
 

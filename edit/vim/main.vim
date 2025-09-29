@@ -688,21 +688,21 @@ nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
 nnoremap <f5> <cmd>source %<cr>
 
-nnoremap <leader>v <cmd>call library#edit_myvimrc()<cr>
+nnoremap <f11>v <cmd>call library#edit_myvimrc()<cr>
 
-nnoremap <leader>n <cmd>new <bar> only<cr>
-nnoremap <leader>e <cmd>call library#edit_in_current_file_subtree()<cr>
-nnoremap <leader>r <cmd>call library#read_in_current_file_subtree()<cr>
+nnoremap <f11>n <cmd>new <bar> only<cr>
+nnoremap <f11>e <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <f11>r <cmd>call library#read_in_current_file_subtree()<cr>
 
-nnoremap <leader>g <cmd>call library#edit_attic()<cr>
-nnoremap <leader>c <cmd>call library#edit_cronos()<cr>
-nnoremap <leader>d <cmd>call library#edit_dream()<cr>
-nnoremap <leader>f <cmd>call library#edit_fix()<cr>
-nnoremap <leader>l <cmd>call library#edit_ship_log()<cr>
-nnoremap <leader>s <cmd>call library#edit_syntax_plugin()<cr>
-nnoremap <leader>t <cmd>call library#edit_tasks()<cr>
+nnoremap <f11>g <cmd>call library#edit_attic()<cr>
+nnoremap <f11>c <cmd>call library#edit_cronos()<cr>
+nnoremap <f11>d <cmd>call library#edit_dream()<cr>
+nnoremap <f11>f <cmd>call library#edit_fix()<cr>
+nnoremap <f11>l <cmd>call library#edit_ship_log()<cr>
+nnoremap <f11>s <cmd>call library#edit_syntax_plugin()<cr>
+nnoremap <f11>t <cmd>call library#edit_tasks()<cr>
 
-nnoremap <leader>x <cmd>call library#chmodexec()<cr>
+nnoremap <f11>x <cmd>call library#chmodexec()<cr>
 
 " lilypond
 nnoremap <f9>m <cmd>call library#make_midi()<cr>
@@ -797,9 +797,6 @@ nnoremap ]t <cmd>tnext<cr>
 nnoremap [T <cmd>tfirst<cr>
 nnoremap ]T <cmd>tlast<cr>
 
-nnoremap <leader>j <cmd>tj /
-nnoremap <leader>J <cmd>tab tj /
-
 "  Déplacements & Copie {{{2
 
 " Début & Fin de fichier {{{3
@@ -862,13 +859,13 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <leader>, /\<\><left><left>
-vnoremap <leader>, /\<\><left><left>
+nnoremap <f11>, /\<\><left><left>
+vnoremap <f11>, /\<\><left><left>
 
 "  Remplacement {{{3
 
-nnoremap <leader>; :%s/\<\>//<left><left><left><left>
-vnoremap <leader>; :%s/\<\>//<left><left><left><left>
+nnoremap <f11>; :%s/\<\>//<left><left><left><left>
+vnoremap <f11>; :%s/\<\>//<left><left><left><left>
 
 "  Copier / Coller {{{2
 
@@ -921,18 +918,6 @@ nnoremap [[ [z
 
 nnoremap ]f ]]
 nnoremap [f [[
-
-"nnoremap <f5>z ]z
-"nnoremap <f6>z [z
-
-"vnoremap <f5>z ]z
-"vnoremap <f6>z [z
-
-"nnoremap <f5>) zjzx]z
-"nnoremap <f6>( zkzx[z
-
-"vnoremap <f5>) zjzx]z
-"vnoremap <f6>( zkzx[z
 
 nnoremap zo zCzO
 
@@ -997,16 +982,11 @@ cmap <m-d> <c-right><c-w>
 
 nnoremap QQ gQ
 
-" Hauteur de la fenêtre de commande {{{3
-
-nnoremap <leader>C :set cmdheight=
-
 " Ligne ou sélection courante {{{3
 
 " Comme commande ex
 
 nnoremap <m-:> <cmd>exe getline(".")<CR>
-nnoremap <leader>: <cmd>exe getline(".")<CR>
 
 " Comme commande externe
 
@@ -1014,13 +994,13 @@ nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap <leader>ig <cmd>echo library#highlight_group()<cr>
+nnoremap <f11>ig <cmd>echo library#highlight_group()<cr>
 
 "  Shell {{{2
 
-nnoremap <leader>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <leader>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <leader>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f11>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f11>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f11>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
 
 " Pavé numérique {{{2
 
@@ -1045,10 +1025,6 @@ nmap <k9> 9
 nnoremap <silent> <D-l> <cmd>call library#toggle_relative_linum()<cr>
 
 " Fonte de caractères {{{3
-
-" dans vim-qt
-
-nnoremap <leader>F :GuiFont DejaVu Sans Mono:h12
 
 " Émulateur de terminal {{{2
 

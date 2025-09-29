@@ -38,8 +38,8 @@ augroup END
 augroup quickfix-window
 	autocmd!
 	autocmd BufReadPost quickfix noremap <buffer> <backspace> <cr>:cclose<cr>
-	" <cr> is taken by which-key
-	autocmd BufReadPost quickfix nnoremap <buffer> <cr> <cr>
+	" overwrite generic <cr> mapping
+	"autocmd BufReadPost quickfix nnoremap <buffer> <cr> <cr>
 augroup END
 
 augroup command-window

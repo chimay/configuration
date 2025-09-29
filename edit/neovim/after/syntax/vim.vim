@@ -7,6 +7,7 @@ hi link		vimContinue		Comment
 hi link		vimOper			Normal
 
 hi vimBracket		   	guifg=#872E30		guibg=default			gui=NONE
+hi vimHiClear		   	guifg=#872E30		guibg=default			gui=NONE
 hi vimCmplxRepeat	   	guifg=#5B3C11		guibg=default			gui=NONE
 hi vimCommand		   	guifg=brown			guibg=default			gui=NONE
 hi vimCommentTitle	   	guifg=#5B3C11		guibg=default			gui=NONE

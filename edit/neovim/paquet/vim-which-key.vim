@@ -1,35 +1,33 @@
 " vim: set filetype=vim :
 
+" documentation {{{1
+
+"call which_key#register('<mykey>', "g:which_key_mykey_map")
+
+"nnoremap <silent> <mykey> <cmd>WhichKey '<mykey>'<cr>
+
+" only loads the dictionary maps, not the others
+"nnoremap <silent> <mykey> <cmd>WhichKey! g:which_key_mykey_map<cr>
+
+"call which_key#register('<cr>', "g:which_key_main_map")
+"nnoremap <silent> <cr> <cmd>WhichKey '<cr>'<cr>
+
 " config {{{1
 
 let g:which_key_use_floating_win = 1
 
 let g:which_key_timeout = 300
 let g:which_key_exit = "\<esc>"
-"let g:which_key_exit = "\<C-G>"
 
-" leader prefix {{{1
+" main prefix {{{1
 
-" default map dictionary for leader : g:which_key_map
-"call which_key#register('<leader>', "g:which_key_map")
+nnoremap <silent> <leader> <cmd>WhichKey! g:which_key_main_map<cr>
 
-"nnoremap <silent> <leader> <cmd>WhichKey '<leader>'<cr>
-
-" only loads the dictionary maps, not the others
-"nnoremap <silent> <leader> <cmd>WhichKey! g:which_key_leader_map<cr>
-
-" return prefix {{{1
-
-"call which_key#register('<cr>', "g:which_key_return_map")
-"nnoremap <silent> <cr> <cmd>WhichKey '<cr>'<cr>
-
-nnoremap <silent> <cr> <cmd>WhichKey! g:which_key_return_map<cr>
-
-let g:which_key_return_map = {}
+let g:which_key_main_map = {}
 
 " help {{{2
 
-let g:which_key_return_map.h = {
+let g:which_key_main_map.h = {
 	\ 'name' : '+help',
 	\ 'h' : ["library#feedkeys(':tab help ')", 'help'],
 	\ 'g' : ["library#feedkeys(':tab helpgrep ')", 'helpgrep'],
@@ -40,20 +38,22 @@ let g:which_key_return_map.h = {
 
 " display {{{2
 
-let g:which_key_return_map.d = {
+let g:which_key_main_map.d = {
 	\ 'name' : '+display',
-	\ 'l' : ['library#toggle_relative_linum()', 'toggle relative line numbers'],
+	\ 'l' : ['library#toggle_relative_linum()'                    , 'toggle relative line numbers'] ,
+	\ 'f' : [ "library#execute('set guifont=*')"                  , 'gui font']                     ,
+	\ 'F' : [ "library#feedkeys(':GuiFont DejaVu Sans Mono:h12')" , 'gui font (neovim-qt)']         ,
+	\ 'c' : [ "library#feedkeys(':set cmdheight=')"               , 'set cmd height']               ,
 	\ }
 
 " file {{{2
 
-let g:which_key_return_map.f = {
+let g:which_key_main_map.f = {
 	\ 'name' : '+file',
 	\ 'e' : ['library#edit_in_current_file_subtree()', 'edit in subtree'],
 	\ 'r' : ['library#read_in_current_file_subtree()', 'read in subtree'],
 	\ 'g' : ['library#edit_attic()', 'edit attic'],
 	\ 'v' : ['library#edit_myvimrc()', 'edit myvimrc'],
-	\ 'V' : ['library#reload_myvimrc()', 'edit myvimrc'],
 	\ 'c' : ['library#edit_cronos()', 'edit cronos'],
 	\ 'd' : ['library#edit_dream()', 'edit dream'],
 	\ 'f' : ['library#edit_fix()', 'edit fix'],
@@ -66,9 +66,9 @@ let g:which_key_return_map.f = {
 
 " argument {{{2
 
-" which key hangs with g:which_key_return_map.a
+" which key hangs with g:which_key_main_map.a
 
-let g:which_key_return_map['$'] = {
+let g:which_key_main_map['$'] = {
 	\ 'name' : '+argument' ,
 	\ 'p' : ['previous' , 'previous argument'] ,
 	\ 'n' : ['next'     , 'next argument']     ,
@@ -78,9 +78,9 @@ let g:which_key_return_map['$'] = {
 
 " buffer {{{2
 
-let g:which_key_return_map.b = {
+let g:which_key_main_map.b = {
 	\ 'name' : '+buffer' ,
-	\ 'N' : ['new <bar> only'      , 'new buffer']        ,
+	\ 'b' : ['new <bar> only'      , 'new buffer']        ,
 	\ 'p' : ['bprevious'           , 'previous buffer']   ,
 	\ 'n' : ['bnext'               , 'next buffer']       ,
 	\ '^' : ['bfirst'              , 'first buffer']      ,
@@ -91,7 +91,7 @@ let g:which_key_return_map.b = {
 
 " window {{{2
 
-let g:which_key_return_map.w = {
+let g:which_key_main_map.w = {
 	\ 'name' : '+windows' ,
 	\ '=' : ["library#execute('wincmd =')" , 'equalize windows'] ,
 	\ '|' : ["library#execute('wincmd |')" , 'maximize width'] ,
@@ -102,18 +102,20 @@ let g:which_key_return_map.w = {
 
 " tab, onglet {{{2
 
-let g:which_key_return_map.t = {
+let g:which_key_main_map.t = {
 	\ 'name' : '+tab' ,
-	\ 'n' : ['tabnew'                  , 'new tab']                      ,
-	\ 'e' : ['tabedit'                 , 'edit in new tab']              ,
+	\ 't' : ['tabnew'                  , 'new tab']                      ,
+	\ 'n' : ['tabnext'                 , 'next tab']                     ,
+	\ 'p' : ['tabprevious'             , 'previous tab']                 ,
 	\ '^' : ['tabfirst'                , 'tab first']                    ,
 	\ '$' : ['tablast'                 , 'tab last']                     ,
+	\ 'e' : ['tabedit'                 , 'edit in new tab']              ,
 	\ '=' : ['library#equal_windows()' , 'equalize windows on all tabs'] ,
 	\ }
 
 " content {{{2
 
-let g:which_key_return_map.c = {
+let g:which_key_main_map.c = {
 	\ 'name' : '+content' ,
 	\ 'b' : ['library#figlet()'                   , 'figlet banner']     ,
 	\ 'l' : ["library#execute('set cursorline!')" , 'toggle cursorline'] ,
@@ -126,9 +128,9 @@ let g:which_key_return_map.c = {
 
 " global {{{2
 
-" strange mappings added with g:which_key_return_map.g
+" strange mappings added with g:which_key_main_map.g
 
-let g:which_key_return_map['='] = {
+let g:which_key_main_map['='] = {
 	\ 'name' : '+global' ,
 	\ 'y' : [ "library#feedkeys(':GlobalYank ')"   , 'global yank']   ,
 	\ 'd' : [ "library#feedkeys(':GlobalDelete ')" , 'global delete'] ,
@@ -136,7 +138,7 @@ let g:which_key_return_map['='] = {
 
 " encryption {{{2
 
-let g:which_key_return_map.x = {
+let g:which_key_main_map.x = {
 	\ 'name' : '+encryption' ,
 	\ 'x' : ['library#text_to_password()' , 'text to password'] ,
 	\ 'X' : ['library#password_to_text()' , 'password to text'] ,
@@ -144,7 +146,7 @@ let g:which_key_return_map.x = {
 
 " swap {{{2
 
-let g:which_key_return_map.s = {
+let g:which_key_main_map.s = {
 	\ 'name' : '+swap' ,
 	\ 'c' : ["library#swap('characters'   , 'after')"     , 'with character after']  ,
 	\ 'C' : ["library#swap('characters'   , 'before')"    , 'with character before'] ,
@@ -156,7 +158,7 @@ let g:which_key_return_map.s = {
 
 " quickfix {{{2
 
-let g:which_key_return_map.q = {
+let g:which_key_main_map.q = {
 	\ 'name' : '+quickfix' ,
 	\ 'o' : ['copen'     , 'open quickfix']                  ,
 	\ 'c' : ['cclose'    , 'close quickfix']                 ,
@@ -168,7 +170,7 @@ let g:which_key_return_map.q = {
 
 " location list {{{2
 
-let g:which_key_return_map.l = {
+let g:which_key_main_map.l = {
 	\ 'name' : '+location_list' ,
 	\ 'o' : ['lopen'     , 'open location list']             ,
 	\ 'c' : ['lclose'    , 'close location list']            ,
@@ -178,9 +180,17 @@ let g:which_key_return_map.l = {
 	\ 'f' : ['lnfile'    , 'next file in location list']     ,
 	\ }
 
+" navigation {{{2
+
+let g:which_key_main_map.n = {
+	\ 'name' : '+navigation' ,
+	\ 't' : ["library#feedkeys(':tjump /')"  , 'tag jump']  ,
+	\ 'T' : ["library#feedkeys(':tab tjump /')"  , 'tag jump in new tab']  ,
+	\ }
+
 " external command {{{2
 
-let g:which_key_return_map['!'] = {
+let g:which_key_main_map['!'] = {
 	\ 'name' : '+shell_command' ,
 	\ 'm' : ["library#feedkeys(':make -k ')"  , 'make']  ,
 	\ 'l' : ["library#execute('!ls -l')"  , 'ls -l']  ,
@@ -189,9 +199,16 @@ let g:which_key_return_map['!'] = {
 
 " music {{{2
 
-let g:which_key_return_map.m = {
+let g:which_key_main_map.m = {
 	\ 'name' : '+music' ,
 	\ 'm' : ['library#make_midi()'   , 'make'] ,
 	\ 'p' : ['library#display_pdf()' , 'make'] ,
 	\ 'o' : ['library#make_ogg()'    , 'make'] ,
+	\ }
+
+" plugin {{{2
+
+let g:which_key_main_map.p = {
+	\ 'name' : '+plugin' ,
+	\ 'm' : ['library#edit_minisnip_file()'   , 'edit minisnip file'] ,
 	\ }

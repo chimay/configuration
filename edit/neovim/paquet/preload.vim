@@ -53,8 +53,6 @@ let g:miniSnip_extends = {
 			\ "cpp" : [ "objc", "c" ],
 			\ }
 
-nnoremap <f6>e :e ~/racine/plugin/data/neovim/miniSnip/
-
 " Commentaires {{{1
 
 "  NERDCommenter (scrooloose/nerdcommenter) {{{2
@@ -107,7 +105,7 @@ let g:AutoPairsMapSpace = 0
 
 " Mappings {{{3
 
-let g:AutoPairsShortcutToggle = '<F11>('
+let g:AutoPairsShortcutToggle = '<F6>('
 
 imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
@@ -354,7 +352,6 @@ nmap <m-pageup>           <plug>(wheel-previous-location)
 nmap <m-cr>               <plug>(wheel-prompt-location)
 nmap <c-cr>               <plug>(wheel-prompt-circle)
 nmap <s-cr>               <plug>(wheel-prompt-torus)
-nmap <m-space>            <plug>(wheel-dedibuf-location)
 
 nmap <m-x>                <plug>(wheel-prompt-index)
 " altgr-x
