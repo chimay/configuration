@@ -109,7 +109,7 @@ if ! exists("g:wheel_loaded")
 
 	set tabline=%!wheel#status#tabline()
 
-	nnoremap <leader>w :<c-u>Wheel<space>
+	nnoremap <f8>w :<c-u>Wheel<space>
 
 	nmap <silent> <c-l> <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
 	imap <silent> <c-l> <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a

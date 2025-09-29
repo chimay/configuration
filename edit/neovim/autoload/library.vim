@@ -2,6 +2,20 @@
 
 " ---- helpers
 
+fun! library#clear_status ()
+    " Clear command line space
+    " Does not clear the vim messages
+    " credit :
+    " https://neovim.discourse.group/t/how-to-clear-the-echo-message-in-the-command-line/268/2
+    call feedkeys(':','nx')
+endfun
+
+fun! library#clear_messages ()
+    " Clear vim messages
+    messages clear
+    echo 'messages cleared'
+endfun
+
 fun! library#execute (command)
 	" Execute command in argument
 	" Wrapper for vim-which-key
@@ -468,6 +482,51 @@ fun! library#swap (object, with = 'after')
 	endif
 endfun
 
+" -- search & replace
+
+fun! library#search_word ()
+	" Search word
+	let word = input('Search word : ')
+	let pattern = '\m\<' .. word .. '\>'
+	let @/ = pattern
+	let found = search(pattern, 'w')
+	if found == 0
+		call library#clear_status ()
+		echomsg 'word' word 'not found'
+		return v:false
+	endif
+	return v:true
+endfun
+
+fun! library#search_and_replace_word ()
+	" Search and replace word
+	let word = input('Replace word : ')
+	let after = input('Replace by : ')
+	let before = '\m\<' .. word .. '\>'
+	" ---- check if word is in the buffer
+	let found = search(before, 'nw')
+	if found == 0
+		call library#clear_status ()
+		echomsg 'word' word 'not found'
+		return v:false
+	endif
+	" ---- check replacing pattern is not present if buffer
+	let check = after
+	"let check = '\m\<' .. after .. '\>'
+	let found = search(check, 'nw')
+	if found > 0
+		let prompt = 'Replacing pattern ' .. after .. ' found in buffer. Continue ?'
+		let continue = confirm(prompt, "&Yes\n&No", 2)
+		if continue == 2
+			return v:false
+		endif
+	endif
+	" ---- replace
+	let runme = 'silent % substitute/' .. before .. '/' .. after .. '/g'
+	execute runme
+	return v:true
+endfun
+
 " -- global actions on buffer lines
 
 fun! library#global_yank (pattern, ...)
@@ -644,7 +703,7 @@ fun! library#terminal ()
 	endif
 	let shell = input('Shell to use ? ', default_shell)
 	if empty(shell)
-		return
+		return v:false
 	endif
 	if has('nvim')
 		tabnew
@@ -756,7 +815,7 @@ fun! library#copy (source, destination, ask = 'confirm')
 	return 'success'
 endfun
 
-" -- publish
+" ---- publish
 
 if exists('s:dont_publish')
 	unlockvar! s:dont_publish

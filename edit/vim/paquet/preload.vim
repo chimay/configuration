@@ -53,8 +53,6 @@ let g:miniSnip_extends = {
 			\ "cpp" : [ "objc", "c" ],
 			\ }
 
-nnoremap <f6>e :e ~/racine/plugin/data/vim/miniSnip/
-
 " Commentaires {{{1
 
 "  NERDCommenter (scrooloose/nerdcommenter) {{{2

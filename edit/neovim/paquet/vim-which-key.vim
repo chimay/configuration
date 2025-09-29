@@ -144,9 +144,9 @@ let g:which_key_main_map.x = {
 	\ 'X' : ['library#password_to_text()' , 'password to text'] ,
 	\ }
 
-" swap {{{2
+" exchange {{{2
 
-let g:which_key_main_map.s = {
+let g:which_key_main_map.e = {
 	\ 'name' : '+swap' ,
 	\ 'c' : ["library#swap('characters'   , 'after')"     , 'with character after']  ,
 	\ 'C' : ["library#swap('characters'   , 'before')"    , 'with character before'] ,
@@ -186,6 +186,14 @@ let g:which_key_main_map.n = {
 	\ 'name' : '+navigation' ,
 	\ 't' : ["library#feedkeys(':tjump /')"  , 'tag jump']  ,
 	\ 'T' : ["library#feedkeys(':tab tjump /')"  , 'tag jump in new tab']  ,
+	\ }
+
+" search and replace {{{2
+
+let g:which_key_main_map.s = {
+	\ 'name' : '+search_and_replace' ,
+	\ 's' : ['library#search_word()'  , 'search word']  ,
+	\ 'r' : ['library#search_and_replace_word()'  , 'search and replace word']  ,
 	\ }
 
 " external command {{{2

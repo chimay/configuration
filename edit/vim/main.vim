@@ -670,6 +670,9 @@ runtime ftplugin/man.vim
 packadd! helptoc
 nnoremap gm <cmd>call library#manual()<cr>
 
+" gets in the way of vim-which-key
+nunmap \K
+
 " Quitter {{{2
 
 nnoremap ZZ <cmd>qa<cr>
