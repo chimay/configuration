@@ -836,13 +836,11 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f11>, /\<\><left><left>
-vnoremap <f11>, /\<\><left><left>
+nnoremap <f2>, <cmd>call library#search_word()<cr>
 
 "  Remplacement {{{3
 
-nnoremap <f11>; :%s/\<\>//<left><left><left><left>
-vnoremap <f11>; :%s/\<\>//<left><left><left><left>
+nnoremap <f2>; <cmd>call library#search_and_replace_word()<cr>
 
 "  Copier / Coller {{{2
 
@@ -974,13 +972,7 @@ nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap <f11>ig <cmd>echo library#highlight_group()<cr>
-
-"  Shell {{{2
-
-nnoremap <f11>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f11>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f11>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f2>ig <cmd>echo library#highlight_group()<cr>
 
 " Journal de bord {{{2
 

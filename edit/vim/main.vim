@@ -651,8 +651,6 @@ let g:maplocalleader="_"
 
 " Voir <url:paquet/postload.vim#tn=Denite>
 
-"nnoremap <F1> <nop>
-
 nnoremap <F1> :tab help<space>
 nnoremap <S-F1> :tab helpgrep<space>
 nnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
@@ -670,6 +668,14 @@ runtime ftplugin/man.vim
 packadd! helptoc
 nnoremap gm <cmd>call library#manual()<cr>
 
+" clearing some maps {{{2
+
+" no need of gui menu
+nnoremap <f10> <nop>
+inoremap <f10> <nop>
+cnoremap <f10> <nop>
+
+" must be after loading of 'man' official plugin
 " gets in the way of vim-which-key
 nunmap \K
 
@@ -862,13 +868,11 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f11>, /\<\><left><left>
-vnoremap <f11>, /\<\><left><left>
+nnoremap <f2>, <cmd>call library#search_word()<cr>
 
 "  Remplacement {{{3
 
-nnoremap <f11>; :%s/\<\>//<left><left><left><left>
-vnoremap <f11>; :%s/\<\>//<left><left><left><left>
+nnoremap <f2>; <cmd>call library#search_and_replace_word()<cr>
 
 "  Copier / Coller {{{2
 
@@ -997,13 +1001,7 @@ nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap <f11>ig <cmd>echo library#highlight_group()<cr>
-
-"  Shell {{{2
-
-nnoremap <f11>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f11>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f11>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f2>ig <cmd>echo library#highlight_group()<cr>
 
 " Pavé numérique {{{2
 

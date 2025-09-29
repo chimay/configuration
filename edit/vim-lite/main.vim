@@ -381,6 +381,9 @@ runtime ftplugin/man.vim
 packadd! helptoc
 nnoremap gm <cmd>call library#manual()<cr>
 
+" Clearing some maps {{{2
+
+" must be after loading of 'man' official plugin
 " gets in the way of vim-which-key
 nunmap \K
 
@@ -393,7 +396,7 @@ nnoremap ZQ :qa!<cr>
 
 nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
-nnoremap <f5> <cmd>source %<cr>
+nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
 nnoremap <f11>v <cmd>call library#edit_myvimrc()<cr>
 
@@ -524,13 +527,11 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f11>, /\<\><left><left>
-vnoremap <f11>, /\<\><left><left>
+nnoremap <f6>, <cmd>call library#search_word()<cr>
 
 "  Remplacement {{{3
 
-nnoremap <f11>; :%s/\<\>//<left><left><left><left>
-vnoremap <f11>; :%s/\<\>//<left><left><left><left>
+nnoremap <f6>; <cmd>call library#search_and_replace_word()<cr>
 
 "  Copier / Coller {{{2
 
@@ -645,11 +646,15 @@ nnoremap QQ gQ
 
 " Comme commande ex
 
-nnoremap <f11>: <cmd>exe getline(".")<CR>
+nnoremap <f6>: <cmd>exe getline(".")<CR>
+
+" Comme commande externe
+
+nnoremap <f6>! <cmd>exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap <f11>ig <cmd>call library#highlight_group()<cr>
+nnoremap <f6>ig <cmd>call library#highlight_group()<cr>
 
 " Émulateur de terminal {{{2
 
@@ -661,9 +666,9 @@ tnoremap <f11>N <c-\><c-n>
 
 "  Shell {{{2
 
-nnoremap <f11>s <cmd>tabe ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f11>S <cmd>w! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f11>h <cmd>tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f10>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f10>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f10>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
 
 " Pavé numérique {{{2
 

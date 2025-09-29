@@ -500,8 +500,8 @@ endfun
 
 fun! library#search_and_replace_word ()
 	" Search and replace word
+	" ---- before
 	let word = input('Replace word : ')
-	let after = input('Replace by : ')
 	let before = '\m\<' .. word .. '\>'
 	" ---- check if word is in the buffer
 	let found = search(before, 'nw')
@@ -510,6 +510,8 @@ fun! library#search_and_replace_word ()
 		echomsg 'word' word 'not found'
 		return v:false
 	endif
+	" ---- after
+	let after = input('Replace by : ')
 	" ---- check replacing pattern is not present if buffer
 	let check = after
 	"let check = '\m\<' .. after .. '\>'

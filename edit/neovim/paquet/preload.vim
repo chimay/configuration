@@ -64,13 +64,13 @@ map <d-;> <plug>NERDCommenterToggle
 "  TComment (tomtom/tcomment_vim) {{{2
 
 let g:tcomment_maps = 1
-let g:tcomment_mapleader1 = '<f10>-'
-let g:tcomment_mapleader2 = '<f10>_'
+let g:tcomment_mapleader1 = '<c-s-f12>-'
+let g:tcomment_mapleader2 = '<c-s-f12>_'
 let g:tcomment_opleader1 = 'gc'
 
-let g:tcomment_textobject_inlinecomment = '<f10>-i'
-let g:tcomment_mapleader_comment_anyway = '<f10>-ca'
-let g:tcomment_mapleader_uncomment_anyway = '<f10>-ua'
+let g:tcomment_textobject_inlinecomment = '<c-s-f12>-i'
+let g:tcomment_mapleader_comment_anyway = '<c-s-f12>-ca'
+let g:tcomment_mapleader_uncomment_anyway = '<c-s-f12>-ua'
 
 let g:tcomment#blank_lines = 0
 
