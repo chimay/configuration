@@ -8,6 +8,69 @@ fun! library#execute (command)
 	execute a:command
 endfun
 
+fun! library#feedkeys (keys)
+	" Feed keys in argument
+	let keys = a:keys
+	call feedkeys(keys,'n')
+endfun
+
+fun! library#complete_file_in_current_subtree (arglead, cmdline, cursorpos)
+	" Complete with file name
+	" Use glob(expr, nosuf, list, alllinks)
+	" nosuf, list, alllinks = false by default
+	let cmdline = a:cmdline
+	let arglead = a:arglead
+	let cursorpos = a:cursorpos
+	" ---- get tree of files & directories
+	let path = expand('%:p:h') . '/'
+	execute 'lcd' path
+	let tree = glob('**', v:false, v:true)
+	eval tree->filter({ _, v -> v =~ cmdline})
+	return tree
+endfun
+
+fun! library#full_path (...)
+	" Return filename full path
+	" Default : current file name
+	" % -> current filename
+	" # -> alternate filename
+	if a:0 > 0
+		let filename = a:1
+	else
+		let filename = expand('%')
+	endif
+	if filename ==# '%'
+		let filename = getreg('%')
+	endif
+	if filename ==# '#'
+		let filename = getreg('#')
+	endif
+	let filename = trim(filename, ' ')
+	let filename = fnamemodify(filename, ':p')
+	let filename = fnameescape(filename)
+	return filename
+endfun
+
+fun! library#relative_path (...)
+	" Return path of filename relative to current directory
+	" Optional argument :
+	"   - filename
+	"   - default : current filename
+	if a:0 > 0
+		let filename = a:1
+	else
+		let filename = expand('%:p')
+	endif
+	" ---- check not empty
+	if empty(filename)
+		echomsg 'biblio relative_path : file name cannot be empty'
+		return 'empty-file-name'
+	endif
+	let filename = library#full_path (filename)
+	let filename = fnamemodify(filename, ':.')
+	return filename
+endfun
+
 " ---- help, informations
 
 fun! library#helptags ()
@@ -160,19 +223,16 @@ endfun
 
 " ---- file
 
-fun! library#complete_file_in_current_subtree (arglead, cmdline, cursorpos)
-	" Complete with file name
-	" Use glob(expr, nosuf, list, alllinks)
-	" nosuf, list, alllinks = false by default
-	let cmdline = a:cmdline
-	let arglead = a:arglead
-	let cursorpos = a:cursorpos
-	" ---- get tree of files & directories
-	let path = expand('%:p:h') . '/'
-	execute 'lcd' path
-	let tree = glob('**', v:false, v:true)
-	eval tree->filter({ _, v -> v =~ cmdline})
-	return tree
+fun! library#source_current_file ()
+	" Source current file
+	let filename = library#relative_path('%')
+	let extension = fnamemodify(filename, ':e')
+	if extension !=# 'vim'
+		return 'not a vim file'
+	endif
+	source %
+	echo 'file' filename 'sourced'
+	return 'file sourced'
 endfun
 
 fun! library#edit_in_current_file_subtree ()
@@ -573,7 +633,7 @@ endfun
 
 fun! library#chmodexec ()
 	" Make current file executable
-	let filename = fnamemodify(expand('%'), ':p')
+	let filename = library#full_path()
 	let chmod = 'chmod +x ' .. filename
 	let output = system(chmod)
 	let list = 'ls -l ' .. filename
@@ -581,53 +641,11 @@ fun! library#chmodexec ()
 	echomsg info
 endfun
 
-fun! library#full_path (...)
-	" Return filename full path
-	" Default : current file name
-	" % -> current filename
-	" # -> alternate filename
-	if a:0 > 0
-		let filename = a:1
-	else
-		let filename = expand('%')
-	endif
-	if filename ==# '%'
-		let filename = getreg('%')
-	endif
-	if filename ==# '#'
-		let filename = getreg('#')
-	endif
-	let filename = trim(filename, ' ')
-	let filename = fnamemodify(filename, ':p')
-	let filename = fnameescape(filename)
-	return filename
-endfun
-
 fun! library#format_name (filename)
 	" Format filename to avoid annoying characters
 	let filename = a:filename
 	let filename = library#full_path (filename)
 	let filename = substitute(filename, ' ', '_', 'g')
-	return filename
-endfun
-
-fun! library#relative_path (...)
-	" Return path of filename relative to current directory
-	" Optional argument :
-	"   - filename
-	"   - default : current filename
-	if a:0 > 0
-		let filename = a:1
-	else
-		let filename = expand('%:p')
-	endif
-	" ---- check not empty
-	if empty(filename)
-		echomsg 'biblio relative_path : file name cannot be empty'
-		return 'empty-file-name'
-	endif
-	let filename = library#full_path (filename)
-	let filename = fnamemodify(filename, ':.')
 	return filename
 endfun
 

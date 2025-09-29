@@ -707,7 +707,7 @@ nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
 " see also <url:~/racine/config/edit/neovim/paquet/preload.vim#tn=f7 prefix>
 
-nnoremap <f5> <cmd>source %<cr>
+nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
 nnoremap <leader>v <cmd>call library#edit_myvimrc()<cr>
 

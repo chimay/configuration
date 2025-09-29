@@ -41,16 +41,17 @@ let g:which_key_return_map.f = {
 	\ 's' : ['library#edit_syntax_plugin()', 'edit syntax plugin'],
 	\ 't' : ['library#edit_tasks()', 'edit tasks'],
 	\ 'x' : ['library#chmodexec()', 'chmod exec'],
+	\ 'S' : ['library#source_current_file()', 'source current file'],
 	\ }
 
 " which key hangs with g:which_key_return_map.a
 
-let g:which_key_return_map.z = {
+let g:which_key_return_map['$'] = {
 	\ 'name' : '+argument' ,
 	\ 'p' : ['previous' , 'previous argument'] ,
 	\ 'n' : ['next'     , 'next argument']     ,
-	\ 'f' : ['first'    , 'first argument']    ,
-	\ 'l' : ['last'     , 'last argument']     ,
+	\ '^' : ['first'    , 'first argument']    ,
+	\ '$' : ['last'     , 'last argument']     ,
 	\ }
 
 let g:which_key_return_map.b = {
@@ -73,9 +74,9 @@ let g:which_key_return_map.t = {
 
 let g:which_key_return_map.w = {
 	\ 'name' : '+windows' ,
-	\ '=' : ['library#equal_windows()'      , 'equal wins']      ,
+	\ '=' : ['library#equal_windows()' , 'equal wins']      ,
 	\ 'p' : ['library#win2prev_tab()'  , 'win to prev tab'] ,
-	\ 'n' : ['library#win2next_tab()' , 'win to next tab'] ,
+	\ 'n' : ['library#win2next_tab()'  , 'win to next tab'] ,
 	\ }
 
 let g:which_key_return_map.c = {
@@ -97,12 +98,12 @@ let g:which_key_return_map.x = {
 
 let g:which_key_return_map.s = {
 	\ 'name' : '+swap' ,
-	\ 'c' : ["library#swap('characters', 'after')"  , 'with character after']  ,
-	\ 'C' : ["library#swap('characters', 'before')" , 'with character before'] ,
-	\ 'w' : ["library#swap('characters')", 'words']  ,
-	\ 'l' : ["library#swap('lines', 'after')"  , 'with line after']  ,
-	\ 'L' : ["library#swap('lines', 'before')"  , 'with line before']  ,
-	\ 'p' : ["library#swap('paragraphs')"  , 'paragraphs']  ,
+	\ 'c' : ["library#swap('characters'   , 'after')"     , 'with character after']  ,
+	\ 'C' : ["library#swap('characters'   , 'before')"    , 'with character before'] ,
+	\ 'l' : ["library#swap('lines'        , 'after')"     , 'with line after']       ,
+	\ 'L' : ["library#swap('lines'        , 'before')"    , 'with line before']      ,
+	\ 'w' : ["library#swap('characters')" , 'words']      ,
+	\ 'p' : ["library#swap('paragraphs')" , 'paragraphs'] ,
 	\ }
 
 let g:which_key_return_map.q = {
@@ -111,14 +112,18 @@ let g:which_key_return_map.q = {
 	\ 'c' : ['cclose'    , 'close quickfix']                 ,
 	\ 'p' : ['cprevious' , 'previous in quickfix']           ,
 	\ 'n' : ['cnext'     , 'next in quickfix']               ,
-	\ 'f' : ['cpfile'    , 'previous file in quickfix']      ,
-	\ 'b' : ['cnfile'    , 'next file in quickfix']          ,
-	\ 'O' : ['lopen'     , 'open location list']             ,
-	\ 'C' : ['lclose'    , 'close location list']            ,
-	\ 'P' : ['lprevious' , 'previous in location list']      ,
-	\ 'N' : ['lnext'     , 'next in location list']          ,
-	\ 'F' : ['lpfile'    , 'previous file in location list'] ,
-	\ 'B' : ['lnfile'    , 'next file in location list']     ,
+	\ 'b' : ['cpfile'    , 'previous file in quickfix']      ,
+	\ 'f' : ['cnfile'    , 'next file in quickfix']          ,
+	\ }
+
+let g:which_key_return_map.q = {
+	\ 'name' : '+location_list' ,
+	\ 'o' : ['lopen'     , 'open location list']             ,
+	\ 'c' : ['lclose'    , 'close location list']            ,
+	\ 'p' : ['lprevious' , 'previous in location list']      ,
+	\ 'n' : ['lnext'     , 'next in location list']          ,
+	\ 'b' : ['lpfile'    , 'previous file in location list'] ,
+	\ 'f' : ['lnfile'    , 'next file in location list']     ,
 	\ }
 
 let g:which_key_return_map['!'] = {

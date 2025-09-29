@@ -40,9 +40,9 @@ augroup END
 
 augroup quickfix-window
 	autocmd!
-	autocmd BufReadPost quickfix noremap <buffer> <backspace> <cr>:cclose<cr>
+	autocmd filetype qf noremap <buffer> <backspace> <cr>:cclose<cr>
 	" <cr> is taken by which-key
-	autocmd BufReadPost quickfix nnoremap <buffer> <cr> <cr>
+	autocmd filetype qf nnoremap <buffer> <cr> <cr>
 augroup END
 
 augroup command-window
