@@ -45,7 +45,6 @@ hi Identifier		guifg=brown			guibg=black			gui=NONE
 hi Macro			guifg=#5B3C11		guibg=black			gui=NONE
 hi PreProc 			guifg=#5B3C11		guibg=black			gui=NONE
 
-
 " More prompt {{{2
 
 hi MoreMsg			guifg=#872E30		guibg=black			gui=NONE
@@ -243,6 +242,11 @@ hi CursorColumn		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
 hi Macro			ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
+hi Statement	ctermfg=NONE		ctermbg=NONE			cterm=NONE
+hi Function		ctermfg=NONE		ctermbg=NONE			cterm=NONE
+hi Description	ctermfg=NONE		ctermbg=NONE			cterm=NONE
+hi Keyword		ctermfg=NONE		ctermbg=NONE			cterm=NONE
+hi Identifier	ctermfg=NONE		ctermbg=NONE			cterm=NONE
 
 " More prompt {{{2
 
@@ -280,9 +284,8 @@ hi TabLineFill		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
 " Barre de statut {{{2
 
-hi StatusLine		ctermfg=NONE		ctermbg=NONE		cterm=reverse
-hi StatusLineNC		ctermfg=NONE		ctermbg=NONE		cterm=reverse
-
+hi StatusLine		ctermfg=NONE		ctermbg=NONE		cterm=reverse,bold
+hi StatusLineNC		ctermfg=NONE		ctermbg=NONE		cterm=reverse,bold
 
 " Menu de complétion en mode insertion {{{2
 
@@ -290,7 +293,6 @@ hi Pmenu			ctermfg=NONE	ctermbg=232		cterm=NONE
 hi PmenuSbar		ctermfg=NONE	ctermbg=232		cterm=NONE
 hi PmenuSel			ctermfg=black 	ctermbg=3		cterm=NONE
 hi PmenuThumb		ctermfg=NONE	ctermbg=237		cterm=NONE
-
 
 " Menu de complétion de la ligne de commande {{{2
 

@@ -18,7 +18,6 @@ set more
 
 " Couper, copier, coller {{{1
 
-"set clipboard=
 set clipboard=unnamedplus
 
 "  Environnement {{{1
@@ -49,42 +48,37 @@ set backupskip=/tmp/*,/etc/*,neomutt-*-*-*-*
 set swapfile
 set directory=~/racine/varia/autosave/vim-lite
 
-"set noswapfile
-
 " Fréquence de sauvegarde
 " ------------------------------------
 
 set updatecount=100			" Nombre de caractères
-set updatetime=1000			" Millisecondes
+set updatetime=12000		" Millisecondes
 
 "  Annulation {{{1
 
-set undolevels=1234
-
-if exists("&undofile")
-	set undofile
-	set undoreload=12743
-	set undodir=~/racine/varia/undo/vim-lite,.
-endif
+set undolevels=123
+set undofile
+set undoreload=12743
+set undodir=~/racine/varia/undo/vim-lite,.
 
 "  Session {{{1
 
 set sessionoptions=
 
-set sessionoptions+=blank
-set sessionoptions+=buffers
-set sessionoptions+=curdir
-set sessionoptions+=folds
-set sessionoptions+=globals
-set sessionoptions+=help
-set sessionoptions+=localoptions
-set sessionoptions+=options
-set sessionoptions+=resize
-set sessionoptions+=slash
-set sessionoptions+=tabpages
-set sessionoptions+=unix
-set sessionoptions+=winpos
-set sessionoptions+=winsize
+" set sessionoptions+=blank
+" set sessionoptions+=buffers
+" set sessionoptions+=curdir
+" set sessionoptions+=folds
+" set sessionoptions+=globals
+" set sessionoptions+=help
+" set sessionoptions+=localoptions
+" set sessionoptions+=options
+" set sessionoptions+=resize
+" set sessionoptions+=slash
+" set sessionoptions+=tabpages
+" set sessionoptions+=unix
+" set sessionoptions+=winpos
+" set sessionoptions+=winsize
 
 "  Encodage {{{1
 
@@ -115,26 +109,24 @@ set spellsuggest=best
 
 " Dictionnaires {{{2
 
-set dictionary+=fr-classique+reforme1990.dic
-set dictionary+=en_GB.dic
+"set dictionary+=fr-classique+reforme1990.dic
+"set dictionary+=en_GB.dic
 
 " Thesaurus (dictionnaires de synonymes) {{{2
 
 " Personnel
-set thesaurus+=~/racine/index/dict/spell/synonymes.txt
+"set thesaurus+=~/racine/index/dict/spell/synonymes.txt
 
 " Officiel
-set thesaurus+=~/racine/index/dict/spell/thes_fr.dat
+"set thesaurus+=~/racine/index/dict/spell/thes_fr.dat
 
 "  Modes {{{1
 
 set virtualedit=block,onemore
-"set virtualedit=block,insert,onemore
-"set virtualedit=all
 
 set selection=inclusive
 
-" Lignes d'instructionvim dans
+" Lignes d'instruction vim dans
 " les fichiers édités
 " ------------------------------------
 
@@ -157,11 +149,10 @@ set noerrorbells
 "  Souris {{{2
 
 set mouse=a
-
 set mousefocus
 set mousehide					
-set mousemodel=extend				" Clic droit modifie sélection
-"set mousemodel=popup_setpos		" Clic droit menu
+" clic droit modifie sélection
+set mousemodel=extend				
 set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up-arrow,v:rightup-arrow
 
 "  Recherche {{{1
@@ -185,12 +176,9 @@ set smartcase
 " ------------------------------------
 
 set wildignore=
-
 set wildignore+=*/.git/*,*/.hg/*,*/.bzr/*,*/_darcs/*,*/.svn/*
-
 set wildignore+=*.pyc,*.elc,*.zwc
 set wildignore+=*.aux,*.maf,*.toc,*.ptc*,*.mtc*
-
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.wav,*.flac,*.ogg,*.mp3
 
@@ -210,11 +198,8 @@ set completeopt=menu
 
 set pumheight=12
 
-set complete=.,w,b,u,U,
-			\s~/racine/index/dict/spell/synonymes.txt,
-			\k~/racine/index/dict/spell/fr-classique+reforme1990.dic,
-			\k~/racine/index/dict/spell/en_GB.dic,
-			\t,i,d
+set complete=.,b,u,U,i,d
+" use c-x c-k for dictionary and c-x c-t for thesaurus
 
 " Casse intelligente pour les complétions {{{3
 
@@ -269,10 +254,8 @@ set formatprg=fmt
 " Largeur d'une tabulation
 
 set tabstop=4
-
 set softtabstop=4
 set shiftwidth=4
-
 set noexpandtab
 set nosmarttab
 
@@ -297,21 +280,15 @@ set foldenable
 "  Options {{{2
 
 set foldenable
-
 set foldminlines=1
-
 set foldlevel=0
-
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-
 set foldcolumn=7
-
 set foldtext=library#folding_text()
 
 "  Méthode des marqueurs {{{2
 
 set foldmethod=marker
-
 set foldmarker={{{,}}}
 
 "  Tampons {{{1
@@ -324,9 +301,7 @@ set bufhidden=hide
 " Barre d'onglets {{{2
 
 set tabline=%!library#tablabel()
-
 set guitablabel=%N\ %t\ %m
-
 set showtabline=1
 
 "  Regarder les onglets quand on change de tampon
@@ -335,7 +310,7 @@ set switchbuf=usetab
 
 "  Maximum d’onglets ouverts
 
-set tabpagemax=50
+set tabpagemax=12
 
 "  Différences entre fichiers {{{1
 
@@ -363,17 +338,14 @@ set makeef=
 " avant de considérer un map ambigu comme complet
 
 set timeout
-
 set timeoutlen=1275
-
 set ttimeout
-
 set ttimeoutlen=50
 
 "  Aide {{{2
 
-nnoremap <F1> :tab help<space>
-nnoremap <S-F1> :tab helpgrep<space>
+nnoremap <F6>h :tab help<space>
+nnoremap <F6>g :tab helpgrep<space>
 
 " Manuels {{{2
 
@@ -406,9 +378,6 @@ nnoremap <f11>r <cmd>call library#read_in_current_file_subtree()<cr>
 nnoremap <f11>g <cmd>call library#edit_attic()<cr>
 
 nnoremap <f11>x <cmd>call library#chmodexec()<cr>
-
-command -nargs=? -complete=filetype EditSyntaxPlugin
-\ exe 'keepjumps vsplit ~/racine/config/edit/vim-lite/after/syntax/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
 " Arguments {{{2
 
@@ -497,8 +466,6 @@ nnoremap <PageDown> <C-F>
 
 nnoremap <silent> j <cmd>call library#wrap_down()<cr>
 nnoremap <silent> k <cmd>call library#wrap_up()<cr>
-nnoremap <silent> <up> <cmd>call library#wrap_up()<cr>
-nnoremap <silent> <down> <cmd>call library#wrap_down()<cr>
 
 " Lignes-écran {{{3
 
@@ -527,11 +494,11 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f6>, <cmd>call library#search_word()<cr>
+nnoremap <f7>, <cmd>call library#search_word()<cr>
 
 "  Remplacement {{{3
 
-nnoremap <f6>; <cmd>call library#search_and_replace_word()<cr>
+nnoremap <f7>; <cmd>call library#search_and_replace_word()<cr>
 
 "  Copier / Coller {{{2
 
@@ -595,7 +562,7 @@ inoremap <expr> <tab> library#smart_tab()
 "inoremap <C-Space> <C-X><C-O>
 "inoremap <M-Space> <C-X><C-L>
 
-" Ligne de commande {{{2
+" Ligne de commande ex {{{2
 
 " Complétion {{{3
 
@@ -646,15 +613,15 @@ nnoremap QQ gQ
 
 " Comme commande ex
 
-nnoremap <f6>: <cmd>exe getline(".")<CR>
+nnoremap <f7>: <cmd>exe getline(".")<CR>
 
 " Comme commande externe
 
-nnoremap <f6>! <cmd>exe '!'.getline('.')<CR>
+nnoremap <f7>! <cmd>exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap <f6>ig <cmd>call library#highlight_group()<cr>
+nnoremap <f7>ig <cmd>call library#highlight_group()<cr>
 
 " Émulateur de terminal {{{2
 
@@ -662,13 +629,13 @@ nnoremap <C-!> <cmd>call library#terminal()<cr>
 
 set termwinkey=<C-W>
 
-tnoremap <f11>N <c-\><c-n>
+tnoremap <f10> <c-\><c-n>
 
 "  Shell {{{2
 
-nnoremap <f10>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f10>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f10>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
+nnoremap <f11>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f11>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f11>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
 
 " Pavé numérique {{{2
 
@@ -756,9 +723,7 @@ set scrolljump=1
 "  Tabulation et espaces de fin de lignes {{{2
 
 set list
-
 set listchars=
-
 set listchars+=tab:┆\ ,nbsp:▒
 set listchars+=precedes:❮,extends:❯
 set listchars+=conceal:Δ
@@ -918,6 +883,3 @@ set viminfo=
 " recherches, nombre de lignes d’entrée
 
 set history=10000
-
-" ------------------------------------
-

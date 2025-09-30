@@ -120,36 +120,33 @@ set directory=~/racine/varia/autosave/vim
 " Fréquence de sauvegarde
 
 set updatecount=100			" Nombre de caractères
-set updatetime=1000			" Millisecondes
+set updatetime=12000		" Millisecondes
 
 " undos {{{1
 
-set undolevels=1234
-
-if exists("&undofile")
-	set undofile
-	set undoreload=12743
-	set undodir=~/racine/varia/undo/vim,.
-endif
+set undolevels=123
+set undofile
+set undoreload=12743
+set undodir=~/racine/varia/undo/vim,.
 
 "  session {{{1
 
 set sessionoptions=
 
-set sessionoptions+=blank
-set sessionoptions+=buffers
-set sessionoptions+=curdir
-set sessionoptions+=folds
-set sessionoptions+=globals
-set sessionoptions+=help
-set sessionoptions+=localoptions
-set sessionoptions+=options
-set sessionoptions+=resize
-set sessionoptions+=slash
-set sessionoptions+=tabpages
-set sessionoptions+=unix
-set sessionoptions+=winpos
-set sessionoptions+=winsize
+" set sessionoptions+=blank
+" set sessionoptions+=buffers
+" set sessionoptions+=curdir
+" set sessionoptions+=folds
+" set sessionoptions+=globals
+" set sessionoptions+=help
+" set sessionoptions+=localoptions
+" set sessionoptions+=options
+" set sessionoptions+=resize
+" set sessionoptions+=slash
+" set sessionoptions+=tabpages
+" set sessionoptions+=unix
+" set sessionoptions+=winpos
+" set sessionoptions+=winsize
 
 "  encodage {{{1
 
@@ -243,14 +240,10 @@ set noerrorbells
 "  Souris {{{2
 
 set mouse=a
-
 set mousefocus
-
 set mousehide					" Cache le pointeur de souris lorsque l'on tape
-
 set mousemodel=extend				" Clic droit modifie sélection
 "set mousemodel=popup_setpos		" Clic droit menu
-
 "set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up-arrow,v:rightup-arrow
 
 " Sélection {{{2
@@ -297,12 +290,9 @@ endif
 " Fichiers à ignorer {{{2
 
 set wildignore=
-
 set wildignore+=*/.git/*,*/.hg/*,*/.bzr/*,*/_darcs/*,*/.svn/*
-
 set wildignore+=*.pyc,*.elc,*.zwc
 set wildignore+=*.aux,*.maf,*.toc,*.ptc*,*.mtc*
-
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.wav,*.flac,*.ogg,*.mp3
 
@@ -433,10 +423,8 @@ set formatprg=fmt
 " Largeur d'une tabulation
 
 set tabstop=4
-
 set softtabstop=4
 set shiftwidth=4
-
 set noexpandtab
 set nosmarttab
 
@@ -501,7 +489,6 @@ set foldtext=library#folding_text()
 "  Méthode des marqueurs {{{2
 
 set foldmethod=marker
-
 set foldmarker={{{,}}}
 
 " buffers {{{1
@@ -536,7 +523,7 @@ set switchbuf=usetab
 
 "  Maximum d’onglets ouverts
 
-set tabpagemax=50
+set tabpagemax=30
 
 " diff between files {{{1
 
@@ -670,7 +657,7 @@ nnoremap gm <cmd>call library#manual()<cr>
 
 " clearing some maps {{{2
 
-" no need of gui menu
+" no need for gui menu
 nnoremap <f10> <nop>
 inoremap <f10> <nop>
 cnoremap <f10> <nop>
@@ -695,7 +682,7 @@ nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
 " see also <url:~/racine/config/edit/neovim/paquet/preload.vim#tn=f7 prefix>
 
-nnoremap <f5> <cmd>source %<cr>
+nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
 nnoremap <f11>v <cmd>call library#edit_myvimrc()<cr>
 
@@ -946,7 +933,7 @@ inoremap <expr> <tab> library#smart_tab()
 cnoremap <PageUp> <C-P>
 cnoremap <PageDown> <C-N>
 
-" Ligne de commande {{{2
+" Ligne de commande ex {{{2
 
 " Complétion {{{3
 

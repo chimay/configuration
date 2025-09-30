@@ -54,7 +54,8 @@ hi Conditional		guifg=#872e30		guibg=black			gui=NONE
 hi Macro			guifg=#5B3C11		guibg=black			gui=NONE
 hi PreProc 			guifg=#5B3C11		guibg=black			gui=NONE
 
-hi Statement		guifg=#5B3C11		guibg=black			gui=NONE
+hi Statement	guifg=#5B3C11		guibg=black			gui=NONE
+hi Function		guifg=#872e30		guibg=black			gui=NONE
 
 " More prompt {{{2
 

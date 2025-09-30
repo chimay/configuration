@@ -253,13 +253,13 @@ endfun
 fun! library#source_current_file ()
 	" Source current file
 	let filename = library#relative_path('%')
-	let extension = fnamemodify(filename, ':e')
-	if extension !=# 'vim'
-		return 'not a vim file'
+	if &filetype !=# 'vim'
+		echomsg 'not a vim file'
+		return v:false
 	endif
 	source %
 	echo 'file' filename 'sourced'
-	return 'file sourced'
+	return v:true
 endfun
 
 fun! library#edit_in_current_file_subtree ()
@@ -339,12 +339,19 @@ fun! library#edit_ship_log ()
 	normal ggzx
 endfun
 
-fun! library#edit_syntax_plugin ()
+fun! library#edit_syntax_plugin (...)
 	" Edit syntax plugin file
-	let file = expand('~/racine/config/edit/neovim/after/syntax/')
-	let file = file .. &filetype .. '.vim'
+	if a:0 > 0
+		let file_type = a:1
+	else
+		let file_type = &filetype
+	endif
+	let path = expand('~/racine/config/edit/neovim/after/syntax/')
+	let file = path .. file_type .. '.vim'
 	execute 'keepjumps vsplit' file
 endfun
+
+command! -nargs=? -complete=filetype EditSyntaxPlugin call library#edit_syntax_plugin(<f-args>)
 
 fun! library#edit_tasks ()
 	" Edit tasks.org
@@ -972,4 +979,21 @@ fun! library#display_pdf ()
 	let output = system(display)
 	"echomsg output
 	return 'success'
+endfun
+
+" ---- plugins
+
+fun! library#which_key_format (string)
+	" Format which key display strings
+	let string = a:string
+	" ---- beginning
+	let string = substitute(string, '\m\c^<cmd>', '', '')
+	let string = substitute(string, '\m\c^:', '', '')
+	let string = substitute(string, '\m\c^<c-u>', '', '')
+	let string = substitute(string, '\m\c^<plug>', '', '')
+	let string = substitute(string, '\m\c^call ', '', '')
+	" ---- end
+	let string = substitute(string, '\m\c<cr>$', '', '')
+	let string = substitute(string, '\m\c()$', '', '')
+	return string
 endfun

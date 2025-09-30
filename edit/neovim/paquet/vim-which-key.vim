@@ -12,12 +12,15 @@
 "call which_key#register('<cr>', "g:which_key_main_map")
 "nnoremap <silent> <cr> <cmd>WhichKey '<cr>'<cr>
 
-" config {{{1
+" configuration {{{1
 
 let g:which_key_use_floating_win = 1
-
 let g:which_key_timeout = 300
 let g:which_key_exit = "\<esc>"
+let g:WhichKeyFormatFunc = function('library#which_key_format')
+let g:which_key_fallback_to_native_key=1
+
+"let g:which_key_run_map_on_popup = 1
 
 " main prefix {{{1
 
@@ -59,7 +62,7 @@ let g:which_key_main_map.f = {
 	\ 'd' : ['library#edit_dream()', 'edit dream'],
 	\ 'f' : ['library#edit_fix()', 'edit fix'],
 	\ 'l' : ['library#edit_ship_log()', 'edit ship log'],
-	\ 's' : ['library#edit_syntax_plugin()', 'edit syntax plugin'],
+	\ 's' : ["library#feedkeys(':EditSyntaxPlugin ')", 'edit syntax plugin'],
 	\ 't' : ['library#edit_tasks()', 'edit tasks'],
 	\ 'x' : ['library#chmodexec()', 'chmod exec'],
 	\ 'S' : ['library#source_current_file()', 'source current file'],
@@ -81,13 +84,13 @@ let g:which_key_main_map['$'] = {
 
 let g:which_key_main_map.b = {
 	\ 'name' : '+buffer' ,
-	\ 'b' : ['new <bar> only'      , 'new buffer']        ,
-	\ 'p' : ['bprevious'           , 'previous buffer']   ,
-	\ 'n' : ['bnext'               , 'next buffer']       ,
-	\ '^' : ['bfirst'              , 'first buffer']      ,
-	\ '$' : ['blast'               , 'last buffer']       ,
-	\ 'd' : ['bd'                  , 'delete buffer']     ,
-	\ 'w' : ['library#write_all()' , 'write all buffers'] ,
+	\ 'b' : ["library#execute('new | only')" , 'new buffer']        ,
+	\ 'p' : ['bprevious'                     , 'previous buffer']   ,
+	\ 'n' : ['bnext'                         , 'next buffer']       ,
+	\ '^' : ['bfirst'                        , 'first buffer']      ,
+	\ '$' : ['blast'                         , 'last buffer']       ,
+	\ 'd' : ['bd'                            , 'delete buffer']     ,
+	\ 'w' : ['library#write_all()'           , 'write all buffers'] ,
 	\ }
 
 " window {{{2
@@ -105,13 +108,13 @@ let g:which_key_main_map.w = {
 
 let g:which_key_main_map.t = {
 	\ 'name' : '+tab' ,
-	\ 't' : ['tabnew'                  , 'new tab']                      ,
-	\ 'n' : ['tabnext'                 , 'next tab']                     ,
-	\ 'p' : ['tabprevious'             , 'previous tab']                 ,
-	\ '^' : ['tabfirst'                , 'tab first']                    ,
-	\ '$' : ['tablast'                 , 'tab last']                     ,
-	\ 'e' : ['tabedit'                 , 'edit in new tab']              ,
-	\ '=' : ['library#equal_windows()' , 'equalize windows on all tabs'] ,
+	\ 't' : ['tabnew'                        , 'new tab']                      ,
+	\ 'n' : ['tabnext'                       , 'next tab']                     ,
+	\ 'p' : ['tabprevious'                   , 'previous tab']                 ,
+	\ '^' : ['tabfirst'                      , 'tab first']                    ,
+	\ '$' : ['tablast'                       , 'tab last']                     ,
+	\ 'e' : ["library#feedkeys(':tabedit ')" , 'edit in new tab']              ,
+	\ '=' : ['library#equal_windows()'       , 'equalize windows on all tabs'] ,
 	\ }
 
 " content {{{2
@@ -203,7 +206,7 @@ let g:which_key_main_map['!'] = {
 	\ 'name' : '+shell_command' ,
 	\ 'm' : ["library#feedkeys(':make -k ')"  , 'make']  ,
 	\ 'l' : ["library#execute('!ls -l')"  , 'ls -l']  ,
-	\ '!' : ['library#terminal()'  , 'ls -l']  ,
+	\ '!' : ['library#terminal()'  , 'terminal']  ,
 	\ }
 
 " music {{{2
@@ -222,7 +225,7 @@ let g:which_key_main_map.p = {
 	\ 'm' : ['library#edit_minisnip_file()'   , 'edit minisnip file'] ,
 	\ }
 
-" function keys {{{2
+" function keys {{{1
 
 " for help
 "nnoremap <silent> <f1> <cmd>WhichKey '<f1>'<cr>
@@ -239,6 +242,9 @@ nnoremap <silent> <f7> <cmd>WhichKey '<f7>'<cr>
 nnoremap <silent> <f8> <cmd>WhichKey '<f8>'<cr>
 
 nnoremap <silent> <f9> <cmd>WhichKey '<f9>'<cr>
-nnoremap <silent> <f10> <cmd>WhichKey '<f10>'<cr>
+
+" for terminal go to normal mode in vim-lite
+"nnoremap <silent> <f10> <cmd>WhichKey '<f10>'<cr>
+
 nnoremap <silent> <f11> <cmd>WhichKey '<f11>'<cr>
 nnoremap <silent> <f12> <cmd>WhichKey '<f12>'<cr>
