@@ -37,35 +37,77 @@ let g:which_key_main_map.h = {
 	\ 'g' : ["library#feedkeys(':tab helpgrep ')", 'helpgrep'],
 	\ 'f' : ['library#toggle_help_filetype()', 'toggle help filetype'],
 	\ 't' : ['library#helptags()', 'help tags'],
-	\ 'm' : ['library#manual()', 'help tags'],
+	\ 'm' : ['library#manual()', 'cmd manual'],
 	\ }
 
 " display {{{2
 
 let g:which_key_main_map.d = {
 	\ 'name' : '+display',
+	\ 'c' : ["library#execute('set cursorline!')"                 , 'toggle cursorline']            ,
 	\ 'l' : ['library#toggle_relative_linum()'                    , 'toggle relative line numbers'] ,
 	\ 'f' : [ "library#execute('set guifont=*')"                  , 'gui font']                     ,
 	\ 'F' : [ "library#feedkeys(':GuiFont DejaVu Sans Mono:h12')" , 'gui font (neovim-qt)']         ,
-	\ 'c' : [ "library#feedkeys(':set cmdheight=')"               , 'set cmd height']               ,
+	\ 'h' : [ "library#feedkeys(':set cmdheight=')"               , 'set cmd height']               ,
+	\ 'i' : ['library#highlight_group()'          , 'highlight group']   ,
 	\ }
 
-" file {{{2
+" find {{{2
+
+" hint for find : set path=.,,**
 
 let g:which_key_main_map.f = {
-	\ 'name' : '+file',
+	\ 'name' : '+modify',
+	\ 'f' : ["library#feedkeys(':find ')", 'find file'],
+	\ 'b' : ["library#feedkeys(':buffer ')", 'find buffer'],
+	\ }
+
+" edit file {{{2
+
+let g:which_key_main_map.e = {
+	\ 'name' : '+edit',
 	\ 'e' : ['library#edit_in_current_file_subtree()', 'edit in subtree'],
 	\ 'r' : ['library#read_in_current_file_subtree()', 'read in subtree'],
-	\ 'g' : ['library#edit_attic()', 'edit attic'],
-	\ 'v' : ['library#edit_myvimrc()', 'edit myvimrc'],
 	\ 'c' : ['library#edit_cronos()', 'edit cronos'],
 	\ 'd' : ['library#edit_dream()', 'edit dream'],
 	\ 'f' : ['library#edit_fix()', 'edit fix'],
+	\ 'g' : ['library#edit_attic()', 'edit attic'],
 	\ 'l' : ['library#edit_ship_log()', 'edit ship log'],
 	\ 's' : ["library#feedkeys(':EditSyntaxPlugin ')", 'edit syntax plugin'],
 	\ 't' : ['library#edit_tasks()', 'edit tasks'],
-	\ 'x' : ['library#chmodexec()', 'chmod exec'],
-	\ 'S' : ['library#source_current_file()', 'source current file'],
+	\ 'v' : ['library#edit_myvimrc()', 'edit vimrc'],
+	\ }
+
+" navigation {{{2
+
+let g:which_key_main_map.n = {
+	\ 'name' : '+navigation' ,
+	\ 't' : ["library#feedkeys(':tjump /')"  , 'tag jump']  ,
+	\ 'T' : ["library#feedkeys(':tab tjump /')"  , 'tag jump in new tab']  ,
+	\ }
+
+" quickfix {{{2
+
+let g:which_key_main_map.q = {
+	\ 'name' : '+quickfix' ,
+	\ 'o' : ['copen'     , 'open quickfix']                  ,
+	\ 'c' : ['cclose'    , 'close quickfix']                 ,
+	\ 'p' : ['cprevious' , 'previous in quickfix']           ,
+	\ 'n' : ['cnext'     , 'next in quickfix']               ,
+	\ 'b' : ['cpfile'    , 'previous file in quickfix']      ,
+	\ 'f' : ['cnfile'    , 'next file in quickfix']          ,
+	\ }
+
+" location list {{{2
+
+let g:which_key_main_map.l = {
+	\ 'name' : '+location_list' ,
+	\ 'o' : ['lopen'     , 'open location list']             ,
+	\ 'c' : ['lclose'    , 'close location list']            ,
+	\ 'p' : ['lprevious' , 'previous in location list']      ,
+	\ 'n' : ['lnext'     , 'next in location list']          ,
+	\ 'b' : ['lpfile'    , 'previous file in location list'] ,
+	\ 'f' : ['lnfile'    , 'next file in location list']     ,
 	\ }
 
 " argument {{{2
@@ -104,7 +146,7 @@ let g:which_key_main_map.w = {
 	\ 'n' : ['library#win2next_tab()'      , 'win to next tab']  ,
 	\ }
 
-" tab, onglet {{{2
+" tab, onglet, intercalaire {{{2
 
 let g:which_key_main_map.t = {
 	\ 'name' : '+tab' ,
@@ -122,12 +164,30 @@ let g:which_key_main_map.t = {
 let g:which_key_main_map.c = {
 	\ 'name' : '+content' ,
 	\ 'b' : ['library#figlet()'                   , 'figlet banner']     ,
-	\ 'l' : ["library#execute('set cursorline!')" , 'toggle cursorline'] ,
 	\ 'p' : ["library#execute('set paste!')"      , 'toggle paste mode'] ,
 	\ 'r' : ['library#toggle_readonly()'          , 'toggle readonly']   ,
 	\ 's' : ["library#execute('%sort')"           , 'sort lines']        ,
 	\ 'S' : ["library#execute('setlocal spell!')" , 'toggle spell']      ,
-	\ 'i' : ['library#highlight_group()'          , 'highlight group']   ,
+	\ }
+
+" exchange {{{2
+
+let g:which_key_main_map.x = {
+	\ 'name' : '+swap' ,
+	\ 'c' : ["library#swap('characters'   , 'after')"     , 'with character after']  ,
+	\ 'C' : ["library#swap('characters'   , 'before')"    , 'with character before'] ,
+	\ 'l' : ["library#swap('lines'        , 'after')"     , 'with line after']       ,
+	\ 'L' : ["library#swap('lines'        , 'before')"    , 'with line before']      ,
+	\ 'w' : ["library#swap('characters')" , 'words']      ,
+	\ 'p' : ["library#swap('paragraphs')" , 'paragraphs'] ,
+	\ }
+
+" search and replace in buffer {{{2
+
+let g:which_key_main_map.s = {
+	\ 'name' : '+search_and_replace' ,
+	\ 's' : ['library#search_word()'             , 'search word']     ,
+	\ 'r' : ['library#search_and_replace_word()' , 'replace word'] ,
 	\ }
 
 " global {{{2
@@ -142,76 +202,32 @@ let g:which_key_main_map['='] = {
 
 " encryption {{{2
 
-let g:which_key_main_map.x = {
+let g:which_key_main_map.X = {
 	\ 'name' : '+encryption' ,
-	\ 'x' : ['library#text_to_password()' , 'text to password'] ,
-	\ 'X' : ['library#password_to_text()' , 'password to text'] ,
+	\ 'X' : ['library#text_to_password()' , 'text to password'] ,
+	\ 'x' : ['library#password_to_text()' , 'password to text'] ,
 	\ }
 
-" exchange {{{2
+" ex command {{{2
 
-let g:which_key_main_map.e = {
-	\ 'name' : '+swap' ,
-	\ 'c' : ["library#swap('characters'   , 'after')"     , 'with character after']  ,
-	\ 'C' : ["library#swap('characters'   , 'before')"    , 'with character before'] ,
-	\ 'l' : ["library#swap('lines'        , 'after')"     , 'with line after']       ,
-	\ 'L' : ["library#swap('lines'        , 'before')"    , 'with line before']      ,
-	\ 'w' : ["library#swap('characters')" , 'words']      ,
-	\ 'p' : ["library#swap('paragraphs')" , 'paragraphs'] ,
+let g:which_key_main_map[':'] = {
+	\ 'name' : '+ex_command' ,
+	\ 's' : ['library#source_current_file()', 'source current file'],
 	\ }
 
-" quickfix {{{2
-
-let g:which_key_main_map.q = {
-	\ 'name' : '+quickfix' ,
-	\ 'o' : ['copen'     , 'open quickfix']                  ,
-	\ 'c' : ['cclose'    , 'close quickfix']                 ,
-	\ 'p' : ['cprevious' , 'previous in quickfix']           ,
-	\ 'n' : ['cnext'     , 'next in quickfix']               ,
-	\ 'b' : ['cpfile'    , 'previous file in quickfix']      ,
-	\ 'f' : ['cnfile'    , 'next file in quickfix']          ,
-	\ }
-
-" location list {{{2
-
-let g:which_key_main_map.l = {
-	\ 'name' : '+location_list' ,
-	\ 'o' : ['lopen'     , 'open location list']             ,
-	\ 'c' : ['lclose'    , 'close location list']            ,
-	\ 'p' : ['lprevious' , 'previous in location list']      ,
-	\ 'n' : ['lnext'     , 'next in location list']          ,
-	\ 'b' : ['lpfile'    , 'previous file in location list'] ,
-	\ 'f' : ['lnfile'    , 'next file in location list']     ,
-	\ }
-
-" navigation {{{2
-
-let g:which_key_main_map.n = {
-	\ 'name' : '+navigation' ,
-	\ 't' : ["library#feedkeys(':tjump /')"  , 'tag jump']  ,
-	\ 'T' : ["library#feedkeys(':tab tjump /')"  , 'tag jump in new tab']  ,
-	\ }
-
-" search and replace {{{2
-
-let g:which_key_main_map.s = {
-	\ 'name' : '+search_and_replace' ,
-	\ 's' : ['library#search_word()'  , 'search word']  ,
-	\ 'r' : ['library#search_and_replace_word()'  , 'search and replace word']  ,
-	\ }
-
-" external command {{{2
+" shell command {{{2
 
 let g:which_key_main_map['!'] = {
 	\ 'name' : '+shell_command' ,
+	\ '!' : ['library#terminal()'  , 'terminal']  ,
 	\ 'm' : ["library#feedkeys(':make -k ')"  , 'make']  ,
 	\ 'l' : ["library#execute('!ls -l')"  , 'ls -l']  ,
-	\ '!' : ['library#terminal()'  , 'terminal']  ,
+	\ 'x' : ['library#chmodexec()', 'chmod exec'],
 	\ }
 
 " music {{{2
 
-let g:which_key_main_map.m = {
+let g:which_key_main_map['µ'] = {
 	\ 'name' : '+music' ,
 	\ 'm' : ['library#make_midi()'   , 'make'] ,
 	\ 'p' : ['library#display_pdf()' , 'make'] ,
