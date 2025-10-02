@@ -208,7 +208,7 @@ let g:which_key_main_map.X = {
 	\ 'x' : ['library#password_to_text()' , 'password to text'] ,
 	\ }
 
-" ex command {{{2
+" :ex command {{{2
 
 let g:which_key_main_map[':'] = {
 	\ 'name' : '+ex_command' ,

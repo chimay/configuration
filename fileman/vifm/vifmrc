@@ -696,20 +696,21 @@ nnoremap <m-s> :session<space>
 
 " Présentation {{{2
 
+nnoremap <C-w>o <C-w>o
+nnoremap <C-w>s <C-w>s
+nnoremap <C-w>v <C-w>v
+
+nnoremap <C-w>t :tree!<cr>
+nnoremap <C-w>m :set millerview! | set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"<cr>
+nnoremap <C-w>l :set lsview!<cr>
+
+" classic file manager style
+nnoremap <F9> :tree!<cr>
+nnoremap <F10> :set millerview! | set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"<cr>
+nnoremap <F11> :split!<cr>
+nnoremap <F12> :vsplit!<cr>
+
 nnoremap § :tree!<cr>
-
-nnoremap <C-w>0 <C-w>o
-nnoremap <C-w>1 <C-w>s
-nnoremap <C-w>2 <C-w>v
-
-nnoremap <C-w>3 :set millerview! | set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"<cr>
-nnoremap <C-w>4 :set lsview!<cr>
-
-nnoremap <F9> :split!<cr>
-nnoremap <F10> :vsplit!<cr>
-
-nnoremap <F11> :set millerview! | set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"<cr>
-nnoremap <F12> :set lsview!<cr>
 
 " Onglets {{{2
 
@@ -747,12 +748,11 @@ nnoremap <m-m> :marks<cr>
 " Recherche {{{2
 
 nnoremap * :find<space>
+nnoremap # :locate<space>
 
 nnoremap é :filter<space>
 
 nnoremap è :grep<space>
-
-nnoremap ° :locate<space>
 
 nnoremap zg :grep<space>
 nnoremap zl :locate<space>
@@ -847,6 +847,8 @@ mnoremap f b
 nnoremap I cw<c-a>
 nnoremap cc cw<c-u>
 nnoremap A cw
+" classic file manager style
+nnoremap <f2> cw<c-u>
 
 nnoremap cv :rename<cr>
 nnoremap cr :rename!<cr>
@@ -875,13 +877,8 @@ nnoremap <f6> :!tsp rsync -av --progress --remove-source-files %f %D<cr>
 
 nnoremap àf :!tsp rsync -av --progress %f %D &<cr>
 nnoremap àd :!tsp rsync -av --progress %d/ %D &<cr>
-" midnight commander (mc) binding style
-nnoremap <f2>f :!tsp rsync -av --progress %f %D &<cr>
-nnoremap <f2>d :!tsp rsync -av --progress %d/ %D &<cr>
 
 nnoremap àà :clone?<cr>
-" midnight commander (mc) binding style
-nnoremap <f2>c :clone?<cr>
 
 " Presse-papier {{{2
 
@@ -927,7 +924,7 @@ nnoremap dr :!trash-restore<cr>
 
 " New file
 
-nnoremap <m-n> :touch<space>
+nnoremap <insert> :touch<space>
 
 " New dir
 
@@ -937,11 +934,7 @@ nnoremap <f7> :mkdir!<space>
 
 " Pack
 
-nnoremap <m-p> :!apack %c.txz %c<cr>
-
-" Drag & drop
-
-nnoremap <m-g> :!dragon.sh -a -x %f<cr>
+nnoremap <m-p> :!apack %c.tar.xz %c<cr>
 
 " Vimdiff
 
@@ -977,6 +970,4 @@ nnoremap <m-v> :!tig<cr>
 " Shell {{{2
 
 nnoremap <c-s> :shell<cr>
-nnoremap <insert> :shell<cr>
-
 nnoremap <m-j> :jobs<cr>

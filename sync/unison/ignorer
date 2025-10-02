@@ -8,7 +8,7 @@
 ignore = Regex racine/config/sync/unison/archive/[^/]+/ar[0-9a-f]*
 ignore = Regex racine/config/sync/unison/archive/[^/]+/fp[0-9a-f]*
 
-ignore = Path racine/syncron/syncthing
+#ignore = Path racine/syncron/syncthing
 
 ignore = Path racine/syncron/recent
 
