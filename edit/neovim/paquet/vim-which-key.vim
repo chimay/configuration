@@ -22,6 +22,15 @@ let g:which_key_fallback_to_native_key=1
 
 "let g:which_key_run_map_on_popup = 1
 
+" commands {{{1
+
+command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
+command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
+
+command! -nargs=? -complete=filetype EditSyntaxPlugin call library#edit_syntax_plugin(<f-args>)
+
+command! -nargs=+ SwapTextObjects call library#swap_text_objects(<f-args>)
+
 " main prefix {{{1
 
 nnoremap <silent> <leader> <cmd>WhichKey! g:which_key_main_map<cr>
@@ -174,12 +183,12 @@ let g:which_key_main_map.c = {
 
 let g:which_key_main_map.x = {
 	\ 'name' : '+swap' ,
-	\ 'c' : ["library#swap('characters'   , 'after')"     , 'with character after']  ,
-	\ 'C' : ["library#swap('characters'   , 'before')"    , 'with character before'] ,
-	\ 'l' : ["library#swap('lines'        , 'after')"     , 'with line after']       ,
-	\ 'L' : ["library#swap('lines'        , 'before')"    , 'with line before']      ,
-	\ 'w' : ["library#swap('characters')" , 'words']      ,
-	\ 'p' : ["library#swap('paragraphs')" , 'paragraphs'] ,
+	\ 'c' : ["library#execute('SwapTextObjects characters after')", 'with char after'],
+	\ 'C' : ["library#execute('SwapTextObjects characters before')", 'with char before'],
+	\ 'l' : ["library#execute('SwapTextObjects lines after')", 'with line after'],
+	\ 'L' : ["library#execute('SwapTextObjects lines before')", 'with line before'],
+	\ 'w' : ["library#execute('SwapTextObjects words')", 'words'],
+	\ 'p' : ["library#execute('SwapTextObjects paragraphs')", 'paragraphs'],
 	\ }
 
 " search and replace in buffer {{{2
@@ -241,19 +250,42 @@ let g:which_key_main_map.p = {
 	\ 'm' : ['library#edit_minisnip_file()'   , 'edit minisnip file'] ,
 	\ }
 
+let g:which_key_main_map.p.k = {
+	\ 'name' : '+packager' ,
+	\ 'i' : ["library#execute('PackagerInstall')"  , 'install']  ,
+	\ 'u' : ["library#execute('PackagerUpdate')"  , 'update']  ,
+	\ 'c' : ["library#execute('PackagerClean')"  , 'clean']  ,
+	\ 's' : ["library#execute('PackagerStatus')"  , 'status']  ,
+	\ }
+
+let g:which_key_main_map.p.q = {
+	\ 'name' : '+paq' ,
+	\ 'i' : ["library#execute('PaqInstall')"  , 'install']  ,
+	\ 'u' : ["library#execute('PaqUpdate')"  , 'update']  ,
+	\ 's' : ["library#execute('PaqUpdate')"  , 'sync']  ,
+	\ 'b' : ["library#execute('PaqBuild')"  , 'build']  ,
+	\ 'l' : ["library#execute('PaqList')"  , 'list']  ,
+	\ 'L' : ["library#execute('PaqLogOpen')"  , 'open log']  ,
+	\ 'c' : ["library#execute('PaqClean')"  , 'clean']  ,
+	\ 'C' : ["library#execute('PaqLogClean')"  , 'clean log']  ,
+	\ }
+
 " function keys {{{1
 
 " for help
 "nnoremap <silent> <f1> <cmd>WhichKey '<f1>'<cr>
 
 nnoremap <silent> <f2> <cmd>WhichKey '<f2>'<cr>
-nnoremap <silent> <f3> <cmd>WhichKey '<f3>'<cr>
-nnoremap <silent> <f4> <cmd>WhichKey '<f4>'<cr>
+
+" not used
+"nnoremap <silent> <f3> <cmd>WhichKey '<f3>'<cr>
+"nnoremap <silent> <f4> <cmd>WhichKey '<f4>'<cr>
 
 " source current file
 "nnoremap <silent> <f5> <cmd>WhichKey '<f5>'<cr>
 
 nnoremap <silent> <f6> <cmd>WhichKey '<f6>'<cr>
+
 nnoremap <silent> <f7> <cmd>WhichKey '<f7>'<cr>
 nnoremap <silent> <f8> <cmd>WhichKey '<f8>'<cr>
 

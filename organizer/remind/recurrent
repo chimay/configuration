@@ -5,7 +5,7 @@ REM mon tue wed thu fri AT 7:40 MSG Réveiller les enfants
 REM wednesday AT 11:00 +30 MSG Mise à jour ordinateur
 
 REM sunday AT 19:30 +30 MSG Synchroniser la clé usb
-REM thursday AT 19:30 +30 MSG Synchroniser la clé usb
+REM friday AT 9:40 +30 MSG Synchroniser la clé usb
 
 REM 1 AT 11:00 +30 MSG Photos -> ordinateur
 

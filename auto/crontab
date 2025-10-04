@@ -141,8 +141,8 @@ MAILTO=$USER
 
 # backup {{{2
 
-0	19	*	*	0		bell.zsh notification/sauvegarde-cle-usb.ogg volume=100 &>>! ~/log/cron.log
-0	19	*	*	4		bell.zsh notification/sauvegarde-cle-usb.ogg volume=100 &>>! ~/log/cron.log
+20	19	*	*	0		bell.zsh notification/sauvegarde-cle-usb.ogg volume=100 &>>! ~/log/cron.log
+30	9	*	*	5		bell.zsh notification/sauvegarde-cle-usb.ogg volume=100 &>>! ~/log/cron.log
 
 # alimentation {{{2
 

@@ -19,6 +19,7 @@ let g:colors_name = "golden-night"
 
 " #872E30
 " #88421D
+" #87321d
 " #845A3B
 " #AB1C11
 
@@ -319,3 +320,172 @@ hi TableSeparator	ctermfg=NONE	ctermbg=NONE	cterm=NONE
 " Utl {{{3
 
 hi UtlUrl 		ctermfg=NONE		ctermbg=NONE	cterm=underline
+
+" treesitter {{{1
+
+" gui {{{2
+
+highlight @annotation            guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @attribute             guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @boolean               guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @character             guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @character.special     guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @comment               guifg=#754321 	 guibg=black 	 gui=italic
+highlight @conceal               guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @conditional           guifg=#872e30 	 guibg=black 	 gui=none
+highlight @constant              guifg=#872e30 	 guibg=black 	 gui=none
+highlight @constant.builtin      guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @constant.macro        guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @constructor           guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @debug                 guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @define                guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @error                 guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @exception             guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @field                 guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @float                 guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @function              guifg=#872e30 	 guibg=black 	 gui=none
+highlight @function.builtin      guifg=#872e30 	 guibg=black 	 gui=none
+highlight @function.call         guifg=#872e30 	 guibg=black 	 gui=none
+highlight @function.macro        guifg=#872e30 	 guibg=black 	 gui=none
+highlight @include               guifg=#872e30 	 guibg=black 	 gui=none
+highlight @keyword               guifg=#872e30 	 guibg=black 	 gui=none
+highlight @keyword.function      guifg=#872e30 	 guibg=black 	 gui=none
+highlight @keyword.operator      guifg=#872e30 	 guibg=black 	 gui=none
+highlight @keyword.return        guifg=#872e30 	 guibg=black 	 gui=none
+highlight @label                 guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @math                  guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @method                guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @method.call           guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @module                guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @namespace             guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @none                  guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @number                guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @operator              guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @parameter             guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @parameter.reference   guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @preproc               guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @property              guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @punctuation.bracket   guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @punctuation.delimiter guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @punctuation.special   guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @repeat                guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @storageclass          guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @storageclass.lifetime guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @strike                guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @string                guifg=#88421d 	 guibg=black 	 gui=none
+highlight @string.escape         guifg=#88421d 	 guibg=black 	 gui=none
+highlight @string.regex          guifg=#88421d 	 guibg=black 	 gui=none
+highlight @string.special        guifg=#88421d 	 guibg=black 	 gui=none
+highlight @symbol                guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @tag                   guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @tag.attribute         guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @tag.delimiter         guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text                  guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.danger           guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.diff.add         guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.diff.delete      guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.emphasis         guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.environment      guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.environment.name guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.literal          guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.math             guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.note             guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.reference        guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.strike           guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.strong           guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.title            guifg=#872e30 	 guibg=black 	 gui=none
+highlight @text.todo             guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.underline        guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.uri              guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @text.warning          guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @todo                  guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @type                  guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @type.builtin          guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @type.definition       guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @type.qualifier        guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @uri                   guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @variable              guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @variable.builtin      guifg=#5b3c11 	 guibg=black 	 gui=none
+
+" console {{{2
+
+highlight @annotation            ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @attribute             ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @boolean               ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @character             ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @character.special     ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @comment               ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @conceal               ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @conditional           ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @constant              ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @constant.builtin      ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @constant.macro        ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @constructor           ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @debug                 ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @define                ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @error                 ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @exception             ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @field                 ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @float                 ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @function              ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @function.builtin      ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @function.call         ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @function.macro        ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @include               ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @keyword               ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @keyword.function      ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @keyword.operator      ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @keyword.return        ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @label                 ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @math                  ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @method                ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @method.call           ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @namespace             ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @none                  ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @number                ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @operator              ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @parameter             ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @parameter.reference   ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @preproc               ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @property              ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @punctuation.bracket   ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @punctuation.delimiter ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @punctuation.special   ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @repeat                ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @storageclass          ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @storageclass.lifetime ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @strike                ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @string                ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @string.escape         ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @string.regex          ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @string.special        ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @symbol                ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @tag                   ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @tag.attribute         ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @tag.delimiter         ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text                  ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.danger           ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.diff.add         ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.diff.delete      ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.emphasis         ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.environment      ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.environment.name ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.literal          ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.math             ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.note             ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.reference        ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.strike           ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.strong           ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.title            ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.todo             ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.underline        ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.uri              ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @text.warning          ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @todo                  ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @type                  ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @type.builtin          ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @type.definition       ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @type.qualifier        ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @uri                   ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @variable              ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @variable.builtin      ctermfg=none 	 ctermbg=black 	 cterm=none

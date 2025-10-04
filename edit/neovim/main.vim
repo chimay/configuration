@@ -527,7 +527,7 @@ set bufhidden=hide
 
 "set confirm
 
-" tabs (onglets) {{{1
+" tabs, tabpages (onglets) {{{1
 
 " Barre d'onglets {{{2
 
@@ -741,7 +741,7 @@ nnoremap <c-s-left> <cmd>vertical resize -2<cr>
 "nnoremap <s-tab>  <c-w>w
 "nnoremap <m-s-tab>  <c-w>p
 
-"  tabs (onglets) {{{2
+"  tabs, tabpages (onglets) {{{2
 
 nnoremap <c-pageup> gT
 nnoremap <c-pagedown> gt
@@ -812,6 +812,11 @@ nnoremap J mzJ`z
 " ` = ' : plus pratique sur les claviers be, fr
 
 nnoremap ' `
+
+" phrase {{{3
+
+nnoremap (<space> (
+nnoremap )<space> )
 
 "  Recherche & Remplacement {{{2
 
@@ -959,6 +964,9 @@ nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 "  Informations {{{2
 
 nnoremap <f2>ig <cmd>echo library#highlight_group()<cr>
+" for treesitter
+nnoremap <f2>tg <cmd>Inspect<cr>
+nnoremap <f2>Tg <cmd>InspectTree<cr>
 
 " Journal de bord {{{2
 

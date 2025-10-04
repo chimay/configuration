@@ -146,8 +146,11 @@ augroup file-audio
 	autocmd BufEnter ~/racine/musica/list/*.meta lcd ~/audio
 augroup END
 
-augroup treesitter-stop
-	autocmd!
-	autocmd FileType lua lua vim.treesitter.stop()
-	autocmd FileType help lua vim.treesitter.stop()
-augroup end
+" ---- not needed anymore, see  <url:~/racine/config/edit/neovim/colors/golden-night.vim#tn=treesitter>
+"augroup treesitter-stop
+	"autocmd!
+	"autocmd FileType vim lua vim.treesitter.stop()
+	"autocmd FileType lua lua vim.treesitter.stop()
+	"autocmd FileType help lua vim.treesitter.stop()
+	"autocmd FileType markdown lua vim.treesitter.stop()
+"augroup end

@@ -351,8 +351,6 @@ fun! library#edit_syntax_plugin (...)
 	execute 'keepjumps vsplit' file
 endfun
 
-command! -nargs=? -complete=filetype EditSyntaxPlugin call library#edit_syntax_plugin(<f-args>)
-
 fun! library#edit_tasks ()
 	" Edit tasks.org
 	tabedit ~/racine/plain/orgmode/tasks.org
@@ -457,7 +455,7 @@ endfun
 
 " -- exchange
 
-fun! library#swap (object, with = 'after')
+fun! library#swap_text_objects (object, with = 'after')
 	" Swap with object after or before current one
 	let object = a:object
 	" ---- with : swap with object after or before current one
@@ -562,9 +560,6 @@ fun! library#global_delete (pattern, ...)
 	exe 'global/' . a:pattern . '/delete ' . toupper(register)
 endfun
 
-command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
-command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
-
 " -- banner
 
 fun! library#figlet ()
@@ -599,7 +594,7 @@ fun! library#password_to_text ()
 	silent! % substitute/\$/s/g
 endfun
 
-" ---- windows & tabs
+" ---- windows & tabs, tabpages
 
 fun! library#equal_windows ()
 	" Equalize windows on all tabs
@@ -629,7 +624,7 @@ fun! library#win2next_tab ()
 	execute 'buffer' bufnum
 endfun
 
-" -- generate expressions for foldings, tabs, etc
+" -- generate expressions for foldings, tabpages, etc
 
 fun! library#folding_text ()
 	" Folding text

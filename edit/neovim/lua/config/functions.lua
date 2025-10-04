@@ -1,5 +1,13 @@
 -- vim: set filetype=lua:
 
+local fun = vim.fn
+local call = vim.call
+
+-- example
+--fun.has('nvim-0.7')
+--fun['fzf#vim#files']('~/projects', false)
+--vim.call('fzf#vim#files', '~/projects', false)
+
 -- ============================================================================
 -- FLOATING TERMINAL
 -- ============================================================================
