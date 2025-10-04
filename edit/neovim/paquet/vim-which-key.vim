@@ -260,14 +260,14 @@ let g:which_key_main_map.p.k = {
 
 let g:which_key_main_map.p.q = {
 	\ 'name' : '+paq' ,
-	\ 'i' : ["library#execute('PaqInstall')"  , 'install']  ,
-	\ 'u' : ["library#execute('PaqUpdate')"  , 'update']  ,
-	\ 's' : ["library#execute('PaqUpdate')"  , 'sync']  ,
-	\ 'b' : ["library#execute('PaqBuild')"  , 'build']  ,
-	\ 'l' : ["library#execute('PaqList')"  , 'list']  ,
+	\ 'i' : ["library#execute('PaqInstall')"  , 'install']   ,
+	\ 'u' : ["library#execute('PaqUpdate')"   , 'update']    ,
+	\ 's' : ["library#execute('PaqSync')"     , 'sync']      ,
+	\ 'b' : ["library#execute('PaqBuild')"    , 'build']     ,
+	\ 'l' : ["library#execute('PaqList')"     , 'list']      ,
 	\ 'L' : ["library#execute('PaqLogOpen')"  , 'open log']  ,
-	\ 'c' : ["library#execute('PaqClean')"  , 'clean']  ,
-	\ 'C' : ["library#execute('PaqLogClean')"  , 'clean log']  ,
+	\ 'c' : ["library#execute('PaqClean')"    , 'clean']     ,
+	\ 'C' : ["library#execute('PaqLogClean')" , 'clean log'] ,
 	\ }
 
 " function keys {{{1

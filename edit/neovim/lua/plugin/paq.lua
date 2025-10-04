@@ -30,6 +30,19 @@ require "paq" {
 	{'nvim-treesitter/nvim-treesitter-textobjects'},
 }
 
+-- mappings {{{1
+
+local map = vim.keymap.set
+
+map('n' , '<f12>I'     , '<cmd>PaqInstall<cr>'  , { desc = 'paq install' })
+map('n' , '<f12>U'     , '<cmd>PaqUpdate<cr>'   , { desc = 'paq update' })
+map('n' , '<f12>S'     , '<cmd>PaqSync<cr>'     , { desc = 'paq sync' })
+map('n' , '<f12>B'     , '<cmd>PaqBuild<cr>'    , { desc = 'paq build' })
+map('n' , '<f12>L'     , '<cmd>PaqList<cr>'     , { desc = 'paq list' })
+map('n' , '<f12><m-l>' , '<cmd>PaqLogOpen<cr>'  , { desc = 'paq log open' })
+map('n' , '<f12>C'     , '<cmd>PaqClean<cr>'    , { desc = 'paq clean' })
+map('n' , '<f12><m-c>' , '<cmd>PaqLogClean<cr>' , { desc = 'paq log clean' })
+
 -- configuration {{{1
 
 -- treesitter {{{2
