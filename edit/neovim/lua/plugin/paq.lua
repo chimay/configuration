@@ -68,8 +68,8 @@ treesitter.setup {
 				["ib"] = "@block.inner",
 				["ao"] = "@loop.outer",
 				["io"] = "@loop.inner",
-				["ad"] = "@conditional.outer",
-				["id"] = "@conditional.inner",
+				["ai"] = "@conditional.outer",
+				["ii"] = "@conditional.inner",
 				["a#"] = "@comment.outer",
 				["i#"] = "@comment.inner",
 				-- You can optionally set descriptions to the mappings (used in the desc parameter of
@@ -154,10 +154,10 @@ treesitter.setup {
 			-- Use if you want more granular movements
 			-- Make it even more gradual by adding multiple queries and regex.
 			goto_next = {
-				[")d"] = "@conditional.outer",
+				[")i"] = "@conditional.outer",
 			},
 			goto_previous = {
-				["(D"] = "@conditional.outer",
+				["(I"] = "@conditional.outer",
 			},
 		},
 	},
