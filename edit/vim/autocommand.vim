@@ -59,13 +59,6 @@ augroup temporary-files
 	autocmd BufNewFile,BufReadPre /tmp/*,*/tmp/* setlocal noundofile
 augroup END
 
-augroup tabulation
-	autocmd!
-	autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
-	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-	autocmd FileType org,markdown setlocal ts=2 sts=2 sw=2 expandtab
-augroup END
-
 augroup folding
 	autocmd!
 	autocmd BufReadPost ~/public/wheel/**.vim setlocal foldmethod=indent
@@ -84,14 +77,27 @@ augroup file-vim
 	"autocmd filetype vim setlocal listchars=tab:┆\ ,nbsp:▒,precedes:❮,extends:❯,conceal:Δ
 augroup END
 
+augroup file-orgmode
+	autocmd!
+	autocmd FileType org setlocal ts=2 sts=2 sw=2 expandtab
+augroup END
+
 augroup file-markdown
 	autocmd!
+	autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab
 	"autocmd bufwritepost **.md !pandoc -t html % -o %:r.html
 augroup END
 
-augroup json
+augroup file-yaml
+	autocmd!
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup END
+
+augroup file-json
 	autocmd!
 	autocmd FileType json %!jq '.'
+	autocmd FileType json set foldmethod=indent
+	autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
 augroup end
 
 augroup file-help
@@ -116,6 +122,11 @@ augroup man-pages
 	autocmd FileType man nnoremap <buffer> b <c-b>
 	autocmd FileType man nnoremap <buffer> u <c-u>
 augroup end
+
+augroup file-make
+	autocmd!
+	autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
+augroup END
 
 augroup file-libreoffice
 	autocmd!

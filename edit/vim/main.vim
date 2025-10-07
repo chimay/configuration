@@ -988,7 +988,7 @@ nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap <f2>ig <cmd>echo library#highlight_group()<cr>
+nnoremap <f2>h <cmd>echo library#highlight_group()<cr>
 
 " Pavé numérique {{{2
 

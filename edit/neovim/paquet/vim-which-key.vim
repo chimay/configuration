@@ -270,6 +270,14 @@ let g:which_key_main_map.p.q = {
 	\ 'C' : ["library#execute('PaqLogClean')" , 'clean log'] ,
 	\ }
 
+" wheel {{{2
+
+nnoremap <silent> <space> <cmd>WhichKey '<space>'<cr>
+
+" organ {{{2
+
+nnoremap <silent> <m-o> <cmd>WhichKey '<m-o>'<cr>
+
 " function keys {{{1
 
 " for help

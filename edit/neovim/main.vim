@@ -963,10 +963,10 @@ nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap <f2>ig <cmd>echo library#highlight_group()<cr>
+nnoremap <f2>h <cmd>echo library#highlight_group()<cr>
 " for treesitter
-nnoremap <f2>tg <cmd>Inspect<cr>
-nnoremap <f2>Tg <cmd>InspectTree<cr>
+nnoremap <f2>i <cmd>Inspect<cr>
+nnoremap <f2>t <cmd>InspectTree<cr>
 
 " Journal de bord {{{2
 

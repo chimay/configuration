@@ -35,7 +35,7 @@ hyper + comma
 	zshrunterm.sh
 
 hyper + ccedilla
-	rofi-clipmenu.zsh
+	rofi-clipmenu.sh
 
 hyper + section
 	urxvtc -name fzf-nova -e ~/racine/infoman/unix/generic/gotbletu/fzf-nova/fzf-nova
@@ -148,7 +148,7 @@ super + ctrl + i
 	vimiv ~/photo/numerique
 
 super + ctrl + {q,b}
-	goto-or-run.sh {qutebrowser,firefox}
+	goto-or-run.sh {qutebrowser,helium}
 
 # super + ctrl + n
 # 	run-with-log.sh nyxt
