@@ -239,7 +239,7 @@ let g:which_key_main_map['!'] = {
 let g:which_key_main_map.o = {
 	\ 'name' : '+orgmode' ,
 	\ 'h' : ['library#orgmode_make_html()'   , 'make html'] ,
-	\ 'H' : ['library#orgmode_to_html()'   , 'generate html'] ,
+	\ 'H' : ['library#orgmode_gen_html()'   , 'generate html'] ,
 	\ }
 
 " mathematic {{{2
@@ -247,7 +247,7 @@ let g:which_key_main_map.o = {
 let g:which_key_main_map['£'] = {
 	\ 'name' : '+mathematic' ,
 	\ 'p' : ['library#latex_make_pdf()'   , 'make pdf'] ,
-	\ 'P' : ['library#latex_to_pdf()'   , 'generate pdf'] ,
+	\ 'P' : ['library#latex_gen_pdf()'   , 'generate pdf'] ,
 	\ }
 
 " music {{{2
@@ -255,8 +255,11 @@ let g:which_key_main_map['£'] = {
 let g:which_key_main_map['µ'] = {
 	\ 'name' : '+music' ,
 	\ 'm' : ['library#lilypond_make_midi()'   , 'make midi'] ,
-	\ 'p' : ['library#lilypond_display_pdf()' , 'display pdf'] ,
+	\ 'p' : ['library#lilypond_make_display_pdf()' , 'make & display pdf'] ,
 	\ 'o' : ['library#lilypond_make_ogg()'    , 'make ogg'] ,
+	\ 'M' : ['library#lilypond_gen_midi()'   , 'generate midi'] ,
+	\ 'P' : ['library#lilypond_gen_display_pdf()' , 'gen & display pdf'] ,
+	\ 'O' : ['library#lilypond_gen_ogg()'    , 'generate ogg'] ,
 	\ }
 
 " plugin {{{2
