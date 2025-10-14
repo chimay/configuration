@@ -1169,12 +1169,12 @@ fun! library#lilypond_gen_ogg ()
 	else
 		return 'filetype not supported'
 	endif
-	let lilypondname = filename .. '.ly'
+	let midiname = filename .. '.midi'
 	let oggname = filename .. '.ogg'
 	let padname = filename .. '-pad.ogg'
 	let old_dir = getcwd()
 	execute 'lcd' dirname
-	execute '! timidity-ogg.zsh' lilypondname
+	execute '! timidity-ogg.zsh' midiname
 	execute '! sox' oggname padname 'pad 1 1'
 	execute '! mv -f' padname oggname
 	execute 'lcd' old_dir
@@ -1200,12 +1200,12 @@ fun! library#lilypond_gen_mp3 ()
 	else
 		return 'filetype not supported'
 	endif
-	let lilypondname = filename .. '.ly'
+	let midiname = filename .. '.midi'
 	let oggname = filename .. '.ogg'
 	let padname = filename .. '-pad.ogg'
 	let old_dir = getcwd()
 	execute 'lcd' dirname
-	execute '! timidity-mp3.zsh' lilypondname
+	execute '! timidity-mp3.zsh' midiname
 	execute '! sox' oggname padname 'pad 1 1'
 	execute '! mv -f' padname oggname
 	execute 'lcd' old_dir
