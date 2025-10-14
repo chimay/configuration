@@ -978,60 +978,84 @@ endfun
 fun! library#lilypond_make_midi ()
 	" Make midi file from lilypond file
 	call library#write_all ()
+	let old_dir = getcwd()
 	let rawname = expand('%')
 	let extension = fnamemodify(rawname, ':e:e')
 	if extension == 'ly'
-		let filename = fnamemodify(rawname, ':p:r')
+		let dirname = fnamemodify(rawname, ':h')
+		let filename = fnamemodify(rawname, ':t:r')
 	elseif extension == 'mld.ly'
-		let shortname = fnamemodify(rawname, ':t:r:r')
-		let parent    = fnamemodify(rawname, ':h:h')
-		let filename = parent .. '/' .. shortname
+		let dirname = fnamemodify(rawname, ':h')
+		if dirname ==# '.'
+			let dirname = '..'
+		else
+			let dirname = fnamemodify(rawname, ':h:h')
+		endif
+		let filename = fnamemodify(rawname, ':t:r:r')
 	else
 		return 'filetype not supported'
 	endif
 	let midiname = filename .. '.midi'
+	execute 'lcd' dirname
 	setlocal makeprg=make
 	execute 'make! -k' midiname
+	execute 'lcd' old_dir
 	return 'success'
 endfun
 
 fun! library#lilypond_make_ogg ()
 	" Make ogg file from lilypond file
 	call library#write_all ()
+	let old_dir = getcwd()
 	let rawname = expand('%')
 	let extension = fnamemodify(rawname, ':e:e')
 	if extension == 'ly'
-		let filename = fnamemodify(rawname, ':p:r')
+		let dirname = fnamemodify(rawname, ':h')
+		let filename = fnamemodify(rawname, ':t:r')
 	elseif extension == 'mld.ly'
-		let shortname = fnamemodify(rawname, ':t:r:r')
-		let parent    = fnamemodify(rawname, ':h:h')
-		let filename = parent .. '/' .. shortname
+		let dirname = fnamemodify(rawname, ':h')
+		if dirname ==# '.'
+			let dirname = '..'
+		else
+			let dirname = fnamemodify(rawname, ':h:h')
+		endif
+		let filename = fnamemodify(rawname, ':t:r:r')
 	else
 		return 'filetype not supported'
 	endif
 	let oggname = filename .. '.ogg'
+	execute 'lcd' dirname
 	setlocal makeprg=make
 	execute 'make! -k' oggname
+	execute 'lcd' old_dir
 	return 'success'
 endfun
 
 fun! library#lilypond_make_mp3 ()
 	" Make mp3 file from lilypond file
 	call library#write_all ()
+	let old_dir = getcwd()
 	let rawname = expand('%')
 	let extension = fnamemodify(rawname, ':e:e')
 	if extension == 'ly'
-		let filename = fnamemodify(rawname, ':p:r')
+		let dirname = fnamemodify(rawname, ':h')
+		let filename = fnamemodify(rawname, ':t:r')
 	elseif extension == 'mld.ly'
-		let shortname = fnamemodify(rawname, ':t:r:r')
-		let parent    = fnamemodify(rawname, ':h:h')
-		let filename = parent .. '/' .. shortname
+		let dirname = fnamemodify(rawname, ':h')
+		if dirname ==# '.'
+			let dirname = '..'
+		else
+			let dirname = fnamemodify(rawname, ':h:h')
+		endif
+		let filename = fnamemodify(rawname, ':t:r:r')
 	else
 		return 'filetype not supported'
 	endif
 	let mp3name = filename .. '.mp3'
+	execute 'lcd' dirname
 	setlocal makeprg=make
 	execute 'make! -k' mp3name
+	execute 'lcd' old_dir
 	return 'success'
 endfun
 
@@ -1039,24 +1063,32 @@ fun! library#lilypond_display_pdf ()
 	" Display pdf file from lilypond file
 	" Make it first if necessary
 	call library#write_all ()
+	let old_dir = getcwd()
 	let rawname = expand('%')
 	let extension = fnamemodify(rawname, ':e:e')
 	if extension == 'ly'
-		let filename = fnamemodify(rawname, ':p:r')
+		let dirname = fnamemodify(rawname, ':h')
+		let filename = fnamemodify(rawname, ':t:r')
 	elseif extension == 'mld.ly'
-		let shortname = fnamemodify(rawname, ':t:r:r')
-		let parent    = fnamemodify(rawname, ':h:h')
-		let filename = parent .. '/' .. shortname
+		let dirname = fnamemodify(rawname, ':h')
+		if dirname ==# '.'
+			let dirname = '..'
+		else
+			let dirname = fnamemodify(rawname, ':h:h')
+		endif
+		let filename = fnamemodify(rawname, ':t:r:r')
 	else
 		return 'filetype not supported'
 	endif
 	let pdfname = filename .. '.pdf'
+	execute 'lcd' dirname
 	setlocal makeprg=make
 	execute 'make! -k' pdfname
 	let display = 'zathura ' .. pdfname .. '&'
 	echomsg display
 	let output = system(display)
 	"echomsg output
+	execute 'lcd' old_dir
 	return 'success'
 endfun
 
