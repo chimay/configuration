@@ -20,6 +20,8 @@ constants:
 
 source_directories:
   - graphix
+  - run
+  - log
   - racine/README.org
   - racine/artisan
   - racine/automat
@@ -60,7 +62,6 @@ source_directories:
   - racine/prolang
   - racine/public
   - racine/refer
-  - racine/run
   - racine/science
   - racine/self
   - racine/session

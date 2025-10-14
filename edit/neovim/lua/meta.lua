@@ -6,4 +6,4 @@ require('config.options')
 require('config.autocmds')
 require('config.keybinds')
 
-require('plugin.paq')
+--require('plugin.paq')

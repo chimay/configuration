@@ -102,28 +102,17 @@ ignore = Name *.ptc*
 
 # Sockets {{{2
 
-ignore = Path racine/run/socket/*
-ignore = Path racine/run/socket/.*
-
 ignore = Path racine/config/crypte/gnupg/S.gpg-agent*
 
 ignore = Path racine/config/webrowser/elinks/socket0
 
 # Tuyaux {{{2
 
-ignore = Path racine/run/fifo/*
-ignore = Path racine/run/fifo/.*
-
 ignore = Path racine/config/chaton/weechat/weechat_fifo*
 
 # Sshfs {{{1
 
 ignore = Path tremplin/sshfs
-
-# Fichiers run {{{1
-
-ignore = Path racine/run/*
-ignore = Path racine/run/.*
 
 # Provisoire {{{1
 

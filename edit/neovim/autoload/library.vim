@@ -278,7 +278,7 @@ fun! library#edit_minisnip_file ()
 	echomsg getcwd()
 	let complete = 'customlist,library#complete_file_in_current_subtree'
 	let file = input('Edit miniSnip file : ', '', complete)
-	execute 'edit' .. minisnip_directory .. file
+	execute 'vsplit' .. minisnip_directory .. file
 endfun
 
 fun! library#read_in_current_file_subtree ()
@@ -892,7 +892,7 @@ endfun
 
 " ---- music
 
-fun! library#make_midi ()
+fun! library#lilypond_make_midi ()
 	" Make midi file from lilypond file
 	call library#write_all ()
 	let extension = fnamemodify(expand('%'), ':e:e')
@@ -912,7 +912,7 @@ fun! library#make_midi ()
 	return 'success'
 endfun
 
-fun! library#make_ogg ()
+fun! library#lilypond_make_ogg ()
 	" Make ogg file from lilypond file
 	call library#write_all ()
 	let extension = fnamemodify(expand('%'), ':e:e')
@@ -932,7 +932,7 @@ fun! library#make_ogg ()
 	return 'success'
 endfun
 
-fun! library#make_mp3 ()
+fun! library#lilypond_make_mp3 ()
 	" Make mp3 file from lilypond file
 	call library#write_all ()
 	let extension = fnamemodify(expand('%'), ':e:e')
@@ -952,7 +952,7 @@ fun! library#make_mp3 ()
 	return 'success'
 endfun
 
-fun! library#display_pdf ()
+fun! library#lilypond_display_pdf ()
 	" Display pdf file from lilypond file
 	call library#write_all ()
 	let extension = fnamemodify(expand('%'), ':e:e')

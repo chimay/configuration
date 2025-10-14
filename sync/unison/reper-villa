@@ -2,6 +2,14 @@
 
 include reper-maison
 
+path = run
+path = log
+
+#  {{{1
+
+path = racine
+path = graphix
+
 # Dot-dirs {{{1
 
 #path = .config
@@ -30,5 +38,3 @@ include reper-maison
 #path = .kde
 
 #path = .lv2
-
-# }}}

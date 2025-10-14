@@ -238,9 +238,9 @@ let g:which_key_main_map['!'] = {
 
 let g:which_key_main_map['µ'] = {
 	\ 'name' : '+music' ,
-	\ 'm' : ['library#make_midi()'   , 'make'] ,
-	\ 'p' : ['library#display_pdf()' , 'make'] ,
-	\ 'o' : ['library#make_ogg()'    , 'make'] ,
+	\ 'm' : ['library#lilypond_make_midi()'   , 'make midi'] ,
+	\ 'p' : ['library#lilypond_display_pdf()' , 'display pdf'] ,
+	\ 'o' : ['library#lilypond_make_ogg()'    , 'make ogg'] ,
 	\ }
 
 " plugin {{{2
@@ -270,13 +270,13 @@ let g:which_key_main_map.p.q = {
 	\ 'C' : ["library#execute('PaqLogClean')" , 'clean log'] ,
 	\ }
 
-" wheel {{{2
+" wheel {{{1
 
-nnoremap <silent> <space> <cmd>WhichKey '<space>'<cr>
+"nnoremap <silent> <space> <cmd>WhichKey '<space>'<cr>
 
-" organ {{{2
+" organ {{{1
 
-nnoremap <silent> <m-o> <cmd>WhichKey '<m-o>'<cr>
+"nnoremap <silent> <m-o> <cmd>WhichKey '<m-o>'<cr>
 
 " function keys {{{1
 

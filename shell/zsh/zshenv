@@ -45,13 +45,11 @@ export OPERASYS
 
 export UID=$(id -u)
 
-RUNUSERDIR=/run/user/$UID
-
-if [ -d $RUNUSERDIR ]
+if [ -d $XDG_RUNTIME_DIR ]
 then
-	export SOCKETDIR=$RUNUSERDIR
+	export SOCKETDIR=$XDG_RUNTIME_DIR
 else
-	export SOCKETDIR=~/racine/run/socket
+	export SOCKETDIR=~/run/socket
 fi
 
 #  Type de terminal {{{1
@@ -428,7 +426,7 @@ export SUDO_EDITOR=vim-lite.sh
 
 # Pour nvr, neovim-remote
 
-export NVIM_LISTEN_ADDRESS=/run/user/$UID/neovim-socket
+export NVIM_LISTEN_ADDRESS=$XDG_RUNTIME_DIR/neovim-socket
 
 # Pour edir
 

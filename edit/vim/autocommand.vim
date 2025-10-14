@@ -52,6 +52,7 @@ augroup command-window
 	autocmd CmdwinEnter * noremap <buffer> <space> ?
 	autocmd CmdwinEnter * setlocal foldlevel=99
 	autocmd CmdwinLeave * let @/=""
+	autocmd CmdwinEnter * nnoremap <buffer> <cr> <cr>
 augroup END
 
 augroup temporary-files
@@ -86,6 +87,12 @@ augroup file-markdown
 	autocmd!
 	autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab
 	"autocmd bufwritepost **.md !pandoc -t html % -o %:r.html
+augroup END
+
+augroup file-tex
+	autocmd!
+	autocmd FileType tex setlocal foldmethod=marker
+	autocmd FileType tex setlocal foldmarker=%{{{,%}}}
 augroup END
 
 augroup file-yaml

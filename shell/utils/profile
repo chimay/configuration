@@ -14,7 +14,7 @@
 
 export SSH_AUTH_SOCK SSH_AGENT_PID
 
-repertoire=$HOME/racine/run/ssh
+repertoire=$HOME/run/ssh
 fichier=$repertoire/agent
 
 [[ -d $repertoire ]] || mkdir -p $repertoire

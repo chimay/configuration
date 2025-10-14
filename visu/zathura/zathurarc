@@ -89,13 +89,15 @@ set index-active-bg "#5b3c11"
 
 # document {{{2
 
-set recolor true
+# set recolor true
 
 # ---- black over brown
-set recolor-lightcolor "#5b3c11"
-set recolor-darkcolor "black"
+# set recolor-lightcolor "#5b3c11"
+# set recolor-darkcolor "black"
+
 # ---- or
 # ---- brown over black
+
 # set recolor-darkcolor "#5b3c11"
 # set recolor-lightcolor "black"
 

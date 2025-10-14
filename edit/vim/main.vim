@@ -697,13 +697,14 @@ nnoremap <f11>f <cmd>call library#edit_fix()<cr>
 nnoremap <f11>l <cmd>call library#edit_ship_log()<cr>
 nnoremap <f11>s <cmd>call library#edit_syntax_plugin()<cr>
 nnoremap <f11>t <cmd>call library#edit_tasks()<cr>
+nnoremap <f11>m <cmd>call library#edit_minisnip_file()<cr>
 
 nnoremap <f11>x <cmd>call library#chmodexec()<cr>
 
 " lilypond
-nnoremap <f9>m <cmd>call library#make_midi()<cr>
-nnoremap <f9>o <cmd>call library#make_ogg()<cr>
-nnoremap <f9>p <cmd>call library#display_pdf()<cr>
+nnoremap <f9>m <cmd>call library#lilypond_make_midi()<cr>
+nnoremap <f9>o <cmd>call library#lilypond_make_ogg()<cr>
+nnoremap <f9>p <cmd>call library#lilypond_display_pdf()<cr>
 
 " Arguments {{{2
 

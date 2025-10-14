@@ -147,7 +147,7 @@ set findprg="find %s -name \\*%p\\* -print , -type d \\( ! -readable -o ! -execu
 
 set locateprg="locate -d ~/racine/index/filesys/locate/racine.db %a"
 
-set fusehome="~/racine/gate/bridge/fuse"
+set fusehome="~/mount/import/fuse"
 
 " Environnement {{{1
 

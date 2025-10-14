@@ -119,10 +119,6 @@ alias ns='run-neovim-server.sh &'
 alias nvc=run-neovim-client.sh
 alias nvqc=run-neovim-qt-client.sh
 
-alias nvl='NVIM_APPNAME=nvim-lua nvim --listen /run/user/$UID/neovim-lua'
-alias nvlz='NVIM_APPNAME=lazyvim nvim --listen /run/user/$UID/lazyvim'
-alias nvcd='NVIM_APPNAME=nvchad nvim --listen /run/user/$UID/nvchad'
-
 # -- neovim remote
 
 alias nr=nvr
@@ -601,7 +597,6 @@ hash -d plugin=~/racine/plugin
 hash -d prolang=~/racine/prolang
 hash -d public=~/racine/public
 hash -d refer=~/racine/refer
-hash -d run=~/racine/run
 hash -d science=~/racine/science
 hash -d self=~/racine/self
 hash -d session=~/racine/session
