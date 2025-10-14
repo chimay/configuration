@@ -275,7 +275,7 @@ fun! library#edit_minisnip_file ()
 	"let directory = getcwd()
 	let minisnip_directory = '~/racine/plugin/data/neovim/miniSnip/'
 	execute 'lcd' minisnip_directory
-	echomsg getcwd()
+	"echomsg getcwd()
 	let complete = 'customlist,library#complete_file_in_current_subtree'
 	let file = input('Edit miniSnip file : ', '', complete)
 	execute 'vsplit' .. minisnip_directory .. file
@@ -890,23 +890,106 @@ fun! library#publish ()
 	return returnstring
 endfun
 
+" ---- org mode
+
+fun! library#orgmode_make_html ()
+	" Make html file from org mode file
+	call library#write_all ()
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e')
+	if extension !=# 'org'
+		return 'filetype not supported'
+	endif
+	let filename = fnamemodify(rawname, ':t:r')
+	let dirname = fnamemodify(rawname, ':h')
+	let htmlname = filename .. '.html'
+	let old_dir = getcwd()
+	execute 'lcd' dirname
+	setlocal makeprg=make
+	execute 'make! -k' htmlname
+	execute 'lcd' old_dir
+	return 'success'
+endfun
+
+fun! library#orgmode_to_html ()
+	" Generate html file from org mode file
+	call library#write_all ()
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e')
+	if extension !=# 'org'
+		return 'filetype not supported'
+	endif
+	let filename = fnamemodify(rawname, ':t:r')
+	let dirname = fnamemodify(rawname, ':h')
+	let orgname = filename .. '.org'
+	let htmlname = filename .. '.html'
+	let old_dir = getcwd()
+	execute 'lcd' dirname
+	execute '! emacs' orgname '--batch -f org-html-export-to-html -kill 2> emacs.log'
+	execute '! remove-max-width-from-org-html-export.zsh' htmlname
+	execute 'lcd' old_dir
+	return 'success'
+endfun
+
+" ---- mathematic
+
+fun! library#latex_make_pdf ()
+	" Make pdf file from latex file
+	call library#write_all ()
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e')
+	if extension !=# 'tex'
+		return 'filetype not supported'
+	endif
+	let filename = fnamemodify(rawname, ':t:r')
+	let dirname = fnamemodify(rawname, ':h')
+	let pdfname = filename .. '.pdf'
+	let old_dir = getcwd()
+	execute 'lcd' dirname
+	setlocal makeprg=make
+	execute 'make! clean'
+	execute 'make! -k' pdfname
+	execute 'lcd' old_dir
+	return 'success'
+endfun
+
+fun! library#latex_to_pdf ()
+	" Generate pdf file from latex file
+	call library#write_all ()
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e')
+	if extension !=# 'tex'
+		return 'filetype not supported'
+	endif
+	let filename = fnamemodify(rawname, ':t:r')
+	let dirname = fnamemodify(rawname, ':h')
+	let texname = filename .. '.tex'
+	let pdfname = filename .. '.pdf'
+	let old_dir = getcwd()
+	execute 'lcd' dirname
+	execute '! rm -f ?*~ ?*.log ?*.aux ?*.out ?*.toc ?*.dvi ?*.fls ?*.fdb_latexmk'
+	execute '! latexmk -f -pdf' texname
+	execute 'lcd' old_dir
+	return 'success'
+endfun
+
 " ---- music
 
 fun! library#lilypond_make_midi ()
 	" Make midi file from lilypond file
 	call library#write_all ()
-	let extension = fnamemodify(expand('%'), ':e:e')
-	if extension == 'mld.ly'
-		let shortname = fnamemodify(expand('%'), ':t:r:r')
-		let parent    = fnamemodify(expand('%'), ':h:h')
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e:e')
+	if extension == 'ly'
+		let filename = fnamemodify(rawname, ':p:r')
+	elseif extension == 'mld.ly'
+		let shortname = fnamemodify(rawname, ':t:r:r')
+		let parent    = fnamemodify(rawname, ':h:h')
 		let filename = parent .. '/' .. shortname
-		let midiname = filename .. '.midi'
-	elseif extension == 'ly'
-		let filename = fnamemodify(expand('%'), ':p:r')
-		let midiname = filename .. '.midi'
 	else
 		return 'filetype not supported'
 	endif
+	let midiname = filename .. '.midi'
 	setlocal makeprg=make
 	execute 'make! -k' midiname
 	return 'success'
@@ -915,18 +998,18 @@ endfun
 fun! library#lilypond_make_ogg ()
 	" Make ogg file from lilypond file
 	call library#write_all ()
-	let extension = fnamemodify(expand('%'), ':e:e')
-	if extension == 'mld.ly'
-		let shortname = fnamemodify(expand('%'), ':t:r:r')
-		let parent    = fnamemodify(expand('%'), ':h:h')
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e:e')
+	if extension == 'ly'
+		let filename = fnamemodify(rawname, ':p:r')
+	elseif extension == 'mld.ly'
+		let shortname = fnamemodify(rawname, ':t:r:r')
+		let parent    = fnamemodify(rawname, ':h:h')
 		let filename = parent .. '/' .. shortname
-		let oggname = filename .. '.ogg'
-	elseif extension == 'ly'
-		let filename = fnamemodify(expand('%'), ':p:r')
-		let oggname = filename .. '.ogg'
 	else
 		return 'filetype not supported'
 	endif
+	let oggname = filename .. '.ogg'
 	setlocal makeprg=make
 	execute 'make! -k' oggname
 	return 'success'
@@ -935,18 +1018,18 @@ endfun
 fun! library#lilypond_make_mp3 ()
 	" Make mp3 file from lilypond file
 	call library#write_all ()
-	let extension = fnamemodify(expand('%'), ':e:e')
-	if extension == 'mld.ly'
-		let shortname = fnamemodify(expand('%'), ':t:r:r')
-		let parent    = fnamemodify(expand('%'), ':h:h')
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e:e')
+	if extension == 'ly'
+		let filename = fnamemodify(rawname, ':p:r')
+	elseif extension == 'mld.ly'
+		let shortname = fnamemodify(rawname, ':t:r:r')
+		let parent    = fnamemodify(rawname, ':h:h')
 		let filename = parent .. '/' .. shortname
-		let mp3name = filename .. '.mp3'
-	elseif extension == 'ly'
-		let filename = fnamemodify(expand('%'), ':p:r')
-		let mp3name = filename .. '.mp3'
 	else
 		return 'filetype not supported'
 	endif
+	let mp3name = filename .. '.mp3'
 	setlocal makeprg=make
 	execute 'make! -k' mp3name
 	return 'success'
@@ -954,25 +1037,50 @@ endfun
 
 fun! library#lilypond_display_pdf ()
 	" Display pdf file from lilypond file
+	" Make it first if necessary
 	call library#write_all ()
-	let extension = fnamemodify(expand('%'), ':e:e')
-	if extension == 'mld.ly'
-		let shortname = fnamemodify(expand('%'), ':t:r:r')
-		let parent    = fnamemodify(expand('%'), ':h:h')
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e:e')
+	if extension == 'ly'
+		let filename = fnamemodify(rawname, ':p:r')
+	elseif extension == 'mld.ly'
+		let shortname = fnamemodify(rawname, ':t:r:r')
+		let parent    = fnamemodify(rawname, ':h:h')
 		let filename = parent .. '/' .. shortname
-		let pdfname = filename .. '.pdf'
-	elseif extension == 'ly'
-		let filename = fnamemodify(expand('%'), ':p:r')
-		let pdfname = filename .. '.pdf'
 	else
 		return 'filetype not supported'
 	endif
+	let pdfname = filename .. '.pdf'
 	setlocal makeprg=make
 	execute 'make! -k' pdfname
 	let display = 'zathura ' .. pdfname .. '&'
 	echomsg display
 	let output = system(display)
 	"echomsg output
+	return 'success'
+endfun
+
+fun! library#lilypond_to_midi ()
+	" Generate midi file from lilypond file
+	call library#write_all ()
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e:e')
+	if extension == 'mld.ly'
+		let shortname = fnamemodify(rawname, ':t:r:r')
+		let parent    = fnamemodify(rawname, ':h:h')
+		let dirname = fnamemodify(rawname, ':h')
+		let filename = parent .. '/' .. shortname
+	elseif extension == 'ly'
+		let dirname = fnamemodify(rawname, ':h')
+		let filename = fnamemodify(rawname, ':p:r')
+	else
+		return 'filetype not supported'
+	endif
+	let lilypondname = filename .. '.ly'
+	let old_dir = getcwd()
+	execute 'lcd' dirname
+	echomsg 'lilypond -ddelete-intermediate-files -dno-point-and-click' lilypondname
+	execute 'lcd' old_dir
 	return 'success'
 endfun
 

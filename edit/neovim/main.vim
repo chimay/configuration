@@ -711,6 +711,14 @@ nnoremap <f11>m <cmd>call library#edit_minisnip_file()<cr>
 
 nnoremap <f11>x <cmd>call library#chmodexec()<cr>
 
+" org mode
+nnoremap <f7>h <cmd>call library#orgmode_make_html()<cr>
+nnoremap <f7>H <cmd>call library#orgmode_to_html()<cr>
+
+" latex
+nnoremap <f8>p <cmd>call library#latex_make_pdf()<cr>
+nnoremap <f8>P <cmd>call library#latex_to_pdf()<cr>
+
 " lilypond
 nnoremap <f9>m <cmd>call library#lilypond_make_midi()<cr>
 nnoremap <f9>o <cmd>call library#lilypond_make_ogg()<cr>

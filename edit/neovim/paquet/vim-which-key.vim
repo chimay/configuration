@@ -234,6 +234,22 @@ let g:which_key_main_map['!'] = {
 	\ 'x' : ['library#chmodexec()', 'chmod exec'],
 	\ }
 
+" org mode {{{2
+
+let g:which_key_main_map.o = {
+	\ 'name' : '+orgmode' ,
+	\ 'h' : ['library#orgmode_make_html()'   , 'make html'] ,
+	\ 'H' : ['library#orgmode_to_html()'   , 'generate html'] ,
+	\ }
+
+" mathematic {{{2
+
+let g:which_key_main_map['£'] = {
+	\ 'name' : '+mathematic' ,
+	\ 'p' : ['library#latex_make_pdf()'   , 'make pdf'] ,
+	\ 'P' : ['library#latex_to_pdf()'   , 'generate pdf'] ,
+	\ }
+
 " music {{{2
 
 let g:which_key_main_map['µ'] = {
