@@ -1,12 +1,14 @@
 " vim: set filetype=vim :
 
-source ~/racine/config/edit/vim-lite/vimrc
+" mail {{{1
 
 set filetype=mail
 
 packadd vim-mail
 
-let g:VimMailStartFlags="riOoAIb"
+let g:VimMailStartFlags = {}
+let g:VimMailStartFlags.default = "riOoAIb"
+
 let g:VimMailContactQueryCmd="abook --mutt-query '%s'"
 
 let g:VimMailSpellLangs=['fr', 'en']
@@ -14,3 +16,14 @@ let g:VimMailSpellLangs=['fr', 'en']
 let g:VimMailDoNotMap=0
 let g:VimMailDoNotFold=0
 let g:VimMailDontUseComplete=0
+
+" plugins needed before config {{{1
+
+" main {{{1
+
+source ~/racine/config/edit/vim-mail/main.vim
+
+packadd! matchit
+
+" maps replacing plugins ones {{{1
+

@@ -1004,7 +1004,7 @@ fun! library#lilypond_make_midi ()
 endfun
 
 fun! library#lilypond_make_display_pdf ()
-	" Display pdf file from lilypond file
+	" Make and display pdf file from lilypond file
 	" Make it first if necessary
 	call library#write_all ()
 	let old_dir = getcwd()
@@ -1120,7 +1120,7 @@ fun! library#lilypond_gen_midi ()
 endfun
 
 fun! library#lilypond_gen_display_pdf ()
-	" Generate midi file from lilypond file
+	" Generate and display pdf file from lilypond file
 	call library#write_all ()
 	let rawname = expand('%')
 	let extension = fnamemodify(rawname, ':e:e')

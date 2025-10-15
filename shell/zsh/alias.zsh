@@ -640,6 +640,7 @@ hash -d zdot=~/racine/dotdir/zsh
 
 hash -d vimconf=~/racine/config/edit/vim
 hash -d vimliteconf=~/racine/config/edit/vim-lite
+hash -d vimailconf=~/racine/config/edit/vim-mail
 hash -d neovimconf=~/racine/config/edit/neovim
 hash -d kakconf=~/racine/config/edit/kak
 hash -d emacsconf=~/racine/config/edit/emacs

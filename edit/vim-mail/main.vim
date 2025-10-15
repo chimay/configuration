@@ -35,7 +35,7 @@ set path=.,,
 
 set backup
 
-set backupdir=~/racine/varia/backup/vim-lite,.
+set backupdir=~/racine/varia/backup/vim-mail,.
 
 set backupext=~
 
@@ -46,7 +46,7 @@ set backupskip=/tmp/*,/etc/*,neomutt-*-*-*-*
 "  Fichier de récupération en cas de crash {{{2
 
 set swapfile
-set directory=~/racine/varia/autosave/vim-lite
+set directory=~/racine/varia/autosave/vim-mail
 
 " Fréquence de sauvegarde
 " ------------------------------------
@@ -59,7 +59,7 @@ set updatetime=12000		" Millisecondes
 set undolevels=123
 set undofile
 set undoreload=12743
-set undodir=~/racine/varia/undo/vim-lite,.
+set undodir=~/racine/varia/undo/vim-mail,.
 
 "  Session {{{1
 
@@ -828,7 +828,7 @@ set cmdheight=3
 
 "set concealcursor=i
 
-" Voir aussi ~/racine/config/edit/vim-lite/after/syntax/html/concealvim
+" Voir aussi ~/racine/config/edit/vim-mail/after/syntax/html/concealvim
 
 " Couleurs dans le terminal {{{2
 
@@ -864,7 +864,7 @@ syntax sync maxlines=84
 
 "  Auto-commandes {{{1
 
-source ~/racine/config/edit/vim-lite/autocommand.vim
+source ~/racine/config/edit/vim-mail/autocommand.vim
 
 "  Types de fichiers {{{1
 
@@ -891,7 +891,7 @@ set viminfo=
 	\:7543,
 	\/1234,
 	\@1234,
-	\n~/racine/session/vim-lite/main.info
+	\n~/racine/session/vim-mail/main.info
 
 " Remplacé par neomru
 " 	\%30,

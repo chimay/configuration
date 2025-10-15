@@ -727,7 +727,7 @@ nnoremap <f9>M <cmd>call library#lilypond_gen_midi()<cr>
 nnoremap <f9>P <cmd>call library#lilypond_gen_display_pdf()<cr>
 nnoremap <f9>O <cmd>call library#lilypond_gen_ogg()<cr>
 
-" Tampons (buffers) {{{2
+" buffers (tampons) {{{2
 
 " wipe buffer
 nnoremap <m-q> <cmd>bwipe!<cr>
