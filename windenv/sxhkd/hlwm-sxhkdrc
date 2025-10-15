@@ -193,11 +193,17 @@ hyper + o ; space
 
 # pass {{{1
 
+hyper + y ; plus
+	pass-open.sh
+
+hyper + y ; equal
+	pass-open.sh
+
+hyper + y ; minus
+	pass-close.sh
+
 hyper + x
 	passmenu.bash
-
-# hyper + p
-# 	rofi-pass.zsh &>> ~/log/rofi-pass.log
 
 # network {{{1
 
@@ -283,11 +289,11 @@ hyper + s ; Left
 hyper + s ; minus
 	xset s off ; xset -dpms ; notify-send "$(xset -q | grep 'Screen Saver:\|timeout\|DPMS')"
 
-hyper + s ; equal
-	xset s on ; xset +dpms ; xset dpms 0 0 300 ; notify-send "$(xset -q | grep 'Screen Saver:\|timeout\|DPMS')"
-
 hyper + s ; KP_Subtract
 	xset s off ; xset -dpms ; notify-send "$(xset -q | grep 'Screen Saver:\|timeout\|DPMS')"
+
+hyper + s ; equal
+	xset s on ; xset +dpms ; xset dpms 0 0 300 ; notify-send "$(xset -q | grep 'Screen Saver:\|timeout\|DPMS')"
 
 hyper + s ; plus
 	xset s on ; xset +dpms ; xset dpms 0 0 300 ; notify-send "$(xset -q | grep 'Screen Saver:\|timeout\|DPMS')"

@@ -434,6 +434,8 @@ hc rule floatplacement=center
 
 hc rule instance=zshrun class=URxvt floating=on floatplacement=center
 hc rule instance=zshrunterm class=URxvt floating=on floatplacement=center
+hc rule instance=pass-open class=URxvt floating=on floatplacement=center
+hc rule instance=pass-close class=URxvt floating=on floatplacement=center
 hc rule instance=fzf-nova class=URxvt floating=on floatplacement=center
 hc rule instance=calculatrice class=URxvt floating=on floatplacement=center
 hc rule instance=meteo class=URxvt floating=on floatplacement=center
