@@ -190,9 +190,31 @@ let g:DeleteTrailingWhitespace_Action = 'delete'
 
 let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
+" Exploration {{{1
+
+" vifm {{{2
+
+let g:vifm_term = 'xterm -e'
+let g:vifm_exec_args ='-c only'
+
+let g:vifm_embed_split = 1
+let g:vifm_embed_cwd = 0
+let g:vifm_replace_netrw = 0
+let g:vifm_drop_gone_buffers = 0
+
+nnoremap <d-f> <cmd>tabnew <bar> tabprevious <bar> tab Vifm<cr>
+
+" xplr {{{2
+
+"nnoremap <d-f> <cmd>tabnew <bar> XplrPicker<cr>
+
+"command XplrProjectRoot :XplrPicker `git rev-parse --show-toplevel`
+
 " Exploration multiple {{{1
 
 " Wheel {{{2
+
+" configuration {{{3
 
 if ! exists("g:wheel_loaded")
 	" Init
@@ -302,10 +324,14 @@ endif
 
 set tabline=%!wheel#status#tabline()
 
+" maps {{{3
+
 nnoremap <c-space>          :<c-u>Wheel<space>
 
 nnoremap <m-$>           <plug>(wheel-sync-up)
 nnoremap <c-$>           <plug>(wheel-sync-down)
+
+nnoremap <m-ins>           <plug>(wheel-prompt-add-file)
 
 " altgr-r
 nmap ¶                    <plug>(wheel-prompt-read-session)
@@ -595,7 +621,7 @@ nmap yr<cr> <plug>(ripple_send_buffer)
 nmap yp <plug>(ripple_send_previous)
 vmap R <plug>(ripple_send_selection)
 
-" vim-tmux-navigator {{{1
+" vim-tmux-navigator {{{2
 
 let g:tmux_navigator_no_mappings = 1
 let g:tmux_navigator_save_on_switch = 2

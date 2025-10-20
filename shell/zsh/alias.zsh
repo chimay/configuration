@@ -84,10 +84,10 @@ alias d=zathura
 
 # Images
 
-alias 1=ucollage
 alias i=sxiv
 alias ii=vimiv
 alias iii=feh
+alias iiii=ucollage
 
 # Fontes
 
@@ -249,7 +249,10 @@ alias st='run-syncthing.sh &'
 
 alias §=vifmrun
 alias 2=vifmrun
-alias fm=run-vifm
+alias 3=yazi
+alias 1=xplr
+
+alias xcd='cd "$(xplr --print-pwd-as-result)"'
 
 alias cf='clifm --no-color'
 

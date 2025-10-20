@@ -44,6 +44,7 @@ fun! PackagerInit ()
 	call packager#add('McSinyx/vim-octave', always)
 	call packager#add('christoomey/vim-tmux-navigator', always)
 	call packager#add('liuchengxu/vim-which-key', always)
+	call packager#add('vifm/vifm.vim', always)
 	" -- plugins with deps
 	call packager#add('vim-scripts/LineJuggler', {
 				\ 'type' : 'start',
@@ -53,6 +54,9 @@ fun! PackagerInit ()
 	call packager#add('mzlogin/vim-markdown-toc', optional)
 	call packager#add('vim-latex/vim-latex', optional)
 	" ---- optional plugins loaded manually
+	call packager#add('sayanarijit/xplr.vim', optional)
+	call packager#add('chriszarate/yazi.vim', optional)
+	call packager#add('tpope/vim-vinegar', always)
 	call packager#add('axvr/org.vim', optional)
 	call packager#add('SirVer/ultisnips', optional)
 	call packager#add('mbbill/undotree', optional)

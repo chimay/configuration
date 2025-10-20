@@ -58,6 +58,8 @@ hi PreProc 			guifg=#5B3C11		guibg=black			gui=NONE
 hi Statement	guifg=#5B3C11		guibg=black			gui=NONE
 hi Function		guifg=#872e30		guibg=black			gui=NONE
 
+hi Special		guifg=#872e30		guibg=black			gui=NONE
+
 " More prompt {{{2
 
 hi MoreMsg			guifg=#872E30		guibg=black			gui=NONE
@@ -369,6 +371,7 @@ highlight @punctuation.bracket   guifg=#5b3c11 	 guibg=black 	 gui=none
 highlight @punctuation.delimiter guifg=#5b3c11 	 guibg=black 	 gui=none
 highlight @punctuation.special   guifg=#5b3c11 	 guibg=black 	 gui=none
 highlight @repeat                guifg=#5b3c11 	 guibg=black 	 gui=none
+highlight @special               guifg=#872e30 	 guibg=black 	 gui=none
 highlight @storageclass          guifg=#5b3c11 	 guibg=black 	 gui=none
 highlight @storageclass.lifetime guifg=#5b3c11 	 guibg=black 	 gui=none
 highlight @strike                guifg=#5b3c11 	 guibg=black 	 gui=none
@@ -452,6 +455,7 @@ highlight @punctuation.bracket   ctermfg=none 	 ctermbg=black 	 cterm=none
 highlight @punctuation.delimiter ctermfg=none 	 ctermbg=black 	 cterm=none
 highlight @punctuation.special   ctermfg=none 	 ctermbg=black 	 cterm=none
 highlight @repeat                ctermfg=none 	 ctermbg=black 	 cterm=none
+highlight @special               ctermfg=none 	 ctermbg=black 	 cterm=none
 highlight @storageclass          ctermfg=none 	 ctermbg=black 	 cterm=none
 highlight @storageclass.lifetime ctermfg=none 	 ctermbg=black 	 cterm=none
 highlight @strike                ctermfg=none 	 ctermbg=black 	 cterm=none

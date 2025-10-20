@@ -44,15 +44,19 @@ fun! PackagerInit ()
 	call packager#add('McSinyx/vim-octave', always)
 	call packager#add('christoomey/vim-tmux-navigator', always)
 	call packager#add('liuchengxu/vim-which-key', always)
+	call packager#add('vifm/vifm.vim', always)
 	" -- plugins with deps
 	call packager#add('vim-scripts/LineJuggler', {
 				\ 'type' : 'start',
 				\ 'requires' : ['vim-scripts/ingo-library', 'vim-scripts/LineJugglerCommands']
 				\ })
 	" ---- optional plugins, loaded on some filetypes
+	call packager#add('sayanarijit/xplr.vim', optional)
 	call packager#add('mzlogin/vim-markdown-toc', optional)
 	call packager#add('vim-latex/vim-latex', optional)
 	" ---- optional plugins loaded manually
+	call packager#add('chriszarate/yazi.vim', optional)
+	call packager#add('tpope/vim-vinegar', optional)
 	call packager#add('axvr/org.vim', optional)
 	call packager#add('SirVer/ultisnips', optional)
 	call packager#add('mbbill/undotree', optional)
@@ -72,6 +76,7 @@ fun! PackagerInit ()
 	call packager#add('tpope/vim-fugitive', optional)
 	call packager#add('vim-scripts/YankRing.vim', optional)
 	call packager#add('mhinz/neovim-remote', optional)
+	call packager#add('voldikss/vim-floaterm', optional)
 	" -- plugins with deps
 	" ---- does not work
 	" freezes nvim with undo
