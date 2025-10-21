@@ -113,8 +113,10 @@ hc keybind $super-Shift-Down  shift_edge down
 hc keybind $super-Shift-Up    shift_edge up
 hc keybind $super-Shift-Right shift_edge right
 
+# swap current top window with bottom one
 hc keybind $super-Next spawn hlwm-swap.bash down
-hc keybind $super-Prior spawn hlwm-swap.bash up
+# swap current bottom window with top one, and focus up
+hc keybind $super-Prior spawn hlwm-swap.bash up stay
 
 # frames {{{2
 
@@ -158,8 +160,8 @@ hc keybind $super-Control-Right   resize right +$resizestep
 # title is not necessary
 hc keybind $hyper-Tab                                                           \
             or , and . compare tags.focus.tiling.focused_frame.algorithm = max  \
-                     . chain - set_layout grid                                  \
-               , chain - set_layout max
+                     . set_layout grid                                  \
+               , set_layout max
 
 hc keybind $hyper-i                                                             \
             or , and . compare tags.focus.tiling.focused_frame.algorithm = max  \

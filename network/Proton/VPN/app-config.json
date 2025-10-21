@@ -1,12 +1,14 @@
 {
-    "tray_pinned_servers": [
-        "US",
-        "JP",
-        "SG",
-        "NL",
-        "RO",
-        "PL"
-    ],
-    "connect_at_app_startup": null,
-    "start_app_minimized": true
+  "tray_pinned_servers": [
+    "US",
+    "CA",
+    "JP",
+    "SG",
+    "NL",
+    "NO",
+    "RO",
+    "PL"
+  ],
+  "connect_at_app_startup": null,
+  "start_app_minimized": true
 }
