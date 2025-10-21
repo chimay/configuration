@@ -114,9 +114,9 @@ hc keybind $super-Shift-Up    shift_edge up
 hc keybind $super-Shift-Right shift_edge right
 
 # swap current top window with bottom one
-hc keybind $super-Next spawn hlwm-swap.bash down
-# swap current bottom window with top one, and focus up
-hc keybind $super-Prior spawn hlwm-swap.bash up stay
+hc keybind $super-Next spawn hlwm-swap.bash down dont-follow
+# swap current bottom window with top one, and follow it up
+hc keybind $super-Prior spawn hlwm-swap.bash up follow
 
 # frames {{{2
 
