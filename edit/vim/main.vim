@@ -618,7 +618,7 @@ set makeef=
 
 set timeout
 
-set timeoutlen=1275
+set timeoutlen=1572
 
 set ttimeout
 
@@ -626,7 +626,8 @@ set ttimeoutlen=50
 
 " Préfixe pour les plugins {{{2
 
-" Remarque : certains mapleaders causent des problèmes avec l’indentation <<
+" Remarque : certains mapleaders comme <
+" causent des problèmes avec l’indentation <<
 
 let g:mapleader="\\"
 let g:maplocalleader="_"

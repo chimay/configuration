@@ -662,11 +662,8 @@ let g:maplocalleader="_"
 
 "  Aide {{{2
 
-nnoremap <F1> :tab help<space>
-nnoremap <S-F1> :tab helpgrep<space>
-nnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
-inoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
-vnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
+nnoremap <F6>h :tab help<space>
+nnoremap <F6>g :tab helpgrep<space>
 
 "nnoremap K K<c-w>T
 
@@ -691,7 +688,7 @@ nnoremap <kEnter> <cmd>call library#write_all()<cr>
 
 nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
-" see also <url:~/racine/config/edit/neovim/paquet/preload.vim#tn=f7 prefix>
+" see also <url:~/racine/config/edit/neovim-lite/paquet/preload.vim#tn=f7 prefix>
 
 nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
@@ -1259,7 +1256,7 @@ set cmdheight=3
 
 "set concealcursor=i
 
-" Voir aussi ~/racine/config/edit/neovim/after/syntax/html/conceal/neovim
+" Voir aussi ~/racine/config/edit/neovim-lite/after/syntax/html/conceal/neovim
 
 " Couleurs dans le terminal {{{2
 
@@ -1334,9 +1331,9 @@ set shada=
 	\:10000,
 	\/10000,
 	\@10000,
-	\n~/racine/session/neovim/main.shada
+	\n~/racine/session/neovim-lite/main.shada
 
-"set shadafile=~/racine/session/neovim/main.shada
+"set shadafile=~/racine/session/neovim-lite/main.shada
 
 " Remplacé par wheel mru
 " 	\%30,

@@ -102,7 +102,6 @@ alias ed=run-ed
 
 # Vim {{{2
 
-alias v=vim-lite
 alias vi=vim-lite
 
 alias vid='vim-lite -d'
@@ -114,7 +113,7 @@ alias se=sudoedit
 
 #  Neovim {{{2
 
-alias nv=nvim
+alias v=neovim-lite.sh
 alias ns='run-neovim-server.sh &'
 alias nvc=run-neovim-client.sh
 alias nvqc=run-neovim-qt-client.sh
@@ -304,7 +303,7 @@ alias fini='mpv ~/audio/sonnerie/notification/fini.ogg'
 
 alias rh=run-help
 alias m=man
-alias vm='vim -u ~/racine/config/edit/vim-lite/vimrc +"call library#manual_argv()"'
+alias vm='vim-lite.sh +"call library#manual_argv()"'
 alias mw=w3mman
 alias in=info
 
@@ -644,8 +643,12 @@ hash -d zdot=~/racine/dotdir/zsh
 hash -d vimconf=~/racine/config/edit/vim
 hash -d vimliteconf=~/racine/config/edit/vim-lite
 hash -d vimailconf=~/racine/config/edit/vim-mail
+
 hash -d neovimconf=~/racine/config/edit/neovim
+hash -d neovimliteconf=~/racine/config/edit/neovim-lite
+
 hash -d kakconf=~/racine/config/edit/kak
+
 hash -d emacsconf=~/racine/config/edit/emacs
 hash -d emacsliteconf=~/racine/config/edit/emacs-lite
 
@@ -662,7 +665,9 @@ hash -d pdata=~/racine/plugin/data
 
 hash -d vimpackager=~/racine/plugin/manager/vim/pack/packager
 hash -d vimlitepackager=~/racine/plugin/manager/vim-lite/pack/packager
+
 hash -d neovimpackager=~/racine/plugin/manager/neovim/pack/packager
+hash -d neovimlitepackager=~/racine/plugin/manager/neovim-lite/pack/packager
 
 hash -d elpaca=~/racine/plugin/manager/emacs/elpaca
 

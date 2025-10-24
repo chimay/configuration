@@ -150,9 +150,9 @@ set noerrorbells
 
 set mouse=a
 set mousefocus
-set mousehide					
+set mousehide
 " clic droit modifie sélection
-set mousemodel=extend				
+set mousemodel=extend
 set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up-arrow,v:rightup-arrow
 
 "  Recherche {{{1
@@ -338,7 +338,7 @@ set makeef=
 " avant de considérer un map ambigu comme complet
 
 set timeout
-set timeoutlen=1275
+set timeoutlen=1572
 set ttimeout
 set ttimeoutlen=50
 
@@ -511,11 +511,11 @@ nnoremap ' `
 
 " Recherche d’un mot {{{3
 
-nnoremap <f7>, <cmd>call library#search_word()<cr>
+nnoremap <f2>, <cmd>call library#search_word()<cr>
 
 "  Remplacement {{{3
 
-nnoremap <f7>; <cmd>call library#search_and_replace_word()<cr>
+nnoremap <f2>; <cmd>call library#search_and_replace_word()<cr>
 
 "  Copier / Coller {{{2
 
@@ -630,15 +630,15 @@ nnoremap QQ gQ
 
 " Comme commande ex
 
-nnoremap <f7>: <cmd>exe getline(".")<CR>
+nnoremap <f2>: <cmd>exe getline(".")<CR>
 
 " Comme commande externe
 
-nnoremap <f7>! <cmd>exe '!'.getline('.')<CR>
+nnoremap <f2>! <cmd>exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap <f7>ig <cmd>call library#highlight_group()<cr>
+nnoremap <f2>ig <cmd>call library#highlight_group()<cr>
 
 " Émulateur de terminal {{{2
 

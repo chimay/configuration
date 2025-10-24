@@ -48,6 +48,8 @@ local map = vim.keymap.set
 
 -- oil.nvim {{{2
 
+map('n', '-', '<cmd>Oil<cr>', { desc = 'Open parent directory' })
+
 require("oil").setup({
   -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
   -- Set to false if you want some other plugin (e.g. netrw) to open when you edit directories.
@@ -250,6 +252,3 @@ require("oil").setup({
 	border = nil,
   },
 })
-
-map('n', '-', '<cmd>Oil<cr>', { desc = 'Open parent directory' })
-

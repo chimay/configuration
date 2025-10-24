@@ -114,11 +114,11 @@ super + ctrl + equal
 super + ctrl + section
 	run-vifm.sh
 
-# super + ctrl + f
-# 	GTK_THEME=Adwaita:dark thunar || GTK_THEME=Adwaita:dark caja || pcmanfm
-
 super + ctrl + f
 	thunar || caja || pcmanfm
+
+super + ctrl + s
+	fsearch
 
 super + ctrl + g
 	run-gvim.sh -c "cd ~/racine/public"
@@ -138,7 +138,7 @@ super + ctrl + h
 super + ctrl + e
 	run-emacs-client.sh
 
-super + ctrl + s
+super + ctrl + m
 	run-emacs-server.sh
 
 super + ctrl + l
@@ -168,7 +168,7 @@ super + ctrl + t
 super + ctrl + y
 	run-freetube.sh
 
-super + ctrl + m
+super + ctrl + mu
 	goto-or-run.sh mscore
 
 super + ctrl + w
