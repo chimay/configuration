@@ -5,7 +5,7 @@
 " Pas nécessaire : ~/.config/nvim -> ~config/edit/neovim
 " Provoque des doublons avec ultisnips
 "
-"set runtimepath+=~/racine/config/edit/neovim
+"set runtimepath+=~/racine/config/edit/neovim-lite
 
 " avoid to read specific legacy vim conf
 set runtimepath-=/usr/share/vim/vimfiles

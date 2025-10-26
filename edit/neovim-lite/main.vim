@@ -124,7 +124,7 @@ set path=.,,**
 
 set backup
 
-set backupdir=~/racine/varia/backup/neovim,.
+set backupdir=~/racine/varia/backup/neovim-lite,.
 
 set backupext=~
 
@@ -139,7 +139,7 @@ set backupskip=/tmp/*,/etc/*,mutt-*-*-*-*
 "  Fichier de récupération en cas de crash {{{2
 
 set swapfile
-set directory=~/racine/varia/autosave/neovim
+set directory=~/racine/varia/autosave/neovim-lite
 
 "set noswapfile
 
@@ -153,7 +153,7 @@ set updatetime=12000		" Millisecondes
 set undolevels=123
 set undofile
 set undoreload=12743
-set undodir=~/racine/varia/undo/neovim,.
+set undodir=~/racine/varia/undo/neovim-lite,.
 
 "  session {{{1
 

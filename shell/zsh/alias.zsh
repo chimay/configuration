@@ -102,7 +102,7 @@ alias ed=run-ed
 
 # Vim {{{2
 
-alias vi=vim-lite
+alias vi=vim-lite.sh
 
 alias vid='vim-lite -d'
 alias vimdiff='vim-lite -d'

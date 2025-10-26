@@ -48,11 +48,15 @@ fun! library#complete_file_in_current_file_subtree (arglead, cmdline, cursorpos)
 	let cmdline = a:cmdline
 	let arglead = a:arglead
 	let cursorpos = a:cursorpos
+	" ---- directory
+	let old_dir = getcwd()
+	let rawname = expand('%')
+	let dirname = fnamemodify(rawname, ':h')
+	execute 'lcd' dirname
 	" ---- get tree of files & directories
-	let path = expand('%:p:h') . '/'
-	execute 'lcd' path
 	let tree = glob('**', v:false, v:true)
 	eval tree->filter({ _, v -> v =~ cmdline})
+	execute 'lcd' old_dir
 	return tree
 endfun
 
@@ -264,10 +268,28 @@ endfun
 
 fun! library#edit_in_current_file_subtree ()
 	" Edit file with completion in current file subtree
-	let complete = 'customlist,library#complete_file_in_current_file_subtree'
+	let old_dir = getcwd()
+	let rawname = expand('%')
+	let dirname = fnamemodify(rawname, ':h')
+	execute 'lcd' dirname
+	let complete = 'customlist,library#complete_file_in_current_subtree'
 	let file = input('Edit file : ', '', complete)
 	let path = expand('%:p:h') . '/'
-	execute 'edit' .. path .. file
+	execute 'edit' path .. file
+	execute 'lcd' old_dir
+endfun
+
+fun! library#read_in_current_file_subtree ()
+	" Read file with completion in current file subtree
+	let old_dir = getcwd()
+	let rawname = expand('%')
+	let dirname = fnamemodify(rawname, ':h')
+	execute 'lcd' dirname
+	let complete = 'customlist,library#complete_file_in_current_subtree'
+	let file = input('Read file : ', '', complete)
+	let path = expand('%:p:h') . '/'
+	execute 'read' path .. file
+	execute 'lcd' old_dir
 endfun
 
 fun! library#edit_minisnip_file ()
@@ -279,14 +301,6 @@ fun! library#edit_minisnip_file ()
 	let complete = 'customlist,library#complete_file_in_current_subtree'
 	let file = input('Edit miniSnip file : ', '', complete)
 	execute 'vsplit' .. minisnip_directory .. file
-endfun
-
-fun! library#read_in_current_file_subtree ()
-	" Read file with completion in current file subtree
-	let complete = 'customlist,library#complete_file_in_current_subtree'
-	let file = input('Read file : ', '', complete)
-	let path = expand('%:p:h') . '/'
-	execute 'read' .. path .. file
 endfun
 
 " -- quick access to particular files
