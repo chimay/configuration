@@ -548,6 +548,33 @@ fun! library#search_and_replace_word ()
 	return v:true
 endfun
 
+fun! library#grep_word ()
+	" Grep word
+	let word = input('Search word : ')
+	let pattern = '/\m\<' .. word .. '\>/'
+	let files = input('File pattern : ')
+	execute 'vimgrep' pattern files
+	let @/ = pattern
+	copen
+	return v:true
+endfun
+
+fun! library#grep_word_in_current_file_dir ()
+	" Grep word
+	let old_dir = getcwd()
+	let rawname = expand('%')
+	let dirname = fnamemodify(rawname, ':h')
+	execute 'lcd' dirname
+	let word = input('Search word : ')
+	let pattern = '/\m\<' .. word .. '\>/'
+	let files = input('File pattern : ')
+	execute 'vimgrep' pattern files
+	let @/ = pattern
+	copen
+	execute 'lcd' old_dir
+	return v:true
+endfun
+
 " -- global actions on buffer lines
 
 fun! library#global_yank (pattern, ...)

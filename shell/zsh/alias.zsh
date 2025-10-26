@@ -104,8 +104,8 @@ alias ed=run-ed
 
 alias vi=vim-lite.sh
 
-alias vid='vim-lite -d'
-alias vimdiff='vim-lite -d'
+alias vid='vim-lite.sh -d'
+alias vimdiff='vim-lite.sh -d'
 
 alias vq=vim-quickfix
 
@@ -116,7 +116,6 @@ alias se=sudoedit
 alias v=neovim-lite.sh
 alias ns='run-neovim-server.sh &'
 alias nvc=run-neovim-client.sh
-alias nvqc=run-neovim-qt-client.sh
 
 # -- neovim remote
 

@@ -40,6 +40,7 @@ augroup END
 
 augroup quickfix-window
 	autocmd!
+	autocmd filetype qf noremap <buffer> q <cr>:cclose<cr>
 	autocmd filetype qf noremap <buffer> <backspace> <cr>:cclose<cr>
 	" overwrite generic <cr> mapping
 	autocmd filetype qf nnoremap <buffer> <cr> <cr>

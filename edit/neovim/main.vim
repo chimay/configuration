@@ -746,10 +746,10 @@ nnoremap <m-s-q> <cmd>%bwipe<cr>
 "nnoremap <c-up> <c-w>k
 "nnoremap <c-right> <c-w>l
 
-nnoremap <c-s-down> <cmd>resize +2<cr>
-nnoremap <c-s-up> <cmd>resize -2<cr>
-nnoremap <c-s-right> <cmd>vertical resize +2<cr>
-nnoremap <c-s-left> <cmd>vertical resize -2<cr>
+nnoremap <c-s-down> <cmd>resize +5<cr>
+nnoremap <c-s-up> <cmd>resize -5<cr>
+nnoremap <c-s-right> <cmd>vertical resize +5<cr>
+nnoremap <c-s-left> <cmd>vertical resize -5<cr>
 
 "nnoremap <s-tab>  <c-w>w
 "nnoremap <m-s-tab>  <c-w>p
