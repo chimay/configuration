@@ -301,7 +301,7 @@ hc set focus_crosses_monitor_boundaries true
 
 # windows {{{2
 
-hc set focus_follows_mouse true
+hc set focus_follows_mouse false
 
 # miscellaneous {{{2
 

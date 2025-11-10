@@ -703,7 +703,7 @@ nnoremap <f11>c <cmd>call library#edit_cronos()<cr>
 nnoremap <f11>d <cmd>call library#edit_dream()<cr>
 nnoremap <f11>f <cmd>call library#edit_fix()<cr>
 nnoremap <f11>l <cmd>call library#edit_ship_log()<cr>
-nnoremap <f11>s <cmd>call library#edit_syntax_plugin()<cr>
+nnoremap <f11><m-s> <cmd>call library#edit_syntax_plugin()<cr>
 nnoremap <f11>t <cmd>call library#edit_tasks()<cr>
 nnoremap <f11>m <cmd>call library#edit_minisnip_file()<cr>
 
@@ -1041,6 +1041,12 @@ tnoremap <D-h> <C-\><C-n><C-W><Left>
 tnoremap <D-j> <C-\><C-n><C-W><Down>
 tnoremap <D-k> <C-\><C-n><C-W><Up>
 tnoremap <D-l> <C-\><C-n><C-W><Right>
+
+" shell {{{2
+
+nnoremap <f11>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f11>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f11>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
 
 " abbreviations {{{1
 

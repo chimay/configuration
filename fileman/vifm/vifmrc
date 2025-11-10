@@ -696,10 +696,6 @@ nnoremap <m-s> :session<space>
 
 " Présentation {{{2
 
-nnoremap <C-w>o <C-w>o
-nnoremap <C-w>s <C-w>s
-nnoremap <C-w>v <C-w>v
-
 nnoremap <C-w>t :tree!<cr>
 nnoremap <C-w>m :set millerview! | set milleroptions="lsize:1,csize:1,rsize:1,rpreview:all"<cr>
 nnoremap <C-w>l :set lsview!<cr>

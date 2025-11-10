@@ -142,7 +142,7 @@ super + ctrl + m
 	run-emacs-server.sh
 
 super + ctrl + l
-	lite-xl
+	libreoffice
 
 super + ctrl + i
 	vimiv ~/photo/numerique

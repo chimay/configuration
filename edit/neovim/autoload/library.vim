@@ -22,6 +22,18 @@ fun! library#execute (command)
 	execute a:command
 endfun
 
+fun! library#file_category ()
+	" Returns file category
+	let info = execute('file')[1:]
+	let category = 'unknown'
+	if info =~# '\[Quickfix List\]'
+		let category = 'quickfix list'
+	elseif info =~# '\[Location List\]'
+		let category = 'location list'
+	endif
+	return category
+endfun
+
 fun! library#feedkeys (keys)
 	" Feed keys in argument
 	let keys = a:keys
@@ -548,9 +560,36 @@ fun! library#search_and_replace_word ()
 	return v:true
 endfun
 
+fun! library#grep ()
+	" Grep word
+	let word = input('Grep : ')
+	let pattern = '/\m' .. word .. '/'
+	let files = input('File pattern : ')
+	execute 'vimgrep' pattern files
+	let @/ = pattern
+	copen
+	return v:true
+endfun
+
+fun! library#grep_in_current_file_dir ()
+	" Grep word
+	let old_dir = getcwd()
+	let rawname = expand('%')
+	let dirname = fnamemodify(rawname, ':h')
+	execute 'lcd' dirname
+	let word = input('Grep : ')
+	let pattern = '/\m' .. word .. '/'
+	let files = input('File pattern : ')
+	execute 'vimgrep' pattern files
+	let @/ = pattern
+	copen
+	execute 'lcd' old_dir
+	return v:true
+endfun
+
 fun! library#grep_word ()
 	" Grep word
-	let word = input('Search word : ')
+	let word = input('Grep word : ')
 	let pattern = '/\m\<' .. word .. '\>/'
 	let files = input('File pattern : ')
 	execute 'vimgrep' pattern files
@@ -565,13 +604,110 @@ fun! library#grep_word_in_current_file_dir ()
 	let rawname = expand('%')
 	let dirname = fnamemodify(rawname, ':h')
 	execute 'lcd' dirname
-	let word = input('Search word : ')
+	let word = input('Grep word : ')
 	let pattern = '/\m\<' .. word .. '\>/'
 	let files = input('File pattern : ')
 	execute 'vimgrep' pattern files
 	let @/ = pattern
 	copen
 	execute 'lcd' old_dir
+	return v:true
+endfun
+
+fun! library#grepped_files_replace ()
+	" Replace in each file quickfix or location list
+	let category = library#file_category ()
+	if category ==# 'quickfix list'
+		let filedo = 'cfdo'
+	elseif category ==# 'location list'
+		let filedo = 'lfdo'
+	else
+		echomsg 'neither quickfix nor location list'
+		return v:false
+	endif
+	let before = input('Replace : ')
+	let after = input('Replace by : ')
+	" ---- check if after is in buffer
+	let check = after
+	let found = search(check, 'nw')
+	if found > 0
+		let prompt = 'Replacing pattern ' .. after .. ' found in buffer. Continue ?'
+		let continue = confirm(prompt, "&Yes\n&No", 2)
+		if continue == 2
+			return v:false
+		endif
+	endif
+	" ---- substitute
+	let candidates = ['/', ':', '_', '&']
+	let separator = candidates->remove(0)
+	while before =~# separator || after =~# separator
+		if len(candidates) == 0
+			echomsg 'separator not found'
+			return v:false
+		endif
+		let separator = candidates->remove(0)
+	endwhile
+	let runme = filedo .. ' '
+	let runme ..= '%substitute' .. separator .. before .. separator
+	let runme ..= after .. separator .. 'g'
+	call library#clear_status ()
+	execute runme
+	return v:true
+endfun
+
+fun! library#grepped_files_replace_word ()
+	" Replace word in each file quickfix or location list
+	let category = library#file_category ()
+	if category ==# 'quickfix list'
+		let filedo = 'cfdo'
+	elseif category ==# 'location list'
+		let filedo = 'lfdo'
+	else
+		echomsg 'neither quickfix nor location list'
+		return v:false
+	endif
+	let before = input('Replace : ')
+	let before = '\<' .. before .. '\>'
+	let after = input('Replace by : ')
+	" ---- check if after is in buffer
+	let check = '\<' .. after .. '\>'
+	let found = search(check, 'nw')
+	if found > 0
+		let prompt = 'Replacing pattern ' .. after .. ' found in buffer. Continue ?'
+		let continue = confirm(prompt, "&Yes\n&No", 2)
+		if continue == 2
+			return v:false
+		endif
+	endif
+	" ---- substitute
+	let candidates = ['/', ':', '_', '&']
+	let separator = candidates->remove(0)
+	while before =~# separator || after =~# separator
+		if len(candidates) == 0
+			echomsg 'separator not found'
+			return v:false
+		endif
+		let separator = candidates->remove(0)
+	endwhile
+	let runme = filedo .. ' '
+	let runme ..= '%substitute' .. separator .. before .. separator
+	let runme ..= after .. separator .. 'g'
+	call library#clear_status ()
+	execute runme
+	return v:true
+endfun
+
+fun! library#close_list ()
+	" Close quickfix or location list
+	let category = library#file_category ()
+	if category ==# 'quickfix list'
+		cclose
+	elseif category ==# 'location list'
+		lclose
+	else
+		echomsg 'neither quickfix nor location list'
+		return v:false
+	endif
 	return v:true
 endfun
 

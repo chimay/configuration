@@ -40,8 +40,10 @@ augroup END
 
 augroup quickfix-window
 	autocmd!
-	autocmd filetype qf noremap <buffer> q <cr>:cclose<cr>
-	autocmd filetype qf noremap <buffer> <backspace> <cr>:cclose<cr>
+	autocmd filetype qf noremap <buffer> q <cmd>call library#close_list()<cr>
+	autocmd filetype qf noremap <buffer> <backspace> <cr><c-w>p:call library#close_list()<cr>
+	autocmd filetype qf noremap <buffer> s <cmd>call library#grepped_files_replace()<cr>
+	autocmd filetype qf noremap <buffer> S <cmd>call library#grepped_files_replace_word()<cr>
 	" overwrite generic <cr> mapping
 	autocmd filetype qf nnoremap <buffer> <cr> <cr>
 augroup END

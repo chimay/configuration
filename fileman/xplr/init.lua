@@ -3425,7 +3425,7 @@ require("regex-search").setup{
 
 -- fzf {{{2
 
--- Press `ctrl-f` to spawn fzf in $PWD
+-- Press `z` to spawn fzf in $PWD
 require("fzf").setup{
   mode = "default",
   key = "z",
@@ -3448,7 +3448,7 @@ require("zoxide").setup{
 
 -- Type `M` to switch to single map mode.
 -- Then press `tab` to switch between single and multi map modes.
--- Press `ctrl-o` to edit the command using your editor.
+-- Press `M` to edit the command using your editor.
 local map = require("map")
 map.setup{
   mode = "default",  -- or `xplr.config.modes.builtin.default`

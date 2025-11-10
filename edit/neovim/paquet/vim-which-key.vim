@@ -195,10 +195,12 @@ let g:which_key_main_map.x = {
 
 let g:which_key_main_map.s = {
 	\ 'name' : '+search_and_replace' ,
-	\ 's' : ['library#search_word()'                    ,  'search word']  ,
-	\ 'r' : ['library#search_and_replace_word()'        ,  'replace word'] ,
-	\ 'g' : ['library#grep_word_in_current_file_dir()'  ,  'grep word in current file dir']    ,
-	\ 'G' : ['library#grep_word()'                      ,  'grep word']    ,
+	\ 's' : ['library#search_word()'                    ,  'search word']              ,
+	\ 'r' : ['library#search_and_replace_word()'        ,  'replace word']             ,
+	\ 'g' : ['library#grep_in_current_file_dir()'       ,  'grep in current file dir'] ,
+	\ 'G' : ['library#grep()'                           ,  'grep']                     ,
+	\ 'w' : ['library#grep_word_in_current_file_dir()'  ,  'grep word in current file dir'] ,
+	\ 'W' : ['library#grep_word()'                      ,  'grep word']                     ,
 	\ }
 
 " global {{{2
