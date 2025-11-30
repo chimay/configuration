@@ -43,6 +43,7 @@ source_directories:
   - racine/musica
   - racine/network
   - racine/news
+  - racine/office
   - racine/omni
   - racine/pack/bin
   - racine/pack/release
@@ -61,6 +62,7 @@ source_directories:
   - racine/prolang
   - racine/public
   - racine/refer
+  - racine/school
   - racine/science
   - racine/self
   - racine/session
@@ -89,17 +91,17 @@ source_directories:
 
 repositories:
     - path: /home/david/backup/borg
+      label: galaxy-local
+    - path: /run/media/david/usb-key/galaxy/borg
+      label: galaxy-usb-key
+    - path: /run/media/david/red-disk/david/backup/galaxy/borg
+      label: galaxy-red-disk
+    - path: /home/david/backup/borg
       label: taijitu-local
-    - path: /media/cleusb/borg
-      label: usb-key
+    - path: /media/cleusb/taijitu/borg
+      label: taijitu-usb-key
     - path: /media/diskext/david/backup/borg
       label: taijitu-usb-disc
-    - path: /media/diskext-sdb1/david/backup/borg
-      label: shari-usb-disc-1
-    - path: ssh://david@shari.local//home/david/backup/borg
-      label: shari-ssh
-    - path: ssh://david@tixu//home/david/backup/borg
-      label: tixu-ssh
     - path: /run/media/david/sdb1/david/backup/borg
       label: mandala-usb-disc
 

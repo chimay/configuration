@@ -953,6 +953,8 @@ bindkey '^X^T'  fzy-file-widget
 bindkey '^X^R'  fzy-history-widget
 bindkey '^X^P'  fzy-proc-widget
 
+#bindkey '^R'  fzy-history-widget
+
 # zoxide {{{2
 
 eval "$(zoxide init zsh)"

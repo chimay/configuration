@@ -1,5 +1,5 @@
 " vim: set filetype=vim :
 
-hi jsonKeyword				guifg=#5B3C11		guibg=default			gui=NONE
-hi jsonString				guifg=#88421d		guibg=default			gui=NONE
-hi jsonNull					guifg=#88421d		guibg=default			gui=NONE
+hi jsonKeyword				guifg=#5B3C11		guibg=NONE			gui=NONE
+hi jsonString				guifg=#88421d		guibg=NONE			gui=NONE
+hi jsonNull					guifg=#88421d		guibg=NONE			gui=NONE

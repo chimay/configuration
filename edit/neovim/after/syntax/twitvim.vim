@@ -1,12 +1,12 @@
 " vim: set filetype=vim :
 
-hi twitterLink		guifg=#5B3C11		guibg=default			gui=NONE
-hi twitterReply		guifg=#5B3C11		guibg=default			gui=NONE
-hi twitterTime		guifg=#5B3C11		guibg=default			gui=NONE
-hi twitterTimeBar	guifg=#5B3C11		guibg=default			gui=NONE
-hi twitterTitle		guifg=#5B3C11		guibg=default			gui=NONE
-hi twitterTitleStar	guifg=#5B3C11		guibg=default			gui=NONE
-hi twitterUser		guifg=#5B3C11		guibg=default			gui=NONE
+hi twitterLink		guifg=#5B3C11		guibg=NONE			gui=NONE
+hi twitterReply		guifg=#5B3C11		guibg=NONE			gui=NONE
+hi twitterTime		guifg=#5B3C11		guibg=NONE			gui=NONE
+hi twitterTimeBar	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi twitterTitle		guifg=#5B3C11		guibg=NONE			gui=NONE
+hi twitterTitleStar	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi twitterUser		guifg=#5B3C11		guibg=NONE			gui=NONE
 
 hi twitterLink		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi twitterReply		ctermfg=NONE		ctermbg=NONE		cterm=NONE

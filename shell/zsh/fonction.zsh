@@ -534,19 +534,41 @@ vim-quickfix () {
 	if command -v rg &> /dev/null
 	then
 		echo Using ripgrep
-		vim -u ~/racine/config/edit/vim-lite/vimrc +copen -q <(rg --vimgrep --smart-case "$@")
+		vim-lite.sh +copen -q <(rg --vimgrep --smart-case "$@")
 	elif command -v ag &> /dev/null
 	then
 		echo Using silver searcher
-		vim -u ~/racine/config/edit/vim-lite/vimrc +copen -q <(ag --nocolor --vimgrep --smart-case "$@")
+		vim-lite.sh +copen -q <(ag --nocolor --vimgrep --smart-case "$@")
 	elif command -v ack &> /dev/null
 	then
 		echo Using ack
-		vim -u ~/racine/config/edit/vim-lite/vimrc +copen -q <(ack --nocolor --nogroup --column --smart-case "$@")
+		vim-lite.sh +copen -q <(ack --nocolor --nogroup --column --smart-case "$@")
 	elif command -v grep &> /dev/null
 	then
 		echo Using grep
-		vim -u ~/racine/config/edit/vim-lite/vimrc +copen -q <(grep --line-number --ignore-case --no-messages "$@")
+		vim-lite.sh +copen -q <(grep --line-number --ignore-case --no-messages "$@")
+	fi
+}
+
+# neovim-quickfix {{{2
+
+neovim-quickfix () {
+	if command -v rg &> /dev/null
+	then
+		echo Using ripgrep
+		neovim-lite.sh +copen -q <(rg --vimgrep --smart-case "$@")
+	elif command -v ag &> /dev/null
+	then
+		echo Using silver searcher
+		neovim-lite.sh +copen -q <(ag --nocolor --vimgrep --smart-case "$@")
+	elif command -v ack &> /dev/null
+	then
+		echo Using ack
+		neovim-lite.sh +copen -q <(ack --nocolor --nogroup --column --smart-case "$@")
+	elif command -v grep &> /dev/null
+	then
+		echo Using grep
+		neovim-lite.sh +copen -q <(grep --line-number --ignore-case --no-messages "$@")
 	fi
 }
 

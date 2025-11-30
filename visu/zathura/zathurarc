@@ -48,10 +48,10 @@ map <C-2> feedkeys ":set pages-per-row 2"<Return>
 map <C-3> feedkeys ":set pages-per-row 3"<Return>
 map <C-4> feedkeys ":set pages-per-row 4"<Return>
 
-# thème {{{1
+# theme {{{1
 
-set default-fg "#5b3c11"
-set default-bg "black"
+# set default-fg "#5b3c11"
+# set default-bg "black"
 
 set inputbar-fg "#5b3c11"
 set inputbar-bg "black"

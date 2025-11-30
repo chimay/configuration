@@ -416,7 +416,7 @@ alias fp=fluid-player.sh
 alias µ='mpv --no-video'
 alias £=mplayer
 
-alias yt=ytfzf
+alias yt='yt-dlp --proxy socks5://localhost:9050/'
 
 alias pc=playerctl
 
@@ -461,6 +461,8 @@ alias journeaux='tail /var/log/mail.* | ccze -A'
 alias sv=systemctl
 
 # utils {{{1
+
+alias mk='make -k'
 
 alias wo='command w'
 
@@ -566,7 +568,7 @@ alias -s wav=mpv
 hash -d racine=~/racine
 hash -d wallpaper=~/graphix/wallpaper
 
-# Dossiers dans racine {{{2
+# dossiers dans racine {{{2
 
 hash -d archive=~/racine/archive
 hash -d artisan=~/racine/artisan
@@ -588,6 +590,7 @@ hash -d mail=~/racine/mail
 hash -d musica=~/racine/musica
 hash -d network=~/racine/network
 hash -d news=~/racine/news
+hash -d office=~/racine/office
 hash -d omni=~/racine/omni
 hash -d organ=~/racine/organ
 hash -d pack=~/racine/pack
@@ -598,6 +601,7 @@ hash -d plugin=~/racine/plugin
 hash -d prolang=~/racine/prolang
 hash -d public=~/racine/public
 hash -d refer=~/racine/refer
+hash -d school=~/racine/school
 hash -d science=~/racine/science
 hash -d self=~/racine/self
 hash -d session=~/racine/session
@@ -695,4 +699,4 @@ hash -d syncthing=~/racine/syncron/syncthing
 
 # papier {{{2
 
-hash -d school=~/racine/papier/ecole
+hash -d school=~/racine/school

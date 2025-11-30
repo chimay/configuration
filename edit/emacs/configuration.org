@@ -13,7 +13,6 @@
 - [[#info][Info]]
 - [[#interne][Interne]]
   - [[#serveur][Serveur]]
-  - [[#chemins-daccès][Chemins d’accès]]
   - [[#configuration-automatique][Configuration automatique]]
   - [[#messages][Messages]]
   - [[#optimisation][Optimisation]]
@@ -291,8 +290,8 @@ Désactivé car induisant parfois en erreur.
   (setq inhibit-startup-message t)
   (setq inhibit-splash-screen t)
   (setq inhibit-startup-screen t)
-  ;;(setq initial-buffer-choice t)
-  (setq initial-buffer-choice 'eshell)
+  (setq initial-buffer-choice t)
+  ;;(setq initial-buffer-choice 'eshell)
   (setq initial-scratch-message
         ";; Scratch buffer for notes you don’t want to save.
   ;; Lisp mode is enabled, you can run lisp code with C-x C-e just after a parenthesis.\n\n")
@@ -590,10 +589,10 @@ Ensuite :
   (setq auto-save-default t)
   (setq auto-save-interval 300)
   (setq auto-save-timeout 30)
-  (defconst biblio/autosave-dir
+  (defconst custom/autosave-dir
    (concat (getenv "HOME") "/racine/varia/autosave/emacs/"))
-  (setq auto-save-list-file-prefix biblio/autosave-dir)
-  (setq auto-save-file-name-transforms `((".*" ,biblio/autosave-dir t)))
+  (setq auto-save-list-file-prefix custom/autosave-dir)
+  (setq auto-save-file-name-transforms `((".*" ,custom/autosave-dir t)))
 #+end_src
 
 
@@ -794,10 +793,10 @@ Penser à exécuter recentf-cleanup de temps en temps
 	      (define-key shell-mode-map
 		(kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer)))
 
-  (defvar biblio/terminal-shell "/bin/bash")
+  (defvar custom/terminal-shell "/bin/bash")
 
   (defadvice ansi-term (before force-bash)
-    (interactive (list biblio/terminal-shell)))
+    (interactive (list custom/terminal-shell)))
 
   (ad-activate 'ansi-term)
 #+end_src
@@ -947,7 +946,7 @@ Pour les fonctionnelles
 *** Éditer ce fichier
 
 #+begin_src emacs-lisp
-  (defun biblio/edite-configuration-org ()
+  (defun custom/edite-configuration-org ()
     (interactive)
     (find-file "~/racine/config/edit/emacs/configuration.org")
     (cd "~/racine/config/edit/emacs"))
@@ -957,7 +956,7 @@ Pour les fonctionnelles
 *** Recharger ce fichier
 
 #+begin_src emacs-lisp
-  (defun biblio/recharge-configuration-org ()
+  (defun custom/recharge-configuration-org ()
     "Reloads configuration.org at runtime"
     (interactive)
     (org-babel-load-file "~/racine/config/edit/emacs/configuration.org"))
@@ -967,7 +966,7 @@ Pour les fonctionnelles
 ** Affiche nom fichier
 
 #+begin_src emacs-lisp
-  (defun biblio/affiche-copie-nom-fichier ()
+  (defun custom/affiche-copie-nom-fichier ()
     (interactive)
     (message (buffer-file-name))
     (kill-new (file-truename buffer-file-name)))
@@ -977,7 +976,7 @@ Pour les fonctionnelles
 ** Début & fin de fichier
 
 #+begin_src emacs-lisp
-  (defun biblio/debut-fin-fichier ()
+  (defun custom/debut-fin-fichier ()
     (interactive)
     (if (eq (point) (point-min))
 	(goto-char (point-max))
@@ -990,12 +989,12 @@ Pour les fonctionnelles
 Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half-page-on-c-v-and-m-v
 
 #+begin_src emacs-lisp
-  (defun biblio/demi-page-bas ()
+  (defun custom/demi-page-bas ()
     "scroll down half the page"
     (interactive)
     (scroll-up (/ (window-body-height) 2)))
 
-  (defun biblio/demi-page-haut ()
+  (defun custom/demi-page-haut ()
     "scroll up half the page"
     (interactive)
     (scroll-down (/ (window-body-height) 2)))
@@ -1005,7 +1004,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Efface le mot
 
 #+begin_src emacs-lisp
-  (defun biblio/efface-mot ()
+  (defun custom/efface-mot ()
     (interactive)
     (forward-char 1)
     (backward-word)
@@ -1016,7 +1015,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Efface jusqu’au début de la ligne
 
 #+begin_src emacs-lisp
-  (defun biblio/efface-jusque-debut-ligne ()
+  (defun custom/efface-jusque-debut-ligne ()
   (interactive)
   (kill-line 0))
 #+end_src
@@ -1025,7 +1024,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Efface le contenu de la ligne
 
 #+begin_src emacs-lisp
-  (defun biblio/efface-contenu-ligne ()
+  (defun custom/efface-contenu-ligne ()
     (interactive)
     (beginning-of-line)
     (kill-line))
@@ -1035,7 +1034,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Copie le mot
 
 #+begin_src emacs-lisp
-  (defun biblio/copie-mot ()
+  (defun custom/copie-mot ()
     (interactive)
     (forward-char 1)
     (backward-word)
@@ -1048,7 +1047,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Copie jusqu’au début de la ligne
 
 #+begin_src emacs-lisp
-  (defun biblio/copie-jusque-debut-ligne ()
+  (defun custom/copie-jusque-debut-ligne ()
     (interactive)
     (save-excursion
       (kill-new (buffer-substring
@@ -1060,7 +1059,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Copie jusqu’à la fin de la ligne
 
 #+begin_src emacs-lisp
-  (defun biblio/copie-jusque-fin-ligne ()
+  (defun custom/copie-jusque-fin-ligne ()
     (interactive)
     (save-excursion
       (kill-new (buffer-substring
@@ -1072,7 +1071,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Copie le contenu d’une ligne
 
 #+begin_src emacs-lisp
-  (defun biblio/copie-contenu-ligne ()
+  (defun custom/copie-contenu-ligne ()
     (interactive)
     (save-excursion
       (kill-new
@@ -1085,7 +1084,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Copie une ligne
 
 #+begin_src emacs-lisp
-  (defun biblio/copie-ligne ()
+  (defun custom/copie-ligne ()
     (interactive)
     (save-excursion
       (kill-new
@@ -1103,7 +1102,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Copie la phrase
 
 #+begin_src emacs-lisp
-  (defun biblio/copie-phrase ()
+  (defun custom/copie-phrase ()
     (interactive)
     (save-excursion
       (let ((one)
@@ -1123,7 +1122,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Copie une expression lisp simple
 
 #+begin_src emacs-lisp
-  (defun biblio/copie-sexp ()
+  (defun custom/copie-sexp ()
     "Copie une sexp lisp"
     (interactive)
     (save-excursion
@@ -1146,7 +1145,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 *** Alterner les deux plus récents
 
 #+begin_src emacs-lisp
-  (defun biblio/alterne-deux-derniers-tampons ()
+  (defun custom/alterne-deux-derniers-tampons ()
    "Visite alternativement les deux derniers tampons édités"
    (interactive)
    (switch-to-buffer nil))
@@ -1155,7 +1154,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 *** Fermer le tampon courant
 
 #+begin_src emacs-lisp
-  (defun biblio/ferme-tampon-courant ()
+  (defun custom/ferme-tampon-courant ()
     "Supprime le tampon courant."
     (interactive)
     (kill-buffer (current-buffer)))
@@ -1165,7 +1164,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 *** Fermer tous les tampons
 
 #+begin_src emacs-lisp
-  (defun biblio/ferme-tous-les-tampons ()
+  (defun custom/ferme-tous-les-tampons ()
     "Ferme tous les tampons."
     (interactive)
     (mapc 'kill-buffer (buffer-list)))
@@ -1175,7 +1174,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 *** Revert all buffers
 
 #+begin_src emacs-lisp
-  (defun biblio/revert-all-buffers ()
+  (defun custom/revert-all-buffers ()
     "Refreshes all open buffers from their respective files."
     (interactive)
     (dolist (buf (buffer-list))
@@ -1189,11 +1188,11 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 *** Tampons souvent utilisés
 
 #+begin_src emacs-lisp
-  (defun biblio/aller-au-tampon-scratch ()
+  (defun custom/aller-au-tampon-scratch ()
     (interactive)
     (switch-to-buffer "*scratch*"))
 
-  (defun biblio/aller-au-tampon-grenier ()
+  (defun custom/aller-au-tampon-grenier ()
     (interactive)
     (split-window-right)
     (other-window 1)
@@ -1206,13 +1205,13 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 
 #+begin_src emacs-lisp
 
-(defun biblio/scinde-et-suit-horizontalement ()
+(defun custom/scinde-et-suit-horizontalement ()
   (interactive)
   (split-window-below)
   (balance-windows)
   (other-window 1))
 
-(defun biblio/scinde-et-suit-verticalement ()
+(defun custom/scinde-et-suit-verticalement ()
   (interactive)
   (split-window-right)
   (balance-windows)
@@ -1224,7 +1223,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Insertion date
 
 #+begin_src emacs-lisp
-  (defun biblio/insertion-date () (interactive)
+  (defun custom/insertion-date () (interactive)
     (insert (shell-command-to-string "echo -n $(date +'%d %b %Y')")))
 #+end_src
 
@@ -1233,7 +1232,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 
 #+begin_src emacs-lisp
 
-(defun biblio/insertion-date-jour () (interactive)
+(defun custom/insertion-date-jour () (interactive)
   (insert (shell-command-to-string "echo -n $(date +'%a %d %b %Y')")))
 
 #+end_src
@@ -1243,7 +1242,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 
 #+begin_src emacs-lisp
 
-(defun biblio/insertion-date-jour-heure () (interactive)
+(defun custom/insertion-date-jour-heure () (interactive)
   (insert (shell-command-to-string "echo -n $(date +'%H : %M %a %d %b %Y')")))
 
 #+end_src
@@ -1252,7 +1251,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 ** Style du texte sous le curseur
 
 #+begin_src emacs-lisp
-  (defun biblio/style-sous-curseur ()
+  (defun custom/style-sous-curseur ()
     (interactive)
     (what-cursor-position t))
 #+end_src
@@ -1262,7 +1261,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 
 #+begin_src emacs-lisp
 
-(defun biblio/lignes-vides-simples ()
+(defun custom/lignes-vides-simples ()
 
   (interactive)
 
@@ -1282,7 +1281,7 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 
 #+begin_src emacs-lisp
 
-(defun biblio/lignes-doubles-avant-titres ()
+(defun custom/lignes-doubles-avant-titres ()
 
   (interactive)
 
@@ -1312,12 +1311,12 @@ Credit : https://emacs.stackexchange.com/questions/27698/how-can-i-scroll-a-half
 
 #+begin_src emacs-lisp
   (global-unset-key (kbd "<f5>"))
-  (global-unset-key (kbd "<f6>"))
   (global-unset-key (kbd "<f7>"))
+  (global-unset-key (kbd "<f11>"))
   (global-unset-key (kbd "<f8>"))
   (global-unset-key (kbd "<f9>"))
   (global-unset-key (kbd "<f10>"))
-  (global-unset-key (kbd "<f11>"))
+  (global-unset-key (kbd "<f6>"))
   (global-unset-key (kbd "C-x C-z"))
 #+end_src
 
@@ -1337,13 +1336,13 @@ H = Hyper
 *** Éditer ce fichier
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f5> e") 'biblio/edite-configuration-org)
+  (global-set-key (kbd "<f5> e") 'custom/edite-configuration-org)
 #+end_src
 
 *** Recharger ce fichier
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f5> r") 'biblio/recharge-configuration-org)
+  (global-set-key (kbd "<f5> r") 'custom/recharge-configuration-org)
 #+end_src
 
 *** Liste des paquets
@@ -1358,14 +1357,14 @@ H = Hyper
 *** Recharger un fichier lisp
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f7> e") 'eval-buffer)
+  (global-set-key (kbd "<f11> e") 'eval-buffer)
 #+end_src
 
 
 *** Thème courant
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f6> t") 'list-faces-display)
+  (global-set-key (kbd "<f7> t") 'list-faces-display)
 #+end_src
 
 
@@ -1419,17 +1418,17 @@ Client et serveur
 *** Navigation
 
 #+begin_src emacs-lisp
-  (global-set-key [kp-prior] 'biblio/demi-page-haut)
-  (global-set-key [prior]    'biblio/demi-page-haut)
-  (global-set-key [kp-next]  'biblio/demi-page-bas)
-  (global-set-key [next]     'biblio/demi-page-bas)
+  (global-set-key [kp-prior] 'custom/demi-page-haut)
+  (global-set-key [prior]    'custom/demi-page-haut)
+  (global-set-key [kp-next]  'custom/demi-page-bas)
+  (global-set-key [next]     'custom/demi-page-bas)
   ;;(global-set-key (kbd "C-<home>"   'beginning-of-buffer)
   ;;(global-set-key (kbd "C-<end>"   'end-of-buffer)
   (global-set-key (kbd "C-v") 'scroll-up-command)
   (global-set-key (kbd "M-v") 'scroll-down-command)
   (global-set-key (kbd "s-a") 'backward-paragraph)
   (global-set-key (kbd "s-e") 'forward-paragraph)
-  (global-set-key (kbd "C-$")  'biblio/debut-fin-fichier)
+  (global-set-key (kbd "C-$")  'custom/debut-fin-fichier)
 #+end_src
 
 *** Onglets, tabs
@@ -1495,14 +1494,14 @@ Voir Helm dans la configuration des paquets
 ** Effacer, Couper
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<S-delete>") 'biblio/efface-mot)
-  (global-set-key (kbd "<M-delete>") 'biblio/efface-contenu-ligne)
+  (global-set-key (kbd "<S-delete>") 'custom/efface-mot)
+  (global-set-key (kbd "<M-delete>") 'custom/efface-contenu-ligne)
   (global-set-key (kbd "<C-delete>") 'kill-whole-line)
   ;; Rappelle le C-u de Unix
-  (global-set-key (kbd "s-u") 'biblio/efface-jusque-debut-ligne)
+  (global-set-key (kbd "s-u") 'custom/efface-jusque-debut-ligne)
   ;; (global-set-key (kbd "C-k") 'kill-line)
   (global-set-key (kbd "<C-backspace>") 'backward-kill-word)
-  (global-set-key (kbd "<M-backspace>") 'biblio/efface-mot)
+  (global-set-key (kbd "<M-backspace>") 'custom/efface-mot)
   (global-set-key (kbd "<S-backspace>") 'just-one-space)
 #+end_src
 
@@ -1515,12 +1514,12 @@ Voir Helm dans la configuration des paquets
   ;; C-y pour coller
   ;; M-y pour faire tourner le yank-ring
   ;; (global-set-key (kbd "M-y") 'yank-pop)
-  (global-set-key (kbd "<S-insert>") 'biblio/copie-mot)
-  (global-set-key (kbd "<M-insert>") 'biblio/copie-contenu-ligne)
-  (global-set-key (kbd "<C-insert>") 'biblio/copie-ligne)
+  (global-set-key (kbd "<S-insert>") 'custom/copie-mot)
+  (global-set-key (kbd "<M-insert>") 'custom/copie-contenu-ligne)
+  (global-set-key (kbd "<C-insert>") 'custom/copie-ligne)
   ;; Rappelle le C-u de Unix
-  (global-set-key (kbd "s-U") 'biblio/copie-jusque-debut-ligne)
-  (global-set-key (kbd "<C-S-insert>") 'biblio/copie-jusque-fin-ligne)
+  (global-set-key (kbd "s-U") 'custom/copie-jusque-debut-ligne)
+  (global-set-key (kbd "<C-S-insert>") 'custom/copie-jusque-fin-ligne)
 #+end_src
 
 
@@ -1573,9 +1572,9 @@ CUA mode est mieux
 ** Orthographe
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f11> o") 'flyspell-mode)
+  (global-set-key (kbd "<f6> o") 'flyspell-mode)
   ; Espaces
-  (global-set-key (kbd "<f11> s") 'whitespace-mode)
+  (global-set-key (kbd "<f6> s") 'whitespace-mode)
 #+end_src
 
 
@@ -1586,8 +1585,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+begin_src emacs-lisp
   (global-set-key (kbd "<s-kp-0>") 'delete-window)
   (global-set-key (kbd "<s-kp-1>") 'delete-other-windows)
-  (global-set-key (kbd "<s-kp-2>") 'biblio/scinde-et-suit-horizontalement)
-  (global-set-key (kbd "<s-kp-3>") 'biblio/scinde-et-suit-verticalement)
+  (global-set-key (kbd "<s-kp-2>") 'custom/scinde-et-suit-horizontalement)
+  (global-set-key (kbd "<s-kp-3>") 'custom/scinde-et-suit-verticalement)
   (global-set-key (kbd "<s-kp-7>") 'other-window)
   (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
   (global-set-key (kbd "<C-up>") 'windmove-up)
@@ -1602,7 +1601,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "C-x _") 'shrink-window)
   (global-set-key (kbd "C-x }") 'enlarge-window-horizontally)
   (global-set-key (kbd "C-x {") 'shrink-window-horizontally)
-  (global-set-key (kbd "<f11> f") 'follow-mode)
+  (global-set-key (kbd "<f6> f") 'follow-mode)
 #+end_src
 
 ** Tampons (buffers)
@@ -1610,7 +1609,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Tampon précédent
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-^") 'biblio/alterne-deux-derniers-tampons)
+  (global-set-key (kbd "C-^") 'custom/alterne-deux-derniers-tampons)
   (global-set-key (kbd "s-b") 'switch-to-buffer)
   (global-set-key (kbd "s-s") 'save-some-buffers)
 #+end_src
@@ -1625,29 +1624,29 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Revert
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f7> r") 'revert-buffer)
-  (global-set-key (kbd "<f7> R") 'biblio/revert-all-buffers)
+  (global-set-key (kbd "<f11> r") 'revert-buffer)
+  (global-set-key (kbd "<f11> R") 'custom/revert-all-buffers)
 #+end_src
 
 
 *** Fermer le tampon courant
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-x k") 'biblio/ferme-tampon-courant)
+  (global-set-key (kbd "C-x k") 'custom/ferme-tampon-courant)
 #+end_src
 
 
 *** Fermer tous les tampons
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-M-s-k") 'biblio/ferme-tous-les-tampons)
+  (global-set-key (kbd "C-M-s-k") 'custom/ferme-tous-les-tampons)
 #+end_src
 
 
 *** Tampons inactifs
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f7> c") 'clean-buffer-list)
+  (global-set-key (kbd "<f11> c") 'clean-buffer-list)
 #+end_src
 
 
@@ -1661,8 +1660,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Tampons souvent utilisés
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f7> s") 'biblio/aller-au-tampon-scratch)
-  (global-set-key (kbd "<f7> g") 'biblio/aller-au-tampon-grenier)
+  (global-set-key (kbd "<f11> s") 'custom/aller-au-tampon-scratch)
+  (global-set-key (kbd "<f11> g") 'custom/aller-au-tampon-grenier)
 #+end_src
 
 *** Divers
@@ -1670,7 +1669,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+begin_src emacs-lisp
   ;; Lancer et répondre "!" pour sauver tous les tampons modifiés
   ;; (global-set-key (kbd "C-x s") 'save-some-buffers)
-  (global-set-key (kbd "<f7> n") 'biblio/affiche-copie-nom-fichier)
+  (global-set-key (kbd "<f11> n") 'custom/affiche-copie-nom-fichier)
 #+end_src
 
 
@@ -1704,7 +1703,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   (global-set-key (kbd "M-(") 'insert-parentheses)
   (global-set-key (kbd "M-)") 'move-past-close-and-reindent)
   (global-set-key (kbd "C-M-k") 'kill-sexp)
-  (global-set-key (kbd "s-y") 'biblio/copie-sexp)
+  (global-set-key (kbd "s-y") 'custom/copie-sexp)
   (global-set-key (kbd "s-k") 'kill-sexp)
 
   ;; Slurp & Barf, Split & Splice : voir smartparens
@@ -1743,8 +1742,8 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 *** Date
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "s-d") 'biblio/insertion-date)
-  (global-set-key (kbd "s-D") 'biblio/insertion-date-jour)
+  (global-set-key (kbd "s-d") 'custom/insertion-date)
+  (global-set-key (kbd "s-D") 'custom/insertion-date-jour)
 #+end_src
 
 
@@ -1780,14 +1779,14 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 ** Apparence
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "s-l") 'linum-mode)
-  (global-set-key (kbd "<f11> l") 'hl-line-mode)
+  (global-set-key (kbd "s-l") 'linum-number-mode)
+  (global-set-key (kbd "<f6> l") 'hl-line-mode)
 #+end_src
 
 Infos sur les thèmes
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f6> c") 'biblio/style-sous-curseur)
+  (global-set-key (kbd "<f7> c") 'custom/style-sous-curseur)
 #+end_src
 
 
@@ -2082,7 +2081,7 @@ Nécessite org-tempo
 
 #+begin_src emacs-lisp
   (use-package ivy
-    :bind (("<f11> i" . ivy-mode)
+    :bind (("<f6> i" . ivy-mode)
 	   ("s-f" . counsel-fzf)
 	   ("s-B" . ivy-switch-buffer)
 	   ("s-X" . counsel-M-x)
@@ -2160,7 +2159,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
 #+begin_src emacs-lisp
    (global-unset-key (kbd "C-x c"))
 
-   (global-set-key (kbd "<f11> h") 'helm-mode)
+   (global-set-key (kbd "<f6> h") 'helm-mode)
 
    (global-set-key (kbd "M-X") 'helm-minibuffer-history)
    (global-set-key (kbd "s-ù") 'helm-mini)
@@ -2292,7 +2291,7 @@ Voir aussi key-chord & hydra dans la configuration des paquets
   ;; Credit: https://emacs.stackexchange.com/questions/45721/how-to-properly-define-hydras-inside-use-package
 
   (use-package undo-tree
-    :bind (("<f11> u" . global-undo-tree-mode)
+    :bind (("<f6> u" . global-undo-tree-mode)
 	   ("C-x u" . undo-tree-visualize))
     :custom
     ((global-undo-tree-mode 1)
@@ -2374,7 +2373,7 @@ Langages, parenthèses
   (sp-local-pair #'inferior-emacs-lisp-mode "'" nil :actions nil)
   (sp-local-pair #'inferior-emacs-lisp-mode "\`" nil :actions nil)
 
-  (global-set-key (kbd "<f11> p") 'smartparens-global-mode)
+  (global-set-key (kbd "<f6> p") 'smartparens-global-mode)
 
   (define-key sp-keymap (kbd "C-)") 'sp-forward-slurp-sexp)
   (define-key sp-keymap (kbd "C-(") 'sp-forward-barf-sexp)
@@ -2400,7 +2399,7 @@ Ralentit la frappe : activer seulement lorsque nécessaire
 
 #+begin_src emacs-lisp
   (use-package key-chord
-    :bind (("<f11> c" . key-chord-mode))
+    :bind (("<f6> c" . key-chord-mode))
     :custom ((key-chord-two-keys-delay 0.12)
 	     (key-chord-one-key-delay 0.12)))
 #+end_src
@@ -2477,7 +2476,7 @@ Ralentit la frappe : activer seulement lorsque nécessaire
 
 #+begin_src emacs-lisp
   (use-package evil
-    :bind (("<f11> v" . evil-mode))
+    :bind (("<f6> v" . evil-mode))
     :custom ((evil-undo-system 'undo-tree)))
 #+end_src
 
@@ -2493,7 +2492,7 @@ Ralentit la frappe : activer seulement lorsque nécessaire
 #+begin_src emacs-lisp
   ;; (use-package evil-org)
   ;; (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
-  ;; (global-set-key (kbd "<f11> w") 'evil-org-mode)
+  ;; (global-set-key (kbd "<f6> w") 'evil-org-mode)
 #+end_src
 
 *** Xah-math-input
@@ -2501,7 +2500,7 @@ Ralentit la frappe : activer seulement lorsque nécessaire
 #+begin_src emacs-lisp
   (use-package xah-math-input
     :commands (xah-math-input-mode)
-    :bind (("<f11> x" . xah-math-input-mode)))
+    :bind (("<f6> x" . xah-math-input-mode)))
 #+end_src
 
 *** Which-key

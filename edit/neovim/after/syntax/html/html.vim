@@ -5,14 +5,14 @@ hi htmlSpecialChar		guifg=NONE			guibg=NONE			gui=NONE
 hi htmlLink				  guifg=#5B3C11		guibg=NONE			gui=NONE
 hi htmlEvent 			guifg=NONE			guibg=NONE			gui=underline
 hi htmlEventDQ 			guifg=NONE			guibg=NONE			gui=underline
-hi htmlTag				guifg=#88421D		guibg=default			gui=NONE
-hi htmlEndTag			guifg=#88421D		guibg=default			gui=NONE
-hi htmlTagN				guifg=#88421D		guibg=default			gui=NONE
-hi htmlTagName			guifg=#88421D		guibg=default			gui=NONE
-hi htmlSpecialTagName	guifg=#88421D		guibg=default			gui=NONE
-hi htmlArg				guifg=#88421D		guibg=default			gui=NONE
-hi htmlHead				guifg=brown			guibg=default			gui=NONE
-hi htmlTitle			guifg=brown			guibg=default			gui=NONE
+hi htmlTag				guifg=#88421D		guibg=NONE			gui=NONE
+hi htmlEndTag			guifg=#88421D		guibg=NONE			gui=NONE
+hi htmlTagN				guifg=#88421D		guibg=NONE			gui=NONE
+hi htmlTagName			guifg=#88421D		guibg=NONE			gui=NONE
+hi htmlSpecialTagName	guifg=#88421D		guibg=NONE			gui=NONE
+hi htmlArg				guifg=#88421D		guibg=NONE			gui=NONE
+hi htmlHead				guifg=brown			guibg=NONE			gui=NONE
+hi htmlTitle			guifg=brown			guibg=NONE			gui=NONE
 
 hi htmlItalic			ctermfg=NONE		ctermbg=NONE			cterm=NONE
 hi htmlSpecialChar		ctermfg=NONE		ctermbg=NONE			cterm=NONE

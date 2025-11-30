@@ -826,11 +826,6 @@ nnoremap J mzJ`z
 
 nnoremap ' `
 
-" phrase {{{3
-
-nnoremap (<space> (
-nnoremap )<space> )
-
 "  Recherche & Remplacement {{{2
 
 " Recherche {{{3

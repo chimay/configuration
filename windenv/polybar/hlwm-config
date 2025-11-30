@@ -145,12 +145,12 @@ menu-0-0 = Launch
 menu-0-0-exec = menu-open-1
 menu-0-1 = Term
 menu-0-1-exec = menu-open-2
-menu-0-2 = Text
+menu-0-2 = Edit
 menu-0-2-exec = menu-open-3
 menu-0-3 = Browser
 menu-0-3-exec = menu-open-4
 
-menu-1-0 = menu
+menu-1-0 = appfinder
 menu-1-0-exec = xfce4-appfinder &>> ~/log/polybar/sgtk-menu.log  &
 menu-1-1 = dmenu
 menu-1-1-exec = dmenu-apps.sh &>> ~/log/polybar/dmenu-apps.log  &
@@ -165,30 +165,24 @@ menu-2-1 = Xterm
 menu-2-1-exec = xterm &
 menu-2-2 = Urxvtc
 menu-2-2-exec = urxvtc &
-menu-2-3 = Kakoune
-menu-2-3-exec = kitty kak &
-menu-2-4 = Vifm
-menu-2-4-exec = kitty vifmrun &
-menu-2-5 = "<--"
-menu-2-5-exec = menu-open-0
+menu-2-3 = "<--"
+menu-2-3-exec = menu-open-0
 
 menu-3-0 = Neovim
-menu-3-0-exec = run-neovim.zsh &>> ~/log/polybar/run-neovim.log &
+menu-3-0-exec = neovim-qt-lite.sh &>> ~/log/polybar/neovim-qt-lite.log &
 menu-3-1 = Gvim
-menu-3-1-exec = run-gvim.zsh &>> ~/log/polybar/run-gvim.log &
+menu-3-1-exec = gvim-lite.sh &>> ~/log/polybar/gvim-lite.log &
 menu-3-2 = Emacs client
-menu-3-2-exec = run-emacs-client.zsh  &>> ~/log/polybar/run-emacs-client.log &
+menu-3-2-exec = run-emacs-client.sh  &>> ~/log/polybar/run-emacs-client.log &
 menu-3-3 = "<--"
 menu-3-3-exec = menu-open-0
 
 menu-4-0 = Qutebrowser
 menu-4-0-exec = qutebrowser &
-menu-4-1 = Firefox
-menu-4-1-exec = firefox &
-menu-4-2 = Brave
-menu-4-2-exec = brave &
-menu-4-3 = "<--"
-menu-4-3-exec = menu-open-0
+menu-4-1 = Helium
+menu-4-1-exec = helium &
+menu-4-2 = "<--"
+menu-4-2-exec = menu-open-0
 
 ; Available tags:
 ;   <label-toggle> (default) - gets replaced with <label-(open|close)>
