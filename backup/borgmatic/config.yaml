@@ -98,12 +98,10 @@ repositories:
       label: galaxy-red-disk
     - path: /home/david/backup/borg
       label: taijitu-local
-    - path: /media/cleusb/taijitu/borg
+    - path: /run/media/david/usb-key/taijitu/borg
       label: taijitu-usb-key
-    - path: /media/diskext/david/backup/borg
-      label: taijitu-usb-disc
-    - path: /run/media/david/sdb1/david/backup/borg
-      label: mandala-usb-disc
+    - path: /run/media/david/black-disk/david/backup/taijitu/borg
+      label: taijitu-black-disk
 
 # Working directory for the "borg create" command. Tildes are
 # expanded. Useful for backing up using relative paths. See

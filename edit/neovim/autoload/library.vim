@@ -1150,6 +1150,48 @@ fun! library#latex_gen_pdf ()
 	return 'success'
 endfun
 
+fun! library#latex_make_svg ()
+	" Make svg file from latex/tikz file
+	call library#write_all ()
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e')
+	if extension !=# 'tex'
+		return 'filetype not supported'
+	endif
+	let filename = fnamemodify(rawname, ':t:r')
+	let dirname = fnamemodify(rawname, ':h')
+	let svgname = filename .. '.svg'
+	let old_dir = getcwd()
+	execute 'lcd' dirname
+	setlocal makeprg=make
+	execute 'make! clean'
+	execute 'make! -k' svgname
+	execute 'lcd' old_dir
+	return 'success'
+endfun
+
+fun! library#latex_gen_svg ()
+	" Generate svg file from latex/tikz file
+	call library#write_all ()
+	let rawname = expand('%')
+	let extension = fnamemodify(rawname, ':e')
+	if extension !=# 'tex'
+		return 'filetype not supported'
+	endif
+	let filename = fnamemodify(rawname, ':t:r')
+	let dirname = fnamemodify(rawname, ':h')
+	let texname = filename .. '.tex'
+	let pdfname = filename .. '.pdf'
+	let svgname = filename .. '.svg'
+	let old_dir = getcwd()
+	execute 'lcd' dirname
+	execute '! rm -f ?*~ ?*.log ?*.aux ?*.out ?*.toc ?*.dvi ?*.fls ?*.fdb_latexmk'
+	execute '! latexmk -f -pdf' texname
+	execute '! pdf2svg ' pdfname svgname
+	execute 'lcd' old_dir
+	return 'success'
+endfun
+
 " ---- music
 
 fun! library#lilypond_make_midi ()

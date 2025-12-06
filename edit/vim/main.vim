@@ -709,6 +709,8 @@ nnoremap <f7>H <cmd>call library#orgmode_gen_html()<cr>
 " latex
 nnoremap <f8>p <cmd>call library#latex_make_pdf()<cr>
 nnoremap <f8>P <cmd>call library#latex_gen_pdf()<cr>
+nnoremap <f8>s <cmd>call library#latex_make_svg()<cr>
+nnoremap <f8>S <cmd>call library#latex_gen_svg()<cr>
 
 " lilypond
 nnoremap <f9>m <cmd>call library#lilypond_make_midi()<cr>

@@ -89,6 +89,8 @@ alias ii=vimiv
 alias iii=feh
 alias iiii=ucollage
 
+alias iv=xnviewmp
+
 # Fontes
 
 alias fntprev='fontpreview-ueberzug -f "#5b3c11" -b "#000000"'

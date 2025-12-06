@@ -252,6 +252,8 @@ let g:which_key_main_map['£'] = {
 	\ 'name' : '+mathematic' ,
 	\ 'p' : ['library#latex_make_pdf()'   , 'make pdf'] ,
 	\ 'P' : ['library#latex_gen_pdf()'   , 'generate pdf'] ,
+	\ 's' : ['library#latex_make_svg()'   , 'make svg'] ,
+	\ 'S' : ['library#latex_gen_svg()'   , 'generate svg'] ,
 	\ }
 
 " music {{{2

@@ -1,0 +1,801 @@
+" vim: ft=vim
+
+" examples {{{1
+
+" default {{{2
+
+" ---- Options
+
+" set adblocker=static
+" set adblockernotifications=all
+" set cache=clearonquit
+" set noclearcookiesonquit
+" set nocleardownloadsoncompleted
+" set nocleardownloadsonquit
+" set clearhistoryinterval=none
+" set noclearlocalstorageonquit
+" set noclosablepinnedtabs
+" set commandhist=persistuseronly
+" set containerkeeponreopen
+" set containernewtab=s:usecurrent
+" set containershowname=automatic
+" set containersplitpage=s:usecurrent
+" set containerstartuppage=main
+" set countlimit=100
+" set nodarkreader
+" set darkreaderbg=#181a1b
+" set darkreaderbrightness=100
+" set darkreadercontrast=100
+" set darkreaderfg=#e8e6e3
+" set darkreadergrayscale=0
+" set darkreadermode=dark
+" set darkreadersepia=0
+" set darkreadertextstroke=0
+" set devtoolsposition=window
+" set dialogalert=notifyblock
+" set dialogconfirm=notifyallow
+" set dialogprompt=notifyblock
+" set downloadmethod=automatic
+" set downloadpath=
+" set encodeurlcopy=nospaces
+" set encodeurlext=nospaces
+" set explorehist=persist
+" set externalcommand=
+" set favicons=session
+" set followchars=alpha
+" set followfallbackaction=filter
+" set followlabelposition=outsiderighttop
+" set follownewtabswitch
+" set guifontsize=14
+" set guifullscreennavbar=oninput
+" set guifullscreentabbar=onupdate
+" set guihidetimeout=2000
+" set guinavbar=always
+" set guiscrollbar=always
+" set guitabbar=always
+" set historyperpage=100
+" set ignorecase
+" set incsearch
+" set inputfocusalignment=rememberend
+" set insertleavetimeout=0
+" set keeprecentlyclosed
+" set lang=en
+" set loadingindicator=spinner
+" set mapsuggest=9000000000000000
+" set mapsuggestposition=topright
+" set markposition=newtab
+" set markpositionshifted=default
+" set maxmapdepth=10
+" set menupage=elementasneeded
+" set menusuggest=both
+" set menuvieb=both
+" set mintabwidth=28
+" set mouse=all
+" set mousedisabledbehavior=nothing
+" set nomousefocus
+" set mousenewtabswitch
+" set mousevisualmode=onswitch
+" set nativenotification=never
+" set nativetheme=dark
+" set newtaburl=
+" set notificationduration=6000
+" set notificationforpermissions=silent
+" set notificationforsystemcommands=errors
+" set notificationlimitsmall=3
+" set notificationposition=bottomright
+" set pdfbehavior=download
+" set permissioncamera=block
+" set permissioncertificateerror=block
+" set permissionclipboardread=block
+" set permissionclipboardwrite=allow
+" set permissionclosepage=allow
+" set permissiondisplaycapture=block
+" set permissionfullscreen=allow
+" set permissiongeolocation=block
+" set permissionhid=block
+" set permissionidledetection=block
+" set permissionmediadevices=block
+" set permissionmicrophone=block
+" set permissionmidi=block
+" set permissionmidisysex=block
+" set permissionnotifications=block
+" set permissionopenexternal=ask
+" set permissionpersistentstorage=block
+" set permissionpointerlock=block
+" set permissionscreenwakelock=block
+" set permissionsensors=block
+" set permissionserial=block
+" set permissionunknown=block
+" set permissionusb=block
+" set permissionwindowmanagement=block
+" set pointerposlocalid=domain
+" set pointerpostype=casing
+" set noquitonlasttabclose
+" set noredirecttohttp
+" set noreloadtaboncrash
+" set replacespecial=special
+" set replacestartup=never
+" set requesttimeout=20000
+" set restoretabs=all
+" set scrollposlocalid=domain
+" set scrollpostype=casing
+" set searchemptyscope=global
+" set searchpointeralignment=left
+" set searchreach=visible
+" set searchreachinc=same
+" set searchreachtraverse=same
+" set searchscope=global
+" set shell=
+" set showcmd
+" set showsearchresults
+" set smartcase
+" set spell
+" set nosplitbelow
+" set nosplitright
+" set nosponsorblock
+" set suggestbouncedelay=100
+" set suggestcommands=9000000000000000
+" set suggesttopsites=10
+" set suspendbackgroundtab
+" set suspendonrestore=regular
+" set suspendtimeout=0
+" set tabclosefocus=left
+" set tabcycle
+" set tabnewposition=right
+" set tabopenmuted=never
+" set taboverflow=scroll
+" set tabreopenmuted=remember
+" set tabreopenposition=right
+" set timeout
+" set timeoutlen=2000
+" set translateapi=auto
+" set translatekey=
+" set translatelang=en-us
+" set translateurl=https://api-free.deepl.com/v2/
+" set nouserscript
+" set nouserstyle
+" set vimcommand=gvim
+" set windowfullscreen=restore
+" set windowmaximize=restore
+" set windowposition=restore
+" set windowsize=restore
+" set windowtitle="%app - %title"
+
+" ---- Commands
+
+"colorscheme default
+
+" qutebrowser {{{2
+
+" ----Options
+
+" set adblocker=update
+" set devtoolsposition=split
+" set downloadmethod=confirm
+" set followchars=numbers
+" set guifontsize=16
+" set mapsuggestposition=bottomleft
+" set permissioncamera=ask
+" set permissiondisplaycapture=ask
+" set permissionmediadevices=allow
+" set permissionmicrophone=ask
+" set permissionpersistentstorage=allow
+" set redirecttohttp
+" set restoretabs=pinned
+" set tabclosefocus=right
+" set tabreopenposition=right
+" set useragent=%firefox
+" set windowtitle="%title - %app"
+
+" ---- Mappings
+
+" nnoremap wi <:devtools>
+" nnoremap Sh <:history>
+" nnoremap Ss <:help>
+" nnoremap <C-A-p> <:print>
+" nnoremap <C-W> <:quit>
+" nnoremap ZQ <:quit>
+" nnoremap gd <:write>
+" nunmap [
+" nunmap ]
+" nunmap {
+" nunmap }
+" nnoremap [[ <previousPage>
+" nnoremap ]] <nextPage>
+" nnoremap {{ <previousPageNewTab>
+" nnoremap }} <nextPageNewTab>
+" nnoremap gU <openNewTabWithCurrentUrl><CR><toParentUrl>
+" nnoremap g0 <:b 0>
+" nnoremap g^ <:b -1>
+" nnoremap g$ <:b -1>
+" nnoremap <C-^> <:buffer #>
+" nnoremap <C-Tab> <:buffer #>
+" nnoremap ga <:tabnew>
+" nnoremap gC <openNewTabWithCurrentUrl><CR>
+" nnoremap gJ <moveTabForward>
+" nnoremap gK <moveTabBackward>
+" nnoremap <C-S-PageUp> <moveTabForward>
+" nnoremap <C-S-PageDown> <moveTabBackward>
+" " This is disabled as it prevents use of window split mappings.
+" " See :h splitting for more information on window splits
+" " nmap <C-w> <:close>
+" nnoremap <del> <:close>
+" nnoremap co <:lclose><:rclose>
+" nnoremap = <zoomReset>
+" nnoremap <C-p> <:pin>
+" nnoremap <C-s> <stopLoadingPage>
+" nnoremap o <toExploreMode><BS>
+" nnoremap go <toExploreMode><End>
+" nnoremap gt <toCommandMode>buffer<Space>
+" nnoremap O <:tabnew><toExploreMode>
+" nunmap p
+" nnoremap pp <openFromClipboard>
+" nnoremap Pp <:tabnew><openFromClipboard>
+" nnoremap sk <toCommandMode>map<Space>
+" nnoremap ss <toCommandMode>set<Space>
+
+" imap <C-e> <editWithVim>
+
+" cnoremap <C-a> <Home>
+" cnoremap <C-e> <End>
+" cnoremap <A-f> <C-Right>
+" cnoremap <A-b> <C-Left>
+" cnoremap <A-d> <C-S-Right><BS>
+" cnoremap <A-BS> <C-S-Left><BS>
+" cnoremap <C-?> <Del>
+" cnoremap <C-h> <BS>
+" cnoremap <C-b> <Left>
+" cnoremap <C-f> <Right>
+" cnoremap <C-k> <S-End><BS>
+" cnoremap <C-u> <S-Home><BS>
+" cnoremap <C-w> <C-S-Left><BS>
+" cnoremap <C-e> <editWithVim>
+
+" emap <C-e> <editWithVim>
+" emap <C-Tab> <nextSuggestionSection>
+" emap <C-S-Tab> <prevSuggestionSection>
+
+" smap <C-e> <editWithVim>
+
+" pmap c <toNormalMode>
+" pmap e <p.moveFastRight>
+" pmap H <p.scrollLeft>
+" pmap L <p.scrollRight>
+" pmap <Space> <p.startVisualSelect>
+
+" vmap v <p.start>
+" vmap <CR> <p.copyText>
+" vmap <C-Space> <toNormalMode><p.start><p.startVisualSelect>
+
+" pentadactyl {{{2
+
+" Options
+
+" set adblocker=update
+" set devtoolsposition=split
+" set downloadmethod=confirm
+" set guifontsize=16
+" set mintabwidth=250
+" set permissioncamera=ask
+" set permissiondisplaycapture=ask
+" set permissionmediadevices=allow
+" set permissionmicrophone=ask
+" set permissionpersistentstorage=allow
+" set redirecttohttp
+" set restoretabs=pinned
+" set searchwords=google~https://www.google.com/search?hl=en&q=%s
+" set splitbelow
+" set tabreopenposition=previous
+" set useragent=%firefox
+
+" ---- Mappings
+
+" nunmap [
+" nunmap ]
+" nmap [[ <previousPage>
+" nmap ]] <nextPage>
+" nmap <C-6> <:buffer #>
+" nmap <C-^> <:buffer #>
+" nmap b :buffer<Space>
+" nmap g0 <:buffer 0>
+" nmap g^ <:buffer 0>
+" nmap g$ <:buffer -1>
+" nmap d <:set tabclosefocus=right><:close>
+" nmap D <:set tabclosefocus=left><:close>
+" nmap o <toExploreMode>
+" nmap O <:tabnew><toExploreMode>
+" nmap gP <:tabnew><openFromClipboard><:buffer #>
+" nmap s <toExploreMode>google<Space>
+" nmap S <:tabnew><toExploreMode>google<Space>
+" nmap <S-Space> <scrollPageUp>
+" nmap <Space> <scrollPageDown>
+" nmap zZ <zoomReset>
+" nmap zI <zoomIn>
+" nmap ZI <zoomIn>
+" nmap zM 5<zoomIn>
+" nmap ZM 5<zoomIn>
+" nmap zO <zoomOut>
+" nmap ZO <zoomOut>
+" nmap zR 5<zoomOut>
+" nmap ZR 5<zoomOut>
+" nmap ZQ <:quit>
+
+" imap <C-a> <Home>
+" imap <C-e> <End>
+" imap <C-d> <Del>
+" imap <C-h> <BS>
+" imap <C-k> <S-End><BS>
+" imap <C-u> <S-Home><BS>
+" imap <C-w> <C-S-Left><BS>
+
+" cmap <C-h> <BS>
+" cmap <C-j> <useEnteredData>
+" cmap <C-m> <useEnteredData>
+" cmap <S-Up> <commandHistoryPrevious>
+" cmap <S-Down> <commandHistoryNext>
+
+" emap <C-h> <BS>
+" emap <C-j> <useEnteredData>
+" emap <C-m> <useEnteredData>
+" emap <S-Up> <exploreHistoryPrevious>
+" emap <S-Down> <exploreHistoryNext>
+" emap <C-Tab> <nextSuggestionSection>
+" emap <C-S-Tab> <prevSuggestionSection>
+" emap <A-f> <nextSuggestionSection>
+" emap <A-S-f> <prevSuggestionSection>
+
+" pmap <Return> <p.moveDown>
+" pmap <Space> <p.moveRight>
+" pmap <BS> <p.moveLeft>
+" pmap e <p.moveFastRight>
+" pmap E <p.moveFastRight>
+
+" vmap Y <p.copyText>
+" vmap <Return> <p.moveDown>
+" vmap <Space> <p.moveRight>
+" vmap <BS> <p.moveLeft>
+" vmap e <p.moveFastRight>
+" vmap E <p.moveFastRight>
+
+" tridactyl {{{2
+
+" ---- Options
+
+" set adblocker=update
+" set closablepinnedtabs
+" set downloadmethod=confirm
+" set noincsearch
+" set mintabwidth=250
+" set redirecttohttp
+" set restoretabs=pinned
+" set searchwords=
+" set searchwords+=google~https://www.google.com/search?q=%s
+" set searchwords+="googlelucky~https://www.google.com/search?btnI=I'm+Feeling+Lucky&q=%s"
+" set searchwords+=scholar~https://scholar.google.com/scholar?q=%s
+" set searchwords+=googleuk~https://www.google.co.uk/search?q=%s
+" set searchwords+=bing~https://www.bing.com/search?q=%s
+" set searchwords+=duckduckgo~https://duckduckgo.com/?q=%s
+" set searchwords+=yahoo~https://search.yahoo.com/search?p=%s
+" set searchwords+=twitter~https://twitter.com/search?q=%s
+" set searchwords+=wikipedia~https://en.wikipedia.org/wiki/Special:Search/%s
+" set searchwords+=youtube~https://www.youtube.com/results?search_query=%s
+" set searchwords+=amazon~https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=%s
+" set searchwords+=amazonuk~https://www.amazon.co.uk/s/ref=nb_sb_noss?url=search-alias=aps&field-keywords=%s
+" set searchwords+=startpage~https://startpage.com/do/search?language=english&cat=web&query=%s
+" set searchwords+=github~https://github.com/search?utf8=✓&q=%s
+" set searchwords+=searx~https://searx.me/?category_general=on&q=%s
+" set searchwords+=cnrtl~http://www.cnrtl.fr/lexicographie/%s
+" set searchwords+=osm~https://www.openstreetmap.org/search?query=%s
+" set searchwords+=mdn~https://developer.mozilla.org/en-US/search?q=%s
+" set searchwords+=gentoo_wiki~https://wiki.gentoo.org/index.php?title=Special:Search&profile=default&fulltext=Search&search=%s
+" set searchwords+=qwant~https://www.qwant.com/?q=%s
+" set noshowcmd
+" set tabreopenposition=previous
+" set useragent=%firefox
+
+" ---- Mappings
+
+" nmap o <toExploreMode>
+" nmap b <toCommandMode>buffer<Space>
+" nmap g0 <:buffer 0>
+" nmap g^ <:buffer 0>
+" nmap g$ <:buffer -1>
+" nmap J <previousTab>
+" nmap K <nextTab>
+" nmap >> <moveTabForward>
+" nmap <lt><lt> <moveTabBackward>
+" nmap O <toExploreMode><End>
+" nmap gx0 <:lclose>
+" nmap gx$ <:rclose>
+" nmap x <stopLoadingPage>
+" nunmap [
+" nunmap ]
+" nmap [[ <previousPage>
+" nmap ]] <nextPage>
+" nmap [c <decreasePageNumber>
+" nmap ]c <increasePageNumber>
+" nmap zz <zoomReset>
+" nmap zi <zoomIn>
+" nmap zo <zoomOut>
+" nmap zm 5<zoomIn>
+" nmap zr 5<zoomOut>
+" nmap zM 5<zoomIn>
+" nmap zR 5<zoomOut>
+" nmap zI 7<zoomIn>
+" nmap zO 7<zoomOut>
+" " Tridactyl easter egg
+" nmap <A-S-Up><A-S-Up><A-S-Down><A-S-Down><A-S-Left><A-S-Right><A-S-Left><A-S-Right>ba <:open https://www.youtube.com/watch?v=M3iOROuTuMA>
+
+" vimium {{{2
+
+" ---- Options
+
+" set adblocker=update
+" set downloadmethod=confirm
+" set nofollownewtabswitch
+" set mintabwidth=250
+" set redirecttohttp
+" set restoretabs=pinned
+" set searchengine=https://google.com/search?q=%s
+" set searchwords=w~https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s
+" set tabreopenposition=previous
+
+" ---- Mappings
+
+" nmap v <p.start><p.startVisualSelect>
+" nmap d <scrollPageDownHalf>
+" nmap u <scrollPageUpHalf>
+" nunmap [
+" nunmap ]
+" nmap [[ <previousPage>
+" nmap ]] <nextPage>
+" nmap o <toExploreMode>
+" nmap O <:tabnew><toExploreMode>
+" nmap T <toCommandMode>buffer<Space>
+" nmap g0 <:buffer 0>
+" nmap g$ <:buffer -1>
+" nmap J <previousTab>
+" nmap K <nextTab>
+" nmap ^ <:buffer #>
+" nmap ge <toExploreMode><End>
+" nmap gE <:tabnew><toExploreMode>
+" nmap x <:close>
+" nmap X <reopenTab>
+" nmap yt <openNewTabWithCurrentUrl><CR>
+" nmap <lt><lt> <moveTabBackward>
+" nmap >> <moveTabForward>
+" nmap ? <:help>
+
+" vim vixen {{{2
+
+" ---- Options
+
+" set adblocker=update
+" set devtoolsposition=split
+" set downloadmethod=confirm
+" set guifontsize=16
+" set mintabwidth=250
+" set permissioncamera=ask
+" set permissiondisplaycapture=ask
+" set permissionmediadevices=allow
+" set permissionmicrophone=ask
+" set permissionpersistentstorage=allow
+" set redirecttohttp
+" set restoretabs=pinned
+" set searchengine=https://google.com/search?q=%s
+" set searchwords=
+" set searchwords+=google~https://google.com/search?q=%s
+" set searchwords+=yahoo~https://search.yahoo.com/search?p=%s
+" set searchwords+=bing~https://www.bing.com/search?q=%s
+" set searchwords+=duckduckgo~https://duckduckgo.com/?q=%s
+" set searchwords+=twitter~https://twitter.com/search?q=%s
+" set searchwords+=wikipedia~https://en.wikipedia.org/w/index.php?search=%s
+" set splitbelow
+" set suggestorder=searchword,history
+" set tabreopenposition=previous
+" set notimeout
+" set useragent=%firefox
+
+" ---- Mappings
+
+" nmap o <toExploreMode><BS>
+" nmap O <toExploreMode>
+" nmap t <:tabnew><toExploreMode>
+" nmap b :buffer<Space>
+" nmap d <:set tabclosefocus=right><:close>
+" nmap D <:set tabclosefocus=left><:close>
+" nmap !d <:close!>
+" nunmap x
+" nmap x$ <:rclose>
+" nmap g0 <:buffer 0>
+" nmap g$ <:buffer -1>
+" nmap <C-6> <:buffer #>
+" nmap zd <openNewTabWithCurrentURL><CR>
+" nunmap [
+" nunmap ]
+" nmap [[ <previousPage>
+" nmap ]] <nextPage>
+" nmap zz <zoomReset>
+" nmap zo <zoomOut>
+" nmap zi <zoomIn>
+" nmap [[ <decreasePageNumber>
+" nmap ]] <increasePageNumber>
+
+" surfingkeys {{{2
+
+" ---- Options
+
+" set adblocker=update
+" set devtoolsposition=split
+" set downloadmethod=confirm
+" set guifontsize=16
+" set mapsuggestposition=bottomright
+" set mintabwidth=250
+" set permissioncamera=ask
+" set permissiondisplaycapture=ask
+" set permissionmediadevices=allow
+" set permissionmicrophone=ask
+" set permissionpersistentstorage=allow
+" set redirecttohttp
+" set restoretabs=pinned
+" set searchwords=
+" set searchwords+=translate~https://translate.google.com/?sl=auto&tl=en&text=%s
+" set searchwords+=duckduckgo~https://duckduckgo.com/?q=%s
+" set searchwords+=google~https://www.google.com/search?hl=en&q=%s
+" set searchwords+=bing~https://www.bing.com/search?q=%s
+" set searchwords+=baidu~https://www.baidu.com/s?wd=%s
+" set searchwords+=youtube~https://www.youtube.com/results?search_query=%s
+" set searchwords+=wikipedia~https://en.wikipedia.org/?search=%s
+" set searchwords+=stackoverflow~https://stackoverflow.com/search?q=%s
+" set searchwords+=github~https://github.com/search?q=%s
+" set splitbelow
+" set tabclosefocus=right
+" set tabreopenposition=previous
+" set useragent=%firefox
+
+" ---- Mappings
+
+" nmap af <startFollowNewTab>
+" nmap gf <startFollowNewTab><:buffer #>
+" nmap C <startFollowNewTab><:buffer #>
+" nmap [[ <decreasePageNumber>
+" nmap ]] <increasePageNumber>
+" nmap e <scrollPageUpHalf>
+" nmap u <scrollPageUpHalf>
+" nmap d <scrollPageDownHalf>
+" nmap yg <:screenshot>
+" nmap yt <openNewTabWithCurrentUrl><CR>
+" nmap yT <openNewTabWithCurrentUrl><CR><:buffer #>
+" nmap g0 <:buffer 0>
+" nmap g$ <:buffer -1>
+" nmap gx0 <:lclose>
+" nmap gxt <:lclose>
+" nmap gxT <:rclose>
+" nmap gx$ <:rclose>
+" nmap gxx <:lclose><:rclose>
+" nmap E <previousTab>
+" nmap R <nextTab>
+" nmap zr <zoomReset>
+" nmap zi <zoomIn>
+" nmap zo <zoomOut>
+" nmap go <toExploreMode>
+" nmap T :buffer<Space>
+" nmap t <:tabnew><toExploreMode>
+" nmap on <:tabnew>
+" nmap x <:close>
+" nmap X <reopenTab>
+" nmap <lt><lt> <moveTabBackward>
+" nmap >> <moveTabForward>
+" nmap <C-6> <:buffer #>
+" nmap S <backInHistory>
+" nmap D <forwardInHistory>
+" nmap cc <:tabnew><openFromClipboard>
+" nunmap [
+" nunmap ]
+" nmap [[ <previousPage>
+" nmap ]] <nextPage>
+" nmap ob <:tabnew><toExploreMode>baidu<Space>
+" nmap og <:tabnew><toExploreMode>google<Space>
+" nmap od <:tabnew><toExploreMode>duckduckgo<Space>
+" nmap ow <:tabnew><toExploreMode>bing<Space>
+" nmap oy <:tabnew><toExploreMode>youtube<Space>
+" nmap oe <:tabnew><toExploreMode>wikipedia<Space>
+" nmap os <:tabnew><toExploreMode>stackoverflow<Space>
+" nmap oh <:tabnew><toExploreMode>github<Space>
+" nmap sb <:tabnew><toExploreMode>baidu <C-v><CR>
+" nmap sg <:tabnew><toExploreMode>google <C-v><CR>
+" nmap sd <:tabnew><toExploreMode>duckduckgo <C-v><CR>
+" nmap sw <:tabnew><toExploreMode>bing <C-v><CR>
+" nmap sy <:tabnew><toExploreMode>youtube <C-v><CR>
+" nmap se <:tabnew><toExploreMode>wikipedia <C-v><CR>
+" nmap ss <:tabnew><toExploreMode>stackoverflow <C-v><CR>
+" nmap sh <:tabnew><toExploreMode>github <C-v><CR>
+" nmap yg <:screenshot>
+" nmap ? <:help>
+" pmap e <p.moveFastRight>
+" vmap v <toNormalMode>
+" vmap e <p.moveFastRight>
+" vmap cc <p.copyText><:tabnew><openFromClipboard>
+" vmap t <p.copyText><:tabnew><toExploreMode>translate <C-v><CR>
+" imap <C-e> <End>
+" imap <C-f> <Home>
+" imap <C-u> <S-Home><BS>
+" imap <A-b> <C-Left>
+" imap <A-f> <C-Right>
+" imap <A-w> <C-S-Left><BS>
+" imap <A-d> <C-S-Right><BS>
+
+" sakakey {{{2
+
+" ---- Options
+
+" set adblocker=update
+" set devtoolsposition=split
+" set downloadmethod=confirm
+" set guifontsize=16
+" set mintabwidth=250
+" set permissioncamera=ask
+" set permissiondisplaycapture=ask
+" set permissionmediadevices=allow
+" set permissionmicrophone=ask
+" set permissionpersistentstorage=allow
+" set redirecttohttp
+" set restoretabs=pinned
+" set noshowcmd
+" set splitbelow
+" set tabclosefocus=right
+" set tabreopenposition=previous
+" set notimeout
+" set useragent=%firefox
+
+" ---- Mappings
+
+" nmap d <scrollDown>
+" nmap s <scrollUp>
+" nmap J <scrollPageDown>
+" nmap K <scrollPageUp>
+" nmap D <scrollPageDownHalf>
+" nmap S <scrollPageUpHalf>
+" nmap <A-s> <scrollLeft>
+" nmap <A-k> <scrollLeft>
+" nmap <A-d> <scrollRight>
+" nmap <A-j> <scrollRight>
+" nmap z <zoomIn>
+" nmap Z <zoomOut>
+" nmap <A-Z> <zoomReset>
+" nmap cc <backInHistory>
+" nunmap v
+" nmap vv <backInHistory>
+" nmap gh <increasePageNumber>
+" nmap gf <decreasePageNumber>
+" nunmap u
+" nmap uu <toParentUrl>
+" nmap uU <toRootUrl>
+" nmap T <reopenTab>
+" nmap b <openNewTabWithCurrentUrl><CR>
+" nmap xx <:close>
+" nmap xX <:rclose><:lclose>
+" nmap x[ <:lclose>
+" nmap x] <:rclose>
+" nunmap r
+" nunmap R
+" nmap rr <refreshTab>
+" nmap RR <refreshTabWithoutCache>
+" nmap [ <previousTab>
+" nmap q <previousTab>
+" nmap ] <nextTab>
+" nmap w <nextTab>
+" nmap Q <:buffer 0>
+" nmap 1 <:buffer 0>
+" nmap W <:buffer -1>
+" nmap 0 <:buffer -1>
+" nunmap i
+" nmap i <moveTabBackward>
+" nmap { <moveTabBackward>
+" nmap o <moveTabForward>
+" nmap } <moveTabForward>
+" nmap <A-[> <moveTabStart>
+" nmap <A-]> <moveTabEnd>
+" nmap m <:mute>
+" nmap P <:pin>
+" nunmap f
+" nmap ff <startFollowCurrentTab>
+" nmap fF <:set follownewtabswitch><startFollowNewTab>
+" nmap fb <:set nofollownewtabswitch><startFollowCurrentTab>
+" nmap fi <insertAtFirstInput>
+" nmap yf <openFromClipboard>
+" nmap yF <:set follownewtabswitch><:tabnew><openFromClipboard>
+" nmap yb <:set nofollownewtabswitch><:tabnew><openFromClipboard>
+" nmap <A-;> <toInsertMode>
+
+"imap <A-x> <toNormalMode>
+
+" custom {{{1
+
+" set all&
+" mapclear
+" comclear
+" colorscheme default
+
+"colorscheme golden-night
+colorscheme paper
+
+set restoretabs=all
+set suspendonrestore=regular
+set suspendtimeout=1800000
+set suspendtimeoutignore=["ga//","gp//","g/saxo/"]
+set timeoutlen=12000
+set downloadpath=~/racine/gate/download
+set notificationduration=3000
+set commandhist=persistuseronly
+set vimcommand=gvim-lite.sh
+
+nnoremap <f1> <:tabnew><toCommandMode>help<Space>
+nnoremap <s-f1> <:help>
+
+nnoremap <c-n> <:notifications>
+nnoremap <a-c> <:cookies>
+
+nnoremap <f5> <:reloadconfig><cr><:echo 'configuration reloaded'>
+nnoremap <f6> <:set adblocker=update>
+nnoremap ZZ <:quit>
+
+nnoremap o <:tabnew><toExploreMode>
+"nnoremap o <toExploreMode><BS>
+nnoremap O <toExploreMode><End>
+
+cnoremap <tab> <nextSuggestion>
+cnoremap <s-tab> <prevSuggestion>
+cnoremap <up> <commandHistoryPrevious>
+cnoremap <down> <commandHistoryNext>
+
+nnoremap R <refreshTab>
+
+nnoremap <bs> <backInHistory>
+nnoremap <s-bs> <forwardInHistory>
+nnoremap <c-h> <:history>
+
+nnoremap <home> <scrollTop>
+nnoremap <end> <scrollBottom>
+
+nnoremap <s-pageup> <moveTabBackward>
+nnoremap <s-pagedown> <moveTabForward>
+
+nnoremap § <toCommandMode>buffer<Space>
+nnoremap P <:pin>
+
+nnoremap <a-q> <:quit>
+nnoremap <c-up> <toTopSplitWindow>
+nnoremap <c-left> <toLeftSplitWindow>
+nnoremap <c-right> <toRightSplitWindow>
+nnoremap <c-down> <toBottomSplitWindow>
+
+nnoremap yy <pageToClipboard>
+nnoremap p <:tabnew><openFromClipboard>
+vnoremap <a-y> <p.copyText><toNormalMode>
+
+nnoremap d <:write>
+nnoremap <a-d> <:screenshot>
+
+nnoremap <del> <:close>
+nnoremap <insert> <reopenTab>
+
+map <A-k0> <:buffer 0>
+map <A-k1> <:buffer 1>
+map <A-k2> <:buffer 2>
+map <A-k3> <:buffer 3>
+map <A-k4> <:buffer 4>
+map <A-k5> <:buffer 5>
+map <A-k6> <:buffer 6>
+map <A-k7> <:buffer 7>
+map <A-k8> <:buffer 8>
+map <A-k9> <:buffer -1>
+nmap <C-^> <:buffer #>
+
+snoremap <up> <commandHistoryPrevious>
+snoremap <down> <commandHistoryNext>
+snoremap <a-e> <editWithVim>
+snoremap <c-e> <editWithVim>
+
+source ~/racine/config/webrowser/vieb/bookmarks
+map <a-m> <pageToClipboard>:!echo<Space>set<Space>favoritepages+=<C-v><Space>>><Space>~/racine/config/webrowser/vieb/bookmarks<CR>

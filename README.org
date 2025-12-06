@@ -71,6 +71,8 @@ The following keys are reserved for Window Manager (i3, bspwm, ...) :
   - Super (Mod4) with any modifier(s) and same keys as above
   - Super with Control and
     + Any key(s)
+  - Super with Shift and
+    + Any key(s)
   - Prefix chosen among the previous keys
   - Sub mode entered with one or more of the previous keys
 
@@ -84,36 +86,29 @@ The following keys are reserved for applications :
     + Digits
     + Insert, Delete, Space, Return
     + & @ ^ $ ! ( ) [ ] { } < > ...
-  - Super with Shift and same keys as above
   - Prefix chosen among the previous keys
   - Sub mode entered with one or more of the previous keys
-
 
 ** Coherence
 
 To be as intuitive as possible, some conventions are applied :
 
   - Move focus between desktops :
-    + Super + home / end
+    + Hyper + page up / page down
   - Move focus between X windows :
     + Super + arrows
     + Super + prior (page up) / next (page down)
   - Move focus between tmux panes & vim :
-    + Shift + arrows
-    + Also in emacs, but not in org files (org-shift<arrows>)
-  - In buffer oriented applications, move focus between buffers :
-    + Ctrl + page up / down
-  - In tab oriented applications, move focus between tabs :
+    + Control + arrows
+    + Also in emacs
+  - In tab oriented applications, move focus between tabs
     + Ctrl + page up / down
     + In pager context : ^ and $
-      * w3m, elinks, ...
-    + In (neo)vim : <m-^> and <m-$> in normal mode
-  - In buffers & tabs oriented applications like vim with wheel or emacs with torus :
-    + Next / previous file in group : Ctrl + page up / down
-    + Next / previous group : Ctrl + home / end
+      * w3m, elinks, vifm, ...
   - Move in history
     + In pager context
       * Backspace = back
+      * Shift-Backspace = forward
       * H = back
       * L = forward
     + In REPL context
@@ -126,11 +121,9 @@ To be as intuitive as possible, some conventions are applied :
   - Tree / Structure exploration
     + §
 
-
 * Features
 
 Comments on applications.
-
 
 ** The classics
 
@@ -138,7 +131,6 @@ Comments on applications.
   - Emacs with Org mode and torus.el
   - Zsh
   - Tmux
-
 
 ** Vifm
 
@@ -189,6 +181,25 @@ Comments on applications.
 
 And much more
 
+** Herbstluftwm
+
+  - Scriptable via herbstclient
+    + You can litteraly juggle with windows
+  - Modes
+    + Tiling and floating
+    + Monocle or tabs mode : only one window visible
+    + Full screen
+  - Automatic properties of windows : workspace, floating, ...
+  - Multi monitors support
+  - Keybindings
+    + Managed by herbstluftwm and sxhkd
+    + Support of Super and Hyper keys
+    + Keybinding chains with sxhkd
+  - Panels (bars) : polybar
+    + Custom scripts
+    + IPC, polybar-msg to send commands, hooks
+    + Good choice of internal modules
+    + Menu
 
 ** Bspwm
 
@@ -212,7 +223,6 @@ And much more
     + Good choice of internal modules
     + Menu
   - Dynamic layouts with bsp-layout (in AUR)
-
 
 ** I3 wm
 

@@ -422,7 +422,7 @@ export DIFFPROG=vim-lite.sh
 
 export FCEDIT=vim-lite.sh
 
-export SUDO_EDITOR=vim-lite.sh
+export SUDO_EDITOR=~/racine/shell/edit/vim-lite.sh
 
 # Pour nvr, neovim-remote
 

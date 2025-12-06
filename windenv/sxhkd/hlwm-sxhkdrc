@@ -121,7 +121,7 @@ super + ctrl + s
 	fsearch
 
 super + ctrl + g
-	run-gvim.sh -c "cd ~/racine/public"
+	gvim-lite.sh
 
 super + ctrl + n
 	run-neovim-server.sh
@@ -147,8 +147,11 @@ super + ctrl + l
 super + ctrl + i
 	vimiv ~/photo/numerique
 
-super + ctrl + {q,b}
-	goto-or-run.sh {qutebrowser,helium}
+super + ctrl + {q,b,z}
+	goto-or-run.sh {qutebrowser,vieb,zen-browser}
+
+super + shift + f
+	goto-or-run.sh floorp
 
 # super + ctrl + n
 # 	run-with-log.sh nyxt
