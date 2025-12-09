@@ -120,26 +120,26 @@ super + ctrl + f
 super + ctrl + s
 	fsearch
 
-super + ctrl + g
+super + shift + g
 	gvim-lite.sh
+
+super + ctrl + g
+	run-gvim.sh -c "cd ~/racine/public"
+
+super + shift + v
+	neovim-qt-lite.sh
 
 super + ctrl + n
 	run-neovim-server.sh
 
-super + ctrl + v
+super + shift + n
 	run-neovim-qt-client.sh
 
-super + ctrl + h
-	run-within-kitty.sh helix ~/racine/public/python-misc
-
-# super + ctrl + k
-# 	run-kitty-kak-client.sh
-
 super + ctrl + e
-	run-emacs-client.sh
-
-super + ctrl + m
 	run-emacs-server.sh
+
+super + shift + e
+	run-emacs-client.sh
 
 super + ctrl + l
 	libreoffice
@@ -147,22 +147,16 @@ super + ctrl + l
 super + ctrl + i
 	vimiv ~/photo/numerique
 
-super + ctrl + {q,b,z}
-	goto-or-run.sh {qutebrowser,vieb,zen-browser}
+super + ctrl + {q,v,z,b,h,m}
+	goto-or-run.sh {qutebrowser,vieb,zen-browser,floorp,helium-browser,mullvad-browser}
 
-super + shift + f
-	goto-or-run.sh floorp
-
-# super + ctrl + n
-# 	run-with-log.sh nyxt
-
-# super + ctrl + o
-# 	torbrowser-launcher
+super + ctrl + o
+	torbrowser-launcher
 
 super + ctrl + k
 	keepassxc
 
-super + ctrl + o
+super + shift + o
 	octave --gui
 
 super + ctrl + t
@@ -374,7 +368,7 @@ hyper + space ; b
 hyper + space ; m
 	urxvtc -name multimedia -e pulsemixer
 
-hyper + space ; M
+hyper + space ; v
 	pavucontrol-qt
 
 hyper + space ; t

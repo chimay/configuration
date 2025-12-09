@@ -109,7 +109,8 @@ alias vi=vim-lite.sh
 alias vid='vim-lite.sh -d'
 alias vimdiff='vim-lite.sh -d'
 
-alias vq=vim-quickfix
+alias vq=neovim-quickfix
+alias viq=vim-quickfix
 
 alias se=sudoedit
 

@@ -21,13 +21,13 @@ fichier=$repertoire/agent
 
 if ! ps auxww | grep -v grep | grep --color=never ssh-agent &>> ~/log/psgrep.log
 then
-	echo "On lance ssh-agent" &> ~/log/profile.log
-	echo &> ~/log/profile.log
+	echo "On lance ssh-agent" &>> ~/log/profile.log
+	echo &>> ~/log/profile.log
 
-	ssh-agent > $fichier 2> ~/log/profile.log
+	ssh-agent >> $fichier 2>> ~/log/profile.log
 else
-	echo "ssh-agent tourne déjà" &> ~/log/profile.log
-	echo &> ~/log/profile.log
+	echo "ssh-agent tourne déjà" &>> ~/log/profile.log
+	echo &>> ~/log/profile.log
 fi
 
 while read ligne
@@ -36,10 +36,11 @@ do
 
 done < $fichier
 
-echo &> ~/log/profile.log
-echo "SSH_AUTH_SOCK = $SSH_AUTH_SOCK" &> ~/log/profile.log
-echo &> ~/log/profile.log
-echo "SSH_AGENT_PID = $SSH_AGENT_PID" &> ~/log/profile.log
+echo &>> ~/log/profile.log
+echo "SSH_AUTH_SOCK = $SSH_AUTH_SOCK" &>> ~/log/profile.log
+echo &>> ~/log/profile.log
+echo "SSH_AGENT_PID = $SSH_AGENT_PID" &>> ~/log/profile.log
+echo &>> ~/log/profile.log
 
 # Path {{{1
 
