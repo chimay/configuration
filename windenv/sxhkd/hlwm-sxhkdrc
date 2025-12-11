@@ -210,19 +210,19 @@ hyper + shift + w
 # cpus {{{1
 
 hyper + c ; s
-	notify-send "$(cpupower-gui profile powersave | head -n 1)"
+	cpupower.sh powersave
 
 hyper + c ; c
-	notify-send "$(cpupower-gui profile conservative | head -n 1)"
+	cpupower.sh conservative
 
 hyper + c ; d
-	notify-send "$(cpupower-gui profile demand | head -n 1)"
+	cpupower.sh ondemand
 
 hyper + c ; p
-	notify-send "$(cpupower-gui profile performance | head -n 1)"
+	cpupower.sh performance
 
 hyper + c ; u
-	notify-send "$(cpupower-gui profile userspace | head -n 1)"
+	cpupower.sh userspace
 
 # screen {{{1
 
