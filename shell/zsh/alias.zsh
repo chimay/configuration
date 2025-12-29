@@ -160,6 +160,10 @@ alias emopen='emacsclient'
 # doom emacs
 alias doom=~/racine/dotdir/emacs.doom/bin/doom
 
+# miscellaneous {{{2
+
+alias f=fresh
+
 # file system {{{1
 
 # Liste {{{2
@@ -340,9 +344,9 @@ alias rn=run-slrn.sh
 
 # fediverse {{{1
 
-alias f=tut
-alias F='BROWSER=qutebrowser toot tui'
-alias fl=neonmodem
+# alias fedi=tut
+# alias Fedi='BROWSER=qutebrowser toot tui'
+# alias fl=neonmodem
 
 # navigation {{{1
 

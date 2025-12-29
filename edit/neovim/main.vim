@@ -733,11 +733,11 @@ nnoremap <f9>O <cmd>call library#lilypond_gen_ogg()<cr>
 " buffers (tampons) {{{2
 
 " wipe buffer
-nnoremap <m-q> <cmd>bwipe!<cr>
+nnoremap <m-w> <cmd>bwipe!<cr>
 " wipe alternate buffer
-nnoremap <d-q> <cmd>bwipe! #<cr>
+nnoremap <d-w> <cmd>bwipe! #<cr>
 " wipe all buffers
-nnoremap <m-s-q> <cmd>%bwipe<cr>
+nnoremap <m-s-w> <cmd>%bwipe<cr>
 
 " window (fenêtres) {{{2
 
@@ -822,7 +822,7 @@ vnoremap <m-k> :move '<lt>-2<cr>gv=gv
 
 nnoremap J mzJ`z
 
-" Signets {{{3
+" signets {{{3
 
 " ` = ' : plus pratique sur les claviers be, fr
 
@@ -995,6 +995,10 @@ nmap <k6> 6
 nmap <k7> 7
 nmap <k8> 8
 nmap <k9> 9
+
+" formattage des paragraphes {{{2
+
+nnoremap <m-q> gqap
 
 " Présentation {{{2
 
@@ -1278,6 +1282,9 @@ syntax sync minlines=7
 syntax sync maxlines=84
 
 " :ex commandline {{{1
+
+" ex mode
+nnoremap <d-q> Q
 
 " Hauteur de la fenêtre d'historique
 set cmdwinheight=15

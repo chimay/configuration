@@ -66,7 +66,7 @@ let g:which_key_main_map.d = {
 " hint for find : set path=.,,**
 
 let g:which_key_main_map.f = {
-	\ 'name' : '+modify',
+	\ 'name' : '+find',
 	\ 'f' : ["library#feedkeys(':find ')", 'find file'],
 	\ 'b' : ["library#feedkeys(':buffer ')", 'find buffer'],
 	\ }

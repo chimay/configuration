@@ -131,14 +131,14 @@ omap , <Plug>Sneak_,
 
 " 1-character enhanced 'f'
 
-nmap gl <Plug>Sneak_f
-nmap gL <Plug>Sneak_F
+nmap <m-f> <Plug>Sneak_f
+nmap <m-F> <Plug>Sneak_F
 
-xmap gl <Plug>Sneak_f
-xmap gL <Plug>Sneak_F
+xmap <m-f> <Plug>Sneak_f
+xmap <m-F> <Plug>Sneak_F
 
-omap gl <Plug>Sneak_f
-omap gL <Plug>Sneak_F
+omap <m-f> <Plug>Sneak_f
+omap <m-F> <Plug>Sneak_F
 
 " 1-character enhanced 't'
 

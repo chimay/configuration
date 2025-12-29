@@ -737,11 +737,11 @@ nnoremap [B <cmd>bfirst<cr>
 nnoremap ]B <cmd>blast<cr>
 
 " wipe buffer
-nnoremap <m-q> <cmd>bwipe!<cr>
+nnoremap <m-w> <cmd>bwipe!<cr>
 " wipe alternate buffer
-nnoremap <d-q> <cmd>bwipe! #<cr>
+nnoremap <d-w> <cmd>bwipe! #<cr>
 " wipe all buffers
-nnoremap <m-s-q> <cmd>%bwipe<cr>
+nnoremap <m-s-w> <cmd>%bwipe<cr>
 
 " windows (fenêtres) {{{2
 
@@ -1020,6 +1020,10 @@ nmap <k6> 6
 nmap <k7> 7
 nmap <k8> 8
 nmap <k9> 9
+
+" formattage des paragraphes {{{2
+
+nnoremap <m-q> gqap
 
 " Présentation {{{2
 
