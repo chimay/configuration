@@ -227,6 +227,7 @@ export HOSTNAME=$HOST
 #export XCOMPOSEFILE=~/racine/config/windenv/XCompose
 #export GTK_IM_MODULE=xim
 
+# should be done within ~/racine/config/shell/utils/profile
 export GTK_THEME=Adwaita:dark
 export QT_STYLE_OVERRIDE=Adwaita-Dark
 

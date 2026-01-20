@@ -21,10 +21,10 @@
 
 # Exported Ps / Pdf files
 
-*.ps
-*.pdf
+#*.ps
+#*.pdf
 
-*.PDF
+#*.PDF
 
 # Livres epub
 
@@ -32,10 +32,10 @@
 
 # Images
 
-*.jpg
-*.png
+#*.jpg
+#*.png
 
-*.gif
+#*.gif
 
 # Audio
 

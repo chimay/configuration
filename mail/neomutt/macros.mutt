@@ -120,10 +120,6 @@ macro index ù '<change-folder><enter>'
 macro   index   \eg   "!getmail >> ~/log/getmail.log 2>> ~/log/getmail.err<return>"
 macro   pager   \eg   "!getmail >> ~/log/getmail.log 2>> ~/log/getmail.err<return>"
 
-# Sauver la boîte {{{1
-
-#macro index w <sync-mailbox>
-
 # Sélection (tag) {{{1
 
 # annuler la sélection
@@ -150,6 +146,24 @@ macro index vO '<tag-pattern>~d >30d<enter>'
 
 macro index vo '<tag-pattern>~d >7d<enter>'
 
+# Sauvegarde {{{1
+
+#macro index w <sync-mailbox>
+
+# ma = message archive
+
+# messages de plus de 7 jours
+
+macro index ma '<untag-pattern>all<enter><tag-pattern>~d >7d<enter><enter-command>exec save-message<enter>'
+
+# messages de plus de 30 jours
+
+macro index mA '<untag-pattern>all<enter><tag-pattern>~d >30d<enter><enter-command>exec save-message<enter>'
+
+# messages de plus de 3 mois
+
+macro index m\ca '<untag-pattern>all<enter><tag-pattern>~d >3m<enter><enter-command>exec save-message<enter>'
+
 #  Filtrage {{{1
 
 # annuler le filtre
@@ -171,13 +185,13 @@ macro index éf '<limit>~F<enter>'
 
 macro index éù '<limit>~d <7d<enter>'
 
-# messages de plus de 30 jours
-
-macro index éO '<limit>~d >30d<enter>'
-
 # messages de plus de 7 jours
 
 macro index éo '<limit>~d >30d<enter>'
+
+# messages de plus de 30 jours
+
+macro index éO '<limit>~d >30d<enter>'
 
 # messages de plus de 200 kb
 
@@ -189,15 +203,15 @@ macro index éZ '<limit>~z >50k<enter>'
 
 # Suppression {{{1
 
-# messages de plus de 30 jours
-
-macro index dO '<delete-pattern>~d >30d<enter>'
-
 # messages de plus de 7 jours
 
 macro index do '<delete-pattern>~d >7d<enter>'
 
-# annuler la suppresion
+# messages de plus de 30 jours
+
+macro index dO '<delete-pattern>~d >30d<enter>'
+
+# annuler la suppression
 
 macro index ua '<undelete-pattern>all<enter>'
 
@@ -230,4 +244,3 @@ macro pager @= '<enter-command>set pager_index_lines='
 
 # Inclure la signature PGP dans le corps du message en tapant Ctrl-p :
 # macro compose \Cp "F/usr/bin/pgps\ny"
-

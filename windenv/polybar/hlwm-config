@@ -588,8 +588,8 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 type = custom/text
 content = Mixer
-click-left = pavucontrol-qt &>> ~/log/polybar/minuters.log &
-click-right = urxvtc -name multimedia -e pulsemixer &>> ~/log/polybar/less-log-minuters.log &
+click-left = pavucontrol-qt &>> ~/log/polybar/pavucontrol.log &
+click-right = urxvtc -name multimedia -e pulsemixer &>> ~/log/polybar/pulsemixer.log &
 
 [module/minuterie]
 

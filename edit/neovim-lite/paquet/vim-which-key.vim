@@ -1,0 +1,325 @@
+" vim: set filetype=vim :
+
+" documentation {{{1
+
+"call which_key#register('<mykey>', "g:which_key_mykey_map")
+
+"nnoremap <silent> <mykey> <cmd>WhichKey '<mykey>'<cr>
+
+" only loads the dictionary maps, not the others
+"nnoremap <silent> <mykey> <cmd>WhichKey! g:which_key_mykey_map<cr>
+
+"call which_key#register('<cr>', "g:which_key_main_map")
+"nnoremap <silent> <cr> <cmd>WhichKey '<cr>'<cr>
+
+" configuration {{{1
+
+let g:which_key_use_floating_win = 1
+let g:which_key_timeout = 300
+let g:which_key_exit = "\<esc>"
+let g:WhichKeyFormatFunc = function('library#which_key_format')
+let g:which_key_fallback_to_native_key=1
+
+"let g:which_key_run_map_on_popup = 1
+
+" commands {{{1
+
+command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
+command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
+
+command! -nargs=? -complete=filetype EditSyntaxPlugin call library#edit_syntax_plugin(<f-args>)
+
+command! -nargs=+ SwapTextObjects call library#swap_text_objects(<f-args>)
+
+" main prefix {{{1
+
+nnoremap <silent> <leader> <cmd>WhichKey! g:which_key_main_map<cr>
+nnoremap <silent> <cr> <cmd>WhichKey! g:which_key_main_map<cr>
+
+let g:which_key_main_map = {}
+
+" help {{{2
+
+let g:which_key_main_map.h = {
+	\ 'name' : '+help',
+	\ 'h' : ["library#feedkeys(':tab help ')", 'help'],
+	\ 'g' : ["library#feedkeys(':tab helpgrep ')", 'helpgrep'],
+	\ 'f' : ['library#toggle_help_filetype()', 'toggle help filetype'],
+	\ 't' : ['library#helptags()', 'help tags'],
+	\ 'm' : ['library#manual()', 'cmd manual'],
+	\ }
+
+" display {{{2
+
+let g:which_key_main_map.d = {
+	\ 'name' : '+display',
+	\ 'c' : ["library#execute('set cursorline!')"                 , 'toggle cursorline']            ,
+	\ 'l' : ['library#toggle_relative_linum()'                    , 'toggle relative line numbers'] ,
+	\ 'f' : [ "library#execute('set guifont=*')"                  , 'gui font']                     ,
+	\ 'F' : [ "library#feedkeys(':GuiFont DejaVu Sans Mono:h12')" , 'gui font (neovim-qt)']         ,
+	\ 'h' : [ "library#feedkeys(':set cmdheight=')"               , 'set cmd height']               ,
+	\ 'i' : ['library#highlight_group()'          , 'highlight group']   ,
+	\ }
+
+" find {{{2
+
+" hint for find : set path=.,,**
+
+let g:which_key_main_map.f = {
+			\ 'name' : '+find',
+	\ 'f' : ["library#feedkeys(':find ')", 'find file'],
+	\ 'b' : ["library#feedkeys(':buffer ')", 'find buffer'],
+	\ }
+
+" edit file {{{2
+
+let g:which_key_main_map.e = {
+	\ 'name' : '+edit',
+	\ 'e' : ['library#edit_in_current_file_subtree()', 'edit in subtree'],
+	\ 'r' : ['library#read_in_current_file_subtree()', 'read in subtree'],
+	\ 'c' : ['library#edit_cronos()', 'edit cronos'],
+	\ 'd' : ['library#edit_dream()', 'edit dream'],
+	\ 'f' : ['library#edit_fix()', 'edit fix'],
+	\ 'g' : ['library#edit_attic()', 'edit attic'],
+	\ 'l' : ['library#edit_ship_log()', 'edit ship log'],
+	\ 's' : ["library#feedkeys(':EditSyntaxPlugin ')", 'edit syntax plugin'],
+	\ 't' : ['library#edit_tasks()', 'edit tasks'],
+	\ 'v' : ['library#edit_myvimrc()', 'edit vimrc'],
+	\ }
+
+" navigation {{{2
+
+let g:which_key_main_map.n = {
+	\ 'name' : '+navigation' ,
+	\ 't' : ["library#feedkeys(':tjump /')"  , 'tag jump']  ,
+	\ 'T' : ["library#feedkeys(':tab tjump /')"  , 'tag jump in new tab']  ,
+	\ }
+
+" quickfix {{{2
+
+let g:which_key_main_map.q = {
+	\ 'name' : '+quickfix' ,
+	\ 'o' : ['copen'     , 'open quickfix']                  ,
+	\ 'c' : ['cclose'    , 'close quickfix']                 ,
+	\ 'p' : ['cprevious' , 'previous in quickfix']           ,
+	\ 'n' : ['cnext'     , 'next in quickfix']               ,
+	\ 'b' : ['cpfile'    , 'previous file in quickfix']      ,
+	\ 'f' : ['cnfile'    , 'next file in quickfix']          ,
+	\ }
+
+" location list {{{2
+
+let g:which_key_main_map.l = {
+	\ 'name' : '+location_list' ,
+	\ 'o' : ['lopen'     , 'open location list']             ,
+	\ 'c' : ['lclose'    , 'close location list']            ,
+	\ 'p' : ['lprevious' , 'previous in location list']      ,
+	\ 'n' : ['lnext'     , 'next in location list']          ,
+	\ 'b' : ['lpfile'    , 'previous file in location list'] ,
+	\ 'f' : ['lnfile'    , 'next file in location list']     ,
+	\ }
+
+" argument {{{2
+
+" which key hangs with g:which_key_main_map.a
+
+let g:which_key_main_map['$'] = {
+	\ 'name' : '+argument' ,
+	\ 'p' : ['previous' , 'previous argument'] ,
+	\ 'n' : ['next'     , 'next argument']     ,
+	\ '^' : ['first'    , 'first argument']    ,
+	\ '$' : ['last'     , 'last argument']     ,
+	\ }
+
+" buffer {{{2
+
+let g:which_key_main_map.b = {
+	\ 'name' : '+buffer' ,
+	\ 'b' : ["library#execute('new | only')" , 'new buffer']        ,
+	\ 'p' : ['bprevious'                     , 'previous buffer']   ,
+	\ 'n' : ['bnext'                         , 'next buffer']       ,
+	\ '^' : ['bfirst'                        , 'first buffer']      ,
+	\ '$' : ['blast'                         , 'last buffer']       ,
+	\ 'd' : ['bd'                            , 'delete buffer']     ,
+	\ 'w' : ['library#write_all()'           , 'write all buffers'] ,
+	\ }
+
+" window {{{2
+
+let g:which_key_main_map.w = {
+	\ 'name' : '+windows' ,
+	\ '=' : ["library#execute('wincmd =')" , 'equalize windows'] ,
+	\ '|' : ["library#execute('wincmd |')" , 'maximize width'] ,
+	\ '-' : ["library#execute('wincmd _')" , 'maximize height'] ,
+	\ 'p' : ['library#win2prev_tab()'      , 'win to prev tab']  ,
+	\ 'n' : ['library#win2next_tab()'      , 'win to next tab']  ,
+	\ }
+
+" tab, onglet, intercalaire {{{2
+
+let g:which_key_main_map.t = {
+	\ 'name' : '+tab' ,
+	\ 't' : ['tabnew'                        , 'new tab']                      ,
+	\ 'n' : ['tabnext'                       , 'next tab']                     ,
+	\ 'p' : ['tabprevious'                   , 'previous tab']                 ,
+	\ '^' : ['tabfirst'                      , 'tab first']                    ,
+	\ '$' : ['tablast'                       , 'tab last']                     ,
+	\ 'e' : ["library#feedkeys(':tabedit ')" , 'edit in new tab']              ,
+	\ '=' : ['library#equal_windows()'       , 'equalize windows on all tabs'] ,
+	\ }
+
+" content {{{2
+
+let g:which_key_main_map.c = {
+	\ 'name' : '+content' ,
+	\ 'b' : ['library#figlet()'                   , 'figlet banner']     ,
+	\ 'p' : ["library#execute('set paste!')"      , 'toggle paste mode'] ,
+	\ 'r' : ['library#toggle_readonly()'          , 'toggle readonly']   ,
+	\ 's' : ["library#execute('%sort')"           , 'sort lines']        ,
+	\ 'S' : ["library#execute('setlocal spell!')" , 'toggle spell']      ,
+	\ }
+
+" exchange {{{2
+
+let g:which_key_main_map.x = {
+	\ 'name' : '+swap' ,
+	\ 'c' : ["library#execute('SwapTextObjects characters after')", 'with char after'],
+	\ 'C' : ["library#execute('SwapTextObjects characters before')", 'with char before'],
+	\ 'l' : ["library#execute('SwapTextObjects lines after')", 'with line after'],
+	\ 'L' : ["library#execute('SwapTextObjects lines before')", 'with line before'],
+	\ 'w' : ["library#execute('SwapTextObjects words')", 'words'],
+	\ 'p' : ["library#execute('SwapTextObjects paragraphs')", 'paragraphs'],
+	\ }
+
+" search and replace in buffer {{{2
+
+let g:which_key_main_map.s = {
+	\ 'name' : '+search_and_replace' ,
+	\ 's' : ['library#search_word()'             , 'search word']     ,
+	\ 'r' : ['library#search_and_replace_word()' , 'replace word'] ,
+	\ }
+
+" global {{{2
+
+" strange mappings added with g:which_key_main_map.g
+
+let g:which_key_main_map['='] = {
+	\ 'name' : '+global' ,
+	\ 'y' : [ "library#feedkeys(':GlobalYank ')"   , 'global yank']   ,
+	\ 'd' : [ "library#feedkeys(':GlobalDelete ')" , 'global delete'] ,
+	\ }
+
+" encryption {{{2
+
+let g:which_key_main_map.X = {
+	\ 'name' : '+encryption' ,
+	\ 'X' : ['library#text_to_password()' , 'text to password'] ,
+	\ 'x' : ['library#password_to_text()' , 'password to text'] ,
+	\ }
+
+" :ex command {{{2
+
+let g:which_key_main_map[':'] = {
+	\ 'name' : '+ex_command' ,
+	\ 's' : ['library#source_current_file()', 'source current file'],
+	\ }
+
+" shell command {{{2
+
+let g:which_key_main_map['!'] = {
+	\ 'name' : '+shell_command' ,
+	\ '!' : ['library#terminal()'  , 'terminal']  ,
+	\ 'm' : ["library#feedkeys(':make -k ')"  , 'make']  ,
+	\ 'l' : ["library#execute('!ls -l')"  , 'ls -l']  ,
+	\ 'x' : ['library#chmodexec()', 'chmod exec'],
+	\ }
+
+" org mode {{{2
+
+let g:which_key_main_map.o = {
+	\ 'name' : '+orgmode' ,
+	\ 'h' : ['library#orgmode_make_html()'   , 'make html'] ,
+	\ 'H' : ['library#orgmode_gen_html()'   , 'generate html'] ,
+	\ }
+
+" mathematic {{{2
+
+let g:which_key_main_map['£'] = {
+	\ 'name' : '+mathematic' ,
+	\ 'p' : ['library#latex_make_pdf()'   , 'make pdf'] ,
+	\ 'P' : ['library#latex_gen_pdf()'   , 'generate pdf'] ,
+	\ }
+
+" music {{{2
+
+let g:which_key_main_map['µ'] = {
+	\ 'name' : '+music' ,
+	\ 'm' : ['library#lilypond_make_midi()'   , 'make midi'] ,
+	\ 'p' : ['library#lilypond_make_display_pdf()' , 'make & display pdf'] ,
+	\ 'o' : ['library#lilypond_make_ogg()'    , 'make ogg'] ,
+	\ 'M' : ['library#lilypond_gen_midi()'   , 'generate midi'] ,
+	\ 'P' : ['library#lilypond_gen_display_pdf()' , 'gen & display pdf'] ,
+	\ 'O' : ['library#lilypond_gen_ogg()'    , 'generate ogg'] ,
+	\ }
+
+" plugin {{{2
+
+let g:which_key_main_map.p = {
+	\ 'name' : '+plugin' ,
+	\ 'm' : ['library#edit_minisnip_file()'   , 'edit minisnip file'] ,
+	\ }
+
+let g:which_key_main_map.p.k = {
+	\ 'name' : '+packager' ,
+	\ 'i' : ["library#execute('PackagerInstall')"  , 'install']  ,
+	\ 'u' : ["library#execute('PackagerUpdate')"  , 'update']  ,
+	\ 'c' : ["library#execute('PackagerClean')"  , 'clean']  ,
+	\ 's' : ["library#execute('PackagerStatus')"  , 'status']  ,
+	\ }
+
+let g:which_key_main_map.p.q = {
+	\ 'name' : '+paq' ,
+	\ 'i' : ["library#execute('PaqInstall')"  , 'install']   ,
+	\ 'u' : ["library#execute('PaqUpdate')"   , 'update']    ,
+	\ 's' : ["library#execute('PaqSync')"     , 'sync']      ,
+	\ 'b' : ["library#execute('PaqBuild')"    , 'build']     ,
+	\ 'l' : ["library#execute('PaqList')"     , 'list']      ,
+	\ 'L' : ["library#execute('PaqLogOpen')"  , 'open log']  ,
+	\ 'c' : ["library#execute('PaqClean')"    , 'clean']     ,
+	\ 'C' : ["library#execute('PaqLogClean')" , 'clean log'] ,
+	\ }
+
+" wheel {{{1
+
+"nnoremap <silent> <space> <cmd>WhichKey '<space>'<cr>
+
+" organ {{{1
+
+"nnoremap <silent> <m-o> <cmd>WhichKey '<m-o>'<cr>
+
+" function keys {{{1
+
+" for help
+"nnoremap <silent> <f1> <cmd>WhichKey '<f1>'<cr>
+
+nnoremap <silent> <f2> <cmd>WhichKey '<f2>'<cr>
+
+" not used
+"nnoremap <silent> <f3> <cmd>WhichKey '<f3>'<cr>
+"nnoremap <silent> <f4> <cmd>WhichKey '<f4>'<cr>
+
+" source current file
+"nnoremap <silent> <f5> <cmd>WhichKey '<f5>'<cr>
+
+nnoremap <silent> <f6> <cmd>WhichKey '<f6>'<cr>
+
+nnoremap <silent> <f7> <cmd>WhichKey '<f7>'<cr>
+nnoremap <silent> <f8> <cmd>WhichKey '<f8>'<cr>
+
+nnoremap <silent> <f9> <cmd>WhichKey '<f9>'<cr>
+
+" for terminal go to normal mode in vim-lite
+"nnoremap <silent> <f10> <cmd>WhichKey '<f10>'<cr>
+
+nnoremap <silent> <f11> <cmd>WhichKey '<f11>'<cr>
+nnoremap <silent> <f12> <cmd>WhichKey '<f12>'<cr>

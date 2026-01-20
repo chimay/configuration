@@ -62,3 +62,8 @@ $HOME/racine/shell/windenv:\
 "
 
 export PATH
+
+# theme {{{1
+
+export GTK_THEME=Adwaita:dark
+export QT_STYLE_OVERRIDE=Adwaita-Dark

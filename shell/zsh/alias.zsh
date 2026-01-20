@@ -334,7 +334,7 @@ alias nm=neomutt
 alias M=run-neomutt.zsh
 alias A=aerc
 
-alias £=abook
+alias ab=abook
 
 alias n=newsraft
 
@@ -630,7 +630,7 @@ hash -d hub=~/racine/gate/hub
 #  public {{{2
 
 hash -d eclats2vers=~/racine/public/eclats2vers/generic
-hash -d equa6on=~/racine/public/equa6on/generic
+hash -d equa6on=~/racine/public/equa6on
 hash -d blog=~/racine/public/blog
 
 # refer {{{2

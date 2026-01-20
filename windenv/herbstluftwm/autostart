@@ -405,6 +405,7 @@ hc rule focus=on
 #hc rule class=XTerm tag=term # move all xterms to tag 3
 
 hc rule class=Zathura tag=view
+hc rule class=Evince tag=view
 hc rule class=Apvlv tag=view
 hc rule class=feh tag=view
 hc rule class=Sxiv tag=view
@@ -425,6 +426,7 @@ hc rule class=octave-gui tag=office
 
 hc rule class=frescobaldi tag=artisan
 
+hc rule class=mpv tag=video
 hc rule class=vlc tag=video
 hc rule class=FreeTube tag=video
 

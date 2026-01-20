@@ -25,6 +25,11 @@ augroup publish-in-repo
 	autocmd BufWritePost ~/racine/musica/lilypond/template/** call library#publish ()
 augroup END
 
+augroup clone-file
+	autocmd!
+	autocmd BufWritePost ~/racine/public/eclats2vers/generic/include/latex/custom.sty ! cp -f % ~/racine/config/science/texmf/tex/latex/personal/personal.sty
+augroup END
+
 augroup reload-service
 	autocmd!
 	"autocmd BufWritePost ~/racine/config/system/dunst/dunstrc !restart-dunst.sh &

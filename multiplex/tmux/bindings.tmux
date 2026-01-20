@@ -182,6 +182,7 @@ bind-key -T copy-mode-vi 'C-Up'    select-pane -U
 
 bind -n S-Down rotate-window -D
 bind -n S-Up rotate-window -U
+
 bind -n S-Left  swap-pane -D
 bind -n S-Right swap-pane -U
 

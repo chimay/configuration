@@ -147,13 +147,13 @@ MAILTO=$USER
 # alimentation {{{2
 
 0	10	*	*	*		bell.zsh notification/plat-frigo.ogg &>>! ~/log/cron.log
-0	12	*	*	1-5		bell.zsh notification/plat-chauffer.ogg &>>! ~/log/cron.log
+15	12	*	*	1-5		bell.zsh notification/plat-chauffer.ogg &>>! ~/log/cron.log
 45	11	*	*	0		bell.zsh notification/pistolets.ogg volume=120 &>>! ~/log/cron.log
 
 # école {{{2
 
 #30	18	*	1-6,9-12	0,1,3,4		bell.zsh notification/portefeuille.ogg notification=portefeuille volume=120 &>>! ~/log/cron.log
-30	18	*	1-6,9-12	2			bell.zsh notification/prendre-telephone.ogg notification=telephone volume=120 &>>! ~/log/cron.log
+#30	18	*	1-6,9-12	2			bell.zsh notification/prendre-telephone.ogg notification=telephone volume=120 &>>! ~/log/cron.log
 
 #5	14	*	1-6,9-12	0		bell.zsh notification/reveil.ogg notification=reveil &>>! ~/log/cron.log
 
@@ -182,6 +182,11 @@ MAILTO=$USER
 
 45	14	*	*	0	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
 #05	19	*	*	2	bell.zsh notification/telephone.ogg &>>! ~/log/cron.log
+
+45	10	21	3	*	bell.zsh notification/carte-sim.ogg &>>! ~/log/cron.log
+45	10	28	3	*	bell.zsh notification/carte-sim.ogg &>>! ~/log/cron.log
+45	10	21	9	*	bell.zsh notification/carte-sim.ogg &>>! ~/log/cron.log
+45	10	28	9	*	bell.zsh notification/carte-sim.ogg &>>! ~/log/cron.log
 
 # courses {{{2
 
