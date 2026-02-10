@@ -11,3 +11,37 @@
 
 url m@^gopher?://(.*)hURL:@
 substitute_url "file:///cgi-bin/redirect_gopher.cgi?"
+
+#url m!^https?://([a-z]+\.)?twitter\.com/!
+#substitute_url "https://nitter.net/"
+
+#url m!^https?://([a-z]+\.)?reddit\.com/!
+#substitute_url "https://safereddit.com/"
+
+#url m!^https?://([a-z]+\.)?google\.com/!
+#substitute_url "https://duckduckgo.com/lite/"
+
+#url m!^https?://([a-z]+\.)?imgur\.com/!
+#substitute_url "https://rimgo.pussthecat.org/"
+
+#url m!^https?://([a-z]+\.)?wikipedia\.com/!
+#substitute_url "https://wl.vern.cc/"
+
+#url "https://www.youtube.com/" exact
+#substitute_url "file:/cgi-bin/video.cgi?"
+# #substitute_url "https://yewtu.be/"
+
+#url "https://stackoverflow.com/" exact
+#substitute_url "https://ao.bloatcat.tk/"
+
+#url "https://www.reuters.com/" exact
+#substitute_url "https://neuters.de/"
+
+#url "https://fandom.com/" exact
+#substitute_url "https://breezewiki.pussthecat.org/"
+
+#url "https://medium.com/" exact
+#substitute_url "https://scribe.rip/"
+
+#url "https://web.archive.org/" exact
+#substitute_url "https://wayback-classic.net/"

@@ -12,6 +12,26 @@ augroup filetype-packages
 	autocmd BufReadPre **.tex packadd vim-latex
 augroup END
 
+" augroup torustree
+" 	autocmd!
+" 	autocmd VimEnter * call torustree#void#init()
+" 	autocmd VimLeave * call torustree#void#exit()
+" 	autocmd User TorustreeBeforeJump call torustree#vortex#update()
+" 	autocmd User TorustreeBeforeOrganize call torustree#vortex#update()
+" 	autocmd User TorustreeBeforeWrite call torustree#vortex#update()
+" 	autocmd BufLeave * call torustree#vortex#update()
+" 	autocmd BufLeave * call torustree#caduceus#update_window()
+" 	autocmd User TorustreeAfterJump silent! normal! zCzO
+" 	"autocmd User TorustreeAfterNative call torustree#projection#follow()
+" 	autocmd WinEnter * call torustree#projection#follow()
+" 	"autocmd BufRead * call torustree#projection#follow()
+" 	"autocmd BufEnter * call torustree#projection#follow()
+" 	autocmd BufRead * call torustree#attic#record()
+" 	autocmd TextYankPost * call torustree#codex#add()
+" 	" overwrite generic <cr> mapping
+" 	"autocmd filetype torustree nnoremap <buffer> <cr> <cr>
+" augroup END
+
 augroup wheel
 	autocmd!
 	autocmd VimEnter * call wheel#void#init()

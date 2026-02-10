@@ -295,6 +295,7 @@ set wildignore+=*.pyc,*.elc,*.zwc
 set wildignore+=*.aux,*.maf,*.toc,*.ptc*,*.mtc*
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.wav,*.flac,*.ogg,*.mp3
+set wildignore+=*.pdf,*.svg
 
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj
 

@@ -78,7 +78,6 @@ bind generic ";" tag-prefix
 bind generic : enter-command
 bind generic ! shell-escape
 
-
 # Index {{{1
 
 bind index \eh help
@@ -190,7 +189,8 @@ bind index \eg fetch-mail
 bind index m noop
 
 bind index a mail
-bind index µ reply
+bind index à query
+bind index t reply
 
 bind index mm mail
 bind index mb bounce-message
@@ -198,11 +198,9 @@ bind index mp recall-message
 bind index mf forward-message
 bind index mg group-reply
 bind index ml list-reply
+bind index mq query
 bind index mr reply
 bind index ms resend-message
-
-bind index mq query
-bind index à query
 
 # sélection {{{2
 
@@ -399,8 +397,8 @@ bind pager N search-opposite
 
 bind pager m noop
 
-bind pager à mail
-bind pager µ reply
+bind pager a mail
+bind pager t reply
 
 bind pager mm mail
 bind pager mb bounce-message
@@ -461,7 +459,7 @@ bind pager us undelete-subthread
 # Attachés {{{2
 
 bind pager & view-attachments
-bind pager a view-attachments
+bind pager à view-attachments
 
 # Destinataires {{{2
 

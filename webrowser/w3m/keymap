@@ -363,13 +363,13 @@
 
 # help {{{2
 
-keymap  ??  HELP
-keymap  ?u  COMMAND  "HELP; SEARCH ^User-Defined; CENTER_V"            # show user custom hotkeys binding
-keymap  ?i  COMMAND  "HELP; SEARCH ^Input Line Editing Mode; CENTER_V" # show field hotkeys binding
-keymap  ?m  TAB_GOTO file:///usr/share/doc/w3m/MANUAL.html
-keymap  ?f  TAB_GOTO file:///usr/share/doc/w3m/README.func
-keymap  ?k  TAB_GOTO file:///usr/share/doc/w3m/README.keymap
-keymap  ?M  COMMAND  "SHELL 'man w3m'"
+keymap  hh  HELP
+keymap  hu  COMMAND  "HELP; SEARCH ^User-Defined; CENTER_V"            # show user custom hotkeys binding
+keymap  hi  COMMAND  "HELP; SEARCH ^Input Line Editing Mode; CENTER_V" # show field hotkeys binding
+keymap  hm  TAB_GOTO file:///usr/share/doc/w3m/MANUAL.html
+keymap  hf  TAB_GOTO file:///usr/share/doc/w3m/README.func
+keymap  hk  TAB_GOTO file:///usr/share/doc/w3m/README.keymap
+keymap  hM  COMMAND  "SHELL 'man w3m'"
 
 # info {{{2
 
@@ -393,13 +393,24 @@ keymap  q   ABORT
 # execute a w3m command {{{2
 
 keymap : COMMAND "READ_SHELL ~/.w3m/cgi-bin/fnx_fzfmiru.cgi ; BACK ; GOTO file:/cgi-bin/fnx_execute.cgi ; BACK"
-keymap M-x COMMAND "READ_SHELL ~/.w3m/cgi-bin/fnx_fzfmiru.cgi ; BACK ; GOTO file:/cgi-bin/fnx_execute.cgi ; BACK"
+keymap ";" COMMAND
 
 # menu {{{2
 
 # pop-up
+# also mouse right click
 
 keymap  M-m     MENU
+#keymap  C-j     MENU
+
+# reload config files {{{2
+
+keymap rc   COMMAND "LOAD ~/.w3m/config ; EDIT ; BACK ; REINIT ; MESSAGE 'config reloaded'"
+keymap rk   COMMAND "LOAD ~/.w3m/keymap ; EDIT ; BACK ; REINIT ; MESSAGE 'keymap reloaded'"
+keymap rs   COMMAND "LOAD ~/.w3m/siteconf ; EDIT ; BACK ; REINIT ; MESSAGE 'siteconf reloaded'"
+keymap r=   COMMAND "LOAD ~/.w3m/menu ; EDIT ; BACK ; REINIT ; MESSAGE 'menu reloaded'"
+keymap rm   COMMAND "LOAD ~/.w3m/mailcap ; EDIT ; BACK ; REINIT ; MESSAGE 'mailcap reloaded'"
+keymap rt   COMMAND "LOAD ~/.w3m/mime.types ; EDIT ; BACK ; REINIT ; MESSAGE 'mime.types reloaded'"
 
 # configure options {{{2
 
@@ -418,8 +429,11 @@ keymap cu   COMMAND "SET_OPTION mark_all_pages=toggle ; RELOAD"
 
 # opening {{{2
 
-keymap  o   TAB_GOTO
-keymap  O   TAB_GOTO_RELATIVE
+keymap  o   GOTO
+keymap  O   GOTO_RELATIVE
+
+#keymap  O   TAB_GOTO
+#keymap  O   TAB_GOTO_RELATIVE
 
 keymap  M-o  GOTO_HOME
 
@@ -440,7 +454,12 @@ keymap  PP      GOTO        file:/cgi-bin/goto_clipboard.cgi
 
 # reload
 
-keymap  r   RELOAD
+keymap  rr   COMMAND "RELOAD ; MESSAGE 'page reloaded'"
+
+# searching text {{{2
+
+keymap / ISEARCH
+keymap ? ISEARCH_BACK
 
 # yank & paste {{{2
 
@@ -451,20 +470,44 @@ keymap p   COMMAND  "SHELL ~/.w3m/cgi-bin/fn_goto_x11_clipboard.cgi"
 
 # search engines {{{2
 
-keymap sx  COMMAND  "TAB_GOTO https://searx.org; GOTO_LINE 5; NEXT_LINK; GOTO_LINK"
-keymap sd  COMMAND  "TAB_GOTO https://duckduckgo.com/lite/; NEXT_LINK; GOTO_LINK"
-keymap sg  COMMAND  "TAB_GOTO https://google.com; GOTO_LINE 6; NEXT_LINK; GOTO_LINK"
-keymap se  COMMAND  "TAB_GOTO https://stackexchange.com; GOTO_LINE 7; NEXT_LINK; GOTO_LINK"
+#keymap sx  COMMAND  "TAB_GOTO https://searx.org; GOTO_LINE 5; NEXT_LINK; GOTO_LINK"
+#keymap sd  COMMAND  "TAB_GOTO https://duckduckgo.com/lite/; NEXT_LINK; GOTO_LINK"
+#keymap sg  COMMAND  "TAB_GOTO https://google.com; GOTO_LINE 6; NEXT_LINK; GOTO_LINK"
+#keymap se  COMMAND  "TAB_GOTO https://stackexchange.com; GOTO_LINE 7; NEXT_LINK; GOTO_LINK"
 
-keymap sw  COMMAND  "TAB_GOTO https://en.m.wikipedia.org; GOTO_LINE 18; NEXT_LINK; GOTO_LINK"
-keymap sW  COMMAND  "TAB_GOTO https://fr.m.wikipedia.org; GOTO_LINE 18; NEXT_LINK; GOTO_LINK"
+#keymap sw  COMMAND  "TAB_GOTO https://en.m.wikipedia.org; GOTO_LINE 18; NEXT_LINK; GOTO_LINK"
+#keymap sW  COMMAND  "TAB_GOTO https://fr.m.wikipedia.org; GOTO_LINE 18; NEXT_LINK; GOTO_LINK"
+
+keymap  sa      COMMAND "SET_OPTION dictprompt='Search aspell: ' SET_OPTION dictcommand=file:///cgi-bin/omnibar_aspell.cgi ; DICT_WORD"
+keymap  sb      COMMAND "SET_OPTION dictprompt='Search bing: ' SET_OPTION dictcommand=file:///cgi-bin/omnibar_bing.cgi ; DICT_WORD"
+keymap  sd      COMMAND "SET_OPTION dictprompt='Search duckduckgo: ' SET_OPTION dictcommand=file:///cgi-bin/omnibar_duckduckgo.cgi ; DICT_WORD"
+keymap  sg      COMMAND "SET_OPTION dictprompt='Search google: ' SET_OPTION dictcommand=file:///cgi-bin/omnibar_google.cgi ; DICT_WORD"
+keymap  si      COMMAND "SET_OPTION dictprompt='Search geminispace: ' SET_OPTION dictcommand=file:///cgi-bin/omnibar_geminispace.cgi ; DICT_WORD"
+keymap  sr      COMMAND "SET_OPTION dictprompt='Search subreddit: ' SET_OPTION dictcommand=file:///cgi-bin/omnibar_subreddit.cgi ; DICT_WORD"
+keymap  su      COMMAND "SET_OPTION dictprompt='Search yewtube: ' SET_OPTION dictcommand=file:///cgi-bin/omnibar_yewtube.cgi ; DICT_WORD"
+keymap  sv      COMMAND "SET_OPTION dictprompt='Search veronica2: ' SET_OPTION dictcommand=file:///cgi-bin/omnibar_veronica2.cgi ; DICT_WORD"
+keymap  sw      COMMAND "SET_OPTION dictprompt='Search wikipedia: ' SET_OPTION dictcommand=file:///cgi-bin/omnibar_wikipedia.cgi ; DICT_WORD"
+keymap  sy      COMMAND "SET_OPTION dictprompt='Search yahoo: ' SET_OPTION dictcommand=file:///cgi-bin/omnibar_yahoo.cgi ; DICT_WORD"
+
+# search current word under cursor
+
+keymap  sA      COMMAND "SET_OPTION dictcommand=file:///cgi-bin/omnibar_aspell.cgi ; DICT_WORD_AT"
+keymap  sB      COMMAND "SET_OPTION dictcommand=file:///cgi-bin/omnibar_bing.cgi ; DICT_WORD_AT"
+keymap  sD      COMMAND "SET_OPTION dictcommand=file:///cgi-bin/omnibar_duckduckgo.cgi ; DICT_WORD_AT"
+keymap  sG      COMMAND "SET_OPTION dictcommand=file:///cgi-bin/omnibar_google.cgi ; DICT_WORD_AT"
+keymap  sI      COMMAND "SET_OPTION dictcommand=file:///cgi-bin/omnibar_geminispace.cgi ; DICT_WORD_AT"
+keymap  sR      COMMAND "SET_OPTION dictcommand=file:///cgi-bin/omnibar_subreddit.cgi ; DICT_WORD_AT"
+keymap  sU      COMMAND "SET_OPTION dictcommand=file:///cgi-bin/omnibar_yewtube.cgi ; DICT_WORD_AT"
+keymap  sV      COMMAND "SET_OPTION dictcommand=file:///cgi-bin/omnibar_veronica2.cgi ; DICT_WORD_AT"
+keymap  sW      COMMAND "SET_OPTION dictcommand=file:///cgi-bin/omnibar_wikipedia.cgi ; DICT_WORD_AT"
+keymap  sY      COMMAND "SET_OPTION dictcommand=file:///cgi-bin/omnibar_yahoo.cgi ; DICT_WORD_AT"
 
 # surfraw {{{3
 
-# for X sessions
+# for x window
 
-keymap sr  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
-keymap sR  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
+#keymap sr  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; TAB_GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
+#keymap sR  COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; BACK ; GOTO file:/cgi-bin/goto_w3m_clipboard.cgi"
 
 # navigation {{{2
 
@@ -584,7 +627,7 @@ keymap  | PIPE_BUF
 
 # history {{{2
 
-keymap  h  HISTORY
+keymap  H  HISTORY
 
 # bookmarks {{{2
 
@@ -618,14 +661,14 @@ keymap  X      TAB_GOTO    file:/cgi-bin/restore_tab.cgi
 
 keymap  es  EDIT_SCREEN
 
-# save buffer = rendered document to text file
-
-keymap  w   PRINT
-
 # save source to file
 
-keymap  W  DOWNLOAD
+keymap  w  DOWNLOAD
 keymap  C-w  SAVE
+
+# save buffer = rendered document to text file
+
+keymap  W   PRINT
 
 # diana is a front-end for aria2c
 
@@ -636,10 +679,20 @@ keymap  aA      EXTERN_LINK     'diana --pause add'
 
 keymap  ta      EXTERN_LINK     'transmission-remote --add'
 
+# session {{{2
+
+keymap S COMMAND "READ_SHELL 'rm ~/.w3m/session 2>/dev/null' ; BACK ; STORE"
+
+# ---- to restore
+# w3m -R
+
 # readability {{{2
 
 keymap R  COMMAND "SHELL 'readable $W3M_URL > ~/racine/varia/cache/readable/last.html' ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
-keymap C-r COMMAND "READ_SHELL 'python3 -m readability.readability -u $W3M_URL 2>/dev/null 1>~/racine/varia/cache/readable/last.html' ; BACK ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
+
+keymap C-r COMMAND "READ_SHELL 'rdrview $W3M_URL -H 2> /dev/null 1> ~/racine/varia/cache/readable/last.html' ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
+
+#keymap C-r COMMAND "READ_SHELL 'python3 -m readability.readability -u $W3M_URL 2>/dev/null 1>~/racine/varia/cache/readable/last.html' ; BACK ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
 
 # text to speech {{{2
 

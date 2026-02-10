@@ -219,6 +219,125 @@ nnoremap <d-f> <cmd>tabnew <bar> tabprevious <bar> tab Vifm<cr>
 
 " Exploration multiple {{{1
 
+" Torustree {{{2
+
+" configuration {{{3
+
+if ! exists("g:torustree_loaded")
+	" Init
+	let g:torustree_config                 = {}
+	let g:torustree_config.project         = {}
+	let g:torustree_config.storage         = {}
+	let g:torustree_config.storage.torustree   = {}
+	let g:torustree_config.storage.session = {}
+	let g:torustree_config.maxim           = {}
+	let g:torustree_config.completion      = {}
+	let g:torustree_config.frecency        = {}
+	let g:torustree_config.display         = {}
+	let g:torustree_config.display.sign    = {}
+
+	" The bigger it is, the more mappings available
+	"let g:torustree_config.mappings = 20
+	let g:torustree_config.mappings = 2
+	" Prefix for mappings
+	let g:torustree_config.prefix = '<f3>'
+	" Locate database ; default one if left empty
+	let g:torustree_config.locate_db = '~/racine/index/filesys/locate/racine.db'
+	" Grep command : :grep or :vimpgrep
+	let g:torustree_config.grep = 'vimgrep'
+
+	" Marker of project root
+	"let g:torustree_config.project.markers = '.git'
+	"let g:torustree_config.project.markers = '.racine-projet'
+	" List of markers
+	" The project dir is found as soon as one marker is found in it
+	let g:torustree_config.project.markers = ['.hg' , '.git', '.racine-projet']
+	" Auto cd to project root if > 0
+	let g:torustree_config.project.auto_chdir = 1
+
+	" The folder where toruses and circles will be stored and read
+	let g:torustree_config.storage.torustree.folder = '~/racine/plugin/data/neovim/torustree'
+	" Name of the default torustree file
+	let g:torustree_config.storage.torustree.name = 'auto'
+	" Auto read torustree file on startup if > 0
+	let g:torustree_config.storage.torustree.autoread = 0
+	" Auto write torustree file on exit if > 0
+	let g:torustree_config.storage.torustree.autowrite = 0
+	" The folder where sessions will be stored and read
+	let g:torustree_config.storage.session.folder = '~/racine/plugin/data/neovim/torustree/session'
+	" Name of the default session file
+	let g:torustree_config.storage.session.name = 'layout'
+	" Auto read default session file on startup if > 0
+	let g:torustree_config.storage.session.autoread = 0
+	" Auto write default session file on exit if > 0
+	let g:torustree_config.storage.session.autowrite = 0
+	" Number of backups for the torustree or session file
+	let g:torustree_config.storage.backups = 7
+
+	" Maximum number of elements in history
+	let g:torustree_config.maxim.history = 1200
+	" Maximum number of elements in input history
+	let g:torustree_config.maxim.input = 700
+
+	" Maximum number of elements in mru
+	let g:torustree_config.maxim.mru = 700
+
+	" Maximum number of elements in yank torustree
+	let g:torustree_config.maxim.unnamed_yanks = 700
+	let g:torustree_config.maxim.other_yanks = 300
+	" Maximum lines of yank to add in yank ring
+	let g:torustree_config.maxim.yank_lines = 30
+	" Maximum size of yank to add in yank ring
+	let g:torustree_config.maxim.yank_size = 3000
+
+	" Maximum size of layer ring
+	let g:torustree_config.maxim.layers = 7
+
+	" Maximum number of tabs
+	let g:torustree_config.maxim.tabs = 12
+	" Maximum number of horizontal splits
+	let g:torustree_config.maxim.horizontal = 3
+	" Maximum number of vertical splits
+	let g:torustree_config.maxim.vertical = 4
+
+	" completion
+	let g:torustree_config.completion.vocalize = 0
+	let g:torustree_config.completion.wordize = 0
+	let g:torustree_config.completion.fuzzy = 0
+	let g:torustree_config.completion.scores = 0
+
+	" Frecency
+	let g:torustree_config.frecency.reward = 120
+	let g:torustree_config.frecency.penalty = 1
+
+	" Mandala & leaf status in statusline ?
+	"let g:torustree_config.display.statusline = 1
+	" Torustree dedibuf message : one-line or multi-line
+	let g:torustree_config.display.dedibuf_msg = 'multi-line'
+	" Filter prompt in dedicated buffers
+	"let g:torustree_config.display.prompt = 'torustree $ '
+	"let g:torustree_config.display.prompt_writable = 'torustree # '
+	" Selection marker in dedicated buffers
+	"let g:torustree_config.display.selection = '-> '
+	" Signs
+	let g:torustree_config.display.sign.switch = 1
+	" Sign text at torustree locations
+	"let g:torustree_config.display.sign.settings = { 'text' : '@' }
+	" Signs for native navigation
+	"let g:torustree_config.display.sign.native_settings = { 'text' : '*' }
+
+	"let g:torustree_config.debug = 1
+endif
+
+"set tabline=%!torustree#status#tabline()
+
+" maps {{{3
+
+nnoremap <c-f3>          :<c-u>Torustree<space>
+
+" debug mappings
+call torustree#centre#mappings (20)
+
 " Wheel {{{2
 
 " configuration {{{3
@@ -417,130 +536,11 @@ nmap <silent> <d-r>       <plug>(wheel-dedibuf-reorg-tabwin)
 
 nmap <silent> <d-space>      <plug>(wheel-mandala-forward)
 nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
-nmap <silent> <m-tab>        <plug>(wheel-mandala-add)
-nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
+"nmap <silent> <m-tab>        <plug>(wheel-mandala-add)
+"nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
 
 " debug mappings
 call wheel#centre#mappings (20)
-
-" Wheeltree {{{2
-
-" configuration {{{3
-
-if ! exists("g:wheeltree_loaded")
-	" Init
-	let g:wheeltree_config                 = {}
-	let g:wheeltree_config.project         = {}
-	let g:wheeltree_config.storage         = {}
-	let g:wheeltree_config.storage.wheeltree   = {}
-	let g:wheeltree_config.storage.session = {}
-	let g:wheeltree_config.maxim           = {}
-	let g:wheeltree_config.completion      = {}
-	let g:wheeltree_config.frecency        = {}
-	let g:wheeltree_config.display         = {}
-	let g:wheeltree_config.display.sign    = {}
-
-	" The bigger it is, the more mappings available
-	"let g:wheeltree_config.mappings = 20
-	let g:wheeltree_config.mappings = 2
-	" Prefix for mappings
-	let g:wheeltree_config.prefix = '<f3>'
-	" Locate database ; default one if left empty
-	let g:wheeltree_config.locate_db = '~/racine/index/filesys/locate/racine.db'
-	" Grep command : :grep or :vimpgrep
-	let g:wheeltree_config.grep = 'vimgrep'
-
-	" Marker of project root
-	"let g:wheeltree_config.project.markers = '.git'
-	"let g:wheeltree_config.project.markers = '.racine-projet'
-	" List of markers
-	" The project dir is found as soon as one marker is found in it
-	let g:wheeltree_config.project.markers = ['.hg' , '.git', '.racine-projet']
-	" Auto cd to project root if > 0
-	let g:wheeltree_config.project.auto_chdir = 1
-
-	" The folder where toruses and circles will be stored and read
-	let g:wheeltree_config.storage.wheeltree.folder = '~/racine/plugin/data/neovim/wheeltree'
-	" Name of the default wheeltree file
-	let g:wheeltree_config.storage.wheeltree.name = 'auto'
-	" Auto read wheeltree file on startup if > 0
-	let g:wheeltree_config.storage.wheeltree.autoread = 0
-	" Auto write wheeltree file on exit if > 0
-	let g:wheeltree_config.storage.wheeltree.autowrite = 0
-	" The folder where sessions will be stored and read
-	let g:wheeltree_config.storage.session.folder = '~/racine/plugin/data/neovim/wheeltree/session'
-	" Name of the default session file
-	let g:wheeltree_config.storage.session.name = 'layout'
-	" Auto read default session file on startup if > 0
-	let g:wheeltree_config.storage.session.autoread = 0
-	" Auto write default session file on exit if > 0
-	let g:wheeltree_config.storage.session.autowrite = 0
-	" Number of backups for the wheeltree or session file
-	let g:wheeltree_config.storage.backups = 7
-
-	" Maximum number of elements in history
-	let g:wheeltree_config.maxim.history = 1200
-	" Maximum number of elements in input history
-	let g:wheeltree_config.maxim.input = 700
-
-	" Maximum number of elements in mru
-	let g:wheeltree_config.maxim.mru = 700
-
-	" Maximum number of elements in yank wheeltree
-	let g:wheeltree_config.maxim.unnamed_yanks = 700
-	let g:wheeltree_config.maxim.other_yanks = 300
-	" Maximum lines of yank to add in yank ring
-	let g:wheeltree_config.maxim.yank_lines = 30
-	" Maximum size of yank to add in yank ring
-	let g:wheeltree_config.maxim.yank_size = 3000
-
-	" Maximum size of layer ring
-	let g:wheeltree_config.maxim.layers = 7
-
-	" Maximum number of tabs
-	let g:wheeltree_config.maxim.tabs = 12
-	" Maximum number of horizontal splits
-	let g:wheeltree_config.maxim.horizontal = 3
-	" Maximum number of vertical splits
-	let g:wheeltree_config.maxim.vertical = 4
-
-	" completion
-	let g:wheeltree_config.completion.vocalize = 0
-	let g:wheeltree_config.completion.wordize = 0
-	let g:wheeltree_config.completion.fuzzy = 0
-	let g:wheeltree_config.completion.scores = 0
-
-	" Frecency
-	let g:wheeltree_config.frecency.reward = 120
-	let g:wheeltree_config.frecency.penalty = 1
-
-	" Mandala & leaf status in statusline ?
-	"let g:wheeltree_config.display.statusline = 1
-	" Wheeltree dedibuf message : one-line or multi-line
-	let g:wheeltree_config.display.dedibuf_msg = 'multi-line'
-	" Filter prompt in dedicated buffers
-	"let g:wheeltree_config.display.prompt = 'wheeltree $ '
-	"let g:wheeltree_config.display.prompt_writable = 'wheeltree # '
-	" Selection marker in dedicated buffers
-	"let g:wheeltree_config.display.selection = '-> '
-	" Signs
-	let g:wheeltree_config.display.sign.switch = 1
-	" Sign text at wheeltree locations
-	"let g:wheeltree_config.display.sign.settings = { 'text' : '@' }
-	" Signs for native navigation
-	"let g:wheeltree_config.display.sign.native_settings = { 'text' : '*' }
-
-	"let g:wheeltree_config.debug = 1
-endif
-
-set tabline=%!wheeltree#status#tabline()
-
-" maps {{{3
-
-nnoremap <c-f3>          :<c-u>Wheeltree<space>
-
-" debug mappings
-call wheeltree#centre#mappings (20)
 
 " Liens {{{1
 
@@ -759,4 +759,3 @@ nnoremap <silent> <C-Down> :<C-U>TmuxNavigateDown<cr>
 nnoremap <silent> <C-Up> :<C-U>TmuxNavigateUp<cr>
 
 "nnoremap <silent> C-Left :<C-U>TmuxNavigatePrevious<cr>
-

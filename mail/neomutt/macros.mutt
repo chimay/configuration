@@ -150,19 +150,19 @@ macro index vo '<tag-pattern>~d >7d<enter>'
 
 #macro index w <sync-mailbox>
 
-# ma = message archive
+# µa = message archive
 
 # messages de plus de 7 jours
 
-macro index ma '<untag-pattern>all<enter><tag-pattern>~d >7d<enter><enter-command>exec save-message<enter>'
+macro index µa '<untag-pattern>all<enter><tag-pattern>~d >7d<enter><enter-command>exec save-message<enter>'
 
 # messages de plus de 30 jours
 
-macro index mA '<untag-pattern>all<enter><tag-pattern>~d >30d<enter><enter-command>exec save-message<enter>'
+macro index µA '<untag-pattern>all<enter><tag-pattern>~d >30d<enter><enter-command>exec save-message<enter>'
 
 # messages de plus de 3 mois
 
-macro index m\ca '<untag-pattern>all<enter><tag-pattern>~d >3m<enter><enter-command>exec save-message<enter>'
+macro index µ\ca '<untag-pattern>all<enter><tag-pattern>~d >3m<enter><enter-command>exec save-message<enter>'
 
 #  Filtrage {{{1
 
