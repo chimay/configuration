@@ -369,7 +369,8 @@ keymap  hi  COMMAND  "HELP; SEARCH ^Input Line Editing Mode; CENTER_V" # show fi
 keymap  hm  TAB_GOTO file:///usr/share/doc/w3m/MANUAL.html
 keymap  hf  TAB_GOTO file:///usr/share/doc/w3m/README.func
 keymap  hk  TAB_GOTO file:///usr/share/doc/w3m/README.keymap
-keymap  hM  COMMAND  "SHELL 'man w3m'"
+keymap  hM  TAB_GOTO file:///usr/share/doc/w3m/README.mouse
+keymap  hM-m  COMMAND  "SHELL 'man w3m'"
 
 # info {{{2
 
@@ -382,13 +383,17 @@ keymap  iU  PEEK_LINK
 
 # quit {{{2
 
-# quit with confirmation
+# ---- quit with confirmation
 
 #keymap  q   QUIT
 
-# quit at once
+# ---- quit at once
 
-keymap  q   ABORT
+#keymap  q   ABORT
+
+# ---- save session and quit
+
+keymap q COMMAND "READ_SHELL 'rm ~/.w3m/session 2>/dev/null' ; BACK ; STORE ; ABORT"
 
 # execute a w3m command {{{2
 
@@ -430,9 +435,9 @@ keymap cu   COMMAND "SET_OPTION mark_all_pages=toggle ; RELOAD"
 # opening {{{2
 
 keymap  o   GOTO
-keymap  O   GOTO_RELATIVE
+keymap  O   TAB_GOTO
 
-#keymap  O   TAB_GOTO
+#keymap  O   GOTO_RELATIVE
 #keymap  O   TAB_GOTO_RELATIVE
 
 keymap  M-o  GOTO_HOME
@@ -441,11 +446,11 @@ keymap  M-o  GOTO_HOME
 
 keymap  C-o  LOAD
 
-# open with handlers
+# open with external handlers
 
-keymap  hm      EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
-keymap  hM      EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
-keymap  hb      EXTERN_LINK   'tsp mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
+keymap  em      EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
+keymap  eM      EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
+keymap  eb      EXTERN_LINK   'tsp mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
 
 # open url in clipboard
 

@@ -794,10 +794,12 @@ process-signal () {
 
 w3m-textwidth () {
 	local integer columns=$(stty size | cut -d ' ' -f 2)
-	local integer limit
-	(( limit = columns * 3 / 4 ))
-	stty cols $limit
-	w3m "$@"
+	local integer colimit
+	local session_file=~/.w3m/session
+	[[ -e $session_file ]] || touch $session_file
+	(( colimit = columns * 3 / 4 ))
+	stty cols $colimit
+	w3m -R "$@"
 	stty cols $columns
 }
 
