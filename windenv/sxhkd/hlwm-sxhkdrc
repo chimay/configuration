@@ -147,8 +147,11 @@ super + ctrl + l
 super + ctrl + i
 	vimiv ~/photo/numerique
 
-super + ctrl + {q,v,z,b,h,m}
-	goto-or-run.sh {qutebrowser,vieb,zen-browser,floorp,helium-browser,mullvad-browser}
+super + ctrl + q
+	goto-or-run.sh qutebrowser
+
+super + ctrl + {v,z,b,h,m}
+	goto-or-run-appimage.sh {vieb,zen-browser,floorp,helium-browser,mullvad-browser}
 
 super + ctrl + o
 	torbrowser-launcher
