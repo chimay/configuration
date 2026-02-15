@@ -1003,6 +1003,8 @@ if exists('s:dont_publish')
 endif
 let s:dont_publish = [
 	\ '\m.*perso.*',
+	\ '\m.*getmailrc.*',
+	\ '\m.*procmailrc.*',
 	\ '\m.*qutebrowser/config.*',
 	\ '\m.*bookmark.*',
 	\ '\m.*quickmark.*',

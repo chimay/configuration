@@ -307,6 +307,32 @@ swap-files () {
 	mv $TMPFILE "$2"
 }
 
+# roll backups {{{2
+
+roll-backups () {
+	local file=$1
+	local suffix next
+	[[ -e $file ]] || {
+		echo file $file does not exist
+		return 1
+	}
+	[[ -e $file.7 ]] && {
+		echo trash-put $file.7
+		trash-put $file.7
+	}
+	for suffix in {6..1}
+	do
+		(( next = suffix + 1 ))
+		[[ -e $file.$suffix ]] && {
+			echo mv $file.$suffix $file.$next
+			mv $file.$suffix $file.$next
+		}
+	done
+	echo command cp $file $file.1
+	command cp $file $file.1
+	return 0
+}
+
 # number-of-files {{{2
 
 number-of-files () {
@@ -797,6 +823,7 @@ w3m-textwidth () {
 	local integer colimit
 	local session_file=~/.w3m/session
 	[[ -e $session_file ]] || touch $session_file
+	roll-backups $session_file
 	(( colimit = columns * 3 / 4 ))
 	stty cols $colimit
 	w3m -R "$@"

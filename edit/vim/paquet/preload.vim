@@ -356,22 +356,13 @@ vmap <silent> à           <plug>(wheel-dedibuf-narrow)
 
 nmap <silent> <c-bs>      <plug>(wheel-prompt-outline)
 
-nmap <silent> <c-p>       <plug>(wheel-prompt-yank-plain-linewise-before)
-nmap <silent> <c-n>       <plug>(wheel-prompt-yank-plain-linewise-after)
-nmap <silent> g<c-p>      <plug>(wheel-prompt-yank-plain-charwise-before)
-nmap <silent> g<c-n>      <plug>(wheel-prompt-yank-plain-charwise-after)
 nmap <silent> ç           <plug>(wheel-prompt-yank-plain-linewise-after)
 nmap <silent> gç          <plug>(wheel-prompt-yank-plain-charwise-after)
-" altgr-y
-nmap <silent> ←           <plug>(wheel-prompt-yank-plain-charwise-before)
-" altgr-p
-nmap <silent> þ           <plug>(wheel-prompt-yank-plain-charwise-after)
 
 nmap <c-^>                <plug>(wheel-alternate-anywhere)
 nmap <m-^>                <plug>(wheel-alternate-same-circle)
 nmap <m-c-^>              <plug>(wheel-alternate-same-torus-other-circle)
 nmap <silent> <d-^>       <plug>(wheel-alternate-window)
-nmap <silent> <d-e>       <plug>(wheel-dedibuf-frecency)
 
 nmap <m-pagedown>         <plug>(wheel-next-location)
 nmap <m-pageup>           <plug>(wheel-previous-location)
@@ -388,25 +379,6 @@ nmap <silent> <d-cr>      <cmd>call wheel#waterclock#history('tab')<cr>
 " altgr-h
 nmap <silent> ħ           <plug>(wheel-prompt-history)
 nmap <silent> <d-h>       <plug>(wheel-dedibuf-history)
-
-nmap <m-v>                <plug>(wheel-prompt-tabwin)
-nmap <silent> <d-v>       <plug>(wheel-dedibuf-tabwin)
-
-nmap <silent> <d-o>       <plug>(wheel-dedibuf-occur)
-nmap <silent> <d-b>       <plug>(wheel-dedibuf-buffer-all)
-nmap <silent> <d-k>       <plug>(wheel-dedibuf-marker)
-nmap <silent> <d-j>       <plug>(wheel-dedibuf-jump)
-nmap <silent> <d-c>       <plug>(wheel-dedibuf-change)
-nmap <silent> <d-t>       <plug>(wheel-dedibuf-tag)
-
-nmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow-operator)
-vmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow)
-
-nmap <silent> <d-y>       <plug>(wheel-dedibuf-yank-plain)
-nmap <silent> <d-p>       <plug>(wheel-dedibuf-yank-list)
-
-nmap <silent> <d-u>       <plug>(wheel-dedibuf-undo-list)
-nmap <silent> <d-r>       <plug>(wheel-dedibuf-reorg-tabwin)
 
 nmap <silent> <d-space>      <plug>(wheel-mandala-forward)
 nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
