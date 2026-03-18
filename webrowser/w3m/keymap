@@ -49,12 +49,12 @@ keymap  M-m     MENU
 
 # reload config files {{{1
 
-keymap rc   COMMAND "LOAD ~/.w3m/config ; EDIT ; BACK ; REINIT ; MESSAGE 'config reloaded'"
-keymap rk   COMMAND "LOAD ~/.w3m/keymap ; EDIT ; BACK ; REINIT ; MESSAGE 'keymap reloaded'"
-keymap rs   COMMAND "LOAD ~/.w3m/siteconf ; EDIT ; BACK ; REINIT ; MESSAGE 'siteconf reloaded'"
-keymap r=   COMMAND "LOAD ~/.w3m/menu ; EDIT ; BACK ; REINIT ; MESSAGE 'menu reloaded'"
-keymap rm   COMMAND "LOAD ~/.w3m/mailcap ; EDIT ; BACK ; REINIT ; MESSAGE 'mailcap reloaded'"
-keymap rt   COMMAND "LOAD ~/.w3m/mime.types ; EDIT ; BACK ; REINIT ; MESSAGE 'mime.types reloaded'"
+keymap C-rc   COMMAND "LOAD ~/.w3m/config ; EDIT ; BACK ; REINIT ; MESSAGE 'config reloaded'"
+keymap C-rk   COMMAND "LOAD ~/.w3m/keymap ; EDIT ; BACK ; REINIT ; MESSAGE 'keymap reloaded'"
+keymap C-rs   COMMAND "LOAD ~/.w3m/siteconf ; EDIT ; BACK ; REINIT ; MESSAGE 'siteconf reloaded'"
+keymap C-r=   COMMAND "LOAD ~/.w3m/menu ; EDIT ; BACK ; REINIT ; MESSAGE 'menu reloaded'"
+keymap C-rm   COMMAND "LOAD ~/.w3m/mailcap ; EDIT ; BACK ; REINIT ; MESSAGE 'mailcap reloaded'"
+keymap C-rt   COMMAND "LOAD ~/.w3m/mime.types ; EDIT ; BACK ; REINIT ; MESSAGE 'mime.types reloaded'"
 
 # configure options {{{1
 
@@ -89,7 +89,7 @@ keymap  C-o  LOAD
 
 keymap  em      EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
 keymap  eM      EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
-keymap  eb      EXTERN_LINK   'tsp mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
+keymap  el      EXTERN_LINK   'tsp mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
 
 # open url in clipboard
 
@@ -98,7 +98,7 @@ keymap  PP      GOTO        file:/cgi-bin/goto_clipboard.cgi
 
 # reload
 
-keymap  rr   COMMAND "RELOAD ; MESSAGE 'page reloaded'"
+keymap  M-r   COMMAND "RELOAD ; MESSAGE 'page reloaded'"
 
 # searching text {{{1
 
@@ -251,7 +251,7 @@ keymap  eq    EXTERN 'qutebrowser'
 
 # display link target in external browser
 
-keymap  el    EXTERN_LINK 'qutebrowser'
+keymap  eb    EXTERN_LINK 'qutebrowser'
 
 # buffers {{{1
 
@@ -337,9 +337,9 @@ keymap S COMMAND "READ_SHELL 'rm ~/.w3m/session 2>/dev/null' ; BACK ; STORE"
 
 # readability {{{1
 
-keymap R  COMMAND "SHELL 'readable $W3M_URL > ~/racine/varia/cache/readable/last.html' ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
+keymap r  COMMAND "SHELL 'readable $W3M_URL > ~/racine/varia/cache/readable/last.html' ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
 
-keymap C-r COMMAND "SHELL 'rdrview $W3M_URL -H 2> /dev/null 1> ~/racine/varia/cache/readable/last.html' ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
+keymap R  COMMAND "SHELL 'rdrview $W3M_URL -H 2> /dev/null 1> ~/racine/varia/cache/readable/last.html' ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
 
 #keymap C-r COMMAND "READ_SHELL 'python3 -m readability.readability -u $W3M_URL 2>/dev/null 1>~/racine/varia/cache/readable/last.html' ; BACK ; NEW_TAB ; LOAD ~/racine/varia/cache/readable/last.html"
 

@@ -414,6 +414,10 @@ clifm() {
 # run-vifm {{{2
 
 run-vifm () {
+	if [[ -z ~/.cache/ueberzugpp/*(N) ]]
+	then
+		trash-put ~/.cache/ueberzugpp/*
+	fi
 	vifmrun
 }
 

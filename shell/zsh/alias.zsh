@@ -252,8 +252,8 @@ alias st='run-syncthing.sh &'
 
 # Gestionnaires de fichiers {{{2
 
-alias §=vifmrun
-alias 2=vifmrun
+alias §=run-vifm
+alias 2=run-vifm
 alias 3=yazi
 alias 1=xplr
 

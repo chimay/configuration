@@ -12,5 +12,5 @@
     "PL"
   ],
   "connect_at_app_startup": null,
-  "start_app_minimized": true
+  "start_app_minimized": false
 }

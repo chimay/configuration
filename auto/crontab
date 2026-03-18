@@ -137,7 +137,7 @@ MAILTO=$USER
 # finance {{{2
 
 30	11	*	*/3		4,5		semaine-du-mois.zsh &>>! ~/log/semaine-mois.log
-50	15	*	*		*		fin-mois-trimestre.zsh &>>! ~/log/fin-mois-trimestre.log
+45	15	*	*		*		fin-mois-trimestre.zsh &>>! ~/log/fin-mois-trimestre.log
 
 # backup {{{2
 
@@ -159,8 +159,8 @@ MAILTO=$USER
 
 # lundi, mardi, jeudi, vendredi
 
-30	12	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
-00	16	*	1-6,9-12	2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+25	12	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+55	15	*	1-6,9-12	2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
 50	16	*	1-6,9-12	1			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
 
 # mercredi

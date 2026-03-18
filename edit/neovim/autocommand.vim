@@ -111,7 +111,7 @@ augroup END
 
 augroup file-json
 	autocmd!
-	autocmd FileType json %!jq '.'
+	"autocmd FileType json %!jq '.'
 	autocmd FileType json set foldmethod=indent
 	autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
 augroup end
