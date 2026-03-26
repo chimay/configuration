@@ -345,7 +345,7 @@ keymap R  COMMAND "SHELL 'rdrview $W3M_URL -H 2> /dev/null 1> ~/racine/varia/cac
 
 # text to speech {{{1
 
-keymap sp   COMMAND "PRINT /tmp/pico-tts.txt ; SHELL 'pico-tts -l en-US < /tmp/pico-tts.txt 2>/dev/null | aplay -q -f S16_LE -r 16 &'"
-keymap sP   COMMAND "PRINT /tmp/pico-tts.txt ; SHELL 'pico-tts -l fr-FR < /tmp/pico-tts.txt 2>/dev/null | aplay -q -f S16_LE -r 16 &'"
-keymap st   COMMAND "SHELL '~/racine/shell/process/toggle-process.zsh aplay'"
-keymap so   COMMAND "SHELL 'pkill aplay ; rm -f /tmp/pico-tts.txt'"
+keymap M-pp   COMMAND "PRINT /tmp/pico-tts.txt ; SHELL 'pico-tts -l en-US < /tmp/pico-tts.txt 2>/dev/null | aplay -q -f S16_LE -r 16 &'"https://biblio.vitalholis.com/
+keymap M-pP   COMMAND "PRINT /tmp/pico-tts.txt ; SHELL 'pico-tts -l fr-FR < /tmp/pico-tts.txt 2>/dev/null | aplay -q -f S16_LE -r 16 &'"
+keymap M-pt   COMMAND "SHELL '~/racine/shell/process/toggle-process.zsh aplay'"
+keymap M-px   COMMAND "SHELL 'pkill aplay ; rm -f /tmp/pico-tts.txt'"

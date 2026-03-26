@@ -174,11 +174,12 @@ augroup file-audio
 augroup END
 
 " ---- not needed anymore, see  <url:~/racine/config/edit/neovim/colors/golden-night.vim#tn=treesitter>
-"augroup treesitter-stop
-	"autocmd!
+augroup treesitter-stop
+	autocmd!
+	autocmd FileType help lua vim.treesitter.stop()
 	"autocmd FileType vim lua vim.treesitter.stop()
 	"autocmd FileType lua lua vim.treesitter.stop()
 	"autocmd FileType help lua vim.treesitter.stop()
 	"autocmd FileType markdown lua vim.treesitter.stop()
 	"autocmd FileType org lua vim.treesitter.stop()
-"augroup end
+augroup end

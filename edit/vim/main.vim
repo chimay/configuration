@@ -688,6 +688,8 @@ nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
 nnoremap <f11>v <cmd>call library#edit_myvimrc()<cr>
 
+nnoremap <f11>R <cmd>call library#toggle_readonly()<cr>
+
 nnoremap <f11>n <cmd>new <bar> only<cr>
 nnoremap <f11>e <cmd>call library#edit_in_current_file_subtree()<cr>
 nnoremap <f11>r <cmd>call library#read_in_current_file_subtree()<cr>
