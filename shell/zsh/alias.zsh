@@ -350,36 +350,41 @@ alias rn=run-slrn.sh
 
 # navigation {{{1
 
-# Signets
+# ---- signets
 
 alias bu=run-buku
 
-# Recherche
+# ---- recherche
 
 alias sr=surfraw
 alias dg='BROWSER=qutebrowser ddgr'
 
-# Navigateurs
+# ---- navigateurs
 
 #alias w=w3m
 alias w=w3m-textwidth
 alias wr='w3m-textwidth -R'
-alias ww=elinks
 
+alias ww=links
 alias www='lynx -cfg=~/racine/config/webrowser/lynx/lynx.cfg -lss=~/racine/config/webrowser/lynx/lynx.lss'
+alias wwww=elinks
 
-# readable -> w3m
+# ---- readable -> w3m
+
 alias wr=webreader
 
-# téléchargement
+# ---- téléchargement
 
-# aria
+# ---- aria
+
 alias dl=aria2p
-# transmission
+
+# ---- transmission
+
 alias tmr=transmission-remote
 alias tmt=tremc
 
-# gemini
+# ---- gemini
 
 alias afr=amfora
 

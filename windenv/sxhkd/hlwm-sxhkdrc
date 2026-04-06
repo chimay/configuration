@@ -304,7 +304,7 @@ hyper + shift + @z
 # screenshot {{{2
 
 hyper + s ; s
-	screenshot.sh 7 ~/racine/pictura/screenshot/screen-$(date +"%Y-%m-%d-%H-%M").jpg &> ~/log/screenshot.log
+	screenshot.sh 3 ~/racine/pictura/screenshot/scrot/screen-$(date +"%Y-%m-%d-%H-%M").jpg &> ~/log/screenshot.log
 
 # mouse {{{1
 

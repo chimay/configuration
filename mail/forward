@@ -1,5 +1,15 @@
 # vim: set filetype=conf:
 
-# user@localhost
-# user@nice.mail
-# | "/usr/bin/procmail"
+#david@localhost
+#fa981522@skynet.be
+
+#| "/usr/bin/procmail"
+
+# ---- Forwards all mail to username@example.com
+
+#username@example.com
+
+# ---- or...
+# ---- Keep a local copy, forward a copy to username@example.com
+
+#\username,username@example.com
