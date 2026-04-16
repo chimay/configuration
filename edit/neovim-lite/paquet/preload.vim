@@ -117,28 +117,28 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " 2-character Sneak (default)
 
-nmap f <Plug>Sneak_s
-nmap F <Plug>Sneak_S
+nmap ù <Plug>Sneak_s
+nmap µ <Plug>Sneak_S
 
-xmap f <Plug>Sneak_s
-xmap F <Plug>Sneak_S
+xmap ù <Plug>Sneak_s
+xmap µ <Plug>Sneak_S
 
-omap f <Plug>Sneak_s
-omap F <Plug>Sneak_S
+omap ù <Plug>Sneak_s
+omap µ <Plug>Sneak_S
 
 omap ; <Plug>Sneak_;
 omap , <Plug>Sneak_,
 
 " 1-character enhanced 'f'
 
-nmap gl <Plug>Sneak_f
-nmap gL <Plug>Sneak_F
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
 
-xmap gl <Plug>Sneak_f
-xmap gL <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
 
-omap gl <Plug>Sneak_f
-omap gL <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
 
 " 1-character enhanced 't'
 
@@ -346,13 +346,7 @@ nmap ¶                    <plug>(wheel-prompt-read-session)
 nnoremap <silent> <c-l>   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
 inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 
-nmap <silent> ù           <plug>(wheel-menu-main)
-nmap <silent> <m-ù>       <plug>(wheel-menu-meta)
-
 nmap <silent> §           <plug>(wheel-dedibuf-index-tree)
-
-nmap <silent> µ           <plug>(wheel-dedibuf-buffer-all)
-nmap <silent> <m-µ>       <plug>(wheel-dedibuf-buffer)
 
 nmap <silent> £           <plug>(wheel-dedibuf-tabwin-tree)
 

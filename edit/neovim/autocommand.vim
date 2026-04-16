@@ -77,6 +77,11 @@ augroup folding
 	autocmd BufEnter historique.zsh setlocal nofoldenable
 augroup END
 
+augroup file-symlink
+	autocmd!
+	autocmd BufReadPost * call library#resolve_symlink ()
+augroup END
+
 augroup file-detection
 	autocmd!
 	autocmd BufNewFile,BufRead *.adoc setfiletype asciidoc

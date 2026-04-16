@@ -304,6 +304,13 @@ fun! library#read_in_current_file_subtree ()
 	execute 'lcd' old_dir
 endfun
 
+fun! library#resolve_symlink ()
+	" If current file is a symlink, edit real file instead
+	" To be used in a BufReadPost autocommand
+	execute "file" resolve(expand("%"))
+	edit
+endfun
+
 fun! library#edit_minisnip_file ()
 	" Edit file with completion in miniSnip subtree
 	"let directory = getcwd()
