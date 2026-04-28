@@ -307,8 +307,11 @@ endfun
 fun! library#resolve_symlink ()
 	" If current file is a symlink, edit real file instead
 	" To be used in a BufReadPost autocommand
-	execute "file" resolve(expand("%"))
-	edit
+	let target = resolve(expand("%"))
+	if ! empty(target)
+		silent execute "file" target
+		silent edit
+	endif
 endfun
 
 fun! library#edit_minisnip_file ()

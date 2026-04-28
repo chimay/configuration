@@ -414,13 +414,10 @@ clifm() {
 # run-vifm {{{2
 
 run-vifm () {
-	if [[ -z ~/.cache/ueberzugpp/*(N) ]]
-	then
-		trash-put ~/.cache/ueberzugpp/*
-	fi
+	local cache=(~/.cache/ueberzugpp/*)
+	(( $#cache > 0 )) && trash-put $=cache
 	vifmrun
 }
-
 
 # yank-file {{{2
 

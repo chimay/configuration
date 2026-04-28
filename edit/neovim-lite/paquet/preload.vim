@@ -117,14 +117,14 @@ imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
 " 2-character Sneak (default)
 
-nmap ù <Plug>Sneak_s
-nmap µ <Plug>Sneak_S
+nmap µ <Plug>Sneak_s
+nmap ù <Plug>Sneak_S
 
-xmap ù <Plug>Sneak_s
-xmap µ <Plug>Sneak_S
+xmap µ <Plug>Sneak_s
+xmap ù <Plug>Sneak_S
 
-omap ù <Plug>Sneak_s
-omap µ <Plug>Sneak_S
+omap µ <Plug>Sneak_s
+omap ù <Plug>Sneak_S
 
 omap ; <Plug>Sneak_;
 omap , <Plug>Sneak_,
