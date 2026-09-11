@@ -1959,6 +1959,7 @@ Infos sur les thèmes
     '((emacs-lisp . t)
       (shell t)
       (org t)
+      (latex t)
       (lilypond t)
       (octave t)))
 

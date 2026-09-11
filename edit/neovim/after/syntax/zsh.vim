@@ -10,6 +10,7 @@ hi zshHereDoc		guifg=#5B3C11		guibg=NONE			gui=NONE
 hi zshJobSpec		guifg=#5B3C11		guibg=NONE			gui=NONE
 hi zshKeyword		guifg=#872E30		guibg=NONE			gui=NONE
 hi zshOptStart		guifg=#872E30		guibg=NONE			gui=NONE
+hi zshOperator		guifg=#872E30		guibg=NONE			gui=NONE
 hi zshPreCommand	guifg=brown			guibg=NONE			gui=NONE
 hi zshPreProc		guifg=brown			guibg=NONE			gui=NONE
 hi zshQuoted		guifg=#5B3C11		guibg=NONE			gui=NONE

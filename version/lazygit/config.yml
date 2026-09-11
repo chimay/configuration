@@ -62,11 +62,11 @@ gui:
   portraitMode: auto
   filterMode: substring
 git:
-  paging:
-    colorArg: always
-    pager: ""
-    useConfig: false
-    externalDiffCommand: ""
+  pagers:
+    - colorArg: always
+      pager: ""
+      useConfig: false
+      externalDiffCommand: ""
   commit:
     signOff: false
     autoWrapCommitMessage: true
@@ -104,7 +104,7 @@ quitOnTopLevelReturn: false
 keybinding:
   universal:
     quit: q
-    quit-alt1: <c-c>
+    quit-alt1: <c+c>
     return: <esc>
     quitWithoutChangingDirectory: Q
     togglePanel: <tab>
@@ -150,30 +150,30 @@ keybinding:
     scrollDownMain: <pgdown>
     scrollUpMain-alt1: K
     scrollDownMain-alt1: J
-    scrollUpMain-alt2: <c-u>
-    scrollDownMain-alt2: <c-d>
+    scrollUpMain-alt2: <c+u>
+    scrollDownMain-alt2: <c+d>
     executeShellCommand: ':'
     createRebaseOptionsMenu: m
     pushFiles: P
     pullFiles: p
     refresh: R
-    createPatchOptionsMenu: <c-p>
+    createPatchOptionsMenu: <c+p>
     nextTab: ']'
     prevTab: '['
     nextScreenMode: +
     prevScreenMode: _
     undo: z
-    filteringMenu: <c-s>
+    filteringMenu: <c+s>
     diffingMenu: W
-    diffingMenu-alt: <c-e>
-    copyToClipboard: <c-o>
-    openRecentRepos: <c-r>
+    diffingMenu-alt: <c+e>
+    copyToClipboard: <c+o>
+    openRecentRepos: <c+r>
     submitEditorText: <enter>
     extrasMenu: '@'
-    toggleWhitespaceInDiffView: <c-w>
+    toggleWhitespaceInDiffView: <c+w>
     increaseContextInDiffView: '}'
     decreaseContextInDiffView: '{'
-    openDiffTool: <c-t>
+    openDiffTool: <c+t>
   status:
     checkForUpdate: u
     recentRepos: <enter>
@@ -183,7 +183,7 @@ keybinding:
     commitChangesWithoutHook: w
     amendLastCommit: A
     commitChangesWithEditor: C
-    findBaseCommitForFixup: <c-f>
+    findBaseCommitForFixup: <c+f>
     confirmDiscard: x
     ignoreFile: i
     refreshFiles: r
@@ -193,13 +193,13 @@ keybinding:
     viewResetOptions: D
     fetch: f
     toggleTreeView: '`'
-    openMergeTool: M
-    openStatusFilter: <c-b>
+    openMergeOptions: M
+    openStatusFilter: <c+b>
     copyFileInfoToClipboard: "y"
   branches:
     createPullRequest: o
     viewPullRequestOptions: O
-    copyPullRequestURL: <c-y>
+    copyPullRequestURL: <c+y>
     checkoutBranchByName: c
     forceCheckoutBranch: F
     rebaseBranch: r
@@ -222,8 +222,8 @@ keybinding:
     markCommitAsFixup: f
     createFixupCommit: F
     squashAboveCommits: S
-    moveDownCommit: <c-j>
-    moveUpCommit: <c-k>
+    moveDownCommit: <c+j>
+    moveUpCommit: <c+k>
     amendToCommit: A
     resetCommitAuthor: a
     pickCommit: p
@@ -233,9 +233,9 @@ keybinding:
     markCommitAsBaseForRebase: B
     tagCommit: T
     checkoutCommit: <space>
-    resetCherryPick: <c-R>
+    resetCherryPick: <c+shift+r>
     copyCommitAttributeToClipboard: "y"
-    openLogMenu: <c-l>
+    openLogMenu: <c+l>
     openInBrowser: o
     viewBisectOptions: b
     startInteractiveRebase: i
@@ -257,7 +257,7 @@ keybinding:
     update: u
     bulkMenu: b
   commitMessage:
-    commitMenu: <c-o>
+    commitMenu: <c+o>
 disableStartupPopups: false
 customCommands: []
 services: {}

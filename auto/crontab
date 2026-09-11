@@ -157,21 +157,21 @@ MAILTO=$USER
 
 #5	14	*	1-6,9-12	0		bell.zsh notification/reveil.ogg notification=reveil &>>! ~/log/cron.log
 
-# lundi, mardi, jeudi, vendredi
+# midi
 
 25	12	*	1-6,9-12	1-2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
-55	15	*	1-6,9-12	2,4-5		bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
-50	16	*	1-6,9-12	1			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
 
-# mercredi
+# après-midi
 
-25	12	*	1-6,9-12	3			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
-15	13	*	1-6,9-12	3			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+0	16	*	1-6,9-12	1			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+10	15	*	1-6,9-12	2			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+20	13	*	1-6,9-12	3			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+50	16	*	1-6,9-12	4			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
+0	16	*	1-6,9-12	5			bell.zsh notification/ecole-arriver.ogg notification=ecole &>>! ~/log/cron.log
 
 # sac de gym
 
-30	19	*	1-6,9-12	2		bell.zsh notification/sac-gym.ogg notification=gymnastique volume=100 &>>! ~/log/cron.log
-30	19	*	1-6,9-12	3		bell.zsh notification/sac-gym.ogg notification=gymnastique volume=100 &>>! ~/log/cron.log
+0	19	*	1-6,9-12	3		bell.zsh notification/sac-gym.ogg notification=gymnastique volume=100 &>>! ~/log/cron.log
 
 # piscine
 

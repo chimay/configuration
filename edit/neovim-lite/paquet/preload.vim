@@ -333,7 +333,7 @@ set tabline=%!wheel#status#tabline()
 
 " maps {{{3
 
-nnoremap <c-space>          :<c-u>Wheel<space>
+nnoremap <s-space>          :<c-u>Wheel<space>
 
 nnoremap <m-$>           <plug>(wheel-sync-up)
 nnoremap <c-$>           <plug>(wheel-sync-down)
@@ -416,6 +416,23 @@ nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
 
 " debug mappings
 call wheel#centre#mappings (20)
+
+" fzf lua {{{2
+
+nnoremap <c-space><c-space> <cmd>FzfLua<cr>
+nnoremap <c-space>f <cmd>FzfLua files<cr>
+nnoremap <c-space>o <cmd>FzfLua oldfiles<cr>
+nnoremap <c-space>a <cmd>FzfLua args<cr>
+nnoremap <c-space>b <cmd>FzfLua buffers<cr>
+nnoremap <c-space>w <cmd>FzfLua tabs<cr>
+nnoremap <c-space>j <cmd>FzfLua jumps<cr>
+nnoremap <c-space>c <cmd>FzfLua changes<cr>
+nnoremap <c-space>l <cmd>FzfLua blines<cr>
+nnoremap <c-space>L <cmd>FzfLua lines<cr>
+nnoremap <c-space>t <cmd>FzfLua tags<cr>
+nnoremap <c-space>u <cmd>FzfLua undotree<cr>
+nnoremap <c-space>m <cmd>FzfLua keymap<cr>
+nnoremap <c-space>C <cmd>FzfLua colorschemes<cr>
 
 " Liens {{{1
 

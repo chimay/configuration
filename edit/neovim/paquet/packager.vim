@@ -43,7 +43,6 @@ fun! PackagerInit ()
 	call packager#add('wellle/targets.vim', always)
 	call packager#add('McSinyx/vim-octave', always)
 	call packager#add('christoomey/vim-tmux-navigator', always)
-	call packager#add('liuchengxu/vim-which-key', always)
 	call packager#add('vifm/vifm.vim', always)
 	" -- plugins with deps
 	call packager#add('vim-scripts/LineJuggler', {
@@ -112,6 +111,13 @@ command! -nargs=* PackagerInstall call PackagerInstall(<f-args>)
 command! -nargs=* PackagerUpdate  call PackagerUpdate(<f-args>)
 command! -bar PackagerClean   call PackagerClean()
 command! -bar PackagerStatus  call PackagerStatus()
+
+" Maps {{{1
+
+nnoremap <leader>pki <cmd>PackagerInstall<cr>
+nnoremap <leader>pku <cmd>PackagerUpdate<cr>
+nnoremap <leader>pkc <cmd>PackagerClean<cr>
+nnoremap <leader>pks <cmd>PackagerStatus<cr>
 
 nnoremap <F12>i <cmd>PackagerInstall<cr>
 nnoremap <F12>u <cmd>PackagerUpdate<cr>

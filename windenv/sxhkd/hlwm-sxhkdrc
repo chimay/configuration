@@ -108,6 +108,9 @@ hyper + shift + b
 
 # applications {{{1
 
+super + ctrl + a
+	run-favorites.sh &> ~/log/run-favorites.sh
+
 super + ctrl + equal
 	urxvt -name calc -e calc
 
@@ -270,19 +273,19 @@ XF86MonBrightnessDown
 	xbacklight -dec 5
 
 hyper + s ; 0
-	xbacklight -set 100
+	brightnessctl set 100%
 
 hyper + s ; Up
-	xbacklight -inc 10
+	brightnessctl set +10%
 
 hyper + s ; Down
-	xbacklight -dec 10
+	brightnessctl set 10%-
 
 hyper + s ; Right
-	xbacklight -inc 25
+	brightnessctl set +25%
 
 hyper + s ; Left
-	xbacklight -dec 25
+	brightnessctl set 25%-
 
 # sleep {{{2
 

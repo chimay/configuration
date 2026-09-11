@@ -1102,7 +1102,7 @@ eval-ssh-agent () {
 	setopt local_options
 	setopt warn_create_global
 	typeset -gx SSH_AUTH_SOCK SSH_AGENT_PID
-	local psgrep='/bin/ps auxww | /bin/grep -v grep | /bin/grep --color=never'
+	local psgrep='/bin/ps auxww | /bin/grep -v grep | /bin/grep $(id -un) | /bin/grep --color=never'
 	local repertoire=$HOME/run/ssh
 	local fichier=$repertoire/agent
 	[[ -d $repertoire ]] || mkdir -p $repertoire

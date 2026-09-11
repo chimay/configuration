@@ -661,31 +661,71 @@ let g:maplocalleader="_"
 " let mapleader="\<d-,>"
 " let maplocalleader="\<d-,>"
 
-"  Aide {{{2
+" help {{{2
 
 nnoremap <F1> :tab help<space>
 nnoremap <S-F1> :tab helpgrep<space>
+nnoremap <M-F1> <cmd>tab help helphelp<cr>
 nnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
 inoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
 vnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
+
+nnoremap <leader>hh :tab help<space>
+nnoremap <leader>hg :tab helpgrep<space>
+nnoremap <leader>hf <cmd>call library#toggle_help_filetype()<cr>
+nnoremap <leader>ht <cmd>call library#helptags()<cr>
+nnoremap <leader>hm <cmd>call library#manual()<cr>
 
 "nnoremap K K<c-w>T
 
 " does not work
 "nnoremap K <cmd>tab normal! K<cr>
 
-" Manuels {{{2
+" manuals pages {{{2
 
 nnoremap gm <cmd>call library#manual()<cr>
 
-" Quitter {{{2
+" quit {{{2
 
 nnoremap ZZ <cmd>qa<cr>
 nnoremap ZQ <cmd>qa!<cr>
 
-"  Fichiers {{{2
+" files {{{2
 
 nnoremap <kEnter> <cmd>call library#write_all()<cr>
+
+"command! -nargs=? -complete=filetype EditSyntaxPlugin call library#edit_syntax_plugin(<f-args>)
+
+nnoremap <leader>ec <cmd>call library#edit_cronos()<cr>
+nnoremap <leader>ed <cmd>call library#edit_dream()<cr>
+nnoremap <leader>ee <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <leader>ef <cmd>call library#edit_fix()<cr>
+nnoremap <leader>eg <cmd>call library#edit_attic()<cr>
+nnoremap <leader>el <cmd>call library#edit_ship_log()<cr>
+nnoremap <leader>em <cmd>call library#edit_minisnip_file()<cr>
+nnoremap <leader>en <cmd>new <bar> only<cr>
+nnoremap <leader>er <cmd>call library#read_in_current_file_subtree()<cr>
+nnoremap <leader>eR <cmd>call library#toggle_readonly()<cr>
+nnoremap <leader>es <cmd>call library#edit_syntax_plugin()<cr>
+nnoremap <leader>et <cmd>call library#edit_tasks()<cr>
+nnoremap <leader>ev <cmd>call library#edit_myvimrc()<cr>
+
+nnoremap <leader>oh <cmd>call library#orgmode_make_html()<cr>
+nnoremap <leader>oH <cmd>call library#orgmode_gen_html()<cr>
+
+nnoremap <leader>£p <cmd>call library#latex_make_pdf()<cr>
+nnoremap <leader>£P <cmd>call library#latex_gen_pdf()<cr>
+nnoremap <leader>£s <cmd>call library#latex_make_svg()<cr>
+nnoremap <leader>£S <cmd>call library#latex_gen_svg()<cr>
+
+nnoremap <leader>µm <cmd>call library#lilypond_make_midi()<cr>
+nnoremap <leader>µp <cmd>call library#lilypond_make_display_pdf()<cr>
+nnoremap <leader>µo <cmd>call library#lilypond_make_ogg()<cr>
+nnoremap <leader>µM <cmd>call library#lilypond_gen_midi()<cr>
+nnoremap <leader>µP <cmd>call library#lilypond_gen_display_pdf()<cr>
+nnoremap <leader>µO <cmd>call library#lilypond_gen_ogg()<cr>
+
+nnoremap <leader>f :find<space>
 
 " Fichier courant aussi disponible dans le registre %
 " Fichier alternatif aussi disponible dans le registre #
@@ -742,7 +782,22 @@ nnoremap <d-w> <cmd>bwipe! #<cr>
 " wipe all buffers
 nnoremap <m-s-w> <cmd>%bwipe<cr>
 
-" window (fenêtres) {{{2
+nnoremap <leader>bb :buffer<space>
+nnoremap <leader>bp <cmd>bprevious<cr>
+nnoremap <leader>bn <cmd>bnext<cr>
+nnoremap <leader>b^ <cmd>bfirst<cr>
+nnoremap <leader>b$ <cmd>blast<cr>
+nnoremap <leader>bd <cmd>bdelete<cr>
+nnoremap <leader>bw <cmd>call library#write_all()<cr>
+
+" arguments {{{2
+
+nnoremap <leader>ap <cmd>previous<cr>
+nnoremap <leader>an <cmd>next<cr>
+nnoremap <leader>a^ <cmd>first<cr>
+nnoremap <leader>a$ <cmd>last<cr>
+
+" windows (fenêtres) {{{2
 
 " see paquets/preload.vim : vim-tmux-navigator
 "
@@ -759,6 +814,12 @@ nnoremap <c-s-left> <cmd>vertical resize -5<cr>
 "nnoremap <s-tab>  <c-w>w
 "nnoremap <m-s-tab>  <c-w>p
 
+nnoremap <leader>w= <cmd>wincmd =<cr>
+nnoremap <leader>w<bar> <cmd>wincmd <bar><cr>
+nnoremap <leader>w- <cmd>wincmd _<cr>
+nnoremap <leader>wp <cmd>library#win2prev_tab()<cr>
+nnoremap <leader>wn <cmd>library#win2next_tab()<cr>
+
 "  tabs, tabpages (onglets) {{{2
 
 nnoremap <c-pageup> gT
@@ -770,15 +831,25 @@ nnoremap <c-end> <cmd>tablast<cr>
 nnoremap <s-pageup> <cmd>tabmove -1<cr>
 nnoremap <s-pagedown> <cmd>tabmove +1<cr>
 
-" Anciens fichiers {{{2
+nnoremap <c-n> <cmd>tabnew<cr>
+
+nnoremap <leader>tt <cmd>tabnew<cr>
+nnoremap <leader>tn <cmd>tabnext<cr>
+nnoremap <leader>tp <cmd>tabprevious<cr>
+nnoremap <leader>t^ <cmd>tabfirst<cr>
+nnoremap <leader>t$ <cmd>tablast<cr>
+nnoremap <leader>te :tabedit<space>
+nnoremap <leader>t= <cmd>library#equal_windows()<cr>
+
+" old files {{{2
 
 " Fichiers dont une marque est présente dans shada
 
-" Voir la configuration de la librairie tlib
+" remplacé par fzf lua
 
 "nnoremap <m-o> <cmd>browse oldfiles<cr>
 
-"  Déplacements & Copie {{{2
+" Déplacements & Copie {{{2
 
 " Début & Fin de fichier {{{3
 
@@ -833,6 +904,29 @@ nnoremap ' `
 
 "  Recherche & Remplacement {{{2
 
+nnoremap <leader>sw <cmd>call library#search_word()<cr>
+nnoremap <leader>sr <cmd>call library#search_and_replace_word()<cr>
+nnoremap <leader>sm <cmd>call library#search_and_multicursor()<cr>
+
+nnoremap <leader>gg <cmd>call library#grep_in_current_file_dir()<cr>
+nnoremap <leader>gG <cmd>call library#grep()<cr>
+nnoremap <leader>gw <cmd>call library#grep_word_in_current_file_dir()<cr>
+nnoremap <leader>gW <cmd>call library#grep_word()<cr>
+
+nnoremap <leader>qo <cmd>copen<cr>
+nnoremap <leader>qc <cmd>cclose<cr>
+nnoremap <leader>qp <cmd>cprevious<cr>
+nnoremap <leader>qn <cmd>cnext<cr>
+nnoremap <leader>qb <cmd>cpfile<cr>
+nnoremap <leader>qf <cmd>cnfile<cr>
+
+nnoremap <leader>lo <cmd>lopen<cr>
+nnoremap <leader>lc <cmd>lclose<cr>
+nnoremap <leader>lp <cmd>lprevious<cr>
+nnoremap <leader>ln <cmd>lnext<cr>
+nnoremap <leader>lb <cmd>lpfile<cr>
+nnoremap <leader>lf <cmd>lnfile<cr>
+
 " Recherche {{{3
 
 " Plus besoin avec xcape
@@ -877,6 +971,12 @@ inoremap <silent> <S-Insert> <C-R>+
 cnoremap <silent> <S-Insert> <C-R>+
 
 " noremap <S-Insert> <MiddleMouse>
+
+command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
+command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
+
+nnoremap <leader>=y :GlobalYank<space>
+nnoremap <leader>=d :GlobalDelete<space>
 
  "  Annulation {{{2
 
@@ -960,7 +1060,9 @@ cmap <m-d> <c-right><c-w>
 " Q ou gQ : mode ex
 " On en sort par :vi
 
-nnoremap QQ gQ
+" Q is needed for multicursors
+
+"nnoremap QQ gQ
 
 " Ligne ou sélection courante {{{3
 
@@ -1003,7 +1105,14 @@ nmap <k9> 9
 
 nnoremap <m-q> gqap
 
-" Présentation {{{2
+" display {{{2
+
+nnoremap <leader>dc <cmd>set cursorline!<cr>
+nnoremap <leader>dl <cmd>call library#toggle_relative_linum()<cr>
+nnoremap <leader>df <cmd>set guifont=*<cr>
+nnoremap <leader>dF :GuiFont DejaVu Sans Mono:h12
+nnoremap <leader>d: :set cmdheight=
+nnoremap <leader>di <cmd>echomsg library#highlight_group()<cr>
 
 " Numérotation des lignes {{{3
 
@@ -1025,6 +1134,23 @@ set guicursor=
 set termguicolors
 
 " Fonte de caractères {{{3
+
+" chiffrement {{{3
+
+nnoremap <leader>xx <cmd>call library#text_to_password()<cr>
+nnoremap <leader>xX <cmd>call library#password_to_text()<cr>
+
+" tags {{{2
+
+nnoremap <leader>nt :tjump /
+nnoremap <leader>nj :tab tjump /
+
+" commands {{{2
+
+nnoremap <leader>$! <cmd>call library#terminal()<cr>
+nnoremap <leader>$m :make -k<space>
+nnoremap <leader>$l <cmd>! ls -l<cr>
+nnoremap <leader>$x <cmd>call library#chmodexec()<cr>
 
 " Émulateur de terminal {{{2
 

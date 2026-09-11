@@ -721,6 +721,18 @@ fun! library#close_list ()
 	return v:true
 endfun
 
+fun! library#search_and_multicursor ()
+	" Search pattern, generate multiple cursor on each match
+	let search = input('Search (multicursor) : ')
+	let pattern = '\m' .. search
+	let @/ = pattern
+	call cursor(1, 1)
+	call search(pattern, 'sw')
+	let multicursor = 'global/' . pattern . '/normal! nQ'
+    execute multicursor
+	return v:true
+endfun
+
 " -- global actions on buffer lines
 
 fun! library#global_yank (pattern, ...)
@@ -882,7 +894,7 @@ endfu
 " ---- terminal
 
 fun! library#terminal ()
-	" Run terminal in new split
+	" Run terminal in new tab
 	if has('nvim')
 		let default_shell = 'zsh -l'
 	else
@@ -905,6 +917,7 @@ fun! library#terminal ()
 		" it causes strange characters on gvim window on quit
 		"execute "normal! \<c-w>T"
 	endif
+	startinsert!
 endfun
 
 " ---- disc operations

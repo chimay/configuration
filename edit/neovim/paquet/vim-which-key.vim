@@ -295,6 +295,26 @@ let g:which_key_main_map.p.q = {
 	\ 'C' : ["library#execute('PaqLogClean')" , 'clean log'] ,
 	\ }
 
+" fzf lua {{{2
+
+" let g:which_key_main_map['z'] = {
+" 	\ 'name' : '+fzf_lua' ,
+" 	\ 'z' : ['FzfLua'  , 'meta']  ,
+" 	\ 'f' : ["library#execute('FzfLua files')"  , 'files']  ,
+" 	\ 'o' : ["library#execute('FzfLua oldfiles')"  , 'oldfiles']  ,
+" 	\ 'a' : ["library#execute('FzfLua args')"  , 'args']  ,
+" 	\ 'b' : ["library#execute('FzfLua buffers')"  , 'buffers']  ,
+" 	\ 'w' : ["library#execute('FzfLua tabs')"  , 'windows']  ,
+" 	\ 'j' : ["library#execute('FzfLua jumps')"  , 'jumps']  ,
+" 	\ 'c' : ["library#execute('FzfLua changes')"  , 'changes']  ,
+" 	\ 'l' : ["library#execute('FzfLua blines')"  , 'buf lines']  ,
+" 	\ 'L' : ["library#execute('FzfLua lines')"  , 'lines']  ,
+" 	\ 't' : ["library#execute('FzfLua tags')"  , 'tags']  ,
+" 	\ 'u' : ["library#execute('FzfLua undotree')"  , 'undo']  ,
+" 	\ 'm' : ["library#execute('FzfLua keymaps')"  , 'maps']  ,
+" 	\ 'C' : ["library#execute('FzfLua colorschemes')"  , 'colorschemes']  ,
+" 	\ }
+
 " wheel {{{1
 
 "nnoremap <silent> <space> <cmd>WhichKey '<space>'<cr>

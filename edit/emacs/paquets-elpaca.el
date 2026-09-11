@@ -64,7 +64,7 @@
 (elpaca powerline-evil)
 (elpaca projectile)
 (elpaca register-list)
-(elpaca rg)
+;;(elpaca rg)
 (elpaca smartparens)
 (elpaca queue)
 (elpaca region-bindings-mode)

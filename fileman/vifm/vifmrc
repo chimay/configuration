@@ -201,31 +201,13 @@ set sessionoptions=savedirs,tabs,tui
 " :mark mark /full/directory/path [filename]
 
 mark 0 ~/racine
-mark 1 ~/racine/wiki/plain/wiki
-mark 2 ~/racine/public
-mark 3 ~/racine/site/orgmode
-mark 9 ~/racine/archive
+mark 1 ~/racine/public
 
-mark a ~/racine/automat
-mark c ~/racine/config
 mark d ~/racine/gate/download
-mark f ~/racine/fun
 mark i ~/racine/infoman
-mark l ~/racine/liber
-mark m ~/racine/mail
 mark n ~/racine/network
-mark p ~/racine/pictura
-mark r ~/racine/run
-mark s ~/racine/shell
-
-mark M ~/racine/musica/musescore
-mark P ~/racine/papier
-
-mark A ~/audio
-
+mark s ~/racine/pictura/screenshot
 mark w ~/graphix/wallpaper
-
-mark D ~/Documents
 
 " Types de fichiers {{{1
 
@@ -893,7 +875,7 @@ endif
 " Supprimer {{{2
 
 " midnight commander (mc) binding style : delete
-nnoremap <f8> dd
+nnoremap <delete> dd
 
 " Corbeille vifm {{{3
 
@@ -913,7 +895,7 @@ nnoremap <c-q> :trashes?<cr>
 
 " Corbeille générale {{{3
 
-nnoremap <delete> :!tsp trash-put %f<cr>
+nnoremap <f8> :!tsp trash-put %f<cr>
 nnoremap dr :!trash-restore<cr>
 
 " Autres opérations sur fichiers {{{2

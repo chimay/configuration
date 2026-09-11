@@ -4,7 +4,6 @@
 
 set v15-compat
 
-
 # Default {{{1
 
 #@ /etc/mail.rc
@@ -391,6 +390,9 @@ set from="David <fa981522@skynet.be>"
 
 # Serveur smtp ?
 # Commenter pour utiliser openSmtpd
+
+# submissions://[user[:password]@]server[:port]
+# [no  v15-compat]:  ‘[smtp://]server[:port]
 
 # set mta='smtp://relay.skynet.be'
 # set smtp-auth=none

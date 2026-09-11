@@ -763,7 +763,7 @@ nnoremap <c-s-left> <cmd>vertical resize -2<cr>
 "nnoremap <s-tab>  <c-w>w
 "nnoremap <m-s-tab>  <c-w>p
 
-"  Onglets {{{2
+" tabs, tabpages (onglets) {{{2
 
 nnoremap <c-pageup> gT
 nnoremap <c-pagedown> gt
@@ -772,6 +772,8 @@ nnoremap <c-end> <cmd>tablast<cr>
 
 nnoremap <s-pageup> <cmd>tabmove -1<cr>
 nnoremap <s-pagedown> <cmd>tabmove +1<cr>
+
+nnoremap <c-t> <cmd>tabnew<cr>
 
 " Liste quickfix {{{2
 

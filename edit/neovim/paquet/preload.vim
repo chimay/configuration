@@ -37,10 +37,6 @@ let g:no_plugin_maps = 1
 
 " Maps {{{1
 
-" vim-which-key {{{2
-
-source ~/racine/config/edit/neovim/paquet/vim-which-key.vim
-
 " Bouts de code (snippets, bits, modèles) {{{1
 
 " miniSnip (Jorengarenar/miniSnip) {{{2
@@ -52,6 +48,8 @@ let g:miniSnip_complKey = '<c-x><c-u>'
 let g:miniSnip_extends = {
 			\ "cpp" : [ "objc", "c" ],
 			\ }
+
+nnoremap <leader>pm <cmd>call library#edit_minisnip_file()<cr>
 
 " Commentaires {{{1
 
@@ -452,7 +450,7 @@ set tabline=%!wheel#status#tabline()
 
 " maps {{{3
 
-nnoremap <c-space>          :<c-u>Wheel<space>
+nnoremap <s-space>          :<c-u>Wheel<space>
 
 nnoremap <m-$>           <plug>(wheel-sync-up)
 nnoremap <c-$>           <plug>(wheel-sync-down)
@@ -462,8 +460,8 @@ nnoremap <m-ins>           <plug>(wheel-prompt-add-file)
 " altgr-r
 nmap ¶                    <plug>(wheel-prompt-read-session)
 
-nnoremap <silent> <c-l>   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
-inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
+nnoremap <silent> zz   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
+inoremap <silent> zz   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 
 nmap <silent> §           <plug>(wheel-dedibuf-index-tree)
 
@@ -506,6 +504,23 @@ nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
 
 " debug mappings
 call wheel#centre#mappings (20)
+
+" fzf lua {{{2
+
+nnoremap <c-space><c-space> <cmd>FzfLua<cr>
+nnoremap <c-space>f <cmd>FzfLua files<cr>
+nnoremap <c-space>o <cmd>FzfLua oldfiles<cr>
+nnoremap <c-space>a <cmd>FzfLua args<cr>
+nnoremap <c-space>b <cmd>FzfLua buffers<cr>
+nnoremap <c-space>w <cmd>FzfLua tabs<cr>
+nnoremap <c-space>j <cmd>FzfLua jumps<cr>
+nnoremap <c-space>c <cmd>FzfLua changes<cr>
+nnoremap <c-space>l <cmd>FzfLua blines<cr>
+nnoremap <c-space>L <cmd>FzfLua lines<cr>
+nnoremap <c-space>t <cmd>FzfLua tags<cr>
+nnoremap <c-space>u <cmd>FzfLua undotree<cr>
+nnoremap <c-space>m <cmd>FzfLua keymap<cr>
+nnoremap <c-space>C <cmd>FzfLua colorschemes<cr>
 
 " Liens {{{1
 
