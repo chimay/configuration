@@ -657,6 +657,8 @@ runtime ftplugin/man.vim
 packadd! helptoc
 nnoremap gm <cmd>call library#manual()<cr>
 
+nnoremap <s-bs> <c-t>
+
 " clearing some maps {{{2
 
 " no need for gui menu

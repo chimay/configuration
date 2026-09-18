@@ -40,7 +40,7 @@ set -ag mode-style "bg=#5b3c11"
 #set -g status-left " #S > #W > #P #[fg=red,none]#{s/root//:client_key_table}#[fg=default,underscore] #[none]#{prefix_highlight}#[default]"
 set -g status-left " #S > #W > #P #[fg=red,none]#{s/root//:client_key_table}#[fg=default] #[none]#{prefix_highlight}#[default]"
 
-set -g status-right ' %H:%M %A %d %B %Y'
+set -g status-right '#{host} %H:%M %A %d %B %Y'
 
 set -g window-status-separator ' | '
 

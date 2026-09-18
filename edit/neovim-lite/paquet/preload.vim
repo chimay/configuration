@@ -37,15 +37,11 @@ let g:no_plugin_maps = 1
 
 " Maps {{{1
 
-" vim-which-key {{{2
-
-source ~/racine/config/edit/neovim-lite/paquet/vim-which-key.vim
-
 " Bouts de code (snippets, bits, modèles) {{{1
 
 " miniSnip (Jorengarenar/miniSnip) {{{2
 
-let g:miniSnip_dirs = ['~/racine/plugin/data/neovim-lite/miniSnip']
+let g:miniSnip_dirs = ['~/racine/plugin/data/neovim/miniSnip']
 let g:miniSnip_trigger = '<c-j>'
 "let g:miniSnip_trigger = '<c-s>'
 let g:miniSnip_complKey = '<c-x><c-u>'
@@ -86,7 +82,7 @@ let g:tcomment_types = {
 
 " Highlighted Yank {{{2
 
-let g:highlightedyank_highlight_duration = 1000
+let g:highlightedyank_highlight_duration = 600
 
 " Paires : (), [], {}, <>, <a></a>, etc {{{1
 
@@ -219,6 +215,122 @@ nnoremap <d-f> <cmd>tabnew <bar> tabprevious <bar> tab Vifm<cr>
 
 " Exploration multiple {{{1
 
+" Torustree {{{2
+
+" configuration {{{3
+
+if ! exists("g:torustree_loaded")
+	" Init
+	let g:torustree_config                 = {}
+	let g:torustree_config.project         = {}
+	let g:torustree_config.storage         = {}
+	let g:torustree_config.storage.torustree   = {}
+	let g:torustree_config.storage.session = {}
+	let g:torustree_config.maxim           = {}
+	let g:torustree_config.completion      = {}
+	let g:torustree_config.frecency        = {}
+	let g:torustree_config.display         = {}
+	let g:torustree_config.display.sign    = {}
+
+	" The bigger it is, the more mappings available
+	"let g:torustree_config.mappings = 20
+	let g:torustree_config.mappings = 2
+	" Prefix for mappings
+	let g:torustree_config.prefix = '<f3>'
+	" Locate database ; default one if left empty
+	let g:torustree_config.locate_db = '~/racine/index/filesys/locate/racine.db'
+	" Grep command : :grep or :vimpgrep
+	let g:torustree_config.grep = 'vimgrep'
+
+	" Marker of project root
+	"let g:torustree_config.project.markers = '.git'
+	"let g:torustree_config.project.markers = '.racine-projet'
+	" List of markers
+	" The project dir is found as soon as one marker is found in it
+	let g:torustree_config.project.markers = ['.hg' , '.git', '.racine-projet']
+	" Auto cd to project root if > 0
+	let g:torustree_config.project.auto_chdir = 1
+
+	" The folder where toruses and circles will be stored and read
+	let g:torustree_config.storage.torustree.folder = '~/racine/plugin/data/neovim/torustree'
+	" Name of the default torustree file
+	let g:torustree_config.storage.torustree.name = 'auto'
+	" Auto read torustree file on startup if > 0
+	let g:torustree_config.storage.torustree.autoread = 0
+	" Auto write torustree file on exit if > 0
+	let g:torustree_config.storage.torustree.autowrite = 0
+	" The folder where sessions will be stored and read
+	let g:torustree_config.storage.session.folder = '~/racine/plugin/data/neovim/torustree/session'
+	" Name of the default session file
+	let g:torustree_config.storage.session.name = 'layout'
+	" Auto read default session file on startup if > 0
+	let g:torustree_config.storage.session.autoread = 0
+	" Auto write default session file on exit if > 0
+	let g:torustree_config.storage.session.autowrite = 0
+	" Number of backups for the torustree or session file
+	let g:torustree_config.storage.backups = 7
+
+	" Maximum number of elements in history
+	let g:torustree_config.maxim.history = 1200
+	" Maximum number of elements in input history
+	let g:torustree_config.maxim.input = 700
+
+	" Maximum number of elements in mru
+	let g:torustree_config.maxim.mru = 700
+
+	" Maximum number of elements in yank torustree
+	let g:torustree_config.maxim.unnamed_yanks = 700
+	let g:torustree_config.maxim.other_yanks = 300
+	" Maximum lines of yank to add in yank ring
+	let g:torustree_config.maxim.yank_lines = 30
+	" Maximum size of yank to add in yank ring
+	let g:torustree_config.maxim.yank_size = 3000
+
+	" Maximum size of layer ring
+	let g:torustree_config.maxim.layers = 7
+
+	" Maximum number of tabs
+	let g:torustree_config.maxim.tabs = 12
+	" Maximum number of horizontal splits
+	let g:torustree_config.maxim.horizontal = 3
+	" Maximum number of vertical splits
+	let g:torustree_config.maxim.vertical = 4
+
+	" completion
+	let g:torustree_config.completion.vocalize = 0
+	let g:torustree_config.completion.wordize = 0
+	let g:torustree_config.completion.fuzzy = 0
+	let g:torustree_config.completion.scores = 0
+
+	" Frecency
+	let g:torustree_config.frecency.reward = 120
+	let g:torustree_config.frecency.penalty = 1
+
+	" Mandala & leaf status in statusline ?
+	"let g:torustree_config.display.statusline = 1
+	" Torustree dedibuf message : one-line or multi-line
+	let g:torustree_config.display.dedibuf_msg = 'multi-line'
+	" Filter prompt in dedicated buffers
+	"let g:torustree_config.display.prompt = 'torustree $ '
+	"let g:torustree_config.display.prompt_writable = 'torustree # '
+	" Selection marker in dedicated buffers
+	"let g:torustree_config.display.selection = '-> '
+	" Signs
+	let g:torustree_config.display.sign.switch = 1
+	" Sign text at torustree locations
+	"let g:torustree_config.display.sign.settings = { 'text' : '@' }
+	" Signs for native navigation
+	"let g:torustree_config.display.sign.native_settings = { 'text' : '*' }
+
+	"let g:torustree_config.debug = 1
+endif
+
+"set tabline=%!torustree#status#tabline()
+
+" maps {{{3
+
+nnoremap <c-f3>          :<c-u>Torustree<space>
+
 " Wheel {{{2
 
 " configuration {{{3
@@ -256,21 +368,21 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.project.auto_chdir = 1
 
 	" The folder where toruses and circles will be stored and read
-	let g:wheel_config.storage.wheel.folder = '~/racine/plugin/data/neovim-lite/wheel'
+	let g:wheel_config.storage.wheel.folder = '~/racine/plugin/data/neovim/wheel'
 	" Name of the default wheel file
 	let g:wheel_config.storage.wheel.name = 'auto'
 	" Auto read wheel file on startup if > 0
 	let g:wheel_config.storage.wheel.autoread = 0
 	" Auto write wheel file on exit if > 0
-	let g:wheel_config.storage.wheel.autowrite = 1
+	let g:wheel_config.storage.wheel.autowrite = 0
 	" The folder where sessions will be stored and read
-	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/neovim-lite/wheel/session'
+	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/neovim/wheel/session'
 	" Name of the default session file
 	let g:wheel_config.storage.session.name = 'layout'
 	" Auto read default session file on startup if > 0
 	let g:wheel_config.storage.session.autoread = 0
 	" Auto write default session file on exit if > 0
-	let g:wheel_config.storage.session.autowrite = 1
+	let g:wheel_config.storage.session.autowrite = 0
 	" Number of backups for the wheel or session file
 	let g:wheel_config.storage.backups = 7
 
@@ -343,10 +455,11 @@ nnoremap <m-ins>           <plug>(wheel-prompt-add-file)
 " altgr-r
 nmap ¶                    <plug>(wheel-prompt-read-session)
 
-nnoremap <silent> <c-l>   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
-inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
+nnoremap <silent> zz   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
+inoremap <silent> zz   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 
-nmap <silent> §           <plug>(wheel-dedibuf-index-tree)
+" § for headlines
+nmap <silent> °           <plug>(wheel-dedibuf-index-tree)
 
 nmap <silent> £           <plug>(wheel-dedibuf-tabwin-tree)
 
@@ -357,65 +470,34 @@ vmap <silent> à           <plug>(wheel-dedibuf-narrow)
 
 nmap <silent> <c-bs>      <plug>(wheel-prompt-outline)
 
-nmap <silent> <c-p>       <plug>(wheel-prompt-yank-plain-linewise-before)
-nmap <silent> <c-n>       <plug>(wheel-prompt-yank-plain-linewise-after)
-nmap <silent> g<c-p>      <plug>(wheel-prompt-yank-plain-charwise-before)
-nmap <silent> g<c-n>      <plug>(wheel-prompt-yank-plain-charwise-after)
 nmap <silent> ç           <plug>(wheel-prompt-yank-plain-linewise-after)
 nmap <silent> gç          <plug>(wheel-prompt-yank-plain-charwise-after)
-" altgr-y
-nmap <silent> ←           <plug>(wheel-prompt-yank-plain-charwise-before)
-" altgr-p
-nmap <silent> þ           <plug>(wheel-prompt-yank-plain-charwise-after)
 
 nmap <c-^>                <plug>(wheel-alternate-anywhere)
 nmap <m-^>                <plug>(wheel-alternate-same-circle)
 nmap <m-c-^>              <plug>(wheel-alternate-same-torus-other-circle)
 nmap <silent> <d-^>       <plug>(wheel-alternate-window)
-nmap <silent> <d-e>       <plug>(wheel-dedibuf-frecency)
 
 nmap <m-pagedown>         <plug>(wheel-next-location)
 nmap <m-pageup>           <plug>(wheel-previous-location)
-nmap <m-cr>               <plug>(wheel-prompt-location)
+" interferes with organ
+"nmap <m-cr>               <plug>(wheel-prompt-location)
 nmap <c-cr>               <plug>(wheel-prompt-circle)
 nmap <s-cr>               <plug>(wheel-prompt-torus)
 
 nmap <m-x>                <plug>(wheel-prompt-index)
 " altgr-x
 nmap <silent> »          <cmd>call wheel#vortex#helix('tab')<cr>
-nmap <silent> <d-x>       <plug>(wheel-prompt-index-circles)
 
 nmap <silent> <d-cr>      <cmd>call wheel#waterclock#history('tab')<cr>
 " altgr-h
 nmap <silent> ħ           <plug>(wheel-prompt-history)
 nmap <silent> <d-h>       <plug>(wheel-dedibuf-history)
 
-nmap <m-v>                <plug>(wheel-prompt-tabwin)
-nmap <silent> <d-v>       <plug>(wheel-dedibuf-tabwin)
-
-nmap <silent> <d-o>       <plug>(wheel-dedibuf-occur)
-nmap <silent> <d-b>       <plug>(wheel-dedibuf-buffer-all)
-nmap <silent> <d-k>       <plug>(wheel-dedibuf-marker)
-nmap <silent> <d-j>       <plug>(wheel-dedibuf-jump)
-nmap <silent> <d-c>       <plug>(wheel-dedibuf-change)
-nmap <silent> <d-t>       <plug>(wheel-dedibuf-tag)
-
-nmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow-operator)
-vmap <silent> <d-n>       <plug>(wheel-dedibuf-narrow)
-
-nmap <silent> <d-y>       <plug>(wheel-dedibuf-yank-plain)
-nmap <silent> <d-p>       <plug>(wheel-dedibuf-yank-list)
-
-nmap <silent> <d-u>       <plug>(wheel-dedibuf-undo-list)
-nmap <silent> <d-r>       <plug>(wheel-dedibuf-reorg-tabwin)
-
 nmap <silent> <d-space>      <plug>(wheel-mandala-forward)
 nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
-nmap <silent> <m-tab>        <plug>(wheel-mandala-add)
-nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
-
-" debug mappings
-call wheel#centre#mappings (20)
+"nmap <silent> <m-tab>        <plug>(wheel-mandala-add)
+"nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
 
 " fzf lua {{{2
 
@@ -526,6 +608,7 @@ if ! exists("g:organ_loaded")
 		\ 'organ-parent',
 		\ 'organ-loose-child',
 		\ 'organ-strict-child',
+		\ 'organ-meta-return',
 		\ 'organ-tab',
 		\ 'organ-shift-tab',
 		\ 'organ-meta-left',
@@ -600,6 +683,7 @@ if ! exists("g:organ_loaded")
 	" maps
 	nnoremap <c-tab> :<c-u>Organ<space>
 	nnoremap <d-M> :<c-u>Organ org-to-markdown
+	nmap § <plug>(organ-goto-headline)
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u
 	nmap ↓     <plug>(organ-unicode)
@@ -651,4 +735,3 @@ nnoremap <silent> <C-Down> :<C-U>TmuxNavigateDown<cr>
 nnoremap <silent> <C-Up> :<C-U>TmuxNavigateUp<cr>
 
 "nnoremap <silent> C-Left :<C-U>TmuxNavigatePrevious<cr>
-

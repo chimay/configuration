@@ -66,13 +66,6 @@ command! -nargs=* PackagerUpdate  call PackagerUpdate(<f-args>)
 command! -bar PackagerClean   call PackagerClean()
 command! -bar PackagerStatus  call PackagerStatus()
 
-" Maps {{{1
-
-nnoremap <leader>pki <cmd>PackagerInstall<cr>
-nnoremap <leader>pku <cmd>PackagerUpdate<cr>
-nnoremap <leader>pkc <cmd>PackagerClean<cr>
-nnoremap <leader>pks <cmd>PackagerStatus<cr>
-
 nnoremap <F12>i <cmd>PackagerInstall<cr>
 nnoremap <F12>u <cmd>PackagerUpdate<cr>
 nnoremap <F12>c <cmd>PackagerClean<cr>

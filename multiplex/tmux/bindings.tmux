@@ -55,16 +55,18 @@ bind ':' command-prompt -p 'tmux :'
 
 # Menu
 
-bind -T custom ':' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-tmux-command.zsh"
-bind -T custom ',' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-speed"
+bind -T custom ':' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -T tmux-command -E "fzf-tmux-command.zsh"
+bind -T custom ',' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E -T fzf-speed "fzf-speed"
 
 # Historique
 
-bind -T custom ';' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E "fzf-tmux-history.zsh"
+bind -T custom ';' capture-pane \; save-buffer /tmp/tmux-buffer \; delete-buffer \; display-popup -w 80% -h 60% -E -T tmux-history "fzf-tmux-history.zsh"
 
 # Sessions {{{1
 
-bind -T custom s split-window -l 30% 'exec ~/racine/shell/multiplex/fzf-tmux-session.zsh'
+#bind -T custom s split-window -l 30% 'exec ~/racine/shell/multiplex/fzf-tmux-session.zsh'
+
+bind -T custom s display-popup -w 70% -h 70% -E -T tmux-session ~/racine/shell/multiplex/fzf-tmux-session.zsh
 
 bind -T custom S command-prompt -p 'Nom de la nouvelle session ? ' "new-session -s '%%'"
 bind -T custom M command-prompt -p 'Nouveau nom de la session ? ' "rename-session '%%'"

@@ -111,11 +111,13 @@ repositories:
       # for Borg 1.x only.)
       # make_parent_directories: true
     - label: universe-usb-key
-      path: /run/media/david/usb-key/universe/borg
-    - label: galaxy-usb-key
-      path: /run/media/david/usb-key/galaxy/borg
+      path: "/run/media/david/USB\ DISK/universe/borg"
     - label: universe-red-disk
       path: /run/media/david/red-disk/david/backup/universe/borg
+    - label: universe-red-disk-sdb1
+      path: /run/media/david/sdb1/david/backup/universe/borg
+    - label: galaxy-usb-key
+      path: /run/media/david/usb-key/galaxy/borg
     - label: taijitu-local
       path: /home/david/backup/borg
     - label: taijitu-usb-key

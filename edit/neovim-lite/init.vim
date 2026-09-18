@@ -27,6 +27,9 @@ set runtimepath+=/usr/share/nvim-qt/runtime
 
 packadd matchit
 
+" lua {{{1
+
+lua require('meta')
 " main {{{1
 
 source ~/racine/config/edit/neovim-lite/main.vim
@@ -47,7 +50,6 @@ endif
 
 " all remaining plugins {{{1
 
-source ~/racine/config/edit/neovim-lite/paquet/packager.vim
 source ~/racine/config/edit/neovim-lite/paquet/preload.vim
 
 " load everything to be able to use some conf functions
@@ -63,7 +65,3 @@ source ~/racine/config/edit/neovim-lite/paquet/postload.vim
 " plugins auto-commands {{{1
 
 source ~/racine/config/edit/neovim-lite/paquet/autocmd-plugin.vim
-
-" lua {{{1
-
-lua require('meta')

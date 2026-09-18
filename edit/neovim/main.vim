@@ -376,7 +376,7 @@ set infercase
 
 "  Omnicomplétion {{{3
 
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 
 " Complétion personalisée, gérée par certains plugins comme neocomplete
 
@@ -557,8 +557,6 @@ set diffopt=filler,context:4,vertical,foldcolumn:2
 
 " tags (labels, etiquettes) {{{1
 
-"  Tags {{{2
-
 " Voir autocommand.vim
 
 "set tags=./tags,tags
@@ -663,18 +661,23 @@ let g:maplocalleader="_"
 
 " help {{{2
 
-nnoremap <F1> :tab help<space>
-nnoremap <S-F1> :tab helpgrep<space>
-nnoremap <M-F1> <cmd>tab help helphelp<cr>
-nnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
-inoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
-vnoremap <C-F1> <cmd>call library#toggle_help_filetype()<cr>
+nnoremap <f1> :tab help<space>
+nnoremap <s-f1> <cmd>tab help quickref<cr>
+nnoremap <m-f1> <cmd>tab help user-manual<cr>
+nnoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
+inoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
+vnoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
 
 nnoremap <leader>hh :tab help<space>
 nnoremap <leader>hg :tab helpgrep<space>
+nnoremap <leader>hq <cmd>tab help quickref<cr>
+nnoremap <leader>hu <cmd>tab help user-manual<cr>
+nnoremap <leader>hh <cmd>tab help helphelp<cr>
 nnoremap <leader>hf <cmd>call library#toggle_help_filetype()<cr>
 nnoremap <leader>ht <cmd>call library#helptags()<cr>
 nnoremap <leader>hm <cmd>call library#manual()<cr>
+
+nnoremap <s-bs> <c-t>
 
 "nnoremap K K<c-w>T
 
@@ -699,6 +702,7 @@ nnoremap <kEnter> <cmd>call library#write_all()<cr>
 nnoremap <leader>ec <cmd>call library#edit_cronos()<cr>
 nnoremap <leader>ed <cmd>call library#edit_dream()<cr>
 nnoremap <leader>ee <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <leader>eE <cmd>edit!<cr>
 nnoremap <leader>ef <cmd>call library#edit_fix()<cr>
 nnoremap <leader>eg <cmd>call library#edit_attic()<cr>
 nnoremap <leader>el <cmd>call library#edit_ship_log()<cr>
@@ -790,7 +794,7 @@ nnoremap <leader>b$ <cmd>blast<cr>
 nnoremap <leader>bd <cmd>bdelete<cr>
 nnoremap <leader>bw <cmd>call library#write_all()<cr>
 
-" arguments {{{2
+" file arguments {{{2
 
 nnoremap <leader>ap <cmd>previous<cr>
 nnoremap <leader>an <cmd>next<cr>
@@ -831,7 +835,8 @@ nnoremap <c-end> <cmd>tablast<cr>
 nnoremap <s-pageup> <cmd>tabmove -1<cr>
 nnoremap <s-pagedown> <cmd>tabmove +1<cr>
 
-nnoremap <c-n> <cmd>tabnew<cr>
+" c-t is remapped to s-bs
+nnoremap <c-t> <cmd>tabnew<cr>
 
 nnoremap <leader>tt <cmd>tabnew<cr>
 nnoremap <leader>tn <cmd>tabnext<cr>
@@ -903,6 +908,11 @@ nnoremap J mzJ`z
 nnoremap ' `
 
 "  Recherche & Remplacement {{{2
+
+" next word like this with another cursor
+nnoremap # Q*
+
+nnoremap <m-r> :%s///g<left><left><left>
 
 nnoremap <leader>sw <cmd>call library#search_word()<cr>
 nnoremap <leader>sr <cmd>call library#search_and_replace_word()<cr>
@@ -1004,6 +1014,7 @@ nnoremap zo zCzO
 " Insertion {{{2
 
 " Date
+inoremap <m-d> <c-r>=strftime("%d %b %Y")<cr>
 inoremap <d-d> <c-r>=strftime("%a %d %b %Y")<cr>
 
 "  Complétion {{{2
@@ -1068,7 +1079,7 @@ cmap <m-d> <c-right><c-w>
 
 " Comme commande ex
 
-nnoremap <m-:> <cmd>exe getline(".")<CR>
+nnoremap <m-:> <cmd>execute getline(".")<CR>
 
 " Comme commande externe
 
@@ -1112,26 +1123,17 @@ nnoremap <leader>dl <cmd>call library#toggle_relative_linum()<cr>
 nnoremap <leader>df <cmd>set guifont=*<cr>
 nnoremap <leader>dF :GuiFont DejaVu Sans Mono:h12
 nnoremap <leader>d: :set cmdheight=
-nnoremap <leader>di <cmd>echomsg library#highlight_group()<cr>
+nnoremap <leader>dh <cmd>echomsg library#highlight_group()<cr>
 
 " Numérotation des lignes {{{3
 
 nnoremap <silent> <D-l> <cmd>call library#toggle_relative_linum()<cr>
 
-" Curseur {{{3
+" cursor {{{3
 
-set guicursor=
-			\n:block-Cursor/lCursor,
-			\v:block-vCursor,
-			\i:ver25-iCursor,
-			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
-			\r:hor15-iCursor,
-			\c:block-Cursor,
-			\ci:ver25,
-			\cr:hor25,
-			\sm:block
+" multiple {{{4
 
-set termguicolors
+nnoremap <tab> Q
 
 " Fonte de caractères {{{3
 
@@ -1147,10 +1149,28 @@ nnoremap <leader>nj :tab tjump /
 
 " commands {{{2
 
-nnoremap <leader>$! <cmd>call library#terminal()<cr>
+nnoremap <leader>$$ <cmd>call library#terminal()<cr>
 nnoremap <leader>$m :make -k<space>
 nnoremap <leader>$l <cmd>! ls -l<cr>
-nnoremap <leader>$x <cmd>call library#chmodexec()<cr>
+
+" commands that modifies the current file or buffer
+
+nnoremap <leader>!x <cmd>call library#chmodexec()<cr>
+nnoremap <leader>!s <cmd>%! sort<cr>
+
+" plugins {{{2
+
+nnoremap <leader>pu <cmd>packupdate<cr>
+nnoremap <leader>pa :packadd<space>
+nnoremap <leader>pd :packdel!<space>
+nnoremap <leader>pl <cmd>packloadall<cr>
+nnoremap <leader>pu <cmd>packupdate<cr>
+
+nnoremap <f12>u <cmd>packupdate<cr>
+nnoremap <f12>a :packadd<space>
+nnoremap <f12>d :packdel!<space>
+nnoremap <f12>l <cmd>packloadall<cr>
+nnoremap <f12>u <cmd>packupdate<cr>
 
 " Émulateur de terminal {{{2
 
@@ -1296,6 +1316,19 @@ set nostartofline
 " Mets en évidence la colonne courante
 
 "set cursorcolumn
+
+set guicursor=
+			\n:block-Cursor/lCursor,
+			\v:block-vCursor,
+			\i:ver25-iCursor,
+			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
+			\r:hor15-iCursor,
+			\c:block-Cursor,
+			\ci:ver25,
+			\cr:hor25,
+			\sm:block
+
+set termguicolors
 
 " Mise en évidence {{{2
 

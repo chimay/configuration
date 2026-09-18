@@ -317,7 +317,8 @@ endfun
 fun! library#edit_minisnip_file ()
 	" Edit file with completion in miniSnip subtree
 	"let directory = getcwd()
-	let minisnip_directory = '~/racine/plugin/data/neovim/miniSnip/'
+	"let minisnip_directory = '~/racine/plugin/data/neovim/miniSnip/'
+	let minisnip_directory = g:miniSnip_dirs[0] .. '/'
 	execute 'lcd' minisnip_directory
 	"echomsg getcwd()
 	let complete = 'customlist,library#complete_file_in_current_subtree'

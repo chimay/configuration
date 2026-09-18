@@ -89,8 +89,9 @@ ignore = Name *.pyc
 ignore = Name .~lock.*.ods#
 ignore = Name .~lock.*.odt#
 
-ignore = Name *.o
-ignore = Name *.so
+# ---- necessary for neovim treesitter
+#ignore = Name *.o
+#ignore = Name *.so
 
 ignore = Name *.aux
 ignore = Name *.maf

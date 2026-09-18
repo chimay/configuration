@@ -49,8 +49,6 @@ let g:miniSnip_extends = {
 			\ "cpp" : [ "objc", "c" ],
 			\ }
 
-nnoremap <leader>pm <cmd>call library#edit_minisnip_file()<cr>
-
 " Commentaires {{{1
 
 "  NERDCommenter (scrooloose/nerdcommenter) {{{2
@@ -84,7 +82,7 @@ let g:tcomment_types = {
 
 " Highlighted Yank {{{2
 
-let g:highlightedyank_highlight_duration = 1000
+let g:highlightedyank_highlight_duration = 600
 
 " Paires : (), [], {}, <>, <a></a>, etc {{{1
 
@@ -333,9 +331,6 @@ endif
 
 nnoremap <c-f3>          :<c-u>Torustree<space>
 
-" debug mappings
-call torustree#centre#mappings (20)
-
 " Wheel {{{2
 
 " configuration {{{3
@@ -463,8 +458,6 @@ nmap ¶                    <plug>(wheel-prompt-read-session)
 nnoremap <silent> zz   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
 inoremap <silent> zz   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 
-nmap <silent> §           <plug>(wheel-dedibuf-index-tree)
-
 nmap <silent> £           <plug>(wheel-dedibuf-tabwin-tree)
 
 nmap <silent> é           <plug>(wheel-dedibuf-grep)
@@ -484,7 +477,8 @@ nmap <silent> <d-^>       <plug>(wheel-alternate-window)
 
 nmap <m-pagedown>         <plug>(wheel-next-location)
 nmap <m-pageup>           <plug>(wheel-previous-location)
-nmap <m-cr>               <plug>(wheel-prompt-location)
+" interferes with organ
+"nmap <m-cr>               <plug>(wheel-prompt-location)
 nmap <c-cr>               <plug>(wheel-prompt-circle)
 nmap <s-cr>               <plug>(wheel-prompt-torus)
 
@@ -501,9 +495,6 @@ nmap <silent> <d-space>      <plug>(wheel-mandala-forward)
 nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
 "nmap <silent> <m-tab>        <plug>(wheel-mandala-add)
 "nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
-
-" debug mappings
-call wheel#centre#mappings (20)
 
 " fzf lua {{{2
 
@@ -614,6 +605,7 @@ if ! exists("g:organ_loaded")
 		\ 'organ-parent',
 		\ 'organ-loose-child',
 		\ 'organ-strict-child',
+		\ 'organ-meta-return',
 		\ 'organ-tab',
 		\ 'organ-shift-tab',
 		\ 'organ-meta-left',
@@ -633,7 +625,6 @@ if ! exists("g:organ_loaded")
 		\ 'organ-new-link',
 		\ 'organ-previous-link',
 		\ 'organ-next-link',
-		\ 'organ-timestamp',
 		\]
 	let g:organ_config.prefixless_plugs.visual = []
 	let g:organ_config.prefixless_plugs.insert = [
@@ -668,7 +659,6 @@ if ! exists("g:organ_loaded")
 		\ 'organ-previous-link',
 		\ 'organ-next-link',
 		\ 'organ-goto-link-target',
-		\ 'organ-timestamp',
 		\ 'organ-eval-vim',
 		\ 'organ-eval-python',
 		\ 'organ-unicode',
@@ -688,6 +678,7 @@ if ! exists("g:organ_loaded")
 	" maps
 	nnoremap <c-tab> :<c-u>Organ<space>
 	nnoremap <d-M> :<c-u>Organ org-to-markdown
+	nmap § <plug>(organ-goto-headline)
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u
 	nmap ↓     <plug>(organ-unicode)

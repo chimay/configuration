@@ -109,13 +109,13 @@ hyper + shift + b
 # applications {{{1
 
 super + ctrl + a
-	run-favorites.sh &> ~/log/run-favorites.sh
+	run-favorites.zsh &> ~/log/run-favorites.zsh
 
 super + ctrl + equal
 	urxvt -name calc -e calc
 
 super + ctrl + section
-	run-vifm.sh
+	run-vifm.zsh
 
 super + ctrl + f
 	thunar || caja || pcmanfm
@@ -123,20 +123,17 @@ super + ctrl + f
 super + ctrl + s
 	fsearch
 
-super + shift + g
-	gvim-lite.sh
-
 super + ctrl + g
 	run-gvim.sh -c "cd ~/racine/public"
 
-super + shift + v
-	neovim-qt-lite.sh
+super + shift + g
+	gvim-lite.sh
 
 super + ctrl + n
-	run-neovim-server.sh
+	run-neovim-server.sh & ; sleep 2 ; run-neovim-qt-client.sh
 
 super + shift + n
-	run-neovim-qt-client.sh
+	neovim-qt-lite.sh
 
 super + ctrl + e
 	run-emacs-server.sh
@@ -148,21 +145,24 @@ super + ctrl + l
 	libreoffice
 
 super + ctrl + i
+	gwenview ~
+
+super + shift + i
 	vimiv ~/photo/numerique
 
 super + ctrl + q
 	goto-or-run.sh qutebrowser
 
-super + ctrl + {v,z,b,h,m}
-	goto-or-run-appimage.sh {vieb,zen-browser,floorp,helium-browser,mullvad-browser}
+super + ctrl + {b,w,z}
+	goto-or-run-appimage.sh {floorp,vieb,zen-browser}
 
-super + ctrl + o
+super + shift + o
 	torbrowser-launcher
 
 super + ctrl + k
 	keepassxc
 
-super + shift + o
+super + ctrl + o
 	octave --gui
 
 super + ctrl + t
@@ -174,7 +174,7 @@ super + ctrl + y
 super + ctrl + mu
 	goto-or-run.sh mscore
 
-super + ctrl + w
+super + shift + w
 	goto-or-run.sh wesnoth -d
 
 super + ctrl + shift + v

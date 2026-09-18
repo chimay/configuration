@@ -124,7 +124,7 @@ set path=.,,**
 
 set backup
 
-set backupdir=~/racine/varia/backup/neovim-lite,.
+set backupdir=~/racine/varia/backup/neovim,.
 
 set backupext=~
 
@@ -139,7 +139,7 @@ set backupskip=/tmp/*,/etc/*,mutt-*-*-*-*
 "  Fichier de récupération en cas de crash {{{2
 
 set swapfile
-set directory=~/racine/varia/autosave/neovim-lite
+set directory=~/racine/varia/autosave/neovim
 
 "set noswapfile
 
@@ -153,7 +153,7 @@ set updatetime=12000		" Millisecondes
 set undolevels=123
 set undofile
 set undoreload=12743
-set undodir=~/racine/varia/undo/neovim-lite,.
+set undodir=~/racine/varia/undo/neovim,.
 
 "  session {{{1
 
@@ -320,6 +320,7 @@ set wildignore+=*.pyc,*.elc,*.zwc
 set wildignore+=*.aux,*.maf,*.toc,*.ptc*,*.mtc*
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.wav,*.flac,*.ogg,*.mp3
+set wildignore+=*.pdf,*.svg
 
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj
 
@@ -556,8 +557,6 @@ set diffopt=filler,context:4,vertical,foldcolumn:2
 
 " tags (labels, etiquettes) {{{1
 
-"  Tags {{{2
-
 " Voir autocommand.vim
 
 "set tags=./tags,tags
@@ -660,28 +659,76 @@ let g:maplocalleader="_"
 " let mapleader="\<d-,>"
 " let maplocalleader="\<d-,>"
 
-"  Aide {{{2
+" help {{{2
 
-nnoremap <F6>h :tab help<space>
-nnoremap <F6>g :tab helpgrep<space>
+nnoremap <f1> :tab help<space>
+nnoremap <s-f1> <cmd>tab help quickref<cr>
+nnoremap <m-f1> <cmd>tab help user-manual<cr>
+nnoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
+inoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
+vnoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
+
+nnoremap <leader>hh :tab help<space>
+nnoremap <leader>hg :tab helpgrep<space>
+nnoremap <leader>hq <cmd>tab help quickref<cr>
+nnoremap <leader>hu <cmd>tab help user-manual<cr>
+nnoremap <leader>hh <cmd>tab help helphelp<cr>
+nnoremap <leader>hf <cmd>call library#toggle_help_filetype()<cr>
+nnoremap <leader>ht <cmd>call library#helptags()<cr>
+nnoremap <leader>hm <cmd>call library#manual()<cr>
+
+nnoremap <s-bs> <c-t>
 
 "nnoremap K K<c-w>T
 
 " does not work
 "nnoremap K <cmd>tab normal! K<cr>
 
-" Manuels {{{2
+" manuals pages {{{2
 
 nnoremap gm <cmd>call library#manual()<cr>
 
-" Quitter {{{2
+" quit {{{2
 
 nnoremap ZZ <cmd>qa<cr>
 nnoremap ZQ <cmd>qa!<cr>
 
-"  Fichiers {{{2
+" files {{{2
 
 nnoremap <kEnter> <cmd>call library#write_all()<cr>
+
+"command! -nargs=? -complete=filetype EditSyntaxPlugin call library#edit_syntax_plugin(<f-args>)
+
+nnoremap <leader>ec <cmd>call library#edit_cronos()<cr>
+nnoremap <leader>ed <cmd>call library#edit_dream()<cr>
+nnoremap <leader>ee <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <leader>ef <cmd>call library#edit_fix()<cr>
+nnoremap <leader>eg <cmd>call library#edit_attic()<cr>
+nnoremap <leader>el <cmd>call library#edit_ship_log()<cr>
+nnoremap <leader>em <cmd>call library#edit_minisnip_file()<cr>
+nnoremap <leader>en <cmd>new <bar> only<cr>
+nnoremap <leader>er <cmd>call library#read_in_current_file_subtree()<cr>
+nnoremap <leader>eR <cmd>call library#toggle_readonly()<cr>
+nnoremap <leader>es <cmd>call library#edit_syntax_plugin()<cr>
+nnoremap <leader>et <cmd>call library#edit_tasks()<cr>
+nnoremap <leader>ev <cmd>call library#edit_myvimrc()<cr>
+
+nnoremap <leader>oh <cmd>call library#orgmode_make_html()<cr>
+nnoremap <leader>oH <cmd>call library#orgmode_gen_html()<cr>
+
+nnoremap <leader>£p <cmd>call library#latex_make_pdf()<cr>
+nnoremap <leader>£P <cmd>call library#latex_gen_pdf()<cr>
+nnoremap <leader>£s <cmd>call library#latex_make_svg()<cr>
+nnoremap <leader>£S <cmd>call library#latex_gen_svg()<cr>
+
+nnoremap <leader>µm <cmd>call library#lilypond_make_midi()<cr>
+nnoremap <leader>µp <cmd>call library#lilypond_make_display_pdf()<cr>
+nnoremap <leader>µo <cmd>call library#lilypond_make_ogg()<cr>
+nnoremap <leader>µM <cmd>call library#lilypond_gen_midi()<cr>
+nnoremap <leader>µP <cmd>call library#lilypond_gen_display_pdf()<cr>
+nnoremap <leader>µO <cmd>call library#lilypond_gen_ogg()<cr>
+
+nnoremap <leader>f :find<space>
 
 " Fichier courant aussi disponible dans le registre %
 " Fichier alternatif aussi disponible dans le registre #
@@ -694,6 +741,8 @@ nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
 nnoremap <f11>v <cmd>call library#edit_myvimrc()<cr>
 
+nnoremap <f11>R <cmd>call library#toggle_readonly()<cr>
+
 nnoremap <f11>n <cmd>new <bar> only<cr>
 nnoremap <f11>e <cmd>call library#edit_in_current_file_subtree()<cr>
 nnoremap <f11>r <cmd>call library#read_in_current_file_subtree()<cr>
@@ -703,7 +752,7 @@ nnoremap <f11>c <cmd>call library#edit_cronos()<cr>
 nnoremap <f11>d <cmd>call library#edit_dream()<cr>
 nnoremap <f11>f <cmd>call library#edit_fix()<cr>
 nnoremap <f11>l <cmd>call library#edit_ship_log()<cr>
-nnoremap <f11><m-s> <cmd>call library#edit_syntax_plugin()<cr>
+nnoremap <f11>s <cmd>call library#edit_syntax_plugin()<cr>
 nnoremap <f11>t <cmd>call library#edit_tasks()<cr>
 nnoremap <f11>m <cmd>call library#edit_minisnip_file()<cr>
 
@@ -716,6 +765,8 @@ nnoremap <f7>H <cmd>call library#orgmode_gen_html()<cr>
 " latex
 nnoremap <f8>p <cmd>call library#latex_make_pdf()<cr>
 nnoremap <f8>P <cmd>call library#latex_gen_pdf()<cr>
+nnoremap <f8>s <cmd>call library#latex_make_svg()<cr>
+nnoremap <f8>S <cmd>call library#latex_gen_svg()<cr>
 
 " lilypond
 nnoremap <f9>m <cmd>call library#lilypond_make_midi()<cr>
@@ -728,13 +779,28 @@ nnoremap <f9>O <cmd>call library#lilypond_gen_ogg()<cr>
 " buffers (tampons) {{{2
 
 " wipe buffer
-nnoremap <m-q> <cmd>bwipe!<cr>
+nnoremap <m-w> <cmd>bwipe!<cr>
 " wipe alternate buffer
-nnoremap <d-q> <cmd>bwipe! #<cr>
+nnoremap <d-w> <cmd>bwipe! #<cr>
 " wipe all buffers
-nnoremap <m-s-q> <cmd>%bwipe<cr>
+nnoremap <m-s-w> <cmd>%bwipe<cr>
 
-" window (fenêtres) {{{2
+nnoremap <leader>bb :buffer<space>
+nnoremap <leader>bp <cmd>bprevious<cr>
+nnoremap <leader>bn <cmd>bnext<cr>
+nnoremap <leader>b^ <cmd>bfirst<cr>
+nnoremap <leader>b$ <cmd>blast<cr>
+nnoremap <leader>bd <cmd>bdelete<cr>
+nnoremap <leader>bw <cmd>call library#write_all()<cr>
+
+" arguments {{{2
+
+nnoremap <leader>ap <cmd>previous<cr>
+nnoremap <leader>an <cmd>next<cr>
+nnoremap <leader>a^ <cmd>first<cr>
+nnoremap <leader>a$ <cmd>last<cr>
+
+" windows (fenêtres) {{{2
 
 " see paquets/preload.vim : vim-tmux-navigator
 "
@@ -743,13 +809,19 @@ nnoremap <m-s-q> <cmd>%bwipe<cr>
 "nnoremap <c-up> <c-w>k
 "nnoremap <c-right> <c-w>l
 
-nnoremap <c-s-down> <cmd>resize +2<cr>
-nnoremap <c-s-up> <cmd>resize -2<cr>
-nnoremap <c-s-right> <cmd>vertical resize +2<cr>
-nnoremap <c-s-left> <cmd>vertical resize -2<cr>
+nnoremap <c-s-down> <cmd>resize +5<cr>
+nnoremap <c-s-up> <cmd>resize -5<cr>
+nnoremap <c-s-right> <cmd>vertical resize +5<cr>
+nnoremap <c-s-left> <cmd>vertical resize -5<cr>
 
 "nnoremap <s-tab>  <c-w>w
 "nnoremap <m-s-tab>  <c-w>p
+
+nnoremap <leader>w= <cmd>wincmd =<cr>
+nnoremap <leader>w<bar> <cmd>wincmd <bar><cr>
+nnoremap <leader>w- <cmd>wincmd _<cr>
+nnoremap <leader>wp <cmd>library#win2prev_tab()<cr>
+nnoremap <leader>wn <cmd>library#win2next_tab()<cr>
 
 "  tabs, tabpages (onglets) {{{2
 
@@ -762,15 +834,26 @@ nnoremap <c-end> <cmd>tablast<cr>
 nnoremap <s-pageup> <cmd>tabmove -1<cr>
 nnoremap <s-pagedown> <cmd>tabmove +1<cr>
 
-" Anciens fichiers {{{2
+" c-t is remapped to s-bs
+nnoremap <c-t> <cmd>tabnew<cr>
+
+nnoremap <leader>tt <cmd>tabnew<cr>
+nnoremap <leader>tn <cmd>tabnext<cr>
+nnoremap <leader>tp <cmd>tabprevious<cr>
+nnoremap <leader>t^ <cmd>tabfirst<cr>
+nnoremap <leader>t$ <cmd>tablast<cr>
+nnoremap <leader>te :tabedit<space>
+nnoremap <leader>t= <cmd>library#equal_windows()<cr>
+
+" old files {{{2
 
 " Fichiers dont une marque est présente dans shada
 
-" Voir la configuration de la librairie tlib
+" remplacé par fzf lua
 
 "nnoremap <m-o> <cmd>browse oldfiles<cr>
 
-"  Déplacements & Copie {{{2
+" Déplacements & Copie {{{2
 
 " Début & Fin de fichier {{{3
 
@@ -817,18 +900,39 @@ vnoremap <m-k> :move '<lt>-2<cr>gv=gv
 
 nnoremap J mzJ`z
 
-" Signets {{{3
+" signets {{{3
 
 " ` = ' : plus pratique sur les claviers be, fr
 
 nnoremap ' `
 
-" phrase {{{3
-
-nnoremap (<space> (
-nnoremap )<space> )
-
 "  Recherche & Remplacement {{{2
+
+" next word like this with another cursor
+nnoremap # Q*
+
+nnoremap <leader>sw <cmd>call library#search_word()<cr>
+nnoremap <leader>sr <cmd>call library#search_and_replace_word()<cr>
+nnoremap <leader>sm <cmd>call library#search_and_multicursor()<cr>
+
+nnoremap <leader>gg <cmd>call library#grep_in_current_file_dir()<cr>
+nnoremap <leader>gG <cmd>call library#grep()<cr>
+nnoremap <leader>gw <cmd>call library#grep_word_in_current_file_dir()<cr>
+nnoremap <leader>gW <cmd>call library#grep_word()<cr>
+
+nnoremap <leader>qo <cmd>copen<cr>
+nnoremap <leader>qc <cmd>cclose<cr>
+nnoremap <leader>qp <cmd>cprevious<cr>
+nnoremap <leader>qn <cmd>cnext<cr>
+nnoremap <leader>qb <cmd>cpfile<cr>
+nnoremap <leader>qf <cmd>cnfile<cr>
+
+nnoremap <leader>lo <cmd>lopen<cr>
+nnoremap <leader>lc <cmd>lclose<cr>
+nnoremap <leader>lp <cmd>lprevious<cr>
+nnoremap <leader>ln <cmd>lnext<cr>
+nnoremap <leader>lb <cmd>lpfile<cr>
+nnoremap <leader>lf <cmd>lnfile<cr>
 
 " Recherche {{{3
 
@@ -874,6 +978,12 @@ inoremap <silent> <S-Insert> <C-R>+
 cnoremap <silent> <S-Insert> <C-R>+
 
 " noremap <S-Insert> <MiddleMouse>
+
+command! -nargs=1 GlobalYank :call library#global_yank(<q-args>, 'a')<cr>
+command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
+
+nnoremap <leader>=y :GlobalYank<space>
+nnoremap <leader>=d :GlobalDelete<space>
 
  "  Annulation {{{2
 
@@ -957,13 +1067,15 @@ cmap <m-d> <c-right><c-w>
 " Q ou gQ : mode ex
 " On en sort par :vi
 
-nnoremap QQ gQ
+" Q is needed for multicursors
+
+"nnoremap QQ gQ
 
 " Ligne ou sélection courante {{{3
 
 " Comme commande ex
 
-nnoremap <m-:> <cmd>exe getline(".")<CR>
+nnoremap <m-:> <cmd>execute getline(".")<CR>
 
 " Comme commande externe
 
@@ -996,28 +1108,65 @@ nmap <k7> 7
 nmap <k8> 8
 nmap <k9> 9
 
-" Présentation {{{2
+" formattage des paragraphes {{{2
+
+nnoremap <m-q> gqap
+
+" display {{{2
+
+nnoremap <leader>dc <cmd>set cursorline!<cr>
+nnoremap <leader>dl <cmd>call library#toggle_relative_linum()<cr>
+nnoremap <leader>df <cmd>set guifont=*<cr>
+nnoremap <leader>dF :GuiFont DejaVu Sans Mono:h12
+nnoremap <leader>d: :set cmdheight=
+nnoremap <leader>dh <cmd>echomsg library#highlight_group()<cr>
 
 " Numérotation des lignes {{{3
 
 nnoremap <silent> <D-l> <cmd>call library#toggle_relative_linum()<cr>
 
-" Curseur {{{3
+" cursor {{{3
 
-set guicursor=
-			\n:block-Cursor/lCursor,
-			\v:block-vCursor,
-			\i:ver25-iCursor,
-			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
-			\r:hor15-iCursor,
-			\c:block-Cursor,
-			\ci:ver25,
-			\cr:hor25,
-			\sm:block
+" multiple {{{4
 
-set termguicolors
+nnoremap <tab> Q
 
 " Fonte de caractères {{{3
+
+" chiffrement {{{3
+
+nnoremap <leader>xx <cmd>call library#text_to_password()<cr>
+nnoremap <leader>xX <cmd>call library#password_to_text()<cr>
+
+" tags {{{2
+
+nnoremap <leader>nt :tjump /
+nnoremap <leader>nj :tab tjump /
+
+" commands {{{2
+
+nnoremap <leader>$$ <cmd>call library#terminal()<cr>
+nnoremap <leader>$m :make -k<space>
+nnoremap <leader>$l <cmd>! ls -l<cr>
+
+" commands that modifies the current file or buffer
+
+nnoremap <leader>!x <cmd>call library#chmodexec()<cr>
+nnoremap <leader>!s <cmd>%! sort<cr>
+
+" plugins {{{2
+
+nnoremap <leader>pu <cmd>packupdate<cr>
+nnoremap <leader>pa :packadd<space>
+nnoremap <leader>pd :packdel!<space>
+nnoremap <leader>pl <cmd>packloadall<cr>
+nnoremap <leader>pu <cmd>packupdate<cr>
+
+nnoremap <f12>u <cmd>packupdate<cr>
+nnoremap <f12>a :packadd<space>
+nnoremap <f12>d :packdel!<space>
+nnoremap <f12>l <cmd>packloadall<cr>
+nnoremap <f12>u <cmd>packupdate<cr>
 
 " Émulateur de terminal {{{2
 
@@ -1041,12 +1190,6 @@ tnoremap <D-h> <C-\><C-n><C-W><Left>
 tnoremap <D-j> <C-\><C-n><C-W><Down>
 tnoremap <D-k> <C-\><C-n><C-W><Up>
 tnoremap <D-l> <C-\><C-n><C-W><Right>
-
-" shell {{{2
-
-nnoremap <f11>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f11>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f11>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
 
 " abbreviations {{{1
 
@@ -1170,6 +1313,19 @@ set nostartofline
 
 "set cursorcolumn
 
+set guicursor=
+			\n:block-Cursor/lCursor,
+			\v:block-vCursor,
+			\i:ver25-iCursor,
+			\o:hor50-Cursor-blinkwait100-blinkon700-blinkoff700,
+			\r:hor15-iCursor,
+			\c:block-Cursor,
+			\ci:ver25,
+			\cr:hor25,
+			\sm:block
+
+set termguicolors
+
 " Mise en évidence {{{2
 
 "set colorcolumn=+1
@@ -1284,6 +1440,9 @@ syntax sync minlines=7
 syntax sync maxlines=84
 
 " :ex commandline {{{1
+
+" ex mode
+nnoremap <d-q> Q
 
 " Hauteur de la fenêtre d'historique
 set cmdwinheight=15

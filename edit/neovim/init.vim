@@ -27,6 +27,14 @@ set runtimepath+=/usr/share/nvim-qt/runtime
 
 packadd matchit
 
+" lua {{{1
+
+" some options, key bindings,
+" and declaration of plugins
+" for native plugin manager
+
+lua require('meta')
+
 " main {{{1
 
 source ~/racine/config/edit/neovim/main.vim
@@ -47,7 +55,9 @@ endif
 
 " all remaining plugins {{{1
 
-source ~/racine/config/edit/neovim/paquet/packager.vim
+" replaced by lua/plugin/native.lua
+"source ~/racine/config/edit/neovim/paquet/packager.vim
+
 source ~/racine/config/edit/neovim/paquet/preload.vim
 
 " load everything to be able to use some conf functions
@@ -63,7 +73,3 @@ source ~/racine/config/edit/neovim/paquet/postload.vim
 " plugins auto-commands {{{1
 
 source ~/racine/config/edit/neovim/paquet/autocmd-plugin.vim
-
-" lua {{{1
-
-lua require('meta')

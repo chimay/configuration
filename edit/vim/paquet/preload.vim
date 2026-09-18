@@ -339,7 +339,8 @@ nmap ¶                    <plug>(wheel-prompt-read-session)
 nnoremap <silent> <c-l>   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
 inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 
-nmap <silent> §           <plug>(wheel-dedibuf-index-tree)
+" § for headlines
+nmap <silent> °           <plug>(wheel-dedibuf-index-tree)
 
 nmap <silent> £           <plug>(wheel-dedibuf-tabwin-tree)
 
@@ -548,6 +549,7 @@ if ! exists("g:organ_loaded")
 	" maps
 	nnoremap <c-tab> :<c-u>Organ<space>
 	nnoremap <d-M> :<c-u>Organ org-to-markdown
+	nmap § <plug>(organ-goto-headline)
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u
 	nmap ↓     <plug>(organ-unicode)

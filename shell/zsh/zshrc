@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+# profiling begin {{{1
+
+#zmodload zsh/zprof
+
 # functions {{{1
 
 # $0 représente le nom de la fonction
@@ -422,6 +426,8 @@ zmodload -i zsh/zleparameter
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
+
+zmodload -i zsh/terminfo
 
 typeset -A clavier
 
@@ -890,6 +896,8 @@ autoload biblio-edit-command-line
 zle -N biblio-edit-command-line
 
 bindkey '\ee' biblio-edit-command-line
+# bash style
+bindkey '^x^e' biblio-edit-command-line
 
 # filters {{{1
 
@@ -1406,21 +1414,29 @@ compctl -K _pip_completion pip
 
 kitty + complete setup zsh | source /dev/stdin
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/david/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/david/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/david/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/david/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# anaconda {{{1
+
+# ---- takes a lot of time to start
+
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/david/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/david/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/david/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/david/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
 # mise {{{1
 
 eval "$(mise activate zsh)"
+
+# profiling end {{{1
+
+#zprof

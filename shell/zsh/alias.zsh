@@ -682,8 +682,8 @@ hash -d pdata=~/racine/plugin/data
 hash -d vimpackager=~/racine/plugin/manager/vim/pack/packager
 hash -d vimlitepackager=~/racine/plugin/manager/vim-lite/pack/packager
 
-hash -d neovimpackager=~/racine/plugin/manager/neovim/pack/packager
-hash -d neovimlitepackager=~/racine/plugin/manager/neovim-lite/pack/packager
+hash -d neovimpackager=~/racine/local/share/neovim/site/pack/core
+hash -d neovimlitepackager=~/racine/local/share/neovim-lite/site/pack/core
 
 hash -d elpaca=~/racine/plugin/manager/emacs/elpaca
 

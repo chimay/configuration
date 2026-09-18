@@ -32,7 +32,7 @@ set shell=/bin/zsh
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
-set vicmd=vim-lite.sh
+set vicmd=neovim-lite.sh
 
 " Mieux dans un terminal
 "set vixcmd=gvim-lite.sh
@@ -497,7 +497,7 @@ fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
 fileviewer *.tar.txz,*.txz xz --list %c
 fileviewer *.tar tar -tf %c
 
-filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
+filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
 
@@ -537,6 +537,7 @@ filetype *.ftp
 
 " Default
 
+filetype * neovim-lite.sh %c
 filetype * vim-lite.sh %c
 filextype * gvim-lite.sh %c &
 
