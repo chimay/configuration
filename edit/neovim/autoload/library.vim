@@ -155,6 +155,15 @@ fun! library#manual ()
 	execute "normal! \<c-w>T"
 endfun
 
+fun! library#manual_open_toc ()
+	" Open toc in manual
+	lua require('man').show_toc()
+	" -- does not work
+	"HelpToc
+	wincmd H
+	wincmd 30<
+endfun
+
 fun! library#manual_argv ()
 	" Open a manual tab from vim command arguments
 	let argv = argv()
@@ -471,8 +480,12 @@ endfun
 fun! library#smart_tab ()
 	" Tab with contextual behaviour in insert mode
 	" For :map-expression
+	" If popup menu (pum) is visible, return <c-n> to go to next entry
 	" If char before cursor is a space, return <c-t> to indent
 	" Else, return <c-n> to complete
+	if pumvisible() > 0
+		return "\<c-n>"
+	endif
 	let previous_column = col('.') - 2
 	if previous_column >= 0
 		let previous = getline('.')[:previous_column]
@@ -487,6 +500,56 @@ fun! library#smart_tab ()
 		return "\<c-n>"
 	else
 		return "\<c-v>\<tab>"
+	endif
+endfun
+
+fun! library#smart_shift_tab ()
+	" Shift-Tab with contextual behaviour in insert mode
+	" For :map-expression
+	" If popup menu (pum) is visible, return <c-p> to go to previous entry
+	" If char before cursor is a space, return <c-d> to de-indent
+	" Else, return <c-p> to complete
+	if pumvisible() > 0
+		return "\<c-p>"
+	endif
+	let previous_column = col('.') - 2
+	if previous_column >= 0
+		let previous = getline('.')[:previous_column]
+	else
+		let previous = ''
+	endif
+	if empty(previous)
+		return "\<c-d>"
+	elseif previous =~ '\m^\s*$'
+		return "\<c-d>"
+	elseif previous[-1:] =~ '\m\S'
+		return "\<c-p>"
+	else
+		return "\<c-v>\<s-tab>"
+	endif
+endfun
+
+fun! library#smart_up ()
+	" Up with contextual behaviour in insert mode
+	" For :map-expression
+	" If popup menu (pum) is visible, return <c-p> to go to previous entry
+	" Else, return <up>
+	if pumvisible() > 0
+		return "\<c-p>"
+	else
+		return "\<up>"
+	endif
+endfun
+
+fun! library#smart_down ()
+	" Up with contextual behaviour in insert mode
+	" For :map-expression
+	" If popup menu (pum) is visible, return <c-n> to go to next entry
+	" Else, return <down>
+	if pumvisible() > 0
+		return "\<c-n>"
+	else
+		return "\<down>"
 	endif
 endfun
 

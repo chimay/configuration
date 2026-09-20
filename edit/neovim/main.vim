@@ -376,6 +376,8 @@ set infercase
 
 "  Omnicomplétion {{{3
 
+" ---- see autocommand.vim
+
 "set omnifunc=syntaxcomplete#Complete
 
 " Complétion personalisée, gérée par certains plugins comme neocomplete
@@ -654,7 +656,7 @@ set ttimeoutlen=50
 " causent des problèmes avec l’indentation <<
 
 let g:mapleader="\\"
-let g:maplocalleader="_"
+let g:maplocalleader="-"
 
 " let mapleader="\<d-,>"
 " let maplocalleader="\<d-,>"
@@ -814,9 +816,6 @@ nnoremap <c-s-down> <cmd>resize +5<cr>
 nnoremap <c-s-up> <cmd>resize -5<cr>
 nnoremap <c-s-right> <cmd>vertical resize +5<cr>
 nnoremap <c-s-left> <cmd>vertical resize -5<cr>
-
-"nnoremap <s-tab>  <c-w>w
-"nnoremap <m-s-tab>  <c-w>p
 
 nnoremap <leader>w= <cmd>wincmd =<cr>
 nnoremap <leader>w<bar> <cmd>wincmd <bar><cr>
@@ -1023,16 +1022,19 @@ inoremap <PageUp> <C-P>
 inoremap <PageDown> <C-N>
 
 inoremap <expr> <tab> library#smart_tab()
+inoremap <expr> <s-tab> library#smart_shift_tab()
+inoremap <c-tab> <c-x><c-o>
 
-"inoremap <C-Space> <C-X><C-O>
-"inoremap <M-Space> <C-X><C-L>
+" ---- default is ok
+
+" inoremap <expr> <up> library#smart_up()
+" inoremap <expr> <down> library#smart_down()
+
+cnoremap <expr> <up> library#smart_up()
+cnoremap <expr> <down> library#smart_down()
 
 cnoremap <PageUp> <C-P>
 cnoremap <PageDown> <C-N>
-
-" Ligne de commande ex {{{2
-
-" Complétion {{{3
 
 " insère tous
 cnoremap <C-X><C-A> <C-A>
@@ -1040,6 +1042,8 @@ cnoremap <C-X><C-A> <C-A>
 cnoremap <C-X><C-D> <C-D>
 " insère le plus long
 cnoremap <C-X><C-L> <C-L>
+
+" Ligne de commande ex {{{2
 
 " Déplacement {{{3
 
@@ -1124,6 +1128,8 @@ nnoremap <leader>df <cmd>set guifont=*<cr>
 nnoremap <leader>dF :GuiFont DejaVu Sans Mono:h12
 nnoremap <leader>d: :set cmdheight=
 nnoremap <leader>dh <cmd>echomsg library#highlight_group()<cr>
+nnoremap <leader>di <cmd>Inspect<cr>
+nnoremap <leader>dt <cmd>InspectTree<cr>
 
 " Numérotation des lignes {{{3
 

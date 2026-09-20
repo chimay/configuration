@@ -117,6 +117,7 @@ alias se=sudoedit
 #  Neovim {{{2
 
 alias v=neovim-lite.sh
+alias nv=nvim
 alias ns='run-neovim-server.sh &'
 alias nvc=run-neovim-client.sh
 
@@ -308,8 +309,8 @@ alias fini='mpv ~/audio/sonnerie/notification/fini.ogg'
 # manual & info {{{1
 
 alias rh=run-help
-alias m=man
-alias vm='vim-lite.sh +"call library#manual_argv()"'
+alias ml=man
+alias m='vim-lite.sh +"call library#manual_argv()"'
 alias mw=w3mman
 alias in=info
 

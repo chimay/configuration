@@ -3,6 +3,8 @@
 vim.pack.add({
 	"https://github.com/folke/which-key.nvim",
 	"https://github.com/ibhagwan/fzf-lua.git",
+	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/justinmk/vim-sneak",
 	"https://github.com/jiangmiao/auto-pairs",
 	"https://github.com/Jorengarenar/miniSnip",
@@ -30,20 +32,18 @@ vim.pack.add({
 	"https://github.com/christoomey/vim-tmux-navigator",
 	"https://github.com/vifm/vifm.vim",
 	"https://github.com/flazz/vim-colorschemes",
-	"https://github.com/nvim-telescope/telescope.nvim",
-	"https://github.com/nvim-lua/plenary.nvim",
---	treesitter
+	--	treesitter
 	"https://github.com/nvim-treesitter/nvim-treesitter",
---	language server protocol
+	--	language server protocol
 	{ src = 'https://github.com/neovim/nvim-lspconfig', },
--- 	personal plugins
+	-- 	personal plugins
 	{ src = "https://github.com/chimay/wheel", version = "master" },
 	{ src = "https://github.com/chimay/organ", version = "main" },
 	{ src = "https://github.com/chimay/vimscript-tricks", version = "main" },
 	{ src = "https://codeberg.org/chimay/torustree", version = "master" },
 })
 
--- treesitter
+---- treesitter
 
 require('nvim-treesitter').setup {
   -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
@@ -63,6 +63,35 @@ vim.api.nvim_create_autocmd('FileType', {
 	end,
 })
 
--- language server protocol
+---- language server protocol
 
 vim.lsp.enable('pyright')
+
+vim.api.nvim_set_keymap(
+	'n', '<s-space>ed', '<cmd>lua vim.diagnostic.open_float()<CR>',
+	{ noremap = true, silent = true
+})
+
+vim.api.nvim_set_keymap(
+	'n', '<s-space>en', '<cmd>lua vim.diagnostic.goto_prev()<CR>',
+	{ noremap = true, silent = true
+})
+
+vim.api.nvim_set_keymap(
+	'n', '<s-space>ep', '<cmd>lua vim.diagnostic.goto_next()<CR>',
+	{ noremap = true, silent = true
+})
+
+-- The following command requires plug-ins "nvim-telescope/telescope.nvim",
+-- "nvim-lua/plenary.nvim", and optionally "kyazdani42/nvim-web-devicons" for
+-- icon support
+
+vim.api.nvim_set_keymap(
+	'n', '<s-space>et', '<cmd>Telescope diagnostics<CR>',
+	{ noremap = true, silent = true
+})
+
+-- If you don't want to use the telescope plug-in but still want to see all the
+-- errors/warnings, comment out the telescope line and uncomment this:
+-- vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>lua
+-- vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })

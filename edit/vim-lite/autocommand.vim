@@ -113,6 +113,7 @@ augroup end
 augroup man-pages
 	autocmd!
 	autocmd FileType man setlocal keywordprg=:Man
+	autocmd FileType man nnoremap <buffer> h <cmd>map <buffer><cr>
 	autocmd FileType man nnoremap <buffer> t <cmd>HelpToc<cr>
 	autocmd FileType man nnoremap <buffer> s <cmd>call library#manual_sections()<cr>
 	autocmd FileType man nnoremap <buffer> $ <cmd>call library#manual_commands()<cr>
@@ -124,7 +125,11 @@ augroup man-pages
 	autocmd FileType man nnoremap <buffer> q <cmd>call library#manual_quit()<cr>
 	autocmd FileType man nnoremap <buffer> <cr> <cmd>silent! normal K<cr>
 	autocmd FileType man nnoremap <buffer> b <c-b>
+	autocmd FileType man nnoremap <buffer> <nowait> <space> <c-f>
+	autocmd FileType man nnoremap <buffer> <nowait> d <c-d>
+	autocmd FileType man nnoremap <buffer> <nowait> u <c-u>
 	autocmd FileType man nnoremap <buffer> u <c-u>
+	autocmd FileType man nnoremap <buffer> <bs> <cmd>call dist#man#PopPage()<cr>
 augroup end
 
 augroup file-make

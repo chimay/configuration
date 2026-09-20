@@ -376,7 +376,9 @@ set infercase
 
 "  Omnicomplétion {{{3
 
-set omnifunc=syntaxcomplete#Complete
+" ---- see autocommand.vim
+
+"set omnifunc=syntaxcomplete#Complete
 
 " Complétion personalisée, gérée par certains plugins comme neocomplete
 
@@ -702,6 +704,7 @@ nnoremap <kEnter> <cmd>call library#write_all()<cr>
 nnoremap <leader>ec <cmd>call library#edit_cronos()<cr>
 nnoremap <leader>ed <cmd>call library#edit_dream()<cr>
 nnoremap <leader>ee <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <leader>eE <cmd>edit!<cr>
 nnoremap <leader>ef <cmd>call library#edit_fix()<cr>
 nnoremap <leader>eg <cmd>call library#edit_attic()<cr>
 nnoremap <leader>el <cmd>call library#edit_ship_log()<cr>
@@ -793,7 +796,7 @@ nnoremap <leader>b$ <cmd>blast<cr>
 nnoremap <leader>bd <cmd>bdelete<cr>
 nnoremap <leader>bw <cmd>call library#write_all()<cr>
 
-" arguments {{{2
+" file arguments {{{2
 
 nnoremap <leader>ap <cmd>previous<cr>
 nnoremap <leader>an <cmd>next<cr>
@@ -813,9 +816,6 @@ nnoremap <c-s-down> <cmd>resize +5<cr>
 nnoremap <c-s-up> <cmd>resize -5<cr>
 nnoremap <c-s-right> <cmd>vertical resize +5<cr>
 nnoremap <c-s-left> <cmd>vertical resize -5<cr>
-
-"nnoremap <s-tab>  <c-w>w
-"nnoremap <m-s-tab>  <c-w>p
 
 nnoremap <leader>w= <cmd>wincmd =<cr>
 nnoremap <leader>w<bar> <cmd>wincmd <bar><cr>
@@ -910,6 +910,8 @@ nnoremap ' `
 
 " next word like this with another cursor
 nnoremap # Q*
+
+nnoremap <m-r> :%s///g<left><left><left>
 
 nnoremap <leader>sw <cmd>call library#search_word()<cr>
 nnoremap <leader>sr <cmd>call library#search_and_replace_word()<cr>
@@ -1011,6 +1013,7 @@ nnoremap zo zCzO
 " Insertion {{{2
 
 " Date
+inoremap <m-d> <c-r>=strftime("%d %b %Y")<cr>
 inoremap <d-d> <c-r>=strftime("%a %d %b %Y")<cr>
 
 "  Complétion {{{2
@@ -1019,16 +1022,17 @@ inoremap <PageUp> <C-P>
 inoremap <PageDown> <C-N>
 
 inoremap <expr> <tab> library#smart_tab()
+inoremap <expr> <s-tab> library#smart_shift_tab()
+inoremap <c-tab> <c-x><c-o>
 
-"inoremap <C-Space> <C-X><C-O>
-"inoremap <M-Space> <C-X><C-L>
+inoremap <expr> <up> library#smart_up()
+inoremap <expr> <down> library#smart_down()
+
+cnoremap <expr> <up> library#smart_up()
+cnoremap <expr> <down> library#smart_down()
 
 cnoremap <PageUp> <C-P>
 cnoremap <PageDown> <C-N>
-
-" Ligne de commande ex {{{2
-
-" Complétion {{{3
 
 " insère tous
 cnoremap <C-X><C-A> <C-A>
@@ -1036,6 +1040,8 @@ cnoremap <C-X><C-A> <C-A>
 cnoremap <C-X><C-D> <C-D>
 " insère le plus long
 cnoremap <C-X><C-L> <C-L>
+
+" Ligne de commande ex {{{2
 
 " Déplacement {{{3
 
@@ -1120,6 +1126,8 @@ nnoremap <leader>df <cmd>set guifont=*<cr>
 nnoremap <leader>dF :GuiFont DejaVu Sans Mono:h12
 nnoremap <leader>d: :set cmdheight=
 nnoremap <leader>dh <cmd>echomsg library#highlight_group()<cr>
+nnoremap <leader>di <cmd>Inspect<cr>
+nnoremap <leader>dt <cmd>InspectTree<cr>
 
 " Numérotation des lignes {{{3
 

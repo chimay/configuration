@@ -445,7 +445,7 @@ set tabline=%!wheel#status#tabline()
 
 " maps {{{3
 
-nnoremap <s-space>          :<c-u>Wheel<space>
+nnoremap <m-space>          :<c-u>Wheel<space>
 
 nnoremap <m-$>           <plug>(wheel-sync-up)
 nnoremap <c-$>           <plug>(wheel-sync-down)
@@ -512,6 +512,15 @@ nnoremap <c-space>t <cmd>FzfLua tags<cr>
 nnoremap <c-space>u <cmd>FzfLua undotree<cr>
 nnoremap <c-space>m <cmd>FzfLua keymap<cr>
 nnoremap <c-space>C <cmd>FzfLua colorschemes<cr>
+
+" telescope {{{2
+
+nnoremap <s-space><s-space> <cmd>Telescope<cr>
+nnoremap <s-space>f <cmd>Telescope find_files<cr>
+nnoremap <s-space>o <cmd>Telescope oldfiles<cr>
+nnoremap <s-space>b <cmd>Telescope buffers<cr>
+nnoremap <s-space>j <cmd>Telescope jumplist<cr>
+nnoremap <s-space>t <cmd>Telescope tags<cr>
 
 " Liens {{{1
 
@@ -676,7 +685,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.completion.fuzzy = 0
 	let g:organ_config.completion.scores = 0
 	" maps
-	nnoremap <c-tab> :<c-u>Organ<space>
+	nnoremap <m-tab> :<c-u>Organ<space>
 	nnoremap <d-M> :<c-u>Organ org-to-markdown
 	nmap § <plug>(organ-goto-headline)
 	nmap <bs> <plug>(organ-goto-headline)

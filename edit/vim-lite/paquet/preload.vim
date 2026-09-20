@@ -1,9 +1,5 @@
 " vim: set filetype=vim :
 
-" vim-which-key {{{2
-
-source ~/racine/config/edit/vim-lite/paquet/vim-which-key.vim
-
 " wheel {{{1
 
 if ! exists("g:wheel_loaded")
@@ -109,7 +105,7 @@ if ! exists("g:wheel_loaded")
 
 	set tabline=%!wheel#status#tabline()
 
-	nnoremap <f8>w :<c-u>Wheel<space>
+	nnoremap <m-tab> :<c-u>Wheel<space>
 
 	nmap <silent> <c-l> <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
 	imap <silent> <c-l> <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
@@ -212,7 +208,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.completion.fuzzy = 0
 	let g:organ_config.completion.scores = 0
 	" maps
-	nnoremap <tab> :<c-u>Organ<space>
+	nnoremap <m-space> :<c-u>Organ<space>
 	nmap <bs> <plug>(organ-goto-headline)
 	" altgr-u
 	nmap ↓    <plug>(organ-unicode)
