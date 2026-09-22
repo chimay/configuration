@@ -666,6 +666,7 @@ let g:maplocalleader="-"
 nnoremap <f1> :tab help<space>
 nnoremap <s-f1> <cmd>tab help quickref<cr>
 nnoremap <m-f1> <cmd>tab help user-manual<cr>
+nnoremap <c-s-f1> <cmd>tab help helphelp<cr>
 nnoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
 inoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
 vnoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
@@ -692,8 +693,13 @@ nnoremap gm <cmd>call library#manual()<cr>
 
 " quit {{{2
 
-nnoremap ZZ <cmd>qa<cr>
-nnoremap ZQ <cmd>qa!<cr>
+nnoremap ZW <cmd>quit<cr>
+
+nnoremap ZD <cmd>detach<cr>
+nnoremap ZS <cmd>call library#print_current_server()<cr>
+
+nnoremap ZZ <cmd>qall<cr>
+nnoremap ZQ <cmd>qall!<cr>
 
 " files {{{2
 
@@ -737,8 +743,6 @@ nnoremap <leader>f :find<space>
 " Fichier alternatif aussi disponible dans le registre #
 
 nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
-
-" see also <url:~/racine/config/edit/neovim/paquet/preload.vim#tn=f7 prefix>
 
 nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
@@ -1122,6 +1126,11 @@ nnoremap <m-q> gqap
 
 " display {{{2
 
+" ---- see also <url:paquet/preload.vim#tn=c-l>
+
+"nnoremap <c-l> <cmd>call library#smart_ctrl_l()<cr>
+vnoremap <c-l> <esc>
+
 nnoremap <leader>dc <cmd>set cursorline!<cr>
 nnoremap <leader>dl <cmd>call library#toggle_relative_linum()<cr>
 nnoremap <leader>df <cmd>set guifont=*<cr>
@@ -1150,8 +1159,8 @@ nnoremap <leader>xX <cmd>call library#password_to_text()<cr>
 
 " tags {{{2
 
-nnoremap <leader>nt :tjump /
-nnoremap <leader>nj :tab tjump /
+nnoremap <leader>Tt :tjump /
+nnoremap <leader>Tj :tab tjump /
 
 " commands {{{2
 
@@ -1231,7 +1240,7 @@ set relativenumber
 
 " Espacement
 
-set linespace=3
+set linespace=0
 
 " Longues lignes occupent plusieurs lignes (wrap) écran ou une seule (nowrap)
 

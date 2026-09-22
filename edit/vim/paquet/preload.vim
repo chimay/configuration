@@ -37,10 +37,6 @@ let g:no_plugin_maps = 1
 
 " Maps {{{1
 
-" vim-which-key {{{2
-
-source ~/racine/config/edit/vim/paquet/vim-which-key.vim
-
 " Bouts de code (snippets, bits, modèles) {{{1
 
 " miniSnip (Jorengarenar/miniSnip) {{{2

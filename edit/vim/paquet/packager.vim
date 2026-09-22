@@ -43,7 +43,6 @@ fun! PackagerInit ()
 	call packager#add('wellle/targets.vim', always)
 	call packager#add('McSinyx/vim-octave', always)
 	call packager#add('christoomey/vim-tmux-navigator', always)
-	call packager#add('liuchengxu/vim-which-key', always)
 	call packager#add('vifm/vifm.vim', always)
 	" -- plugins with deps
 	call packager#add('vim-scripts/LineJuggler', {

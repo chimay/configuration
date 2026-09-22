@@ -455,8 +455,8 @@ nnoremap <m-ins>           <plug>(wheel-prompt-add-file)
 " altgr-r
 nmap ¶                    <plug>(wheel-prompt-read-session)
 
-nnoremap <silent> zz   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
-inoremap <silent> zz   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
+nnoremap <silent> <c-l>   <cmd>call library#smart_ctrl_l()<cr><plug>(wheel-spiral-cursor)
+inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 
 nmap <silent> £           <plug>(wheel-dedibuf-tabwin-tree)
 
@@ -701,6 +701,13 @@ let g:vmt_auto_update_on_save = 1
 
 " Terminal {{{1
 
+" nvim-repl {{{2
+
+nmap <silent> yr$ <cmd>ReplToggle<cr>
+nmap <silent> yrr <Plug>(ReplSendLine)
+xmap <silent> yrv <Plug>(ReplSendVisual)
+nmap <silent> yrc <Plug>(ReplSendCell)
+
 " Ripple (urbainvaes/vim-ripple) {{{2
 
 " REPL
@@ -720,12 +727,19 @@ let g:ripple_repls = #{
   \ }
 let g:ripple_highlight = 'DiffAdd'
 
-nmap y<cr> <plug>(ripple_open_repl)
-nmap yr <plug>(ripple_send_motion)
-nmap yrr <plug>(ripple_send_line)
-nmap yr<cr> <plug>(ripple_send_buffer)
-nmap yp <plug>(ripple_send_previous)
+nmap -<cr> <plug>(ripple_open_repl)
+nmap -r <plug>(ripple_send_motion)
+nmap -rr <plug>(ripple_send_line)
+nmap -r<cr> <plug>(ripple_send_buffer)
+nmap -p <plug>(ripple_send_previous)
 vmap R <plug>(ripple_send_selection)
+
+" nmap <cr>$ <plug>(ripple_open_repl)
+" nmap <cr><cr> <plug>(ripple_send_line)
+" nmap <cr>r <plug>(ripple_send_motion)
+" nmap <cr>r<cr> <plug>(ripple_send_buffer)
+" nmap <cr>p <plug>(ripple_send_previous)
+" vmap <cr>v <plug>(ripple_send_selection)
 
 " vim-tmux-navigator {{{2
 

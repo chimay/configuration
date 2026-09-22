@@ -37,7 +37,6 @@ err () {
 
 pager () {
 	local less
-	#less="less --lesskey-file=$HOME/racine/built/less/key.out"
 	less="less"
 	(( $# == 0 )) && {
 		$=less .

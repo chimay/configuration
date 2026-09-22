@@ -72,7 +72,9 @@ alias p=pager
 alias pp='pager +G'
 alias q='most -C'
 
-alias vp=vimpager
+#alias vp=vimpager
+#alias vp='vimpager --no-passthrough --LINE-NUMBERS '
+alias vp='vim-lite.sh +"call library#pager()"'
 
 alias tt='multitail'
 alias taco='multitail -C -ts'

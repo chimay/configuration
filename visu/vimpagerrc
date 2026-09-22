@@ -2,8 +2,26 @@
 
 set noloadplugins
 
-let vimpager_user_gvim = 0
-let vimpager_passthrough = 1
-let vimpager_disable_x11 = 1
-let vimpager_scrolloff = 7
-let vimpager_disable_ansiesc = 0
+if !exists('g:vimpager')
+  let g:vimpager = {}
+endif
+
+if !exists('g:less')
+  let g:less     = {}
+endif
+
+let g:vimpager.gvim = 1
+let g:vimpager.passthrough = 0
+let g:vimpager.X11 = 1
+let g:vimpager.scrolloff = 7
+let g:vimpager.ansiesc = 1
+
+" if exists('g:vimpager.enabled')
+"   if exists('g:vimpager.ptree') && g:vimpager.ptree[-2] == 'wman'
+"     set ft=man
+"   endif
+" endif
+
+let g:less.enabled = 1
+let g:less.number = 0
+let g:less.hlsearch = 1

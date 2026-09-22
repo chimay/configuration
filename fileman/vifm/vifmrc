@@ -28,7 +28,7 @@ set dotdirs=rootparent,nonrootparent,treeleafsparent
 
 set shell=/bin/zsh
 
-" This is the actual command used to start vi.  The default is vim.
+" This is the actual command used to start vi. The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
@@ -785,7 +785,7 @@ nnoremap <m-f> :file<cr>
 
 " For neovim terminal, open file in new tab using neovim-remote
 
-nnoremap g<cr> :!nvr -p %c<cr>:!xdotool search --class nvim-qt windowactivate<cr>
+"nnoremap g<cr> :!nvr -p %c<cr>:!xdotool search --class nvim-qt windowactivate<cr>
 
 " Répertoires {{{2
 

@@ -132,6 +132,9 @@ super + shift + g
 super + ctrl + n
 	run-neovim-server.sh & ; sleep 2 ; run-neovim-qt-client.sh
 
+#super + ctrl + n
+#	run-neovim-qt-client.sh
+
 super + shift + n
 	neovim-qt-lite.sh
 
@@ -267,10 +270,10 @@ meta + super + t ; Down
 # luminosity {{{2
 
 XF86MonBrightnessUp
-	xbacklight -inc 5
+	brightnessctl set +10%
 
 XF86MonBrightnessDown
-	xbacklight -dec 5
+	brightnessctl set 10%-
 
 hyper + s ; 0
 	brightnessctl set 100%

@@ -374,18 +374,19 @@ export LESS="--no-init --raw-control-chars --ignore-case --buffers=360 --tabs=4 
 
 export LESSCHARSET="utf-8"
 
-export LESSKEYIN=~/racine/config/visu/less/lesskey
-
-# see ~/racine/config/visu/less/lesskey
-#
-# export LESSOPEN="|| ~/bin/shell/visu/lesspipe.sh %s"
-# export LESSCLOSE="-"
+# ---- with this, page up and down do not work
+#export LESSKEYIN=~/racine/config/visu/less/lesskey
 
 export LESSHISTFILE=~/racine/hist/less/lesshst
 export LESSHISTSIZE=12347
 
 export LESSEDIT='%E ?lm+%lm. %f'
 export LESSECHO=lessecho
+
+# ---- see also ~/racine/config/visu/less/lesskey
+
+export LESSOPEN="|| ~/racine/shell/visu/lesspipe.zsh %s"
+export LESSCLOSE="-"
 
 # Couleurs {{{3
 
@@ -430,7 +431,7 @@ export SUDO_EDITOR=~/racine/shell/edit/vim-lite.sh
 
 # Pour nvr, neovim-remote
 
-export NVIM_LISTEN_ADDRESS=$XDG_RUNTIME_DIR/neovim-socket
+#export NVIM_LISTEN_ADDRESS=$XDG_RUNTIME_DIR/neovim-socket
 
 # Pour edir
 

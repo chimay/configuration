@@ -155,6 +155,14 @@ fun! library#manual ()
 	execute "normal! \<c-w>T"
 endfun
 
+fun! library#manual_argv ()
+	" Open a manual tab from vim command arguments
+	let argv = argv()
+	let arguments = join(argv, ' ')
+	exe 'Man' arguments
+	only
+endfun
+
 fun! library#manual_open_toc ()
 	" Open toc in manual
 	lua require('man').show_toc()
@@ -162,14 +170,6 @@ fun! library#manual_open_toc ()
 	"HelpToc
 	wincmd H
 	wincmd 30<
-endfun
-
-fun! library#manual_argv ()
-	" Open a manual tab from vim command arguments
-	let argv = argv()
-	let arguments = join(argv, ' ')
-	exe 'Man' arguments
-	only
 endfun
 
 fun! library#manual_sections ()
@@ -244,6 +244,26 @@ fun! library#manual_quit ()
 	" quit manual buffer
 	silent! lclose
 	quit
+endfun
+
+" ---- pager
+
+fun! library#pager ()
+	" pager mode
+	set noloadplugins
+	set nomodifiable
+	set readonly
+	nnoremap <buffer> h <cmd>map <buffer><cr>
+	nnoremap <buffer> D <cmd>bdelete<cr>
+	nnoremap <buffer> <cr> <cmd>silent! normal K<cr>
+	nnoremap <buffer> b <c-b>
+	nnoremap <buffer> <nowait> <space> <c-f>
+	nnoremap <buffer> <nowait> d <c-d>
+	nnoremap <buffer> <nowait> u <c-u>
+	nnoremap <buffer> u <c-u>
+	nnoremap <buffer> <bs> <c-t>
+	nnoremap <buffer> v <cmd>set modifiable! readonly!<cr>
+	nnoremap <buffer> q <cmd>quit<cr>
 endfun
 
 " ---- moon
@@ -475,7 +495,7 @@ fun! library#toggle_relative_linum ()
 	set relativenumber?
 endfun
 
-" -- smart tab
+" -- smart keys : tab, shift tab, arrows
 
 fun! library#smart_tab ()
 	" Tab with contextual behaviour in insert mode
@@ -551,6 +571,22 @@ fun! library#smart_down ()
 	else
 		return "\<down>"
 	endif
+endfun
+
+fun! library#smart_ctrl_l ()
+	" ctrl-l :
+	"   - clear search highlighting
+	"   - center view
+	"   - returns multi to one cursor
+	"   - type <c-l> in normal mode
+	set nohlsearch
+	normal! zz
+	if has('nvim')
+		let mc_ns = nvim_create_namespace('nvim.multicursor')
+		call nvim_buf_clear_namespace(0, mc_ns, 0, -1)
+	endif
+	normal! <c-l>
+	return v:true
 endfun
 
 " -- exchange
@@ -1081,6 +1117,12 @@ fun! library#copy (source, destination, ask = 'confirm')
 		return 'failure'
 	endif
 	return 'success'
+endfun
+
+" ---- client & server
+
+fun! library#print_current_server ()
+	lua print('current server name :', vim.v.servername)
 endfun
 
 " ---- publish

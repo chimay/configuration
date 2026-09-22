@@ -692,8 +692,13 @@ nnoremap gm <cmd>call library#manual()<cr>
 
 " quit {{{2
 
-nnoremap ZZ <cmd>qa<cr>
-nnoremap ZQ <cmd>qa!<cr>
+nnoremap ZW <cmd>quit<cr>
+
+nnoremap ZD <cmd>detach<cr>
+nnoremap ZS <cmd>call library#print_current_server()<cr>
+
+nnoremap ZZ <cmd>qall<cr>
+nnoremap ZQ <cmd>qall!<cr>
 
 " files {{{2
 
@@ -1119,6 +1124,9 @@ nmap <k9> 9
 nnoremap <m-q> gqap
 
 " display {{{2
+
+nnoremap <c-l> <cmd>call library#smart_ctrl_l()<cr>
+vnoremap <c-l> <esc>
 
 nnoremap <leader>dc <cmd>set cursorline!<cr>
 nnoremap <leader>dl <cmd>call library#toggle_relative_linum()<cr>

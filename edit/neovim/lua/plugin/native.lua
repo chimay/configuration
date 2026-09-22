@@ -1,41 +1,49 @@
 -- vim: set filetype=lua:
 
+-- plugins list {{{1
+
 vim.pack.add({
-	"https://github.com/folke/which-key.nvim",
-	"https://github.com/ibhagwan/fzf-lua.git",
-	"https://github.com/nvim-telescope/telescope.nvim",
-	"https://github.com/nvim-lua/plenary.nvim",
-	"https://github.com/justinmk/vim-sneak",
-	"https://github.com/jiangmiao/auto-pairs",
-	"https://github.com/Jorengarenar/miniSnip",
-	"https://github.com/kana/vim-textobj-entire",
-	"https://github.com/kana/vim-textobj-fold",
-	"https://github.com/kana/vim-textobj-function",
-	"https://github.com/kana/vim-textobj-indent",
-	"https://github.com/kana/vim-textobj-line",
-	"https://github.com/kana/vim-textobj-user",
-	"https://github.com/machakann/vim-highlightedyank",
-	"https://github.com/nishigori/increment-activator",
-	"https://github.com/scrooloose/nerdcommenter",
-	"https://github.com/thinca/vim-textobj-comment",
-	"https://github.com/tommcdo/vim-exchange",
-	"https://github.com/tomtom/tcomment_vim",
-	"https://github.com/tpope/vim-repeat",
-	"https://github.com/tpope/vim-surround",
-	"https://github.com/urbainvaes/vim-ripple",
-	"https://github.com/vim-scripts/CmdlineComplete",
-	"https://github.com/vim-scripts/DeleteTrailingWhitespace",
-	"https://github.com/vim-scripts/VisIncr",
-	"https://github.com/vim-scripts/utl.vim",
-	"https://github.com/wellle/targets.vim",
-	"https://github.com/McSinyx/vim-octave",
-	"https://github.com/christoomey/vim-tmux-navigator",
-	"https://github.com/vifm/vifm.vim",
-	"https://github.com/flazz/vim-colorschemes",
+	{ src = "https://github.com/folke/which-key.nvim", version = "main" },
+	{ src = "https://github.com/ibhagwan/fzf-lua.git", version = "main" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim", version = "master" },
+	{ src = "https://github.com/justinmk/vim-sneak", version = "master" },
+	{ src = "https://github.com/jiangmiao/auto-pairs", version = "master" },
+	{ src = "https://github.com/Jorengarenar/miniSnip", version = "master" },
+	{ src = "https://github.com/kana/vim-textobj-entire", version = "master" },
+	{ src = "https://github.com/kana/vim-textobj-fold", version = "master" },
+	{ src = "https://github.com/kana/vim-textobj-function", version = "master" },
+	{ src = "https://github.com/kana/vim-textobj-indent", version = "master" },
+	{ src = "https://github.com/kana/vim-textobj-line", version = "master" },
+	{ src = "https://github.com/kana/vim-textobj-user", version = "master" },
+	{ src = "https://github.com/machakann/vim-highlightedyank", version = "master" },
+	{ src = "https://github.com/nishigori/increment-activator", version = "master" },
+	{ src = "https://github.com/scrooloose/nerdcommenter", version = "master", },
+	{ src = "https://github.com/thinca/vim-textobj-comment", version = "master" },
+	{ src = "https://github.com/tommcdo/vim-exchange", version = "master", },
+	{ src = "https://github.com/tomtom/tcomment_vim", version = "master", },
+	{ src = "https://github.com/tpope/vim-repeat", version = "master", },
+	{ src = "https://github.com/tpope/vim-surround", version = "master", },
+	{ src = "https://github.com/vim-scripts/CmdlineComplete", version = "master", },
+	{ src = "https://github.com/vim-scripts/DeleteTrailingWhitespace", version = "master", },
+	{ src = "https://github.com/vim-scripts/VisIncr", version = "master", },
+	{ src = "https://github.com/vim-scripts/utl.vim", version = "master", },
+	{ src = "https://github.com/wellle/targets.vim", version = "master", },
+	{ src = "https://github.com/McSinyx/vim-octave", version = "master", },
+	{ src = "https://github.com/christoomey/vim-tmux-navigator", version = "master", },
+	{ src = "https://github.com/vifm/vifm.vim", version = "master", },
+	{ src = "https://github.com/flazz/vim-colorschemes", version = "master", },
+	{ src = "https://github.com/MagicDuck/grug-far.nvim", version = "main", },
 	--	treesitter
-	"https://github.com/nvim-treesitter/nvim-treesitter",
-	--	language server protocol
-	{ src = 'https://github.com/neovim/nvim-lspconfig', },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
+	--	lsp : language server protocol
+	{ src = 'https://github.com/neovim/nvim-lspconfig', version = "master" },
+	-- dap : debug adapter protocol
+	{ src = "https://github.com/mfussenegger/nvim-dap", version = "master" },
+	{ src = "https://github.com/mfussenegger/nvim-dap-python", version = "master" },
+	-- repl : read eval print loop
+	{ src = "https://github.com/urbainvaes/vim-ripple", version = "master", },
+	{ src = "https://github.com/pappasam/nvim-repl", version = "main", },
 	-- 	personal plugins
 	{ src = "https://github.com/chimay/wheel", version = "master" },
 	{ src = "https://github.com/chimay/organ", version = "main" },
@@ -43,7 +51,7 @@ vim.pack.add({
 	{ src = "https://codeberg.org/chimay/torustree", version = "master" },
 })
 
----- treesitter
+-- treesitter {{{1
 
 require('nvim-treesitter').setup {
   -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
@@ -63,7 +71,7 @@ vim.api.nvim_create_autocmd('FileType', {
 	end,
 })
 
----- language server protocol
+-- language server protocol {{{1
 
 vim.lsp.enable('pyright')
 
@@ -95,3 +103,22 @@ vim.api.nvim_set_keymap(
 -- errors/warnings, comment out the telescope line and uncomment this:
 -- vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>lua
 -- vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
+
+-- debug adapter protocol {{{1
+
+-- If using this, then `python3 -m debugpy --version`
+-- must work in the shell
+
+require("dap-python").setup("python3")
+
+-- read eval print loop {{{1
+
+require("repl").setup({
+	filetype_commands = {
+		python = {cmd = "python"},
+		javascript = {cmd = "deno repl"},
+	},
+	default = {cmd = "zsh", filetype = "zsh"},
+	open_window_default = "vnew",
+})
+
