@@ -23,6 +23,25 @@ set runtimepath+=/usr/share/nvim-qt/runtime
 " filetype on
 " syntax on
 
+" shada file {{{1
+
+set shada=
+	\!,
+	\f1,
+	\h,
+	\<12,
+	\s12,
+	\'120,
+	\:10000,
+	\/10000,
+	\@10000,
+	\n~/racine/session/neovim/main.shada
+
+"set shadafile=~/racine/session/neovim/main.shada
+
+" Remplacé par wheel mru
+" 	\%30,
+
 " plugins needed before config {{{1
 
 packadd matchit
@@ -30,8 +49,8 @@ packadd matchit
 " lua {{{1
 
 " some options, key bindings,
-" and declaration of plugins
-" for native plugin manager
+" native plugin manager,
+" rocks plugin manager,
 
 lua require('meta')
 

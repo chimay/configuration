@@ -1566,6 +1566,9 @@ endfun
 " ---- lua wrappers
 
 fun! library#lua_map(mode, lhs, rhs, desc)
+	if ! has('nvim')
+		return v:false
+	endif
 	let mode = a:mode
 	let key = a:lhs
 	let operation = a:rhs

@@ -746,42 +746,42 @@ nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
 nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
-nnoremap <f11>v <cmd>call library#edit_myvimrc()<cr>
+nnoremap <f10>v <cmd>call library#edit_myvimrc()<cr>
 
-nnoremap <f11>R <cmd>call library#toggle_readonly()<cr>
+nnoremap <f10>R <cmd>call library#toggle_readonly()<cr>
 
-nnoremap <f11>n <cmd>new <bar> only<cr>
-nnoremap <f11>e <cmd>call library#edit_in_current_file_subtree()<cr>
-nnoremap <f11>r <cmd>call library#read_in_current_file_subtree()<cr>
+nnoremap <f10>n <cmd>new <bar> only<cr>
+nnoremap <f10>e <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <f10>r <cmd>call library#read_in_current_file_subtree()<cr>
 
-nnoremap <f11>g <cmd>call library#edit_attic()<cr>
-nnoremap <f11>c <cmd>call library#edit_cronos()<cr>
-nnoremap <f11>d <cmd>call library#edit_dream()<cr>
-nnoremap <f11>f <cmd>call library#edit_fix()<cr>
-nnoremap <f11>l <cmd>call library#edit_ship_log()<cr>
-nnoremap <f11>s <cmd>call library#edit_syntax_plugin()<cr>
-nnoremap <f11>t <cmd>call library#edit_tasks()<cr>
-nnoremap <f11>m <cmd>call library#edit_minisnip_file()<cr>
+nnoremap <f10>g <cmd>call library#edit_attic()<cr>
+nnoremap <f10>c <cmd>call library#edit_cronos()<cr>
+nnoremap <f10>d <cmd>call library#edit_dream()<cr>
+nnoremap <f10>f <cmd>call library#edit_fix()<cr>
+nnoremap <f10>l <cmd>call library#edit_ship_log()<cr>
+nnoremap <f10>s <cmd>call library#edit_syntax_plugin()<cr>
+nnoremap <f10>t <cmd>call library#edit_tasks()<cr>
+nnoremap <f10>m <cmd>call library#edit_minisnip_file()<cr>
 
-nnoremap <f11>x <cmd>call library#chmodexec()<cr>
+nnoremap <f10>x <cmd>call library#chmodexec()<cr>
 
 " org mode
-nnoremap <f7>h <cmd>call library#orgmode_make_html()<cr>
-nnoremap <f7>H <cmd>call library#orgmode_gen_html()<cr>
+nnoremap <f6>h <cmd>call library#orgmode_make_html()<cr>
+nnoremap <f6>H <cmd>call library#orgmode_gen_html()<cr>
 
 " latex
-nnoremap <f8>p <cmd>call library#latex_make_pdf()<cr>
-nnoremap <f8>P <cmd>call library#latex_gen_pdf()<cr>
-nnoremap <f8>s <cmd>call library#latex_make_svg()<cr>
-nnoremap <f8>S <cmd>call library#latex_gen_svg()<cr>
+nnoremap <f7>p <cmd>call library#latex_make_pdf()<cr>
+nnoremap <f7>P <cmd>call library#latex_gen_pdf()<cr>
+nnoremap <f7>s <cmd>call library#latex_make_svg()<cr>
+nnoremap <f7>S <cmd>call library#latex_gen_svg()<cr>
 
 " lilypond
-nnoremap <f9>m <cmd>call library#lilypond_make_midi()<cr>
-nnoremap <f9>p <cmd>call library#lilypond_make_display_pdf()<cr>
-nnoremap <f9>o <cmd>call library#lilypond_make_ogg()<cr>
-nnoremap <f9>M <cmd>call library#lilypond_gen_midi()<cr>
-nnoremap <f9>P <cmd>call library#lilypond_gen_display_pdf()<cr>
-nnoremap <f9>O <cmd>call library#lilypond_gen_ogg()<cr>
+nnoremap <f8>m <cmd>call library#lilypond_make_midi()<cr>
+nnoremap <f8>p <cmd>call library#lilypond_make_display_pdf()<cr>
+nnoremap <f8>o <cmd>call library#lilypond_make_ogg()<cr>
+nnoremap <f8>M <cmd>call library#lilypond_gen_midi()<cr>
+nnoremap <f8>P <cmd>call library#lilypond_gen_display_pdf()<cr>
+nnoremap <f8>O <cmd>call library#lilypond_gen_ogg()<cr>
 
 " buffers (tampons) {{{2
 
@@ -944,8 +944,8 @@ nnoremap <leader>lf <cmd>lnfile<cr>
 " Plus besoin avec xcape
 "nnoremap ’ /
 
-nnoremap <f2>, <cmd>call library#search_word()<cr>
-nnoremap <f2>; <cmd>call library#search_and_replace_word()<cr>
+nnoremap <f9>, <cmd>call library#search_word()<cr>
+nnoremap <f9>; <cmd>call library#search_and_replace_word()<cr>
 
 "  Copier / Coller {{{2
 
@@ -1088,10 +1088,10 @@ nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 
 "  Informations {{{2
 
-nnoremap <f2>h <cmd>echo library#highlight_group()<cr>
+nnoremap <f9>h <cmd>echo library#highlight_group()<cr>
 " for treesitter
-nnoremap <f2>i <cmd>Inspect<cr>
-nnoremap <f2>t <cmd>InspectTree<cr>
+nnoremap <f9>i <cmd>Inspect<cr>
+nnoremap <f9>t <cmd>InspectTree<cr>
 
 " Journal de bord {{{2
 
@@ -1497,23 +1497,6 @@ colorscheme golden-night
 "colorscheme zazen
 
 "  {{{ Historique
-
-set shada=
-	\!,
-	\f1,
-	\h,
-	\<12,
-	\s12,
-	\'120,
-	\:10000,
-	\/10000,
-	\@10000,
-	\n~/racine/session/neovim/main.shada
-
-"set shadafile=~/racine/session/neovim/main.shada
-
-" Remplacé par wheel mru
-" 	\%30,
 
 " Nombre par défaut pour lignes de commande,
 " recherches, nombre de lignes d’entrée

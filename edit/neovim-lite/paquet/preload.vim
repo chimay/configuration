@@ -41,7 +41,7 @@ let g:no_plugin_maps = 1
 
 " miniSnip (Jorengarenar/miniSnip) {{{2
 
-let g:miniSnip_dirs = ['~/racine/plugin/data/neovim/miniSnip']
+let g:miniSnip_dirs = ['~/racine/plugin/data/neovim-lite/miniSnip']
 let g:miniSnip_trigger = '<c-j>'
 "let g:miniSnip_trigger = '<c-s>'
 let g:miniSnip_complKey = '<c-x><c-u>'
@@ -60,12 +60,12 @@ map <d-;> <plug>NERDCommenterToggle
 "  TComment (tomtom/tcomment_vim) {{{2
 
 let g:tcomment_maps = 1
-let g:tcomment_mapleader1 = '<c-s-f12>-'
-let g:tcomment_mapleader2 = '<c-s-f12>_'
+let g:tcomment_mapleader1 = '<s-f11>t'
+let g:tcomment_mapleader2 = '<s-f11>t'
 let g:tcomment_opleader1 = 'gc'
 
-let g:tcomment_textobject_inlinecomment = '<c-s-f12>-i'
-let g:tcomment_mapleader_comment_anyway = '<c-s-f12>-ca'
+let g:tcomment_textobject_inlinecomment = '<s-f11>-i'
+let g:tcomment_mapleader_comment_anyway = '<s-f11>-ca'
 let g:tcomment_mapleader_uncomment_anyway = '<c-s-f12>-ua'
 
 let g:tcomment#blank_lines = 0
@@ -101,7 +101,7 @@ let g:AutoPairsMapSpace = 0
 
 " Mappings {{{3
 
-let g:AutoPairsShortcutToggle = '<F6>('
+let g:AutoPairsShortcutToggle = '<F11>('
 
 imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
@@ -236,7 +236,7 @@ if ! exists("g:torustree_loaded")
 	"let g:torustree_config.mappings = 20
 	let g:torustree_config.mappings = 2
 	" Prefix for mappings
-	let g:torustree_config.prefix = '<f3>'
+	let g:torustree_config.prefix = '<f2>'
 	" Locate database ; default one if left empty
 	let g:torustree_config.locate_db = '~/racine/index/filesys/locate/racine.db'
 	" Grep command : :grep or :vimpgrep
@@ -252,7 +252,7 @@ if ! exists("g:torustree_loaded")
 	let g:torustree_config.project.auto_chdir = 1
 
 	" The folder where toruses and circles will be stored and read
-	let g:torustree_config.storage.torustree.folder = '~/racine/plugin/data/neovim/torustree'
+	let g:torustree_config.storage.torustree.folder = '~/racine/plugin/data/neovim-lite/torustree'
 	" Name of the default torustree file
 	let g:torustree_config.storage.torustree.name = 'auto'
 	" Auto read torustree file on startup if > 0
@@ -260,7 +260,7 @@ if ! exists("g:torustree_loaded")
 	" Auto write torustree file on exit if > 0
 	let g:torustree_config.storage.torustree.autowrite = 0
 	" The folder where sessions will be stored and read
-	let g:torustree_config.storage.session.folder = '~/racine/plugin/data/neovim/torustree/session'
+	let g:torustree_config.storage.session.folder = '~/racine/plugin/data/neovim-lite/torustree/session'
 	" Name of the default session file
 	let g:torustree_config.storage.session.name = 'layout'
 	" Auto read default session file on startup if > 0
@@ -368,7 +368,7 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.project.auto_chdir = 1
 
 	" The folder where toruses and circles will be stored and read
-	let g:wheel_config.storage.wheel.folder = '~/racine/plugin/data/neovim/wheel'
+	let g:wheel_config.storage.wheel.folder = '~/racine/plugin/data/neovim-lite/wheel'
 	" Name of the default wheel file
 	let g:wheel_config.storage.wheel.name = 'auto'
 	" Auto read wheel file on startup if > 0
@@ -376,7 +376,7 @@ if ! exists("g:wheel_loaded")
 	" Auto write wheel file on exit if > 0
 	let g:wheel_config.storage.wheel.autowrite = 0
 	" The folder where sessions will be stored and read
-	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/neovim/wheel/session'
+	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/neovim-lite/wheel/session'
 	" Name of the default session file
 	let g:wheel_config.storage.session.name = 'layout'
 	" Auto read default session file on startup if > 0
@@ -716,12 +716,19 @@ let g:ripple_repls = #{
   \ }
 let g:ripple_highlight = 'DiffAdd'
 
-nmap y<cr> <plug>(ripple_open_repl)
-nmap yr <plug>(ripple_send_motion)
-nmap yrr <plug>(ripple_send_line)
-nmap yr<cr> <plug>(ripple_send_buffer)
-nmap yp <plug>(ripple_send_previous)
+nmap <f11>!<cr> <plug>(ripple_open_repl)
+nmap <f11>!r <plug>(ripple_send_motion)
+nmap <f11>!rr <plug>(ripple_send_line)
+nmap <f11>!r<cr> <plug>(ripple_send_buffer)
+nmap <f11>!p <plug>(ripple_send_previous)
 vmap R <plug>(ripple_send_selection)
+
+" nmap y<cr> <plug>(ripple_open_repl)
+" nmap yr <plug>(ripple_send_motion)
+" nmap yrr <plug>(ripple_send_line)
+" nmap yr<cr> <plug>(ripple_send_buffer)
+" nmap yp <plug>(ripple_send_previous)
+" vmap R <plug>(ripple_send_selection)
 
 " vim-tmux-navigator {{{2
 
