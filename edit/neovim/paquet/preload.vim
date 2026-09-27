@@ -35,6 +35,19 @@ let g:no_plugin_maps = 1
 
 " ------------------------------------
 
+" plugin managers {{{1
+
+" rocks {{{2
+
+nnoremap <f10>rr :Rocks<space>
+nnoremap <f10>re <cmd>tabnew <bar> Rocks edit<cr>
+nnoremap <f10>ri :Rocks install<space>
+nnoremap <f10>rp :Rocks prune<space>
+nnoremap <f10>r= :Rocks pin<space>
+nnoremap <f10>ru <cmd>Rocks update<cr>
+nnoremap <f10>rs <cmd>Rocks sync<cr>
+nnoremap <f10>rl <cmd>Rocks log<cr>
+
 " Maps {{{1
 
 " Bouts de code (snippets, bits, modèles) {{{1
@@ -60,8 +73,8 @@ map <d-;> <plug>NERDCommenterToggle
 "  TComment (tomtom/tcomment_vim) {{{2
 
 let g:tcomment_maps = 1
-let g:tcomment_mapleader1 = '<c-s-f12>-'
-let g:tcomment_mapleader2 = '<c-s-f12>_'
+let g:tcomment_mapleader1 = '<f10>t-'
+let g:tcomment_mapleader2 = '<f10>t_'
 let g:tcomment_opleader1 = 'gc'
 
 let g:tcomment_textobject_inlinecomment = '<c-s-f12>-i'
@@ -101,7 +114,7 @@ let g:AutoPairsMapSpace = 0
 
 " Mappings {{{3
 
-let g:AutoPairsShortcutToggle = '<F6>('
+let g:AutoPairsShortcutToggle = '<F10>a'
 
 imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
@@ -477,8 +490,8 @@ nmap <silent> <d-^>       <plug>(wheel-alternate-window)
 
 nmap <m-pagedown>         <plug>(wheel-next-location)
 nmap <m-pageup>           <plug>(wheel-previous-location)
-" interferes with organ
-"nmap <m-cr>               <plug>(wheel-prompt-location)
+" m-cr interferes with organ
+nmap <m-=>               <plug>(wheel-prompt-location)
 nmap <c-cr>               <plug>(wheel-prompt-circle)
 nmap <s-cr>               <plug>(wheel-prompt-torus)
 
@@ -699,14 +712,25 @@ endif
 
 let g:vmt_auto_update_on_save = 1
 
+" overview {{{1
+
+" mini.map {{{2
+
+nnoremap <f10>mm <cmd>lua MiniMap.toggle()<cr>
+nnoremap <f10>mf <cmd>lua MiniMap.toggle_focus()<cr>
+nnoremap <f10>ms <cmd>lua MiniMap.toggle_side()<cr>
+nnoremap <f10>mo <cmd>lua MiniMap.open()<cr>
+nnoremap <f10>mc <cmd>lua MiniMap.close()<cr>
+nnoremap <f10>mr <cmd>lua MiniMap.refresh()<cr>
+
 " Terminal {{{1
 
 " nvim-repl {{{2
 
-nmap <silent> yr$ <cmd>ReplToggle<cr>
-nmap <silent> yrr <Plug>(ReplSendLine)
-xmap <silent> yrv <Plug>(ReplSendVisual)
-nmap <silent> yrc <Plug>(ReplSendCell)
+nmap <silent> <f10>$$ <cmd>ReplToggle<cr>
+nmap <silent> <f10>$r <Plug>(ReplSendLine)
+xmap <silent> <f10>$v <Plug>(ReplSendVisual)
+nmap <silent> <f10>$c <Plug>(ReplSendCell)
 
 " Ripple (urbainvaes/vim-ripple) {{{2
 
@@ -727,12 +751,19 @@ let g:ripple_repls = #{
   \ }
 let g:ripple_highlight = 'DiffAdd'
 
-nmap -<cr> <plug>(ripple_open_repl)
-nmap -r <plug>(ripple_send_motion)
-nmap -rr <plug>(ripple_send_line)
-nmap -r<cr> <plug>(ripple_send_buffer)
-nmap -p <plug>(ripple_send_previous)
+nmap <f10>!<cr> <plug>(ripple_open_repl)
+nmap <f10>!r <plug>(ripple_send_motion)
+nmap <f10>!rr <plug>(ripple_send_line)
+nmap <f10>!r<cr> <plug>(ripple_send_buffer)
+nmap <f10>!p <plug>(ripple_send_previous)
 vmap R <plug>(ripple_send_selection)
+
+" nmap y<cr> <plug>(ripple_open_repl)
+" nmap yr <plug>(ripple_send_motion)
+" nmap yrr <plug>(ripple_send_line)
+" nmap yr<cr> <plug>(ripple_send_buffer)
+" nmap yp <plug>(ripple_send_previous)
+" vmap R <plug>(ripple_send_selection)
 
 " nmap <cr>$ <plug>(ripple_open_repl)
 " nmap <cr><cr> <plug>(ripple_send_line)
@@ -753,3 +784,22 @@ nnoremap <silent> <C-Down> :<C-U>TmuxNavigateDown<cr>
 nnoremap <silent> <C-Up> :<C-U>TmuxNavigateUp<cr>
 
 "nnoremap <silent> C-Left :<C-U>TmuxNavigatePrevious<cr>
+
+" debug {{{1
+
+" vimspector {{{2
+
+map <f10>ii <plug>VimspectorContinue
+map <f10>ir <plug>VimspectorRestart
+map <f10>ip <plug>VimspectorPause
+map <f10>iso <plug>VimspectorStepOver
+map <f10>isi <plug>VimspectorStepInto
+map <f10>isO <plug>VimspectorStepOut
+map <f10>iS <plug>VimspectorStop
+map <f10>ic <plug>VimspectorRunToCursor
+
+map <f10>in <plug>VimspectorJumpToNextBreakpoint
+map <f10>iN <plug>VimspectorJumpToPreviousBreakpoint
+map <f10>ib <plug>VimspectorBreakpoints
+map <f10>it <plug>VimspectorToggleBreakpoints
+map <f10>it <plug>VimspectorToggleBreakpoints

@@ -63,6 +63,7 @@ add mod5 = ISO_Level3_Shift Mode_switch
 !keycode  78 = bracketleft bracketright bracketleft bracketright
 !keycode  78 = dead_circumflex NoSymbol dead_circumflex
 !keycode  78 = percent at percent bracketright
+
 keycode  78 = rightsinglequotemark at percent bracketright
 
 ! Pause
@@ -83,6 +84,7 @@ keycode 107 = Multi_key Sys_Req Multi_key Sys_Req
 keysym twosuperior = asciitilde grave asciitilde grave
 
 keycode  13 = apostrophe 4 apostrophe 4 rightsinglequotemark dollar onequarter
+keycode  15 = section 6 section 6 dead_circumflex fiveeighths dead_circumflex
 keycode  21 = minus underscore minus underscore parenright dead_ogonek parenright
 
 ! Lettres {{{1

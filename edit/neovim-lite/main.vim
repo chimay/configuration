@@ -1146,6 +1146,7 @@ nnoremap <silent> <D-l> <cmd>call library#toggle_relative_linum()<cr>
 " multiple {{{4
 
 nnoremap <tab> Q
+vnoremap <tab> Q
 
 " Fonte de caractères {{{3
 
@@ -1426,7 +1427,7 @@ set statusline+=%<
 
 " Hauteur
 
-set cmdheight=3
+set cmdheight=2
 
 " Conceal {{{2
 

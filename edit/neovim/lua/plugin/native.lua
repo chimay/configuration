@@ -3,19 +3,15 @@
 -- plugins list {{{1
 
 vim.pack.add({
-	{ src = "https://github.com/folke/which-key.nvim", version = "main" },
-	{ src = "https://github.com/ibhagwan/fzf-lua.git", version = "main" },
-	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
-	{ src = "https://github.com/nvim-telescope/telescope.nvim", version = "master" },
 	{ src = "https://github.com/justinmk/vim-sneak", version = "master" },
 	{ src = "https://github.com/jiangmiao/auto-pairs", version = "master" },
 	{ src = "https://github.com/Jorengarenar/miniSnip", version = "master" },
+	{ src = "https://github.com/kana/vim-textobj-user", version = "master" },
 	{ src = "https://github.com/kana/vim-textobj-entire", version = "master" },
 	{ src = "https://github.com/kana/vim-textobj-fold", version = "master" },
 	{ src = "https://github.com/kana/vim-textobj-function", version = "master" },
 	{ src = "https://github.com/kana/vim-textobj-indent", version = "master" },
 	{ src = "https://github.com/kana/vim-textobj-line", version = "master" },
-	{ src = "https://github.com/kana/vim-textobj-user", version = "master" },
 	{ src = "https://github.com/machakann/vim-highlightedyank", version = "master" },
 	{ src = "https://github.com/nishigori/increment-activator", version = "master" },
 	{ src = "https://github.com/scrooloose/nerdcommenter", version = "master", },
@@ -33,7 +29,13 @@ vim.pack.add({
 	{ src = "https://github.com/christoomey/vim-tmux-navigator", version = "master", },
 	{ src = "https://github.com/vifm/vifm.vim", version = "master", },
 	{ src = "https://github.com/flazz/vim-colorschemes", version = "master", },
+	{ src = "https://github.com/ibhagwan/fzf-lua.git", version = "main" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim", version = "master" },
 	{ src = "https://github.com/MagicDuck/grug-far.nvim", version = "main", },
+	{ src = "https://github.com/folke/which-key.nvim", version = "main" },
+	-- modules
+	{ src = "https://github.com/nvim-mini/mini.nvim", version = "main", },
 	--	treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
 	--	lsp : language server protocol
@@ -41,6 +43,7 @@ vim.pack.add({
 	-- dap : debug adapter protocol
 	{ src = "https://github.com/mfussenegger/nvim-dap", version = "master" },
 	{ src = "https://github.com/mfussenegger/nvim-dap-python", version = "master" },
+	{ src = "https://github.com/puremourning/vimspector", version = "master" },
 	-- repl : read eval print loop
 	{ src = "https://github.com/urbainvaes/vim-ripple", version = "master", },
 	{ src = "https://github.com/pappasam/nvim-repl", version = "main", },
@@ -50,6 +53,87 @@ vim.pack.add({
 	{ src = "https://github.com/chimay/vimscript-tricks", version = "main" },
 	{ src = "https://codeberg.org/chimay/torustree", version = "master" },
 })
+
+-- issue with confirm prompt when cmdheight >= 3
+
+-- vim.pack.add({
+-- 	{ src = "https://github.com/folke/which-key.nvim", version = "main" },
+-- 	{ src = "https://github.com/nvim-mini/mini.nvim", version = "main", },
+-- }, { load = false })
+
+-- modules {{{1
+
+-- mini {{{2
+
+require('mini.map').setup(
+{
+  -- Highlight integrations (none by default)
+  integrations = nil,
+  -- Symbols used to display data
+  symbols = {
+    -- Encode symbols. See `:h MiniMap.config` for specification and
+    -- `:h MiniMap.gen_encode_symbols` for pre-built ones.
+    -- Default: solid blocks with 3x2 resolution.
+    encode = nil,
+    -- Scrollbar parts for view and line. Use empty string to disable any.
+    scroll_line = '█',
+    scroll_view = '┃',
+  },
+  -- Window options
+  window = {
+    -- Whether window is focusable in normal way (with `wincmd` or mouse)
+    focusable = false,
+    -- Side to stick ('left' or 'right')
+    side = 'right',
+    -- Whether to show count of multiple integration highlights
+    show_integration_count = true,
+    -- Total width
+    width = 10,
+    -- Value of 'winblend' option
+    winblend = 25,
+    -- Z-index
+    zindex = 10,
+  },
+})
+
+-- require('mini.cmdline').setup(
+-- {
+--   -- Autocompletion: show `:h 'wildmenu'` as you type
+--   autocomplete = {
+--     enable = false,
+--     -- Delay (in ms) after which to trigger completion
+--     -- Neovim>=0.12 is recommended for positive values
+--     delay = 0,
+--     -- Custom rule of when to trigger completion
+--     predicate = nil,
+--     -- Whether to map arrow keys for more consistent wildmenu behavior
+--     map_arrows = true,
+--   },
+--   -- Autocorrection: adjust non-existing words (commands, options, etc.)
+--   autocorrect = {
+--     enable = false,
+--     -- Custom autocorrection rule
+--     func = nil,
+--   },
+--   -- Autopeek: show command's target range in a floating window
+--   autopeek = {
+--     enable = true,
+--     -- Number of lines to show above and below range lines
+--     n_context = 1,
+--     -- Custom rule of when to show peek window
+--     predicate = nil,
+--     -- Window options
+--     window = {
+--       -- Floating window config
+--       config = {},
+--       -- Function to render statuscolumn
+--       statuscolumn = nil,
+--     },
+--   },
+-- }
+-- )
+
+-- see ../../paquet/preload.vim for the maps
 
 -- treesitter {{{1
 
@@ -121,4 +205,7 @@ require("repl").setup({
 	default = {cmd = "zsh", filetype = "zsh"},
 	open_window_default = "vnew",
 })
+
+-- which-key {{{1
+
 

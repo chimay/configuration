@@ -336,10 +336,11 @@ endfun
 fun! library#resolve_symlink ()
 	" If current file is a symlink, edit real file instead
 	" To be used in a BufReadPost autocommand
-	let target = resolve(expand("%"))
-	if ! empty(target)
-		silent execute "file" target
-		silent edit
+	let current = expand('%:p')
+	let target = resolve(current)
+	if target !=# current
+		silent execute 'file ' .. fnameescape(target)
+         "silent edit
 	endif
 endfun
 
@@ -1562,6 +1563,17 @@ fun! library#lilypond_gen_mp3 ()
 	return 'success'
 endfun
 
+" ---- lua wrappers
+
+fun! library#lua_map(mode, lhs, rhs, desc)
+	let mode = a:mode
+	let key = a:lhs
+	let operation = a:rhs
+	let options = {'desc': a:desc}
+	call nvim_set_keymap(mode, key, operation, options)
+	return v:true
+endfun
+
 " ---- plugins
 
 fun! library#which_key_format (string)
@@ -1578,3 +1590,10 @@ fun! library#which_key_format (string)
 	let string = substitute(string, '\m\c()$', '', '')
 	return string
 endfun
+
+" ---- tests
+
+function! library#test_confirm() abort
+	"set cmdheight=3
+	let x = confirm("AAA", "&Yes\n&No", 2)
+endfunction

@@ -315,8 +315,8 @@ filextype {*.html,*.htm},<text/html>
 " PostScript
 
 filextype *.ps,*.eps,*.ps.gz
-        \ {View in zathura}
-        \ zathura %f &,
+        \ {View in soiyek}
+        \ soiyek %f &,
         \ {View in gv}
         \ gv %c %i &,
 
@@ -327,7 +327,7 @@ fileviewer *.pdf
 	\ %pc
 	\ vifmimg clear
 
-filextype *.pdf zathura %c %i &, apvlv %c &, xpdf %c &
+filextype *.pdf sioyek %c %i &, apvlv %c &, xpdf %c &
 
 " Epub
 

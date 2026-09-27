@@ -50,13 +50,13 @@ map <C-4> feedkeys ":set pages-per-row 4"<Return>
 
 # theme {{{1
 
-# set default-fg "#5b3c11"
-# set default-bg "black"
+set default-fg "black"
+set default-bg "white"
 
-set inputbar-fg "#5b3c11"
-set inputbar-bg "black"
-set statusbar-fg "#5b3c11"
-set statusbar-bg "black"
+set inputbar-fg "black"
+set inputbar-bg "white"
+set statusbar-fg "black"
+set statusbar-bg "white"
 
 # unknown
 #set tabbar-fg "#5b3c11"
@@ -64,24 +64,24 @@ set statusbar-bg "black"
 #set tabbar-focus-fg "black"
 #set tabbar-focus-bg "#5b3c11"
 
-set completion-fg "#88421d"
-set completion-bg "#070707"
+set completion-fg "black"
+set completion-bg "white"
 set completion-group-fg "#88421d"
-set completion-group-bg "#070707"
-set completion-highlight-fg "#ab1207"
-set completion-highlight-bg "#070707"
+set completion-group-bg "white"
+set completion-highlight-fg "#872e30"
+set completion-highlight-bg "lightgrey"
 
-set notification-fg "#5b3c11"
-set notification-bg "black"
+set notification-fg "yellow"
+set notification-bg "white"
 set notification-warning-fg "green"
-set notification-warning-bg "black"
+set notification-warning-bg "white"
 set notification-error-fg "red"
-set notification-error-bg "black"
+set notification-error-bg "white"
 
-set index-fg "#5b3c11"
-set index-bg "black"
+set index-fg "black"
+set index-bg "white"
 set index-active-fg "black"
-set index-active-bg "#5b3c11"
+set index-active-bg "white"
 
 # set render-loading true
 # set render-loading-fg "#5b3c11"
@@ -104,5 +104,5 @@ set index-active-bg "#5b3c11"
 set recolor-keephue false
 set recolor-reverse-video false
 
-set highlight-color "#872e30"
-set highlight-active-color "#88421d"
+set highlight-color "white"
+set highlight-active-color "lightgrey"

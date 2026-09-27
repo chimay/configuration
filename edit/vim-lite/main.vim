@@ -509,12 +509,9 @@ nnoremap ' `
 " Plus besoin avec xcape
 "nnoremap ’ /
 
-" Recherche d’un mot {{{3
+nnoremap <m-r> :%s///g<left><left><left>
 
 nnoremap <f2>, <cmd>call library#search_word()<cr>
-
-"  Remplacement {{{3
-
 nnoremap <f2>; <cmd>call library#search_and_replace_word()<cr>
 
 "  Copier / Coller {{{2

@@ -406,6 +406,7 @@ hc rule focus=on
 #hc rule class=XTerm tag=term # move all xterms to tag 3
 
 hc rule class=org.pwmt.zathura tag=view
+hc rule class=sioyek tag=view
 hc rule class=Evince tag=view
 hc rule class=Apvlv tag=view
 hc rule class=feh tag=view

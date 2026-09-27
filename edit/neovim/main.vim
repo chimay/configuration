@@ -838,10 +838,11 @@ nnoremap <c-end> <cmd>tablast<cr>
 nnoremap <s-pageup> <cmd>tabmove -1<cr>
 nnoremap <s-pagedown> <cmd>tabmove +1<cr>
 
-" c-t is remapped to s-bs
+" ---- builtin c-t is remapped to s-bs
 nnoremap <c-t> <cmd>tabnew<cr>
 
 nnoremap <leader>tt <cmd>tabnew<cr>
+nnoremap <leader>tc <cmd>tabclose<cr>
 nnoremap <leader>tn <cmd>tabnext<cr>
 nnoremap <leader>tp <cmd>tabprevious<cr>
 nnoremap <leader>t^ <cmd>tabfirst<cr>
@@ -940,17 +941,10 @@ nnoremap <leader>ln <cmd>lnext<cr>
 nnoremap <leader>lb <cmd>lpfile<cr>
 nnoremap <leader>lf <cmd>lnfile<cr>
 
-" Recherche {{{3
-
 " Plus besoin avec xcape
 "nnoremap ’ /
 
-" Recherche d’un mot {{{3
-
 nnoremap <f2>, <cmd>call library#search_word()<cr>
-
-"  Remplacement {{{3
-
 nnoremap <f2>; <cmd>call library#search_and_replace_word()<cr>
 
 "  Copier / Coller {{{2
@@ -1076,9 +1070,6 @@ cmap <m-d> <c-right><c-w>
 
 " Mode ex {{{3
 
-" Q ou gQ : mode ex
-" On en sort par :vi
-
 " Q is needed for multicursors
 
 "nnoremap QQ gQ
@@ -1148,7 +1139,10 @@ nnoremap <silent> <D-l> <cmd>call library#toggle_relative_linum()<cr>
 
 " multiple {{{4
 
+" -- another cursor
 nnoremap <tab> Q
+" -- a cursor per line selected
+vnoremap <tab> Q
 
 " Fonte de caractères {{{3
 
@@ -1173,19 +1167,18 @@ nnoremap <leader>$l <cmd>! ls -l<cr>
 nnoremap <leader>!x <cmd>call library#chmodexec()<cr>
 nnoremap <leader>!s <cmd>%! sort<cr>
 
-" plugins {{{2
+" plugins manager {{{2
 
+" ---- without the !, it needs :write to confirm
 nnoremap <leader>pu <cmd>packupdate<cr>
 nnoremap <leader>pa :packadd<space>
 nnoremap <leader>pd :packdel!<space>
 nnoremap <leader>pl <cmd>packloadall<cr>
-nnoremap <leader>pu <cmd>packupdate<cr>
 
 nnoremap <f12>u <cmd>packupdate<cr>
 nnoremap <f12>a :packadd<space>
 nnoremap <f12>d :packdel!<space>
 nnoremap <f12>l <cmd>packloadall<cr>
-nnoremap <f12>u <cmd>packupdate<cr>
 
 " Émulateur de terminal {{{2
 
@@ -1356,8 +1349,8 @@ set splitright
 
 "  Messages {{{2
 
-" Rapport à partir de 0 lignes modifiées,
-" autrement dit tout le temps
+" Rapport à partir de N lignes modifiées,
+" autrement dit tout le temps si N = 0
 
 set report=0
 
@@ -1429,7 +1422,7 @@ set statusline+=%<
 
 " Hauteur
 
-set cmdheight=3
+set cmdheight=2
 
 " Conceal {{{2
 

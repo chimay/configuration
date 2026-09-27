@@ -7,3 +7,4 @@ require('config.autocmds')
 require('config.keybinds')
 
 require('plugin.native')
+require('plugin.rocks')

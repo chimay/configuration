@@ -81,8 +81,7 @@ alias taco='multitail -C -ts'
 
 # PDF, EPUB
 
-alias d=zathura
-#alias d=apvlv
+alias d=sioyek
 
 # Images
 
@@ -564,8 +563,8 @@ alias -s htm=$BROWSER
 alias -s html=$BROWSER
 alias -s php=$BROWSER
 
-alias -s pdf=zathura
-alias -s epub=zathura
+alias -s pdf=sioyek
+alias -s epub=sioyek
 
 alias -s xz=less
 alias -s gz=less

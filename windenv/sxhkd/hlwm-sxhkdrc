@@ -112,7 +112,7 @@ super + ctrl + a
 	run-favorites.zsh &> ~/log/run-favorites.zsh
 
 super + ctrl + equal
-	urxvt -name calc -e calc
+	kitty --single-instance --name calc calc
 
 super + ctrl + section
 	run-vifm.zsh
