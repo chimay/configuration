@@ -6,6 +6,7 @@ hi link		vimComment		Comment
 hi link		vimContinue		Comment
 hi link		vimOper			Normal
 
+hi Type				   	guifg=#872E30		guibg=NONE			gui=NONE
 hi vimBracket		   	guifg=#872E30		guibg=NONE			gui=NONE
 hi vimHiClear		   	guifg=#872E30		guibg=NONE			gui=NONE
 hi vimCmplxRepeat	   	guifg=#5B3C11		guibg=NONE			gui=NONE
@@ -56,8 +57,10 @@ hi vimTodo				guifg=#88421D		guibg=NONE			gui=NONE
 hi vimUserAttrb		   	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimUserCmd		   	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimUserCmdAttr	   	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi vimUserCmdAttrs	   	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimUserCmdAttrNargs 	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimUserCmdAttrCmplt 	guifg=#5B3C11		guibg=NONE			gui=NONE
+hi vimUserCmdAttrComplete 	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimUserAttrbCmplt   	guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimUserAttrbCmpltFunc guifg=#5B3C11		guibg=NONE			gui=NONE
 hi vimVar			   	guifg=#5B3C11		guibg=NONE			gui=NONE

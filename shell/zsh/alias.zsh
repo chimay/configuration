@@ -74,7 +74,7 @@ alias q='most -C'
 
 #alias vp=vimpager
 #alias vp='vimpager --no-passthrough --LINE-NUMBERS '
-alias vp='vim-lite.sh +"call library#pager()"'
+alias vp='neovim-lite.sh +"call library#pager()"'
 
 alias tt='multitail'
 alias taco='multitail -C -ts'
@@ -103,16 +103,6 @@ alias fntprev='fontpreview-ueberzug -f "#5b3c11" -b "#000000"'
 
 alias ed=run-ed
 
-# Vim {{{2
-
-alias vi=vim-lite.sh
-
-alias vid='vim-lite.sh -d'
-alias vimdiff='vim-lite.sh -d'
-
-alias vq=neovim-quickfix
-alias viq=vim-quickfix
-
 alias se=sudoedit
 
 #  Neovim {{{2
@@ -122,9 +112,20 @@ alias nv=nvim
 alias ns='run-neovim-server.sh &'
 alias nvc=run-neovim-client.sh
 
+alias vq=neovim-quickfix
+
 # -- neovim remote
 
-alias nr=nvr
+#alias nr=nvr
+
+# Vim {{{2
+
+alias vi=vim-lite.sh
+
+alias vid='vim-lite.sh -d'
+alias vimdiff='vim-lite.sh -d'
+
+alias viq=vim-quickfix
 
 # Vis {{{2
 
@@ -658,12 +659,12 @@ hash -d zdot=~/racine/dotdir/zsh
 
 # edit {{{2
 
+hash -d neovimconf=~/racine/config/edit/neovim
+hash -d neovimliteconf=~/racine/config/edit/neovim-lite
+
 hash -d vimconf=~/racine/config/edit/vim
 hash -d vimliteconf=~/racine/config/edit/vim-lite
 hash -d vimailconf=~/racine/config/edit/vim-mail
-
-hash -d neovimconf=~/racine/config/edit/neovim
-hash -d neovimliteconf=~/racine/config/edit/neovim-lite
 
 hash -d kakconf=~/racine/config/edit/kak
 
@@ -681,11 +682,11 @@ hash -d muttconf=~/racine/config/mail/neomutt
 hash -d pman=~/racine/plugin/manager
 hash -d pdata=~/racine/plugin/data
 
-hash -d vimpackager=~/racine/plugin/manager/vim/pack/packager
-hash -d vimlitepackager=~/racine/plugin/manager/vim-lite/pack/packager
+hash -d neovimpack=~/racine/local/share/neovim/site/pack
+hash -d neovimlitepack=~/racine/local/share/neovim-lite/site/pack
 
-hash -d neovimpackager=~/racine/local/share/neovim/site/pack/core
-hash -d neovimlitepackager=~/racine/local/share/neovim-lite/site/pack/core
+hash -d vimpack=~/racine/plugin/manager/vim/pack
+hash -d vimlitepack=~/racine/plugin/manager/vim-lite/pack
 
 hash -d elpaca=~/racine/plugin/manager/emacs/elpaca
 

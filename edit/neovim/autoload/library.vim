@@ -156,7 +156,7 @@ fun! library#manual ()
 endfun
 
 fun! library#manual_argv ()
-	" Open a manual tab from vim command arguments
+	" Open a manual from vim command arguments
 	let argv = argv()
 	let arguments = join(argv, ' ')
 	exe 'Man' arguments
@@ -256,6 +256,7 @@ fun! library#pager ()
 	nnoremap <buffer> h <cmd>map <buffer><cr>
 	nnoremap <buffer> D <cmd>bdelete<cr>
 	nnoremap <buffer> <cr> <cmd>silent! normal K<cr>
+	nnoremap <buffer> <nowait> g gg
 	nnoremap <buffer> b <c-b>
 	nnoremap <buffer> <nowait> <space> <c-f>
 	nnoremap <buffer> <nowait> d <c-d>
@@ -834,6 +835,20 @@ fun! library#search_and_multicursor ()
 	return v:true
 endfun
 
+fun! library#grep_and_multicursor ()
+	" Grep pattern, generate multiple cursor on each match
+	let search = input('Grep (multicursor) : ')
+	let glob = input('Files : ', '', 'file')
+	let pattern = '/\m' .. search .. '/'
+	let files = glob(glob, v:false, v:true)
+	let files = join(files)
+	let grep = 'vimgrep!'
+	execute 'silent!' grep pattern files
+	let multicursor = 'cdo normal! Q'
+    execute multicursor
+	return v:true
+endfun
+
 " -- global actions on buffer lines
 
 fun! library#global_yank (pattern, ...)
@@ -1122,8 +1137,13 @@ endfun
 
 " ---- client & server
 
-fun! library#print_current_server ()
-	lua print('current server name :', vim.v.servername)
+fun! library#current_server_socket ()
+	if ! has('nvim')
+		return v:false
+	endif
+	echo 'current server socket :' v:servername
+	"lua print('current server socket :', vim.v.servername)
+	return v:true
 endfun
 
 " ---- publish
@@ -1597,6 +1617,6 @@ endfun
 " ---- tests
 
 function! library#test_confirm() abort
-	"set cmdheight=3
+	set cmdheight=3
 	let x = confirm("AAA", "&Yes\n&No", 2)
 endfunction

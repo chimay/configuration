@@ -5,7 +5,7 @@
 " Pas nécessaire : ~/.config/nvim -> ~config/edit/neovim
 " Provoque des doublons avec ultisnips
 "
-"set runtimepath+=~/racine/config/edit/neovim-lite
+"set runtimepath+=~/racine/config/edit/neovim
 
 " avoid to read specific legacy vim conf
 set runtimepath-=/usr/share/vim/vimfiles
@@ -23,13 +23,37 @@ set runtimepath+=/usr/share/nvim-qt/runtime
 " filetype on
 " syntax on
 
+" shada file {{{1
+
+set shada=
+	\!,
+	\f1,
+	\h,
+	\<12,
+	\s12,
+	\'120,
+	\:10000,
+	\/10000,
+	\@10000,
+	\n~/racine/session/neovim-lite/main.shada
+
+"set shadafile=~/racine/session/neovim-lite/main.shada
+
+" Remplacé par wheel mru
+" 	\%30,
+
 " plugins needed before config {{{1
 
 packadd matchit
 
 " lua {{{1
 
+" some options, key bindings,
+" and declaration of plugins
+" for native plugin manager
+
 lua require('meta')
+
 " main {{{1
 
 source ~/racine/config/edit/neovim-lite/main.vim
@@ -49,6 +73,9 @@ elseif $OPERASYS == 'freebsd'
 endif
 
 " all remaining plugins {{{1
+
+" replaced by lua/plugin/native.lua
+"source ~/racine/config/edit/neovim-lite/paquet/packager.vim
 
 source ~/racine/config/edit/neovim-lite/paquet/preload.vim
 

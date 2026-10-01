@@ -101,7 +101,7 @@ let g:AutoPairsMapSpace = 0
 
 " Mappings {{{3
 
-let g:AutoPairsShortcutToggle = '<F11>('
+let g:AutoPairsShortcutToggle = '<F11>)'
 
 imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
@@ -455,8 +455,9 @@ nnoremap <m-ins>           <plug>(wheel-prompt-add-file)
 " altgr-r
 nmap ¶                    <plug>(wheel-prompt-read-session)
 
-nnoremap <silent> zz   <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
-inoremap <silent> zz   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
+nnoremap <silent> <c-l>   <cmd>call library#smart_ctrl_l()<cr><plug>(wheel-spiral-cursor)
+inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
+
 
 " § for headlines
 nmap <silent> °           <plug>(wheel-dedibuf-index-tree)
@@ -480,10 +481,8 @@ nmap <silent> <d-^>       <plug>(wheel-alternate-window)
 
 nmap <m-pagedown>         <plug>(wheel-next-location)
 nmap <m-pageup>           <plug>(wheel-previous-location)
-" interferes with organ
-"nmap <m-cr>               <plug>(wheel-prompt-location)
-nmap <c-cr>               <plug>(wheel-prompt-circle)
-nmap <s-cr>               <plug>(wheel-prompt-torus)
+" m-cr interferes with organ
+nmap <c-cr>               <plug>(wheel-prompt-location)
 
 nmap <m-x>                <plug>(wheel-prompt-index)
 " altgr-x

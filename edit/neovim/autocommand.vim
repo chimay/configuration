@@ -16,6 +16,7 @@ augroup source-file
 	autocmd BufWritePost ~/racine/config/edit/neovim/after/syntax/** source %
 	autocmd BufWritePost ~/racine/config/edit/neovim/autoload/** source %
 	autocmd BufWritePost ~/racine/public/wheel/autoload/**.vim source %
+	autocmd BufWritePost ~/racine/public/torustree/autoload/**.vim source %
 	autocmd BufWritePost ~/racine/public/organ/autoload/**.vim source %
 	autocmd BufWritePost ~/racine/config/edit/neovim/colors/ornuit.vim colorscheme ornuit
 augroup END
@@ -148,6 +149,7 @@ augroup man-pages
 	autocmd FileType man nnoremap <buffer> D <cmd>bdelete<cr>
 	autocmd FileType man nnoremap <buffer> q <cmd>call library#manual_quit()<cr>
 	autocmd FileType man nnoremap <buffer> <cr> <cmd>silent! normal K<cr>
+	autocmd FileType man nnoremap <buffer> <nowait> g gg
 	autocmd FileType man nnoremap <buffer> b <c-b>
 	autocmd FileType man nnoremap <buffer> <nowait> <space> <c-f>
 	autocmd FileType man nnoremap <buffer> <nowait> d <c-d>
@@ -197,6 +199,7 @@ augroup treesitter-stop
 	"autocmd FileType vim lua vim.treesitter.stop()
 	"autocmd FileType lua lua vim.treesitter.stop()
 	"autocmd FileType help lua vim.treesitter.stop()
+	"autocmd FileType python lua vim.treesitter.stop()
 	"autocmd FileType markdown lua vim.treesitter.stop()
 	"autocmd FileType org lua vim.treesitter.stop()
 augroup end

@@ -370,14 +370,16 @@ nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
 nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
-nnoremap <f11>v <cmd>call library#edit_myvimrc()<cr>
+nnoremap <f10>v <cmd>call library#edit_myvimrc()<cr>
+nnoremap <f10>n :new <bar> only<cr>
+nnoremap <f10>e <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <f10>r <cmd>call library#read_in_current_file_subtree()<cr>
+nnoremap <f10>g <cmd>call library#edit_attic()<cr>
+nnoremap <f10>x <cmd>call library#chmodexec()<cr>
 
-nnoremap <f11>n :new <bar> only<cr>
-nnoremap <f11>e <cmd>call library#edit_in_current_file_subtree()<cr>
-nnoremap <f11>r <cmd>call library#read_in_current_file_subtree()<cr>
-nnoremap <f11>g <cmd>call library#edit_attic()<cr>
-
-nnoremap <f11>x <cmd>call library#chmodexec()<cr>
+nnoremap <f10>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f10>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
+nnoremap <f10>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
 
 " Arguments {{{2
 
@@ -643,13 +645,7 @@ nnoremap <C-!> <cmd>call library#terminal()<cr>
 
 set termwinkey=<C-W>
 
-tnoremap <f10> <c-\><c-n>
-
-"  Shell {{{2
-
-nnoremap <f11>s <cmd>tabedit ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f11>S <cmd>write! >> ~/racine/snippet/hist/$OPERASYS.sh<cr>
-nnoremap <f11>h <cmd>tabedit ~/racine/hist/zsh/$HOST<cr>
+tnoremap <f11> <c-\><c-n>
 
 " Pavé numérique {{{2
 
@@ -665,6 +661,11 @@ nmap <k6> 6
 nmap <k7> 7
 nmap <k8> 8
 nmap <k9> 9
+
+" chiffrement {{{2
+
+nnoremap <leader>xx <cmd>call library#text_to_password()<cr>
+nnoremap <leader>xX <cmd>call library#password_to_text()<cr>
 
 "  Présentation {{{1
 
@@ -876,22 +877,6 @@ filetype indent on
 colo golden-night
 
 "  Historique {{{1
-
-set viminfo=
-	\!,
-	\f1,
-	\c,
-	\h,
-	\<12,
-	\s12,
-	\'60,
-	\:7543,
-	\/1234,
-	\@1234,
-	\n~/racine/session/vim-lite/main.info
-
-" Remplacé par neomru
-" 	\%30,
 
 " Nombre par défaut pour lignes de commande,
 " recherches, nombre de lignes d’entrée

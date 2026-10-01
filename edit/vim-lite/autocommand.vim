@@ -124,6 +124,7 @@ augroup man-pages
 	autocmd FileType man nnoremap <buffer> D <cmd>bdelete<cr>
 	autocmd FileType man nnoremap <buffer> q <cmd>call library#manual_quit()<cr>
 	autocmd FileType man nnoremap <buffer> <cr> <cmd>silent! normal K<cr>
+	autocmd FileType man nnoremap <buffer> <nowait> g gg
 	autocmd FileType man nnoremap <buffer> b <c-b>
 	autocmd FileType man nnoremap <buffer> <nowait> <space> <c-f>
 	autocmd FileType man nnoremap <buffer> <nowait> d <c-d>

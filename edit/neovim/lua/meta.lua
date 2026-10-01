@@ -8,3 +8,11 @@ require('config.keybinds')
 
 require('plugin.native')
 require('plugin.rocks')
+
+--do
+	--return
+--end
+
+-- lots of issues
+-- not recommended with other plugin managers
+--require('plugin.lazy')

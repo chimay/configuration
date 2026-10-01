@@ -305,7 +305,7 @@ export RLWRAP_HOME=~/racine/hist/rlwrap
 # Édition de la ligne de commande readline dans un éditeur externe,
 # activé par Ctrl-^ par défaut
 
-export RLWRAP_EDITOR='vim-lite.sh "+call cursor(%L,%C)" %F'
+export RLWRAP_EDITOR='neovim-lite.sh "+call cursor(%L,%C)" %F'
 
 export FZF_DEFAULT_OPTS='
 	-i
@@ -413,21 +413,21 @@ export LESS_TERMCAP_se=$'\e[0m'
 
 # Most {{{2
 
-export MOST_EDITOR=vim-lite.sh
+export MOST_EDITOR=neovim-lite.sh
 export MOST_SWITCHES='-s'
 
 #  Editeurs {{{1
 
 # un VRAI éditeur de texte ;)
 
-export VISUAL=vim-lite.sh
-export EDITOR=vim-lite.sh
+export VISUAL=neovim-lite.sh
+export EDITOR=neovim-lite.sh
 
-export DIFFPROG=vim-lite.sh
+export DIFFPROG=neovim-lite.sh
 
-export FCEDIT=vim-lite.sh
+export FCEDIT=neovim-lite.sh
 
-export SUDO_EDITOR=~/racine/shell/edit/vim-lite.sh
+export SUDO_EDITOR=~/racine/shell/edit/neovim-lite.sh
 
 # Pour nvr, neovim-remote
 
@@ -435,7 +435,7 @@ export SUDO_EDITOR=~/racine/shell/edit/vim-lite.sh
 
 # Pour edir
 
-export EDIR_EDITOR=vim-lite.sh
+export EDIR_EDITOR=neovim-lite.sh
 
 # Pour helm
 

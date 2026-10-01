@@ -107,6 +107,9 @@ if ! exists("g:wheel_loaded")
 
 	nnoremap <m-tab> :<c-u>Wheel<space>
 
+	" m-cr interferes with organ
+	nmap <c-cr>               <plug>(wheel-prompt-location)
+
 	nmap <silent> <c-l> <cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)
 	imap <silent> <c-l> <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
 endif
@@ -135,6 +138,7 @@ if ! exists("g:organ_loaded")
 		\ 'organ-parent',
 		\ 'organ-loose-child',
 		\ 'organ-strict-child',
+		\ 'organ-meta-return',
 		\ 'organ-tab',
 		\ 'organ-shift-tab',
 		\ 'organ-meta-left',

@@ -39,16 +39,20 @@ let g:no_plugin_maps = 1
 
 " rocks {{{2
 
-nnoremap <f11>rr :Rocks<space>
-nnoremap <f11>re <cmd>tabnew <bar> Rocks edit<cr>
-nnoremap <f11>ri :Rocks install<space>
-nnoremap <f11>rp :Rocks prune<space>
-nnoremap <f11>r= :Rocks pin<space>
-nnoremap <f11>ru <cmd>Rocks update<cr>
-nnoremap <f11>rs <cmd>Rocks sync<cr>
-nnoremap <f11>rl <cmd>Rocks log<cr>
+nnoremap <f12>rr :Rocks<space>
+nnoremap <f12>re <cmd>tabnew <bar> Rocks edit<cr>
+nnoremap <f12>ri :Rocks install<space>
+nnoremap <f12>rp :Rocks prune<space>
+nnoremap <f12>r= :Rocks pin<space>
+nnoremap <f12>ru <cmd>Rocks update<cr>
+nnoremap <f12>rs <cmd>Rocks sync<cr>
+nnoremap <f12>rl <cmd>Rocks log<cr>
 
 " Maps {{{1
+
+" which-key.nvim {{{2
+
+"nnoremap <nowait> <space> <cmd>WhichKey <space><cr>
 
 " Bouts de code (snippets, bits, modèles) {{{1
 
@@ -64,11 +68,11 @@ let g:miniSnip_extends = {
 
 " Commentaires {{{1
 
-"  NERDCommenter (scrooloose/nerdcommenter) {{{2
+" NERDCommenter (scrooloose/nerdcommenter) {{{2
 
 let NERDCreateDefaultMappings = 0
 
-map <d-;> <plug>NERDCommenterToggle
+map <d-c> <plug>NERDCommenterToggle
 
 "  TComment (tomtom/tcomment_vim) {{{2
 
@@ -77,8 +81,8 @@ let g:tcomment_mapleader1 = '<s-f11>t-'
 let g:tcomment_mapleader2 = '<s-f11>t_'
 let g:tcomment_opleader1 = 'gc'
 
-let g:tcomment_textobject_inlinecomment = '<s-f11>-i'
-let g:tcomment_mapleader_comment_anyway = '<s-f11>-ca'
+let g:tcomment_textobject_inlinecomment = '<s-f11>t-i'
+let g:tcomment_mapleader_comment_anyway = '<s-f11>t-ca'
 let g:tcomment_mapleader_uncomment_anyway = '<c-s-f12>-ua'
 
 let g:tcomment#blank_lines = 0
@@ -114,7 +118,7 @@ let g:AutoPairsMapSpace = 0
 
 " Mappings {{{3
 
-let g:AutoPairsShortcutToggle = '<f11>('
+let g:AutoPairsShortcutToggle = '<f11>)'
 
 imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
@@ -208,6 +212,16 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " Exploration de fichiers {{{1
 
+" nvim-tree {{{2
+
+nnoremap <m-f> <cmd>NvimTreeFindFileToggle<cr>
+
+nnoremap <f11>f <cmd>NvimTreeFindFileToggle<cr>
+nnoremap <f11>F <cmd>NvimTreeToggle<cr>
+
+"nnoremap <f11>f <cmd>execute 'NvimTreeFindFileToggle' getcwd()<cr>
+"nnoremap <f11>F <cmd>execute 'NvimTreeToggle''getcwd()<cr>
+
 " vifm {{{2
 
 let g:vifm_term = 'xterm -e'
@@ -218,7 +232,7 @@ let g:vifm_embed_cwd = 0
 let g:vifm_replace_netrw = 0
 let g:vifm_drop_gone_buffers = 0
 
-nnoremap <d-f> <cmd>tabnew <bar> tabprevious <bar> tab Vifm<cr>
+"nnoremap <...> <cmd>tabnew <bar> tabprevious <bar> tab Vifm<cr>
 
 " xplr {{{2
 
@@ -491,9 +505,7 @@ nmap <silent> <d-^>       <plug>(wheel-alternate-window)
 nmap <m-pagedown>         <plug>(wheel-next-location)
 nmap <m-pageup>           <plug>(wheel-previous-location)
 " m-cr interferes with organ
-nmap <m-µ>               <plug>(wheel-prompt-location)
-nmap <c-cr>               <plug>(wheel-prompt-circle)
-nmap <s-cr>               <plug>(wheel-prompt-torus)
+nmap <c-cr>               <plug>(wheel-prompt-location)
 
 nmap <m-x>                <plug>(wheel-prompt-index)
 " altgr-x
@@ -510,6 +522,8 @@ nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
 "nmap <silent> <m-backspace>  <plug>(wheel-mandala-delete)
 
 " fzf lua {{{2
+
+nnoremap <d-f> <cmd>FzfLua files<cr>
 
 nnoremap <c-space><c-space> <cmd>FzfLua<cr>
 nnoremap <c-space>f <cmd>FzfLua files<cr>

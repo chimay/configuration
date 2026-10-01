@@ -1,0 +1,189 @@
+# vim: set filetype=conf :
+
+# Commentaires : # ou ; en début de ligne
+
+# core {{{1
+
+[core]
+
+pager = less --quit-if-one-screen
+#pager = "diff-so-fancy | less --tabs=4 -RFX"
+
+# does not work, would surely need shwordsplit option in zsh
+#editor = 'vim -u ~/racine/config/edit/vim-lite/vimrc'
+editor = vim-lite.sh
+
+attributesfile = ~/racine/config/version/gitattributes
+
+#excludesfile = ~/racine/common/target/gitignore
+
+autocrlf = input
+
+whitespace = blank-at-eol,blank-at-eof
+
+autocorrect = 1
+
+# user {{{1
+
+[user]
+
+name = chimay
+
+email = remi.dore@protonmail.com
+
+#signingkey = 9307AC23
+
+# alias {{{1
+
+[alias]
+
+i    = commit
+o    = checkout
+ci   = commit
+co   = checkout
+li   = commit
+lo   = checkout
+lci  = commit
+lco  = checkout
+ri   = push
+ro   = pull
+rci  = push
+rco  = pull
+
+a    = add
+b    = branch
+c    = clone
+d    = diff
+dt   = difftool
+dc   = diff --cached
+ds   = diff --stat
+f    = fetch
+h    = help
+ii   = init
+l    = log --stat --decorate --abbrev-commit --relative-date --all --graph
+ll   = log --oneline
+ls   = ls-files
+m    = merge
+mt   = mergetool
+mf   = merge-file
+p    = pull
+r    = remote
+s    = status
+#s    = status -s
+t    = tag
+sw   = show
+z    = gc
+
+last = log -1 HEAD
+
+stage = add
+unstage = reset HEAD --
+
+apply-patch       = apply
+apply-mail        = am
+
+tree = ! tree . | less
+
+# pager {{{1
+
+[pager]
+
+status = false
+
+log = true
+diff = true
+
+show-branch = false
+
+reflog = false
+
+# commit {{{1
+
+[commit]
+
+template=~/racine/config/version/gitmessage
+
+# diff {{{1
+
+[diff]
+
+tool = vimdiff
+
+[diff "image"]
+
+command = exiv2 pr
+
+[diff "word"]
+
+command = antiword
+
+[diff "zip"]
+
+textconv = unzip -c -a
+
+# merge {{{1
+
+[merge]
+
+#tool=vimdiff
+# custom command not available
+tool = 'vim-lite.sh -d'
+
+#conflictstyle=diff3
+
+# mergetool {{{1
+
+[mergetool]
+
+prompt=false
+
+# rerere {{{1
+
+[rerere]
+
+enabled=true
+
+# repack {{{1
+
+[repack]
+
+usedeltabaseoffset = true
+
+# credential {{{1
+
+[credential]
+
+helper = cache --timeout=3600
+
+# format {{{1
+
+[format]
+
+numbered = auto
+
+# color {{{1
+
+[color]
+
+ui = auto
+interactive = auto
+
+# tar {{{1
+
+[tar]
+
+[tar "tar.xz"]
+
+command = xz -c
+
+# push {{{1
+
+[push]
+#default = current
+default = simple
+
+# github {{{1
+
+[github]
+
+user = chimay

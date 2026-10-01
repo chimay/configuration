@@ -12,8 +12,8 @@ augroup filetype-packages
 	autocmd BufReadPre **.tex packadd vim-latex
 augroup END
 
-" augroup torustree
-" 	autocmd!
+augroup torustree
+	autocmd!
 " 	autocmd VimEnter * call torustree#void#init()
 " 	autocmd VimLeave * call torustree#void#exit()
 " 	autocmd User TorustreeBeforeJump call torustree#vortex#update()
@@ -30,7 +30,7 @@ augroup END
 " 	autocmd TextYankPost * call torustree#codex#add()
 " 	" overwrite generic <cr> mapping
 " 	"autocmd filetype torustree nnoremap <buffer> <cr> <cr>
-" augroup END
+augroup END
 
 augroup wheel
 	autocmd!
@@ -77,4 +77,9 @@ augroup autopairs
 	autocmd filetype vim let b:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', "'":"'", '`':'`' }
 	autocmd filetype lisp let b:AutoPairs = { '(':')', '[':']', '{':'}', '<':'>', '"':'"', '`':'`' }
 	autocmd filetype lilypond let b:AutoPairs = { '[':']', '{':'}', '<':'>', '"':'"', '`':'`' }
+augroup END
+
+augroup vim-markdown-toc
+	autocmd!
+	autocmd BufWritePost *.md UpdateToc
 augroup END

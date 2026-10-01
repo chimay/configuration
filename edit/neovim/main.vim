@@ -417,6 +417,7 @@ set wildoptions=pum,tagfile
 " 					complete till longest common string.
 
 "set wildmode=longest,full
+
 set wildmode=full
 
 " text formatting {{{1
@@ -656,7 +657,7 @@ set ttimeoutlen=50
 " causent des problèmes avec l’indentation <<
 
 let g:mapleader="\\"
-let g:maplocalleader="-"
+let g:maplocalleader="_"
 
 " let mapleader="\<d-,>"
 " let maplocalleader="\<d-,>"
@@ -696,7 +697,7 @@ nnoremap gm <cmd>call library#manual()<cr>
 nnoremap ZW <cmd>quit<cr>
 
 nnoremap ZD <cmd>detach<cr>
-nnoremap ZS <cmd>call library#print_current_server()<cr>
+nnoremap ZS <cmd>call library#current_server_socket()<cr>
 
 nnoremap ZZ <cmd>qall<cr>
 nnoremap ZQ <cmd>qall!<cr>
@@ -747,12 +748,11 @@ nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
 nnoremap <f10>v <cmd>call library#edit_myvimrc()<cr>
-
 nnoremap <f10>R <cmd>call library#toggle_readonly()<cr>
-
 nnoremap <f10>n <cmd>new <bar> only<cr>
 nnoremap <f10>e <cmd>call library#edit_in_current_file_subtree()<cr>
 nnoremap <f10>r <cmd>call library#read_in_current_file_subtree()<cr>
+nnoremap <f10>x <cmd>call library#chmodexec()<cr>
 
 nnoremap <f10>g <cmd>call library#edit_attic()<cr>
 nnoremap <f10>c <cmd>call library#edit_cronos()<cr>
@@ -762,8 +762,6 @@ nnoremap <f10>l <cmd>call library#edit_ship_log()<cr>
 nnoremap <f10>s <cmd>call library#edit_syntax_plugin()<cr>
 nnoremap <f10>t <cmd>call library#edit_tasks()<cr>
 nnoremap <f10>m <cmd>call library#edit_minisnip_file()<cr>
-
-nnoremap <f10>x <cmd>call library#chmodexec()<cr>
 
 " org mode
 nnoremap <f6>h <cmd>call library#orgmode_make_html()<cr>
@@ -785,20 +783,21 @@ nnoremap <f8>O <cmd>call library#lilypond_gen_ogg()<cr>
 
 " buffers (tampons) {{{2
 
-" wipe buffer
-nnoremap <m-w> <cmd>bwipe!<cr>
-" wipe alternate buffer
-nnoremap <d-w> <cmd>bwipe! #<cr>
-" wipe all buffers
-nnoremap <m-s-w> <cmd>%bwipe<cr>
-
 nnoremap <leader>bb :buffer<space>
 nnoremap <leader>bp <cmd>bprevious<cr>
 nnoremap <leader>bn <cmd>bnext<cr>
 nnoremap <leader>b^ <cmd>bfirst<cr>
 nnoremap <leader>b$ <cmd>blast<cr>
 nnoremap <leader>bd <cmd>bdelete<cr>
+nnoremap <leader>bD <cmd>bwipe!<cr>
 nnoremap <leader>bw <cmd>call library#write_all()<cr>
+
+" wipe buffer
+nnoremap <m-w> <cmd>bwipe!<cr>
+" wipe alternate buffer
+nnoremap <d-w> <cmd>bwipe! #<cr>
+" wipe all buffers
+nnoremap <m-s-w> <cmd>%bwipe<cr>
 
 " file arguments {{{2
 
@@ -827,7 +826,7 @@ nnoremap <leader>w- <cmd>wincmd _<cr>
 nnoremap <leader>wp <cmd>library#win2prev_tab()<cr>
 nnoremap <leader>wn <cmd>library#win2next_tab()<cr>
 
-"  tabs, tabpages (onglets) {{{2
+" tabs, tabpages (onglets) {{{2
 
 nnoremap <c-pageup> gT
 nnoremap <c-pagedown> gt
@@ -911,12 +910,13 @@ nnoremap J mzJ`z
 
 nnoremap ' `
 
-"  Recherche & Remplacement {{{2
+" Recherche & Remplacement {{{2
 
 " next word like this with another cursor
-nnoremap # Q*
+"nnoremap # Q*
 
 nnoremap <m-r> :%s///g<left><left><left>
+vnoremap <m-r> :s///g<left><left><left>
 
 nnoremap <leader>sw <cmd>call library#search_word()<cr>
 nnoremap <leader>sr <cmd>call library#search_and_replace_word()<cr>
@@ -944,8 +944,8 @@ nnoremap <leader>lf <cmd>lnfile<cr>
 " Plus besoin avec xcape
 "nnoremap ’ /
 
-nnoremap <f9>, <cmd>call library#search_word()<cr>
-nnoremap <f9>; <cmd>call library#search_and_replace_word()<cr>
+nnoremap <f9>s <cmd>call library#search_word()<cr>
+nnoremap <f9>r <cmd>call library#search_and_replace_word()<cr>
 
 "  Copier / Coller {{{2
 
@@ -1084,17 +1084,6 @@ nnoremap <m-:> <cmd>execute getline(".")<CR>
 
 nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
 
-"  Orthographe {{{2
-
-"  Informations {{{2
-
-nnoremap <f9>h <cmd>echo library#highlight_group()<cr>
-" for treesitter
-nnoremap <f9>i <cmd>Inspect<cr>
-nnoremap <f9>t <cmd>InspectTree<cr>
-
-" Journal de bord {{{2
-
 " Pavé numérique {{{2
 
 " used for :wa
@@ -1130,6 +1119,11 @@ nnoremap <leader>d: :set cmdheight=
 nnoremap <leader>dh <cmd>echomsg library#highlight_group()<cr>
 nnoremap <leader>di <cmd>Inspect<cr>
 nnoremap <leader>dt <cmd>InspectTree<cr>
+
+nnoremap <f9>h <cmd>echo library#highlight_group()<cr>
+" for treesitter
+nnoremap <f9>i <cmd>Inspect<cr>
+nnoremap <f9>t <cmd>InspectTree<cr>
 
 " Numérotation des lignes {{{3
 
@@ -1169,7 +1163,8 @@ nnoremap <leader>!s <cmd>%! sort<cr>
 
 " plugins manager {{{2
 
-" ---- without the !, it needs :write to confirm
+" ---- without the !, you have to :write the plugin special buffer
+" ---- to confirm
 nnoremap <leader>pu <cmd>packupdate<cr>
 nnoremap <leader>pa :packadd<space>
 nnoremap <leader>pd :packdel!<space>

@@ -60,12 +60,12 @@ map <d-;> <plug>NERDCommenterToggle
 "  TComment (tomtom/tcomment_vim) {{{2
 
 let g:tcomment_maps = 1
-let g:tcomment_mapleader1 = '<c-s-f12>-'
-let g:tcomment_mapleader2 = '<c-s-f12>_'
+let g:tcomment_mapleader1 = '<s-f11>t-'
+let g:tcomment_mapleader2 = '<s-f11>t_'
 let g:tcomment_opleader1 = 'gc'
 
-let g:tcomment_textobject_inlinecomment = '<c-s-f12>-i'
-let g:tcomment_mapleader_comment_anyway = '<c-s-f12>-ca'
+let g:tcomment_textobject_inlinecomment = '<s-f11>t-i'
+let g:tcomment_mapleader_comment_anyway = '<s-f11>t-ca'
 let g:tcomment_mapleader_uncomment_anyway = '<c-s-f12>-ua'
 
 let g:tcomment#blank_lines = 0
@@ -101,7 +101,7 @@ let g:AutoPairsMapSpace = 0
 
 " Mappings {{{3
 
-let g:AutoPairsShortcutToggle = '<F6>('
+let g:AutoPairsShortcutToggle = '<F11>)'
 
 imap <s-space>  <C-R>=AutoPairsSpace()<CR>
 
@@ -471,6 +471,7 @@ if ! exists("g:organ_loaded")
 		\ 'organ-parent',
 		\ 'organ-loose-child',
 		\ 'organ-strict-child',
+		\ 'organ-meta-return',
 		\ 'organ-tab',
 		\ 'organ-shift-tab',
 		\ 'organ-meta-left',

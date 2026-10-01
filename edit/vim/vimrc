@@ -3,7 +3,7 @@
 " paths {{{1
 
 " avoid to read specific legacy vim conf
-set runtimepath-=/usr/share/vim/vimfiles
+" set runtimepath-=/usr/share/vim/vimfiles
 
 " load vim-qt files
 
@@ -17,6 +17,25 @@ set runtimepath+=/usr/share/nvim-qt/runtime
 " set runtimepath+=/usr/share/vim/vimfiles
 " filetype on
 " syntax on
+
+" viminfo {{{2
+
+set viminfo=
+	\!,
+	\f1,
+	\h,
+	\<12,
+	\s12,
+	\'120,
+	\:10000,
+	\/10000,
+	\@10000,
+	\n~/racine/session/vim/main.viminfo
+
+"set viminfofile=~/racine/session/vim/main.viminfo
+
+" Remplacé par wheel mru
+" 	\%30,
 
 " plugins needed before config {{{1
 
@@ -59,6 +78,3 @@ source ~/racine/config/edit/vim/paquet/postload.vim
 
 source ~/racine/config/edit/vim/paquet/autocmd-plugin.vim
 
-" lua {{{1
-
-lua require('meta')

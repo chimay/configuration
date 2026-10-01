@@ -45,7 +45,6 @@ pager () {
 	$=less "$@"
 }
 
-
 # run-ed {{{2
 
 run-ed () {
@@ -61,13 +60,13 @@ run-ed () {
 	eval $runme
 }
 
-# vim-lite {{{2
+# neovim-lite {{{2
 
-vim-lite () {
+neovim-lite () {
 	vim \
-		-u ~/racine/config/edit/vim-lite/vimrc \
-		--cmd 'let &runtimepath = substitute(&runtimepath, $HOME."/\.config/vim", "$HOME/.config/vim-lite", "g")' \
-		--cmd 'let &packpath = substitute(&packpath, $HOME."/\.config/vim", "$HOME/.config/vim-lite", "g")' \
+		-u ~/racine/config/edit/neovim-lite/vimrc \
+		--cmd 'let &runtimepath = substitute(&runtimepath, $HOME."/\.config/vim", "$HOME/.config/neovim-lite", "g")' \
+		--cmd 'let &packpath = substitute(&packpath, $HOME."/\.config/vim", "$HOME/.config/neovim-lite", "g")' \
 		"$@"
 }
 
@@ -554,28 +553,6 @@ search-in-irc () {
 	{ print -l $=files ; echo ; cat $=files } | less
 }
 
-# vim-quickfix {{{2
-
-vim-quickfix () {
-	if command -v rg &> /dev/null
-	then
-		echo Using ripgrep
-		vim-lite.sh +copen -q <(rg --vimgrep --smart-case "$@")
-	elif command -v ag &> /dev/null
-	then
-		echo Using silver searcher
-		vim-lite.sh +copen -q <(ag --nocolor --vimgrep --smart-case "$@")
-	elif command -v ack &> /dev/null
-	then
-		echo Using ack
-		vim-lite.sh +copen -q <(ack --nocolor --nogroup --column --smart-case "$@")
-	elif command -v grep &> /dev/null
-	then
-		echo Using grep
-		vim-lite.sh +copen -q <(grep --line-number --ignore-case --no-messages "$@")
-	fi
-}
-
 # neovim-quickfix {{{2
 
 neovim-quickfix () {
@@ -595,6 +572,28 @@ neovim-quickfix () {
 	then
 		echo Using grep
 		neovim-lite.sh +copen -q <(grep --line-number --ignore-case --no-messages "$@")
+	fi
+}
+
+# vim-quickfix {{{2
+
+vim-quickfix () {
+	if command -v rg &> /dev/null
+	then
+		echo Using ripgrep
+		vim-lite.sh +copen -q <(rg --vimgrep --smart-case "$@")
+	elif command -v ag &> /dev/null
+	then
+		echo Using silver searcher
+		vim-lite.sh +copen -q <(ag --nocolor --vimgrep --smart-case "$@")
+	elif command -v ack &> /dev/null
+	then
+		echo Using ack
+		vim-lite.sh +copen -q <(ack --nocolor --nogroup --column --smart-case "$@")
+	elif command -v grep &> /dev/null
+	then
+		echo Using grep
+		vim-lite.sh +copen -q <(grep --line-number --ignore-case --no-messages "$@")
 	fi
 }
 

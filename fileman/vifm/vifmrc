@@ -72,7 +72,11 @@ set fastrun
 
 " Tri
 
-set sort=+dir,+ext,+name,-mtime
+"set sort=+dir,+ext,+name,-mtime
+
+set sort=+dir,-mtime,+name,+ext
+
+set sortorder=descending
 
 " Natural sort of (version) numbers within text.
 

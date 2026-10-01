@@ -11,13 +11,10 @@ fun! PackagerInit ()
 	let always = { 'type': 'start' }
 	let optional = { 'type': 'opt' }
 	" ---- self
-	call packager#add('kristijanhusak/vim-packager', { 'type': 'opt' })
-	" ---- local
-	" adds a symlink ~/racine/public/wheel/wheel -> ~/racine/public/wheel, why ?
-	"call packager#local('~/racine/public/wheel', always)
-	"call packager#local('~/racine/public/organ', always)
-	"call packager#local('~/racine/public/vimscript-tricks', always)
+	call packager#add('kristijanhusak/vim-packager', optional)
 	" ---- auto loaded plugins
+	call packager#add('drmikehenry/vim-fixkey', always)
+	call packager#add('jamessan/vim-gnupg', always)
 	call packager#add('justinmk/vim-sneak', always)
 	call packager#add('jiangmiao/auto-pairs', always)
 	call packager#add('Jorengarenar/miniSnip', always)
