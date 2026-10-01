@@ -677,7 +677,7 @@ fun! library#grep ()
 	let word = input('Grep : ')
 	let pattern = '/\m' .. word .. '/'
 	let files = input('File pattern : ')
-	execute 'vimgrep' pattern files
+	execute 'silent! vimgrep' pattern files
 	let @/ = pattern
 	copen
 	return v:true
@@ -692,7 +692,7 @@ fun! library#grep_in_current_file_dir ()
 	let word = input('Grep : ')
 	let pattern = '/\m' .. word .. '/'
 	let files = input('File pattern : ')
-	execute 'vimgrep' pattern files
+	execute 'silent! vimgrep' pattern files
 	let @/ = pattern
 	copen
 	execute 'lcd' old_dir
@@ -704,7 +704,7 @@ fun! library#grep_word ()
 	let word = input('Grep word : ')
 	let pattern = '/\m\<' .. word .. '\>/'
 	let files = input('File pattern : ')
-	execute 'vimgrep' pattern files
+	execute 'silent! vimgrep' pattern files
 	let @/ = pattern
 	copen
 	return v:true
@@ -719,7 +719,7 @@ fun! library#grep_word_in_current_file_dir ()
 	let word = input('Grep word : ')
 	let pattern = '/\m\<' .. word .. '\>/'
 	let files = input('File pattern : ')
-	execute 'vimgrep' pattern files
+	execute 'silent! vimgrep' pattern files
 	let @/ = pattern
 	copen
 	execute 'lcd' old_dir
@@ -778,7 +778,7 @@ fun! library#grepped_files_replace_word ()
 		echomsg 'neither quickfix nor location list'
 		return v:false
 	endif
-	let before = input('Replace : ')
+	let before = input('Replace word : ')
 	let before = '\<' .. before .. '\>'
 	let after = input('Replace by : ')
 	" ---- check if after is in buffer
@@ -838,14 +838,13 @@ endfun
 fun! library#grep_and_multicursor ()
 	" Grep pattern, generate multiple cursor on each match
 	let search = input('Grep (multicursor) : ')
-	let glob = input('Files : ', '', 'file')
+	let glob = input('Files : ')
 	let pattern = '/\m' .. search .. '/'
 	let files = glob(glob, v:false, v:true)
 	let files = join(files)
-	let grep = 'vimgrep!'
-	execute 'silent!' grep pattern files
-	let multicursor = 'cdo normal! Q'
-    execute multicursor
+	execute 'silent! vimgrep' pattern files
+	cdo normal! Q
+	cfdo normal! q=
 	return v:true
 endfun
 

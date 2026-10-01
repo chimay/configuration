@@ -926,6 +926,7 @@ nnoremap <leader>gg <cmd>call library#grep_in_current_file_dir()<cr>
 nnoremap <leader>gG <cmd>call library#grep()<cr>
 nnoremap <leader>gw <cmd>call library#grep_word_in_current_file_dir()<cr>
 nnoremap <leader>gW <cmd>call library#grep_word()<cr>
+nnoremap <leader>gm <cmd>call library#grep_and_multicursor()<cr>
 
 nnoremap <leader>qo <cmd>copen<cr>
 nnoremap <leader>qc <cmd>cclose<cr>
@@ -1024,9 +1025,12 @@ inoremap <expr> <s-tab> library#smart_shift_tab()
 inoremap <c-tab> <c-x><c-o>
 
 " ---- default is ok
+"
+"inoremap <expr> <up> library#smart_up()
+"inoremap <expr> <down> library#smart_down()
 
-" inoremap <expr> <up> library#smart_up()
-" inoremap <expr> <down> library#smart_down()
+cnoremap <m-p> <up>
+cnoremap <m-n> <down>
 
 cnoremap <expr> <up> library#smart_up()
 cnoremap <expr> <down> library#smart_down()
