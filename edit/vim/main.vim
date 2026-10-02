@@ -924,7 +924,19 @@ command! -nargs=1 GlobalDelete :call library#global_delete(<q-args>, 'a')<cr>
 nnoremap <leader>=y :GlobalYank<space>
 nnoremap <leader>=d :GlobalDelete<space>
 
-" chiffrement {{{3
+" completion {{{2
+
+inoremap <expr> <tab> library#smart_tab()
+inoremap <expr> <s-tab> library#smart_shift_tab()
+inoremap <c-tab> <c-x><c-o>
+
+inoremap <expr> <PageUp> library#smart_up(7)
+inoremap <expr> <PageDown> library#smart_down(7)
+
+cnoremap <expr> <PageUp> library#smart_up(7)
+cnoremap <expr> <PageDown> library#smart_down(7)
+
+" chiffrement {{{2
 
 nnoremap <leader>xx <cmd>call library#text_to_password()<cr>
 nnoremap <leader>xX <cmd>call library#password_to_text()<cr>

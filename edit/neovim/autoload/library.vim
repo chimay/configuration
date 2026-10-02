@@ -551,28 +551,41 @@ fun! library#smart_shift_tab ()
 	endif
 endfun
 
-fun! library#smart_up ()
+fun! library#smart_up (repeat = 1)
 	" Up with contextual behaviour in insert mode
 	" For :map-expression
 	" If popup menu (pum) is visible, return <c-p> to go to previous entry
 	" Else, return <up>
+	let repeat = a:repeat
 	if pumvisible() > 0
-		return "\<c-p>"
+		let char = "\<c-p>"
 	else
-		return "\<up>"
+		let char = "\<up>"
 	endif
+	let string = ''
+	for num in range(repeat)
+		let string ..= char
+	endfor
+	return string
 endfun
 
-fun! library#smart_down ()
+fun! library#smart_down (repeat = 1)
 	" Up with contextual behaviour in insert mode
 	" For :map-expression
 	" If popup menu (pum) is visible, return <c-n> to go to next entry
 	" Else, return <down>
+	let repeat = a:repeat
 	if pumvisible() > 0
-		return "\<c-n>"
+		let char = "\<c-n>"
 	else
-		return "\<down>"
+		let char = "\<down>"
 	endif
+	let string = ''
+	ls
+	for num in range(repeat)
+		let string ..= char
+	endfor
+	return string
 endfun
 
 fun! library#smart_ctrl_l ()

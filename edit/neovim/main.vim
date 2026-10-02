@@ -1017,9 +1017,6 @@ inoremap <d-d> <c-r>=strftime("%a %d %b %Y")<cr>
 
 "  Complétion {{{2
 
-inoremap <PageUp> <C-P>
-inoremap <PageDown> <C-N>
-
 inoremap <expr> <tab> library#smart_tab()
 inoremap <expr> <s-tab> library#smart_shift_tab()
 inoremap <c-tab> <c-x><c-o>
@@ -1029,14 +1026,17 @@ inoremap <c-tab> <c-x><c-o>
 "inoremap <expr> <up> library#smart_up()
 "inoremap <expr> <down> library#smart_down()
 
+inoremap <expr> <PageUp> library#smart_up(7)
+inoremap <expr> <PageDown> library#smart_down(7)
+
 cnoremap <m-p> <up>
 cnoremap <m-n> <down>
 
 cnoremap <expr> <up> library#smart_up()
 cnoremap <expr> <down> library#smart_down()
 
-cnoremap <PageUp> <C-P>
-cnoremap <PageDown> <C-N>
+cnoremap <expr> <PageUp> library#smart_up(7)
+cnoremap <expr> <PageDown> library#smart_down(7)
 
 " insère tous
 cnoremap <C-X><C-A> <C-A>
