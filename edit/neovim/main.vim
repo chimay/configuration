@@ -1026,6 +1026,8 @@ inoremap <c-tab> <c-x><c-o>
 "inoremap <expr> <up> library#smart_up()
 "inoremap <expr> <down> library#smart_down()
 
+cnoremap <expr> <s-tab> library#smart_shift_tab()
+
 inoremap <expr> <PageUp> library#smart_up(7)
 inoremap <expr> <PageDown> library#smart_down(7)
 

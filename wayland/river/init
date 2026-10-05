@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+waybar &
+
+riverctl map normal Super Return spawn 'kitty'
+riverctl map normal Super R spawn 'fuzzel'

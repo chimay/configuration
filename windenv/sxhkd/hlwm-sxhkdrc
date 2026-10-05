@@ -109,7 +109,7 @@ hyper + shift + b
 # applications {{{1
 
 super + ctrl + a
-	run-favorites.zsh &> ~/log/run-favorites.zsh
+	hlwm-run-favorites.zsh &> ~/log/run-favorites.zsh
 
 super + ctrl + equal
 	kitty --single-instance --name calc calc

@@ -1,0 +1,255 @@
+default partial alphanumeric_keys modifier_keys
+
+xkb_symbols "basic" {
+
+    // Base layout
+    include "be(basic)"
+
+    name[Group1] = "Belgian (meta super hyper = super_r custom)";
+
+
+    // ------------------------------------------------------------
+    // Modifiers
+    // ------------------------------------------------------------
+
+    // These are the equivalents of:
+    //
+    // clear shift
+    // clear control
+    // clear lock
+    // clear mod1 ... mod5
+    //
+    // followed by the add commands in the Xmodmap file.
+
+    replace modifier_map Shift   { <LFSH>, <RTSH> };
+    replace modifier_map Control { <LCTL>, <RCTL> };
+    replace modifier_map Lock    { <CAPS> };
+    replace modifier_map Mod1    { <LALT> };
+    replace modifier_map Mod2    { <NMLK> };
+    replace modifier_map Mod3    { <RWIN> };
+    replace modifier_map Mod4    { <LWIN> };
+    replace modifier_map Mod5    { <RALT> };
+
+
+    // ------------------------------------------------------------
+    // Modifier keys
+    // ------------------------------------------------------------
+
+    // keycode 9 = Caps_Lock
+    //
+    // The original has:
+    //     Escape braceright Escape
+    //
+    // The third entry is the Mode_switch level. Since your actual
+    // modifier setup has no Mode_switch key, the effective useful
+    // levels are Escape / Shift+braceright.
+    replace key <CAPS> {
+        [ Escape, braceright ]
+    };
+
+    // Remove the inherited Lock modifier from Caps.
+    modifier_map None { <CAPS> };
+
+
+    // keycode 66 = Escape braceright Escape
+    // (handled above)
+
+
+    // keycode 50
+    replace key <LFSH> {
+        [ Shift_L ]
+    };
+
+    // keycode 62
+    replace key <RTSH> {
+        [ Shift_R ]
+    };
+
+
+    // keycode 37
+    replace key <LCTL> {
+        [ Control_L ]
+    };
+
+    // keycode 105
+    replace key <RCTL> {
+        [ Control_R ]
+    };
+
+
+    // keycode 64
+    replace key <LALT> {
+        [ Alt_L, Meta_L ]
+    };
+
+
+    // keycode 133
+    replace key <LWIN> {
+        [ Super_L ]
+    };
+
+    // keycode 135
+    replace key <RWIN> {
+        [ Hyper_R ]
+    };
+
+
+    // keycode 108
+    //
+    // This is the XKB equivalent of:
+    //     keycode 108 = ISO_Level3_Shift ...
+    //
+    // TWO_LEVEL is intentional: pressing RAlt itself must produce
+    // the modifier keysym, rather than trying to use it as a
+    // normal four-level key.
+    replace key <RALT> {
+        type[Group1] = "ONE_LEVEL",
+        [ ISO_Level3_Shift ]
+    };
+
+
+    // ------------------------------------------------------------
+    // Scroll Lock
+    // ------------------------------------------------------------
+
+    // keycode 78 =
+    //     rightsinglequotemark at percent bracketright
+    //
+    // The Xmodmap 3rd/4th columns correspond to Mode_switch,
+    // whereas the desired AltGr values are the 5th/6th columns.
+    // In XKB we therefore put the AltGr values directly into
+    // levels 3/4 of a FOUR_LEVEL key.
+    replace key <SCLK> {
+        type[Group1] = "FOUR_LEVEL",
+        [ rightsinglequotemark,
+          at,
+          percent,
+          bracketright ]
+    };
+
+
+    // ------------------------------------------------------------
+    // Compose
+    // ------------------------------------------------------------
+
+    // keycode 107 =
+    //     Multi_key Sys_Req Multi_key Sys_Req
+    replace key <PRSC> {
+        [ Multi_key, Sys_Req, Multi_key, Sys_Req ]
+    };
+
+
+    // ------------------------------------------------------------
+    // Numbers
+    // ------------------------------------------------------------
+
+    // keycode 13 = AE04
+    //
+    // Xmodmap:
+    //
+    //   apostrophe  4  apostrophe  4
+    //   rightsinglequotemark dollar onequarter
+    //
+    // Effective:
+    //
+    //   normal       apostrophe
+    //   Shift        4
+    //   AltGr        rightsinglequotemark
+    //   Shift+AltGr  dollar
+    //
+    // The 7th/8th entries of the original Xmodmap are not used by
+    // normal X servers.
+    replace key <AE04> {
+        type[Group1] = "FOUR_LEVEL",
+        [ apostrophe,
+          4,
+          rightsinglequotemark,
+          dollar ]
+    };
+
+
+    // keycode 15 = AE06
+    replace key <AE06> {
+        type[Group1] = "FOUR_LEVEL",
+        [ section,
+          6,
+          dead_circumflex,
+          fiveeighths ]
+    };
+
+
+    // keycode 21 = AE12
+    replace key <AE12> {
+        type[Group1] = "FOUR_LEVEL",
+        [ minus,
+          underscore,
+          parenright,
+          dead_ogonek ]
+    };
+
+
+    // ------------------------------------------------------------
+    // Letters
+    // ------------------------------------------------------------
+
+    // keycode 54 = AB03
+    //
+    // c C c C Multi_key copyright cent
+    //
+    // Effective AltGr levels:
+    //     AltGr       Multi_key
+    //     Shift+AltGr copyright
+    replace key <AB03> {
+        type[Group1] = "FOUR_LEVEL",
+        [ c,
+          C,
+          Multi_key,
+          copyright ]
+    };
+
+
+    // ------------------------------------------------------------
+    // Right of letters
+    // ------------------------------------------------------------
+
+    // keycode 34 = AD11
+    //
+    // asciicircum dead_diaeresis
+    // asciicircum dead_diaeresis
+    // bracketleft dead_abovering ...
+    replace key <AD11> {
+        type[Group1] = "FOUR_LEVEL",
+        [ asciicircum,
+          dead_diaeresis,
+          bracketleft,
+          dead_abovering ]
+    };
+
+
+    // keycode 61 = AB10
+    //
+    // equal plus equal plus
+    // asciitilde dead_abovedot ...
+    replace key <AB10> {
+        type[Group1] = "FOUR_LEVEL",
+        [ equal,
+          plus,
+          asciitilde,
+          dead_abovedot ]
+    };
+
+
+    // ------------------------------------------------------------
+    // Numeric keypad
+    // ------------------------------------------------------------
+
+    // keycode 86 = KPPLUS
+    //
+    // The first six Xmodmap levels are all "plus".
+    // XF86Next_VMode is in level 7 and is therefore intentionally
+    // omitted: it is not part of the normal Xmodmap modifier
+    // selection scheme.
+    replace key <KPAD> {
+        [ plus ]
+    };
+};
