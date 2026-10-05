@@ -331,6 +331,8 @@ compdef '_files -g "*.tex"' latex
 compdef '_files -g "*.ly"' lilypond
 compdef '_files -g "*.midi"' timidity fluidsynth timidity-segment.sh fluid-player.sh midiplay.sh
 
+compdef _man vim-man.sh
+
 # Listes d’arguments {{{3
 
 # Listes d’arguments

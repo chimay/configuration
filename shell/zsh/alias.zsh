@@ -312,7 +312,7 @@ alias fini='mpv ~/audio/sonnerie/notification/fini.ogg'
 
 alias rh=run-help
 alias ml=man
-alias m='vim-lite.sh +"call library#manual_argv()"'
+alias m=vim-man.sh
 alias mw=w3mman
 alias in=info
 

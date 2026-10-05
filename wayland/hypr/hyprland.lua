@@ -42,6 +42,8 @@ local menu = "fuzzel"
 
 -- autostart {{{1
 
+-- opening {{{2
+
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
@@ -49,16 +51,13 @@ local menu = "fuzzel"
 
 hl.on("hyprland.start", function ()
 
-	--hl.exec_cmd(terminal)
-	--hl.exec_cmd("nm-applet")
-	--hl.exec_cmd("hyprpaper & ")
+-- bars {{{2
 
-	---- shells : bar, wallpaper, login, power, ...
-
-	--hl.exec_cmd("waybar & hyprpaper & firefox")
 	--hl.exec_cmd("waybar & ")
 
-	--hl.exec_cmd("ashell & ")
+-- shells {{{2
+
+---- bar, wallpaper, login, power, etc
 
 	--hl.exec_cmd("noctalia & ")
 
@@ -66,6 +65,12 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd("dms run")
 	-- Optional: Clipboard history
 	hl.exec_cmd("bash -c 'wl-paste --watch cliphist store &'")
+
+-- autostart {{{2
+
+	hl.exec_cmd("hypr-autostart.zsh")
+
+-- closing {{{2
 
 end)
 
