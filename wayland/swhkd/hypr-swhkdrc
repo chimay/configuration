@@ -19,34 +19,14 @@
 
 # launcher {{{1
 
-hyper + colon
-	hyprlauncher
-
-super + colon
-	fuzzel
-
-hyper + equal
-	rofi-find.zsh
-
 super + colon
 	zshrun.sh
 
-hyper + comma
-	zshrunterm.sh
+# hyper + comma
+# 	zshrunterm.sh
 
-hyper + ccedilla
-	rofi-clipmenu.sh
-
-# window environment {{{1
-
-hyper + shift + d
-	rofi-disconnect.zsh
-
-hyper + q
-	rofi-shutdown.zsh
-
-hyper + k
-	hyprlock
+# hyper + ccedilla
+# 	rofi-clipmenu.sh
 
 # hyprland {{{1
 
@@ -127,12 +107,6 @@ super + F11
 
 super + F12
 	dunstctl close-all
-
-# clock {{{1
-
-# toggle active / pause
-hyper + o ; space
-	pkill -12 -f clock.zsh
 
 # pass {{{1
 
@@ -218,6 +192,13 @@ hyper + s ; Right
 
 hyper + s ; Left
 	brightnessctl set 25%-
+
+# red shift {{{2
+
+# gammastep -O 4500
+# gammastep -x
+
+# kill -USR1 "$(pidof wlsunset)"
 
 # screenshot {{{2
 

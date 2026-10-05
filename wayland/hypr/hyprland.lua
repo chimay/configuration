@@ -18,62 +18,6 @@ local function notify(text)
     })
 end
 
--- monitors {{{1
-
--- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({
-    output   = "",
-    mode     = "preferred",
-    position = "auto",
-    scale    = "auto",
-})
-
--- programs {{{1
-
--- favorites {{{2
-
--- Set programs that you use
-
-local terminal    = "kitty"
-local fileManager = "thunar"
-
---local menu = "hyprlauncher"
-local menu = "fuzzel"
-
--- autostart {{{1
-
--- opening {{{2
-
--- See https://wiki.hypr.land/Configuring/Basics/Autostart/
-
--- Autostart necessary processes (like notifications daemons, status bars, etc.)
--- Or execute your favorite apps at launch like this:
-
-hl.on("hyprland.start", function ()
-
--- bars {{{2
-
-	--hl.exec_cmd("waybar & ")
-
--- shells {{{2
-
----- bar, wallpaper, login, power, etc
-
-	--hl.exec_cmd("noctalia & ")
-
-	-- dms
-	hl.exec_cmd("dms run")
-	-- Optional: Clipboard history
-	hl.exec_cmd("bash -c 'wl-paste --watch cliphist store &'")
-
--- autostart {{{2
-
-	hl.exec_cmd("hypr-autostart.zsh")
-
--- closing {{{2
-
-end)
-
 -- environment variables {{{1
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
@@ -97,59 +41,148 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
 -- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
 
+-- monitors, screens {{{1
+
+-- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+hl.monitor({
+	output   = "",
+	mode     = "preferred",
+	position = "auto",
+	scale    = "auto",
+})
+
+-- idle {{{2
+
+hypridle = {
+	listener = {
+		timeout = 600,
+		on_timeout = function()
+			hl.dpms.off()
+		end,
+		on_resume = function()
+			hl.dpms.on()
+		end,
+	},
+}
+
+-- input : keyboard, mouse, touchpad {{{1
+
+hl.config({
+	input = {
+		--kb_layout  = "be",
+		kb_layout  = "belge-meta-super-hyper",
+		kb_variant = "",
+		kb_model   = "",
+		kb_options = "",
+		kb_rules   = "",
+		numlock_by_default = true,
+		follow_mouse = 0,
+		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+		touchpad = {
+			tap_to_click = true,
+			tap_button_map = "lrm",
+			tap_and_drag = true,
+			natural_scroll = false,
+			scroll_factor = 1,
+			disable_while_typing = true,
+		},
+	},
+	cursor = {
+		hide_on_key_press = true,
+		inactive_timeout = 5,
+	},
+})
+
+-- hl.gesture({
+-- 	fingers = 3,
+-- 	direction = "horizontal",
+-- 	action = "workspace"
+-- })
+
+-- Example per-device config
+-- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
+
+-- hl.device({
+--     name        = "epic-mouse-v1",
+--     sensitivity = -0.5,
+-- })
+
+-- autostart {{{1
+
+-- opening {{{2
+
+-- See https://wiki.hypr.land/Configuring/Basics/Autostart/
+
+-- Autostart necessary processes (like notifications daemons, status bars, etc.)
+-- Or execute your favorite apps at launch like this:
+
+hl.on("hyprland.start", function ()
+
+-- bars {{{2
+
+	--hl.exec_cmd("waybar & ")
+
+-- gui shells {{{2
+
+---- bar, wallpaper, login, power, etc
+
+	hl.exec_cmd("dms run")
+
+	--hl.exec_cmd("noctalia & ")
+
+-- autostart script {{{2
+
+-- 	hl.exec_cmd("hypr-autostop.zsh")
+-- 	hl.exec_cmd("sleep 3")
+-- 	hl.exec_cmd("hypr-autostart.zsh")
+
+-- closing {{{2
+
+end)
+
 -- look and feel {{{1
 
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 
 hl.config({
-    general = {
-        gaps_in  = 5,
-        gaps_out = 20,
-
-        border_size = 2,
-
-        col = {
-            active_border   = { colors = {"rgba(9b3c11ee)", "rgba(7b3c11ee)"}, angle = 45 },
-            --inactive_border = "rgba(595959aa)",
-            inactive_border = "rgba(000000aa)",
-        },
-
-        -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
-        resize_on_border = false,
-
-        -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
-        allow_tearing = false,
-
+	general = {
+		gaps_in  = 5,
+		gaps_out = 20,
+		border_size = 2,
+		col = {
+			active_border   = { colors = {"rgba(9b3c11ee)", "rgba(7b3c11ee)"}, angle = 45 },
+			--inactive_border = "rgba(595959aa)",
+			inactive_border = "rgba(000000aa)",
+		},
+		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
+		resize_on_border = false,
+		-- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
+		allow_tearing = false,
 		layout = "master",
-        --layout = "scrolling",
-    },
-
-    decoration = {
-        rounding       = 10,
-        rounding_power = 2,
-
-        -- Change transparency of focused and unfocused windows
-        active_opacity   = 1.0,
-        inactive_opacity = 0.7,
-
-        shadow = {
-            enabled      = true,
-            range        = 4,
-            render_power = 3,
-            color        = 0xee1a1a1a,
-        },
-
-        blur = {
-            enabled   = true,
-            size      = 3,
-            passes    = 1,
-            vibrancy  = 0.1696,
-        },
-    },
-
-    animations = {
-        enabled = true,
-    },
+		--layout = "scrolling",
+	},
+	decoration = {
+		rounding       = 10,
+		rounding_power = 2,
+		-- Change transparency of focused and unfocused windows
+		active_opacity   = 1.0,
+		inactive_opacity = 0.7,
+		shadow = {
+			enabled      = true,
+			range        = 4,
+			render_power = 3,
+			color        = 0xee1a1a1a,
+		},
+		blur = {
+			enabled   = true,
+			size      = 3,
+			passes    = 1,
+			vibrancy  = 0.1696,
+		},
+	},
+	animations = {
+		enabled = true,
+	},
 })
 
 -- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
@@ -208,6 +241,7 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 hl.config({
 	master = {
 		orientation = "top",
+		mfact = 0.618,
 	},
 	dwindle = {
 		preserve_split = true, -- You probably want this
@@ -217,71 +251,84 @@ hl.config({
 -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
 
 hl.config({
-    master = {
-        new_status = "master",
-    },
+	master = {
+		new_status = "master",
+	},
 })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
 
 hl.config({
-    scrolling = {
-        fullscreen_on_one_column = true,
-    },
-})
-
--- misc {{{1
-
-hl.config({
-	misc = {
-		force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-		disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
-		},
-	debug = {
-		disable_logs = false,
+	scrolling = {
+		fullscreen_on_one_column = true,
 	},
 })
 
--- input {{{1
+-- workspaces {{{1
 
-hl.config({
-    input = {
-        --kb_layout  = "be",
-        kb_layout  = "belge-meta-super-hyper",
-        kb_variant = "",
-        kb_model   = "",
-        kb_options = "",
-        kb_rules   = "",
+hl.workspace_rule({ workspace = "1", default_name = "term"})
+hl.workspace_rule({ workspace = "2", default_name = "view"})
+hl.workspace_rule({ workspace = "3", default_name = "edit"})
+hl.workspace_rule({ workspace = "4", default_name = "system"})
+hl.workspace_rule({ workspace = "5", default_name = "browser"})
+hl.workspace_rule({ workspace = "6", default_name = "office"})
+hl.workspace_rule({ workspace = "7", default_name = "artisan"})
+hl.workspace_rule({ workspace = "8", default_name = "video"})
+hl.workspace_rule({ workspace = "9", default_name = "game"})
 
-        follow_mouse = 1,
+-- windows and workspaces {{{1
 
-        sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+-- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
+-- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
-        touchpad = {
-            natural_scroll = false,
-        },
-    },
+-- Example window rules that are useful
+
+local suppressMaximizeRule = hl.window_rule({
+	-- Ignore maximize requests from all apps. You'll probably like this.
+	name  = "suppress-maximize-events",
+	match = { class = ".*" },
+	suppress_event = "maximize",
 })
 
-hl.gesture({
-    fingers = 3,
-    direction = "horizontal",
-    action = "workspace"
+-- suppressMaximizeRule:set_enabled(false)
+
+hl.window_rule({
+	-- Fix some dragging issues with XWayland
+	name  = "fix-xwayland-drags",
+	match = {
+		class      = "^$",
+		title      = "^$",
+		xwayland   = true,
+		float      = true,
+		fullscreen = false,
+		pin        = false,
+	},
+	no_focus = true,
 })
 
--- Example per-device config
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
-
--- hl.device({
---     name        = "epic-mouse-v1",
---     sensitivity = -0.5,
+-- Layer rules also return a handle.
+-- local overlayLayerRule = hl.layer_rule({
+--     name  = "no-anim-overlay",
+--     match = { namespace = "^my-overlay$" },
+--     no_anim = true,
 -- })
+-- overlayLayerRule:set_enabled(false)
+
+-- Hyprland-run windowrule
+hl.window_rule({
+	name  = "move-hyprland-run",
+	match = { class = "hyprland-run" },
+	move  = "20 monitor_h-120",
+	float = true,
+})
 
 -- keybindings {{{1
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 
--- modifier {{{2
+-- modifiers {{{2
+
+--local super = "SUPER"
 
 local super = "MOD4"
 local hyper = "MOD3"
@@ -289,19 +336,27 @@ local hyper = "MOD3"
 --local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 local mainMod = hyper -- Sets "mod3 = hyper = right windows key with meta-super-hyper layout" key as main modifier
 
+-- favorites {{{2
+
+-- Set programs that you use
+
+--local menu = "hyprlauncher"
+local menu = "fuzzel"
+
+local terminal    = "kitty"
+local fileManager = "thunar"
+
 -- terminal {{{2
 
-hl.bind(super .. " + Return", hl.dsp.exec_cmd(terminal))
-hl.bind(hyper .. " + Return", hl.dsp.exec_cmd(terminal))
+hl.bind(super .. " + Return", hl.dsp.exec_cmd("kitty"))
+hl.bind(hyper .. " + Return", hl.dsp.exec_cmd("kitty"))
 
 local closeWindowBind = hl.bind(hyper .. " + SHIFT + X", hl.dsp.window.close())
 
--- applications {{{2
+-- launchers {{{2
 
-hl.bind(super .. " + colon", hl.dsp.exec_cmd(menu))
-hl.bind(hyper .. " + colon", hl.dsp.exec_cmd(menu))
-
-hl.bind(super .. " + F", hl.dsp.exec_cmd(fileManager))
+hl.bind(super .. " + colon", hl.dsp.exec_cmd("fuzzel"))
+hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
 
 -- hyprland {{{2
 
@@ -325,12 +380,11 @@ hl.bind(super .. "+ SHIFT + down", hl.dsp.window.move({ direction = "down"}))
 hl.bind(super .. "+ CONTROL + r", hl.dsp.submap("resize"))
 
 hl.define_submap("resize", function()
-    hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
-    hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
+	hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
+	hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
 	hl.bind("up", hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
-    hl.bind("down", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
-
-    hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("down", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
+	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
 -- Keybinds further down will be global again...
@@ -339,7 +393,6 @@ end)
 
 hl.bind(hyper .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(hyper .. " + P", hl.dsp.window.pseudo())
-hl.bind(hyper .. " + S", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 -- layout {{{3
 
@@ -362,24 +415,24 @@ local function set_layout(layout)
 	end
 end
 
-hl.bind("MOD3 + T", function()
-    local workspace = hl.get_active_special_workspace()
-        or hl.get_active_workspace()
-    if not workspace then
-        return
-    end
-    local layout = workspace.tiled_layout
-    if layout == "monocle" then
-        hl.workspace_rule({
-            workspace = "name:" .. tostring(workspace.name),
-            layout = "master",
-        })
-    else
-        hl.workspace_rule({
-            workspace = "name:" .. tostring(workspace.name),
-            layout = "monocle",
-        })
-    end
+hl.bind("MOD3 + tab", function()
+	local workspace = hl.get_active_special_workspace()
+	or hl.get_active_workspace()
+	if not workspace then
+		return
+	end
+	local layout = workspace.tiled_layout
+	if layout == "monocle" then
+		hl.workspace_rule({
+			workspace = "name:" .. tostring(workspace.name),
+			layout = "master",
+		})
+	else
+		hl.workspace_rule({
+			workspace = "name:" .. tostring(workspace.name),
+			layout = "monocle",
+		})
+	end
 end)
 
 -- Super-l
@@ -440,13 +493,13 @@ end)
 
 hl.define_submap("master", function()
 	hl.bind("left", hl.dsp.layout("orientationleft"))
-    hl.bind("right", hl.dsp.layout("orientationright"))
-    hl.bind("up", hl.dsp.layout("orientationtop"))
-    hl.bind("down", hl.dsp.layout("orientationbottom"))
-    hl.bind("n", hl.dsp.layout("cyclenext"))
-    hl.bind("p", hl.dsp.layout("cycleprev"))
-    hl.bind("m", hl.dsp.layout("swapwithmaster master"))
-    hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("right", hl.dsp.layout("orientationright"))
+	hl.bind("up", hl.dsp.layout("orientationtop"))
+	hl.bind("down", hl.dsp.layout("orientationbottom"))
+	hl.bind("n", hl.dsp.layout("cyclenext"))
+	hl.bind("p", hl.dsp.layout("cycleprev"))
+	hl.bind("m", hl.dsp.layout("swapwithmaster master"))
+	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
 hl.define_submap("tabbed", function()
@@ -456,27 +509,29 @@ hl.define_submap("tabbed", function()
 end)
 
 hl.define_submap("dwindle", function()
-    hl.bind("t", hl.dsp.layout("togglesplit"))
-    hl.bind("x", hl.dsp.layout("swapsplit"))
-    hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("t", hl.dsp.layout("togglesplit"))
+	hl.bind("x", hl.dsp.layout("swapsplit"))
+	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
 hl.define_submap("scrolling", function()
-    hl.bind("left", hl.dsp.layout("move -col"))
-    hl.bind("right", hl.dsp.layout("move +col"))
-    hl.bind("h", hl.dsp.layout("swapcol l"))
-    hl.bind("l", hl.dsp.layout("swapcol r"))
-    hl.bind("p", hl.dsp.layout("promote"))
-    hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("left", hl.dsp.layout("move -col"))
+	hl.bind("right", hl.dsp.layout("move +col"))
+	hl.bind("h", hl.dsp.layout("swapcol l"))
+	hl.bind("l", hl.dsp.layout("swapcol r"))
+	hl.bind("p", hl.dsp.layout("promote"))
+	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
 hl.define_submap("group", function()
-    hl.bind("n", hl.dsp.group.next())
-    hl.bind("p", hl.dsp.group.prev())
-    hl.bind("f", hl.dsp.group.move_window({ forward = false }))
-    hl.bind("b", hl.dsp.group.move_window({ forward = true }))
-    hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("n", hl.dsp.group.next())
+	hl.bind("p", hl.dsp.group.prev())
+	hl.bind("f", hl.dsp.group.move_window({ forward = false }))
+	hl.bind("b", hl.dsp.group.move_window({ forward = true }))
+	hl.bind("escape", hl.dsp.submap("reset"))
 end)
+
+--hl.bind(hyper .. " + g", hl.dsp.layout("mfact exact 0.618"))
 
 -- workspaces {{{3
 
@@ -484,10 +539,10 @@ end)
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 
 for i = 1, 9 do
---     local key = i % 10 -- 10 maps to key 0
+	-- local key = i % 10 -- 10 maps to key 0
 	key = i
-    hl.bind(super .. " + F" .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind(super .. " + SHIFT + F" .. key,     hl.dsp.window.move({ workspace = i }))
+	hl.bind(super .. " + F" .. key,             hl.dsp.focus({ workspace = i}))
+	hl.bind(super .. " + SHIFT + F" .. key,     hl.dsp.window.move({ workspace = i }))
 end
 
 -- scratchpad {{{3
@@ -500,6 +555,32 @@ hl.bind("CONTROL + SHIFT + F12", hl.dsp.window.move({ workspace = "special:magic
 -- quit {{{3
 
 hl.bind(hyper .. " + SHIFT + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+
+hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("rofi-disconnect.zsh"))
+hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("rofi-shutdown.zsh"))
+
+hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
+
+-- applications {{{2
+
+hl.bind(hyper .. "+ y", hl.dsp.submap("pass"))
+
+hl.define_submap("pass", function()
+	hl.bind("plus", hl.dsp.exec_cmd("pass-open.sh"))
+	hl.bind("equal", hl.dsp.exec_cmd("pass-open.sh"))
+	hl.bind("minus", hl.dsp.exec_cmd("pass-close.sh"))
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
+
+hl.bind(hyper .. " + X", hl.dsp.exec_cmd("passmenu.bash"))
+
+-- screen {{{2
+
+hl.bind(hyper .. " + S", function()
+	hl.dispatch("dpms toggle")
+end)
+
+-- keyboard {{{2
 
 -- mouse {{{2
 
@@ -531,57 +612,16 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
--- windows and workspaces {{{1
+-- misc {{{1
 
--- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
--- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
-
--- Example window rules that are useful
-
-local suppressMaximizeRule = hl.window_rule({
-
-    -- Ignore maximize requests from all apps. You'll probably like this.
-
-    name  = "suppress-maximize-events",
-    match = { class = ".*" },
-
-    suppress_event = "maximize",
-})
-
--- suppressMaximizeRule:set_enabled(false)
-
-hl.window_rule({
-
-    -- Fix some dragging issues with XWayland
-
-    name  = "fix-xwayland-drags",
-    match = {
-        class      = "^$",
-        title      = "^$",
-        xwayland   = true,
-        float      = true,
-        fullscreen = false,
-        pin        = false,
-    },
-
-    no_focus = true,
-})
-
--- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
-
--- Hyprland-run windowrule
-hl.window_rule({
-    name  = "move-hyprland-run",
-    match = { class = "hyprland-run" },
-
-    move  = "20 monitor_h-120",
-    float = true,
+hl.config({
+	misc = {
+		force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+		disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
+		},
+	debug = {
+		disable_logs = false,
+	},
 })
 
 -- dms : dankmaterialshell {{{1
