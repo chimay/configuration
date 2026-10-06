@@ -62,6 +62,8 @@ vim.pack.add({
 	-- telescope
 	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim", version = "master" },
+	-- telescope file browser
+	{ src = "https://github.com/nvim-telescope/telescope-file-browser.nvim", version = "master" },
 })
 
 -- local {{{2
@@ -356,9 +358,9 @@ vim.api.nvim_create_autocmd('FileType', {
 	end,
 })
 
--- language server protocol {{{2
+-- lsp : language server protocol {{{2
 
-vim.lsp.enable('pyright')
+--vim.lsp.enable('pyright')
 
 vim.api.nvim_set_keymap(
 	'n', '<f11>dd', '<cmd>lua vim.diagnostic.open_float()<CR>',
@@ -389,7 +391,7 @@ vim.api.nvim_set_keymap(
 -- vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>lua
 -- vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
 
--- debug adapter protocol {{{2
+-- dap : debug adapter protocol {{{2
 
 -- If using this, then `python3 -m debugpy --version`
 -- must work in the shell

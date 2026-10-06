@@ -19,28 +19,16 @@
 
 # launcher {{{1
 
-super + colon
-	zshrun.sh
-
-# hyper + comma
-# 	zshrunterm.sh
-
-# hyper + ccedilla
-# 	rofi-clipmenu.sh
-
 # hyprland {{{1
 
 
-# applications {{{1
+# applecations {{{1
 
 super + ctrl + a
 	hypr-run-favorites.zsh &> ~/log/hypr-run-favorites.zsh
 
 super + ctrl + equal
 	kitty --single-instance --name calc calc
-
-super + ctrl + section
-	run-vifm.zsh
 
 super + ctrl + f
 	thunar || caja || pcmanfm
@@ -93,9 +81,6 @@ super + ctrl + t
 super + ctrl + y
 	run-freetube.sh
 
-super + ctrl + mu
-	goto-or-run.sh mscore
-
 # mnemo : multimedia
 super + ctrl + m
 	vlc
@@ -108,90 +93,7 @@ super + F11
 super + F12
 	dunstctl close-all
 
-# pass {{{1
-
-hyper + y ; plus
-	pass-open.sh
-
-hyper + y ; equal
-	pass-open.sh
-
-hyper + y ; minus
-	pass-close.sh
-
-hyper + x
-	passmenu.bash
-
-# network {{{1
-
-hyper + shift + w
-	toggle-wifi.zsh
-
-# cpus {{{1
-
-hyper + c ; s
-	cpupower.sh powersave
-
-hyper + c ; c
-	cpupower.sh conservative
-
-hyper + c ; d
-	cpupower.sh ondemand
-
-hyper + c ; p
-	cpupower.sh performance
-
-hyper + c ; u
-	cpupower.sh userspace
-
 # screen {{{1
-
-# wallpaper {{{2
-
-# info, log
-hyper + w ; i
-	less-log.sh ~/log/wallpaper.log
-hyper + w ; l
-	less-log.sh ~/log/wallpaper.log
-
-# evaluation
-hyper + w ; e
-	eval-wallpaper.zsh
-
-# reload images list
-hyper + w ; r
-	pkill -10 -f wallpaper.zsh
-
-# next image
-hyper + w ; n
-	pkill -12 -f wallpaper.zsh
-
-# stop waiting
-hyper + o ; s
-	pkill -10 -f clock.zsh
-
-# luminosity {{{2
-
-XF86MonBrightnessUp
-	brightnessctl set +10%
-
-XF86MonBrightnessDown
-	brightnessctl set 10%-
-
-hyper + s ; 0
-	brightnessctl set 100%
-
-hyper + s ; Up
-	brightnessctl set +10%
-
-hyper + s ; Down
-	brightnessctl set 10%-
-
-hyper + s ; Right
-	brightnessctl set +25%
-
-hyper + s ; Left
-	brightnessctl set 25%-
 
 # red shift {{{2
 
@@ -199,11 +101,6 @@ hyper + s ; Left
 # gammastep -x
 
 # kill -USR1 "$(pidof wlsunset)"
-
-# screenshot {{{2
-
-hyper + s ; s
-	screenshot.sh 3 ~/racine/pictura/screenshot/scrot/screen-$(date +"%Y-%m-%d-%H-%M").jpg &> ~/log/screenshot.log
 
 # mouse {{{1
 
@@ -224,57 +121,3 @@ XF86AudioMute
 
 XF86AudioPlay
 	mpc toggle
-
-# music {{{2
-
-# evaluation
-hyper + space ; e
-	eval-song.zsh
-
-hyper + space ; Up
-	pamixer --increase 5
-
-hyper + space ; Down
-	pamixer --decrease 5
-
-hyper + space ; Right
-	pamixer --increase 10
-
-hyper + space ; Left
-	pamixer --decrease 10
-
-hyper + space ; Prior
-	pamixer --increase 10
-
-hyper + space ; Next
-	pamixer --decrease 10
-
-hyper + space ; space
-	mpc toggle
-
-hyper + space ; n
-	mpc next
-
-hyper + space ; p
-	mpc prev
-
-hyper + space ; BackSpace
-	mpc -q seek 0:0
-
-hyper + space ; f
-	mpc seek +1:00
-
-hyper + space ; b
-	mpc seek -1:00
-
-hyper + space ; m
-	urxvtc -name multimedia -e pulsemixer
-
-hyper + space ; v
-	pavucontrol-qt
-
-hyper + space ; t
-	urxvtc -name multimedia -e ncmpcpp
-
-# button6
-# 	urxvtc -name multimedia -e ncmpcpp

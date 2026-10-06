@@ -341,10 +341,10 @@ local mainMod = hyper -- Sets "mod3 = hyper = right windows key with meta-super-
 -- Set programs that you use
 
 --local menu = "hyprlauncher"
-local menu = "fuzzel"
+--local menu = "fuzzel"
 
-local terminal    = "kitty"
-local fileManager = "thunar"
+--local terminal    = "kitty"
+--local fileManager = "thunar"
 
 -- terminal {{{2
 
@@ -352,13 +352,18 @@ hl.bind(super .. " + Return", hl.dsp.exec_cmd("kitty"))
 hl.bind(hyper .. " + Return", hl.dsp.exec_cmd("kitty"))
 
 local closeWindowBind = hl.bind(hyper .. " + SHIFT + X", hl.dsp.window.close())
+local closeWindowBind = hl.bind(hyper .. " + Delete", hl.dsp.window.close())
 
 -- launchers {{{2
 
 hl.bind(super .. " + colon", hl.dsp.exec_cmd("fuzzel"))
-hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
+
+--hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
+hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("zshrun.sh"))
 
 -- hyprland {{{2
+
+hl.bind(hyper .. " + R", hl.dsp.exec_cmd("hyprctl reload"))
 
 -- windows {{{3
 
@@ -563,6 +568,34 @@ hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
 
 -- applications {{{2
 
+-- screen {{{2
+
+hl.bind(hyper .. "+ s", hl.dsp.submap("screen"))
+
+hl.define_submap("screen", function()
+	hl.bind("s", hl.dsp.exec_cmd("screenshot.sh 3 ~/racine/pictura/screenshot/scrot/screen-$(date +'%Y-%m-%d-%H-%M').jpg &> ~/log/screenshot.log"))
+	hl.bind("0", hl.dsp.exec_cmd("brightnessctl set 100%"))
+	hl.bind("up", hl.dsp.exec_cmd("brightnessctl set +10%"))
+	hl.bind("down", hl.dsp.exec_cmd("brightnessctl set -10%"))
+	hl.bind("right", hl.dsp.exec_cmd("brightnessctl set +25%"))
+	hl.bind("left", hl.dsp.exec_cmd("brightnessctl set -25%"))
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
+
+-- wallpaper {{{2
+
+hl.bind(hyper .. "+ w", hl.dsp.submap("wallpaper"))
+
+hl.define_submap("wallpaper", function()
+	hl.bind("l", hl.dsp.exec_cmd("less-log.sh ~/log/wallpaper.log"))
+	hl.bind("e", hl.dsp.exec_cmd("eval-wallpaper.zsh"))
+	hl.bind("r", hl.dsp.exec_cmd("pkill -10 -f wallpaper.zsh"))
+	hl.bind("n", hl.dsp.exec_cmd("pkill -12 -f wallpaper.zsh"))
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
+
+-- pass {{{2
+
 hl.bind(hyper .. "+ y", hl.dsp.submap("pass"))
 
 hl.define_submap("pass", function()
@@ -573,12 +606,6 @@ hl.define_submap("pass", function()
 end)
 
 hl.bind(hyper .. " + X", hl.dsp.exec_cmd("passmenu.bash"))
-
--- screen {{{2
-
-hl.bind(hyper .. " + S", function()
-	hl.dispatch("dpms toggle")
-end)
 
 -- keyboard {{{2
 

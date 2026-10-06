@@ -548,6 +548,7 @@ nnoremap <s-space>o <cmd>Telescope oldfiles<cr>
 nnoremap <s-space>b <cmd>Telescope buffers<cr>
 nnoremap <s-space>j <cmd>Telescope jumplist<cr>
 nnoremap <s-space>t <cmd>Telescope tags<cr>
+nnoremap <s-space>F <cmd>Telescope file_browser<cr>
 
 " Liens {{{1
 
