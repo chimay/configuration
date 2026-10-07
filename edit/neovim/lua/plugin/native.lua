@@ -2,59 +2,68 @@
 
 -- plugins list {{{1
 
+-- libraries {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/MunifTanjim/nui.nvim', version = "main" },
+	{ src = 'https://github.com/nvim-neotest/nvim-nio', version = "master" },
+	{ src = 'https://github.com/rcarriga/nvim-notify', version = "master" },
+	{ src = "https://github.com/nvim-mini/mini.nvim", version = "main", },
+	{ src = 'https://github.com/nvim-tree/nvim-web-devicons', version = "master" },
+})
+
 -- vim legacy {{{2
 
 vim.pack.add({
-	{ src = "https://github.com/justinmk/vim-sneak", version = "master" },
-	{ src = "https://github.com/jiangmiao/auto-pairs", version = "master" },
-	{ src = "https://github.com/Jorengarenar/miniSnip", version = "master" },
-	{ src = "https://github.com/kana/vim-textobj-user", version = "master" },
-	{ src = "https://github.com/kana/vim-textobj-entire", version = "master" },
-	{ src = "https://github.com/kana/vim-textobj-fold", version = "master" },
-	{ src = "https://github.com/kana/vim-textobj-function", version = "master" },
-	{ src = "https://github.com/kana/vim-textobj-indent", version = "master" },
-	{ src = "https://github.com/kana/vim-textobj-line", version = "master" },
-	{ src = "https://github.com/machakann/vim-highlightedyank", version = "master" },
-	{ src = "https://github.com/nishigori/increment-activator", version = "master" },
-	{ src = "https://github.com/scrooloose/nerdcommenter", version = "master", },
-	{ src = "https://github.com/thinca/vim-textobj-comment", version = "master" },
-	{ src = "https://github.com/tommcdo/vim-exchange", version = "master", },
-	{ src = "https://github.com/tomtom/tcomment_vim", version = "master", },
-	{ src = "https://github.com/tpope/vim-repeat", version = "master", },
-	{ src = "https://github.com/tpope/vim-surround", version = "master", },
-	{ src = "https://github.com/vim-scripts/CmdlineComplete", version = "master", },
-	{ src = "https://github.com/vim-scripts/DeleteTrailingWhitespace", version = "master", },
-	{ src = "https://github.com/vim-scripts/VisIncr", version = "master", },
-	{ src = "https://github.com/vim-scripts/utl.vim", version = "master", },
-	{ src = "https://github.com/wellle/targets.vim", version = "master", },
-	{ src = "https://github.com/McSinyx/vim-octave", version = "master", },
-	{ src = "https://github.com/christoomey/vim-tmux-navigator", version = "master", },
-	{ src = "https://github.com/vifm/vifm.vim", version = "master", },
-	{ src = "https://github.com/flazz/vim-colorschemes", version = "master", },
-	{ src = "https://github.com/urbainvaes/vim-ripple", version = "master", },
-	{ src = "https://github.com/mzlogin/vim-markdown-toc", version = "master", },
+	{ src = 'https://github.com/justinmk/vim-sneak', version = "master" },
+	{ src = 'https://github.com/jiangmiao/auto-pairs', version = "master" },
+	{ src = 'https://github.com/Jorengarenar/miniSnip', version = "master" },
+	{ src = 'https://github.com/kana/vim-textobj-user', version = "master" },
+	{ src = 'https://github.com/kana/vim-textobj-entire', version = "master" },
+	{ src = 'https://github.com/kana/vim-textobj-fold', version = "master" },
+	{ src = 'https://github.com/kana/vim-textobj-function', version = "master" },
+	{ src = 'https://github.com/kana/vim-textobj-indent', version = "master" },
+	{ src = 'https://github.com/kana/vim-textobj-line', version = "master" },
+	{ src = 'https://github.com/machakann/vim-highlightedyank', version = "master" },
+	{ src = 'https://github.com/nishigori/increment-activator', version = "master" },
+	{ src = 'https://github.com/scrooloose/nerdcommenter', version = "master", },
+	{ src = 'https://github.com/thinca/vim-textobj-comment', version = "master" },
+	{ src = 'https://github.com/tommcdo/vim-exchange', version = "master", },
+	{ src = 'https://github.com/tomtom/tcomment_vim', version = "master", },
+	{ src = 'https://github.com/tpope/vim-repeat', version = "master", },
+	{ src = 'https://github.com/tpope/vim-surround', version = "master", },
+	{ src = 'https://github.com/vim-scripts/CmdlineComplete', version = "master", },
+	{ src = 'https://github.com/vim-scripts/DeleteTrailingWhitespace', version = "master", },
+	{ src = 'https://github.com/vim-scripts/VisIncr', version = "master", },
+	{ src = 'https://github.com/vim-scripts/utl.vim', version = "master", },
+	{ src = 'https://github.com/wellle/targets.vim', version = "master", },
+	{ src = 'https://github.com/McSinyx/vim-octave', version = "master", },
+	{ src = 'https://github.com/christoomey/vim-tmux-navigator', version = "master", },
+	{ src = 'https://github.com/vifm/vifm.vim', version = "master", },
+	{ src = 'https://github.com/flazz/vim-colorschemes', version = "master", },
+	{ src = 'https://github.com/urbainvaes/vim-ripple', version = "master", },
+	{ src = 'https://github.com/mzlogin/vim-markdown-toc', version = "master", },
 })
 
 -- lua generic {{{2
 
 vim.pack.add({
-	{ src = "https://github.com/folke/which-key.nvim", version = "main" },
-	{ src = "https://github.com/ibhagwan/fzf-lua.git", version = "main" },
-	{ src = "https://github.com/MagicDuck/grug-far.nvim", version = "main", },
-	{ src = "https://github.com/nvim-tree/nvim-tree.lua", version = "master" },
+	{ src = 'https://github.com/folke/which-key.nvim', version = "main" },
+	{ src = 'https://github.com/ibhagwan/fzf-lua.git', version = "main" },
+	{ src = 'https://github.com/MagicDuck/grug-far.nvim', version = "main", },
+	{ src = 'https://github.com/nvim-tree/nvim-tree.lua', version = "master" },
+	{ src = 'https://github.com/stevearc/oil.nvim', version = "master" },
+	{ src = 'https://github.com/L3MON4D3/LuaSnip', version = "master" },
 	-- repl : read eval print loop
-	{ src = "https://github.com/pappasam/nvim-repl", version = "main", },
+	{ src = 'https://github.com/pappasam/nvim-repl', version = "main", },
 })
 
--- libraries {{{2
+-- interface {{{2
 
 vim.pack.add({
-	{ src = "https://github.com/nvim-mini/mini.nvim", version = "main", },
-	{ src = 'https://github.com/nvim-neotest/nvim-nio', version = "master" },
+	{ src = 'https://github.com/folke/noice.nvim', version = "main", },
 })
 
--- treesitter {{{2
--- treesitter {{{2
 -- treesitter {{{2
 vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
@@ -76,6 +85,8 @@ vim.pack.add({
 
 -- mason {{{2
 
+-- easier lsp and dap
+
 vim.pack.add({
 	{ src = 'https://github.com/mason-org/mason.nvim', version = "main" },
 	{ src = 'https://github.com/mason-org/mason-lspconfig.nvim', version = "main" },
@@ -90,6 +101,9 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope.nvim", version = "master" },
 	-- telescope file browser
 	{ src = "https://github.com/nvim-telescope/telescope-file-browser.nvim", version = "master" },
+	-- blink
+	{ src = 'https://github.com/saghen/blink.cmp', version = "main" },
+	{ src = 'https://github.com/saghen/blink.lib', version = "main" },
 })
 
 -- local {{{2
@@ -114,6 +128,80 @@ vim.pack.add({
 -- }, { load = false })
 
 -- setup {{{1
+
+-- libraries {{{2
+
+-- mini {{{3
+
+require('mini.map').setup(
+{
+  -- Highlight integrations (none by default)
+  integrations = nil,
+  -- Symbols used to display data
+  symbols = {
+    -- Encode symbols. See `:h MiniMap.config` for specification and
+    -- `:h MiniMap.gen_encode_symbols` for pre-built ones.
+    -- Default: solid blocks with 3x2 resolution.
+    encode = nil,
+    -- Scrollbar parts for view and line. Use empty string to disable any.
+    scroll_line = '█',
+    scroll_view = '┃',
+  },
+  -- Window options
+  window = {
+    -- Whether window is focusable in normal way (with `wincmd` or mouse)
+    focusable = false,
+    -- Side to stick ('left' or 'right')
+    side = 'right',
+    -- Whether to show count of multiple integration highlights
+    show_integration_count = true,
+    -- Total width
+    width = 10,
+    -- Value of 'winblend' option
+    winblend = 25,
+    -- Z-index
+    zindex = 10,
+  },
+})
+
+-- require('mini.cmdline').setup(
+-- {
+--   -- Autocompletion: show `:h 'wildmenu'` as you type
+--   autocomplete = {
+--     enable = false,
+--     -- Delay (in ms) after which to trigger completion
+--     -- Neovim>=0.12 is recommended for positive values
+--     delay = 0,
+--     -- Custom rule of when to trigger completion
+--     predicate = nil,
+--     -- Whether to map arrow keys for more consistent wildmenu behavior
+--     map_arrows = true,
+--   },
+--   -- Autocorrection: adjust non-existing words (commands, options, etc.)
+--   autocorrect = {
+--     enable = false,
+--     -- Custom autocorrection rule
+--     func = nil,
+--   },
+--   -- Autopeek: show command's target range in a floating window
+--   autopeek = {
+--     enable = true,
+--     -- Number of lines to show above and below range lines
+--     n_context = 1,
+--     -- Custom rule of when to show peek window
+--     predicate = nil,
+--     -- Window options
+--     window = {
+--       -- Floating window config
+--       config = {},
+--       -- Function to render statuscolumn
+--       statuscolumn = nil,
+--     },
+--   },
+-- }
+-- )
+
+-- see ../../paquet/preload.vim for the maps
 
 -- which-key {{{2
 
@@ -167,6 +255,81 @@ which_key.add({
 	{ "<f11>!", group = "ripple" },
 	{ "<f11>$", group = "repl" },
 })
+
+-- luasnip {{{2
+
+-- local lua_snip = require("luasnip")
+
+-- lua_snip.config.setup({})
+
+-- lua_snip.add_snippets("lua", {
+-- 	lua_snip.snippet("fn", {
+-- 		lua_snip.text_node("function "),
+-- 		lua_snip.insert_node(1, "name"),
+-- 		lua_snip.text_node("("),
+-- 		lua_snip.insert_node(2),
+-- 		lua_snip.text_node({ ")", "end" }),
+-- 	}),
+-- })
+
+-- vim.keymap.set({ "i", "s" }, "<C-j>", function()
+--   if lua_snip.expand_or_jumpable() then
+--     lua_snip.expand_or_jump()
+--   end
+-- end)
+
+-- vim.keymap.set({ "i", "s" }, "<C-k>", function()
+--   if lua_snip.jumpable(-1) then
+--     lua_snip.jump(-1)
+--   end
+-- end)
+
+-- notify {{{2
+
+require("notify").setup({
+  timeout = 1500,
+  stages = 'static',
+})
+
+-- noice {{{2
+
+require("noice").setup({
+	cmdline = {
+		enabled = true,
+	},
+	messages = {
+		enabled = true,
+	},
+	views = {
+		messages = {
+			size = {
+				height = 20,
+			},
+		},
+		notify = {
+			backend = "notify",
+			--backend = "mini",
+			timeout = 1500,
+		},
+	},
+})
+
+ local noice_hl_group = vim.api.nvim_create_augroup("NoiceHighlights", { clear = true })
+
+ local function noice_hl()
+	 vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#5b3c11" })
+	 vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = "#5b3c11" })
+	 vim.api.nvim_set_hl(0, "NoiceCmdlineIcon",          { fg = "#5b3c11" })
+	 vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch",     { fg = "#5b3c11" })
+	 vim.api.nvim_set_hl(0, "NoicePopupTitle",            { fg = "#872e30" })
+ end
+
+ vim.api.nvim_create_autocmd("ColorScheme", {
+	 group = noice_hl_group,
+	 callback = noice_hl,
+ })
+
+ noice_hl()
 
 -- nvim-tree {{{2
 
@@ -288,79 +451,15 @@ local config = {
 
 require("nvim-tree").setup(config)
 
--- modules {{{2
+-- oil {{{2
 
--- mini {{{3
+require("oil").setup()
 
-require('mini.map').setup(
-{
-  -- Highlight integrations (none by default)
-  integrations = nil,
-  -- Symbols used to display data
-  symbols = {
-    -- Encode symbols. See `:h MiniMap.config` for specification and
-    -- `:h MiniMap.gen_encode_symbols` for pre-built ones.
-    -- Default: solid blocks with 3x2 resolution.
-    encode = nil,
-    -- Scrollbar parts for view and line. Use empty string to disable any.
-    scroll_line = '█',
-    scroll_view = '┃',
-  },
-  -- Window options
-  window = {
-    -- Whether window is focusable in normal way (with `wincmd` or mouse)
-    focusable = false,
-    -- Side to stick ('left' or 'right')
-    side = 'right',
-    -- Whether to show count of multiple integration highlights
-    show_integration_count = true,
-    -- Total width
-    width = 10,
-    -- Value of 'winblend' option
-    winblend = 25,
-    -- Z-index
-    zindex = 10,
-  },
-})
+-- blink {{{2
 
--- require('mini.cmdline').setup(
--- {
---   -- Autocompletion: show `:h 'wildmenu'` as you type
---   autocomplete = {
---     enable = false,
---     -- Delay (in ms) after which to trigger completion
---     -- Neovim>=0.12 is recommended for positive values
---     delay = 0,
---     -- Custom rule of when to trigger completion
---     predicate = nil,
---     -- Whether to map arrow keys for more consistent wildmenu behavior
---     map_arrows = true,
---   },
---   -- Autocorrection: adjust non-existing words (commands, options, etc.)
---   autocorrect = {
---     enable = false,
---     -- Custom autocorrection rule
---     func = nil,
---   },
---   -- Autopeek: show command's target range in a floating window
---   autopeek = {
---     enable = true,
---     -- Number of lines to show above and below range lines
---     n_context = 1,
---     -- Custom rule of when to show peek window
---     predicate = nil,
---     -- Window options
---     window = {
---       -- Floating window config
---       config = {},
---       -- Function to render statuscolumn
---       statuscolumn = nil,
---     },
---   },
--- }
--- )
-
--- see ../../paquet/preload.vim for the maps
+-- local cmp = require('blink.cmp')
+-- cmp.build():pwait()
+-- cmp.setup()
 
 -- treesitter {{{2
 
@@ -452,6 +551,8 @@ require('mason-tool-installer').setup {
     ['mason-nvim-dap'] = true,
   },
 }
+
+-- servers {{{3
 
 local servers = {
 	stylua = {}, -- Used to format Lua code

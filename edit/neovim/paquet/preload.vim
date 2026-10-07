@@ -54,6 +54,12 @@ nnoremap <f12>rl <cmd>Rocks log<cr>
 
 "nnoremap <nowait> <space> <cmd>WhichKey <space><cr>
 
+" interface {{{2
+
+" noice {{{2
+
+nnoremap <f11>n :NoiceAll<cr>:wincmd 10+<cr>
+
 " Bouts de code (snippets, bits, modèles) {{{1
 
 " miniSnip (Jorengarenar/miniSnip) {{{2
@@ -221,6 +227,10 @@ nnoremap <f11>F <cmd>NvimTreeToggle<cr>
 
 "nnoremap <f11>f <cmd>execute 'NvimTreeFindFileToggle' getcwd()<cr>
 "nnoremap <f11>F <cmd>execute 'NvimTreeToggle''getcwd()<cr>
+
+" oil {{{2
+
+nnoremap - <cmd>Oil .<cr>
 
 " vifm {{{2
 

@@ -22,6 +22,12 @@ fun! library#execute (command)
 	execute a:command
 endfun
 
+fun library#execute_visual_lines ()
+	for line in getline("'<", "'>")
+		execute line
+	endfor
+endfun
+
 fun! library#file_category ()
 	" Returns file category
 	let info = execute('file')[1:]

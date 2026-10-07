@@ -1047,6 +1047,11 @@ cnoremap <C-X><C-D> <C-D>
 " insère le plus long
 cnoremap <C-X><C-L> <C-L>
 
+" coding {{{2
+
+nnoremap <leader>LE <cmd>lsp enable<cr>
+nnoremap <leader>LD <cmd>lsp disable<cr>
+
 " Ligne de commande ex {{{2
 
 " Déplacement {{{3
@@ -1085,6 +1090,10 @@ cmap <m-d> <c-right><c-w>
 " Comme commande ex
 
 nnoremap <m-:> <cmd>execute getline(".")<CR>
+vnoremap <m-:> <cmd>call library#execute_visual_lines()<CR>
+
+nnoremap <m-;> <cmd>.lua<cr>
+vnoremap <m-;> :lua<cr>
 
 " Comme commande externe
 

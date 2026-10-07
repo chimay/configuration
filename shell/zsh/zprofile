@@ -8,7 +8,7 @@ typeset -U path
 
 path=()
 
-# Langages de script {{{2
+# scripts {{{2
 
 # perl
 
@@ -17,6 +17,10 @@ path+=(~/perl5/bin)
 # python
 
 path+=(~/.pip/bin)
+
+# binaries {{{2
+
+path+=(~/.cargo/bin)
 
 # Racine dans $HOME {{{2
 
