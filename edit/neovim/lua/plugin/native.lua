@@ -239,6 +239,7 @@ which_key.add({
 	{ "<leader>t", group = "tabpage" },
 	{ "<leader>q", group = "quickfix" },
 	{ "<leader>l", group = "location list" },
+	{ "<leader>L", group = "lang serv prot" },
 	{ "<leader>s", group = "search and replace" },
 	{ "<leader>d", group = "display" },
 	{ "<leader>T", group = "tags" },
@@ -251,7 +252,7 @@ which_key.add({
 	-- f11
 	{ "<f11>m", group = "minimap" },
 	{ "<f11>d", group = "diagnostic" },
-	{ "<f11>i", group = "vimspector" },
+	{ "<f11>D", group = "debug adapt prot" },
 	{ "<f11>!", group = "ripple" },
 	{ "<f11>$", group = "repl" },
 })
@@ -300,6 +301,9 @@ require("noice").setup({
 	messages = {
 		enabled = true,
 	},
+	notify = {
+		enabled = false,
+	},
 	views = {
 		messages = {
 			size = {
@@ -307,7 +311,8 @@ require("noice").setup({
 			},
 		},
 		notify = {
-			backend = "notify",
+			enabled = false,
+			--backend = "notify",
 			--backend = "mini",
 			timeout = 1500,
 		},
