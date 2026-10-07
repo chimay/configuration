@@ -198,8 +198,12 @@ augroup treesitter-stop
 	autocmd FileType help lua vim.treesitter.stop()
 	"autocmd FileType vim lua vim.treesitter.stop()
 	"autocmd FileType lua lua vim.treesitter.stop()
-	"autocmd FileType help lua vim.treesitter.stop()
 	"autocmd FileType python lua vim.treesitter.stop()
 	"autocmd FileType markdown lua vim.treesitter.stop()
 	"autocmd FileType org lua vim.treesitter.stop()
+augroup end
+
+augroup lsp-disable
+	autocmd!
+	"autocmd FileType vim lsp disable
 augroup end

@@ -75,8 +75,6 @@ export TERMINAL=xterm
 
 export RACINE_ZSH=~/racine/config/shell/zsh
 
-export SHELL=zsh
-
 export ZDOTDIR=$HOME
 
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"

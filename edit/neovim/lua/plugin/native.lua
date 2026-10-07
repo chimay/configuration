@@ -35,25 +35,51 @@ vim.pack.add({
 	{ src = "https://github.com/mzlogin/vim-markdown-toc", version = "master", },
 })
 
--- lua {{{2
+-- lua generic {{{2
 
 vim.pack.add({
 	{ src = "https://github.com/folke/which-key.nvim", version = "main" },
 	{ src = "https://github.com/ibhagwan/fzf-lua.git", version = "main" },
 	{ src = "https://github.com/MagicDuck/grug-far.nvim", version = "main", },
 	{ src = "https://github.com/nvim-tree/nvim-tree.lua", version = "master" },
-	-- modules
-	{ src = "https://github.com/nvim-mini/mini.nvim", version = "main", },
-	--	treesitter
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
-	--	lsp : language server protocol
-	{ src = 'https://github.com/neovim/nvim-lspconfig', version = "master" },
-	-- dap : debug adapter protocol
-	{ src = "https://github.com/mfussenegger/nvim-dap", version = "master" },
-	{ src = "https://github.com/mfussenegger/nvim-dap-python", version = "master" },
-	{ src = "https://github.com/puremourning/vimspector", version = "master" },
 	-- repl : read eval print loop
 	{ src = "https://github.com/pappasam/nvim-repl", version = "main", },
+})
+
+-- libraries {{{2
+
+vim.pack.add({
+	{ src = "https://github.com/nvim-mini/mini.nvim", version = "main", },
+	{ src = 'https://github.com/nvim-neotest/nvim-nio', version = "master" },
+})
+
+-- treesitter {{{2
+-- treesitter {{{2
+-- treesitter {{{2
+vim.pack.add({
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
+})
+
+-- lsp : language server protocol {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/neovim/nvim-lspconfig', version = "master" },
+})
+
+-- dap : debug adapter protocol {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/mfussenegger/nvim-dap', version = "master" },
+	{ src = 'https://github.com/rcarriga/nvim-dap-ui', version = "master" },
+	{ src = 'https://github.com/mfussenegger/nvim-dap-python', version = "master" },
+})
+
+-- mason {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/mason-org/mason.nvim', version = "main" },
+	{ src = 'https://github.com/mason-org/mason-lspconfig.nvim', version = "main" },
+	{ src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim', version = "main" },
 })
 
 -- with dependencies {{{2
@@ -347,6 +373,19 @@ nvim_treesitter.setup {
 
 nvim_treesitter.install { 'python' }
 
+local treesitter = vim.api.nvim_create_augroup('treesitter', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+	group = treesitter,
+	pattern = 'python',
+	callback = function()
+		vim.treesitter.start()
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+		vim.wo[0][0].foldmethod = 'expr'
+	end,
+})
+
 vim.api.nvim_create_autocmd('FileType', {
 	group = treesitter,
 	pattern = { 'python' },
@@ -360,36 +399,97 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- lsp : language server protocol {{{2
 
---vim.lsp.enable('pyright')
+-- lspconfig {{{3
 
-vim.api.nvim_set_keymap(
-	'n', '<f11>dd', '<cmd>lua vim.diagnostic.open_float()<CR>',
-	{ noremap = true, silent = true
-})
-
-vim.api.nvim_set_keymap(
-	'n', '<f11>dn', '<cmd>lua vim.diagnostic.goto_prev()<CR>',
-	{ noremap = true, silent = true
-})
-
-vim.api.nvim_set_keymap(
-	'n', '<f11>dp', '<cmd>lua vim.diagnostic.goto_next()<CR>',
-	{ noremap = true, silent = true
-})
-
--- The following command requires plug-ins "nvim-telescope/telescope.nvim",
--- "nvim-lua/plenary.nvim", and optionally "kyazdani42/nvim-web-devicons" for
--- icon support
-
-vim.api.nvim_set_keymap(
-	'n', '<f11>dt', '<cmd>Telescope diagnostics<CR>',
-	{ noremap = true, silent = true
-})
+vim.lsp.enable("vimls", false)
 
 -- If you don't want to use the telescope plug-in but still want to see all the
 -- errors/warnings, comment out the telescope line and uncomment this:
 -- vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>lua
 -- vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
+
+-- mason {{{2
+
+require("mason").setup()
+
+-- mason lspconfig {{{3
+
+--require("mason-lspconfig").setup()
+
+--require("mason-lspconfig").setup({
+--    automatic_enable = false,
+--})
+
+require("mason-lspconfig").setup({
+    automatic_enable = {
+        exclude = {
+            "vimls",
+        },
+    },
+})
+
+-- mason tool installer {{{3
+
+require('mason-tool-installer').setup {
+  ensure_installed = {
+--     'vim-language-server',
+	'lua-language-server',
+	'lua_ls',
+    'stylua',
+    'bash-language-server',
+    'editorconfig-checker',
+    'shellcheck',
+    'shfmt',
+    'vint',
+  },
+  auto_update = false,
+  run_on_start = true,
+  start_delay = 3000, -- 3 second delay
+  debounce_hours = 0, -- at least 5 hours between attempts to install/update
+  integrations = {
+    ['mason-lspconfig'] = true,
+    ['mason-null-ls'] = true,
+    ['mason-nvim-dap'] = true,
+  },
+}
+
+local servers = {
+	stylua = {}, -- Used to format Lua code
+	lua_ls = {
+		on_init = function(client)
+			client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
+			if client.workspace_folders then
+				local path = client.workspace_folders[1].name
+				if path ~= vim.fn.stdpath 'config' and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then return end
+			end
+			local current_settings = client.config.settings --[[@as lspconfig.settings.lua_ls]]
+			client.config.settings.Lua = vim.tbl_deep_extend('force', current_settings.Lua, {
+				runtime = {
+					version = 'LuaJIT',
+					path = { 'lua/?.lua', 'lua/?/init.lua' },
+				},
+				workspace = {
+					checkThirdParty = false,
+					-- NOTE: this is a lot slower and will cause issues when working on your own configuration.
+					--  See https://github.com/neovim/nvim-lspconfig/issues/3189
+					library = vim.api.nvim_get_runtime_file('', true),
+				},
+			})
+		end,
+		---@type lspconfig.settings.lua_ls
+		settings = {
+			Lua = {
+				format = { enable = false }, -- Disable formatting (formatting is done by stylua)
+			},
+		},
+	},
+-- 	pyright = {},
+}
+
+for name, server in pairs(servers) do
+	vim.lsp.config(name, server)
+	vim.lsp.enable(name)
+end
 
 -- dap : debug adapter protocol {{{2
 
@@ -397,6 +497,10 @@ vim.api.nvim_set_keymap(
 -- must work in the shell
 
 require("dap-python").setup("python3")
+
+-- dap ui {{{3
+
+require("dapui").setup()
 
 -- read eval print loop {{{2
 

@@ -86,11 +86,9 @@ alias d=sioyek
 # Images
 
 alias i=sxiv
-alias ii=vimiv
+alias ii=gwenview
 alias iii=feh
-alias iiii=ucollage
-
-alias iv=xnviewmp
+alias iv=vimiv
 
 # Fontes
 
@@ -109,6 +107,9 @@ alias se=sudoedit
 
 alias v=neovim-lite.sh
 alias nv=nvim
+
+alias ni='run-neovim-bundle.zsh nvim-kickstart'
+
 alias ns='run-neovim-server.sh &'
 alias nvc=run-neovim-client.sh
 

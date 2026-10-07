@@ -802,19 +802,14 @@ nnoremap <silent> <C-Up> :<C-U>TmuxNavigateUp<cr>
 
 " debug {{{1
 
-" vimspector {{{2
+" diagnostic {{{2
 
-map <f11>ii <plug>VimspectorContinue
-map <f11>ir <plug>VimspectorRestart
-map <f11>ip <plug>VimspectorPause
-map <f11>iso <plug>VimspectorStepOver
-map <f11>isi <plug>VimspectorStepInto
-map <f11>isO <plug>VimspectorStepOut
-map <f11>iS <plug>VimspectorStop
-map <f11>ic <plug>VimspectorRunToCursor
+nnoremap <f11>dd <cmd>Telescope diagnostics<cr>
 
-map <f11>in <plug>VimspectorJumpToNextBreakpoint
-map <f11>iN <plug>VimspectorJumpToPreviousBreakpoint
-map <f11>ib <plug>VimspectorBreakpoints
-map <f11>it <plug>VimspectorToggleBreakpoints
-map <f11>it <plug>VimspectorToggleBreakpoints
+nnoremap <f11>de <cmd>lua vim.diagnostic.open_float()<cr>
+nnoremap <f11>dn <cmd>lua vim.diagnostic.goto_prev()<cr>
+nnoremap <f11>dp <cmd>lua vim.diagnostic.goto_next()<cr>
+
+" dap ui {{{2
+
+nnoremap <f11>DD <cmd>lua require("dapui").toggle()<cr>

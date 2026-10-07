@@ -550,6 +550,17 @@ for i = 1, 9 do
 	hl.bind(super .. " + SHIFT + F" .. key,     hl.dsp.window.move({ workspace = i }))
 end
 
+-- x+n or x-n ; n = integer
+-- e	Look on all monitors
+-- m	Look on current monitor
+-- r	Look on current monitor, including empty/nonexistent workspaces	[1 - …]
+
+hl.bind(hyper .. " + right", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(hyper .. " + left",   hl.dsp.focus({ workspace = "e-1" }))
+
+hl.bind(hyper .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(hyper .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+
 -- scratchpad {{{3
 
 -- Example special workspace (scratchpad)

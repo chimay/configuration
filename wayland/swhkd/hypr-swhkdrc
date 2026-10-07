@@ -17,12 +17,7 @@
 # button6,7 = molette gauche/droite
 # button8,9 = latéraux gauche/droit
 
-# launcher {{{1
-
-# hyprland {{{1
-
-
-# applecations {{{1
+# applications {{{1
 
 super + ctrl + a
 	hypr-run-favorites.zsh &> ~/log/hypr-run-favorites.zsh
