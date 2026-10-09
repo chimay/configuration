@@ -401,7 +401,7 @@ hc rule focus=on
 #hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 #hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 
-# desktops {{{2
+# desktops, aka workspaces {{{2
 
 #hc rule class=XTerm tag=term # move all xterms to tag 3
 
@@ -412,6 +412,7 @@ hc rule class=Apvlv tag=view
 hc rule class=feh tag=view
 hc rule class=Sxiv tag=view
 hc rule class=vimiv tag=view
+hc rule class=gwenview tag=view
 hc rule class=XnViewMP tag=view
 
 hc rule class=Gvim tag=edit
@@ -521,7 +522,7 @@ hlwm-polybar.zsh
 echo autostop
 echo
 
-hlwm-autostop.zsh >>! ~/log/autostop.log 2>&1
+hlwm-autostop.zsh >>! ~/log/hlwm-autostop.log 2>&1
 
 echo sleep 5
 echo
@@ -531,4 +532,4 @@ sleep 5
 echo autostart
 echo
 
-hlwm-autostart.zsh >>! ~/log/autostart.log 2>&1
+hlwm-autostart.zsh >>! ~/log/hlwm-autostart.log 2>&1

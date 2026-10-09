@@ -126,15 +126,15 @@ hl.on("hyprland.start", function ()
 
 ---- bar, wallpaper, login, power, etc
 
-	hl.exec_cmd("dms run")
+	hl.exec_cmd("dms run ; sleep 2")
 
 	--hl.exec_cmd("noctalia & ")
 
 -- autostart script {{{2
 
--- 	hl.exec_cmd("hypr-autostop.zsh")
--- 	hl.exec_cmd("sleep 3")
--- 	hl.exec_cmd("hypr-autostart.zsh")
+-- neede in one exec because executed asynchronously
+
+hl.exec_cmd("hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ; sleep 2 ; hypr-autostart.zsh >>! ~/log/hypr-autostart.log 2>&1")
 
 -- closing {{{2
 
@@ -181,7 +181,7 @@ hl.config({
 		},
 	},
 	animations = {
-		enabled = true,
+		enabled = false,
 	},
 })
 
@@ -197,23 +197,23 @@ hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1} 
 
 hl.curve("easy",           { type = "spring", mass = 1, stiffness = 238.1191, dampening = 24.21279333 })
 
-hl.animation({ leaf = "global",        enabled = true,  speed = 10,   bezier = "default" })
-hl.animation({ leaf = "border",        enabled = true,  speed = 5.39, bezier = "easeOutQuint" })
-hl.animation({ leaf = "windows",       enabled = true,  speed = 4.79, spring = "easy" })
-hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 4.1,  spring = "easy",         style = "popin 87%" })
-hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 1.49, bezier = "linear",       style = "popin 87%" })
-hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 1.73, bezier = "almostLinear" })
-hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 1.46, bezier = "almostLinear" })
-hl.animation({ leaf = "fade",          enabled = true,  speed = 3.03, bezier = "quick" })
-hl.animation({ leaf = "layers",        enabled = true,  speed = 3.81, bezier = "easeOutQuint" })
-hl.animation({ leaf = "layersIn",      enabled = true,  speed = 4,    bezier = "easeOutQuint", style = "fade" })
-hl.animation({ leaf = "layersOut",     enabled = true,  speed = 1.5,  bezier = "linear",       style = "fade" })
-hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 1.79, bezier = "almostLinear" })
-hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 1.39, bezier = "almostLinear" })
-hl.animation({ leaf = "workspaces",    enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
-hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
-hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
-hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
+-- hl.animation({ leaf = "global",        enabled = true,  speed = 10,   bezier = "default" })
+-- hl.animation({ leaf = "border",        enabled = true,  speed = 5.39, bezier = "easeOutQuint" })
+-- hl.animation({ leaf = "windows",       enabled = true,  speed = 4.79, spring = "easy" })
+-- hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 4.1,  spring = "easy",         style = "popin 87%" })
+-- hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 1.49, bezier = "linear",       style = "popin 87%" })
+-- hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 1.73, bezier = "almostLinear" })
+-- hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 1.46, bezier = "almostLinear" })
+-- hl.animation({ leaf = "fade",          enabled = true,  speed = 3.03, bezier = "quick" })
+-- hl.animation({ leaf = "layers",        enabled = true,  speed = 3.81, bezier = "easeOutQuint" })
+-- hl.animation({ leaf = "layersIn",      enabled = true,  speed = 4,    bezier = "easeOutQuint", style = "fade" })
+-- hl.animation({ leaf = "layersOut",     enabled = true,  speed = 1.5,  bezier = "linear",       style = "fade" })
+-- hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 1.79, bezier = "almostLinear" })
+-- hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 1.39, bezier = "almostLinear" })
+-- hl.animation({ leaf = "workspaces",    enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
+-- hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
+-- hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
+-- hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
@@ -235,8 +235,6 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 --     border_size = 0,
 --     rounding    = 0,
 -- })
-
--- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 
 hl.config({
 	master = {
@@ -264,7 +262,25 @@ hl.config({
 	},
 })
 
--- workspaces {{{1
+-- rules {{{1
+
+-- windows {{{1
+
+hl.window_rule({
+    match = {
+        title = "zshrun",
+    },
+    float = true,
+})
+
+hl.window_rule({
+    match = {
+        title = "zshrunterm",
+    },
+    float = true,
+})
+
+-- workspaces names {{{2
 
 hl.workspace_rule({ workspace = "1", default_name = "term"})
 hl.workspace_rule({ workspace = "2", default_name = "view"})
@@ -276,7 +292,157 @@ hl.workspace_rule({ workspace = "7", default_name = "artisan"})
 hl.workspace_rule({ workspace = "8", default_name = "video"})
 hl.workspace_rule({ workspace = "9", default_name = "game"})
 
--- windows and workspaces {{{1
+-- workspaces layouts {{{2
+
+hl.workspace_rule({
+    workspace = "name:view",
+    layout = "scrolling",
+})
+
+hl.workspace_rule({
+    workspace = "name:browser",
+    layout = "scrolling",
+})
+
+hl.workspace_rule({
+    workspace = "name:video",
+    layout = "scrolling",
+})
+
+-- windows and workspaces {{{2
+
+-- term {{{3
+
+-- view {{{3
+
+hl.window_rule({
+    match = {
+        class = "sioyek",
+    },
+    --workspace = "name:view",
+    workspace = "2",
+})
+
+hl.window_rule({
+    match = {
+        class = "org.pwmt.zathura",
+    },
+    workspace = "2",
+})
+
+hl.window_rule({
+    match = {
+        class = "Sxiv",
+    },
+    workspace = "2",
+})
+
+hl.window_rule({
+    match = {
+        class = "vimiv",
+    },
+    workspace = "2",
+})
+
+hl.window_rule({
+    match = {
+        class = "org.kde.gwenview",
+    },
+    workspace = "2",
+})
+
+-- edit {{{3
+
+hl.window_rule({
+    match = {
+        class = "nvim-qt",
+    },
+    workspace = "3",
+})
+
+-- system {{{3
+
+hl.window_rule({
+    match = {
+        class = "TradingView",
+    },
+    workspace = "4",
+})
+
+-- browser {{{3
+
+hl.window_rule({
+    match = {
+        class = "org.qutebrowser.qutebrowser",
+    },
+    workspace = "5",
+})
+
+hl.window_rule({
+    match = {
+		class = "firefox",
+    },
+    workspace = "5",
+})
+
+-- office {{{3
+
+hl.window_rule({
+    match = {
+        class = "libreoffice-startcenter",
+    },
+    workspace = "6",
+})
+
+-- artisan {{{3
+
+hl.window_rule({
+    match = {
+        class = "org.frescobaldi.Frescobaldi",
+    },
+    workspace = "7",
+})
+
+hl.window_rule({
+    match = {
+        class = "MuseScore4",
+    },
+    workspace = "7",
+})
+
+-- video {{{3
+
+hl.window_rule({
+    match = {
+        class = "vlc",
+    },
+    workspace = "8",
+})
+
+hl.window_rule({
+    match = {
+        class = "freetube",
+    },
+    workspace = "8",
+})
+
+-- game {{{3
+
+hl.window_rule({
+    match = {
+        class = "wesnoth",
+    },
+    workspace = "9",
+})
+
+hl.window_rule({
+    match = {
+        class = "freeciv-gtk3.22",
+    },
+    workspace = "9",
+})
+
+-- miscellaneous {{{4
 
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
@@ -332,34 +498,40 @@ hl.window_rule({
 
 local super = "MOD4"
 local hyper = "MOD3"
+local meta = "MOD1"
 
 --local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 local mainMod = hyper -- Sets "mod3 = hyper = right windows key with meta-super-hyper layout" key as main modifier
 
+-- help {{{2
+
+hl.bind(hyper .. " + F1", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
+hl.bind(hyper .. " + h", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
+
 -- favorites {{{2
 
--- Set programs that you use
-
 --local menu = "hyprlauncher"
---local menu = "fuzzel"
-
---local terminal    = "kitty"
---local fileManager = "thunar"
+--local terminal    = "kitty --single-instance"
+--local file_manager = "thunar"
 
 -- terminal {{{2
 
-hl.bind(super .. " + Return", hl.dsp.exec_cmd("kitty"))
-hl.bind(hyper .. " + Return", hl.dsp.exec_cmd("kitty"))
+hl.bind(hyper .. " + Return", hl.dsp.exec_cmd("kitty --single-instance"))
+hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd("urxvtc"))
+hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("alacritty"))
 
 local closeWindowBind = hl.bind(hyper .. " + SHIFT + X", hl.dsp.window.close())
 local closeWindowBind = hl.bind(hyper .. " + Delete", hl.dsp.window.close())
 
 -- launchers {{{2
 
-hl.bind(super .. " + colon", hl.dsp.exec_cmd("fuzzel"))
+hl.bind(super .. " + colon", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
+
+hl.bind(super .. " + semicolon", hl.dsp.exec_cmd("zshrun.sh"))
+hl.bind(super .. " + comma", hl.dsp.exec_cmd("zshrunterm.sh"))
 
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
-hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("zshrun.sh"))
+hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("fuzzel"))
 
 -- hyprland {{{2
 
@@ -369,8 +541,18 @@ hl.bind(hyper .. " + R", hl.dsp.exec_cmd("hyprctl reload"))
 
 -- Move focus with mainMod + arrow keys
 
-hl.bind(super .. " + prior",  hl.dsp.layout("cyclenext"))
-hl.bind(super .. " + next",  hl.dsp.layout("cycleprev"))
+hl.bind(super .. " + prior",  function ()
+	hl.dispatch(hl.dsp.layout("cyclenext"))
+	hl.dispatch(hl.dsp.window.move({ direction = "down"}))
+end)
+
+hl.bind(super .. " + next",  function ()
+	hl.dispatch(hl.dsp.layout("cycleprev"))
+	hl.dispatch(hl.dsp.window.move({ direction = "up"}))
+end)
+
+-- hl.bind(super .. " + prior", hl.dsp.layout("cyclenext"))
+-- hl.bind(super .. " + next",  hl.dsp.layout("cycleprev"))
 
 hl.bind(super .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(super .. " + right", hl.dsp.focus({ direction = "right" }))
@@ -397,7 +579,12 @@ end)
 -- closeWindowBind:set_enabled(false)
 
 hl.bind(hyper .. " + F", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(hyper .. " + M", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(hyper .. " + P", hl.dsp.window.pseudo())
+
+-- windows and workspaces overview
+
+hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
 
 -- layout {{{3
 
@@ -558,8 +745,14 @@ end
 hl.bind(hyper .. " + right", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(hyper .. " + left",   hl.dsp.focus({ workspace = "e-1" }))
 
+hl.bind(hyper .. " + next", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(hyper .. " + prior",   hl.dsp.focus({ workspace = "e-1" }))
+
 hl.bind(hyper .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(hyper .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+
+hl.bind(super .. " + Tab", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(hyper .. " + asciicircum", hl.dsp.focus({ workspace = "previous" }))
 
 -- scratchpad {{{3
 
@@ -572,12 +765,79 @@ hl.bind("CONTROL + SHIFT + F12", hl.dsp.window.move({ workspace = "special:magic
 
 hl.bind(hyper .. " + SHIFT + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 
-hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("rofi-disconnect.zsh"))
-hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("rofi-shutdown.zsh"))
-
 hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
 
+---- replaced by dms bindings
+-- hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("rofi-disconnect.zsh"))
+-- hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("rofi-shutdown.zsh"))
+
+-- dms {{{2
+
+-- see dms ipc list
+
+hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
+hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("dms ipc call settings toggleWith dankbar_widgets"))
+
+hl.bind(hyper .. " + B", function()
+	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 0"))
+	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 1"))
+end)
+
+hl.bind(hyper .. " + C", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
+hl.bind(hyper .. " + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
+
+hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
+
+-- send a notification
+-- dms ipc call toast info "Hello from Hyprland"
+-- dms ipc call toast warn "Disk space low"
+-- dms ipc call toast error "Something failed"
+
 -- applications {{{2
+
+hl.bind(hyper .. "+ A", hl.dsp.submap("applications"))
+
+hl.define_submap("applications", function()
+	hl.bind("section", hl.dsp.exec_cmd("run-vifm.zsh"))
+	hl.bind("F", hl.dsp.exec_cmd("thunar || caja || pcmanfm"))
+	hl.bind("N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
+	hl.bind("SHIFT + N", hl.dsp.exec_cmd("neovim-qt-lite.sh"))
+	hl.bind("G", hl.dsp.exec_cmd("run-gvim.sh"))
+	hl.bind("SHIFT + G", hl.dsp.exec_cmd("gvim-lite.sh"))
+	hl.bind("SHIFT + E", hl.dsp.exec_cmd("run-emacs-server.sh"))
+	hl.bind("E", hl.dsp.exec_cmd("run-emacs-client.sh"))
+	hl.bind("I", hl.dsp.exec_cmd("gwenview ~"))
+	hl.bind("SHIFT + I", hl.dsp.exec_cmd("vimiv ~/photo/numerique"))
+	hl.bind("equal", hl.dsp.exec_cmd("kitty --single-instance --name calc calc"))
+	hl.bind("Q", hl.dsp.exec_cmd("qutebrowser"))
+	hl.bind("SHIFT + O", hl.dsp.exec_cmd("torbrowser-launcher"))
+	hl.bind("W", hl.dsp.exec_cmd("goto-or-run-appimage.sh vieb"))
+	hl.bind("Z", hl.dsp.exec_cmd("goto-or-run-appimage.sh zen-browser"))
+	hl.bind("K", hl.dsp.exec_cmd("keepassxc"))
+	hl.bind("O", hl.dsp.exec_cmd("octave --gui"))
+	hl.bind("T", hl.dsp.exec_cmd("tradingview"))
+	hl.bind("Y", hl.dsp.exec_cmd("run-freetube.sh"))
+	hl.bind("M", hl.dsp.exec_cmd("vlc"))
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
+
+-- favorites {{{3
+
+hl.bind(super .. " + CONTROL + section", hl.dsp.exec_cmd("run-vifm.zsh"))
+
+hl.bind(super .. " + CONTROL + A", hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
+
+hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("thunar || caja || pcmanfm"))
+hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
+
+hl.bind(super .. " + CONTROL + N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
+
+hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
+
+hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("goto-or-run.sh qutebrowser"))
+hl.bind(super .. " + CONTROL + B", hl.dsp.exec_cmd("floorp"))
+
+hl.bind(super .. " + CONTROL + Y", hl.dsp.exec_cmd("run-freetube.sh"))
 
 -- screen {{{2
 
@@ -599,11 +859,26 @@ hl.bind(hyper .. "+ w", hl.dsp.submap("wallpaper"))
 
 hl.define_submap("wallpaper", function()
 	hl.bind("l", hl.dsp.exec_cmd("less-log.sh ~/log/wallpaper.log"))
-	hl.bind("e", hl.dsp.exec_cmd("eval-wallpaper.zsh"))
+	hl.bind("e", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("eval-wallpaper.zsh"))
+	end)
 	hl.bind("r", hl.dsp.exec_cmd("pkill -10 -f wallpaper.zsh"))
 	hl.bind("n", hl.dsp.exec_cmd("pkill -12 -f wallpaper.zsh"))
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
+
+-- notifications {{{2
+
+-- hl.bind(super .. " + F11", hl.dsp.exec_cmd("dunstctl history-pop"))
+-- hl.bind(super .. " + F12", hl.dsp.exec_cmd("dunstctl close-all"))
+
+hl.bind(super .. " + F11", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
+hl.bind(super .. " + F12", hl.dsp.exec_cmd("dms ipc call notifications clearAll"))
+
+-- clipboard {{{2
+
+hl.bind(hyper .. " + ccedilla", hl.dsp.exec_cmd("rofi-cliphist.sh"))
 
 -- pass {{{2
 
@@ -633,6 +908,30 @@ hl.bind(hyper .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(hyper .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- multimedia {{{2
+
+-- mpc {{{3
+
+hl.bind(hyper .. "+ SPACE", hl.dsp.submap("mpc"))
+
+hl.define_submap("mpc", function()
+	hl.bind("space", hl.dsp.exec_cmd("mpc toggle"))
+	hl.bind("N", hl.dsp.exec_cmd("mpc next"))
+	hl.bind("P", hl.dsp.exec_cmd("mpc prev"))
+	hl.bind("backspace", hl.dsp.exec_cmd("mpc -q seek 0:0"))
+	hl.bind("F", hl.dsp.exec_cmd("mpc seek +1:00"))
+	hl.bind("B", hl.dsp.exec_cmd("mpc seek -1:00"))
+	hl.bind("V", hl.dsp.exec_cmd("pavucontrol-qt"))
+	hl.bind("T", hl.dsp.exec_cmd("urxvtc -name multimedia -e ncmpcpp"))
+	hl.bind("E", hl.dsp.exec_cmd("eval-song.zsh"))
+	hl.bind("up", hl.dsp.exec_cmd("pamixer --increase 5"))
+	hl.bind("down", hl.dsp.exec_cmd("pamixer --decrease 5"))
+	hl.bind("right", hl.dsp.exec_cmd("pamixer --increase 10"))
+	hl.bind("left", hl.dsp.exec_cmd("pamixer --decrease 10"))
+	hl.bind("prior", hl.dsp.exec_cmd("pamixer --increase 10"))
+	hl.bind("next", hl.dsp.exec_cmd("pamixer --decrease 10"))
+	hl.bind("M", hl.dsp.exec_cmd("urxvtc -name multimedia -e pulsemixer"))
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
 
 -- Laptop multimedia keys for volume and LCD brightness
 

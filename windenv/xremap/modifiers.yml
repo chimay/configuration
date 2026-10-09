@@ -1,0 +1,53 @@
+# vim: set ft=yaml sw=2 ts=2 sts=2 et :
+
+modmap:
+  - name: Ctrl left as asterisk
+    remap:
+      KEY_LEFTCTRL:
+        alone: KEY_ASTERISK
+        held: KEY_LEFTCTRL
+        free_hold: true
+  - name: Shift left as numbersign
+    remap:
+      KEY_LEFTSHIFT:
+        alone: KEY_NUMBERSIGN
+        held: KEY_LEFTSHIFT
+        free_hold: true
+  - name: Alt left as pipe, bar
+    remap:
+      KEY_LEFTALT:
+        alone: KEY_BAR
+        held: KEY_LEFTALT
+        free_hold: true
+  - name: Super left as at
+    remap:
+      KEY_LEFTMETA:
+        alone: KEY_AT
+        held: KEY_LEFTMETA
+        free_hold: true
+  - name: Ctrl right as slash
+    remap:
+      KEY_RIGHTCTRL:
+        #alone: KEY_SLASH
+        # us -> be
+        alone: KEY_DOT
+        held: KEY_RIGHTCTRL
+        free_hold: true
+  - name: Shift right as question mark
+    remap:
+      KEY_RIGHTSHIFT:
+        alone: KEY_QUESTION
+        held: KEY_RIGHTSHIFT
+        free_hold: true
+  - name: AltGr, or Alt right as backslash
+    remap:
+      KEY_RIGHTALT:
+        alone: KEY_BACKSLASH
+        held: KEY_RIGHTALT
+        free_hold: true
+  - name: Menu, or Hyper as dot
+    remap:
+      KEY_MENU:
+        alone: KEY_DOT
+        held: KEY_MENU
+        free_hold: true

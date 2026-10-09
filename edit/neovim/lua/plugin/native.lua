@@ -1,15 +1,27 @@
 -- vim: set filetype=lua:
 
--- plugins list {{{1
+-- opening {{{1
+
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- shortcuts {{{1
+
+local map = vim.keymap.set
+
+-- vim pack add {{{1
 
 -- libraries {{{2
 
 vim.pack.add({
+	{ src = "https://github.com/nvim-mini/mini.nvim", version = "main", },
+	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
 	{ src = 'https://github.com/MunifTanjim/nui.nvim', version = "main" },
 	{ src = 'https://github.com/nvim-neotest/nvim-nio', version = "master" },
 	{ src = 'https://github.com/rcarriga/nvim-notify', version = "master" },
-	{ src = "https://github.com/nvim-mini/mini.nvim", version = "main", },
 	{ src = 'https://github.com/nvim-tree/nvim-web-devicons', version = "master" },
+	{ src = 'https://github.com/saghen/blink.lib', version = "main" },
 })
 
 -- vim legacy {{{2
@@ -49,11 +61,17 @@ vim.pack.add({
 
 vim.pack.add({
 	{ src = 'https://github.com/folke/which-key.nvim', version = "main" },
+	{ src = 'https://github.com/ThePrimeagen/harpoon', version = "harpoon2" },
 	{ src = 'https://github.com/ibhagwan/fzf-lua.git', version = "main" },
-	{ src = 'https://github.com/MagicDuck/grug-far.nvim', version = "main", },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim", version = "master" },
+	{ src = "https://github.com/nvim-telescope/telescope-file-browser.nvim", version = "master" },
 	{ src = 'https://github.com/nvim-tree/nvim-tree.lua', version = "master" },
 	{ src = 'https://github.com/stevearc/oil.nvim', version = "master" },
+	{ src = 'https://github.com/saghen/blink.cmp', version = "main" },
 	{ src = 'https://github.com/L3MON4D3/LuaSnip', version = "master" },
+	{ src = 'https://github.com/rafamadriz/friendly-snippets', version = "main" },
+	{ src = 'https://github.com/jiaoshijie/undotree', version = "main" },
+	{ src = 'https://github.com/MagicDuck/grug-far.nvim', version = "main", },
 	-- repl : read eval print loop
 	{ src = 'https://github.com/pappasam/nvim-repl', version = "main", },
 })
@@ -91,19 +109,6 @@ vim.pack.add({
 	{ src = 'https://github.com/mason-org/mason.nvim', version = "main" },
 	{ src = 'https://github.com/mason-org/mason-lspconfig.nvim', version = "main" },
 	{ src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim', version = "main" },
-})
-
--- with dependencies {{{2
-
-vim.pack.add({
-	-- telescope
-	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
-	{ src = "https://github.com/nvim-telescope/telescope.nvim", version = "master" },
-	-- telescope file browser
-	{ src = "https://github.com/nvim-telescope/telescope-file-browser.nvim", version = "master" },
-	-- blink
-	{ src = 'https://github.com/saghen/blink.cmp', version = "main" },
-	{ src = 'https://github.com/saghen/blink.lib', version = "main" },
 })
 
 -- local {{{2
@@ -257,39 +262,81 @@ which_key.add({
 	{ "<f11>$", group = "repl" },
 })
 
+-- harpoon {{{2
+
+local harpoon = require("harpoon")
+
+harpoon:setup()
+
+vim.keymap.set("n", "<f11>ha", function() harpoon:list():add() end)
+vim.keymap.set("n", "<f11>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "<C-&>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-é>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", '<C-">', function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-'>", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<C-(>", function() harpoon:list():select(5) end)
+vim.keymap.set("n", "<C-§>", function() harpoon:list():select(6) end)
+vim.keymap.set("n", "<C-è>", function() harpoon:list():select(7) end)
+vim.keymap.set("n", "<C-è>", function() harpoon:list():select(7) end)
+
+vim.keymap.set("n", "<f11>hp", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<f11>hn", function() harpoon:list():next() end)
+
 -- luasnip {{{2
 
--- local lua_snip = require("luasnip")
+local lua_snip = require("luasnip")
 
--- lua_snip.config.setup({})
+lua_snip.config.setup({})
 
--- lua_snip.add_snippets("lua", {
--- 	lua_snip.snippet("fn", {
--- 		lua_snip.text_node("function "),
--- 		lua_snip.insert_node(1, "name"),
--- 		lua_snip.text_node("("),
--- 		lua_snip.insert_node(2),
--- 		lua_snip.text_node({ ")", "end" }),
--- 	}),
--- })
+require("luasnip.loaders.from_vscode").lazy_load()
 
--- vim.keymap.set({ "i", "s" }, "<C-j>", function()
---   if lua_snip.expand_or_jumpable() then
---     lua_snip.expand_or_jump()
---   end
--- end)
+vim.keymap.set({ "i", "s" }, "<m-tab>", function()
+  if lua_snip.expand_or_jumpable() then
+    lua_snip.expand_or_jump()
+  end
+end)
 
--- vim.keymap.set({ "i", "s" }, "<C-k>", function()
---   if lua_snip.jumpable(-1) then
---     lua_snip.jump(-1)
---   end
--- end)
+vim.keymap.set({ "i", "s" }, "<C-k>", function()
+  if lua_snip.jumpable(-1) then
+    lua_snip.jump(-1)
+  end
+end)
+
+-- undotree {{{2
+
+require('undotree').setup({
+    float_diff = true,
+    layout = "left_bottom",
+    position = "left",
+    window = {
+        width = 0.25,
+        height = 0.25,
+        border = "rounded",
+    },
+    ignore_filetype = {},
+    parser = "compact",
+    keymaps = {
+        ["move_next"] = "j",
+        ["move_prev"] = "k",
+        ["move2parent"] = "gj",
+        ["move_change_next"] = "J",
+        ["move_change_prev"] = "K",
+        ["action_enter"] = "<cr>",
+        ["enter_diffbuf"] = "p",
+        ["quit"] = "q",
+        ["update_undotree_view"] = "S",
+    },
+})
+
+vim.keymap.set('n', '<f11>u', require('undotree').toggle, { silent = true })
 
 -- notify {{{2
 
 require("notify").setup({
-  timeout = 1500,
-  stages = 'static',
+	merge_duplicates = true,
+	timeout = 5000,
+	stages = 'static',
 })
 
 -- noice {{{2
@@ -319,28 +366,24 @@ require("noice").setup({
 	},
 })
 
- local noice_hl_group = vim.api.nvim_create_augroup("NoiceHighlights", { clear = true })
+local noice_hl_group = vim.api.nvim_create_augroup("NoiceHighlights", { clear = true })
 
- local function noice_hl()
-	 vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#5b3c11" })
-	 vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = "#5b3c11" })
-	 vim.api.nvim_set_hl(0, "NoiceCmdlineIcon",          { fg = "#5b3c11" })
-	 vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch",     { fg = "#5b3c11" })
-	 vim.api.nvim_set_hl(0, "NoicePopupTitle",            { fg = "#872e30" })
- end
+local function noice_hl()
+	vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#5b3c11" })
+	vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = "#5b3c11" })
+	vim.api.nvim_set_hl(0, "NoiceCmdlineIcon",          { fg = "#5b3c11" })
+	vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch",     { fg = "#5b3c11" })
+	vim.api.nvim_set_hl(0, "NoicePopupTitle",            { fg = "#872e30" })
+end
 
- vim.api.nvim_create_autocmd("ColorScheme", {
-	 group = noice_hl_group,
-	 callback = noice_hl,
- })
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = noice_hl_group,
+	callback = noice_hl,
+})
 
  noice_hl()
 
 -- nvim-tree {{{2
-
--- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 local function my_on_attach(bufnr)
 	local api = require "nvim-tree.api"

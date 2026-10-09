@@ -88,21 +88,6 @@ super + F11
 super + F12
 	dunstctl close-all
 
-# screen {{{1
-
-# red shift {{{2
-
-# gammastep -O 4500
-# gammastep -x
-
-# kill -USR1 "$(pidof wlsunset)"
-
-# mouse {{{1
-
-# aussi lancé par keynav
-# voir ~/racine/config/windenv/keynav/keynavrc
-# edit : keynav désactivé dans autostart
-
 # multimédia {{{1
 
 XF86AudioRaiseVolume

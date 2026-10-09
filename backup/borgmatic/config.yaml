@@ -83,12 +83,12 @@ source_directories:
 # ReadWritePaths list.
 repositories:
     # The local path or Borg URL of the repository.
-    - path: /home/david/backup/borg
+    #- path: /home/david/backup/borg
 
       # An optional label for the repository, used in logging
       # and to make selecting the repository easier on the
       # command-line.
-      label: galaxy-local
+      #label: galaxy-local
 
       # The encryption mode with which to create the repository,
       # only used for the repo-create action. To see the
@@ -110,22 +110,15 @@ repositories:
       # action. Defaults to false. (This option is supported
       # for Borg 1.x only.)
       # make_parent_directories: true
-    - label: universe-usb-disk
-      path: "/run/media/david/USB\ DISK/universe/borg"
+
+    - label: universe-local
+      path: /home/david/backup/borg
     - label: universe-usb-key
-      path: "/run/media/david/usb-key/universe/borg"
-    - label: universe-sdb1
-      path: /run/media/david/sdb1/david/backup/universe/borg
+      path: /run/media/david/usb-key/universe/borg
     - label: universe-red-disk
       path: /run/media/david/red-disk/david/backup/universe/borg
-    - label: galaxy-usb-key
-      path: /run/media/david/usb-key/galaxy/borg
-    - label: taijitu-local
-      path: /home/david/backup/borg
-    - label: taijitu-usb-key
-      path: /run/media/david/usb-key/taijitu/borg
-    - label: taijitu-black-disk
-      path: /run/media/david/black-disk/david/backup/taijitu/borg
+    - label: universe-black-disk
+      path: /run/media/david/black-disk/david/backup/universe/borg
 
 # Working directory to use when running actions, useful for backing up
 # using relative source directory paths. Does not currently apply to

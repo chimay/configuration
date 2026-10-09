@@ -1,0 +1,40 @@
+# vim: set ft=yaml sw=2 ts=2 sts=2 et :
+
+modmap:
+  - name: Ctrl left as asterisk
+    remap:
+      KEY_LEFTCTRL:
+        alone: KEY_KPASTERISK
+        held: KEY_LEFTCTRL
+        alone_timeout: 200
+  - name: Shift left as numbersign
+    remap:
+      KEY_LEFTSHIFT:
+        alone: [KEY_RIGHTALT, KEY_3]
+        held: KEY_LEFTSHIFT
+        alone_timeout: 200
+  - name: Ctrl right as slash
+    remap:
+      KEY_RIGHTCTRL:
+        alone: [KEY_RIGHTSHIFT, KEY_COLON]
+        held: KEY_RIGHTCTRL
+        alone_timeout: 200
+  - name: Shift right as question mark
+    remap:
+      KEY_RIGHTSHIFT:
+        alone: [KEY_RIGHTSHIFT, KEY_COMMA]
+        held: KEY_RIGHTSHIFT
+        alone_timeout: 200
+  - name: Alt left as pipe
+    remap:
+      KEY_LEFTALT:
+        alone: [KEY_RIGHTALT, KEY_1]
+        held: KEY_LEFTALT
+        alone_timeout: 200
+
+  - name: AltGr as backslash
+    remap:
+      KEY_RIGHTALT:
+        alone: [KEY_RIGHTALT, KEY_102ND]
+        held: KEY_RIGHTALT
+        alone_timeout: 200

@@ -182,9 +182,8 @@ else
 	alias ls='command ls --color=auto --show-control-chars'
 	alias ll='command ls -l --color=auto'
 	alias la='command ls -a --color=auto'
-	#alias ls='lsd'
-	#alias lsl='lsd -l'
-	#alias lsa='lsd -a'
+	alias ls='eza --icons'
+	alias lst='eza --icons -T -lh'
 fi
 
 alias ù=most-recently-modified
@@ -521,6 +520,7 @@ alias we=wego
 # window manager {{{1
 
 alias hc=herbstclient
+alias hl=hyprctl
 
 # applications {{{1
 

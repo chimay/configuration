@@ -58,7 +58,9 @@ nnoremap <f12>rl <cmd>Rocks log<cr>
 
 " noice {{{2
 
-nnoremap <f11>n :NoiceAll<cr>:wincmd 10+<cr>
+nnoremap <f11><f11> :NoiceAll<cr>:wincmd 10+<cr>:$<cr>
+
+nnoremap <f11>n :NoiceAll<cr>:wincmd 10+<cr>:$<cr>
 
 " Bouts de code (snippets, bits, modèles) {{{1
 
@@ -461,8 +463,10 @@ if ! exists("g:wheel_loaded")
 
 	" Mandala & leaf status in statusline ?
 	"let g:wheel_config.display.statusline = 1
+	let g:wheel_config.display.statusline = 0
 	" Wheel dedibuf message : one-line or multi-line
-	let g:wheel_config.display.dedibuf_msg = 'multi-line'
+	"let g:wheel_config.display.dedibuf_msg = 'multi-line'
+	let g:wheel_config.display.dedibuf_msg = 'one-line'
 	" Filter prompt in dedicated buffers
 	"let g:wheel_config.display.prompt = 'wheel $ '
 	"let g:wheel_config.display.prompt_writable = 'wheel # '
@@ -814,9 +818,12 @@ nnoremap <silent> <C-Up> :<C-U>TmuxNavigateUp<cr>
 
 " diagnostic {{{2
 
+nnoremap <f11>de <cmd>lsp enable<cr>
+nnoremap <f11>d- <cmd>lsp disable<cr>
+
 nnoremap <f11>dd <cmd>Telescope diagnostics<cr>
 
-nnoremap <f11>de <cmd>lua vim.diagnostic.open_float()<cr>
+nnoremap <f11>di <cmd>lua vim.diagnostic.open_float()<cr>
 nnoremap <f11>dn <cmd>lua vim.diagnostic.goto_prev()<cr>
 nnoremap <f11>dp <cmd>lua vim.diagnostic.goto_next()<cr>
 
