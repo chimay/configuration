@@ -381,7 +381,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = noice_hl,
 })
 
- noice_hl()
+noice_hl()
 
 -- nvim-tree {{{2
 
@@ -549,6 +549,39 @@ vim.api.nvim_create_autocmd('FileType', {
 -- lspconfig {{{3
 
 vim.lsp.enable("vimls", false)
+
+local diagnostic_hl_group = vim.api.nvim_create_augroup("DiagnosticHighlights", { clear = true })
+
+local function diagnostic_hl()
+	vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#872e30" })
+	vim.api.nvim_set_hl(0, "DiagnosticWarn",  { fg = "#5b3c11" })
+	vim.api.nvim_set_hl(0, "DiagnosticInfo",  { fg = "#5b3c11" })
+	vim.api.nvim_set_hl(0, "DiagnosticHint",  { fg = "#5b3c11" })
+	vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {
+		underline = true,
+		undercurl = false,
+		sp = "#872e30",
+	})
+	vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", {
+		underline = false,
+		sp = "#e5c07b",
+	})
+	vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {
+		underline = false,
+		sp = "#5b3c11",
+	})
+	vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {
+		underline = false,
+		sp = "#5b3c11",
+	})
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = diagnostic_hl_group,
+	callback = diagnostic_hl,
+})
+
+diagnostic_hl()
 
 -- If you don't want to use the telescope plug-in but still want to see all the
 -- errors/warnings, comment out the telescope line and uncomment this:

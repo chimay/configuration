@@ -58,9 +58,31 @@ nnoremap <f12>rl <cmd>Rocks log<cr>
 
 " noice {{{2
 
-nnoremap <f11><f11> :NoiceAll<cr>:wincmd 10+<cr>:$<cr>
+highlight NotifyERRORBorder guifg=#872e30
+highlight NotifyWARNBorder guifg=#88421d
+highlight NotifyINFOBorder guifg=#5b3c11
+highlight NotifyDEBUGBorder guifg=#872e30
+highlight NotifyTRACEBorder guifg=#872e30
 
-nnoremap <f11>n :NoiceAll<cr>:wincmd 10+<cr>:$<cr>
+highlight NotifyERRORIcon guifg=#872e30
+highlight NotifyWARNIcon guifg=#88421d
+highlight NotifyINFOIcon guifg=#5b3c11
+highlight NotifyDEBUGIcon guifg=#872e30
+highlight NotifyTRACEIcon guifg=#872e30
+
+highlight NotifyERRORTitle  guifg=#872e30
+highlight NotifyWARNTitle guifg=#88421d
+highlight NotifyINFOTitle guifg=#5b3c11
+highlight NotifyDEBUGTitle  guifg=#872e30
+highlight NotifyTRACETitle  guifg=#872e30
+
+highlight link NotifyERRORBody Normal
+highlight link NotifyWARNBody Normal
+highlight link NotifyINFOBody Normal
+highlight link NotifyDEBUGBody Normal
+highlight link NotifyTRACEBody Normal
+
+" ---- see <url:#tn=telescope> for noficitations history
 
 " Bouts de code (snippets, bits, modèles) {{{1
 
@@ -563,6 +585,10 @@ nnoremap <s-space>b <cmd>Telescope buffers<cr>
 nnoremap <s-space>j <cmd>Telescope jumplist<cr>
 nnoremap <s-space>t <cmd>Telescope tags<cr>
 nnoremap <s-space>F <cmd>Telescope file_browser<cr>
+
+nnoremap <f11>nn :Telescope notify<cr>
+nnoremap <f11>nc :NotificationsClear<cr>
+nnoremap <f11><f11> :Telescope notify<cr>
 
 " Liens {{{1
 
