@@ -334,7 +334,6 @@ vim.keymap.set('n', '<f11>u', require('undotree').toggle, { silent = true })
 -- notify {{{2
 
 require("notify").setup({
-	merge_duplicates = true,
 	timeout = 5000,
 	stages = 'static',
 })
@@ -347,6 +346,7 @@ require("noice").setup({
 	},
 	messages = {
 		enabled = true,
+		view_search = false,
 	},
 	notify = {
 		enabled = false,
@@ -548,7 +548,10 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- lspconfig {{{3
 
+---- see also <url:#tn=lsp servers>
+
 vim.lsp.enable("vimls", false)
+vim.lsp.enable("lua_ls", false)
 
 local diagnostic_hl_group = vim.api.nvim_create_augroup("DiagnosticHighlights", { clear = true })
 
@@ -603,7 +606,7 @@ require("mason").setup()
 require("mason-lspconfig").setup({
     automatic_enable = {
         exclude = {
-            "vimls",
+            "vimls", "lua_ls",
         },
     },
 })
@@ -633,7 +636,7 @@ require('mason-tool-installer').setup {
   },
 }
 
--- servers {{{3
+-- lsp servers {{{3
 
 local servers = {
 	stylua = {}, -- Used to format Lua code
@@ -668,10 +671,12 @@ local servers = {
 -- 	pyright = {},
 }
 
-for name, server in pairs(servers) do
-	vim.lsp.config(name, server)
-	vim.lsp.enable(name)
-end
+---- heavy on cpu
+
+-- for name, server in pairs(servers) do
+-- 	vim.lsp.config(name, server)
+-- 	vim.lsp.enable(name)
+-- end
 
 -- dap : debug adapter protocol {{{2
 

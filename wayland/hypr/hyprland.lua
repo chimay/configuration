@@ -246,6 +246,15 @@ hl.config({
 	},
 })
 
+hl.config({
+    scrolling = {
+		direction = "left",
+		-- 1 - golden_ratio^3
+        column_width = 0.764,
+        --explicit_column_widths = "0.333, 0.5, 0.667, 1.0",
+    },
+})
+
 -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
 
 hl.config({
@@ -264,7 +273,7 @@ hl.config({
 
 -- rules {{{1
 
--- windows {{{1
+-- windows {{{2
 
 hl.window_rule({
     match = {
@@ -278,6 +287,31 @@ hl.window_rule({
         title = "zshrunterm",
     },
     float = true,
+})
+
+hl.window_rule({
+    match = {
+        title = "journal",
+    },
+    float = true,
+})
+
+hl.window_rule({
+	match = {
+		class = "kitty-dropdown",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
+		class = "calc",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
 })
 
 -- workspaces names {{{2
@@ -307,6 +341,11 @@ hl.workspace_rule({
 hl.workspace_rule({
     workspace = "name:video",
     layout = "scrolling",
+})
+
+hl.workspace_rule({
+    workspace = "special:magic",
+    layout = "monocle",
 })
 
 -- windows and workspaces {{{2
@@ -496,9 +535,9 @@ hl.window_rule({
 
 --local super = "SUPER"
 
+local meta = "MOD1"
 local super = "MOD4"
 local hyper = "MOD3"
-local meta = "MOD1"
 
 --local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 local mainMod = hyper -- Sets "mod3 = hyper = right windows key with meta-super-hyper layout" key as main modifier
@@ -508,30 +547,36 @@ local mainMod = hyper -- Sets "mod3 = hyper = right windows key with meta-super-
 hl.bind(hyper .. " + F1", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
 hl.bind(hyper .. " + h", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
 
--- favorites {{{2
-
---local menu = "hyprlauncher"
---local terminal    = "kitty --single-instance"
---local file_manager = "thunar"
-
 -- terminal {{{2
 
 hl.bind(hyper .. " + Return", hl.dsp.exec_cmd("kitty --single-instance"))
-hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd("urxvtc"))
-hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("alacritty"))
+
+hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd([[
+kitty --single-instance --class kitty-dropdown
+]]))
+
+-- hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd([[
+-- kitty --single-instance \
+-- --class kitty-dropdown \
+-- -o remember_window_size=no \
+-- -o initial_window_width=120c \
+-- -o initial_window_height=30c
+-- ]]))
+
+hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
 
 local closeWindowBind = hl.bind(hyper .. " + SHIFT + X", hl.dsp.window.close())
 local closeWindowBind = hl.bind(hyper .. " + Delete", hl.dsp.window.close())
 
 -- launchers {{{2
 
-hl.bind(super .. " + colon", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
-
-hl.bind(super .. " + semicolon", hl.dsp.exec_cmd("zshrun.sh"))
-hl.bind(super .. " + comma", hl.dsp.exec_cmd("zshrunterm.sh"))
+hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
 
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
-hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("fuzzel"))
+--hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("fuzzel"))
+
+hl.bind(super .. " + colon", hl.dsp.exec_cmd("zshrun.sh"))
+hl.bind(super .. " + semicolon", hl.dsp.exec_cmd("zshrunterm.sh"))
 
 -- hyprland {{{2
 
@@ -564,15 +609,20 @@ hl.bind(super .. "+ SHIFT + right", hl.dsp.window.move({ direction = "right" }))
 hl.bind(super .. "+ SHIFT + up", hl.dsp.window.move({ direction = "up"}))
 hl.bind(super .. "+ SHIFT + down", hl.dsp.window.move({ direction = "down"}))
 
-hl.bind(super .. "+ CONTROL + r", hl.dsp.submap("resize"))
+hl.bind(super .. "+ CONTROL + right", hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
+hl.bind(super .. "+ CONTROL + left", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
+hl.bind(super .. "+ CONTROL + up", hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
+hl.bind(super .. "+ CONTROL + down", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
 
-hl.define_submap("resize", function()
-	hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
-	hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
-	hl.bind("up", hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
-	hl.bind("down", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
-	hl.bind("escape", hl.dsp.submap("reset"))
-end)
+--hl.bind(super .. "+ CONTROL + r", hl.dsp.submap("resize"))
+
+--hl.define_submap("resize", function()
+	--hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
+	--hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
+	--hl.bind("up", hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
+	--hl.bind("down", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
+	--hl.bind("escape", hl.dsp.submap("reset"))
+--end)
 
 -- Keybinds further down will be global again...
 
@@ -584,7 +634,9 @@ hl.bind(hyper .. " + P", hl.dsp.window.pseudo())
 
 -- windows and workspaces overview
 
-hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
+--hl.bind(hyper .. " + comma", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
+
+hl.bind(hyper .. " + comma", hl.dsp.exec_cmd("rofi-windows.zsh"))
 
 -- layout {{{3
 
@@ -759,17 +811,14 @@ hl.bind(hyper .. " + asciicircum", hl.dsp.focus({ workspace = "previous" }))
 -- Example special workspace (scratchpad)
 
 hl.bind("SHIFT + F12",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind("CONTROL + SHIFT + F12", hl.dsp.window.move({ workspace = "special:magic" }))
+
+--hl.bind("CONTROL + SHIFT + F12", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- quit {{{3
 
 hl.bind(hyper .. " + SHIFT + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 
 hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
-
----- replaced by dms bindings
--- hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("rofi-disconnect.zsh"))
--- hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("rofi-shutdown.zsh"))
 
 -- dms {{{2
 
@@ -798,6 +847,10 @@ hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
 hl.bind(hyper .. "+ A", hl.dsp.submap("applications"))
 
 hl.define_submap("applications", function()
+	hl.bind("A", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
+	end)
 	hl.bind("section", hl.dsp.exec_cmd("run-vifm.zsh"))
 	hl.bind("F", hl.dsp.exec_cmd("thunar || caja || pcmanfm"))
 	hl.bind("N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
@@ -823,20 +876,20 @@ end)
 
 -- favorites {{{3
 
+hl.bind(super .. " + CONTROL + A", hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
+
 hl.bind(super .. " + CONTROL + section", hl.dsp.exec_cmd("run-vifm.zsh"))
 
-hl.bind(super .. " + CONTROL + A", hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
+hl.bind(super .. " + CONTROL + equal", hl.dsp.exec_cmd([[
+kitty --single-instance --class calc calc
+]]))
 
 hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("thunar || caja || pcmanfm"))
 hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
-
 hl.bind(super .. " + CONTROL + N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
-
 hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
-
 hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("goto-or-run.sh qutebrowser"))
 hl.bind(super .. " + CONTROL + B", hl.dsp.exec_cmd("floorp"))
-
 hl.bind(super .. " + CONTROL + Y", hl.dsp.exec_cmd("run-freetube.sh"))
 
 -- screen {{{2
@@ -844,7 +897,10 @@ hl.bind(super .. " + CONTROL + Y", hl.dsp.exec_cmd("run-freetube.sh"))
 hl.bind(hyper .. "+ s", hl.dsp.submap("screen"))
 
 hl.define_submap("screen", function()
-	hl.bind("s", hl.dsp.exec_cmd("screenshot.sh 3 ~/racine/pictura/screenshot/scrot/screen-$(date +'%Y-%m-%d-%H-%M').jpg &> ~/log/screenshot.log"))
+	hl.bind("s", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("screenshot.sh &> ~/log/screenshot.log"))
+	end)
 	hl.bind("0", hl.dsp.exec_cmd("brightnessctl set 100%"))
 	hl.bind("up", hl.dsp.exec_cmd("brightnessctl set +10%"))
 	hl.bind("down", hl.dsp.exec_cmd("brightnessctl set 10%-"))

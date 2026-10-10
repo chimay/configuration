@@ -1,53 +1,61 @@
 # vim: set ft=yaml sw=2 ts=2 sts=2 et :
 
+# ---- to see key names
+#
+# RUST_LOG=debug xremap ~/racine/config/windenv/xremap/modifiers.yml
+
 modmap:
   - name: Ctrl left as asterisk
     remap:
       KEY_LEFTCTRL:
-        alone: KEY_ASTERISK
+        alone: [KEY_LEFTSHIFT, KEY_RIGHTBRACE]
         held: KEY_LEFTCTRL
         free_hold: true
   - name: Shift left as numbersign
     remap:
       KEY_LEFTSHIFT:
-        alone: KEY_NUMBERSIGN
+        alone: [KEY_RIGHTALT, KEY_3]
         held: KEY_LEFTSHIFT
         free_hold: true
-  - name: Alt left as pipe, bar
+  - name: Alt left as pipe
     remap:
       KEY_LEFTALT:
-        alone: KEY_BAR
+        alone: [KEY_RIGHTALT, KEY_1]
         held: KEY_LEFTALT
         free_hold: true
-  - name: Super left as at
-    remap:
-      KEY_LEFTMETA:
-        alone: KEY_AT
-        held: KEY_LEFTMETA
-        free_hold: true
+#   - name: Super left as at
+#     remap:
+#       KEY_LEFTMETA:
+#         alone: [KEY_LEFTSHIFT, KEY_COMMA]
+#         held: KEY_LEFTMETA
+#         free_hold: true
   - name: Ctrl right as slash
     remap:
       KEY_RIGHTCTRL:
-        #alone: KEY_SLASH
-        # us -> be
-        alone: KEY_DOT
+        alone: [KEY_LEFTSHIFT, KEY_DOT]
         held: KEY_RIGHTCTRL
         free_hold: true
   - name: Shift right as question mark
     remap:
       KEY_RIGHTSHIFT:
-        alone: KEY_QUESTION
+        alone: [KEY_LEFTSHIFT, KEY_M]
         held: KEY_RIGHTSHIFT
         free_hold: true
   - name: AltGr, or Alt right as backslash
     remap:
       KEY_RIGHTALT:
-        alone: KEY_BACKSLASH
+        alone: [KEY_RIGHTALT, KEY_102ND]
         held: KEY_RIGHTALT
         free_hold: true
-  - name: Menu, or Hyper as dot
+#   - name: Super right as greater
+#     remap:
+#       KEY_RIGHTMETA:
+#         alone: [KEY_LEFTSHIFT, KEY_102ND]
+#         held: KEY_COMPOSE
+#         free_hold: true
+  - name: Menu, or Hyper as at
     remap:
-      KEY_MENU:
-        alone: KEY_DOT
-        held: KEY_MENU
+      KEY_COMPOSE:
+        alone: [KEY_RIGHTALT, KEY_2]
+        held: KEY_COMPOSE
         free_hold: true
