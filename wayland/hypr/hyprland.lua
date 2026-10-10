@@ -298,6 +298,24 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
+		title = "mpc-tui",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
+		title = "pulsemixer",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
 		class = "kitty-dropdown",
 	},
 	float = true,
@@ -804,6 +822,8 @@ hl.bind(hyper .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(hyper .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 hl.bind(super .. " + Tab", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(super .. " + backspace", hl.dsp.focus({ workspace = "previous" }))
+
 hl.bind(hyper .. " + asciicircum", hl.dsp.focus({ workspace = "previous" }))
 
 -- scratchpad {{{3
@@ -826,6 +846,8 @@ hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
 
 hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
 hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("dms ipc call settings toggleWith dankbar_widgets"))
+
+hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
 
 hl.bind(hyper .. " + B", function()
 	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 0"))
@@ -953,15 +975,15 @@ hl.bind(hyper .. " + X", hl.dsp.exec_cmd("passmenu.bash"))
 
 -- mouse {{{2
 
--- Scroll through existing workspaces with mainMod + scroll
-
-hl.bind(hyper .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(hyper .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
-
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 
-hl.bind(hyper .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
-hl.bind(hyper .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(super .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+hl.bind(super .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- Scroll through existing workspaces with mainMod + scroll
+
+hl.bind(super .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(super .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 -- multimedia {{{2
 
@@ -977,7 +999,7 @@ hl.define_submap("mpc", function()
 	hl.bind("F", hl.dsp.exec_cmd("mpc seek +1:00"))
 	hl.bind("B", hl.dsp.exec_cmd("mpc seek -1:00"))
 	hl.bind("V", hl.dsp.exec_cmd("pavucontrol-qt"))
-	hl.bind("T", hl.dsp.exec_cmd("urxvtc -name multimedia -e ncmpcpp"))
+	hl.bind("T", hl.dsp.exec_cmd("urxvtc -name mpc-tui -title mpc-tui -e ncmpcpp"))
 	hl.bind("E", hl.dsp.exec_cmd("eval-song.zsh"))
 	hl.bind("up", hl.dsp.exec_cmd("pamixer --increase 5"))
 	hl.bind("down", hl.dsp.exec_cmd("pamixer --decrease 5"))
@@ -985,7 +1007,9 @@ hl.define_submap("mpc", function()
 	hl.bind("left", hl.dsp.exec_cmd("pamixer --decrease 10"))
 	hl.bind("prior", hl.dsp.exec_cmd("pamixer --increase 10"))
 	hl.bind("next", hl.dsp.exec_cmd("pamixer --decrease 10"))
-	hl.bind("M", hl.dsp.exec_cmd("urxvtc -name multimedia -e pulsemixer"))
+	hl.bind("M", hl.dsp.exec_cmd([[
+	urxvtc -name multimedia -title pulsemixer -e pulsemixer
+	]]))
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
