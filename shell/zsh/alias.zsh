@@ -270,14 +270,19 @@ alias mc='mc -b'
 
 alias y=yank-file
 
-alias çç='xclip -i -selection clipboard'
-alias àà='xclip -o -selection clipboard'
-
-alias ç1='xclip -i -selection primary'
-alias ç2='xclip -i -selection secondary'
-
-alias à1='xclip -o -selection primary'
-alias à2='xclip -o -selection secondary'
+if [ -n "$WAYLAND_DISPLAY" ]
+then
+	alias çç='wl-copy'
+	alias àà='wl-paste'
+elif [ -n "$DISPLAY" ]
+	alias çç='xclip -i -selection clipboard'
+	alias àà='xclip -o -selection clipboard'
+	alias ç1='xclip -i -selection primary'
+	alias ç2='xclip -i -selection secondary'
+	alias à1='xclip -o -selection primary'
+	alias à2='xclip -o -selection secondary'
+then
+fi
 
 # packages {{{1
 
@@ -547,7 +552,14 @@ alias -g G='| command grep'
 alias -g S='| sort'
 alias -g U='| sort | uniq'
 
-alias -g Y='| xclip -i -selection clipboard'
+if [ -n "$WAYLAND_DISPLAY" ]
+then
+	alias -g Y='| wl-copy'
+elif [ -n "$DISPLAY" ]
+then
+	alias -g Y='| xclip -i -selection clipboard'
+fi
+
 
 alias -g P='|& less'
 alias -g PR='|& less -R'

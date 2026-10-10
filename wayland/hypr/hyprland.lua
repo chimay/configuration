@@ -276,10 +276,39 @@ hl.config({
 -- windows {{{2
 
 hl.window_rule({
+	match = {
+		class = "URxvt",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
+		class = "kitty-dropdown",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
+		class = "calc",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
     match = {
         title = "zshrun",
     },
     float = true,
+	size = "700 60",
+	move = "500 300",
 })
 
 hl.window_rule({
@@ -287,6 +316,8 @@ hl.window_rule({
         title = "zshrunterm",
     },
     float = true,
+	size = "700 60",
+	move = "500 300",
 })
 
 hl.window_rule({
@@ -308,24 +339,6 @@ hl.window_rule({
 hl.window_rule({
 	match = {
 		title = "pulsemixer",
-	},
-	float = true,
-	size = "1200 600",
-	move = "300 70",
-})
-
-hl.window_rule({
-	match = {
-		class = "kitty-dropdown",
-	},
-	float = true,
-	size = "1200 600",
-	move = "300 70",
-})
-
-hl.window_rule({
-	match = {
-		class = "calc",
 	},
 	float = true,
 	size = "1200 600",
@@ -588,7 +601,9 @@ local closeWindowBind = hl.bind(hyper .. " + Delete", hl.dsp.window.close())
 
 -- launchers {{{2
 
-hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
+--hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
+
+hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
 
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("fuzzel"))
@@ -821,7 +836,7 @@ hl.bind(hyper .. " + prior",   hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(hyper .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(hyper .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
-hl.bind(super .. " + Tab", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(super .. " + Tab", hl.dsp.focus({ last = true }))
 hl.bind(super .. " + backspace", hl.dsp.focus({ workspace = "previous" }))
 
 hl.bind(hyper .. " + asciicircum", hl.dsp.focus({ workspace = "previous" }))
@@ -847,7 +862,7 @@ hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
 hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("dms ipc call settings toggleWith dankbar_widgets"))
 
-hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
+--hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
 
 hl.bind(hyper .. " + B", function()
 	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 0"))
@@ -939,7 +954,7 @@ hl.define_submap("wallpaper", function()
 	hl.bind("l", hl.dsp.exec_cmd("less-log.sh ~/log/wallpaper.log"))
 	hl.bind("e", function()
 		hl.dispatch(hl.dsp.submap("reset"))
-		hl.dispatch(hl.dsp.exec_cmd("eval-wallpaper.zsh"))
+		hl.dispatch(hl.dsp.exec_cmd("eval-wallpaper.zsh &>> ~/log/eval-wallpaper.log"))
 	end)
 	hl.bind("r", hl.dsp.exec_cmd("pkill -10 -f wallpaper.zsh"))
 	hl.bind("n", hl.dsp.exec_cmd("pkill -12 -f wallpaper.zsh"))
