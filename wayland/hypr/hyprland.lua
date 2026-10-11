@@ -570,9 +570,6 @@ local meta = "MOD1"
 local super = "MOD4"
 local hyper = "MOD3"
 
---local mainMod = "SUPER" -- Sets "Windows" key as main modifier
-local mainMod = hyper -- Sets "mod3 = hyper = right windows key with meta-super-hyper layout" key as main modifier
-
 -- help {{{2
 
 hl.bind(hyper .. " + F1", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
@@ -603,17 +600,42 @@ local closeWindowBind = hl.bind(hyper .. " + Delete", hl.dsp.window.close())
 
 --hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
 
-hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
-
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("fuzzel"))
 
 hl.bind(super .. " + colon", hl.dsp.exec_cmd("zshrun.sh"))
 hl.bind(super .. " + semicolon", hl.dsp.exec_cmd("zshrunterm.sh"))
 
+-- dms {{{2
+
+-- see dms ipc list
+
+hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
+hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
+
+hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
+hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("dms ipc call settings toggleWith dankbar_widgets"))
+
+hl.bind(hyper .. " + B", function()
+	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 0"))
+	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 1"))
+end)
+
+hl.bind(hyper .. " + C", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
+hl.bind(hyper .. " + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
+
+hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
+
+-- send a notification
+-- dms ipc call toast info "Hello from Hyprland"
+-- dms ipc call toast warn "Disk space low"
+-- dms ipc call toast error "Something failed"
+
 -- hyprland {{{2
 
 hl.bind(hyper .. " + R", hl.dsp.exec_cmd("hyprctl reload"))
+
+hl.bind(hyper .. " + e", hl.dsp.exec_cmd( "rm /tmp/hypr-env.txt ; /usr/bin/env > /tmp/hypr-env.txt 2>&1"))
 
 -- windows {{{3
 
@@ -855,30 +877,6 @@ hl.bind(hyper .. " + SHIFT + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/
 
 hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
 
--- dms {{{2
-
--- see dms ipc list
-
-hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
-hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("dms ipc call settings toggleWith dankbar_widgets"))
-
---hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
-
-hl.bind(hyper .. " + B", function()
-	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 0"))
-	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 1"))
-end)
-
-hl.bind(hyper .. " + C", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
-hl.bind(hyper .. " + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
-
-hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
-
--- send a notification
--- dms ipc call toast info "Hello from Hyprland"
--- dms ipc call toast warn "Disk space low"
--- dms ipc call toast error "Something failed"
-
 -- applications {{{2
 
 hl.bind(hyper .. "+ A", hl.dsp.submap("applications"))
@@ -943,6 +941,7 @@ hl.define_submap("screen", function()
 	hl.bind("down", hl.dsp.exec_cmd("brightnessctl set 10%-"))
 	hl.bind("right", hl.dsp.exec_cmd("brightnessctl set +25%"))
 	hl.bind("left", hl.dsp.exec_cmd("brightnessctl set 25%-"))
+	hl.bind("n", hl.dsp.exec_cmd("dms ipc call night toggle"))
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 

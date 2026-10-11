@@ -1,0 +1,17 @@
+
+export PATH="
+/usr/local/sbin:\
+/usr/local/bin:\
+/usr/sbin:\
+/usr/bin:\
+$HOME/.local/bin:\
+$HOME/.pip/bin:\
+$HOME/racine/automat:\
+$HOME/racine/shell/alarm:\
+$HOME/racine/shell/dialog:\
+$HOME/racine/shell/fileman:\
+$HOME/racine/shell/run:\
+$HOME/racine/shell/windenv:\
+$HOME/racine/shell/multimedia:\
+$HOME/racine/shell/convert:\
+"

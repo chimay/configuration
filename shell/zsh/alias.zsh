@@ -560,7 +560,6 @@ then
 	alias -g Y='| xclip -i -selection clipboard'
 fi
 
-
 alias -g P='|& less'
 alias -g PR='|& less -R'
 

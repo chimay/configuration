@@ -414,7 +414,9 @@ clifm() {
 run-vifm () {
 	local cache=(~/.cache/ueberzugpp/*)
 	(( $#cache > 0 )) && trash-put $=cache
-	vifmrun
+	#vifmrun
+	# -- use ueberzugpp kitty backend to avoid flicker loop in wayland
+	vifmrun-fix
 }
 
 # yank-file {{{2
@@ -529,9 +531,17 @@ locate-file () {
 			database=~/racine/index/filesys/locate/pacman-lib.db
 			;;
 	esac
-	echo "plocate -d $database -e -A $=options $=motifs | fzf | xclip -i -selection clipboard"
-	echo
-	plocate -d $database -e -A $=options $=motifs | fzf | xclip -i -selection clipboard
+	if [ -n "$WAYLAND_DISPLAY" ]
+	then
+		echo "plocate -d $database -e -A $=options $=motifs | fzf | wl-copy"
+		echo
+		plocate -d $database -e -A $=options $=motifs | fzf | wl-copy
+	elif [ -n "$DISPLAY" ]
+	then
+		echo "plocate -d $database -e -A $=options $=motifs | fzf | xclip -i -selection clipboard"
+		echo
+		plocate -d $database -e -A $=options $=motifs | fzf | xclip -i -selection clipboard
+	fi
 }
 
 # yazi file manager {{{2
