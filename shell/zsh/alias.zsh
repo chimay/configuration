@@ -164,10 +164,6 @@ alias emopen='emacsclient'
 # doom emacs
 alias doom=~/racine/dotdir/emacs.doom/bin/doom
 
-# miscellaneous {{{2
-
-alias f=fresh
-
 # file system {{{1
 
 # Liste {{{2
@@ -179,11 +175,13 @@ then
 	alias ll='ls -l'
 else
 	alias l='command ls --color=auto --show-control-chars'
-	alias ls='command ls --color=auto --show-control-chars'
 	alias ll='command ls -l --color=auto'
 	alias la='command ls -a --color=auto'
 	alias ls='eza --icons'
-	alias lst='eza --icons -T -lh'
+	alias lsa='eza --icons -a'
+	alias lsl='eza --icons -lh'
+	alias lst='eza --icons -T'
+	alias lslt='eza --icons -T -lh'
 fi
 
 alias ù=most-recently-modified
@@ -324,8 +322,9 @@ alias in=info
 # searching {{{1
 
 alias é=searcher
-alias è=search-in-irc
 alias lc=locate-file
+alias è=fd
+alias f=fd
 
 # organization {{{1
 

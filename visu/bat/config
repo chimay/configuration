@@ -1,12 +1,18 @@
 # vim: set filetype=conf:
 
+--pager=builtin
+#--pager=less
+
 --paging=always
+
+--style=full
+
+--theme="ansi"
+#--theme="base16"
+#--theme="base16-256"
 
 #--theme="Coldark-Cold"
 #--theme="GitHub"
 #--theme="Monokai Extended Light"
 #--theme="Solarized (dark)"
---theme="ansi"
-#--theme="base16"
-#--theme="base16-256"
 #--theme="gruvbox-white"

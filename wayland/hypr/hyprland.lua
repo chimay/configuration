@@ -70,7 +70,7 @@ hypridle = {
 hl.config({
 	input = {
 		--kb_layout  = "be",
-		kb_layout  = "belge-meta-super-hyper",
+		kb_layout  = "belge-meta-super-hyper,be,us",
 		kb_variant = "",
 		kb_model   = "",
 		kb_options = "",
@@ -151,7 +151,6 @@ hl.config({
 		border_size = 2,
 		col = {
 			active_border   = { colors = {"rgba(9b3c11ee)", "rgba(7b3c11ee)"}, angle = 45 },
-			--inactive_border = "rgba(595959aa)",
 			inactive_border = "rgba(000000aa)",
 		},
 		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -611,6 +610,7 @@ hl.bind(super .. " + semicolon", hl.dsp.exec_cmd("zshrunterm.sh"))
 -- see dms ipc list
 
 hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
+hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call systemupdater toggle "))
 hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
 
 hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
