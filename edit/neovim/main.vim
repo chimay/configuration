@@ -72,7 +72,13 @@ set iskeyword-=/,:,#,@,-
 
 " internal pager {{{1
 
-set more
+"set more
+
+" ---- for ui2
+
+" enter or g< to enter the ui2 pager
+
+set messagesopt+=maxheight:50,pager:<CR>,timeout:4000
 
 " insertion {{{1
 
@@ -336,6 +342,8 @@ set wildignorecase
 set completeopt=menu
 
 set pumheight=12
+
+set completeopt+=noselect
 
 " Compléter par quoi lors d'un ctrl-n/p ? {{{3
 
@@ -857,7 +865,7 @@ nnoremap <leader>t= <cmd>library#equal_windows()<cr>
 
 "nnoremap <m-o> <cmd>browse oldfiles<cr>
 
-" Déplacements & Copie {{{2
+" move & copy {{{2
 
 " Début & Fin de fichier {{{3
 
@@ -910,7 +918,13 @@ nnoremap J mzJ`z
 
 nnoremap ' `
 
-" Recherche & Remplacement {{{2
+" search & replace {{{2
+
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+nnoremap <c-j> <cmd>cnext<cr>
+nnoremap <c-k> <cmd>cprevious<cr>
 
 " next word like this with another cursor
 "nnoremap # Q*
@@ -1116,12 +1130,14 @@ nnoremap <m-q> gqap
 
 " display {{{2
 
-" ---- see also <url:paquet/preload.vim#tn=c-l>
+" ---- see also <url:~/racine/config/edit/neovim/paquet/preload.vim#tn=c-l>
 
 "nnoremap <c-l> <cmd>call library#smart_ctrl_l()<cr>
 vnoremap <c-l> <esc>
 
+nnoremap <leader>dm <cmd>messages<cr>
 nnoremap <leader>dc <cmd>set cursorline!<cr>
+nnoremap <leader>dw <cmd>set wrap!<cr>
 nnoremap <leader>dl <cmd>call library#toggle_relative_linum()<cr>
 nnoremap <leader>df <cmd>set guifont=*<cr>
 nnoremap <leader>dF :GuiFont DejaVu Sans Mono:h12
@@ -1159,6 +1175,11 @@ nnoremap <leader>xX <cmd>call library#password_to_text()<cr>
 
 nnoremap <leader>Tt :tjump /
 nnoremap <leader>Tj :tab tjump /
+
+" coding {{{2
+
+nnoremap <leader>LE <cmd>lsp enable<cr>
+nnoremap <leader>LD <cmd>lsp disable<cr>
 
 " commands {{{2
 
@@ -1240,9 +1261,11 @@ set relativenumber
 
 set linespace=0
 
-" Longues lignes occupent plusieurs lignes (wrap) écran ou une seule (nowrap)
+" Longues lignes occupent :
+" - plusieurs lignes (wrap) écran ou
+" - une seule (nowrap)
 
-set wrap
+set nowrap
 
 " Coupe aux caractères donnés par breakat
 

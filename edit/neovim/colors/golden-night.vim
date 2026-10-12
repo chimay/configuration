@@ -98,11 +98,14 @@ hi TabLineFill		guifg=NONE		guibg=#070707		gui=NONE
 
 " Barre de statut {{{2
 
-hi StatusLineNC		guifg=#5b3c11	guibg=#120705		gui=bold
-hi StatusLine		guifg=NONE		guibg=NONE			gui=reverse,bold
+" hi StatusLineNC		guifg=#5b3c11	guibg=#120705		gui=bold
+" hi StatusLine		guifg=NONE		guibg=NONE			gui=reverse,bold
 
 "hi StatusLineNC	guifg=NONE		guibg=#050505		gui=NONE
 "hi StatusLine		guifg=#7b3c11	guibg=#070707		gui=bold
+
+hi StatusLineNC		guifg=#5b3c11	guibg=#120705		gui=bold
+hi StatusLine		guifg=NONE		guibg=#140705		gui=bold
 
 hi WheelStatusLine		guifg=#5b3c11	guibg=NONE		gui=NONE
 
@@ -237,8 +240,11 @@ hi TabLineFill		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
 " Barre de statut {{{2
 
-hi StatusLine		ctermfg=NONE		ctermbg=NONE		cterm=reverse
-hi StatusLineNC		ctermfg=NONE		ctermbg=NONE		cterm=reverse
+" hi StatusLine		ctermfg=NONE		ctermbg=NONE		cterm=reverse
+" hi StatusLineNC		ctermfg=NONE		ctermbg=NONE		cterm=reverse
+
+hi StatusLine		ctermfg=NONE		ctermbg=NONE		cterm=NONE
+hi StatusLineNC		ctermfg=NONE		ctermbg=NONE		cterm=NONE
 
 hi WheelStatusLine	ctermfg=NONE		ctermbg=NONE		cterm=NONE
 

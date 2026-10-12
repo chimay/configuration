@@ -17,11 +17,8 @@ local map = vim.keymap.set
 vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", version = "main", },
 	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
-	{ src = 'https://github.com/MunifTanjim/nui.nvim', version = "main" },
-	{ src = 'https://github.com/nvim-neotest/nvim-nio', version = "master" },
-	{ src = 'https://github.com/rcarriga/nvim-notify', version = "master" },
+	{ src =  'https://github.com/nvim-neotest/nvim-nio',  version =  "master" },
 	{ src = 'https://github.com/nvim-tree/nvim-web-devicons', version = "master" },
-	{ src = 'https://github.com/saghen/blink.lib', version = "main" },
 })
 
 -- vim legacy {{{2
@@ -67,9 +64,6 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope-file-browser.nvim", version = "master" },
 	{ src = 'https://github.com/nvim-tree/nvim-tree.lua', version = "master" },
 	{ src = 'https://github.com/stevearc/oil.nvim', version = "master" },
-	{ src = 'https://github.com/saghen/blink.cmp', version = "main" },
-	{ src = 'https://github.com/L3MON4D3/LuaSnip', version = "master" },
-	{ src = 'https://github.com/rafamadriz/friendly-snippets', version = "main" },
 	{ src = 'https://github.com/jiaoshijie/undotree', version = "main" },
 	{ src = 'https://github.com/MagicDuck/grug-far.nvim', version = "main", },
 	-- repl : read eval print loop
@@ -79,26 +73,12 @@ vim.pack.add({
 -- interface {{{2
 
 vim.pack.add({
-	{ src = 'https://github.com/folke/noice.nvim', version = "main", },
 })
 
 -- treesitter {{{2
+
 vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main"},
-})
-
--- lsp : language server protocol {{{2
-
-vim.pack.add({
-	{ src = 'https://github.com/neovim/nvim-lspconfig', version = "master" },
-})
-
--- dap : debug adapter protocol {{{2
-
-vim.pack.add({
-	{ src = 'https://github.com/mfussenegger/nvim-dap', version = "master" },
-	{ src = 'https://github.com/rcarriga/nvim-dap-ui', version = "master" },
-	{ src = 'https://github.com/mfussenegger/nvim-dap-python', version = "master" },
 })
 
 -- mason {{{2
@@ -109,6 +89,36 @@ vim.pack.add({
 	{ src = 'https://github.com/mason-org/mason.nvim', version = "main" },
 	{ src = 'https://github.com/mason-org/mason-lspconfig.nvim', version = "main" },
 	{ src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim', version = "main" },
+})
+
+-- lsp : language server protocol {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/neovim/nvim-lspconfig', version = "master" },
+	{ src = 'https://github.com/folke/lazydev.nvim', version = "main" },
+})
+
+-- dap : debug adapter protocol {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/mfussenegger/nvim-dap', version = "master" },
+	{ src = 'https://github.com/rcarriga/nvim-dap-ui', version = "master" },
+	{ src = 'https://github.com/mfussenegger/nvim-dap-python', version = "master" },
+})
+
+-- snippets {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/L3MON4D3/LuaSnip', version = "master" },
+	{ src = 'https://github.com/rafamadriz/friendly-snippets', version = "main" },
+	{ src = 'https://github.com/saadparwaiz1/cmp_luasnip', version = "master" },
+})
+
+-- completion {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/hrsh7th/nvim-cmp', version = "main" },
+	{ src = 'https://github.com/hrsh7th/cmp-nvim-lsp', version = "main" },
 })
 
 -- local {{{2
@@ -131,6 +141,12 @@ vim.pack.add({
 -- 	{ src = "https://github.com/folke/which-key.nvim", version = "main" },
 -- 	{ src = "https://github.com/nvim-mini/mini.nvim", version = "main", },
 -- }, { load = false })
+
+-- colorschemes {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/vague-theme/vague.nvim', version = "main" },
+})
 
 -- setup {{{1
 
@@ -168,45 +184,6 @@ require('mini.map').setup(
     zindex = 10,
   },
 })
-
--- require('mini.cmdline').setup(
--- {
---   -- Autocompletion: show `:h 'wildmenu'` as you type
---   autocomplete = {
---     enable = false,
---     -- Delay (in ms) after which to trigger completion
---     -- Neovim>=0.12 is recommended for positive values
---     delay = 0,
---     -- Custom rule of when to trigger completion
---     predicate = nil,
---     -- Whether to map arrow keys for more consistent wildmenu behavior
---     map_arrows = true,
---   },
---   -- Autocorrection: adjust non-existing words (commands, options, etc.)
---   autocorrect = {
---     enable = false,
---     -- Custom autocorrection rule
---     func = nil,
---   },
---   -- Autopeek: show command's target range in a floating window
---   autopeek = {
---     enable = true,
---     -- Number of lines to show above and below range lines
---     n_context = 1,
---     -- Custom rule of when to show peek window
---     predicate = nil,
---     -- Window options
---     window = {
---       -- Floating window config
---       config = {},
---       -- Function to render statuscolumn
---       statuscolumn = nil,
---     },
---   },
--- }
--- )
-
--- see ../../paquet/preload.vim for the maps
 
 -- which-key {{{2
 
@@ -280,28 +257,177 @@ vim.keymap.set("n", "<C-§>", function() harpoon:list():select(6) end)
 vim.keymap.set("n", "<C-è>", function() harpoon:list():select(7) end)
 vim.keymap.set("n", "<C-è>", function() harpoon:list():select(7) end)
 
+vim.keymap.set("n", "<c-à>", function() harpoon:list():add() end)
+vim.keymap.set("n", "<c-)>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
 vim.keymap.set("n", "<f11>hp", function() harpoon:list():prev() end)
 vim.keymap.set("n", "<f11>hn", function() harpoon:list():next() end)
 
+-- telescope {{{2
+
+require('telescope').setup({
+    extensions = {
+        fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = "smart_case",
+        }
+    }
+})
+
 -- luasnip {{{2
 
-local lua_snip = require("luasnip")
-
-lua_snip.config.setup({})
+local luasnip = require("luasnip")
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
+luasnip.config.setup({})
+
 vim.keymap.set({ "i", "s" }, "<m-tab>", function()
-  if lua_snip.expand_or_jumpable() then
-    lua_snip.expand_or_jump()
+  if luasnip.expand_or_jumpable() then
+    luasnip.expand_or_jump()
   end
 end)
 
 vim.keymap.set({ "i", "s" }, "<C-k>", function()
-  if lua_snip.jumpable(-1) then
-    lua_snip.jump(-1)
+  if luasnip.jumpable(-1) then
+    luasnip.jump(-1)
   end
 end)
+
+-- custom snippets {{{3
+
+local ls = require "luasnip"
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
+local extras = require("luasnip.extras")
+local rep = extras.rep
+local fmt = require("luasnip.extras.fmt").fmt
+local c = ls.choice_node
+local f = ls.function_node
+local d = ls.dynamic_node
+local sn = ls.snippet_node
+
+vim.keymap.set({ "i", "s" }, "<A-n>", function()
+    if ls.choice_active() then
+        ls.change_choice(1)
+    end
+end)
+
+vim.keymap.set({ "i", "s" }, "<A-k>", function()
+    if ls.expand_or_jumpable() then
+        ls.expand_or_jump()
+    end
+end, { silent = true })
+
+vim.keymap.set({ "i", "s" }, "<A-j>", function()
+    if ls.jumpable(-1) then
+        ls.jump(-1)
+    end
+end, { silent = true })
+
+ls.add_snippets("lua", {
+    s("hello", {
+        t('print("hello '),
+        i(1),
+        t(' world")')
+    }),
+
+    s("if", {
+        t('if '),
+        i(1, "true"),
+        t(' then '),
+        i(2),
+        t(' end')
+    })
+})
+
+ls.add_snippets("tex", {
+    s("beg", {
+        t("\\begin{"), i(1), t("}"),
+        t({ "", "\t" }), i(0),
+        t({ "", "\\end{" }), rep(1), t("}"),
+    })
+})
+
+ls.add_snippets("cs", {
+    s("logc",
+        fmt([[Debug.Log($"<color={}>{}</color>");]],
+        {
+            c(1, {
+                t("red"),
+                t("green"),
+                t("blue"),
+                t("cyan"),
+                t("magenta")
+            }),
+            i(2),
+        })),
+})
+
+ls.add_snippets("typescriptreact", {
+    s("co", {
+        d(function()
+            local register_data = vim.fn.getreg() .. "";
+            if string.match(register_data, "[%d-]+,%s*[%d-]+") then
+                return M.sn(nil, {
+                    M.t("position([" .. register_data .. "])"),
+                })
+            else
+                print("register does not contain the pattern")
+                return M.sn(nil, { })
+            end
+        end),
+        i(1)
+    })
+})
+
+-- cmp {{{2
+
+local cmp = require('cmp')
+
+cmp.setup {
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    mapping = cmp.mapping.preset.insert {
+        ['<m-n>'] = cmp.mapping.select_next_item(),
+        ['<m-p>'] = cmp.mapping.select_prev_item(),
+        ['<m-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<m-f>'] = cmp.mapping.scroll_docs(4),
+        ['<m-Space>'] = cmp.mapping.complete {},
+        ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        },
+        ['<m-n>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_locally_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<m-p>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.locally_jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+    },
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+    },
+}
 
 -- undotree {{{2
 
@@ -330,58 +456,6 @@ require('undotree').setup({
 })
 
 vim.keymap.set('n', '<f11>u', require('undotree').toggle, { silent = true })
-
--- notify {{{2
-
-require("notify").setup({
-	timeout = 5000,
-	stages = 'static',
-})
-
--- noice {{{2
-
-require("noice").setup({
-	cmdline = {
-		enabled = true,
-	},
-	messages = {
-		enabled = true,
-		view_search = false,
-	},
-	notify = {
-		enabled = false,
-	},
-	views = {
-		messages = {
-			size = {
-				height = 20,
-			},
-		},
-		notify = {
-			enabled = false,
-			--backend = "notify",
-			--backend = "mini",
-			timeout = 1500,
-		},
-	},
-})
-
-local noice_hl_group = vim.api.nvim_create_augroup("NoiceHighlights", { clear = true })
-
-local function noice_hl()
-	vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#5b3c11" })
-	vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = "#5b3c11" })
-	vim.api.nvim_set_hl(0, "NoiceCmdlineIcon",          { fg = "#5b3c11" })
-	vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch",     { fg = "#5b3c11" })
-	vim.api.nvim_set_hl(0, "NoicePopupTitle",            { fg = "#872e30" })
-end
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-	group = noice_hl_group,
-	callback = noice_hl,
-})
-
-noice_hl()
 
 -- nvim-tree {{{2
 
@@ -503,12 +577,6 @@ require("nvim-tree").setup(config)
 
 require("oil").setup()
 
--- blink {{{2
-
--- local cmp = require('blink.cmp')
--- cmp.build():pwait()
--- cmp.setup()
-
 -- treesitter {{{2
 
 local nvim_treesitter = require('nvim-treesitter')
@@ -533,25 +601,52 @@ vim.api.nvim_create_autocmd('FileType', {
 	end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-	group = treesitter,
-	pattern = { 'python' },
-	callback = function()
-		vim.treesitter.start()
-		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-		vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-		vim.wo[0][0].foldmethod = 'expr'
-	end,
-})
+-- mason {{{2
+
+require("mason").setup()
+
+-- mason lspconfig {{{3
+
+require("mason-lspconfig").setup({})
+
+-- require("mason-lspconfig").setup({
+--     automatic_enable = {
+--         exclude = {
+--             "vimls", "lua_ls",
+--         },
+--     },
+-- })
+
+-- mason tool installer {{{3
+
+require('mason-tool-installer').setup {
+  ensure_installed = {
+	'lua-language-server',
+	'lua_ls',
+    'stylua',
+    'vim-language-server',
+    'bash-language-server',
+    'editorconfig-checker',
+    'shellcheck',
+    'shfmt',
+    'vint',
+  },
+  auto_update = false,
+  run_on_start = true,
+  start_delay = 3000, -- 3 second delay
+  debounce_hours = 0, -- at least 5 hours between attempts to install/update
+  integrations = {
+    ['mason-lspconfig'] = true,
+    ['mason-null-ls'] = true,
+    ['mason-nvim-dap'] = true,
+  },
+}
 
 -- lsp : language server protocol {{{2
 
 -- lspconfig {{{3
 
----- see also <url:#tn=lsp servers>
-
-vim.lsp.enable("vimls", false)
-vim.lsp.enable("lua_ls", false)
+-- theme {{{3
 
 local diagnostic_hl_group = vim.api.nvim_create_augroup("DiagnosticHighlights", { clear = true })
 
@@ -586,97 +681,71 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 diagnostic_hl()
 
--- If you don't want to use the telescope plug-in but still want to see all the
--- errors/warnings, comment out the telescope line and uncomment this:
--- vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>lua
--- vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
-
--- mason {{{2
-
-require("mason").setup()
-
--- mason lspconfig {{{3
-
---require("mason-lspconfig").setup()
-
---require("mason-lspconfig").setup({
---    automatic_enable = false,
---})
-
-require("mason-lspconfig").setup({
-    automatic_enable = {
-        exclude = {
-            "vimls", "lua_ls",
-        },
-    },
-})
-
--- mason tool installer {{{3
-
-require('mason-tool-installer').setup {
-  ensure_installed = {
---     'vim-language-server',
-	'lua-language-server',
-	'lua_ls',
-    'stylua',
-    'bash-language-server',
-    'editorconfig-checker',
-    'shellcheck',
-    'shfmt',
-    'vint',
-  },
-  auto_update = false,
-  run_on_start = true,
-  start_delay = 3000, -- 3 second delay
-  debounce_hours = 0, -- at least 5 hours between attempts to install/update
-  integrations = {
-    ['mason-lspconfig'] = true,
-    ['mason-null-ls'] = true,
-    ['mason-nvim-dap'] = true,
-  },
-}
-
 -- lsp servers {{{3
 
 local servers = {
-	stylua = {}, -- Used to format Lua code
-	lua_ls = {
-		on_init = function(client)
-			client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
-			if client.workspace_folders then
-				local path = client.workspace_folders[1].name
-				if path ~= vim.fn.stdpath 'config' and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then return end
-			end
-			local current_settings = client.config.settings --[[@as lspconfig.settings.lua_ls]]
-			client.config.settings.Lua = vim.tbl_deep_extend('force', current_settings.Lua, {
-				runtime = {
-					version = 'LuaJIT',
-					path = { 'lua/?.lua', 'lua/?/init.lua' },
-				},
-				workspace = {
-					checkThirdParty = false,
-					-- NOTE: this is a lot slower and will cause issues when working on your own configuration.
-					--  See https://github.com/neovim/nvim-lspconfig/issues/3189
-					library = vim.api.nvim_get_runtime_file('', true),
-				},
-			})
-		end,
-		---@type lspconfig.settings.lua_ls
-		settings = {
-			Lua = {
-				format = { enable = false }, -- Disable formatting (formatting is done by stylua)
-			},
-		},
-	},
--- 	pyright = {},
+	stylua = {},
+	lua_ls = {},
+	vimls = {},
+	pyright = {},
 }
 
 ---- heavy on cpu
 
--- for name, server in pairs(servers) do
--- 	vim.lsp.config(name, server)
--- 	vim.lsp.enable(name)
--- end
+for name, server in pairs(servers) do
+	vim.lsp.config(name, server)
+	vim.lsp.enable(name)
+end
+
+-- lsp completion {{{3
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(ev)
+        vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, {
+            autotrigger = true,
+        })
+    end,
+})
+
+-- lsp description hovering {{{3
+
+-- also use K, c-],
+-- c-w c-w, tnen c-w T
+
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     callback = function(ev)
+--         local client = vim.lsp.get_client_by_id(ev.data.client_id)
+--         if not client or not client:supports_method("textDocument/hover") then
+--             return
+--         end
+--         vim.api.nvim_create_autocmd("CursorHold", {
+--             buffer = ev.buf,
+--             callback = function()
+--                 vim.lsp.buf.hover({
+--                     focus = false,
+--                     silent = true,
+--                 })
+--             end,
+--         })
+--     end,
+-- })
+
+-- lsp maps {{{3
+
+map("n", "<f11>ld", vim.lsp.buf.definition,       { desc = "LSP: Go to definition" })
+map("n", "<f11>lD", vim.lsp.buf.declaration,      { desc = "LSP: Go to declaration" })
+map("n", "<f11>li", vim.lsp.buf.implementation,   { desc = "LSP: Go to implementation" })
+map("n", "<f11>l&", vim.lsp.buf.references,       { desc = "LSP: References" })
+map("n", "<f11>lt", vim.lsp.buf.type_definition,  { desc = "LSP: Go to type definition" })
+map("n", "K",  vim.lsp.buf.hover,            { desc = "LSP: Hover documentation" })
+map("n", "<f11>lsd", vim.lsp.buf.document_symbol, { desc = "LSP: Document symbols" })
+map("n", "<f11>lsw", vim.lsp.buf.workspace_symbol, { desc = "LSP: Workspace symbols" })
+
+map("n", "<f11>lr", vim.lsp.buf.rename,        { desc = "LSP: Rename symbol" })
+map("n", "<f11>lca", vim.lsp.buf.code_action,  { desc = "LSP: Code action" })
+map("n", "[d", vim.diagnostic.goto_prev,          { desc = "Previous diagnostic" })
+map("n", "]d", vim.diagnostic.goto_next,          { desc = "Next diagnostic" })
+map("n", "<leader>lof", vim.diagnostic.open_float,  { desc = "Show diagnostic" })
 
 -- dap : debug adapter protocol {{{2
 

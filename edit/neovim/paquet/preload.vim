@@ -585,10 +585,11 @@ nnoremap <s-space>b <cmd>Telescope buffers<cr>
 nnoremap <s-space>j <cmd>Telescope jumplist<cr>
 nnoremap <s-space>t <cmd>Telescope tags<cr>
 nnoremap <s-space>F <cmd>Telescope file_browser<cr>
+nnoremap <s-space>d <cmd>Telescope diagnostics<cr>
 
-nnoremap <f11>nn :Telescope notify<cr>
-nnoremap <f11>nc :NotificationsClear<cr>
-nnoremap <f11><f11> :Telescope notify<cr>
+" nnoremap <f11>nn :Telescope notify<cr>
+" nnoremap <f11>nc :NotificationsClear<cr>
+" nnoremap <f11><f11> :Telescope notify<cr>
 
 " Liens {{{1
 
@@ -842,16 +843,15 @@ nnoremap <silent> <C-Up> :<C-U>TmuxNavigateUp<cr>
 
 " debug {{{1
 
-" diagnostic {{{2
+" lsp diagnostic {{{2
 
-nnoremap <f11>de <cmd>lsp enable<cr>
-nnoremap <f11>d- <cmd>lsp disable<cr>
+" ---- see also <url:~/racine/config/edit/neovim/lua/plugin/native.lua#tn=lsp maps>
 
-nnoremap <f11>dd <cmd>Telescope diagnostics<cr>
+nnoremap <f11>ldd <cmd>Telescope diagnostics<cr>
 
-nnoremap <f11>di <cmd>lua vim.diagnostic.open_float()<cr>
-nnoremap <f11>dn <cmd>lua vim.diagnostic.goto_prev()<cr>
-nnoremap <f11>dp <cmd>lua vim.diagnostic.goto_next()<cr>
+" nnoremap <f11>di <cmd>lua vim.diagnostic.open_float()<cr>
+" nnoremap <f11>dn <cmd>lua vim.diagnostic.goto_prev()<cr>
+" nnoremap <f11>dp <cmd>lua vim.diagnostic.goto_next()<cr>
 
 " dap ui {{{2
 

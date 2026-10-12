@@ -305,8 +305,12 @@ endfun
 fun! library#source_current_file ()
 	" Source current file
 	let filename = library#relative_path('%')
-	if &filetype !=# 'vim'
-		echomsg 'not a vim file'
+	if &filetype !=# 'vim' && &filetype !=# 'lua'
+		echomsg 'not a vim or lua file'
+		return v:false
+	endif
+	if &filetype !=# 'lua' && ! has('nvim')
+		echomsg 'lua file but not neovim'
 		return v:false
 	endif
 	source %

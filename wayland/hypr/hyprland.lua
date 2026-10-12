@@ -434,7 +434,7 @@ hl.window_rule({
 
 hl.window_rule({
     match = {
-        class = "TradingView",
+        class = "tradingview",
     },
     workspace = "4",
 })
@@ -901,38 +901,6 @@ hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
 
 -- applications {{{2
 
-hl.bind(hyper .. "+ A", hl.dsp.submap("applications"))
-
-hl.define_submap("applications", function()
-	hl.bind("A", function()
-		hl.dispatch(hl.dsp.submap("reset"))
-		hl.dispatch(hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
-	end)
-	hl.bind("section", hl.dsp.exec_cmd("run-vifm.zsh"))
-	hl.bind("F", hl.dsp.exec_cmd("dolphin || thunar || caja || pcmanfm"))
-	hl.bind("N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
-	hl.bind("SHIFT + N", hl.dsp.exec_cmd("neovim-qt-lite.sh"))
-	hl.bind("G", hl.dsp.exec_cmd("run-gvim.sh"))
-	hl.bind("SHIFT + G", hl.dsp.exec_cmd("gvim-lite.sh"))
-	hl.bind("SHIFT + E", hl.dsp.exec_cmd("run-emacs-server.sh"))
-	hl.bind("E", hl.dsp.exec_cmd("run-emacs-client.sh"))
-	hl.bind("I", hl.dsp.exec_cmd("gwenview ~"))
-	hl.bind("SHIFT + I", hl.dsp.exec_cmd("vimiv ~/photo/numerique"))
-	hl.bind("equal", hl.dsp.exec_cmd("kitty --single-instance --name calc calc"))
-	hl.bind("Q", hl.dsp.exec_cmd("qutebrowser"))
-	hl.bind("SHIFT + O", hl.dsp.exec_cmd("torbrowser-launcher"))
-	hl.bind("W", hl.dsp.exec_cmd("goto-or-run-appimage.sh vieb"))
-	hl.bind("Z", hl.dsp.exec_cmd("goto-or-run-appimage.sh zen-browser"))
-	hl.bind("K", hl.dsp.exec_cmd("keepassxc"))
-	hl.bind("O", hl.dsp.exec_cmd("octave --gui"))
-	hl.bind("T", hl.dsp.exec_cmd("tradingview"))
-	hl.bind("Y", hl.dsp.exec_cmd("run-freetube.sh"))
-	hl.bind("M", hl.dsp.exec_cmd("vlc"))
-	hl.bind("escape", hl.dsp.submap("reset"))
-end)
-
--- favorites {{{3
-
 hl.bind(super .. " + CONTROL + A", hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
 
 hl.bind(super .. " + CONTROL + section", hl.dsp.exec_cmd("run-vifm.zsh"))
@@ -948,6 +916,8 @@ hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
 hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("goto-or-run.sh qutebrowser"))
 hl.bind(super .. " + CONTROL + B", hl.dsp.exec_cmd("floorp"))
 hl.bind(super .. " + CONTROL + Y", hl.dsp.exec_cmd("run-freetube.sh"))
+
+hl.bind(hyper .. " + X", hl.dsp.exec_cmd("passmenu.bash"))
 
 -- screen {{{2
 
@@ -972,13 +942,22 @@ end)
 hl.bind(hyper .. "+ w", hl.dsp.submap("wallpaper"))
 
 hl.define_submap("wallpaper", function()
-	hl.bind("l", hl.dsp.exec_cmd("less-log.sh ~/log/wallpaper.log"))
-	hl.bind("e", function()
+	hl.bind("L", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("less-log.sh ~/log/wallpaper.log"))
+	end)
+	hl.bind("E", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("eval-wallpaper.zsh &>> ~/log/eval-wallpaper.log"))
 	end)
-	hl.bind("r", hl.dsp.exec_cmd("pkill -10 -f wallpaper.zsh"))
-	hl.bind("n", hl.dsp.exec_cmd("pkill -12 -f wallpaper.zsh"))
+	hl.bind("R", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("pkill -10 -f wallpaper.zsh"))
+	end)
+	hl.bind("N", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("pkill -12 -f wallpaper.zsh"))
+	end)
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
@@ -1022,7 +1001,6 @@ hl.define_submap("mpc", function()
 	hl.bind("F", hl.dsp.exec_cmd("mpc seek +1:00"))
 	hl.bind("B", hl.dsp.exec_cmd("mpc seek -1:00"))
 	hl.bind("V", hl.dsp.exec_cmd("pavucontrol-qt"))
-	hl.bind("T", hl.dsp.exec_cmd("urxvtc -name mpc-tui -title mpc-tui -e ncmpcpp"))
 	hl.bind("E", hl.dsp.exec_cmd("eval-song.zsh"))
 	hl.bind("up", hl.dsp.exec_cmd("pamixer --increase 5"))
 	hl.bind("down", hl.dsp.exec_cmd("pamixer --decrease 5"))
@@ -1030,9 +1008,16 @@ hl.define_submap("mpc", function()
 	hl.bind("left", hl.dsp.exec_cmd("pamixer --decrease 10"))
 	hl.bind("prior", hl.dsp.exec_cmd("pamixer --increase 10"))
 	hl.bind("next", hl.dsp.exec_cmd("pamixer --decrease 10"))
-	hl.bind("M", hl.dsp.exec_cmd([[
-	urxvtc -name multimedia -title pulsemixer -e pulsemixer
-	]]))
+	hl.bind("T", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("urxvtc -name mpc-tui -title mpc-tui -e ncmpcpp"))
+	end)
+	hl.bind("M", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd([[
+		urxvtc -name multimedia -title pulsemixer -e pulsemixer
+		]]))
+	end)
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
