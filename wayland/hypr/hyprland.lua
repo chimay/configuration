@@ -51,20 +51,6 @@ hl.monitor({
 	scale    = "auto",
 })
 
--- idle {{{2
-
-hypridle = {
-	listener = {
-		timeout = 600,
-		on_timeout = function()
-			hl.dpms.off()
-		end,
-		on_resume = function()
-			hl.dpms.on()
-		end,
-	},
-}
-
 -- input : keyboard, mouse, touchpad {{{1
 
 hl.config({
@@ -346,15 +332,25 @@ hl.window_rule({
 
 -- workspaces names {{{2
 
-hl.workspace_rule({ workspace = "1", default_name = "term"})
-hl.workspace_rule({ workspace = "2", default_name = "view"})
-hl.workspace_rule({ workspace = "3", default_name = "edit"})
-hl.workspace_rule({ workspace = "4", default_name = "system"})
-hl.workspace_rule({ workspace = "5", default_name = "browser"})
-hl.workspace_rule({ workspace = "6", default_name = "office"})
-hl.workspace_rule({ workspace = "7", default_name = "artisan"})
-hl.workspace_rule({ workspace = "8", default_name = "video"})
-hl.workspace_rule({ workspace = "9", default_name = "game"})
+hl.workspace_rule({ workspace = "1", persistent = true, default_name = "term"})
+hl.workspace_rule({ workspace = "2", persistent = true, default_name = "view"})
+hl.workspace_rule({ workspace = "3", persistent = true, default_name = "edit"})
+hl.workspace_rule({ workspace = "4", persistent = true, default_name = "system"})
+hl.workspace_rule({ workspace = "5", persistent = true, default_name = "browser"})
+hl.workspace_rule({ workspace = "6", persistent = true, default_name = "office"})
+hl.workspace_rule({ workspace = "7", persistent = true, default_name = "artisan"})
+hl.workspace_rule({ workspace = "8", persistent = true, default_name = "video"})
+hl.workspace_rule({ workspace = "9", persistent = true, default_name = "game"})
+
+-- hl.workspace_rule({ workspace = "1", default_name = "term"})
+-- hl.workspace_rule({ workspace = "2", default_name = "view"})
+-- hl.workspace_rule({ workspace = "3", default_name = "edit"})
+-- hl.workspace_rule({ workspace = "4", default_name = "system"})
+-- hl.workspace_rule({ workspace = "5", default_name = "browser"})
+-- hl.workspace_rule({ workspace = "6", default_name = "office"})
+-- hl.workspace_rule({ workspace = "7", default_name = "artisan"})
+-- hl.workspace_rule({ workspace = "8", default_name = "video"})
+-- hl.workspace_rule({ workspace = "9", default_name = "game"})
 
 -- workspaces layouts {{{2
 
@@ -374,7 +370,12 @@ hl.workspace_rule({
 })
 
 hl.workspace_rule({
-    workspace = "special:magic",
+    workspace = "special:shell",
+    layout = "monocle",
+})
+
+hl.workspace_rule({
+    workspace = "special:calc",
     layout = "monocle",
 })
 
@@ -572,70 +573,33 @@ local hyper = "MOD3"
 -- help {{{2
 
 hl.bind(hyper .. " + F1", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
-hl.bind(hyper .. " + h", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
-
--- terminal {{{2
-
-hl.bind(hyper .. " + Return", hl.dsp.exec_cmd("kitty --single-instance"))
-
-hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd([[
-kitty --single-instance --class kitty-dropdown
-]]))
-
--- hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd([[
--- kitty --single-instance \
--- --class kitty-dropdown \
--- -o remember_window_size=no \
--- -o initial_window_width=120c \
--- -o initial_window_height=30c
--- ]]))
-
-hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
-
-local closeWindowBind = hl.bind(hyper .. " + SHIFT + X", hl.dsp.window.close())
-local closeWindowBind = hl.bind(hyper .. " + Delete", hl.dsp.window.close())
-
--- launchers {{{2
-
---hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
-
---hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
---hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("fuzzel"))
-
-hl.bind(super .. " + colon", hl.dsp.exec_cmd("zshrun.sh"))
-hl.bind(super .. " + semicolon", hl.dsp.exec_cmd("zshrunterm.sh"))
-
--- dms {{{2
-
--- see dms ipc list
-
-hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
-hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call systemupdater toggle "))
-hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
-
-hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
-hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("dms ipc call settings toggleWith dankbar_widgets"))
-
-hl.bind(hyper .. " + B", function()
-	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 0"))
-	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 1"))
-end)
-
-hl.bind(hyper .. " + C", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
-hl.bind(hyper .. " + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
-
-hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
-
--- send a notification
--- dms ipc call toast info "Hello from Hyprland"
--- dms ipc call toast warn "Disk space low"
--- dms ipc call toast error "Something failed"
+hl.bind(hyper .. " + H", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
 
 -- hyprland {{{2
 
+-- self {{{3
+
 hl.bind(hyper .. " + R", hl.dsp.exec_cmd("hyprctl reload"))
 
-hl.bind(hyper .. " + e", hl.dsp.exec_cmd( "rm /tmp/hypr-env.txt ; /usr/bin/env > /tmp/hypr-env.txt 2>&1"))
+hl.bind(hyper .. "+ Y", hl.dsp.submap("hyperland"))
+
+hl.define_submap("hyperland", function()
+	hl.bind("R", function()
+		hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
+		hl.dispatch(hl.dsp.submap("reset"))
+	end)
+	hl.bind("Q", hl.dsp.exec_cmd("hyprshutdown"))
+	hl.bind("S", hl.dsp.exec_cmd("uwsm stop"))
+	hl.bind("E", function()
+		hl.dispatch(hl.dsp.exec_cmd( "rm /tmp/hypr-env.txt ; /usr/bin/env > /tmp/hypr-env.txt 2>&1"))
+		hl.dispatch(hl.dsp.submap("reset"))
+	end)
+	hl.bind("Z", function()
+		hl.dispatch(hl.dsp.dpms({action = "toggle"}))
+		hl.dispatch(hl.dsp.submap("reset"))
+	end)
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
 
 -- windows {{{3
 
@@ -668,6 +632,9 @@ hl.bind(super .. "+ CONTROL + right", hl.dsp.window.resize({ x = 10, y = 0, rela
 hl.bind(super .. "+ CONTROL + left", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
 hl.bind(super .. "+ CONTROL + up", hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
 hl.bind(super .. "+ CONTROL + down", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
+
+local closeWindowBind = hl.bind(hyper .. " + SHIFT + X", hl.dsp.window.close())
+local closeWindowBind = hl.bind(hyper .. " + Delete", hl.dsp.window.close())
 
 --hl.bind(super .. "+ CONTROL + r", hl.dsp.submap("resize"))
 
@@ -867,15 +834,70 @@ hl.bind(hyper .. " + asciicircum", hl.dsp.focus({ workspace = "previous" }))
 
 -- Example special workspace (scratchpad)
 
-hl.bind("SHIFT + F12",         hl.dsp.workspace.toggle_special("magic"))
+hl.bind("SHIFT + F12",         hl.dsp.workspace.toggle_special("shell"))
+hl.bind("CONTROL + F12",         hl.dsp.workspace.toggle_special("calc"))
 
---hl.bind("CONTROL + SHIFT + F12", hl.dsp.window.move({ workspace = "special:magic" }))
+--hl.bind("CONTROL + SHIFT + F12", hl.dsp.window.move({ workspace = "special:shell" }))
 
 -- quit {{{3
 
-hl.bind(hyper .. " + SHIFT + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+--hl.bind(hyper .. " + SHIFT + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 
 hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
+
+-- terminal {{{2
+
+hl.bind(hyper .. " + Return", hl.dsp.exec_cmd("kitty --single-instance"))
+
+hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd([[
+kitty --single-instance --class kitty-dropdown
+]]))
+
+-- hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd([[
+-- kitty --single-instance \
+-- --class kitty-dropdown \
+-- -o remember_window_size=no \
+-- -o initial_window_width=120c \
+-- -o initial_window_height=30c
+-- ]]))
+
+hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
+
+-- launchers {{{2
+
+--hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
+--hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("fuzzel"))
+
+hl.bind(super .. " + colon", hl.dsp.exec_cmd("zshrun.sh"))
+hl.bind(super .. " + semicolon", hl.dsp.exec_cmd("zshrunterm.sh"))
+
+-- dms {{{2
+
+-- see dms ipc list
+
+hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
+hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call systemupdater toggle "))
+hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
+
+hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("rofi-windows.zsh"))
+
+hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
+hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("dms ipc call settings toggleWith dankbar_widgets"))
+
+hl.bind(hyper .. " + B", function()
+	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 0"))
+	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 1"))
+end)
+
+hl.bind(hyper .. " + C", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
+hl.bind(hyper .. " + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
+
+hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
+
+-- send a notification
+-- dms ipc call toast info "Hello from Hyprland"
+-- dms ipc call toast warn "Disk space low"
+-- dms ipc call toast error "Something failed"
 
 -- applications {{{2
 
@@ -887,7 +909,7 @@ hl.define_submap("applications", function()
 		hl.dispatch(hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
 	end)
 	hl.bind("section", hl.dsp.exec_cmd("run-vifm.zsh"))
-	hl.bind("F", hl.dsp.exec_cmd("thunar || caja || pcmanfm"))
+	hl.bind("F", hl.dsp.exec_cmd("dolphin || thunar || caja || pcmanfm"))
 	hl.bind("N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
 	hl.bind("SHIFT + N", hl.dsp.exec_cmd("neovim-qt-lite.sh"))
 	hl.bind("G", hl.dsp.exec_cmd("run-gvim.sh"))
@@ -919,7 +941,7 @@ hl.bind(super .. " + CONTROL + equal", hl.dsp.exec_cmd([[
 kitty --single-instance --class calc calc
 ]]))
 
-hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("thunar || caja || pcmanfm"))
+hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("dolphin || thunar || caja || pcmanfm"))
 hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
 hl.bind(super .. " + CONTROL + N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
 hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
@@ -941,7 +963,7 @@ hl.define_submap("screen", function()
 	hl.bind("down", hl.dsp.exec_cmd("brightnessctl set 10%-"))
 	hl.bind("right", hl.dsp.exec_cmd("brightnessctl set +25%"))
 	hl.bind("left", hl.dsp.exec_cmd("brightnessctl set 25%-"))
-	hl.bind("n", hl.dsp.exec_cmd("dms ipc call night toggle"))
+	hl.bind("N", hl.dsp.exec_cmd("dms ipc call night toggle"))
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
@@ -971,19 +993,6 @@ hl.bind(super .. " + F12", hl.dsp.exec_cmd("dms ipc call notifications clearAll"
 -- clipboard {{{2
 
 hl.bind(hyper .. " + ccedilla", hl.dsp.exec_cmd("rofi-cliphist.sh"))
-
--- pass {{{2
-
-hl.bind(hyper .. "+ y", hl.dsp.submap("pass"))
-
-hl.define_submap("pass", function()
-	hl.bind("plus", hl.dsp.exec_cmd("pass-open.sh"))
-	hl.bind("equal", hl.dsp.exec_cmd("pass-open.sh"))
-	hl.bind("minus", hl.dsp.exec_cmd("pass-close.sh"))
-	hl.bind("escape", hl.dsp.submap("reset"))
-end)
-
-hl.bind(hyper .. " + X", hl.dsp.exec_cmd("passmenu.bash"))
 
 -- keyboard {{{2
 
