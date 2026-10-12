@@ -120,7 +120,7 @@ hl.on("hyprland.start", function ()
 
 -- neede in one exec because executed asynchronously
 
-hl.exec_cmd("hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ; sleep 2 ; hypr-autostart.zsh >>! ~/log/hypr-autostart.log 2>&1")
+hl.exec_cmd("hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ; hypr-autostart.zsh >>! ~/log/hypr-autostart.log 2>&1")
 
 -- closing {{{2
 
@@ -588,8 +588,8 @@ hl.define_submap("hyperland", function()
 		hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
 		hl.dispatch(hl.dsp.submap("reset"))
 	end)
-	hl.bind("Q", hl.dsp.exec_cmd("hyprshutdown"))
-	hl.bind("S", hl.dsp.exec_cmd("uwsm stop"))
+	hl.bind("Q", hl.dsp.exec_cmd("hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ; hyprshutdown"))
+	hl.bind("S", hl.dsp.exec_cmd("hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ; uwsm stop"))
 	hl.bind("E", function()
 		hl.dispatch(hl.dsp.exec_cmd( "rm /tmp/hypr-env.txt ; /usr/bin/env > /tmp/hypr-env.txt 2>&1"))
 		hl.dispatch(hl.dsp.submap("reset"))
