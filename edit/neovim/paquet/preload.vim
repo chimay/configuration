@@ -783,8 +783,7 @@ nnoremap <f11>mr <cmd>lua MiniMap.refresh()<cr>
 
 " yarepl {{{1
 
-nnoremap <f5>sp <cmd>Yarepl! start ipython<cr>
-nnoremap <f5>sz <cmd>Yarepl! start zsh<cr>
+nnoremap <f5>s <cmd>call library#repl_interpreter('Yarepl! start_or_focus_or_hide')<cr>
 
 nnoremap <f5><f5> <cmd>Yarepl send_line<cr>
 
@@ -792,6 +791,7 @@ vnoremap <f5>v <cmd>Yarepl send_visual<cr>
 vnoremap <f5>V <cmd>Yarepl source_visual<cr>
 
 nnoremap <f5>o <cmd>Yarepl send_operator<cr>
+nnoremap <f5>O <cmd>Yarepl source_operator<cr>
 
 " vim-tmux-navigator {{{2
 

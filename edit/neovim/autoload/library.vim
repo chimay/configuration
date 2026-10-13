@@ -1060,6 +1060,24 @@ fun! library#terminal ()
 	startinsert!
 endfun
 
+fun! library#repl_interpreter (command)
+	" Execute command with correct interpreter
+	let command = a:command
+	let type = &filetype
+	let interdict = #{
+				\ sh : 'sh',
+				\ bash : 'bash',
+				\ zsh : 'zsh',
+				\ python : 'ipython',
+				\ }
+	if keys(interdict)->index(type) < 0
+		return v:false
+	endif
+	let interpret = interdict[type]
+	execute command interpret
+	return v:true
+endfun
+
 " ---- disc operations
 
 fun! library#chmodexec ()
