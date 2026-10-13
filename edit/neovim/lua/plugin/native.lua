@@ -233,7 +233,7 @@ which_key.add({
 	{ "<leader>p", group = "plugin manager" },
 	-- f11
 	{ "<f11>m", group = "minimap" },
-	{ "<f11>d", group = "diagnostic" },
+	{ "<f11>l", group = "lang serv prot" },
 	{ "<f11>D", group = "debug adapt prot" },
 	{ "<f11>!", group = "ripple" },
 	{ "<f11>$", group = "repl" },
@@ -489,7 +489,7 @@ require('undotree').setup({
     },
 })
 
-vim.keymap.set('n', '<f11>u', require('undotree').toggle, { silent = true })
+vim.keymap.set('n', '<f11>u', require('undotree').toggle, { silent = true, desc = 'undotree' })
 
 -- nvim-tree {{{2
 
@@ -647,40 +647,34 @@ require("mason-lspconfig").setup({
 		'stylua',
 		'vimls',
 		'pyright',
-	}
+	},
+	automatic_enable = {
+		exclude = {
+		},
+	},
 })
-
--- require("mason-lspconfig").setup({
---     automatic_enable = {
---         exclude = {
---             "vimls", "lua_ls",
---         },
---     },
--- })
 
 -- mason tool installer {{{3
 
 require('mason-tool-installer').setup {
-  ensure_installed = {
-	'lua-language-server',
-	'lua_ls',
-    'stylua',
-    'vim-language-server',
-    'bash-language-server',
-    'editorconfig-checker',
-    'shellcheck',
-    'shfmt',
-    'vint',
-  },
-  auto_update = false,
-  run_on_start = true,
-  start_delay = 3000, -- 3 second delay
-  debounce_hours = 0, -- at least 5 hours between attempts to install/update
-  integrations = {
-    ['mason-lspconfig'] = true,
-    ['mason-null-ls'] = true,
-    ['mason-nvim-dap'] = true,
-  },
+	ensure_installed = {
+		"lua_ls",
+		'lua-language-server',
+		'stylua',
+		'vimls',
+		'vim-language-server',
+		'pyright',
+		'bash-language-server',
+		'editorconfig-checker',
+		'shellcheck',
+		'shfmt',
+		'vint',
+	},
+	integrations = {
+		['mason-lspconfig'] = true,
+		['mason-null-ls'] = true,
+		['mason-nvim-dap'] = true,
+	},
 }
 
 -- lsp : language server protocol {{{2
@@ -724,7 +718,7 @@ diagnostic_hl()
 
 -- lsp servers {{{3
 
----- no need to call it with mason-lspconfig
+---- no need to call it with mason-lspconfig or mason-tool-installer
 
 -- vim.lsp.enable('lua_ls')
 -- vim.lsp.enable('stylua')
@@ -778,20 +772,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- lsp maps {{{3
 
-map("n", "<f11>ld", vim.lsp.buf.definition,       { desc = "LSP: Go to definition" })
-map("n", "<f11>lD", vim.lsp.buf.declaration,      { desc = "LSP: Go to declaration" })
+map("n", "<f11>ldd", vim.lsp.buf.definition,      { desc = "LSP: Go to definition" })
+map("n", "<f11>ldc", vim.lsp.buf.declaration,     { desc = "LSP: Go to declaration" })
 map("n", "<f11>li", vim.lsp.buf.implementation,   { desc = "LSP: Go to implementation" })
 map("n", "<f11>l&", vim.lsp.buf.references,       { desc = "LSP: References" })
-map("n", "<f11>lt", vim.lsp.buf.type_definition,  { desc = "LSP: Go to type definition" })
+map("n", "<f11>ldt", vim.lsp.buf.type_definition,  { desc = "LSP: Go to type definition" })
 map("n", "K",  vim.lsp.buf.hover,            { desc = "LSP: Hover documentation" })
-map("n", "<f11>lsd", vim.lsp.buf.document_symbol, { desc = "LSP: Document symbols" })
-map("n", "<f11>lsw", vim.lsp.buf.workspace_symbol, { desc = "LSP: Workspace symbols" })
+map("n", "<f11>lds", vim.lsp.buf.document_symbol, { desc = "LSP: Document symbols" })
+map("n", "<f11>lw", vim.lsp.buf.workspace_symbol, { desc = "LSP: Workspace symbols" })
 
 map("n", "<f11>lr", vim.lsp.buf.rename,        { desc = "LSP: Rename symbol" })
-map("n", "<f11>lca", vim.lsp.buf.code_action,  { desc = "LSP: Code action" })
+map("n", "<f11>lc", vim.lsp.buf.code_action,  { desc = "LSP: Code action" })
+map("n", "<leader>lof", vim.diagnostic.open_float,  { desc = "Show diagnostic" })
+
 map("n", "[d", vim.diagnostic.goto_prev,          { desc = "Previous diagnostic" })
 map("n", "]d", vim.diagnostic.goto_next,          { desc = "Next diagnostic" })
-map("n", "<leader>lof", vim.diagnostic.open_float,  { desc = "Show diagnostic" })
 
 -- dap : debug adapter protocol {{{2
 
