@@ -5,10 +5,11 @@ if ! has("autocmd")
 endif
 
 augroup completion
-	autocmd Filetype *
-				\	if &omnifunc == "" |
-				\		setlocal omnifunc=syntaxcomplete#Complete |
-				\	endif
+	" default uses lsp, better
+	"autocmd Filetype *
+				"\	if &omnifunc == "" |
+				"\		setlocal omnifunc=syntaxcomplete#Complete |
+				"\	endif
 augroup END
 
 augroup source-file

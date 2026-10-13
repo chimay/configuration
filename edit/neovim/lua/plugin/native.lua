@@ -406,23 +406,24 @@ local cmp = require('cmp')
 
 local cmp_enabled = true
 
-vim.keymap.set('n', '<f11>cc', function()
+vim.keymap.set('n', '<f11>c', function()
 	cmp_enabled = not cmp_enabled
 	if cmp_enabled then
 		cmp.setup({ enabled = true, })
 	else
 		cmp.abort()
 		cmp.setup({ enabled = false, })
-		vim.keymap.del('i', '<C-n>')
-		vim.keymap.set('i', '<Tab>', function()
+		vim.keymap.del('i', '<c-n>')
+		vim.keymap.del('i', '<c-x>')
+		vim.keymap.set('i', '<tab>', function()
 			return vim.fn['library#smart_tab']()
 		end, { expr = true, replace_keycodes = true })
-		vim.keymap.set('i', '<Tab>', '<Plug>(organ-tab)', { remap = true })
-		vim.keymap.set('i', '<S-Tab>', function()
+		vim.keymap.set('i', '<tab>', '<Plug>(organ-tab)', { remap = true })
+		vim.keymap.set('i', '<s-tab>', function()
 			return vim.fn['library#smart_shift_tab']()
 		end, { expr = true, replace_keycodes = true })
-		vim.keymap.set('i', '<S-Tab>', '<Plug>(organ-shift-tab)', { remap = true })
-		vim.keymap.set('i', '<C-Tab>', '<C-x><C-o>', { remap = true })
+		vim.keymap.set('i', '<s-tab>', '<Plug>(organ-shift-tab)', { remap = true })
+		vim.keymap.set('i', '<c-tab>', '<C-x><C-o>', { remap = true })
 	end
 end, { desc = 'Toggle nvim-cmp' })
 
@@ -640,7 +641,14 @@ require("mason").setup()
 
 -- mason lspconfig {{{3
 
-require("mason-lspconfig").setup({})
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"lua_ls",
+		'stylua',
+		'vimls',
+		'pyright',
+	}
+})
 
 -- require("mason-lspconfig").setup({
 --     automatic_enable = {
@@ -716,19 +724,24 @@ diagnostic_hl()
 
 -- lsp servers {{{3
 
-local servers = {
-	stylua = {},
-	lua_ls = {},
-	vimls = {},
-	pyright = {},
-}
+---- no need to call it with mason-lspconfig
 
----- heavy on cpu
+-- vim.lsp.enable('lua_ls')
+-- vim.lsp.enable('stylua')
+-- vim.lsp.enable('vimls')
+-- vim.lsp.enable('pyright')
 
-for name, server in pairs(servers) do
-	vim.lsp.config(name, server)
-	vim.lsp.enable(name)
-end
+-- local servers = {
+-- 	stylua = {},
+-- 	lua_ls = {},
+-- 	vimls = {},
+-- 	pyright = {},
+-- }
+
+-- for name, server in pairs(servers) do
+-- 	vim.lsp.config(name, server)
+-- 	vim.lsp.enable(name)
+-- end
 
 -- lsp completion {{{3
 
