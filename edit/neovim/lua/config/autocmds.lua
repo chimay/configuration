@@ -2,12 +2,11 @@
 
 -- credit : https://github.com/radleylewis/nvim-lite
 
--- Basic autocommands
+-- disable line numbers in terminal {{{1
 
 local augroup = vim.api.nvim_create_augroup("UserConfig", {})
 local autocmd = vim.api.nvim_create_autocmd
 
--- Disable line numbers in terminal
 autocmd("TermOpen", {
   group = augroup,
   callback = function()
@@ -17,7 +16,8 @@ autocmd("TermOpen", {
   end,
 })
 
--- Auto-close terminal when process exits
+-- auto-close terminal when process exits {{{1
+
 autocmd("TermClose", {
   group = augroup,
   callback = function()
@@ -26,3 +26,13 @@ autocmd("TermClose", {
     end
   end,
 })
+
+-- statusline disappear when on :ex cmdline {{{1
+
+---- see <url:~/racine/config/edit/neovim/autocommand.vim>
+
+-- vim.api.nvim_create_autocmd({ 'CmdlineEnter', 'CmdlineLeave' }, {
+--   callback = function(ev)
+--     vim.o.laststatus = ev.event == 'CmdlineEnter' and 0 or 3
+--   end,
+-- })

@@ -1458,7 +1458,7 @@ set statusline+=%<
 
 " Hauteur
 
-set cmdheight=2
+set cmdheight=3
 
 " Conceal {{{2
 

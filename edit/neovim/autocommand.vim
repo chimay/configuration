@@ -44,14 +44,10 @@ augroup reload-service
 	autocmd BufWritePost ~/racine/config/auto/crontab !update-crontab.sh &>> ~/log/cron.log &
 augroup END
 
-augroup quickfix-window
-	autocmd!
-	autocmd filetype qf noremap <buffer> q <cmd>call library#close_list()<cr>
-	autocmd filetype qf noremap <buffer> <backspace> <cr><c-w>p:call library#close_list()<cr>
-	autocmd filetype qf noremap <buffer> s <cmd>call library#grepped_files_replace()<cr>
-	autocmd filetype qf noremap <buffer> S <cmd>call library#grepped_files_replace_word()<cr>
-	" overwrite generic <cr> mapping
-	autocmd filetype qf nnoremap <buffer> <cr> <cr>
+augroup ex-commandline
+	" toggle statusline
+	autocmd CmdlineEnter * let &laststatus = 0
+	autocmd CmdlineLeave * let &laststatus = 3
 augroup END
 
 augroup command-window
@@ -63,6 +59,16 @@ augroup command-window
 	autocmd CmdwinLeave * let @/=""
 	" overwrite generic <cr> mapping
 	autocmd CmdwinEnter * nnoremap <buffer> <cr> <cr>
+augroup END
+
+augroup quickfix-window
+	autocmd!
+	autocmd filetype qf noremap <buffer> q <cmd>call library#close_list()<cr>
+	autocmd filetype qf noremap <buffer> <backspace> <cr><c-w>p:call library#close_list()<cr>
+	autocmd filetype qf noremap <buffer> s <cmd>call library#grepped_files_replace()<cr>
+	autocmd filetype qf noremap <buffer> S <cmd>call library#grepped_files_replace_word()<cr>
+	" overwrite generic <cr> mapping
+	autocmd filetype qf nnoremap <buffer> <cr> <cr>
 augroup END
 
 augroup temporary-files

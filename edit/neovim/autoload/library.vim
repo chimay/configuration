@@ -1029,6 +1029,8 @@ fun! library#tabline ()
 	return title
 endfu
 
+" ---- ex command line
+
 " ---- terminal
 
 fun! library#terminal ()
@@ -1639,6 +1641,6 @@ endfun
 " ---- tests
 
 function! library#test_confirm() abort
-	"set cmdheight=3
+	set cmdheight=3
 	let x = confirm("AAA", "&Yes\n&No", 2)
 endfunction
