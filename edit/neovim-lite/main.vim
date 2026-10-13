@@ -72,7 +72,13 @@ set iskeyword-=/,:,#,@,-
 
 " internal pager {{{1
 
-set more
+"set more
+
+" ---- for ui2
+
+" enter or g< to enter the ui2 pager
+
+set messagesopt+=maxheight:50,pager:<CR>,timeout:4000
 
 " insertion {{{1
 
@@ -337,6 +343,10 @@ set completeopt=menu
 
 set pumheight=12
 
+" -- interesting for autocomplete,
+" -- annoying for standard one
+"set completeopt+=noselect
+
 " Compléter par quoi lors d'un ctrl-n/p ? {{{3
 
 "    This option specifies how keyword completion works
@@ -417,6 +427,7 @@ set wildoptions=pum,tagfile
 " 					complete till longest common string.
 
 "set wildmode=longest,full
+
 set wildmode=full
 
 " text formatting {{{1
@@ -666,6 +677,7 @@ let g:maplocalleader="_"
 nnoremap <f1> :tab help<space>
 nnoremap <s-f1> <cmd>tab help quickref<cr>
 nnoremap <m-f1> <cmd>tab help user-manual<cr>
+nnoremap <c-s-f1> <cmd>tab help helphelp<cr>
 nnoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
 inoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
 vnoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
@@ -695,7 +707,7 @@ nnoremap gm <cmd>call library#manual()<cr>
 nnoremap ZW <cmd>quit<cr>
 
 nnoremap ZD <cmd>detach<cr>
-nnoremap ZS <cmd>call library#print_current_server()<cr>
+nnoremap ZS <cmd>call library#current_server_socket()<cr>
 
 nnoremap ZZ <cmd>qall<cr>
 nnoremap ZQ <cmd>qall!<cr>
@@ -743,55 +755,43 @@ nnoremap <leader>f :find<space>
 
 nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
-" see also <url:~/racine/config/edit/neovim-lite/paquet/preload.vim#tn=f7 prefix>
-
 nnoremap <f5> <cmd>call library#source_current_file()<cr>
 
-nnoremap <f11>v <cmd>call library#edit_myvimrc()<cr>
+nnoremap <f10>v <cmd>call library#edit_myvimrc()<cr>
+nnoremap <f10>R <cmd>call library#toggle_readonly()<cr>
+nnoremap <f10>n <cmd>new <bar> only<cr>
+nnoremap <f10>e <cmd>call library#edit_in_current_file_subtree()<cr>
+nnoremap <f10>r <cmd>call library#read_in_current_file_subtree()<cr>
+nnoremap <f10>x <cmd>call library#chmodexec()<cr>
 
-nnoremap <f11>R <cmd>call library#toggle_readonly()<cr>
-
-nnoremap <f11>n <cmd>new <bar> only<cr>
-nnoremap <f11>e <cmd>call library#edit_in_current_file_subtree()<cr>
-nnoremap <f11>r <cmd>call library#read_in_current_file_subtree()<cr>
-
-nnoremap <f11>g <cmd>call library#edit_attic()<cr>
-nnoremap <f11>c <cmd>call library#edit_cronos()<cr>
-nnoremap <f11>d <cmd>call library#edit_dream()<cr>
-nnoremap <f11>f <cmd>call library#edit_fix()<cr>
-nnoremap <f11>l <cmd>call library#edit_ship_log()<cr>
-nnoremap <f11>s <cmd>call library#edit_syntax_plugin()<cr>
-nnoremap <f11>t <cmd>call library#edit_tasks()<cr>
-nnoremap <f11>m <cmd>call library#edit_minisnip_file()<cr>
-
-nnoremap <f11>x <cmd>call library#chmodexec()<cr>
+nnoremap <f10>g <cmd>call library#edit_attic()<cr>
+nnoremap <f10>c <cmd>call library#edit_cronos()<cr>
+nnoremap <f10>d <cmd>call library#edit_dream()<cr>
+nnoremap <f10>f <cmd>call library#edit_fix()<cr>
+nnoremap <f10>l <cmd>call library#edit_ship_log()<cr>
+nnoremap <f10>s <cmd>call library#edit_syntax_plugin()<cr>
+nnoremap <f10>t <cmd>call library#edit_tasks()<cr>
+nnoremap <f10>m <cmd>call library#edit_minisnip_file()<cr>
 
 " org mode
-nnoremap <f7>h <cmd>call library#orgmode_make_html()<cr>
-nnoremap <f7>H <cmd>call library#orgmode_gen_html()<cr>
+nnoremap <f6>h <cmd>call library#orgmode_make_html()<cr>
+nnoremap <f6>H <cmd>call library#orgmode_gen_html()<cr>
 
 " latex
-nnoremap <f8>p <cmd>call library#latex_make_pdf()<cr>
-nnoremap <f8>P <cmd>call library#latex_gen_pdf()<cr>
-nnoremap <f8>s <cmd>call library#latex_make_svg()<cr>
-nnoremap <f8>S <cmd>call library#latex_gen_svg()<cr>
+nnoremap <f7>p <cmd>call library#latex_make_pdf()<cr>
+nnoremap <f7>P <cmd>call library#latex_gen_pdf()<cr>
+nnoremap <f7>s <cmd>call library#latex_make_svg()<cr>
+nnoremap <f7>S <cmd>call library#latex_gen_svg()<cr>
 
 " lilypond
-nnoremap <f9>m <cmd>call library#lilypond_make_midi()<cr>
-nnoremap <f9>p <cmd>call library#lilypond_make_display_pdf()<cr>
-nnoremap <f9>o <cmd>call library#lilypond_make_ogg()<cr>
-nnoremap <f9>M <cmd>call library#lilypond_gen_midi()<cr>
-nnoremap <f9>P <cmd>call library#lilypond_gen_display_pdf()<cr>
-nnoremap <f9>O <cmd>call library#lilypond_gen_ogg()<cr>
+nnoremap <f8>m <cmd>call library#lilypond_make_midi()<cr>
+nnoremap <f8>p <cmd>call library#lilypond_make_display_pdf()<cr>
+nnoremap <f8>o <cmd>call library#lilypond_make_ogg()<cr>
+nnoremap <f8>M <cmd>call library#lilypond_gen_midi()<cr>
+nnoremap <f8>P <cmd>call library#lilypond_gen_display_pdf()<cr>
+nnoremap <f8>O <cmd>call library#lilypond_gen_ogg()<cr>
 
 " buffers (tampons) {{{2
-
-" wipe buffer
-nnoremap <m-w> <cmd>bwipe!<cr>
-" wipe alternate buffer
-nnoremap <d-w> <cmd>bwipe! #<cr>
-" wipe all buffers
-nnoremap <m-s-w> <cmd>%bwipe<cr>
 
 nnoremap <leader>bb :buffer<space>
 nnoremap <leader>bp <cmd>bprevious<cr>
@@ -799,7 +799,15 @@ nnoremap <leader>bn <cmd>bnext<cr>
 nnoremap <leader>b^ <cmd>bfirst<cr>
 nnoremap <leader>b$ <cmd>blast<cr>
 nnoremap <leader>bd <cmd>bdelete<cr>
+nnoremap <leader>bD <cmd>bwipe!<cr>
 nnoremap <leader>bw <cmd>call library#write_all()<cr>
+
+" wipe buffer
+nnoremap <m-w> <cmd>bwipe!<cr>
+" wipe alternate buffer
+nnoremap <d-w> <cmd>bwipe! #<cr>
+" wipe all buffers
+nnoremap <m-s-w> <cmd>%bwipe<cr>
 
 " file arguments {{{2
 
@@ -828,7 +836,7 @@ nnoremap <leader>w- <cmd>wincmd _<cr>
 nnoremap <leader>wp <cmd>library#win2prev_tab()<cr>
 nnoremap <leader>wn <cmd>library#win2next_tab()<cr>
 
-"  tabs, tabpages (onglets) {{{2
+" tabs, tabpages (onglets) {{{2
 
 nnoremap <c-pageup> gT
 nnoremap <c-pagedown> gt
@@ -839,10 +847,11 @@ nnoremap <c-end> <cmd>tablast<cr>
 nnoremap <s-pageup> <cmd>tabmove -1<cr>
 nnoremap <s-pagedown> <cmd>tabmove +1<cr>
 
-" c-t is remapped to s-bs
+" ---- builtin c-t is remapped to s-bs
 nnoremap <c-t> <cmd>tabnew<cr>
 
 nnoremap <leader>tt <cmd>tabnew<cr>
+nnoremap <leader>tc <cmd>tabclose<cr>
 nnoremap <leader>tn <cmd>tabnext<cr>
 nnoremap <leader>tp <cmd>tabprevious<cr>
 nnoremap <leader>t^ <cmd>tabfirst<cr>
@@ -858,7 +867,7 @@ nnoremap <leader>t= <cmd>library#equal_windows()<cr>
 
 "nnoremap <m-o> <cmd>browse oldfiles<cr>
 
-" Déplacements & Copie {{{2
+" move & copy {{{2
 
 " Début & Fin de fichier {{{3
 
@@ -911,12 +920,19 @@ nnoremap J mzJ`z
 
 nnoremap ' `
 
-"  Recherche & Remplacement {{{2
+" search & replace {{{2
+
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+nnoremap <c-n> <cmd>cnext<cr>
+nnoremap <c-p> <cmd>cprevious<cr>
 
 " next word like this with another cursor
-nnoremap # Q*
+"nnoremap # Q*
 
 nnoremap <m-r> :%s///g<left><left><left>
+vnoremap <m-r> :s///g<left><left><left>
 
 nnoremap <leader>sw <cmd>call library#search_word()<cr>
 nnoremap <leader>sr <cmd>call library#search_and_replace_word()<cr>
@@ -926,6 +942,7 @@ nnoremap <leader>gg <cmd>call library#grep_in_current_file_dir()<cr>
 nnoremap <leader>gG <cmd>call library#grep()<cr>
 nnoremap <leader>gw <cmd>call library#grep_word_in_current_file_dir()<cr>
 nnoremap <leader>gW <cmd>call library#grep_word()<cr>
+nnoremap <leader>gm <cmd>call library#grep_and_multicursor()<cr>
 
 nnoremap <leader>qo <cmd>copen<cr>
 nnoremap <leader>qc <cmd>cclose<cr>
@@ -941,18 +958,11 @@ nnoremap <leader>ln <cmd>lnext<cr>
 nnoremap <leader>lb <cmd>lpfile<cr>
 nnoremap <leader>lf <cmd>lnfile<cr>
 
-" Recherche {{{3
-
 " Plus besoin avec xcape
 "nnoremap ’ /
 
-" Recherche d’un mot {{{3
-
-nnoremap <f2>, <cmd>call library#search_word()<cr>
-
-"  Remplacement {{{3
-
-nnoremap <f2>; <cmd>call library#search_and_replace_word()<cr>
+nnoremap <f9>s <cmd>call library#search_word()<cr>
+nnoremap <f9>r <cmd>call library#search_and_replace_word()<cr>
 
 "  Copier / Coller {{{2
 
@@ -1023,21 +1033,28 @@ inoremap <d-d> <c-r>=strftime("%a %d %b %Y")<cr>
 
 "  Complétion {{{2
 
-inoremap <PageUp> <C-P>
-inoremap <PageDown> <C-N>
-
 inoremap <expr> <tab> library#smart_tab()
 inoremap <expr> <s-tab> library#smart_shift_tab()
 inoremap <c-tab> <c-x><c-o>
 
-inoremap <expr> <up> library#smart_up()
-inoremap <expr> <down> library#smart_down()
+" ---- default is ok
+"
+"inoremap <expr> <up> library#smart_up()
+"inoremap <expr> <down> library#smart_down()
+
+cnoremap <expr> <s-tab> library#smart_shift_tab()
+
+inoremap <expr> <PageUp> library#smart_up(7)
+inoremap <expr> <PageDown> library#smart_down(7)
+
+cnoremap <m-p> <up>
+cnoremap <m-n> <down>
 
 cnoremap <expr> <up> library#smart_up()
 cnoremap <expr> <down> library#smart_down()
 
-cnoremap <PageUp> <C-P>
-cnoremap <PageDown> <C-N>
+cnoremap <expr> <PageUp> library#smart_up(7)
+cnoremap <expr> <PageDown> library#smart_down(7)
 
 " insère tous
 cnoremap <C-X><C-A> <C-A>
@@ -1075,9 +1092,6 @@ cmap <m-d> <c-right><c-w>
 
 " Mode ex {{{3
 
-" Q ou gQ : mode ex
-" On en sort par :vi
-
 " Q is needed for multicursors
 
 "nnoremap QQ gQ
@@ -1087,21 +1101,14 @@ cmap <m-d> <c-right><c-w>
 " Comme commande ex
 
 nnoremap <m-:> <cmd>execute getline(".")<CR>
+vnoremap <m-:> <cmd>call library#execute_visual_lines()<CR>
+
+nnoremap <m-;> <cmd>.lua<cr>
+vnoremap <m-;> :lua<cr>
 
 " Comme commande externe
 
 nnoremap <m-!> <cmd>exe '!'.getline('.')<CR>
-
-"  Orthographe {{{2
-
-"  Informations {{{2
-
-nnoremap <f2>h <cmd>echo library#highlight_group()<cr>
-" for treesitter
-nnoremap <f2>i <cmd>Inspect<cr>
-nnoremap <f2>t <cmd>InspectTree<cr>
-
-" Journal de bord {{{2
 
 " Pavé numérique {{{2
 
@@ -1125,10 +1132,16 @@ nnoremap <m-q> gqap
 
 " display {{{2
 
-nnoremap <c-l> <cmd>call library#smart_ctrl_l()<cr>
+" ---- see also <url:~/racine/config/edit/neovim/paquet/preload.vim#tn=c-l>
+
+"nnoremap <c-l> <cmd>call library#smart_ctrl_l()<cr>
 vnoremap <c-l> <esc>
 
+nnoremap <m-m> <cmd>messages<cr>
+
+nnoremap <leader>dm <cmd>messages<cr>
 nnoremap <leader>dc <cmd>set cursorline!<cr>
+nnoremap <leader>dw <cmd>set wrap!<cr>
 nnoremap <leader>dl <cmd>call library#toggle_relative_linum()<cr>
 nnoremap <leader>df <cmd>set guifont=*<cr>
 nnoremap <leader>dF :GuiFont DejaVu Sans Mono:h12
@@ -1136,6 +1149,11 @@ nnoremap <leader>d: :set cmdheight=
 nnoremap <leader>dh <cmd>echomsg library#highlight_group()<cr>
 nnoremap <leader>di <cmd>Inspect<cr>
 nnoremap <leader>dt <cmd>InspectTree<cr>
+
+nnoremap <f9>h <cmd>echo library#highlight_group()<cr>
+" for treesitter
+nnoremap <f9>i <cmd>Inspect<cr>
+nnoremap <f9>t <cmd>InspectTree<cr>
 
 " Numérotation des lignes {{{3
 
@@ -1145,7 +1163,9 @@ nnoremap <silent> <D-l> <cmd>call library#toggle_relative_linum()<cr>
 
 " multiple {{{4
 
+" -- another cursor
 nnoremap <tab> Q
+" -- a cursor per line selected
 vnoremap <tab> Q
 
 " Fonte de caractères {{{3
@@ -1157,8 +1177,13 @@ nnoremap <leader>xX <cmd>call library#password_to_text()<cr>
 
 " tags {{{2
 
-nnoremap <leader>nt :tjump /
-nnoremap <leader>nj :tab tjump /
+nnoremap <leader>Tt :tjump /
+nnoremap <leader>Tj :tab tjump /
+
+" coding {{{2
+
+nnoremap <leader>LE <cmd>lsp enable<cr>
+nnoremap <leader>LD <cmd>lsp disable<cr>
 
 " commands {{{2
 
@@ -1171,19 +1196,19 @@ nnoremap <leader>$l <cmd>! ls -l<cr>
 nnoremap <leader>!x <cmd>call library#chmodexec()<cr>
 nnoremap <leader>!s <cmd>%! sort<cr>
 
-" plugins {{{2
+" plugins manager {{{2
 
+" ---- without the !, you have to :write the plugin special buffer
+" ---- to confirm
 nnoremap <leader>pu <cmd>packupdate<cr>
 nnoremap <leader>pa :packadd<space>
 nnoremap <leader>pd :packdel!<space>
 nnoremap <leader>pl <cmd>packloadall<cr>
-nnoremap <leader>pu <cmd>packupdate<cr>
 
 nnoremap <f12>u <cmd>packupdate<cr>
 nnoremap <f12>a :packadd<space>
 nnoremap <f12>d :packdel!<space>
 nnoremap <f12>l <cmd>packloadall<cr>
-nnoremap <f12>u <cmd>packupdate<cr>
 
 " Émulateur de terminal {{{2
 
@@ -1238,11 +1263,13 @@ set relativenumber
 
 " Espacement
 
-set linespace=3
+set linespace=0
 
-" Longues lignes occupent plusieurs lignes (wrap) écran ou une seule (nowrap)
+" Longues lignes occupent :
+" - plusieurs lignes (wrap) écran ou
+" - une seule (nowrap)
 
-set wrap
+set nowrap
 
 " Coupe aux caractères donnés par breakat
 
@@ -1354,8 +1381,8 @@ set splitright
 
 "  Messages {{{2
 
-" Rapport à partir de 0 lignes modifiées,
-" autrement dit tout le temps
+" Rapport à partir de N lignes modifiées,
+" autrement dit tout le temps si N = 0
 
 set report=0
 
@@ -1435,7 +1462,7 @@ set cmdheight=2
 
 "set concealcursor=i
 
-" Voir aussi ~/racine/config/edit/neovim-lite/after/syntax/html/conceal/neovim
+" Voir aussi ~/racine/config/edit/neovim/after/syntax/html/conceal/neovim
 
 " Couleurs dans le terminal {{{2
 
@@ -1502,23 +1529,6 @@ colorscheme golden-night
 "colorscheme zazen
 
 "  {{{ Historique
-
-set shada=
-	\!,
-	\f1,
-	\h,
-	\<12,
-	\s12,
-	\'120,
-	\:10000,
-	\/10000,
-	\@10000,
-	\n~/racine/session/neovim-lite/main.shada
-
-"set shadafile=~/racine/session/neovim-lite/main.shada
-
-" Remplacé par wheel mru
-" 	\%30,
 
 " Nombre par défaut pour lignes de commande,
 " recherches, nombre de lignes d’entrée

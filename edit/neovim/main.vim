@@ -345,7 +345,7 @@ set pumheight=12
 
 " -- interesting for autocomplete,
 " -- annoying for standard one
-"set completeopt+=noselect
+set completeopt+=noselect
 
 " Compléter par quoi lors d'un ctrl-n/p ? {{{3
 

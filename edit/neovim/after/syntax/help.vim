@@ -14,6 +14,7 @@ hi helpDeprecated		guifg=#872e30		guibg=NONE			gui=NONE
 hi helpTodo 			guifg=#872e30		guibg=NONE			gui=NONE
 hi helpVim	 			guifg=brown			guibg=NONE			gui=NONE
 hi helpWarning 			guifg=#872e30		guibg=NONE			gui=NONE
+hi HelpUrl 				guifg=#872E30		guibg=NONE			gui=NONE
 
 hi HelpHeader 			ctermfg=88		 	ctermbg=black		cterm=NONE
 hi HelpHeadline 		ctermfg=brown		ctermbg=black		cterm=NONE

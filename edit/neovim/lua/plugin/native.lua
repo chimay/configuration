@@ -284,6 +284,10 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 luasnip.config.setup({})
 
+-- mappings {{{3
+
+-- see also <url:#tn=cmp>
+
 vim.keymap.set({ "i", "s" }, "<m-j>", function()
   if luasnip.expand_or_jumpable() then
     luasnip.expand_or_jump()
@@ -347,11 +351,6 @@ local d = luasnip.dynamic_node
 local sn = luasnip.snippet_node
 
 luasnip.add_snippets("lua", {
-    s("hello", {
-        t('print("hello '),
-        i(1),
-        t(' world")')
-    }),
     s("if", {
         t('if '),
         i(1, "true"),
@@ -405,45 +404,62 @@ luasnip.add_snippets("typescriptreact", {
 
 local cmp = require('cmp')
 
+local cmp_enabled = true
+
+vim.keymap.set('n', '<f11>cc', function()
+	cmp_enabled = not cmp_enabled
+	if cmp_enabled then
+		cmp.setup({ enabled = true, })
+	else
+		cmp.abort()
+		cmp.setup({ enabled = false, })
+		vim.keymap.del('i', '<C-n>')
+		vim.keymap.set('i', '<Tab>', function()
+			return vim.fn['library#smart_tab']()
+		end, { expr = true, replace_keycodes = true })
+		vim.keymap.set('i', '<Tab>', '<Plug>(organ-tab)', { remap = true })
+		vim.keymap.set('i', '<S-Tab>', function()
+			return vim.fn['library#smart_shift_tab']()
+		end, { expr = true, replace_keycodes = true })
+		vim.keymap.set('i', '<S-Tab>', '<Plug>(organ-shift-tab)', { remap = true })
+		vim.keymap.set('i', '<C-Tab>', '<C-x><C-o>', { remap = true })
+	end
+end, { desc = 'Toggle nvim-cmp' })
+
 cmp.setup {
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert {
-        ['<m-n>'] = cmp.mapping.select_next_item(),
-        ['<m-p>'] = cmp.mapping.select_prev_item(),
-        ['<m-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<m-f>'] = cmp.mapping.scroll_docs(4),
-        ['<m-Space>'] = cmp.mapping.complete {},
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        },
-        ['<m-n>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ['<m-p>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.locally_jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-    },
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    },
+	snippet = {
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end,
+	},
+	mapping = cmp.mapping.preset.insert {
+		['<CR>'] = cmp.mapping.confirm {
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
+		},
+		['<m-n>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_locally_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
+		['<m-p>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
+	},
+	sources = {
+		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
+	},
 }
 
 -- undotree {{{2
