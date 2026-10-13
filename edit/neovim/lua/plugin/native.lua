@@ -1,6 +1,6 @@
 -- vim: set filetype=lua:
 
--- opening {{{1
+-- netrw {{{1
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
@@ -276,13 +276,17 @@ require('telescope').setup({
     }
 })
 
+local telescope_builtin = require('telescope.builtin')
+
 -- luasnip {{{2
 
 local luasnip = require("luasnip")
 
-require("luasnip.loaders.from_vscode").lazy_load()
+luasnip.config.setup({
+	enable_autosnippets = false,
+})
 
-luasnip.config.setup({})
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- mappings {{{3
 
@@ -300,15 +304,13 @@ vim.keymap.set({ "i", "s" }, "<m-k>", function()
   end
 end, {silent = true})
 
-vim.keymap.set({ "i", "s" }, "<f11>sc", function()
+vim.keymap.set({ "i", "s" }, "<m-c>", function()
     if luasnip.choice_active() then
         luasnip.change_choice(1)
     end
 end, {silent = true})
 
 -- custom snippets {{{3
-
-local luasnip = require "luasnip"
 
 -- local luasnip = require("luasnip")
 -- local s = luasnip.snippet
@@ -404,41 +406,22 @@ luasnip.add_snippets("typescriptreact", {
 
 local cmp = require('cmp')
 
-local cmp_enabled = true
-
-vim.keymap.set('n', '<f11>c', function()
-	cmp_enabled = not cmp_enabled
-	if cmp_enabled then
-		cmp.setup({ enabled = true, })
-	else
-		cmp.abort()
-		cmp.setup({ enabled = false, })
-		vim.keymap.del('i', '<c-n>')
-		vim.keymap.del('i', '<c-x>')
-		vim.keymap.set('i', '<tab>', function()
-			return vim.fn['library#smart_tab']()
-		end, { expr = true, replace_keycodes = true })
-		vim.keymap.set('i', '<tab>', '<Plug>(organ-tab)', { remap = true })
-		vim.keymap.set('i', '<s-tab>', function()
-			return vim.fn['library#smart_shift_tab']()
-		end, { expr = true, replace_keycodes = true })
-		vim.keymap.set('i', '<s-tab>', '<Plug>(organ-shift-tab)', { remap = true })
-		vim.keymap.set('i', '<c-tab>', '<C-x><C-o>', { remap = true })
-	end
-end, { desc = 'Toggle nvim-cmp' })
-
 cmp.setup {
+    completion = {
+        autocomplete = false,
+    },
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
 	},
 	mapping = cmp.mapping.preset.insert {
+		--['<C-N>'] = cmp.mapping.complete(),
 		['<CR>'] = cmp.mapping.confirm {
+			select = false,
 			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
 		},
-		['<m-n>'] = cmp.mapping(function(fallback)
+		['<m-j>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_locally_jumpable() then
@@ -447,7 +430,7 @@ cmp.setup {
 				fallback()
 			end
 		end, { 'i', 's' }),
-		['<m-p>'] = cmp.mapping(function(fallback)
+		['<m-k>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.locally_jumpable(-1) then
@@ -462,6 +445,35 @@ cmp.setup {
 		{ name = 'luasnip' },
 	},
 }
+
+-- toggle {{{3
+
+local cmp_enabled = true
+
+vim.keymap.set('n', '<f11>c', function()
+	cmp_enabled = not cmp_enabled
+	if cmp_enabled then
+		cmp.setup({ enabled = true, })
+		vim.opt.completeopt:append('noselect')
+	else
+		cmp.abort()
+		cmp.setup({ enabled = false, })
+		--vim.opt.completeopt:append('noselect')
+		vim.opt.completeopt:remove('noselect')
+		vim.keymap.del('i', '<c-n>', { silent = true })
+		vim.keymap.del('i', '<c-p>', { silent = true })
+		vim.keymap.del('i', '<c-x>', { silent = true })
+		vim.keymap.set('i', '<tab>', function()
+			return vim.fn['library#smart_tab']()
+		end, { expr = true, replace_keycodes = true })
+		vim.keymap.set('i', '<tab>', '<Plug>(organ-tab)', { remap = true })
+		vim.keymap.set('i', '<s-tab>', function()
+			return vim.fn['library#smart_shift_tab']()
+		end, { expr = true, replace_keycodes = true })
+		vim.keymap.set('i', '<s-tab>', '<Plug>(organ-shift-tab)', { remap = true })
+		vim.keymap.set('i', '<c-tab>', '<C-x><C-o>', { remap = true })
+	end
+end, { desc = 'Toggle nvim-cmp' })
 
 -- undotree {{{2
 
@@ -609,7 +621,9 @@ require("nvim-tree").setup(config)
 
 -- oil {{{2
 
-require("oil").setup()
+require("oil").setup({
+	default_file_explorer = false,
+})
 
 -- treesitter {{{2
 
@@ -739,11 +753,20 @@ diagnostic_hl()
 
 -- lsp completion {{{3
 
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     callback = function(ev)
+--         vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, {
+--             autotrigger = true,
+--         })
+--     end,
+-- })
+
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
-        vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, {
-            autotrigger = true,
-        })
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client ~= nil and client:supports_method("textDocument/completion") then
+            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+        end
     end,
 })
 
@@ -772,6 +795,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- lsp maps {{{3
 
+vim.diagnostic.config({ virtual_text = false })
+
+map("n", "[d", vim.diagnostic.goto_prev,          { desc = "Previous diagnostic" })
+map("n", "]d", vim.diagnostic.goto_next,          { desc = "Next diagnostic" })
+
+map('n', '<f11>ll', telescope_builtin.diagnostics, { desc = 'Telescope diagnostics' })
+
 map("n", "<f11>ldd", vim.lsp.buf.definition,      { desc = "LSP: Go to definition" })
 map("n", "<f11>ldc", vim.lsp.buf.declaration,     { desc = "LSP: Go to declaration" })
 map("n", "<f11>li", vim.lsp.buf.implementation,   { desc = "LSP: Go to implementation" })
@@ -783,10 +813,7 @@ map("n", "<f11>lw", vim.lsp.buf.workspace_symbol, { desc = "LSP: Workspace symbo
 
 map("n", "<f11>lr", vim.lsp.buf.rename,        { desc = "LSP: Rename symbol" })
 map("n", "<f11>lc", vim.lsp.buf.code_action,  { desc = "LSP: Code action" })
-map("n", "<leader>lof", vim.diagnostic.open_float,  { desc = "Show diagnostic" })
-
-map("n", "[d", vim.diagnostic.goto_prev,          { desc = "Previous diagnostic" })
-map("n", "]d", vim.diagnostic.goto_next,          { desc = "Next diagnostic" })
+map("n", "<f11>lf", vim.diagnostic.open_float,  { desc = "Show diagnostic" })
 
 -- dap : debug adapter protocol {{{2
 

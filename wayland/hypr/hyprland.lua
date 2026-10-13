@@ -108,19 +108,14 @@ hl.on("hyprland.start", function ()
 
 	--hl.exec_cmd("waybar & ")
 
--- gui shells {{{2
-
----- bar, wallpaper, login, power, etc
-
-	hl.exec_cmd("dms run ; sleep 2")
-
-	--hl.exec_cmd("noctalia & ")
-
 -- autostart script {{{2
 
 -- neede in one exec because executed asynchronously
 
-hl.exec_cmd("hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ; hypr-autostart.zsh >>! ~/log/hypr-autostart.log 2>&1")
+hl.exec_cmd([[
+hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ;
+hypr-autostart.zsh >>! ~/log/hypr-autostart.log 2>&1
+]])
 
 -- closing {{{2
 
@@ -955,11 +950,23 @@ end)
 
 -- notifications {{{2
 
--- hl.bind(super .. " + F11", hl.dsp.exec_cmd("dunstctl history-pop"))
--- hl.bind(super .. " + F12", hl.dsp.exec_cmd("dunstctl close-all"))
+-- dms notifications {{{3
 
 hl.bind(super .. " + F11", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
 hl.bind(super .. " + F12", hl.dsp.exec_cmd("dms ipc call notifications clearAll"))
+
+-- mako {{{3
+
+--hl.bind(super .. " + F10", hl.dsp.exec_cmd("makoctl reload"))
+
+-- hl.bind(super .. " + F10", hl.dsp.exec_cmd("makoctl history | rofi -dmenu"))
+-- hl.bind(super .. " + F11", hl.dsp.exec_cmd("makoctl restore"))
+-- hl.bind(super .. " + F12", hl.dsp.exec_cmd("makoctl dismiss --all"))
+
+-- dunst {{{3
+
+-- hl.bind(super .. " + F11", hl.dsp.exec_cmd("dunstctl history-pop"))
+-- hl.bind(super .. " + F12", hl.dsp.exec_cmd("dunstctl close-all"))
 
 -- clipboard {{{2
 

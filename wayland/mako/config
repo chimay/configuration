@@ -1,0 +1,36 @@
+# Appearance
+
+font=Sans 14
+background-color=#000000
+text-color=#5b3c11
+border-color=#341200
+border-size=2
+border-radius=4
+padding=10
+margin=10
+width=350
+height=150
+
+# Position
+
+anchor=top-right
+layer=overlay
+outer-margin=5
+
+# Behavior
+
+default-timeout=5000
+ignore-timeout=0
+max-visible=5
+sort=-time
+group-by=app-name
+
+# Interaction
+
+on-button-left=dismiss
+on-button-middle=none
+on-button-right=dismiss
+
+# Output
+
+# output=DP-1

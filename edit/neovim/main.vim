@@ -339,13 +339,17 @@ set wildignorecase
 "set completeopt=menuone,preview
 "set completeopt=menuone,longest
 
-set completeopt=menu
+"set completeopt=menu
+set completeopt=menu,popup
 
 set pumheight=12
 
+" -- set completeopt+=noselect
 " -- interesting for autocomplete,
 " -- annoying for standard one
-set completeopt+=noselect
+" -- see <url:lua/plugin/native.lua#tn=vim.opt.completeopt:append>
+
+set completeopt-=noselect
 
 " Compléter par quoi lors d'un ctrl-n/p ? {{{3
 

@@ -847,7 +847,7 @@ nnoremap <silent> <C-Up> :<C-U>TmuxNavigateUp<cr>
 
 " ---- see also <url:~/racine/config/edit/neovim/lua/plugin/native.lua#tn=lsp maps>
 
-nnoremap <f11>ll <cmd>Telescope diagnostics<cr>
+"nnoremap <f11>ll <cmd>Telescope diagnostics<cr>
 
 " nnoremap <f11>di <cmd>lua vim.diagnostic.open_float()<cr>
 " nnoremap <f11>dn <cmd>lua vim.diagnostic.goto_prev()<cr>
