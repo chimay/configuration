@@ -56,7 +56,7 @@ hl.monitor({
 hl.config({
 	input = {
 		--kb_layout  = "be",
-		kb_layout  = "belge-meta-super-hyper,be,us",
+		kb_layout  = "belge-meta-super-hyper,be",
 		kb_variant = "",
 		kb_model   = "",
 		kb_options = "",
@@ -271,7 +271,7 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
-		class = "kitty-dropdown",
+		title = "kitty-dropdown",
 	},
 	float = true,
 	size = "1200 600",
@@ -280,7 +280,7 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
-		class = "calc",
+		title = "calc",
 	},
 	float = true,
 	size = "1200 600",
@@ -292,7 +292,7 @@ hl.window_rule({
         title = "zshrun",
     },
     float = true,
-	size = "700 60",
+	size = "700 120",
 	move = "500 300",
 })
 
@@ -301,7 +301,7 @@ hl.window_rule({
         title = "zshrunterm",
     },
     float = true,
-	size = "700 60",
+	size = "700 120",
 	move = "500 300",
 })
 
@@ -598,7 +598,7 @@ hl.define_submap("hyperland", function()
 		hl.dispatch(hl.dsp.dpms({action = "toggle"}))
 		hl.dispatch(hl.dsp.submap("reset"))
 	end)
-	hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 -- windows {{{3
@@ -636,15 +636,15 @@ hl.bind(super .. "+ CONTROL + down", hl.dsp.window.resize({ x = 0, y = 10, relat
 local closeWindowBind = hl.bind(hyper .. " + SHIFT + X", hl.dsp.window.close())
 local closeWindowBind = hl.bind(hyper .. " + Delete", hl.dsp.window.close())
 
---hl.bind(super .. "+ CONTROL + r", hl.dsp.submap("resize"))
+hl.bind(super .. "+ CONTROL + r", hl.dsp.submap("resize"))
 
---hl.define_submap("resize", function()
-	--hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
-	--hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
-	--hl.bind("up", hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
-	--hl.bind("down", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
-	--hl.bind("escape", hl.dsp.submap("reset"))
---end)
+hl.define_submap("resize", function()
+	hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
+	hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
+	hl.bind("up", hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
+	hl.bind("down", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
+	hl.bind("return", hl.dsp.submap("reset"))
+end)
 
 -- Keybinds further down will be global again...
 
@@ -729,32 +729,32 @@ end)
 hl.bind(hyper .. " + l", hl.dsp.submap("layout"))
 
 hl.define_submap("layout", function()
-	hl.bind("m", function()
+	hl.bind("M", function()
 		set_layout("master")
 		notify("Master: ← → ↑ ↓ orientation, n next, p previous")
 		hl.dispatch(hl.dsp.submap("master"))
 	end)
-	hl.bind("t", function()
+	hl.bind("T", function()
 		set_layout("monocle")
 		notify("Tabbed, monocle : n next, p previous")
 		hl.dispatch(hl.dsp.submap("tabbed"))
 	end)
-	hl.bind("d", function()
+	hl.bind("D", function()
 		set_layout("dwindle")
 		notify("Dwindle: t toggle split, x swap split")
 		hl.dispatch(hl.dsp.submap("dwindle"))
 	end)
-	hl.bind("s", function()
+	hl.bind("S", function()
 		set_layout("scrolling")
 		notify("Scrolling: ← → move column, h swap left, l swap right, p promote")
 		hl.dispatch(hl.dsp.submap("scrolling"))
 	end)
-	hl.bind("g", function()
+	hl.bind("G", function()
 		notify("n next, p previous, f forward, b backward")
 		hl.dispatch(hl.dsp.group.toggle())
 		hl.dispatch(hl.dsp.submap("group"))
 	end)
-	hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 hl.define_submap("master", function()
@@ -762,39 +762,39 @@ hl.define_submap("master", function()
 	hl.bind("right", hl.dsp.layout("orientationright"))
 	hl.bind("up", hl.dsp.layout("orientationtop"))
 	hl.bind("down", hl.dsp.layout("orientationbottom"))
-	hl.bind("n", hl.dsp.layout("cyclenext"))
-	hl.bind("p", hl.dsp.layout("cycleprev"))
-	hl.bind("m", hl.dsp.layout("swapwithmaster master"))
-	hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("N", hl.dsp.layout("cyclenext"))
+	hl.bind("P", hl.dsp.layout("cycleprev"))
+	hl.bind("M", hl.dsp.layout("swapwithmaster master"))
+	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 hl.define_submap("tabbed", function()
-    hl.bind("n", hl.dsp.layout("cyclenext"))
-    hl.bind("p", hl.dsp.layout("cycleprev"))
-    hl.bind("escape", hl.dsp.submap("reset"))
+    hl.bind("N", hl.dsp.layout("cyclenext"))
+    hl.bind("P", hl.dsp.layout("cycleprev"))
+    hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 hl.define_submap("dwindle", function()
-	hl.bind("t", hl.dsp.layout("togglesplit"))
-	hl.bind("x", hl.dsp.layout("swapsplit"))
-	hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("T", hl.dsp.layout("togglesplit"))
+	hl.bind("X", hl.dsp.layout("swapsplit"))
+	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 hl.define_submap("scrolling", function()
 	hl.bind("left", hl.dsp.layout("move -col"))
 	hl.bind("right", hl.dsp.layout("move +col"))
-	hl.bind("h", hl.dsp.layout("swapcol l"))
-	hl.bind("l", hl.dsp.layout("swapcol r"))
-	hl.bind("p", hl.dsp.layout("promote"))
-	hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("H", hl.dsp.layout("swapcol l"))
+	hl.bind("L", hl.dsp.layout("swapcol r"))
+	hl.bind("P", hl.dsp.layout("promote"))
+	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 hl.define_submap("group", function()
-	hl.bind("n", hl.dsp.group.next())
-	hl.bind("p", hl.dsp.group.prev())
-	hl.bind("f", hl.dsp.group.move_window({ forward = false }))
-	hl.bind("b", hl.dsp.group.move_window({ forward = true }))
-	hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("N", hl.dsp.group.next())
+	hl.bind("P", hl.dsp.group.prev())
+	hl.bind("F", hl.dsp.group.move_window({ forward = false }))
+	hl.bind("B", hl.dsp.group.move_window({ forward = true }))
+	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 --hl.bind(hyper .. " + g", hl.dsp.layout("mfact exact 0.618"))
@@ -850,16 +850,8 @@ hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(hyper .. " + Return", hl.dsp.exec_cmd("kitty --single-instance"))
 
 hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd([[
-kitty --single-instance --class kitty-dropdown
+kitty --single-instance --title kitty-dropdown
 ]]))
-
--- hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd([[
--- kitty --single-instance \
--- --class kitty-dropdown \
--- -o remember_window_size=no \
--- -o initial_window_width=120c \
--- -o initial_window_height=30c
--- ]]))
 
 hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
 
@@ -906,7 +898,7 @@ hl.bind(super .. " + CONTROL + A", hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
 hl.bind(super .. " + CONTROL + section", hl.dsp.exec_cmd("run-vifm.zsh"))
 
 hl.bind(super .. " + CONTROL + equal", hl.dsp.exec_cmd([[
-kitty --single-instance --class calc calc
+kitty --single-instance --title calc calc
 ]]))
 
 hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("dolphin || thunar || caja || pcmanfm"))
@@ -934,7 +926,7 @@ hl.define_submap("screen", function()
 	hl.bind("right", hl.dsp.exec_cmd("brightnessctl set +25%"))
 	hl.bind("left", hl.dsp.exec_cmd("brightnessctl set 25%-"))
 	hl.bind("N", hl.dsp.exec_cmd("dms ipc call night toggle"))
-	hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 -- wallpaper {{{2
@@ -958,7 +950,7 @@ hl.define_submap("wallpaper", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("pkill -12 -f wallpaper.zsh"))
 	end)
-	hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 -- notifications {{{2
@@ -1010,25 +1002,25 @@ hl.define_submap("mpc", function()
 	hl.bind("next", hl.dsp.exec_cmd("pamixer --decrease 10"))
 	hl.bind("T", function()
 		hl.dispatch(hl.dsp.submap("reset"))
-		hl.dispatch(hl.dsp.exec_cmd("urxvtc -name mpc-tui -title mpc-tui -e ncmpcpp"))
+		hl.dispatch(hl.dsp.exec_cmd("kitty --single-instance --title mpc-tui -e ncmpcpp"))
 	end)
 	hl.bind("M", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd([[
-		urxvtc -name multimedia -title pulsemixer -e pulsemixer
+		kitty --single-instance --title pulsemixer -e pulsemixer
 		]]))
 	end)
-	hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 -- Laptop multimedia keys for volume and LCD brightness
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+-- hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+-- hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
+-- hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
+-- hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+-- hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
+-- hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
 -- Requires playerctl
 

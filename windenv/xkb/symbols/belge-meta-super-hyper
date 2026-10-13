@@ -90,12 +90,12 @@ xkb_symbols "basic" {
 
     replace key <PRSC> {
         type[Group1] = "TWO_LEVEL",
-            [ bracketleft, braceleft ]
+            [ bracketleft, bracketright ]
     };
 
     replace key <SCLK> {
         type[Group1] = "TWO_LEVEL",
-            [ bracketright, braceright ]
+            [ braceleft, braceright ]
     };
 
     replace key <PAUS> {

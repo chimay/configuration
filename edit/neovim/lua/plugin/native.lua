@@ -284,57 +284,74 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 luasnip.config.setup({})
 
-vim.keymap.set({ "i", "s" }, "<m-tab>", function()
+vim.keymap.set({ "i", "s" }, "<m-j>", function()
   if luasnip.expand_or_jumpable() then
     luasnip.expand_or_jump()
   end
-end)
+end, {silent = true})
 
-vim.keymap.set({ "i", "s" }, "<C-k>", function()
+vim.keymap.set({ "i", "s" }, "<m-k>", function()
   if luasnip.jumpable(-1) then
     luasnip.jump(-1)
   end
-end)
+end, {silent = true})
+
+vim.keymap.set({ "i", "s" }, "<f11>sc", function()
+    if luasnip.choice_active() then
+        luasnip.change_choice(1)
+    end
+end, {silent = true})
 
 -- custom snippets {{{3
 
-local ls = require "luasnip"
-local s = ls.snippet
-local t = ls.text_node
-local i = ls.insert_node
+local luasnip = require "luasnip"
+
+-- local luasnip = require("luasnip")
+-- local s = luasnip.snippet
+-- local sn = luasnip.snippet_node
+-- local isn = luasnip.indent_snippet_node
+-- local t = luasnip.text_node
+-- local i = luasnip.insert_node
+-- local f = luasnip.function_node
+-- local c = luasnip.choice_node
+-- local d = luasnip.dynamic_node
+-- local r = luasnip.restore_node
+-- local events = require("luasnip.util.events")
+-- local ai = require("luasnip.nodes.absolute_indexer")
+-- local opt = require("luasnip.nodes.optional_arg")
+-- local extras = require("luasnip.extras")
+-- local l = extras.lambda
+-- local rep = extras.rep
+-- local p = extras.partial
+-- local m = extras.match
+-- local n = extras.nonempty
+-- local dl = extras.dynamic_lambda
+-- local fmt = require("luasnip.extras.fmt").fmt
+-- local fmta = require("luasnip.extras.fmt").fmta
+-- local conds = require("luasnip.extras.expand_conditions")
+-- local postfix = require("luasnip.extras.postfix").postfix
+-- local types = require("luasnip.util.types")
+-- local parse = require("luasnip.util.parser").parse_snippet
+-- local ms = luasnip.multi_snippet
+-- local k = require("luasnip.nodes.key_indexer").new_key
+
+local s = luasnip.snippet
+local t = luasnip.text_node
+local i = luasnip.insert_node
 local extras = require("luasnip.extras")
 local rep = extras.rep
 local fmt = require("luasnip.extras.fmt").fmt
-local c = ls.choice_node
-local f = ls.function_node
-local d = ls.dynamic_node
-local sn = ls.snippet_node
+local c = luasnip.choice_node
+local f = luasnip.function_node
+local d = luasnip.dynamic_node
+local sn = luasnip.snippet_node
 
-vim.keymap.set({ "i", "s" }, "<A-n>", function()
-    if ls.choice_active() then
-        ls.change_choice(1)
-    end
-end)
-
-vim.keymap.set({ "i", "s" }, "<A-k>", function()
-    if ls.expand_or_jumpable() then
-        ls.expand_or_jump()
-    end
-end, { silent = true })
-
-vim.keymap.set({ "i", "s" }, "<A-j>", function()
-    if ls.jumpable(-1) then
-        ls.jump(-1)
-    end
-end, { silent = true })
-
-ls.add_snippets("lua", {
+luasnip.add_snippets("lua", {
     s("hello", {
         t('print("hello '),
         i(1),
         t(' world")')
     }),
-
     s("if", {
         t('if '),
         i(1, "true"),
@@ -344,7 +361,7 @@ ls.add_snippets("lua", {
     })
 })
 
-ls.add_snippets("tex", {
+luasnip.add_snippets("tex", {
     s("beg", {
         t("\\begin{"), i(1), t("}"),
         t({ "", "\t" }), i(0),
@@ -352,7 +369,7 @@ ls.add_snippets("tex", {
     })
 })
 
-ls.add_snippets("cs", {
+luasnip.add_snippets("cs", {
     s("logc",
         fmt([[Debug.Log($"<color={}>{}</color>");]],
         {
@@ -367,7 +384,7 @@ ls.add_snippets("cs", {
         })),
 })
 
-ls.add_snippets("typescriptreact", {
+luasnip.add_snippets("typescriptreact", {
     s("co", {
         d(function()
             local register_data = vim.fn.getreg() .. "";
@@ -397,7 +414,7 @@ cmp.setup {
     mapping = cmp.mapping.preset.insert {
         ['<m-n>'] = cmp.mapping.select_next_item(),
         ['<m-p>'] = cmp.mapping.select_prev_item(),
-        ['<m-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<m-b>'] = cmp.mapping.scroll_docs(-4),
         ['<m-f>'] = cmp.mapping.scroll_docs(4),
         ['<m-Space>'] = cmp.mapping.complete {},
         ['<CR>'] = cmp.mapping.confirm {

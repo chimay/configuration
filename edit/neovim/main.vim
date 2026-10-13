@@ -343,7 +343,9 @@ set completeopt=menu
 
 set pumheight=12
 
-set completeopt+=noselect
+" -- interesting for autocomplete,
+" -- annoying for standard one
+"set completeopt+=noselect
 
 " Compléter par quoi lors d'un ctrl-n/p ? {{{3
 
@@ -923,8 +925,8 @@ nnoremap ' `
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-nnoremap <c-j> <cmd>cnext<cr>
-nnoremap <c-k> <cmd>cprevious<cr>
+nnoremap <c-n> <cmd>cnext<cr>
+nnoremap <c-p> <cmd>cprevious<cr>
 
 " next word like this with another cursor
 "nnoremap # Q*
@@ -1134,6 +1136,8 @@ nnoremap <m-q> gqap
 
 "nnoremap <c-l> <cmd>call library#smart_ctrl_l()<cr>
 vnoremap <c-l> <esc>
+
+nnoremap <m-m> <cmd>messages<cr>
 
 nnoremap <leader>dm <cmd>messages<cr>
 nnoremap <leader>dc <cmd>set cursorline!<cr>
