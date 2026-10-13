@@ -759,7 +759,7 @@ nnoremap <leader>f :find<space>
 
 nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
-nnoremap <f5> <cmd>call library#source_current_file()<cr>
+nnoremap <f5>s <cmd>call library#source_current_file()<cr>
 
 nnoremap <f10>v <cmd>call library#edit_myvimrc()<cr>
 nnoremap <f10>R <cmd>call library#toggle_readonly()<cr>
@@ -1458,7 +1458,7 @@ set statusline+=%<
 
 " Hauteur
 
-set cmdheight=3
+set cmdheight=2
 
 " Conceal {{{2
 

@@ -50,7 +50,6 @@ vim.pack.add({
 	{ src = 'https://github.com/christoomey/vim-tmux-navigator', version = "master", },
 	{ src = 'https://github.com/vifm/vifm.vim', version = "master", },
 	{ src = 'https://github.com/flazz/vim-colorschemes', version = "master", },
-	{ src = 'https://github.com/urbainvaes/vim-ripple', version = "master", },
 	{ src = 'https://github.com/mzlogin/vim-markdown-toc', version = "master", },
 })
 
@@ -66,14 +65,12 @@ vim.pack.add({
 	{ src = 'https://github.com/stevearc/oil.nvim', version = "master" },
 	{ src = 'https://github.com/jiaoshijie/undotree', version = "main" },
 	{ src = 'https://github.com/MagicDuck/grug-far.nvim', version = "main", },
-	-- repl : read eval print loop
-	{ src = 'https://github.com/pappasam/nvim-repl', version = "main", },
 })
 
 -- interface {{{2
 
-vim.pack.add({
-})
+-- vim.pack.add({
+-- })
 
 -- treesitter {{{2
 
@@ -119,6 +116,12 @@ vim.pack.add({
 vim.pack.add({
 	{ src = 'https://github.com/hrsh7th/nvim-cmp', version = "main" },
 	{ src = 'https://github.com/hrsh7th/cmp-nvim-lsp', version = "main" },
+})
+
+-- repl {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/milanglacier/yarepl.nvim', version = "main", },
 })
 
 -- local {{{2
@@ -460,9 +463,9 @@ vim.keymap.set('n', '<f11>c', function()
 		cmp.setup({ enabled = false, })
 		--vim.opt.completeopt:append('noselect')
 		vim.opt.completeopt:remove('noselect')
-		vim.keymap.del('i', '<c-n>', { silent = true })
-		vim.keymap.del('i', '<c-p>', { silent = true })
-		vim.keymap.del('i', '<c-x>', { silent = true })
+		pcall(vim.keymap.del, 'i', '<C-n>')
+		pcall(vim.keymap.del, 'i', '<C-p>')
+		pcall(vim.keymap.del, 'i', '<C-x>')
 		vim.keymap.set('i', '<tab>', function()
 			return vim.fn['library#smart_tab']()
 		end, { expr = true, replace_keycodes = true })
@@ -826,13 +829,25 @@ require("dap-python").setup("python3")
 
 require("dapui").setup()
 
--- read eval print loop {{{2
+-- repl : read eval print loop {{{2
 
-require("repl").setup({
-	filetype_commands = {
-		python = {cmd = "python"},
-		javascript = {cmd = "deno repl"},
+-- yarepl {{{3
+
+local yarepl = require 'yarepl'
+
+yarepl.setup {
+	wincmd = 'belowright 15 split',
+	close_on_exit = true,
+	scroll_to_bottom_after_sending = true,
+	highlight_on_send_operator = { enabled = false, hl_group = 'IncSearch', timeout = 150 },
+	metas = {
+		ipython = { cmd = 'builtin:ipython', formatter = 'bracketed_pasting', source_syntax = 'ipython' },
+		python = { cmd = 'builtin:python', formatter = 'trim_empty_lines', source_syntax = 'python' },
+		bash = {
+			cmd = 'bash',
+			formatter = vim.fn.has 'linux' == 1 and 'bracketed_pasting' or 'trim_empty_lines',
+			source_syntax = 'bash',
+		},
+		zsh = { cmd = 'zsh', formatter = 'bracketed_pasting', source_syntax = 'bash' },
 	},
-	default = {cmd = "zsh", filetype = "zsh"},
-	open_window_default = "vnew",
-})
+}

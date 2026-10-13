@@ -781,52 +781,17 @@ nnoremap <f11>mr <cmd>lua MiniMap.refresh()<cr>
 
 " Terminal {{{1
 
-" nvim-repl {{{2
+" yarepl {{{1
 
-nmap <silent> <f11>$$ <cmd>ReplToggle<cr>
-nmap <silent> <f11>$r <Plug>(ReplSendLine)
-xmap <silent> <f11>$v <Plug>(ReplSendVisual)
-nmap <silent> <f11>$c <Plug>(ReplSendCell)
+nnoremap <f5>sp <cmd>Yarepl! start ipython<cr>
+nnoremap <f5>sz <cmd>Yarepl! start zsh<cr>
 
-" Ripple (urbainvaes/vim-ripple) {{{2
+nnoremap <f5><f5> <cmd>Yarepl send_line<cr>
 
-" REPL
+vnoremap <f5>v <cmd>Yarepl send_visual<cr>
+vnoremap <f5>V <cmd>Yarepl source_visual<cr>
 
-let g:ripple_enable_mappings = 0
-let g:ripple_winpos = ''
-let g:ripple_term_name = 'ripple-repl'
-let g:ripple_always_return = 0
-let g:ripple_repls = #{
-  \ sh     : 'sh',
-  \ zsh    : 'zsh',
-  \ bash   : 'bash',
-  \ fish   : 'fish',
-  \ elvish : 'elvish',
-  \ xonsh  : 'xonsh',
-  \ python : 'python',
-  \ }
-let g:ripple_highlight = 'DiffAdd'
-
-nmap <f11>!<cr> <plug>(ripple_open_repl)
-nmap <f11>!r <plug>(ripple_send_motion)
-nmap <f11>!rr <plug>(ripple_send_line)
-nmap <f11>!r<cr> <plug>(ripple_send_buffer)
-nmap <f11>!p <plug>(ripple_send_previous)
-vmap R <plug>(ripple_send_selection)
-
-" nmap y<cr> <plug>(ripple_open_repl)
-" nmap yr <plug>(ripple_send_motion)
-" nmap yrr <plug>(ripple_send_line)
-" nmap yr<cr> <plug>(ripple_send_buffer)
-" nmap yp <plug>(ripple_send_previous)
-" vmap R <plug>(ripple_send_selection)
-
-" nmap <cr>$ <plug>(ripple_open_repl)
-" nmap <cr><cr> <plug>(ripple_send_line)
-" nmap <cr>r <plug>(ripple_send_motion)
-" nmap <cr>r<cr> <plug>(ripple_send_buffer)
-" nmap <cr>p <plug>(ripple_send_previous)
-" vmap <cr>v <plug>(ripple_send_selection)
+nnoremap <f5>o <cmd>Yarepl send_operator<cr>
 
 " vim-tmux-navigator {{{2
 
