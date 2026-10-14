@@ -1518,6 +1518,9 @@ endif
 
 " terminal {{{1
 
+"set shell=/usr/bin/zsh
+"set shellcmdflag='-l'
+
 " filetypes {{{1
 
 filetype on

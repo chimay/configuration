@@ -118,6 +118,12 @@ vim.pack.add({
 	{ src = 'https://github.com/hrsh7th/cmp-nvim-lsp', version = "main" },
 })
 
+-- terminal {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/akinsho/toggleterm.nvim', version = "main" },
+})
+
 -- repl : read eval print loop {{{2
 
 vim.pack.add({
@@ -830,6 +836,18 @@ require("dap-python").setup("python3")
 -- dap ui {{{3
 
 require("dapui").setup()
+
+-- terminal {{{2
+
+-- toggleterm {{{2
+
+require("toggleterm").setup{
+	size = 15,
+	open_mapping = [[<C-=>]],
+	direction = 'horizontal',
+	start_in_insert = true,
+	persist_size = true,
+}
 
 -- repl : read eval print loop {{{2
 
