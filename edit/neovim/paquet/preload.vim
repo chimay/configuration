@@ -783,15 +783,12 @@ nnoremap <f11>mr <cmd>lua MiniMap.refresh()<cr>
 
 " yarepl {{{1
 
-nnoremap <f5>s <cmd>call library#repl_interpreter('Yarepl! start_or_focus_or_hide')<cr>
+" ---- see <url:~/racine/config/edit/neovim/lua/plugin/native.lua#tn=iron {{{3>
 
-nnoremap <f5><f5> <cmd>Yarepl send_line<cr>
-
-vnoremap <f5>v <cmd>Yarepl send_visual<cr>
-vnoremap <f5>V <cmd>Yarepl source_visual<cr>
-
-nnoremap <f5>o <cmd>Yarepl send_operator<cr>
-nnoremap <f5>O <cmd>Yarepl source_operator<cr>
+" nnoremap <f2>$ <cmd>call library#repl_interpreter('Yarepl! start_or_focus_or_hide')<cr>
+" nnoremap <f2><f2> <plug>(yarepl-send-line)
+" vnoremap <f2> <plug>(yarepl-send-visual)
+" nnoremap <f2>o <plug>(yarepl-send-operator)
 
 " vim-tmux-navigator {{{2
 

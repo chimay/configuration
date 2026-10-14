@@ -1069,6 +1069,7 @@ fun! library#repl_interpreter (command)
 				\ bash : 'bash',
 				\ zsh : 'zsh',
 				\ python : 'ipython',
+				\ lua : 'lua',
 				\ }
 	if keys(interdict)->index(type) < 0
 		return v:false

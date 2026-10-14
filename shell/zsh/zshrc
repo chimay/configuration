@@ -1094,6 +1094,10 @@ set hist_chars='!^#'
 #setopt hist_reduce_blanks
 #setopt hist_allow_clobber
 
+# logs {{{2
+
+alias hyprlog='less /run/user/1001/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log'
+
 # files {{{1
 
 # Demande confirmation pour rm *
@@ -1392,7 +1396,7 @@ fi
 # Basé sur base16, permet d’uniformiser le thème du terminal
 # indépendamment des émulateurs
 
-source ~/racine/config/terminal/theme/golden-night.sh
+#source ~/racine/config/terminal/theme/golden-night.sh
 
 # archlinux pkgfile {{{1
 

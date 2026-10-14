@@ -118,9 +118,10 @@ vim.pack.add({
 	{ src = 'https://github.com/hrsh7th/cmp-nvim-lsp', version = "main" },
 })
 
--- repl {{{2
+-- repl : read eval print loop {{{2
 
 vim.pack.add({
+	{ src = 'https://github.com/Vigemus/iron.nvim', version = "master", },
 	{ src = 'https://github.com/milanglacier/yarepl.nvim', version = "main", },
 })
 
@@ -457,12 +458,13 @@ vim.keymap.set('n', '<f11>c', function()
 	cmp_enabled = not cmp_enabled
 	if cmp_enabled then
 		cmp.setup({ enabled = true, })
-		vim.opt.completeopt:append('noselect')
+		--vim.opt.completeopt:append('noselect')
+		--vim.opt.completeopt:remove('noselect')
 	else
 		cmp.abort()
 		cmp.setup({ enabled = false, })
 		--vim.opt.completeopt:append('noselect')
-		vim.opt.completeopt:remove('noselect')
+		--vim.opt.completeopt:remove('noselect')
 		pcall(vim.keymap.del, 'i', '<C-n>')
 		pcall(vim.keymap.del, 'i', '<C-p>')
 		pcall(vim.keymap.del, 'i', '<C-x>')
@@ -831,6 +833,42 @@ require("dapui").setup()
 
 -- repl : read eval print loop {{{2
 
+-- iron {{{3
+
+require('iron.core').setup({
+	config = {
+		scratch_repl = true,
+		repl_definition = {
+			lua = { command = { 'lua' } },
+			python = {
+				command = { "ipython", "--no-autoindent" },
+				block_dividers = { "# %%", "#%%" },
+				env = { PYTHON_BASIC_REPL = "1" }
+			},
+			sh = { command = { 'sh' } },
+			bash = { command = { 'bash' } },
+			zsh = { command = { 'zsh' } },
+		},
+		repl_open_cmd = require('iron.view').split.vertical.botright(120),
+	},
+	keymaps = {
+		toggle_repl = "<f5>$",
+		restart_repl = "<f5>r",
+		interrupt = "<f5>s",
+		exit = "<f5>q",
+		clear = "<f5>-",
+		send_line = "<f5><f5>",
+		visual_send = "<f5>",
+		send_motion = "<f5>m",
+		send_file = "<f5>a",
+		send_paragraph = "<f5>p",
+		send_until_cursor = "<f5>c",
+		send_code_block = "<f5>B",
+		send_code_block_and_move = "<f5>b",
+		cr = "<f5><cr>",
+	},
+})
+
 -- yarepl {{{3
 
 local yarepl = require 'yarepl'
@@ -841,13 +879,16 @@ yarepl.setup {
 	scroll_to_bottom_after_sending = true,
 	highlight_on_send_operator = { enabled = false, hl_group = 'IncSearch', timeout = 150 },
 	metas = {
-		ipython = { cmd = 'builtin:ipython', formatter = 'bracketed_pasting', source_syntax = 'ipython' },
-		python = { cmd = 'builtin:python', formatter = 'trim_empty_lines', source_syntax = 'python' },
+		sh = { cmd = 'sh', formatter = 'bracketed_pasting', source_syntax = 'sh' },
 		bash = {
 			cmd = 'bash',
 			formatter = vim.fn.has 'linux' == 1 and 'bracketed_pasting' or 'trim_empty_lines',
 			source_syntax = 'bash',
 		},
-		zsh = { cmd = 'zsh', formatter = 'bracketed_pasting', source_syntax = 'bash' },
+		zsh = { cmd = 'zsh', formatter = 'bracketed_pasting', source_syntax = 'zsh' },
+		lua = { cmd = 'lua', formatter = 'bracketed_pasting', source_syntax = 'lua' },
+		ipython = { cmd = 'builtin:ipython', formatter = 'bracketed_pasting', source_syntax = 'ipython' },
+		python = { cmd = 'builtin:python', formatter = 'trim_empty_lines', source_syntax = 'python' },
 	},
 }
+

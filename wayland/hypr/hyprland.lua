@@ -7,7 +7,35 @@
 -- Create your files separately and then require them like this:
 -- require("myColors")
 
+-- debug {{{1
+
+---- log in /run/user/1001/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log
+
+-- invalid
+--hl.set_config_value("debug:disable_logs", false)
+
 -- helpers {{{1
+
+---- calls like :
+---- hl.bind('S', reset_and_exec('screenshot.sh &> ~/log/screenshot.log'))
+---- does not work : hl.bind: must be dispatcher or lua funcion
+---- ?????
+
+-- local function reset_and_exec(runme)
+-- 	hl.dispatch(hl.dsp.submap("reset"))
+-- 	hl.dispatch(hl.dsp.exec_cmd(runme))
+-- end
+
+-- local function exec_and_reset(runme)
+-- 	hl.dispatch(hl.dsp.exec_cmd(runme))
+-- 	hl.dispatch(hl.dsp.submap("reset"))
+-- end
+
+-- local function exec_and_reset(runme)
+-- 	local dispatch = 'hl.dispatch(' .. runme .. ')'
+-- 	assert(load(dispatch))()
+-- 	hl.dispatch(hl.dsp.submap("reset"))
+-- end
 
 local function notify(text)
     hl.notification.create({
@@ -305,6 +333,8 @@ hl.window_rule({
         title = "journal",
     },
     float = true,
+	size = "1200 600",
+	move = "300 70",
 })
 
 hl.window_rule({
@@ -579,20 +609,27 @@ hl.bind(hyper .. " + R", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(hyper .. "+ Y", hl.dsp.submap("hyperland"))
 
 hl.define_submap("hyperland", function()
-	hl.bind("R", function()
-		hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
+	hl.bind("L", function()
 		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd([[
+		less-log.sh /run/user/$UID/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log
+		]]))
+	end)
+	hl.bind("R", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
 	end)
 	hl.bind("Q", hl.dsp.exec_cmd("hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ; hyprshutdown"))
 	hl.bind("S", hl.dsp.exec_cmd("hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ; uwsm stop"))
 	hl.bind("E", function()
-		hl.dispatch(hl.dsp.exec_cmd( "rm /tmp/hypr-env.txt ; /usr/bin/env > /tmp/hypr-env.txt 2>&1"))
 		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd( "rm /tmp/hypr-env.txt ; /usr/bin/env > /tmp/hypr-env.txt 2>&1"))
 	end)
 	hl.bind("Z", function()
-		hl.dispatch(hl.dsp.dpms({action = "toggle"}))
 		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.dpms({action = "toggle"}))
 	end)
+	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
@@ -638,6 +675,7 @@ hl.define_submap("resize", function()
 	hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
 	hl.bind("up", hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
 	hl.bind("down", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
+	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
@@ -749,6 +787,7 @@ hl.define_submap("layout", function()
 		hl.dispatch(hl.dsp.group.toggle())
 		hl.dispatch(hl.dsp.submap("group"))
 	end)
+	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
@@ -760,18 +799,21 @@ hl.define_submap("master", function()
 	hl.bind("N", hl.dsp.layout("cyclenext"))
 	hl.bind("P", hl.dsp.layout("cycleprev"))
 	hl.bind("M", hl.dsp.layout("swapwithmaster master"))
+	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 hl.define_submap("tabbed", function()
     hl.bind("N", hl.dsp.layout("cyclenext"))
     hl.bind("P", hl.dsp.layout("cycleprev"))
+	hl.bind("escape", hl.dsp.submap("reset"))
     hl.bind("return", hl.dsp.submap("reset"))
 end)
 
 hl.define_submap("dwindle", function()
 	hl.bind("T", hl.dsp.layout("togglesplit"))
 	hl.bind("X", hl.dsp.layout("swapsplit"))
+	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
@@ -781,6 +823,7 @@ hl.define_submap("scrolling", function()
 	hl.bind("H", hl.dsp.layout("swapcol l"))
 	hl.bind("L", hl.dsp.layout("swapcol r"))
 	hl.bind("P", hl.dsp.layout("promote"))
+	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
@@ -789,6 +832,7 @@ hl.define_submap("group", function()
 	hl.bind("P", hl.dsp.group.prev())
 	hl.bind("F", hl.dsp.group.move_window({ forward = false }))
 	hl.bind("B", hl.dsp.group.move_window({ forward = true }))
+	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
@@ -921,6 +965,7 @@ hl.define_submap("screen", function()
 	hl.bind("right", hl.dsp.exec_cmd("brightnessctl set +25%"))
 	hl.bind("left", hl.dsp.exec_cmd("brightnessctl set 25%-"))
 	hl.bind("N", hl.dsp.exec_cmd("dms ipc call night toggle"))
+	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
@@ -945,6 +990,7 @@ hl.define_submap("wallpaper", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("pkill -12 -f wallpaper.zsh"))
 	end)
+	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
 
