@@ -6,7 +6,8 @@
 
 [core]
 
-pager = less --quit-if-one-screen
+pager = delta
+
 #pager = "diff-so-fancy | less --tabs=4 -RFX"
 
 # does not work, would surely need shwordsplit option in zsh
@@ -126,8 +127,12 @@ textconv = unzip -c -a
 [merge]
 
 #tool=vimdiff
+
 # custom command not available
+
 tool = 'vim-lite.sh -d'
+
+#conflictStyle = zdiff3
 
 #conflictstyle=diff3
 
@@ -187,3 +192,16 @@ default = simple
 [github]
 
 user = chimay
+
+[interactive]
+
+diffFilter = delta --color-only
+
+[delta]
+
+dark = true
+
+navigate = true
+line-numbers = true
+
+side-by-side = true

@@ -682,7 +682,6 @@ if ! exists("g:organ_loaded")
 		\ 'organ-info',
 		\ 'organ-next',
 		\ 'organ-parent',
-		\ 'organ-loose-child',
 		\ 'organ-strict-child',
 		\ 'organ-meta-return',
 		\ 'organ-tab',

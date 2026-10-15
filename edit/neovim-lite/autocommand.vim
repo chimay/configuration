@@ -75,6 +75,12 @@ augroup temporary-files
 	autocmd BufNewFile,BufReadPre /tmp/*,*/tmp/* setlocal noundofile
 augroup END
 
+augroup attic-files
+	autocmd!
+	" auto write Grenier files
+	autocmd BufLeave,BufWinLeave Grenier update
+augroup END
+
 augroup folding
 	autocmd!
 	autocmd BufReadPost ~/public/wheel/**.vim setlocal foldmethod=indent

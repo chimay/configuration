@@ -759,7 +759,7 @@ nnoremap <leader>f :find<space>
 
 nnoremap <C-G> <cmd>let @+ = expand("%:p:~")<cr>2<C-G>
 
-nnoremap <f5>s <cmd>call library#source_current_file()<cr>
+nnoremap <f5><f5> <cmd>call library#source_current_file()<cr>
 
 nnoremap <f10>v <cmd>call library#edit_myvimrc()<cr>
 nnoremap <f10>R <cmd>call library#toggle_readonly()<cr>
@@ -929,8 +929,10 @@ nnoremap ' `
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-nnoremap <c-n> <cmd>cnext<cr>
-nnoremap <c-p> <cmd>cprevious<cr>
+" ---- conflict with completion ?
+
+"nnoremap <c-n> <cmd>cnext<cr>
+"nnoremap <c-p> <cmd>cprevious<cr>
 
 " next word like this with another cursor
 "nnoremap # Q*
