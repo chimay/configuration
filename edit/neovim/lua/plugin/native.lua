@@ -61,6 +61,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope.nvim", version = "master" },
 	{ src = "https://github.com/nvim-telescope/telescope-file-browser.nvim", version = "master" },
 	{ src = 'https://github.com/nvim-tree/nvim-tree.lua', version = "master" },
+	{ src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = "main" },
 	{ src = 'https://github.com/stevearc/oil.nvim', version = "master" },
 	{ src = 'https://github.com/ThePrimeagen/harpoon', version = "harpoon2" },
 	{ src = 'https://github.com/jiaoshijie/undotree', version = "main" },
@@ -80,21 +81,6 @@ vim.pack.add({
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = "main"},
 })
 
--- snippets {{{2
-
-vim.pack.add({
-	{ src = 'https://github.com/L3MON4D3/LuaSnip', version = "master" },
-	{ src = 'https://github.com/rafamadriz/friendly-snippets', version = "main" },
-	{ src = 'https://github.com/saadparwaiz1/cmp_luasnip', version = "master" },
-})
-
--- completion {{{2
-
-vim.pack.add({
-	{ src = 'https://github.com/hrsh7th/nvim-cmp', version = "main" },
-	{ src = 'https://github.com/hrsh7th/cmp-nvim-lsp', version = "main" },
-})
-
 -- mason {{{2
 
 -- easier lsp and dap
@@ -109,6 +95,7 @@ vim.pack.add({
 
 vim.pack.add({
 	{ src = 'https://github.com/neovim/nvim-lspconfig', version = "master" },
+	{ src = 'https://github.com/antosha417/nvim-lsp-file-operations', version = "master" },
 	{ src = 'https://github.com/folke/lazydev.nvim', version = "main" },
 })
 
@@ -118,6 +105,21 @@ vim.pack.add({
 	{ src = 'https://github.com/mfussenegger/nvim-dap', version = "master" },
 	{ src = 'https://github.com/rcarriga/nvim-dap-ui', version = "master" },
 	{ src = 'https://github.com/mfussenegger/nvim-dap-python', version = "master" },
+})
+
+-- snippets {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/L3MON4D3/LuaSnip', version = "master" },
+	{ src = 'https://github.com/rafamadriz/friendly-snippets', version = "main" },
+	{ src = 'https://github.com/saadparwaiz1/cmp_luasnip', version = "master" },
+})
+
+-- completion {{{2
+
+vim.pack.add({
+	{ src = 'https://github.com/hrsh7th/nvim-cmp', version = "main" },
+	{ src = 'https://github.com/hrsh7th/cmp-nvim-lsp', version = "main" },
 })
 
 -- terminal {{{2
@@ -445,208 +447,6 @@ require('undotree').setup({
 
 vim.keymap.set('n', '<f11>u', require('undotree').toggle, { silent = true, desc = 'undotree' })
 
--- snippets {{{2
-
--- luasnip {{{3
-
-local luasnip = require("luasnip")
-
-luasnip.config.setup({
-	enable_autosnippets = false,
-})
-
-require("luasnip.loaders.from_vscode").lazy_load()
-
--- mappings {{{3
-
--- see also <url:#tn=cmp>
-
-vim.keymap.set({ "i", "s" }, "<m-j>", function()
-  if luasnip.expand_or_jumpable() then
-    luasnip.expand_or_jump()
-  end
-end, {silent = true})
-
-vim.keymap.set({ "i", "s" }, "<m-k>", function()
-  if luasnip.jumpable(-1) then
-    luasnip.jump(-1)
-  end
-end, {silent = true})
-
-vim.keymap.set({ "i", "s" }, "<m-c>", function()
-    if luasnip.choice_active() then
-        luasnip.change_choice(1)
-    end
-end, {silent = true})
-
--- custom snippets {{{3
-
--- local luasnip = require("luasnip")
--- local s = luasnip.snippet
--- local sn = luasnip.snippet_node
--- local isn = luasnip.indent_snippet_node
--- local t = luasnip.text_node
--- local i = luasnip.insert_node
--- local f = luasnip.function_node
--- local c = luasnip.choice_node
--- local d = luasnip.dynamic_node
--- local r = luasnip.restore_node
--- local events = require("luasnip.util.events")
--- local ai = require("luasnip.nodes.absolute_indexer")
--- local opt = require("luasnip.nodes.optional_arg")
--- local extras = require("luasnip.extras")
--- local l = extras.lambda
--- local rep = extras.rep
--- local p = extras.partial
--- local m = extras.match
--- local n = extras.nonempty
--- local dl = extras.dynamic_lambda
--- local fmt = require("luasnip.extras.fmt").fmt
--- local fmta = require("luasnip.extras.fmt").fmta
--- local conds = require("luasnip.extras.expand_conditions")
--- local postfix = require("luasnip.extras.postfix").postfix
--- local types = require("luasnip.util.types")
--- local parse = require("luasnip.util.parser").parse_snippet
--- local ms = luasnip.multi_snippet
--- local k = require("luasnip.nodes.key_indexer").new_key
-
-local s = luasnip.snippet
-local t = luasnip.text_node
-local i = luasnip.insert_node
-local extras = require("luasnip.extras")
-local rep = extras.rep
-local fmt = require("luasnip.extras.fmt").fmt
-local c = luasnip.choice_node
-local f = luasnip.function_node
-local d = luasnip.dynamic_node
-local sn = luasnip.snippet_node
-
-luasnip.add_snippets("lua", {
-    s("if", {
-        t('if '),
-        i(1, "true"),
-        t(' then '),
-        i(2),
-        t(' end')
-    })
-})
-
-luasnip.add_snippets("tex", {
-    s("beg", {
-        t("\\begin{"), i(1), t("}"),
-        t({ "", "\t" }), i(0),
-        t({ "", "\\end{" }), rep(1), t("}"),
-    })
-})
-
-luasnip.add_snippets("cs", {
-    s("logc",
-        fmt([[Debug.Log($"<color={}>{}</color>");]],
-        {
-            c(1, {
-                t("red"),
-                t("green"),
-                t("blue"),
-                t("cyan"),
-                t("magenta")
-            }),
-            i(2),
-        })),
-})
-
-luasnip.add_snippets("typescriptreact", {
-    s("co", {
-        d(function()
-            local register_data = vim.fn.getreg() .. "";
-            if string.match(register_data, "[%d-]+,%s*[%d-]+") then
-                return M.sn(nil, {
-                    M.t("position([" .. register_data .. "])"),
-                })
-            else
-                print("register does not contain the pattern")
-                return M.sn(nil, { })
-            end
-        end),
-        i(1)
-    })
-})
-
--- completion {{{2
-
--- cmp {{{3
-
-local cmp = require('cmp')
-
-cmp.setup {
-    completion = {
-        autocomplete = false,
-    },
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
-	mapping = cmp.mapping.preset.insert {
-		--['<C-N>'] = cmp.mapping.complete(),
-		['<CR>'] = cmp.mapping.confirm {
-			select = false,
-			behavior = cmp.ConfirmBehavior.Replace,
-		},
-		['<m-j>'] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_locally_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { 'i', 's' }),
-		['<m-k>'] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.locally_jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { 'i', 's' }),
-	},
-	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
-	},
-}
-
--- toggle {{{3
-
-local cmp_enabled = true
-
-vim.keymap.set('n', '<f11>c', function()
-	cmp_enabled = not cmp_enabled
-	if cmp_enabled then
-		cmp.setup({ enabled = true, })
-		--vim.opt.completeopt:append('noselect')
-		--vim.opt.completeopt:remove('noselect')
-	else
-		cmp.abort()
-		cmp.setup({ enabled = false, })
-		--vim.opt.completeopt:append('noselect')
-		--vim.opt.completeopt:remove('noselect')
-		pcall(vim.keymap.del, 'i', '<C-n>')
-		pcall(vim.keymap.del, 'i', '<C-p>')
-		pcall(vim.keymap.del, 'i', '<C-x>')
-		vim.keymap.set('i', '<tab>', function()
-			return vim.fn['library#smart_tab']()
-		end, { expr = true, replace_keycodes = true })
-		vim.keymap.set('i', '<tab>', '<Plug>(organ-tab)', { remap = true })
-		vim.keymap.set('i', '<s-tab>', function()
-			return vim.fn['library#smart_shift_tab']()
-		end, { expr = true, replace_keycodes = true })
-		vim.keymap.set('i', '<s-tab>', '<Plug>(organ-shift-tab)', { remap = true })
-		vim.keymap.set('i', '<c-tab>', '<C-x><C-o>', { remap = true })
-	end
-end, { desc = 'Toggle nvim-cmp' })
-
 -- treesitter {{{2
 
 -- nvim-treesitter {{{3
@@ -688,10 +488,10 @@ require("treesitter-modules").setup({
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<m-e>",
-      node_incremental = "<m-e>",
+      init_selection = "<c-space>",
+      node_incremental = "<c-space>",
       scope_incremental = false,
-      node_decremental = "<m-c>",
+      node_decremental = "<m-space>",
     },
   },
 })
@@ -955,6 +755,220 @@ require("dap-python").setup("python3")
 
 require("dapui").setup()
 
+-- snippets {{{2
+
+-- luasnip {{{3
+
+local luasnip = require("luasnip")
+
+luasnip.config.setup({
+	enable_autosnippets = false,
+})
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+-- mappings {{{3
+
+-- see also <url:#tn=cmp>
+
+vim.keymap.set({ "i", "s" }, "<m-j>", function()
+  if luasnip.expand_or_jumpable() then
+    luasnip.expand_or_jump()
+  end
+end, {silent = true})
+
+vim.keymap.set({ "i", "s" }, "<m-k>", function()
+  if luasnip.jumpable(-1) then
+    luasnip.jump(-1)
+  end
+end, {silent = true})
+
+vim.keymap.set({ "i", "s" }, "<m-c>", function()
+    if luasnip.choice_active() then
+        luasnip.change_choice(1)
+    end
+end, {silent = true})
+
+-- custom snippets {{{3
+
+-- local luasnip = require("luasnip")
+-- local s = luasnip.snippet
+-- local sn = luasnip.snippet_node
+-- local isn = luasnip.indent_snippet_node
+-- local t = luasnip.text_node
+-- local i = luasnip.insert_node
+-- local f = luasnip.function_node
+-- local c = luasnip.choice_node
+-- local d = luasnip.dynamic_node
+-- local r = luasnip.restore_node
+-- local events = require("luasnip.util.events")
+-- local ai = require("luasnip.nodes.absolute_indexer")
+-- local opt = require("luasnip.nodes.optional_arg")
+-- local extras = require("luasnip.extras")
+-- local l = extras.lambda
+-- local rep = extras.rep
+-- local p = extras.partial
+-- local m = extras.match
+-- local n = extras.nonempty
+-- local dl = extras.dynamic_lambda
+-- local fmt = require("luasnip.extras.fmt").fmt
+-- local fmta = require("luasnip.extras.fmt").fmta
+-- local conds = require("luasnip.extras.expand_conditions")
+-- local postfix = require("luasnip.extras.postfix").postfix
+-- local types = require("luasnip.util.types")
+-- local parse = require("luasnip.util.parser").parse_snippet
+-- local ms = luasnip.multi_snippet
+-- local k = require("luasnip.nodes.key_indexer").new_key
+
+local s = luasnip.snippet
+local t = luasnip.text_node
+local i = luasnip.insert_node
+local extras = require("luasnip.extras")
+local rep = extras.rep
+local fmt = require("luasnip.extras.fmt").fmt
+local c = luasnip.choice_node
+local f = luasnip.function_node
+local d = luasnip.dynamic_node
+local sn = luasnip.snippet_node
+
+luasnip.add_snippets("lua", {
+    s("if", {
+        t('if '),
+        i(1, "true"),
+        t(' then '),
+        i(2),
+        t(' end')
+    })
+})
+
+luasnip.add_snippets("tex", {
+    s("beg", {
+        t("\\begin{"), i(1), t("}"),
+        t({ "", "\t" }), i(0),
+        t({ "", "\\end{" }), rep(1), t("}"),
+    })
+})
+
+luasnip.add_snippets("cs", {
+    s("logc",
+        fmt([[Debug.Log($"<color={}>{}</color>");]],
+        {
+            c(1, {
+                t("red"),
+                t("green"),
+                t("blue"),
+                t("cyan"),
+                t("magenta")
+            }),
+            i(2),
+        })),
+})
+
+luasnip.add_snippets("typescriptreact", {
+    s("co", {
+        d(function()
+            local register_data = vim.fn.getreg() .. "";
+            if string.match(register_data, "[%d-]+,%s*[%d-]+") then
+                return M.sn(nil, {
+                    M.t("position([" .. register_data .. "])"),
+                })
+            else
+                print("register does not contain the pattern")
+                return M.sn(nil, { })
+            end
+        end),
+        i(1)
+    })
+})
+
+-- completion {{{2
+
+-- cmp {{{3
+
+local cmp = require('cmp')
+
+cmp.setup {
+    completion = {
+        autocomplete = false,
+    },
+	snippet = {
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end,
+	},
+	mapping = cmp.mapping.preset.insert {
+		--['<C-N>'] = cmp.mapping.complete(),
+		['<CR>'] = cmp.mapping.confirm {
+			select = false,
+			behavior = cmp.ConfirmBehavior.Replace,
+		},
+		['<m-j>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_locally_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
+		['<m-k>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
+	},
+	sources = {
+		{ name = 'buffer' },
+		{ name = 'path' },
+		{ name = 'spell' },
+		{ name = ']' },
+		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
+	},
+}
+
+-- toggle {{{3
+
+local cmp_enabled = true
+
+vim.keymap.set('n', '<f11>c', function()
+	cmp_enabled = not cmp_enabled
+	if cmp_enabled then
+		cmp.setup({ enabled = true, })
+		--vim.opt.completeopt:append('noselect')
+		--vim.opt.completeopt:remove('noselect')
+	else
+		cmp.abort()
+		cmp.setup({ enabled = false, })
+		--vim.opt.completeopt:append('noselect')
+		--vim.opt.completeopt:remove('noselect')
+		pcall(vim.keymap.del, 'i', '<C-n>')
+		pcall(vim.keymap.del, 'i', '<C-p>')
+		pcall(vim.keymap.del, 'i', '<C-x>')
+		vim.keymap.set('i', '<tab>', function()
+			return vim.fn['library#smart_tab']()
+		end, { expr = true, replace_keycodes = true })
+		vim.keymap.set('i', '<tab>', '<Plug>(organ-tab)', { remap = true })
+		vim.keymap.set('i', '<s-tab>', function()
+			return vim.fn['library#smart_shift_tab']()
+		end, { expr = true, replace_keycodes = true })
+		vim.keymap.set('i', '<s-tab>', '<Plug>(organ-shift-tab)', { remap = true })
+		vim.keymap.set('i', '<c-tab>', '<C-x><C-o>', { remap = true })
+	end
+end, { desc = 'Toggle nvim-cmp' })
+
+-- cmp-nvim-lsp {{{3
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+vim.lsp.config("*", {
+  capabilities = capabilities,
+})
+
 -- terminal {{{2
 
 -- toggleterm {{{3
@@ -991,17 +1005,17 @@ require('iron.core').setup({
 		toggle_repl = "<c-$>",
 		send_line = "<c-cr>",
 		visual_send = "<c-cr>",
+		send_paragraph = "<s-cr>",
+		cr = "<c-s-cr>",
 		restart_repl = "<f5>r",
 		interrupt = "<f5>s",
 		exit = "<f5>q",
 		clear = "<f5>-",
 		send_motion = "<f5>m",
 		send_file = "<f5>a",
-		send_paragraph = "<f5>p",
 		send_until_cursor = "<f5>c",
 		send_code_block = "<f5>B",
 		send_code_block_and_move = "<f5>b",
-		cr = "<f5><cr>",
 	},
 })
 

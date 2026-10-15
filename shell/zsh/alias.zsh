@@ -110,7 +110,7 @@ alias nv=nvim
 
 alias ni='run-neovim-bundle.zsh nvim-kickstart'
 
-alias ns='run-neovim-server.sh &'
+alias ns='run-neovim-server.sh &!'
 alias nvc=run-neovim-client.sh
 
 alias vq=neovim-quickfix

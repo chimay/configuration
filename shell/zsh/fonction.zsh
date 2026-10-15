@@ -422,7 +422,13 @@ run-vifm () {
 # yank-file {{{2
 
 yank-file () {
-	cat $1 | xclip -i -selection clipboard
+	if [ -n "$WAYLAND_DISPLAY" ]
+	then
+		cat $1 | wl-copy
+	elif [ -n "$DISPLAY" ]
+		cat $1 | xclip -i -selection clipboard
+	then
+	fi
 }
 
 

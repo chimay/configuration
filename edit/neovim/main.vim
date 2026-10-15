@@ -706,6 +706,12 @@ nnoremap <s-bs> <c-t>
 
 nnoremap gm <cmd>call library#manual()<cr>
 
+" self {{{2
+
+nnoremap <m-m> <cmd>messages<cr>
+
+nnoremap <leader>vm <cmd>messages<cr>
+
 " quit {{{2
 
 nnoremap ZW <cmd>quit<cr>
@@ -957,12 +963,12 @@ nnoremap <leader>qn <cmd>cnext<cr>
 nnoremap <leader>qb <cmd>cpfile<cr>
 nnoremap <leader>qf <cmd>cnfile<cr>
 
-nnoremap <leader>lo <cmd>lopen<cr>
-nnoremap <leader>lc <cmd>lclose<cr>
-nnoremap <leader>lp <cmd>lprevious<cr>
-nnoremap <leader>ln <cmd>lnext<cr>
-nnoremap <leader>lb <cmd>lpfile<cr>
-nnoremap <leader>lf <cmd>lnfile<cr>
+nnoremap <leader>LO <cmd>lopen<cr>
+nnoremap <leader>LC <cmd>lclose<cr>
+nnoremap <leader>LP <cmd>lprevious<cr>
+nnoremap <leader>LN <cmd>lnext<cr>
+nnoremap <leader>LB <cmd>lpfile<cr>
+nnoremap <leader>LF <cmd>lnfile<cr>
 
 " Plus besoin avec xcape
 "nnoremap ’ /
@@ -1143,9 +1149,6 @@ nnoremap <m-q> gqap
 "nnoremap <c-l> <cmd>call library#smart_ctrl_l()<cr>
 vnoremap <c-l> <esc>
 
-nnoremap <m-m> <cmd>messages<cr>
-
-nnoremap <leader>dm <cmd>messages<cr>
 nnoremap <leader>dc <cmd>set cursorline!<cr>
 nnoremap <leader>dw <cmd>set wrap!<cr>
 nnoremap <leader>dl <cmd>call library#toggle_relative_linum()<cr>
@@ -1188,8 +1191,8 @@ nnoremap <leader>Tj :tab tjump /
 
 " coding {{{2
 
-nnoremap <leader>LE <cmd>lsp enable<cr>
-nnoremap <leader>LD <cmd>lsp disable<cr>
+nnoremap <leader>le <cmd>lsp enable<cr>
+nnoremap <leader>ld <cmd>lsp disable<cr>
 
 " commands {{{2
 

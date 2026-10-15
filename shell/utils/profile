@@ -58,6 +58,7 @@ $HOME/racine/shell/alarm:\
 $HOME/racine/shell/dialog:\
 $HOME/racine/shell/fileman:\
 $HOME/racine/shell/run:\
+$HOME/racine/shell/wayland:\
 $HOME/racine/shell/windenv:\
 "
 

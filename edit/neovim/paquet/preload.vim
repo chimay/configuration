@@ -242,15 +242,18 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " Exploration de fichiers {{{1
 
+" neotree {{{1
+
+nnoremap <m-d> <cmd>Neotree<cr>
+
 " nvim-tree {{{2
 
 nnoremap <m-f> <cmd>NvimTreeFindFileToggle<cr>
 
-nnoremap <f11>f <cmd>NvimTreeFindFileToggle<cr>
-nnoremap <f11>F <cmd>NvimTreeToggle<cr>
+"nnoremap <m-f> <cmd>NvimTreeToggle<cr>
 
-"nnoremap <f11>f <cmd>execute 'NvimTreeFindFileToggle' getcwd()<cr>
-"nnoremap <f11>F <cmd>execute 'NvimTreeToggle''getcwd()<cr>
+"nnoremap <m-f> <cmd>execute 'NvimTreeFindFileToggle' getcwd()<cr>
+"nnoremap <m-f> <cmd>execute 'NvimTreeToggle''getcwd()<cr>
 
 " oil {{{2
 
@@ -562,31 +565,31 @@ nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
 
 nnoremap <d-f> <cmd>FzfLua files<cr>
 
-nnoremap <c-space><c-space> <cmd>FzfLua<cr>
-nnoremap <c-space>f <cmd>FzfLua files<cr>
-nnoremap <c-space>o <cmd>FzfLua oldfiles<cr>
-nnoremap <c-space>a <cmd>FzfLua args<cr>
-nnoremap <c-space>b <cmd>FzfLua buffers<cr>
-nnoremap <c-space>w <cmd>FzfLua tabs<cr>
-nnoremap <c-space>j <cmd>FzfLua jumps<cr>
-nnoremap <c-space>c <cmd>FzfLua changes<cr>
-nnoremap <c-space>l <cmd>FzfLua blines<cr>
-nnoremap <c-space>L <cmd>FzfLua lines<cr>
-nnoremap <c-space>t <cmd>FzfLua tags<cr>
-nnoremap <c-space>u <cmd>FzfLua undotree<cr>
-nnoremap <c-space>m <cmd>FzfLua keymap<cr>
-nnoremap <c-space>C <cmd>FzfLua colorschemes<cr>
+nnoremap <f11>f<f11> <cmd>FzfLua<cr>
+nnoremap <f11>ff <cmd>FzfLua files<cr>
+nnoremap <f11>fo <cmd>FzfLua oldfiles<cr>
+nnoremap <f11>fa <cmd>FzfLua args<cr>
+nnoremap <f11>fb <cmd>FzfLua buffers<cr>
+nnoremap <f11>fw <cmd>FzfLua tabs<cr>
+nnoremap <f11>fj <cmd>FzfLua jumps<cr>
+nnoremap <f11>fc <cmd>FzfLua changes<cr>
+nnoremap <f11>fl <cmd>FzfLua blines<cr>
+nnoremap <f11>fL <cmd>FzfLua lines<cr>
+nnoremap <f11>ft <cmd>FzfLua tags<cr>
+nnoremap <f11>fu <cmd>FzfLua undotree<cr>
+nnoremap <f11>fm <cmd>FzfLua keymap<cr>
+nnoremap <f11>fC <cmd>FzfLua colorschemes<cr>
 
 " telescope {{{2
 
-nnoremap <s-space><s-space> <cmd>Telescope<cr>
-nnoremap <s-space>f <cmd>Telescope find_files<cr>
-nnoremap <s-space>o <cmd>Telescope oldfiles<cr>
-nnoremap <s-space>b <cmd>Telescope buffers<cr>
-nnoremap <s-space>j <cmd>Telescope jumplist<cr>
-nnoremap <s-space>t <cmd>Telescope tags<cr>
-nnoremap <s-space>F <cmd>Telescope file_browser<cr>
-nnoremap <s-space>d <cmd>Telescope diagnostics<cr>
+nnoremap <f11>t<f11> <cmd>Telescope<cr>
+nnoremap <f11>tf <cmd>Telescope find_files<cr>
+nnoremap <f11>to <cmd>Telescope oldfiles<cr>
+nnoremap <f11>tb <cmd>Telescope buffers<cr>
+nnoremap <f11>tj <cmd>Telescope jumplist<cr>
+nnoremap <f11>tt <cmd>Telescope tags<cr>
+nnoremap <f11>tF <cmd>Telescope file_browser<cr>
+nnoremap <f11>td <cmd>Telescope diagnostics<cr>
 
 " nnoremap <f11>nn :Telescope notify<cr>
 " nnoremap <f11>nc :NotificationsClear<cr>

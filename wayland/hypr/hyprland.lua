@@ -355,6 +355,15 @@ hl.window_rule({
 	move = "300 70",
 })
 
+hl.window_rule({
+	match = {
+		class = "pavucontrol-qt",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
 -- workspaces names {{{2
 
 hl.workspace_rule({ workspace = "1", persistent = true, default_name = "term"})
@@ -937,7 +946,9 @@ end)
 hl.bind(hyper .. " + C", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
 hl.bind(hyper .. " + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
 
-hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
+--hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
+
+hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms-login-power-menu.sh"))
 
 -- send a notification
 -- dms ipc call toast info "Hello from Hyprland"
@@ -962,7 +973,8 @@ hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("goto-or-run.sh qutebrowser")
 hl.bind(super .. " + CONTROL + B", hl.dsp.exec_cmd("floorp"))
 hl.bind(super .. " + CONTROL + Y", hl.dsp.exec_cmd("run-freetube.sh"))
 
-hl.bind(hyper .. " + X", hl.dsp.exec_cmd("passmenu.bash"))
+--hl.bind(hyper .. " + X", hl.dsp.exec_cmd("passmenu.bash"))
+hl.bind(hyper .. " + X", hl.dsp.exec_cmd("pass-rofi.bash"))
 
 -- screen {{{2
 
@@ -1036,7 +1048,7 @@ hl.bind(hyper .. " + ccedilla", hl.dsp.exec_cmd("rofi-cliphist.sh"))
 
 -- mouse {{{2
 
--- Move/resize windows with mainMod + LMB/RMB and dragging
+-- Move/resize windows with super + LMB/RMB and dragging
 
 hl.bind(super .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(super .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
@@ -1067,13 +1079,34 @@ hl.define_submap("mpc", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("mpc toggle"))
 	end)
-	hl.bind("N", hl.dsp.exec_cmd("mpc next"))
-	hl.bind("P", hl.dsp.exec_cmd("mpc prev"))
-	hl.bind("backspace", hl.dsp.exec_cmd("mpc -q seek 0:0"))
-	hl.bind("F", hl.dsp.exec_cmd("mpc seek +1:00"))
-	hl.bind("B", hl.dsp.exec_cmd("mpc seek -1:00"))
-	hl.bind("V", hl.dsp.exec_cmd("pavucontrol-qt"))
-	hl.bind("E", hl.dsp.exec_cmd("eval-song.zsh"))
+	hl.bind("N", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("mpc next"))
+	end)
+	hl.bind("P", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("mpc prev"))
+	end)
+	hl.bind("backspace", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("mpc -q seek 0:0"))
+	end)
+	hl.bind("F", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("mpc seek +1:00"))
+	end)
+	hl.bind("B", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("mpc seek -1:00"))
+	end)
+	hl.bind("V", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("pavucontrol-qt"))
+	end)
+	hl.bind("E", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("eval-song.zsh"))
+	end)
 	hl.bind("up", hl.dsp.exec_cmd("pamixer --increase 5"))
 	hl.bind("down", hl.dsp.exec_cmd("pamixer --decrease 5"))
 	hl.bind("right", hl.dsp.exec_cmd("pamixer --increase 10"))
