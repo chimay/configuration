@@ -637,14 +637,28 @@ end)
 
 -- Move focus with mainMod + arrow keys
 
-hl.bind(super .. " + prior",  function ()
-	hl.dispatch(hl.dsp.layout("cyclenext"))
-	hl.dispatch(hl.dsp.window.move({ direction = "down"}))
+hl.bind(super .. " + next",  function ()
+	local ws = hl.get_active_workspace()
+	if not ws then return end
+	if ws.tiled_layout == "master" then
+		hl.dispatch(hl.dsp.layout("cycleprev"))
+		hl.dispatch(hl.dsp.window.move({ direction = "up"}))
+	elseif ws.tiled_layout == "scrolling" then
+		hl.dispatch(hl.dsp.focus({ direction = "right" }))
+		hl.dispatch(hl.dsp.window.move({ direction = "left"}))
+		hl.dispatch(hl.dsp.window.move({ direction = "left"}))
+	end
 end)
 
-hl.bind(super .. " + next",  function ()
-	hl.dispatch(hl.dsp.layout("cycleprev"))
-	hl.dispatch(hl.dsp.window.move({ direction = "up"}))
+hl.bind(super .. " + prior",  function ()
+	local ws = hl.get_active_workspace()
+	if not ws then return end
+	if ws.tiled_layout == "master" then
+		hl.dispatch(hl.dsp.window.move({ direction = "up"}))
+	elseif ws.tiled_layout == "scrolling" then
+		hl.dispatch(hl.dsp.window.move({ direction = "left"}))
+		hl.dispatch(hl.dsp.window.move({ direction = "left"}))
+	end
 end)
 
 -- hl.bind(super .. " + prior", hl.dsp.layout("cyclenext"))
