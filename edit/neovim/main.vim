@@ -1518,6 +1518,10 @@ endif
 
 " terminal {{{1
 
+" ---- does not work with toggleterm
+" ---- guess : zsh tries 'zsh -l' as a single string,
+" ---- not as word split 'zsh' '-l'
+
 "set shell=/usr/bin/zsh
 "set shellcmdflag='-l'
 

@@ -390,7 +390,7 @@ endif
 
 " maps {{{3
 
-nnoremap <c-f3>          :<c-u>Torustree<space>
+nnoremap <c-f2>          :<c-u>Torustree<space>
 
 " Wheel {{{2
 
@@ -510,13 +510,13 @@ set tabline=%!wheel#status#tabline()
 
 nnoremap <m-space>          :<c-u>Wheel<space>
 
-nnoremap <m-$>           <plug>(wheel-sync-up)
-nnoremap <c-$>           <plug>(wheel-sync-down)
-
 nnoremap <m-ins>           <plug>(wheel-prompt-add-file)
 
 " altgr-r
 nmap ¶                    <plug>(wheel-prompt-read-session)
+" altgr-w
+nmap «                    <plug>(wheel-prompt-write-session)
+
 
 nnoremap <silent> <c-l>   <cmd>call library#smart_ctrl_l()<cr><plug>(wheel-spiral-cursor)
 inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
@@ -541,7 +541,8 @@ nmap <silent> <d-^>       <plug>(wheel-alternate-window)
 nmap <m-pagedown>         <plug>(wheel-next-location)
 nmap <m-pageup>           <plug>(wheel-previous-location)
 " m-cr interferes with organ
-nmap <c-cr>               <plug>(wheel-prompt-location)
+nmap <m-home>               <plug>(wheel-prompt-location)
+nmap <m-end>               <plug>(wheel-prompt-circle)
 
 nmap <m-x>                <plug>(wheel-prompt-index)
 " altgr-x
@@ -783,7 +784,7 @@ nnoremap <f11>mr <cmd>lua MiniMap.refresh()<cr>
 
 " yarepl {{{1
 
-" ---- see <url:~/racine/config/edit/neovim/lua/plugin/native.lua#tn=iron {{{3>
+" ---- see <url:~/racine/config/edit/neovim/lua/plugin/native.lua#tn=-- iron {{{>
 
 " nnoremap <f2>$ <cmd>call library#repl_interpreter('Yarepl! start_or_focus_or_hide')<cr>
 " nnoremap <f2><f2> <plug>(yarepl-send-line)

@@ -25,6 +25,11 @@ augroup publish-in-repo
 	autocmd BufWritePost ~/racine/musica/lilypond/template/** call library#publish ()
 augroup END
 
+augroup clone-file
+	autocmd!
+	autocmd BufWritePost ~/racine/public/eclats2vers/generic/include/latex/custom.sty ! cp -f % ~/racine/config/science/texmf/tex/latex/personal/personal.sty
+augroup END
+
 augroup reload-service
 	autocmd!
 	"autocmd BufWritePost ~/racine/config/system/dunst/dunstrc !restart-dunst.sh &
@@ -38,11 +43,10 @@ augroup reload-service
 	autocmd BufWritePost ~/racine/config/auto/crontab !update-crontab.sh &>> ~/log/cron.log &
 augroup END
 
-augroup quickfix-window
-	autocmd!
-	autocmd filetype qf noremap <buffer> <backspace> <cr>:cclose<cr>
-	" overwrite generic <cr> mapping
-	autocmd filetype qf nnoremap <buffer> <cr> <cr>
+augroup ex-commandline
+	" toggle statusline
+	autocmd CmdlineEnter * let &laststatus = 0
+	autocmd CmdlineLeave * let &laststatus = 3
 augroup END
 
 augroup command-window
@@ -56,6 +60,16 @@ augroup command-window
 	autocmd CmdwinEnter * nnoremap <buffer> <cr> <cr>
 augroup END
 
+augroup quickfix-window
+	autocmd!
+	autocmd filetype qf noremap <buffer> q <cmd>call library#close_list()<cr>
+	autocmd filetype qf noremap <buffer> <backspace> <cr><c-w>p:call library#close_list()<cr>
+	autocmd filetype qf noremap <buffer> s <cmd>call library#grepped_files_replace()<cr>
+	autocmd filetype qf noremap <buffer> S <cmd>call library#grepped_files_replace_word()<cr>
+	" overwrite generic <cr> mapping
+	autocmd filetype qf nnoremap <buffer> <cr> <cr>
+augroup END
+
 augroup temporary-files
 	autocmd!
 	autocmd BufNewFile,BufReadPre /tmp/*,*/tmp/* setlocal noundofile
@@ -67,6 +81,11 @@ augroup folding
 	autocmd BufReadPost ~/public/organ/**.vim setlocal foldmethod=indent
 	autocmd BufReadPost *.snippets setlocal nofoldenable
 	autocmd BufEnter historique.zsh setlocal nofoldenable
+augroup END
+
+augroup file-symlink
+	autocmd!
+	autocmd BufReadPost * call library#resolve_symlink ()
 augroup END
 
 augroup file-detection
@@ -103,7 +122,7 @@ augroup END
 
 augroup file-json
 	autocmd!
-	autocmd FileType json %!jq '.'
+	"autocmd FileType json %!jq '.'
 	autocmd FileType json set foldmethod=indent
 	autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
 augroup end
@@ -166,11 +185,12 @@ augroup file-audio
 augroup END
 
 " ---- not needed anymore, see  <url:~/racine/config/edit/neovim-lite/colors/golden-night.vim#tn=treesitter>
-"augroup treesitter-stop
-	"autocmd!
+augroup treesitter-stop
+	autocmd!
+	autocmd FileType help lua vim.treesitter.stop()
 	"autocmd FileType vim lua vim.treesitter.stop()
 	"autocmd FileType lua lua vim.treesitter.stop()
 	"autocmd FileType help lua vim.treesitter.stop()
 	"autocmd FileType markdown lua vim.treesitter.stop()
 	"autocmd FileType org lua vim.treesitter.stop()
-"augroup end
+augroup end

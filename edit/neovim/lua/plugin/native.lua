@@ -128,7 +128,7 @@ vim.pack.add({
 
 vim.pack.add({
 	{ src = 'https://github.com/Vigemus/iron.nvim', version = "master", },
-	{ src = 'https://github.com/milanglacier/yarepl.nvim', version = "main", },
+	--{ src = 'https://github.com/milanglacier/yarepl.nvim', version = "main", },
 })
 
 -- local {{{2
@@ -842,7 +842,7 @@ require("dapui").setup()
 -- toggleterm {{{2
 
 require("toggleterm").setup{
-	size = 15,
+	size = 30,
 	open_mapping = [[<C-=>]],
 	direction = 'horizontal',
 	start_in_insert = true,
@@ -870,13 +870,13 @@ require('iron.core').setup({
 		repl_open_cmd = require('iron.view').split.vertical.botright(120),
 	},
 	keymaps = {
-		toggle_repl = "<f5>$",
+		toggle_repl = "<c-$>",
+		send_line = "<c-cr>",
+		visual_send = "<c-cr>",
 		restart_repl = "<f5>r",
 		interrupt = "<f5>s",
 		exit = "<f5>q",
 		clear = "<f5>-",
-		send_line = "<f5><f5>",
-		visual_send = "<f5>",
 		send_motion = "<f5>m",
 		send_file = "<f5>a",
 		send_paragraph = "<f5>p",
@@ -889,24 +889,24 @@ require('iron.core').setup({
 
 -- yarepl {{{3
 
-local yarepl = require 'yarepl'
+-- local yarepl = require 'yarepl'
 
-yarepl.setup {
-	wincmd = 'belowright 15 split',
-	close_on_exit = true,
-	scroll_to_bottom_after_sending = true,
-	highlight_on_send_operator = { enabled = false, hl_group = 'IncSearch', timeout = 150 },
-	metas = {
-		sh = { cmd = 'sh', formatter = 'bracketed_pasting', source_syntax = 'sh' },
-		bash = {
-			cmd = 'bash',
-			formatter = vim.fn.has 'linux' == 1 and 'bracketed_pasting' or 'trim_empty_lines',
-			source_syntax = 'bash',
-		},
-		zsh = { cmd = 'zsh', formatter = 'bracketed_pasting', source_syntax = 'zsh' },
-		lua = { cmd = 'lua', formatter = 'bracketed_pasting', source_syntax = 'lua' },
-		ipython = { cmd = 'builtin:ipython', formatter = 'bracketed_pasting', source_syntax = 'ipython' },
-		python = { cmd = 'builtin:python', formatter = 'trim_empty_lines', source_syntax = 'python' },
-	},
-}
+-- yarepl.setup {
+-- 	wincmd = 'belowright 15 split',
+-- 	close_on_exit = true,
+-- 	scroll_to_bottom_after_sending = true,
+-- 	highlight_on_send_operator = { enabled = false, hl_group = 'IncSearch', timeout = 150 },
+-- 	metas = {
+-- 		sh = { cmd = 'sh', formatter = 'bracketed_pasting', source_syntax = 'sh' },
+-- 		bash = {
+-- 			cmd = 'bash',
+-- 			formatter = vim.fn.has 'linux' == 1 and 'bracketed_pasting' or 'trim_empty_lines',
+-- 			source_syntax = 'bash',
+-- 		},
+-- 		zsh = { cmd = 'zsh', formatter = 'bracketed_pasting', source_syntax = 'zsh' },
+-- 		lua = { cmd = 'lua', formatter = 'bracketed_pasting', source_syntax = 'lua' },
+-- 		ipython = { cmd = 'builtin:ipython', formatter = 'bracketed_pasting', source_syntax = 'ipython' },
+-- 		python = { cmd = 'builtin:python', formatter = 'trim_empty_lines', source_syntax = 'python' },
+-- 	},
+-- }
 
