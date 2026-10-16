@@ -1015,15 +1015,15 @@ require('iron.core').setup({
 	config = {
 		scratch_repl = true,
 		repl_definition = {
+			sh = { command = { 'sh' } },
+			bash = { command = { 'bash' } },
+			zsh = { command = { 'zsh' } },
 			lua = { command = { 'lua' } },
 			python = {
 				command = { "ipython", "--no-autoindent" },
 				block_dividers = { "# %%", "#%%" },
 				env = { PYTHON_BASIC_REPL = "1" }
 			},
-			sh = { command = { 'sh' } },
-			bash = { command = { 'bash' } },
-			zsh = { command = { 'zsh' } },
 		},
 		repl_open_cmd = require('iron.view').split.vertical.botright(0.618),
 	},
@@ -1038,7 +1038,7 @@ require('iron.core').setup({
 		send_until_cursor = "<f5>c",
 		send_code_block = "<f5>b",
 		cr = "<c-m-cr>",
-		interrupt = "<c-!>",
+		interrupt = "<f5>s",
 		restart_repl = "<f5>r",
 		exit = "<f5>q",
 		clear = "<f5>-",
