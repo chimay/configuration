@@ -551,10 +551,9 @@ nmap <m-x>                <plug>(wheel-prompt-index)
 " altgr-x
 nmap <silent> »          <cmd>call wheel#vortex#helix('tab')<cr>
 
-nmap <silent> <d-cr>      <cmd>call wheel#waterclock#history('tab')<cr>
+nmap <silent> <d-h>      <cmd>call wheel#waterclock#history('tab')<cr>
 " altgr-h
 nmap <silent> ħ           <plug>(wheel-prompt-history)
-nmap <silent> <d-h>       <plug>(wheel-dedibuf-history)
 
 nmap <silent> <d-space>      <plug>(wheel-mandala-forward)
 nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
@@ -579,6 +578,21 @@ nnoremap <f11>ft <cmd>FzfLua tags<cr>
 nnoremap <f11>fu <cmd>FzfLua undotree<cr>
 nnoremap <f11>fm <cmd>FzfLua keymap<cr>
 nnoremap <f11>fC <cmd>FzfLua colorschemes<cr>
+
+nnoremap <s-space><s-space> <cmd>FzfLua<cr>
+nnoremap <s-space>f <cmd>FzfLua files<cr>
+nnoremap <s-space>o <cmd>FzfLua oldfiles<cr>
+nnoremap <s-space>a <cmd>FzfLua args<cr>
+nnoremap <s-space>b <cmd>FzfLua buffers<cr>
+nnoremap <s-space>w <cmd>FzfLua tabs<cr>
+nnoremap <s-space>j <cmd>FzfLua jumps<cr>
+nnoremap <s-space>c <cmd>FzfLua changes<cr>
+nnoremap <s-space>l <cmd>FzfLua blines<cr>
+nnoremap <s-space>L <cmd>FzfLua lines<cr>
+nnoremap <s-space>t <cmd>FzfLua tags<cr>
+nnoremap <s-space>u <cmd>FzfLua undotree<cr>
+nnoremap <s-space>m <cmd>FzfLua keymap<cr>
+nnoremap <s-space>C <cmd>FzfLua colorschemes<cr>
 
 " telescope {{{2
 

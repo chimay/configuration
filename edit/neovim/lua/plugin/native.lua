@@ -889,7 +889,11 @@ local cmp = require('cmp')
 
 cmp.setup {
     completion = {
-        autocomplete = false,
+		--autocomplete = false,
+		--autocomplete = {},
+		autocomplete = {
+			require("cmp.types").cmp.TriggerEvent.TextChanged
+		},
     },
 	snippet = {
 		expand = function(args)
@@ -922,12 +926,13 @@ cmp.setup {
 		end, { 'i', 's' }),
 	},
 	sources = {
-		{ name = 'buffer' },
-		{ name = 'path' },
-		{ name = 'spell' },
-		{ name = ']' },
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
+		{ name = 'buffer', keyword_length = 2 },
+		{ name = ']', keyword_length = 2 },
+		{ name = 'nvim_lsp', keyword_length = 2 },
+		{ name = 'path', keyword_length = 3 },
+		-- tags
+		{ name = 'luasnip', keyword_length = 3 },
+		{ name = 'spell', keyword_length = 4 },
 	},
 }
 
@@ -976,7 +981,8 @@ vim.lsp.config("*", {
 require("toggleterm").setup{
 	size = 30,
 	open_mapping = [[<C-=>]],
-	direction = 'horizontal',
+	--direction = 'horizontal',
+	direction = 'float',
 	start_in_insert = true,
 	persist_size = true,
 }
@@ -999,24 +1005,26 @@ require('iron.core').setup({
 			bash = { command = { 'bash' } },
 			zsh = { command = { 'zsh' } },
 		},
-		repl_open_cmd = require('iron.view').split.vertical.botright(120),
+		repl_open_cmd = require('iron.view').split.vertical.botright(0.618),
 	},
 	keymaps = {
 		toggle_repl = "<c-$>",
 		send_line = "<c-cr>",
 		visual_send = "<c-cr>",
 		send_paragraph = "<s-cr>",
-		cr = "<c-s-cr>",
+		send_motion = "<d-cr>",
+		--cr = "<c-s-cr>",
+		cr = "<d-$>",
+		interrupt = "<c-!>",
 		restart_repl = "<f5>r",
-		interrupt = "<f5>s",
 		exit = "<f5>q",
 		clear = "<f5>-",
-		send_motion = "<f5>m",
 		send_file = "<f5>a",
 		send_until_cursor = "<f5>c",
-		send_code_block = "<f5>B",
 		send_code_block_and_move = "<f5>b",
+		send_code_block = "<f5>B",
 	},
+	ignore_blank_lines = false,
 })
 
 -- yarepl {{{3

@@ -1221,7 +1221,9 @@ nnoremap <f12>l <cmd>packloadall<cr>
 
 " Émulateur de terminal {{{2
 
-nnoremap <C-!> <cmd>call library#terminal()<cr>
+" -- replaced by <url:~/racine/config/edit/neovim/lua/plugin/native.lua#tn=-- iron>
+
+"nnoremap <c-!> <cmd>call library#terminal()<cr>
 
 " Passer en mode normal
 

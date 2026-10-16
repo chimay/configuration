@@ -5,12 +5,12 @@
 # RUST_LOG=debug xremap ~/racine/config/windenv/xremap/modifiers.yml
 
 modmap:
-  - name: Ctrl left as asterisk
-    remap:
-      KEY_LEFTCTRL:
-        alone: [KEY_LEFTSHIFT, KEY_RIGHTBRACE]
-        held: KEY_LEFTCTRL
-        free_hold: true
+#   - name: Ctrl left as asterisk
+#     remap:
+#       KEY_LEFTCTRL:
+#         alone: [KEY_LEFTSHIFT, KEY_RIGHTBRACE]
+#         held: KEY_LEFTCTRL
+#         free_hold: true
   - name: Shift left as numbersign
     remap:
       KEY_LEFTSHIFT:
