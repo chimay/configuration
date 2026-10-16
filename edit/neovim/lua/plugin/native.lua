@@ -529,8 +529,9 @@ local select_maps = {
   ["ia"] = { "@parameter.inner", "Select inner parameter" },
   ["ac"] = { "@conditional.outer", "Select outer conditional" },
   ["ic"] = { "@conditional.inner", "Select inner conditional" },
-  ["al"] = { "@loop.outer", "Select outer loop" },
-  ["il"] = { "@loop.inner", "Select inner loop" },
+  -- l taken by line
+  ["aL"] = { "@loop.outer", "Select outer loop" },
+  ["iL"] = { "@loop.inner", "Select inner loop" },
   ["aF"] = { "@call.outer", "Select outer call" },
   ["iF"] = { "@call.inner", "Select inner call" },
   ["af"] = { "@function.outer", "Select outer function" },
@@ -1010,22 +1011,44 @@ require('iron.core').setup({
 	keymaps = {
 		toggle_repl = "<c-$>",
 		send_line = "<c-cr>",
-		visual_send = "<c-cr>",
-		send_paragraph = "<s-cr>",
+		--visual_send = "<c-cr>",
+		--send_paragraph = "<s-cr>",
+		--send_file = "<c-s-cr>",
 		send_motion = "<d-cr>",
-		--cr = "<c-s-cr>",
-		cr = "<d-$>",
+		send_code_block_and_move = "<m-$>",
+		send_until_cursor = "<f5>c",
+		send_code_block = "<f5>b",
+		cr = "<c-m-cr>",
 		interrupt = "<c-!>",
 		restart_repl = "<f5>r",
 		exit = "<f5>q",
 		clear = "<f5>-",
-		send_file = "<f5>a",
-		send_until_cursor = "<f5>c",
-		send_code_block_and_move = "<f5>b",
-		send_code_block = "<f5>B",
 	},
 	ignore_blank_lines = false,
 })
+
+local iron = require("iron.core")
+
+vim.keymap.set("v", "<c-cr>", function()
+  iron.visual_send()
+  iron.send(nil, "\r")
+end, { desc = "Send selection + CR" })
+
+vim.keymap.set("n", "<s-cr>", function()
+  local start = vim.fn.search("^\\s*$", "bnW") + 1
+  local finish = vim.fn.search("^\\s*$", "nW") - 1
+  if finish < start then
+    finish = vim.fn.line("$")
+  end
+  local lines = vim.api.nvim_buf_get_lines(0, start - 1, finish, false)
+  table.insert(lines, "\r")
+  iron.send(nil, table.concat(lines, "\n"))
+end, { desc = "Send paragraph + CR" })
+
+vim.keymap.set("n", "<c-s-cr>", function()
+  iron.send_file()
+  iron.send(nil, "\r")
+end, { desc = "Send file + CR" })
 
 -- yarepl {{{3
 

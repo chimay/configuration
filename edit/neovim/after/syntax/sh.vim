@@ -16,6 +16,7 @@ hi shExpr		   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shExprRegion	   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shFunction	   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shFunctionKey   			guifg=#872e30		guibg=NONE			gui=NONE
+hi shHereDoc 	  			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shIf			   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shOption		   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shQuote		   			guifg=#5B3C11		guibg=NONE			gui=NONE
@@ -33,6 +34,7 @@ hi shTestPattern   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shTestDoubleQuote 		guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shVariable	   			guifg=#5B3C11		guibg=NONE			gui=NONE
 hi shWrapLineOperator	   	guifg=#606060		guibg=NONE			gui=NONE
+hi shTestSingleQuote	   	guifg=#88421d		guibg=NONE			gui=NONE
 
 hi shCommandSub	   			ctermfg=NONE		ctermbg=NONE		cterm=NONE
 hi shConditional   			ctermfg=NONE		ctermbg=NONE		cterm=NONE

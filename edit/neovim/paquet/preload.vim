@@ -242,7 +242,7 @@ let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
 
 " Exploration de fichiers {{{1
 
-" neotree {{{1
+" neotree {{{2
 
 nnoremap <m-d> <cmd>Neotree<cr>
 
@@ -547,7 +547,6 @@ nmap <m-pageup>           <plug>(wheel-previous-location)
 nmap <m-home>               <plug>(wheel-prompt-location)
 nmap <m-end>               <plug>(wheel-prompt-circle)
 
-nmap <m-x>                <plug>(wheel-prompt-index)
 " altgr-x
 nmap <silent> »          <cmd>call wheel#vortex#helix('tab')<cr>
 
@@ -563,21 +562,6 @@ nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
 " fzf lua {{{2
 
 nnoremap <d-f> <cmd>FzfLua files<cr>
-
-nnoremap <f11>f<f11> <cmd>FzfLua<cr>
-nnoremap <f11>ff <cmd>FzfLua files<cr>
-nnoremap <f11>fo <cmd>FzfLua oldfiles<cr>
-nnoremap <f11>fa <cmd>FzfLua args<cr>
-nnoremap <f11>fb <cmd>FzfLua buffers<cr>
-nnoremap <f11>fw <cmd>FzfLua tabs<cr>
-nnoremap <f11>fj <cmd>FzfLua jumps<cr>
-nnoremap <f11>fc <cmd>FzfLua changes<cr>
-nnoremap <f11>fl <cmd>FzfLua blines<cr>
-nnoremap <f11>fL <cmd>FzfLua lines<cr>
-nnoremap <f11>ft <cmd>FzfLua tags<cr>
-nnoremap <f11>fu <cmd>FzfLua undotree<cr>
-nnoremap <f11>fm <cmd>FzfLua keymap<cr>
-nnoremap <f11>fC <cmd>FzfLua colorschemes<cr>
 
 nnoremap <s-space><s-space> <cmd>FzfLua<cr>
 nnoremap <s-space>f <cmd>FzfLua files<cr>
