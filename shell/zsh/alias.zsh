@@ -106,12 +106,12 @@ alias se=sudoedit
 #  Neovim {{{2
 
 alias v=neovim-lite.sh
-alias nv=nvim
+alias n=nvim
 
 alias ni='run-neovim-bundle.zsh nvim-kickstart'
 
 alias ns='run-neovim-server.sh &!'
-alias nvc=run-neovim-client.sh
+alias nc=run-neovim-client.sh
 
 alias vq=neovim-quickfix
 
@@ -342,8 +342,6 @@ alias M=run-neomutt.zsh
 alias A=aerc
 
 alias ab=abook
-
-alias n=newsraft
 
 # usenet {{{1
 

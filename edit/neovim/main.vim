@@ -709,6 +709,7 @@ nnoremap gm <cmd>call library#manual()<cr>
 " self {{{2
 
 nnoremap <m-m> <cmd>messages<cr>
+nnoremap <f9>m <cmd>messages<cr>
 
 nnoremap <leader>vm <cmd>messages<cr>
 

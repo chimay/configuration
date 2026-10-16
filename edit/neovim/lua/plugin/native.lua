@@ -225,6 +225,7 @@ which_key.setup({
 which_key.add({
 	-- leader
 	{ "<leader>h", group = "help" },
+	{ "<leader>v", group = "neovim" },
 	{ "<leader>e", group = "edit" },
 	{ "<leader>o", group = "org mode" },
 	{ "<leader>£", group = "latex" },
@@ -235,8 +236,8 @@ which_key.add({
 	{ "<leader>w", group = "window" },
 	{ "<leader>t", group = "tabpage" },
 	{ "<leader>q", group = "quickfix" },
-	{ "<leader>l", group = "location list" },
-	{ "<leader>L", group = "lang serv prot" },
+	{ "<leader>l", group = "lang serv prot" },
+	{ "<leader>L", group = "location list" },
 	{ "<leader>s", group = "search and replace" },
 	{ "<leader>d", group = "display" },
 	{ "<leader>T", group = "tags" },
@@ -249,6 +250,8 @@ which_key.add({
 	-- f11
 	{ "<f11>m", group = "minimap" },
 	{ "<f11>l", group = "lang serv prot" },
+	{ "<f11>s", group = "swap" },
+	{ "<f11>t", group = "telescope" },
 	{ "<f11>D", group = "debug adapt prot" },
 	{ "<f11>!", group = "ripple" },
 	{ "<f11>$", group = "repl" },
@@ -401,9 +404,6 @@ local harpoon = require("harpoon")
 
 harpoon:setup()
 
-vim.keymap.set("n", "<f11>ha", function() harpoon:list():add() end)
-vim.keymap.set("n", "<f11>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-
 ---- C-1,2,3,...
 
 vim.keymap.set("n", "<C-&>", function() harpoon:list():select(1) end)
@@ -412,10 +412,10 @@ vim.keymap.set("n", '<C-">', function() harpoon:list():select(3) end)
 vim.keymap.set("n", "<C-'>", function() harpoon:list():select(4) end)
 
 vim.keymap.set("n", "<c-à>", function() harpoon:list():add() end)
-vim.keymap.set("n", "<c-)>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set("n", "<c-->", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-vim.keymap.set("n", "<f11>hp", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<f11>hn", function() harpoon:list():next() end)
+vim.keymap.set("n", "<c-(>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<c-)>", function() harpoon:list():next() end)
 
 -- undo {{{2
 
@@ -513,8 +513,9 @@ require("nvim-treesitter-textobjects").setup({
   },
 })
 
+-- select {{{4
+
 local select = require("nvim-treesitter-textobjects.select")
-local move = require("nvim-treesitter-textobjects.move")
 
 local select_maps = {
   ["a="] = { "@assignment.outer", "Select outer assignment" },
@@ -530,12 +531,12 @@ local select_maps = {
   ["ac"] = { "@conditional.outer", "Select outer conditional" },
   ["ic"] = { "@conditional.inner", "Select inner conditional" },
   -- l taken by line
-  ["aL"] = { "@loop.outer", "Select outer loop" },
-  ["iL"] = { "@loop.inner", "Select inner loop" },
-  ["aF"] = { "@call.outer", "Select outer call" },
-  ["iF"] = { "@call.inner", "Select inner call" },
-  ["af"] = { "@function.outer", "Select outer function" },
-  ["if"] = { "@function.inner", "Select inner function" },
+  ["ao"] = { "@loop.outer", "Select outer loop" },
+  ["io"] = { "@loop.inner", "Select inner loop" },
+  ["aM"] = { "@call.outer", "Select outer call" },
+  ["iM"] = { "@call.inner", "Select inner call" },
+  ["am"] = { "@function.outer", "Select outer function" },
+  ["im"] = { "@function.inner", "Select inner function" },
   ["aC"] = { "@class.outer", "Select outer class" },
   ["iC"] = { "@class.inner", "Select inner class" },
 }
@@ -546,25 +547,30 @@ for key, spec in pairs(select_maps) do
   end, { desc = spec[2] })
 end
 
-map({ "n", "x", "o" }, "]f", function()
+-- move {{{4
+
+local move = require("nvim-treesitter-textobjects.move")
+
+map({ "n", "x", "o" }, "]m", function()
   move.goto_next_start("@function.outer", "textobjects")
-end)
-map({ "n", "x", "o" }, "[f", function()
+end, { desc = "goto next function start" })
+
+map({ "n", "x", "o" }, "[m", function()
   move.goto_previous_start("@function.outer", "textobjects")
-end)
-map({ "n", "x", "o" }, "]F", function()
+end, { desc = "goto previous function start" })
+
+map({ "n", "x", "o" }, "]M", function()
   move.goto_next_end("@function.outer", "textobjects")
-end)
-map({ "n", "x", "o" }, "[F", function()
+end, { desc = "goto previous function end" })
+
+map({ "n", "x", "o" }, "[M", function()
   move.goto_previous_end("@function.outer", "textobjects")
-end)
+end, { desc = "goto previous function end" })
 
----- ł = alt gr l
-
-map({ "n", "x", "o" }, "]ł", function()
+map({ "n", "x", "o" }, "]o", function()
   move.goto_next_start("@loop.outer", "textobjects")
 end)
-map({ "n", "x", "o" }, "[ł", function()
+map({ "n", "x", "o" }, "[o", function()
   move.goto_previous_start("@loop.outer", "textobjects")
 end)
 
@@ -577,24 +583,19 @@ map({ "n", "x", "o" }, "[ᄠ", function()
   move.goto_previous_start("@conditional.outer", "textobjects")
 end)
 
+-- swap {{{4
+
+map("n", "<f11>sa", function()
+  require("nvim-treesitter-textobjects.swap").swap_next "@parameter.inner"
+end, { desc = "swap inner arguments" })
+
+map("n", "<f11>sA", function()
+  require("nvim-treesitter-textobjects.swap").swap_previous "@parameter.outer"
+end, { desc = "swap outer arguments" })
+
 -- mason {{{2
 
 require("mason").setup()
-
--- mason lspconfig {{{3
-
-require("mason-lspconfig").setup({
-	ensure_installed = {
-		"lua_ls",
-		'stylua',
-		'vimls',
-		'pyright',
-	},
-	automatic_enable = {
-		exclude = {
-		},
-	},
-})
 
 -- mason tool installer {{{3
 
@@ -618,6 +619,24 @@ require('mason-tool-installer').setup {
 		['mason-nvim-dap'] = true,
 	},
 }
+
+-- mason lspconfig {{{3
+
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"lua_ls",
+		'stylua',
+		'vimls',
+		'pyright',
+		"bashls",
+	},
+	automatic_enable = {
+		exclude = {
+			--'lua_ls',
+			--"bashls",
+		},
+	},
+})
 
 -- lsp : language server protocol {{{2
 
