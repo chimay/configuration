@@ -1271,7 +1271,7 @@ iab sosu sous
 
 set number
 
-set relativenumber
+"set relativenumber
 
 " Espacement
 

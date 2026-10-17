@@ -999,9 +999,11 @@ vim.lsp.config("*", {
 -- toggleterm {{{3
 
 require("toggleterm").setup{
-	size = 30,
+	size = 35,
+	--size = 120,
 	open_mapping = [[<C-=>]],
 	--direction = 'horizontal',
+	--direction = 'vertical',
 	direction = 'float',
 	start_in_insert = true,
 	persist_size = true,

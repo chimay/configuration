@@ -520,9 +520,10 @@ nmap ¶                    <plug>(wheel-prompt-read-session)
 " altgr-w
 nmap «                    <plug>(wheel-prompt-write-session)
 
-
 nnoremap <silent> <c-l>   <cmd>call library#smart_ctrl_l()<cr><plug>(wheel-spiral-cursor)
 inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a
+
+nmap <silent> <c-§>       <Plug>(wheel-dedibuf-index-tree)
 
 nmap <silent> £           <plug>(wheel-dedibuf-tabwin-tree)
 

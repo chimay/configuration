@@ -1,5 +1,5 @@
 
-# {{{ Système d’exploitation
+# operating system {{{1
 
 case $(uname -a) in
 
@@ -19,15 +19,13 @@ esac
 
 export OPERASYS
 
-# }}}
+# user settings {{{1
 
-# read user settings
 source ${HOME}/racine/config/cmdline/zsh/zshrc
-#source ${HOME}/racine/config/cmdline/zsh/zshenv
 
 autoload -U colors && colors
 
-# {{{ Options
+# options {{{1
 
 #setopt noautocd noautomenu nohup nocheckjobs
 setopt nohup nocheckjobs
@@ -37,56 +35,17 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_find_no_dups
 
-# }}}
-
-# {{{ Historique
+# history {{{1
 
 HISTFILE=${HOME}/racine/hist/zsh/$HOST-run-term
 SAVEHIST=84127
 HISTSIZE=$SAVEHIST
 
-# }}}
+# functions {{{1
 
-# {{{ Exécutables
-# ------------------------------------
-
-setopt null_glob
-
-typeset -U path
-path=(/usr/local/bin /usr/local/sbin)
-
-# pip & autres
-path+=(~/.local/bin)
-
-# ruby gems
-path+=(~/.gem/ruby/2.1.0/bin)
-
-# haskell cabal
-path+=(~/.cabal/bin)
-
-path+=(/bin /sbin)
-path+=(/usr/bin /usr/sbin /usr/games)
-
-path+=(~/racine/shell ~/racine/shell/*(F))
-
-path+=(~/racine/bin/utils)
-
-path+=(~/racine/bin/python)
-
-path+=(~/racine/install/build)
-path+=(~/racine/install/config)
-path+=(~/racine/install/version)
-
-path+=(~/racine/install/automat)
-
-# }}}
-
-# {{{ Fonctions
-
-# {{{ mb_quit
+# mb_quit {{{2
 
 function mb_quit {
-
     exit
 }
 
@@ -94,45 +53,33 @@ zle -N mb_quit
 
 bindkey "^G" mb_quit
 
-# }}}
-
-# {{{ precmd
+# precmd {{{2
 
 typeset -ga precmd_functions
 
 precmd_functions=()
 
 function precmd {
-
-	# {{{ Prompt
-
+	# ---- prompt
 	prompt off
-
 	PROMPT='
 %F{red} cmd %! > %f'
-
-RPROMPT='%F{yellow}%D{(o) %H:%M [=] %a %d %b %Y}'
-
-	# }}}
+	#RPROMPT='%F{yellow}%D{(o) %H:%M [=] %a %d %b %Y}'
 }
 
 # autre solution : redéfinition de la fonction precmd_prompt
 
-# }}}
-
-# {{{ preexec
+# preexec {{{2
 
 function preexec {
 
     unset ZDOTDIR
     #sh -c "$1" &
-    urxvtc -e zsh -c "$1" &!
+    zsh -c "$1" &!
     exit
 }
 
-# }}}
-
-# }}}
+# bindings {{{1
 
 bindkey -r '.'
 bindkey '.' self-insert

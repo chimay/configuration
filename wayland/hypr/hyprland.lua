@@ -141,8 +141,8 @@ hl.on("hyprland.start", function ()
 -- neede in one exec because executed asynchronously
 
 hl.exec_cmd([[
-hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ;
-hypr-autostart.zsh >>! ~/log/hypr-autostart.log 2>&1
+hypr-autostop.zsh >> ~/log/hypr-autostop.log 2>&1 ;
+hypr-autostart.zsh >> ~/log/hypr-autostart.log 2>&1
 ]])
 
 -- closing {{{2
@@ -282,6 +282,15 @@ hl.config({
 -- rules {{{1
 
 -- windows {{{2
+
+hl.window_rule({
+	match = {
+		title = "floating-term",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
 
 hl.window_rule({
 	match = {
@@ -466,13 +475,6 @@ hl.window_rule({
 
 -- system {{{3
 
-hl.window_rule({
-    match = {
-        class = "tradingview",
-    },
-    workspace = "4",
-})
-
 -- browser {{{3
 
 hl.window_rule({
@@ -494,6 +496,13 @@ hl.window_rule({
 hl.window_rule({
     match = {
         class = "libreoffice-startcenter",
+    },
+    workspace = "6",
+})
+
+hl.window_rule({
+    match = {
+        class = "tradingview",
     },
     workspace = "6",
 })
@@ -628,11 +637,24 @@ hl.define_submap("hyperland", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
 	end)
-	hl.bind("Q", hl.dsp.exec_cmd("hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ; hyprshutdown"))
-	hl.bind("S", hl.dsp.exec_cmd("hypr-autostop.zsh >>! ~/log/hypr-autostop.log 2>&1 ; uwsm stop"))
+	hl.bind("Q", hl.dsp.exec_cmd("hypr-autostop.zsh >> ~/log/hypr-autostop.log 2>&1 ; hyprshutdown"))
+	hl.bind("S", hl.dsp.exec_cmd("hypr-autostop.zsh >> ~/log/hypr-autostop.log 2>&1 ; uwsm stop"))
+	hl.bind("P", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd([[
+		rm -f ~/log/hyprland-processes.log
+		pstree -ap "$(pgrep -xo Hyprland)" > ~/log/hyprland-processes.log
+		less-log.sh ~/log/hyprland-processes.log
+		]]))
+	end)
 	hl.bind("E", function()
 		hl.dispatch(hl.dsp.submap("reset"))
-		hl.dispatch(hl.dsp.exec_cmd( "rm /tmp/hypr-env.txt ; /usr/bin/env > /tmp/hypr-env.txt 2>&1"))
+		--hl.dispatch(hl.dsp.exec_cmd( "rm /tmp/hypr-env.txt ; /usr/bin/env > /tmp/hypr-env.txt 2>&1"))
+		hl.dispatch(hl.dsp.exec_cmd([[
+		rm -f ~/log/hyprland-env.log
+		tr '\0' '\n' < /proc/"$(pgrep -xo Hyprland)"/environ > ~/log/hyprland-env.log
+		less-log.sh ~/log/hyprland-env.log
+		]]))
 	end)
 	hl.bind("Z", function()
 		hl.dispatch(hl.dsp.submap("reset"))
@@ -968,6 +990,7 @@ kitty --single-instance --title calc calc
 hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("dolphin || thunar || caja || pcmanfm"))
 hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
 hl.bind(super .. " + CONTROL + N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
+hl.bind(super .. " + CONTROL + C", hl.dsp.exec_cmd("vscodium"))
 hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
 hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("goto-or-run.sh qutebrowser"))
 hl.bind(super .. " + CONTROL + B", hl.dsp.exec_cmd("floorp"))
@@ -1002,7 +1025,7 @@ hl.bind(hyper .. "+ w", hl.dsp.submap("wallpaper"))
 hl.define_submap("wallpaper", function()
 	hl.bind("L", function()
 		hl.dispatch(hl.dsp.submap("reset"))
-		hl.dispatch(hl.dsp.exec_cmd("less-log.sh ~/log/wallpaper.log"))
+		hl.dispatch(hl.dsp.exec_cmd("less-log.sh +G ~/log/wallpaper.log"))
 	end)
 	hl.bind("E", function()
 		hl.dispatch(hl.dsp.submap("reset"))

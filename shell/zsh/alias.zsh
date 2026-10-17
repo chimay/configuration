@@ -175,13 +175,16 @@ then
 	alias ll='ls -l'
 else
 	alias l='command ls --color=auto --show-control-chars'
-	alias ll='command ls -l --color=auto'
+	alias ll='command ls -lh --color=auto'
+	alias lla='command ls -lha --color=auto'
 	alias la='command ls -a --color=auto'
 	alias ls='eza --icons'
 	alias lsa='eza --icons -a'
 	alias lsl='eza --icons -lh'
+	alias lsla='eza --icons -lha'
 	alias lst='eza --icons -T'
 	alias lslt='eza --icons -T -lh'
+	alias lslat='eza --icons -T -lha'
 fi
 
 alias ù=most-recently-modified

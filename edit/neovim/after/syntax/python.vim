@@ -1,5 +1,6 @@
 " vim: set filetype=vim :
 
+hi pythonClass	   	guifg=#872E30		guibg=NONE			gui=NONE
 hi pythonStatement	   	guifg=#872E30		guibg=NONE			gui=NONE
 hi pythonString	   	guifg=#872E30		guibg=NONE			gui=NONE
 hi pythonQuotes	   	guifg=#872E30		guibg=NONE			gui=NONE
