@@ -12,7 +12,7 @@ xkb_symbols "basic" {
 
     include "be(basic)"
 
-    name[Group1] = "Belgian (meta super hyper)";
+    name[Group1] = "be m s h";
 
 // modifiers {{{1
 

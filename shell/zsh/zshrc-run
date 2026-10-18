@@ -72,10 +72,10 @@ function precmd {
 # preexec {{{2
 
 function preexec {
-
     unset ZDOTDIR
     #sh -c "$1" &
-    zsh -c "$1" &!
+	zsh -c "$1" &!
+	#kitty @ close-window
     exit
 }
 

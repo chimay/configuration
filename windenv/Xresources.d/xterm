@@ -12,7 +12,6 @@ xterm*faceSize3: 11
 xterm*faceSize4: 12
 xterm*faceSize5: 14
 
-
 ! Couleurs {{{1
 
 xterm.foreground:   #5b3c11

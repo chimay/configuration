@@ -7,9 +7,14 @@
 -- Create your files separately and then require them like this:
 -- require("myColors")
 
--- debug {{{1
+-- log {{{1
 
 ---- log in /run/user/1001/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log
+
+---- crash :
+---- cat $XDG_RUNTIME_DIR/hypr/$(ls -t $XDG_RUNTIME_DIR/hypr/ | head -n 1)/hyprland.log
+---- log :
+---- cat $XDG_RUNTIME_DIR/hypr/$(ls -t $XDG_RUNTIME_DIR/hypr/ | head -n 2 | tail -n 1)/hyprland.log
 
 -- invalid
 --hl.set_config_value("debug:disable_logs", false)
@@ -104,6 +109,7 @@ hl.config({
 	cursor = {
 		hide_on_key_press = true,
 		inactive_timeout = 5,
+		no_warps = true,
 	},
 })
 
@@ -159,20 +165,17 @@ hl.config({
 		gaps_out = 20,
 		border_size = 2,
 		col = {
-			active_border   = { colors = {"rgba(9b3c11ee)", "rgba(7b3c11ee)"}, angle = 45 },
+			active_border   = { colors = {"rgba(6b3c11ee)", "rgba(5b3c11ee)"}, angle = 45 },
 			inactive_border = "rgba(000000aa)",
 		},
-		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
 		resize_on_border = false,
 		-- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
 		allow_tearing = false,
 		layout = "master",
-		--layout = "scrolling",
 	},
 	decoration = {
 		rounding       = 10,
 		rounding_power = 2,
-		-- Change transparency of focused and unfocused windows
 		active_opacity   = 1.0,
 		inactive_opacity = 0.7,
 		shadow = {
@@ -193,17 +196,52 @@ hl.config({
 	},
 })
 
+hl.config({
+	master = {
+		orientation = "top",
+		mfact = 0.618,
+	},
+	dwindle = {
+		preserve_split = true, -- You probably want this
+	},
+})
+
+hl.config({
+    scrolling = {
+		direction = "left",
+		-- 1 - golden_ratio^3
+        column_width = 0.764,
+        --explicit_column_widths = "0.333, 0.5, 0.667, 1.0",
+    },
+})
+
+-- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
+
+hl.config({
+	master = {
+		new_status = "master",
+	},
+})
+
+-- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
+
+hl.config({
+	scrolling = {
+		fullscreen_on_one_column = true,
+	},
+})
+
 -- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
 
-hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1}    } })
-hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1}    } })
-hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}       } })
-hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}    } })
-hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
+-- hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1}    } })
+-- hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1}    } })
+-- hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}       } })
+-- hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}    } })
+-- hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
 
 -- Default springs
 
-hl.curve("easy",           { type = "spring", mass = 1, stiffness = 238.1191, dampening = 24.21279333 })
+-- hl.curve("easy",           { type = "spring", mass = 1, stiffness = 238.1191, dampening = 24.21279333 })
 
 -- hl.animation({ leaf = "global",        enabled = true,  speed = 10,   bezier = "default" })
 -- hl.animation({ leaf = "border",        enabled = true,  speed = 5.39, bezier = "easeOutQuint" })
@@ -243,41 +281,6 @@ hl.curve("easy",           { type = "spring", mass = 1, stiffness = 238.1191, da
 --     border_size = 0,
 --     rounding    = 0,
 -- })
-
-hl.config({
-	master = {
-		orientation = "top",
-		mfact = 0.618,
-	},
-	dwindle = {
-		preserve_split = true, -- You probably want this
-	},
-})
-
-hl.config({
-    scrolling = {
-		direction = "left",
-		-- 1 - golden_ratio^3
-        column_width = 0.764,
-        --explicit_column_widths = "0.333, 0.5, 0.667, 1.0",
-    },
-})
-
--- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
-
-hl.config({
-	master = {
-		new_status = "master",
-	},
-})
-
--- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
-
-hl.config({
-	scrolling = {
-		fullscreen_on_one_column = true,
-	},
-})
 
 -- rules {{{1
 
@@ -367,6 +370,15 @@ hl.window_rule({
 hl.window_rule({
 	match = {
 		class = "pavucontrol-qt",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
+		class = "hyprpwcenter",
 	},
 	float = true,
 	size = "1200 600",
@@ -627,18 +639,18 @@ hl.bind(hyper .. " + R", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(hyper .. "+ Y", hl.dsp.submap("hyperland"))
 
 hl.define_submap("hyperland", function()
-	hl.bind("L", function()
-		hl.dispatch(hl.dsp.submap("reset"))
-		hl.dispatch(hl.dsp.exec_cmd([[
-		less-log.sh /run/user/$UID/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log
-		]]))
-	end)
 	hl.bind("R", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
 	end)
 	hl.bind("Q", hl.dsp.exec_cmd("hypr-autostop.zsh >> ~/log/hypr-autostop.log 2>&1 ; hyprshutdown"))
 	hl.bind("S", hl.dsp.exec_cmd("hypr-autostop.zsh >> ~/log/hypr-autostop.log 2>&1 ; uwsm stop"))
+	hl.bind("L", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd([[
+		less-log.sh /run/user/$UID/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log
+		]]))
+	end)
 	hl.bind("P", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd([[
@@ -779,7 +791,7 @@ hl.bind("MOD3 + tab", function()
 	end
 end)
 
--- Super-l
+-- hyper-l
 --     │
 --     ├── m → master mode
 --     │       ├── h → orientation left
@@ -909,8 +921,8 @@ hl.bind(hyper .. " + prior",   hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(hyper .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(hyper .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
-hl.bind(super .. " + Tab", hl.dsp.focus({ last = true }))
-hl.bind(super .. " + backspace", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(super .. " + Tab", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(super .. " + backspace", hl.dsp.focus({ last = true }))
 
 hl.bind(hyper .. " + asciicircum", hl.dsp.focus({ workspace = "previous" }))
 
@@ -933,10 +945,11 @@ hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
 
 hl.bind(hyper .. " + Return", hl.dsp.exec_cmd("kitty --single-instance"))
 
-hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd([[
+hl.bind(super .. " + Return", hl.dsp.exec_cmd([[
 kitty --single-instance --title kitty-dropdown
 ]]))
 
+hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd("alacritty"))
 hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
 
 -- launchers {{{2
@@ -945,7 +958,7 @@ hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("fuzzel"))
 
 hl.bind(super .. " + colon", hl.dsp.exec_cmd("zshrun.sh"))
-hl.bind(super .. " + semicolon", hl.dsp.exec_cmd("zshrunterm.sh"))
+hl.bind(super .. " + equal", hl.dsp.exec_cmd("zshrunterm.sh"))
 
 -- dms {{{2
 

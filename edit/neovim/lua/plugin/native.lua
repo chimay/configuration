@@ -120,6 +120,7 @@ vim.pack.add({
 vim.pack.add({
 	{ src = 'https://github.com/hrsh7th/nvim-cmp', version = "main" },
 	{ src = 'https://github.com/hrsh7th/cmp-nvim-lsp', version = "main" },
+	{ src = 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help', version = "main" },
 })
 
 -- terminal {{{2
@@ -679,7 +680,7 @@ diagnostic_hl()
 
 -- lsp servers {{{3
 
----- no need to call it with mason-lspconfig or mason-tool-installer
+---- no need to call it with mason-lspconfig
 
 -- vim.lsp.enable('lua_ls')
 -- vim.lsp.enable('stylua')
@@ -702,22 +703,16 @@ diagnostic_hl()
 
 -- lsp completion {{{3
 
+-- issue with - autocompleted even when not wished
+
 -- vim.api.nvim_create_autocmd("LspAttach", {
 --     callback = function(ev)
---         vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, {
---             autotrigger = true,
---         })
+--         local client = vim.lsp.get_client_by_id(ev.data.client_id)
+--         if client ~= nil and client:supports_method("textDocument/completion") then
+--             vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+--         end
 --     end,
 -- })
-
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(ev)
-        local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        if client ~= nil and client:supports_method("textDocument/completion") then
-            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-        end
-    end,
-})
 
 -- lsp description hovering {{{3
 
@@ -908,13 +903,13 @@ luasnip.add_snippets("typescriptreact", {
 local cmp = require('cmp')
 
 cmp.setup {
-    completion = {
+	completion = {
 		--autocomplete = false,
 		--autocomplete = {},
 		autocomplete = {
 			require("cmp.types").cmp.TriggerEvent.TextChanged
 		},
-    },
+	},
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
@@ -948,11 +943,15 @@ cmp.setup {
 	sources = {
 		{ name = 'buffer', keyword_length = 2 },
 		{ name = ']', keyword_length = 2 },
-		{ name = 'nvim_lsp', keyword_length = 2 },
 		{ name = 'path', keyword_length = 3 },
 		-- tags
-		{ name = 'luasnip', keyword_length = 3 },
 		{ name = 'spell', keyword_length = 4 },
+		-- for lsp
+		{ name = 'nvim_lsp', keyword_length = 2 },
+		-- for cmp-nvim-lsp-signature-help
+		{ name = 'nvim_lsp_signature_help' },
+		-- for luasnip
+		{ name = 'luasnip', keyword_length = 3 },
 	},
 }
 
@@ -1035,7 +1034,7 @@ require('iron.core').setup({
 		--visual_send = "<c-cr>",
 		--send_paragraph = "<s-cr>",
 		--send_file = "<c-s-cr>",
-		send_motion = "<d-cr>",
+		send_motion = "<f5>m",
 		send_code_block_and_move = "<m-$>",
 		send_until_cursor = "<f5>c",
 		send_code_block = "<f5>b",

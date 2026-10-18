@@ -40,7 +40,7 @@ background = "#000000"
 foreground = "#5b3c11"
 
 [font]
-size = 8.0
+size = 12.0
 
 [font.normal]
 family = "DejaVu Sans Mono"

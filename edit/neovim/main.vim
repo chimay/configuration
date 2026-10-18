@@ -1219,6 +1219,8 @@ nnoremap <f12>u <cmd>packupdate<cr>
 nnoremap <f12>a :packadd<space>
 nnoremap <f12>d :packdel!<space>
 nnoremap <f12>l <cmd>packloadall<cr>
+nnoremap <f12>t <cmd>TSUpdate<cr>
+nnoremap <f12>m <cmd>Mason<cr>
 
 " Émulateur de terminal {{{2
 
