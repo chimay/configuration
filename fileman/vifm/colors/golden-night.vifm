@@ -21,7 +21,7 @@ highlight Selected		  cterm=none			ctermfg=3			  ctermbg=default
 
 "highlight CurrLine		  cterm=reverse,bold	ctermfg=default		  ctermbg=default
 highlight CurrLine		  cterm=none			ctermfg=3			  ctermbg=none
-highlight OtherLine		  cterm=bold			ctermfg=58			  ctermbg=none
+highlight OtherLine		  cterm=bold			ctermfg=8			  ctermbg=none
 
 highlight WildMenu		  cterm=none			ctermfg=3			  ctermbg=black
 highlight SuggestBox	  cterm=none			ctermfg=default		  ctermbg=black

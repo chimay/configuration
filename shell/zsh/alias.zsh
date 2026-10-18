@@ -57,6 +57,7 @@ alias azer="setxkbmap be ; xmodmap ~/racine/config/windenv/xmodmap/belge-meta-su
 # version control {{{1
 
 alias g=git
+alias gc=git-clone-light.sh
 alias r=lazygit
 alias gg=tig
 
@@ -258,7 +259,9 @@ alias st='run-syncthing.sh &'
 
 alias §=run-vifm
 alias 2=run-vifm
-alias 3=yazi
+
+alias 3=ranger
+alias 5=yazi
 alias 1=xplr
 
 alias xcd='cd "$(xplr --print-pwd-as-result)"'

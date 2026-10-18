@@ -44,8 +44,8 @@ class Ornuit(ColorScheme):
             elif context.executable and not \
                     any((context.media, context.container,
                          context.fifo, context.socket)):
-                # attr |= bold
-                fg = red
+                # fg = red
+                attr |= bold
             if context.socket:
                 fg = magenta
                 # attr |= bold
@@ -67,8 +67,8 @@ class Ornuit(ColorScheme):
                 attr |= bold
             if context.main_column:
                 if context.selected:
-                    # attr |= bold
-                    attr = reverse
+                    attr |= bold
+                    # attr = reverse
                 if context.marked:
                     # attr |= bold
                     fg = yellow
