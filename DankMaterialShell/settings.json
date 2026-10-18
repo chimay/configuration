@@ -17,7 +17,7 @@
       "hideAfterInactiveMs": 0
     },
     "hyprland": {
-      "hideOnKeyPress": false,
+      "hideOnKeyPress": true,
       "hideOnTouch": false,
       "inactiveTimeout": 0
     },
@@ -30,6 +30,7 @@
   "batteryAutoPowerSaver": true,
   "muxUseCustomCommand": true,
   "muxCustomCommand": "kitty --single-instance",
+  "dockPosition": 2,
   "notificationTimeoutLow": 3000,
   "notificationHistoryMaxCount": 100,
   "notificationHistoryMaxAgeDays": 30,
@@ -58,6 +59,17 @@
       ],
       "rightWidgets": [
         "systemTray",
+        {
+          "id": "battery",
+          "enabled": true,
+          "showBatteryPercent": true,
+          "showBatteryPercentOnlyOnBattery": false,
+          "showBatteryTime": false,
+          "showBatteryTimeOnlyOnBattery": false,
+          "showBatteryPowerCharging": false,
+          "showBatteryPowerDischarging": false,
+          "batteryStyle": "icon"
+        },
         {
           "id": "cpuTemp",
           "enabled": true,
@@ -131,21 +143,29 @@
       ],
       "showOnLastDisplay": false,
       "leftWidgets": [
-        "launcherButton",
+        {
+          "id": "keyboard_layout_name",
+          "enabled": true,
+          "keyboardLayoutNameShowIcon": true,
+          "keyboardLayoutNameCompactMode": false
+        },
+        "weather"
+      ],
+      "centerWidgets": [
         {
           "id": "runningApps",
           "enabled": true,
-          "runningAppsCompactMode": true,
+          "runningAppsCompactMode": false,
           "runningAppsGroupByApp": false,
-          "runningAppsCurrentWorkspace": true,
+          "runningAppsCurrentWorkspace": false,
           "runningAppsCurrentMonitor": false
         }
       ],
-      "centerWidgets": [
-        "focusedWindow"
-      ],
       "rightWidgets": [
-        "weather",
+        {
+          "id": "systemUpdate",
+          "enabled": true
+        },
         {
           "id": "cpuUsage",
           "enabled": true,
@@ -156,37 +176,6 @@
           "enabled": true,
           "minimumWidth": true,
           "showInGb": false
-        },
-        {
-          "id": "controlCenterButton",
-          "enabled": true,
-          "showNetworkIcon": true,
-          "showBluetoothIcon": true,
-          "showAudioIcon": true,
-          "showAudioPercent": false,
-          "showVpnIcon": true,
-          "showBrightnessIcon": false,
-          "showBrightnessPercent": false,
-          "showMicIcon": false,
-          "showMicPercent": true,
-          "showBatteryIcon": false,
-          "showPrinterIcon": false,
-          "showScreenSharingIcon": true,
-          "showIdleInhibitorIcon": false,
-          "showDoNotDisturbIcon": false,
-          "controlCenterGroupOrder": [
-            "network",
-            "vpn",
-            "bluetooth",
-            "audio",
-            "microphone",
-            "brightness",
-            "battery",
-            "printer",
-            "screenSharing",
-            "idleInhibitor",
-            "doNotDisturb"
-          ]
         }
       ],
       "spacing": 4,
@@ -277,6 +266,11 @@
     },
     "dms_qr_generator": {
       "trigger": "qrg"
+    }
+  },
+  "launcherPluginVisibility": {
+    "dms_clipboard_search": {
+      "allowWithoutTrigger": true
     }
   },
   "configVersion": 17

@@ -6,13 +6,13 @@ highlight Win			  cterm=none			ctermfg=default		  ctermbg=none
 highlight OtherWin		  cterm=none			ctermfg=default		  ctermbg=none
 highlight AuxWin		  cterm=none			ctermfg=default		  ctermbg=none
 
-highlight TopLine		  cterm=bold			ctermfg=default		  ctermbg=232
-highlight TopLineSel	  cterm=bold			ctermfg=default		  ctermbg=232
+highlight TopLine		  cterm=none			ctermfg=default		  ctermbg=232
+highlight TopLineSel	  cterm=none			ctermfg=default		  ctermbg=232
 
 highlight TabLine		  cterm=none			ctermfg=default		  ctermbg=none
 highlight TabLineSel	  cterm=bold			ctermfg=58			  ctermbg=none
 
-highlight StatusLine	  cterm=bold			ctermfg=default		  ctermbg=232
+highlight StatusLine	  cterm=none			ctermfg=default		  ctermbg=none
 highlight JobLine		  cterm=none			ctermfg=2			  ctermbg=none
 
 highlight Border		  cterm=none			ctermfg=default		  ctermbg=none

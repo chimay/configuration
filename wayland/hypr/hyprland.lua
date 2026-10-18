@@ -210,7 +210,8 @@ hl.config({
     scrolling = {
 		direction = "left",
 		-- 1 - golden_ratio^3
-        column_width = 0.764,
+        --column_width = 0.764,
+        column_width = 0.95,
         --explicit_column_widths = "0.333, 0.5, 0.667, 1.0",
     },
 })
