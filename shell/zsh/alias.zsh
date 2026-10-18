@@ -260,9 +260,10 @@ alias st='run-syncthing.sh &'
 alias §=run-vifm
 alias 2=run-vifm
 
-alias 3=ranger
-alias 5=yazi
+alias 3=yazi
 alias 1=xplr
+
+alias ran=ranger
 
 alias xcd='cd "$(xplr --print-pwd-as-result)"'
 
