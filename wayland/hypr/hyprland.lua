@@ -285,11 +285,72 @@ hl.config({
 
 -- rules {{{1
 
+-- workspaces names {{{2
+
+hl.workspace_rule({ workspace = "1", persistent = true, default_name = "term"})
+hl.workspace_rule({ workspace = "2", persistent = true, default_name = "view"})
+hl.workspace_rule({ workspace = "3", persistent = true, default_name = "edit"})
+hl.workspace_rule({ workspace = "4", persistent = true, default_name = "system"})
+hl.workspace_rule({ workspace = "5", persistent = true, default_name = "browser"})
+hl.workspace_rule({ workspace = "6", persistent = true, default_name = "office"})
+hl.workspace_rule({ workspace = "7", persistent = true, default_name = "artisan"})
+hl.workspace_rule({ workspace = "8", persistent = true, default_name = "video"})
+hl.workspace_rule({ workspace = "9", persistent = true, default_name = "game"})
+
+-- hl.workspace_rule({ workspace = "1", default_name = "term"})
+-- hl.workspace_rule({ workspace = "2", default_name = "view"})
+-- hl.workspace_rule({ workspace = "3", default_name = "edit"})
+-- hl.workspace_rule({ workspace = "4", default_name = "system"})
+-- hl.workspace_rule({ workspace = "5", default_name = "browser"})
+-- hl.workspace_rule({ workspace = "6", default_name = "office"})
+-- hl.workspace_rule({ workspace = "7", default_name = "artisan"})
+-- hl.workspace_rule({ workspace = "8", default_name = "video"})
+-- hl.workspace_rule({ workspace = "9", default_name = "game"})
+
+-- workspaces layouts {{{2
+
+hl.workspace_rule({
+    workspace = "name:view",
+    layout = "scrolling",
+})
+
+hl.workspace_rule({
+    workspace = "name:browser",
+    layout = "scrolling",
+})
+
+hl.workspace_rule({
+    workspace = "name:video",
+    layout = "scrolling",
+})
+
+hl.workspace_rule({
+    workspace = "special:shell",
+    layout = "monocle",
+})
+
+hl.workspace_rule({
+    workspace = "special:calc",
+    layout = "monocle",
+})
+
 -- windows {{{2
+
+-- class {{{3
 
 hl.window_rule({
 	match = {
-		title = "floating-term",
+		class = "URxvt",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+	opacity = 0.95,
+})
+
+hl.window_rule({
+	match = {
+		class = "pavucontrol-qt",
 	},
 	float = true,
 	size = "1200 600",
@@ -298,7 +359,27 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
-		class = "URxvt",
+		class = "hyprpwcenter",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
+		class = "org.pipewire.Helvum",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+-- title {{{3
+
+hl.window_rule({
+	match = {
+		title = "floating-term",
 	},
 	float = true,
 	size = "1200 600",
@@ -352,7 +433,7 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
-		title = "mpc-tui",
+		title = "wiremix",
 	},
 	float = true,
 	size = "1200 600",
@@ -370,94 +451,18 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
-		title = "wiremix",
+		title = "mpc-tui",
 	},
 	float = true,
 	size = "1200 600",
 	move = "300 70",
 })
 
-hl.window_rule({
-	match = {
-		class = "pavucontrol-qt",
-	},
-	float = true,
-	size = "1200 600",
-	move = "300 70",
-})
+-- windows and workspaces {{{3
 
-hl.window_rule({
-	match = {
-		class = "hyprpwcenter",
-	},
-	float = true,
-	size = "1200 600",
-	move = "300 70",
-})
+-- term {{{4
 
-hl.window_rule({
-	match = {
-		class = "org.pipewire.Helvum",
-	},
-	float = true,
-	size = "1200 600",
-	move = "300 70",
-})
-
--- workspaces names {{{2
-
-hl.workspace_rule({ workspace = "1", persistent = true, default_name = "term"})
-hl.workspace_rule({ workspace = "2", persistent = true, default_name = "view"})
-hl.workspace_rule({ workspace = "3", persistent = true, default_name = "edit"})
-hl.workspace_rule({ workspace = "4", persistent = true, default_name = "system"})
-hl.workspace_rule({ workspace = "5", persistent = true, default_name = "browser"})
-hl.workspace_rule({ workspace = "6", persistent = true, default_name = "office"})
-hl.workspace_rule({ workspace = "7", persistent = true, default_name = "artisan"})
-hl.workspace_rule({ workspace = "8", persistent = true, default_name = "video"})
-hl.workspace_rule({ workspace = "9", persistent = true, default_name = "game"})
-
--- hl.workspace_rule({ workspace = "1", default_name = "term"})
--- hl.workspace_rule({ workspace = "2", default_name = "view"})
--- hl.workspace_rule({ workspace = "3", default_name = "edit"})
--- hl.workspace_rule({ workspace = "4", default_name = "system"})
--- hl.workspace_rule({ workspace = "5", default_name = "browser"})
--- hl.workspace_rule({ workspace = "6", default_name = "office"})
--- hl.workspace_rule({ workspace = "7", default_name = "artisan"})
--- hl.workspace_rule({ workspace = "8", default_name = "video"})
--- hl.workspace_rule({ workspace = "9", default_name = "game"})
-
--- workspaces layouts {{{2
-
-hl.workspace_rule({
-    workspace = "name:view",
-    layout = "scrolling",
-})
-
-hl.workspace_rule({
-    workspace = "name:browser",
-    layout = "scrolling",
-})
-
-hl.workspace_rule({
-    workspace = "name:video",
-    layout = "scrolling",
-})
-
-hl.workspace_rule({
-    workspace = "special:shell",
-    layout = "monocle",
-})
-
-hl.workspace_rule({
-    workspace = "special:calc",
-    layout = "monocle",
-})
-
--- windows and workspaces {{{2
-
--- term {{{3
-
--- view {{{3
+-- view {{{4
 
 hl.window_rule({
     match = {
@@ -483,6 +488,13 @@ hl.window_rule({
 
 hl.window_rule({
     match = {
+        class = "imv",
+    },
+    workspace = "2",
+})
+
+hl.window_rule({
+    match = {
         class = "vimiv",
     },
     workspace = "2",
@@ -495,7 +507,7 @@ hl.window_rule({
     workspace = "2",
 })
 
--- edit {{{3
+-- edit {{{4
 
 hl.window_rule({
     match = {
@@ -504,9 +516,9 @@ hl.window_rule({
     workspace = "3",
 })
 
--- system {{{3
+-- system {{{4
 
--- browser {{{3
+-- browser {{{4
 
 hl.window_rule({
     match = {
@@ -522,7 +534,7 @@ hl.window_rule({
     workspace = "5",
 })
 
--- office {{{3
+-- office {{{4
 
 hl.window_rule({
     match = {
@@ -538,7 +550,7 @@ hl.window_rule({
     workspace = "6",
 })
 
--- artisan {{{3
+-- artisan {{{4
 
 hl.window_rule({
     match = {
@@ -554,7 +566,7 @@ hl.window_rule({
     workspace = "7",
 })
 
--- video {{{3
+-- video {{{4
 
 hl.window_rule({
     match = {
@@ -570,7 +582,7 @@ hl.window_rule({
     workspace = "8",
 })
 
--- game {{{3
+-- game {{{4
 
 hl.window_rule({
     match = {
@@ -586,7 +598,7 @@ hl.window_rule({
     workspace = "9",
 })
 
--- miscellaneous {{{4
+-- miscellaneous {{{3
 
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
@@ -956,7 +968,11 @@ hl.bind("CONTROL + F12",         hl.dsp.workspace.toggle_special("calc"))
 
 -- quit {{{3
 
---hl.bind(hyper .. " + SHIFT + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+-- see also <url:#tn=-- dms >
+
+-- hl.bind(hyper .. " + SHIFT + Q", hl.dsp.exec_cmd([[
+-- command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'
+-- ]]))
 
 hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
 
