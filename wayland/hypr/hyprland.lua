@@ -759,10 +759,17 @@ local closeWindowBind = hl.bind(hyper .. " + Delete", hl.dsp.window.close())
 hl.bind(super .. "+ CONTROL + r", hl.dsp.submap("resize"))
 
 hl.define_submap("resize", function()
+	-- arrows
 	hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
 	hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
 	hl.bind("up", hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
 	hl.bind("down", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
+	-- vim keys
+	hl.bind("l", hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
+	hl.bind("h", hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
+	hl.bind("k", hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
+	hl.bind("j", hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
+	-- escape
 	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
@@ -989,6 +996,8 @@ hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
 
 -- launchers {{{2
 
+-- see also <url:#tn=-- dms >
+
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("fuzzel"))
 
@@ -997,9 +1006,10 @@ hl.bind(super .. " + equal", hl.dsp.exec_cmd("zshrunterm.sh"))
 
 -- dms {{{2
 
--- see dms ipc list
+-- see command : dms ipc list
 
 hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
+
 hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call systemupdater toggle "))
 hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
 
