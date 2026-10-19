@@ -122,6 +122,11 @@ endfun
 
 " ---- help, informations
 
+fun! library#help_cword ()
+	" Help on word under cursor
+	 execute 'tab help ' .. expand('<cword>')
+ endfun
+
 fun! library#helptags ()
 	" Run helptags on doc dir
 	if ! isdirectory('doc')

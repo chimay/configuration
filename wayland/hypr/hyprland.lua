@@ -94,6 +94,8 @@ hl.config({
 		kb_model   = "",
 		kb_options = "",
 		kb_rules   = "",
+		repeat_rate = 25,
+		repeat_delay = 600,
 		numlock_by_default = true,
 		follow_mouse = 0,
 		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
@@ -157,6 +159,8 @@ end)
 
 -- look and feel {{{1
 
+-- generic {{{2
+
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 
 hl.config({
@@ -185,7 +189,7 @@ hl.config({
 			color        = 0xee1a1a1a,
 		},
 		blur = {
-			enabled   = true,
+			enabled   = false,
 			size      = 3,
 			passes    = 1,
 			vibrancy  = 0.1696,
@@ -196,41 +200,36 @@ hl.config({
 	},
 })
 
+-- https://wiki.hypr.land/Configuring/Layouts/Master-Layout/
+-- https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/
+-- https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/
+-- https://wiki.hypr.land/Configuring/Layouts/Monocle-Layout/
+
+-- layouts {{{2
+
 hl.config({
 	master = {
+		new_status = "master",
 		orientation = "top",
 		mfact = 0.618,
 	},
 	dwindle = {
 		preserve_split = true, -- You probably want this
 	},
-})
-
-hl.config({
     scrolling = {
 		direction = "left",
 		-- 1 - golden_ratio^3
         --column_width = 0.764,
         column_width = 0.95,
         --explicit_column_widths = "0.333, 0.5, 0.667, 1.0",
+		fullscreen_on_one_column = true,
+		follow_focus = true,
+		wrap_focus = true,
+		wrap_swapcol = true,
     },
 })
 
--- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
-
-hl.config({
-	master = {
-		new_status = "master",
-	},
-})
-
--- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
-
-hl.config({
-	scrolling = {
-		fullscreen_on_one_column = true,
-	},
-})
+-- animations {{{2
 
 -- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
 
@@ -721,6 +720,8 @@ hl.bind(super .. " + next",  function ()
 		hl.dispatch(hl.dsp.focus({ direction = "right" }))
 		hl.dispatch(hl.dsp.window.move({ direction = "left"}))
 		hl.dispatch(hl.dsp.window.move({ direction = "left"}))
+	elseif ws.tiled_layout == "monocle" then
+		hl.dispatch(hl.dsp.layout("cyclenext"))
 	end
 end)
 
@@ -732,11 +733,10 @@ hl.bind(super .. " + prior",  function ()
 	elseif ws.tiled_layout == "scrolling" then
 		hl.dispatch(hl.dsp.window.move({ direction = "left"}))
 		hl.dispatch(hl.dsp.window.move({ direction = "left"}))
+	elseif ws.tiled_layout == "monocle" then
+		hl.dispatch(hl.dsp.layout("cycleprev"))
 	end
 end)
-
--- hl.bind(super .. " + prior", hl.dsp.layout("cyclenext"))
--- hl.bind(super .. " + next",  hl.dsp.layout("cycleprev"))
 
 hl.bind(super .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(super .. " + right", hl.dsp.focus({ direction = "right" }))
@@ -1009,6 +1009,7 @@ hl.bind(super .. " + equal", hl.dsp.exec_cmd("zshrunterm.sh"))
 -- see command : dms ipc list
 
 hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
+hl.bind(super .. " + mu", hl.dsp.exec_cmd("rofi-run.zsh"))
 
 hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call systemupdater toggle "))
 hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
@@ -1075,6 +1076,10 @@ hl.define_submap("screen", function()
 	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
+
+---- color picher
+
+hl.bind(hyper .. "+ i", hl.dsp.exec_cmd("hyprpicker -a -f hex"))
 
 -- wallpaper {{{2
 

@@ -686,11 +686,15 @@ nnoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
 inoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
 vnoremap <c-f1> <cmd>call library#toggle_help_filetype()<cr>
 
+" -- plain K is taken by lsp
+nnoremap gK <cmd>call library#help_cword()<cr>
+
 nnoremap <leader>hh :tab help<space>
 nnoremap <leader>hg :tab helpgrep<space>
 nnoremap <leader>hq <cmd>tab help quickref<cr>
 nnoremap <leader>hu <cmd>tab help user-manual<cr>
 nnoremap <leader>hh <cmd>tab help helphelp<cr>
+nnoremap <leader>hk <cmd>call library#help_cword()<cr>
 nnoremap <leader>hf <cmd>call library#toggle_help_filetype()<cr>
 nnoremap <leader>ht <cmd>call library#helptags()<cr>
 nnoremap <leader>hm <cmd>call library#manual()<cr>
