@@ -370,6 +370,15 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
+		title = "wiremix",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
 		class = "pavucontrol-qt",
 	},
 	float = true,
@@ -380,6 +389,15 @@ hl.window_rule({
 hl.window_rule({
 	match = {
 		class = "hyprpwcenter",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
+		class = "org.pipewire.Helvum",
 	},
 	float = true,
 	size = "1200 600",
@@ -1102,15 +1120,33 @@ hl.bind(super .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(hyper .. "+ SPACE", hl.dsp.submap("mpc"))
 
 hl.define_submap("mpc", function()
-	hl.bind("T", function()
-		hl.dispatch(hl.dsp.submap("reset"))
-		hl.dispatch(hl.dsp.exec_cmd("kitty --single-instance --title mpc-tui -e ncmpcpp"))
-	end)
 	hl.bind("M", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd([[
 		kitty --single-instance --title pulsemixer -e pulsemixer
 		]]))
+	end)
+	hl.bind("W", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd([[
+		kitty --single-instance --title wiremix -e wiremix
+		]]))
+	end)
+	hl.bind("V", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("pavucontrol-qt"))
+	end)
+	hl.bind("C", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("hyprpwcenter"))
+	end)
+	hl.bind("H", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("helvum"))
+	end)
+	hl.bind("T", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("kitty --single-instance --title mpc-tui -e ncmpcpp"))
 	end)
 	hl.bind("space", function()
 		hl.dispatch(hl.dsp.submap("reset"))
@@ -1135,14 +1171,6 @@ hl.define_submap("mpc", function()
 	hl.bind("B", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("mpc seek -1:00"))
-	end)
-	hl.bind("V", function()
-		hl.dispatch(hl.dsp.submap("reset"))
-		hl.dispatch(hl.dsp.exec_cmd("pavucontrol-qt"))
-	end)
-	hl.bind("C", function()
-		hl.dispatch(hl.dsp.submap("reset"))
-		hl.dispatch(hl.dsp.exec_cmd("hyprpwcenter"))
 	end)
 	hl.bind("E", function()
 		hl.dispatch(hl.dsp.submap("reset"))

@@ -515,10 +515,8 @@ nnoremap <m-space>          :<c-u>Wheel<space>
 
 nnoremap <m-ins>           <plug>(wheel-prompt-add-file)
 
-" altgr-r
-nmap ¶                    <plug>(wheel-prompt-read-session)
-" altgr-w
-nmap «                    <plug>(wheel-prompt-write-session)
+nmap <d-r>                <plug>(wheel-prompt-read-session)
+nmap <d-w>                <plug>(wheel-prompt-write-session)
 
 nnoremap <silent> <c-l>   <cmd>call library#smart_ctrl_l()<cr><plug>(wheel-spiral-cursor)
 inoremap <silent> <c-l>   <esc><cmd>nohlsearch<cr><plug>(wheel-spiral-cursor)a

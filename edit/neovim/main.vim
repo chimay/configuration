@@ -816,7 +816,7 @@ nnoremap <leader>bw <cmd>call library#write_all()<cr>
 " wipe buffer
 nnoremap <m-w> <cmd>bwipe!<cr>
 " wipe alternate buffer
-nnoremap <d-w> <cmd>bwipe! #<cr>
+nnoremap <c-m-w> <cmd>bwipe! #<cr>
 " wipe all buffers
 nnoremap <m-s-w> <cmd>%bwipe<cr>
 
