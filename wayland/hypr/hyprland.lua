@@ -786,7 +786,9 @@ hl.bind(hyper .. " + P", hl.dsp.window.pseudo())
 
 --hl.bind(hyper .. " + comma", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
 
-hl.bind(hyper .. " + comma", hl.dsp.exec_cmd("rofi-windows.zsh"))
+-- see also <url:#tn=^-- dms >
+
+--hl.bind(hyper .. " + comma", hl.dsp.exec_cmd("rofi-windows.zsh"))
 
 -- layout {{{3
 
@@ -975,7 +977,7 @@ hl.bind("CONTROL + F12",         hl.dsp.workspace.toggle_special("calc"))
 
 -- quit {{{3
 
--- see also <url:#tn=-- dms >
+-- see also <url:#tn=^-- dms >
 
 -- hl.bind(hyper .. " + SHIFT + Q", hl.dsp.exec_cmd([[
 -- command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'

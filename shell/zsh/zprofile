@@ -80,7 +80,16 @@ path+=(/var/lib/flatpak/exports/bin)
 if [[ "$(tty)" = "/dev/tty6" ]] && \
 	[[ -z "$DISPLAY" ]] && \
 	[[ -z "$WAYLAND_DISPLAY" ]] && \
-	uwsm check may-start -v 6 && uwsm select
+	uwsm check may-start -v 6
 then
-	exec uwsm start default
+	uwsm start -e -D Hyprland hyprland.desktop
 fi
+
+# if [[ "$(tty)" = "/dev/tty6" ]] && \
+# 	[[ -z "$DISPLAY" ]] && \
+# 	[[ -z "$WAYLAND_DISPLAY" ]] && \
+# 	uwsm check may-start -v 6 &&
+# 	uwsm select
+# then
+# 	exec uwsm start default
+# fi

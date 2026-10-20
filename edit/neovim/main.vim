@@ -848,8 +848,8 @@ nnoremap <c-s-left> <cmd>vertical resize -5<cr>
 nnoremap <leader>w= <cmd>wincmd =<cr>
 nnoremap <leader>w<bar> <cmd>wincmd <bar><cr>
 nnoremap <leader>w- <cmd>wincmd _<cr>
-nnoremap <leader>wp <cmd>library#win2prev_tab()<cr>
-nnoremap <leader>wn <cmd>library#win2next_tab()<cr>
+nnoremap <leader>wp <cmd>call library#win2prev_tab()<cr>
+nnoremap <leader>wn <cmd>call library#win2next_tab()<cr>
 
 " tabs, tabpages (onglets) {{{2
 
