@@ -279,7 +279,7 @@ let g:vifm_drop_gone_buffers = 0
 
 " Exploration multiple {{{1
 
-" Torustree {{{2
+" torustree {{{2
 
 " configuration {{{3
 
@@ -323,6 +323,7 @@ if ! exists("g:torustree_loaded")
 	let g:torustree_config.storage.torustree.autoread = 0
 	" Auto write torustree file on exit if > 0
 	let g:torustree_config.storage.torustree.autowrite = 0
+
 	" The folder where sessions will be stored and read
 	let g:torustree_config.storage.session.folder = '~/racine/plugin/data/neovim/torustree/session'
 	" Name of the default session file
@@ -395,7 +396,7 @@ endif
 
 nnoremap <c-f2>          :<c-u>Torustree<space>
 
-" Wheel {{{2
+" wheel {{{2
 
 " configuration {{{3
 
@@ -439,6 +440,7 @@ if ! exists("g:wheel_loaded")
 	let g:wheel_config.storage.wheel.autoread = 1
 	" Auto write wheel file on exit if > 0
 	let g:wheel_config.storage.wheel.autowrite = 1
+
 	" The folder where sessions will be stored and read
 	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/neovim/wheel/session'
 	" Name of the default session file
@@ -659,7 +661,7 @@ let g:increment_activator_filetype_candidates = {
 
 " Organisation {{{1
 
-" Organ {{{2
+" organ {{{2
 
 if ! exists("g:organ_loaded")
 	" ---- init dicts

@@ -862,6 +862,9 @@ nnoremap <c-end> <cmd>tablast<cr>
 nnoremap <s-pageup> <cmd>tabmove -1<cr>
 nnoremap <s-pagedown> <cmd>tabmove +1<cr>
 
+nnoremap <s-home> <cmd>tabmove 0<cr>
+nnoremap <s-end> <cmd>tabmove $<cr>
+
 " ---- builtin c-t is remapped to s-bs
 nnoremap <c-t> <cmd>tabnew<cr>
 
