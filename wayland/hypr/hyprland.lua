@@ -90,6 +90,12 @@ hl.monitor({
 
 -- input : keyboard, mouse, touchpad {{{1
 
+-- to switch keyboard layout
+--
+-- hyprctl switchxkblayout all next
+-- hyprctl switchxkblayout all 0
+-- hyprctl switchxkblayout all 1
+
 hl.config({
 	input = {
 		--kb_layout  = "be",
@@ -720,7 +726,7 @@ end)
 
 -- windows {{{3
 
-hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("rofi-windows.zsh"))
+hl.bind(super .. " + mu", hl.dsp.exec_cmd("rofi-windows.zsh"))
 
 -- Move focus with mainMod + arrow keys
 
@@ -1257,9 +1263,9 @@ end
 -- noctalia msg config-reload
 
 if hl.dsp.exec_cmd("pgrep -af noctalia >/dev/null") then
-	hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
-	hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center"))
-	hl.bind(hyper .. " + backspace", hl.dsp.exec_cmd("noctalia msg window-switcher hold"))
+	hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center"))
+	hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
+	hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("noctalia msg window-switcher hold"))
 	hl.bind(hyper .. " + Z", hl.dsp.exec_cmd("noctalia msg settings-toggle"))
 	hl.bind(hyper .. " + B", hl.dsp.exec_cmd("noctalia msg bar-toggle"))
 	hl.bind(hyper .. " + C", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"))

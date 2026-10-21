@@ -1,4 +1,53 @@
 
+# widgets {{{1
+
+[widget.workspaces]
+style = "regular"
+show_labels = true
+label_source = "name"
+max_label_chars = 12
+
+[widget.taskbar]
+type = "taskbar"
+show_running = true
+show_all_outputs = true
+only_active_workspace = false
+group_by_workspace = false
+show_window_title = true
+
+[widget.clock]
+format = "{:%d %b  %H:%M }"
+tooltip_format = "{:%A, %B %d, %Y}"
+
+[widget.cpu-temp]
+type = "sysmon"
+stat = "cpu_temp"
+
+[[shell.session.actions]]
+action = "logout"
+command = "~/racine/shell/wayland/hypr-logout.zsh >> ~/log/hypr-logout.log 2>&1"
+
+[[shell.session.actions]]
+action = "suspend"
+command = "~/racine/shell/wayland/hypr-suspend.zsh >> ~/log/hypr-suspend.log 2>&1"
+
+[[shell.session.actions]]
+action = "shutdown"
+command = "~/racine/shell/wayland/hypr-poweroff.zsh >> ~/log/hypr-poweroff.log 2>&1"
+
+# session {{{1
+
+[lockscreen]
+lock_before_suspend = false
+
+# system {{{1
+
+[system.monitor]
+enabled = true
+cpu_poll_seconds = 2.0
+
+# appearence {{{1
+
 [theme]
 #mode = "light"
 builtin = "Gruvbox"
@@ -16,28 +65,12 @@ temperature_night = 4000
 [location]
 address = "Brussels, Belgium"
 
-[shell]
-clipboard_enabled = true
-clipboard_history_max_entries = 5000
-
-[shell.window_switcher]
-style = "carousel"
-mru = true
-show_caption = true
-show_count = true
-show_app_icon = true
-show_all_outputs = true
-current_workspace_only = false
-
-[shell.panel]
-control_center_placement = "floating"
-control_center_position = "center"
-
-[lockscreen]
-lock_before_suspend = false
-
 [accessibility]
 ui_scale = 1.15
+
+# bars {{{1
+
+# top {{{2
 
 [bar.top]
 position = "top"
@@ -63,8 +96,12 @@ end = [
 	"spacer",
 	"tray",
 	"spacer",
+	"cpu-temp",
+	"spacer",
 	"battery",
 ]
+
+# bottom {{{2
 
 [bar.bottom]
 position = "bottom"
@@ -86,38 +123,29 @@ end = [
 	"session",
 ]
 
+# other available widgets {{{2
+
 # 	"keyboard_layout",
 # 	"brightness",
 # 	"wallpaper",
 # 	"privacy",
 # 	"bluetooth",
 
-[widget.workspaces]
-style = "regular"
-show_labels = true
-label_source = "name"
-max_label_chars = 12
+# gui shell {{{1
 
-[widget.taskbar]
-type = "taskbar"
-show_running = true
+[shell]
+clipboard_enabled = true
+clipboard_history_max_entries = 5000
+
+[shell.window_switcher]
+style = "carousel"
+mru = true
+show_caption = true
+show_count = true
+show_app_icon = true
 show_all_outputs = true
-only_active_workspace = false
-group_by_workspace = false
-show_window_title = true
+current_workspace_only = false
 
-[widget.clock]
-format = "{:%d %b  %H:%M }"
-tooltip_format = "{:%A, %B %d, %Y}"
-
-[[shell.session.actions]]
-action = "logout"
-command = "~/racine/shell/wayland/hypr-logout.zsh >> ~/log/hypr-logout.log 2>&1"
-
-[[shell.session.actions]]
-action = "suspend"
-command = "~/racine/shell/wayland/hypr-suspend.zsh >> ~/log/hypr-suspend.log 2>&1"
-
-[[shell.session.actions]]
-action = "shutdown"
-command = "~/racine/shell/wayland/hypr-poweroff.zsh >> ~/log/hypr-poweroff.log 2>&1"
+[shell.panel]
+control_center_placement = "floating"
+control_center_position = "center"
