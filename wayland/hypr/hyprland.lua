@@ -53,6 +53,9 @@ end
 
 -- environment variables {{{1
 
+--local hostname = os.getenv("HOSTNAME")
+local hostname = io.popen("hostname"):read("*l")
+
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
 hl.env("XCURSOR_SIZE", "24")
@@ -77,6 +80,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- monitors, screens {{{1
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+
 hl.monitor({
 	output   = "",
 	mode     = "preferred",
@@ -373,6 +377,14 @@ hl.window_rule({
 	size = "1200 600",
 	move = "300 70",
 })
+
+-- hl.window_rule({
+-- 	match = {
+-- 		class = "dev.noctalia.Noctalia"
+-- 	},
+--     float = true,
+--     center = true,
+-- })
 
 -- title {{{3
 
@@ -708,6 +720,8 @@ end)
 
 -- windows {{{3
 
+hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("rofi-windows.zsh"))
+
 -- Move focus with mainMod + arrow keys
 
 hl.bind(super .. " + next",  function ()
@@ -1006,37 +1020,7 @@ hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
 hl.bind(super .. " + colon", hl.dsp.exec_cmd("zshrun.sh"))
 hl.bind(super .. " + equal", hl.dsp.exec_cmd("zshrunterm.sh"))
 
--- dms {{{2
-
--- see command : dms ipc list
-
-hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
-hl.bind(super .. " + mu", hl.dsp.exec_cmd("rofi-run.zsh"))
-
-hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call systemupdater toggle "))
-hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
-
-hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("rofi-windows.zsh"))
-
-hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
-hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("dms ipc call settings toggleWith dankbar_widgets"))
-
-hl.bind(hyper .. " + B", function()
-	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 0"))
-	hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 1"))
-end)
-
-hl.bind(hyper .. " + C", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
-hl.bind(hyper .. " + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
-
---hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
-
-hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms-login-power-menu.sh"))
-
--- send a notification
--- dms ipc call toast info "Hello from Hyprland"
--- dms ipc call toast warn "Disk space low"
--- dms ipc call toast error "Something failed"
+hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("rofi-run.zsh"))
 
 -- applications {{{2
 
@@ -1110,10 +1094,7 @@ end)
 
 -- notifications {{{2
 
--- dms notifications {{{3
-
-hl.bind(super .. " + F11", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
-hl.bind(super .. " + F12", hl.dsp.exec_cmd("dms ipc call notifications clearAll"))
+-- see dms bindings
 
 -- mako {{{3
 
@@ -1247,7 +1228,75 @@ hl.config({
 	},
 })
 
--- dms : dankmaterialshell {{{1
+-- host specific {{{1
+
+if hostname == "mandala" then
+	hl.config({
+		input = {
+			numlock_by_default = false,
+		}
+	})
+	hl.monitor({
+		output   = "",
+		mode     = "preferred",
+		position = "auto",
+		scale    = "1.2",
+	})
+end
+
+-- gui shell {{{1
+
+-- noctalia {{{2
+
+---- replace universe by none to disable
+
+-- see command : noctalia msg --help
+--
+-- other ideas
+--
+-- noctalia msg config-reload
+
+if hl.dsp.exec_cmd("pgrep -af noctalia >/dev/null") then
+	hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
+	hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center"))
+	hl.bind(hyper .. " + backspace", hl.dsp.exec_cmd("noctalia msg window-switcher hold"))
+	hl.bind(hyper .. " + Z", hl.dsp.exec_cmd("noctalia msg settings-toggle"))
+	hl.bind(hyper .. " + B", hl.dsp.exec_cmd("noctalia msg bar-toggle"))
+	hl.bind(hyper .. " + C", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"))
+	hl.bind(hyper .. " + N", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center notifications"))
+	hl.bind(super .. " + F11", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center notifications"))
+	hl.bind(super .. " + F12", hl.dsp.exec_cmd("noctalia msg notification-clear-active"))
+	hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
+end
+
+-- dms : dankmaterialshell {{{2
+
+-- see command : dms ipc list
+
+if hl.dsp.exec_cmd("pgrep -af 'dms run' >/dev/null") then
+	hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
+	hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call systemupdater toggle "))
+	hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
+	hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
+	hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("dms ipc call settings toggleWith dankbar_widgets"))
+	hl.bind(hyper .. " + B", function()
+		hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 0"))
+		hl.dispatch(hl.dsp.exec_cmd("dms ipc call bar toggle index 1"))
+	end)
+	hl.bind(hyper .. " + C", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
+	hl.bind(hyper .. " + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
+	hl.bind(super .. " + F11", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
+	hl.bind(super .. " + F12", hl.dsp.exec_cmd("dms ipc call notifications clearAll"))
+	--hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
+	hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("dms-login-power-menu.sh"))
+end
+
+-- send a notification
+-- dms ipc call toast info "Hello from Hyprland"
+-- dms ipc call toast warn "Disk space low"
+-- dms ipc call toast error "Something failed"
+
+-- require {{{3
 
 require("dms.colors")
 require("dms.layout")

@@ -1,0 +1,13 @@
+
+[Unit]
+Description=Playerctl MPRIS bridge for MPD
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mpd-mpris
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
