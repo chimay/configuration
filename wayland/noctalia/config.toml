@@ -11,7 +11,7 @@ max_label_chars = 12
 type = "taskbar"
 show_running = true
 show_all_outputs = true
-only_active_workspace = false
+only_active_workspace = true
 group_by_workspace = false
 show_window_title = true
 
@@ -31,6 +31,10 @@ stat = "cpu_temp"
 min_length = 5
 max_length = 120
 
+[widget.screenshot.actions]
+left = "screenshot-region"
+#left = "screenshot-fullscreen"
+
 [[shell.session.actions]]
 action = "logout"
 command = "~/racine/shell/wayland/hypr-logout.zsh >> ~/log/hypr-logout.log 2>&1"
@@ -43,10 +47,24 @@ command = "~/racine/shell/wayland/hypr-suspend.zsh >> ~/log/hypr-suspend.log 2>&
 action = "shutdown"
 command = "~/racine/shell/wayland/hypr-poweroff.zsh >> ~/log/hypr-poweroff.log 2>&1"
 
-# session {{{1
+# lockscreen {{{1
 
 [lockscreen]
 lock_before_suspend = false
+
+[lockscreen_widgets]
+enabled = true
+
+[lockscreen_widgets.widget.clock_main]
+type     = "clock"
+cx         = 600.0
+cy         = 20.0
+box_width  = 360.0
+box_height = 120.0
+rotation   = 0.0
+
+[lockscreen_widgets.widget.clock_main.settings]
+format = "{:%H:%M}"
 
 # system {{{1
 
@@ -70,7 +88,8 @@ filter_order = [
 	"new_mail",
 	"package_manager",
 	"disconnected",
-	"connected",
+	"connection_established",
+	"screenshot_saved",
 	"default_timeout",
 ]
 
@@ -94,9 +113,14 @@ enabled = true
 match_content = "Disconnected"
 override_duration = 1000
 
-[notification.filter.connected]
+[notification.filter.connection_established]
 enabled = true
 match_content = "Connection Established"
+override_duration = 1000
+
+[notification.filter.screenshot_saved]
+enabled = true
+match_content = "Screenshot saved"
 override_duration = 1000
 
 # appearence {{{1
@@ -112,30 +136,14 @@ enabled = false
 [nightlight]
 enabled = true
 force = false
-temperature_day = 6500
-temperature_night = 4000
+temperature_day = 6000
+temperature_night = 4700
 
 [location]
 address = "Brussels, Belgium"
 
 [accessibility]
 ui_scale = 1.15
-
-# lockscreen {{{1
-
-[lockscreen_widgets]
-enabled = true
-
-[lockscreen_widgets.widget.clock_main]
-type     = "clock"
-cx         = 600.0
-cy         = 20.0
-box_width  = 360.0
-box_height = 120.0
-rotation   = 0.0
-
-[lockscreen_widgets.widget.clock_main.settings]
-format = "{:%H:%M}"
 
 # bars {{{1
 
@@ -160,6 +168,8 @@ center = [
 	"media",
 ]
 end = [
+	"screenshot",
+	"spacer",
 	"clipboard",
 	"spacer",
 	"tray",
@@ -187,9 +197,11 @@ center = [
 	"taskbar"
 ]
 end = [
-	"screenshot",
+	"spacer",
 	"network",
+	"spacer",
 	"notifications",
+	"spacer",
 	"session",
 ]
 
@@ -219,6 +231,8 @@ clipboard_confirm_clear_history = true
 [shell.panel]
 control_center_placement = "floating"
 control_center_position = "center"
+session_placement = "floating"
+session_position = "center"
 
 [shell.launcher]
 layout = "full"
@@ -240,3 +254,9 @@ show_count = true
 show_app_icon = true
 show_all_outputs = true
 current_workspace_only = false
+
+[shell.screenshot]
+save_to_file = true
+directory = "~/racine/pictura/screenshot/noctalia"
+filename_pattern = "screenshot-%Y-%m-%d-%H-%M-%S"
+copy_to_clipboard = false

@@ -1260,15 +1260,18 @@ end
 --
 -- noctalia msg config-reload
 -- noctalia msg nightlight-toggle
+-- noctalia msg plugins list
+-- noctalia msg plugins source list
 
 if hl.dsp.exec_cmd("pgrep -af noctalia >/dev/null") then
 	hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center"))
 	hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
-	hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("noctalia msg window-switcher hold"))
+	hl.bind(hyper .. " + equal", hl.dsp.exec_cmd("noctalia msg window-switcher"))
 	hl.bind(hyper .. " + Z", hl.dsp.exec_cmd("noctalia msg settings-toggle"))
 	hl.bind(hyper .. " + B", hl.dsp.exec_cmd("noctalia msg bar-toggle"))
 	hl.bind(hyper .. " + C", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"))
 	hl.bind(hyper .. " + N", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center notifications"))
+	hl.bind(hyper .. " + D", hl.dsp.exec_cmd("noctalia msg notification-dnd-toggle"))
 	hl.bind(super .. " + F11", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center notifications"))
 	hl.bind(super .. " + F12", hl.dsp.exec_cmd("noctalia msg notification-clear-active"))
 	hl.bind(hyper .. " + K", hl.dsp.exec_cmd("noctalia msg session lock"))
