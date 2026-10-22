@@ -23,6 +23,14 @@ tooltip_format = "{:%A, %B %d, %Y}"
 type = "sysmon"
 stat = "cpu_temp"
 
+# [widget.gpu-temp]
+# type = "sysmon"
+# stat = "gpu_temp"
+
+[widget.media]
+min_length = 5
+max_length = 120
+
 [[shell.session.actions]]
 action = "logout"
 command = "~/racine/shell/wayland/hypr-logout.zsh >> ~/log/hypr-logout.log 2>&1"
@@ -46,6 +54,33 @@ lock_before_suspend = false
 enabled = true
 cpu_poll_seconds = 2.0
 
+# keys {{{1
+
+# [storage]
+# key_source = "secret-service"
+
+[storage]
+key_source = "file"
+key_file = "~/.config/noctalia/storage.key"
+
+# notifications {{{1
+
+[notification]
+filter_order = [
+	"package_manager",
+	"default_timeout",
+]
+
+[notification.filter.default_timeout]
+enabled = true
+match_content = ".*"
+override_duration = 12000
+
+[notification.filter.package_manager]
+enabled = true
+match_content = "Package Manager"
+override_duration = 1000
+
 # appearence {{{1
 
 [theme]
@@ -68,6 +103,22 @@ address = "Brussels, Belgium"
 [accessibility]
 ui_scale = 1.15
 
+# lockscreen {{{1
+
+[lockscreen_widgets]
+enabled = true
+
+[lockscreen_widgets.widget.clock_main]
+type     = "clock"
+cx         = 600.0
+cy         = 20.0
+box_width  = 360.0
+box_height = 120.0
+rotation   = 0.0
+
+[lockscreen_widgets.widget.clock_main.settings]
+format = "{:%H:%M}"
+
 # bars {{{1
 
 # top {{{2
@@ -87,18 +138,19 @@ start = [
 ]
 center = [
 	"clock",
+	"spacer",
+	"media",
 ]
 end = [
 	"clipboard",
-	"spacer",
-	"media",
-	"volume",
 	"spacer",
 	"tray",
 	"spacer",
 	"cpu-temp",
 	"spacer",
 	"battery",
+	"spacer",
+	"volume",
 ]
 
 # bottom {{{2
@@ -131,11 +183,36 @@ end = [
 # 	"privacy",
 # 	"bluetooth",
 
+# 	"gpu-temp",
+
+# control center {{{1
+
+[control_center]
+sidebar = "full"
+
 # gui shell {{{1
 
 [shell]
 clipboard_enabled = true
 clipboard_history_max_entries = 5000
+clipboard_keep_from_closed_apps = true
+clipboard_confirm_clear_history = true
+
+[shell.panel]
+control_center_placement = "floating"
+control_center_position = "center"
+
+[shell.launcher]
+layout = "full"
+width = 760
+search_position = "top"
+#default_view = "recent"
+default_view = "all"
+categories = true
+show_settings_button = true
+show_session_button = true
+app_grid = false
+track_usage = true
 
 [shell.window_switcher]
 style = "carousel"
@@ -145,7 +222,3 @@ show_count = true
 show_app_icon = true
 show_all_outputs = true
 current_workspace_only = false
-
-[shell.panel]
-control_center_placement = "floating"
-control_center_position = "center"

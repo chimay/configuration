@@ -806,7 +806,7 @@ hl.bind(hyper .. " + P", hl.dsp.window.pseudo())
 
 --hl.bind(hyper .. " + comma", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
 
--- see also <url:#tn=^-- dms >
+-- see also <url:#tn=^-- gui shell >
 
 --hl.bind(hyper .. " + comma", hl.dsp.exec_cmd("rofi-windows.zsh"))
 
@@ -997,13 +997,13 @@ hl.bind("CONTROL + F12",         hl.dsp.workspace.toggle_special("calc"))
 
 -- quit {{{3
 
--- see also <url:#tn=^-- dms >
+-- see also <url:#tn=^-- gui shell >
 
 -- hl.bind(hyper .. " + SHIFT + Q", hl.dsp.exec_cmd([[
 -- command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'
 -- ]]))
 
-hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
+--hl.bind(hyper .. " + K", hl.dsp.exec_cmd("hyprlock"))
 
 -- terminal {{{2
 
@@ -1018,7 +1018,7 @@ hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
 
 -- launchers {{{2
 
--- see also <url:#tn=-- dms >
+-- see also <url:#tn=-- gui shell >
 
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("hyprlauncher"))
 --hl.bind(hyper .. " + colon", hl.dsp.exec_cmd("fuzzel"))
@@ -1254,13 +1254,12 @@ end
 
 -- noctalia {{{2
 
----- replace universe by none to disable
-
 -- see command : noctalia msg --help
 --
 -- other ideas
 --
 -- noctalia msg config-reload
+-- noctalia msg nightlight-toggle
 
 if hl.dsp.exec_cmd("pgrep -af noctalia >/dev/null") then
 	hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center"))
@@ -1272,17 +1271,21 @@ if hl.dsp.exec_cmd("pgrep -af noctalia >/dev/null") then
 	hl.bind(hyper .. " + N", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center notifications"))
 	hl.bind(super .. " + F11", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center notifications"))
 	hl.bind(super .. " + F12", hl.dsp.exec_cmd("noctalia msg notification-clear-active"))
+	hl.bind(hyper .. " + K", hl.dsp.exec_cmd("noctalia msg session lock"))
 	hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
 end
 
 -- dms : dankmaterialshell {{{2
 
 -- see command : dms ipc list
+--
+-- other ideas
+--
+-- dms ipc call systemupdater toggle
 
 if hl.dsp.exec_cmd("pgrep -af 'dms run' >/dev/null") then
-	hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
-	hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call systemupdater toggle "))
-	hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
+	hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
+	hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
 	hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))
 	hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("dms ipc call settings toggleWith dankbar_widgets"))
 	hl.bind(hyper .. " + B", function()

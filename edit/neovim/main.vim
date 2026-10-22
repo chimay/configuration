@@ -1342,7 +1342,7 @@ set scrolloff=3
 " Minimum de colonnes visibles à l'écran
 " à gauche et à droite du curseur
 
-set sidescrolloff=15
+set sidescrolloff=5
 
 " Saut lorsque le curseur dépasse les limites hauts / bas
 
