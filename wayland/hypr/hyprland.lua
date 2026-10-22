@@ -963,7 +963,7 @@ end)
 for i = 1, 9 do
 	-- local key = i % 10 -- 10 maps to key 0
 	key = i
-	hl.bind(super .. " + F" .. key,             hl.dsp.focus({ workspace = i}))
+	hl.bind(super .. " + F" .. key,             hl.dsp.focus({ workspace = i }))
 	hl.bind(super .. " + SHIFT + F" .. key,     hl.dsp.window.move({ workspace = i }))
 end
 
