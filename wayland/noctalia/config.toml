@@ -67,7 +67,10 @@ key_file = "~/.config/noctalia/storage.key"
 
 [notification]
 filter_order = [
+	"new_mail",
 	"package_manager",
+	"disconnected",
+	"connected",
 	"default_timeout",
 ]
 
@@ -76,9 +79,24 @@ enabled = true
 match_content = ".*"
 override_duration = 12000
 
+[notification.filter.new_mail]
+enabled = true
+match_content = "New mail"
+override_duration = 3600000
+
 [notification.filter.package_manager]
 enabled = true
 match_content = "Package Manager"
+override_duration = 1000
+
+[notification.filter.disconnected]
+enabled = true
+match_content = "Disconnected"
+override_duration = 1000
+
+[notification.filter.connected]
+enabled = true
+match_content = "Connection Established"
 override_duration = 1000
 
 # appearence {{{1
