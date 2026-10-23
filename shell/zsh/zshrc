@@ -411,6 +411,9 @@ bindkey '^Xi' incremental-complete-word
 
 # Mots {{{3
 
+bindkey '\ep' _history-complete-older
+bindkey '\en' _history-complete-newer
+
 # Dernier mot de la ligne précédente
 
 bindkey '\e$' insert-last-word
