@@ -56,8 +56,8 @@ text = "htop"
 tooltip = "system monitor"
 
 [widget.htop.actions]
-left = "exec kitty --single-instance htop"
-right = "exec resources"
+left = "exec kitty --single-instance btop"
+right = "exec kitty --single-instance htop"
 
 # lockscreen {{{1
 

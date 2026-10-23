@@ -652,14 +652,19 @@ source <(fzf --zsh)
 
 source ~/racine/shell/source/fzf-tab.plugin.zsh
 
-zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# traditional menu could interfere
 zstyle ':completion:*:*:*:*' menu no
+# allows chars before and after the word to be completed
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z} l:|=* r:|=*'
+# completion heading format
+zstyle ':completion:*:descriptions' format '[%d]'
+# completion colors
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # size {{{3
 
@@ -701,41 +706,6 @@ zstyle ':fzf-tab:*' group-colors \
   $'\e[38;2;230;180;100m' \
   $'\e[38;2;230;180;101m' \
   $'\e[38;2;230;180;102m' \
-
-# git & fzf {{{3
-
-# credit : https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
-
-# source ~/racine/shell/source/git-fzf.sh
-#
-# join-lines() {
-#   local item
-#   while read item; do
-#     echo -n "${(q)item} "
-#   done
-# }
-#
-# bind-git-helper() {
-#   local c
-#   for c in $@; do
-#     eval "fzf-g$c-widget() { local result=\$(_g$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
-#     eval "zle -N fzf-g$c-widget"
-#     eval "bindkey '^g^$c' fzf-g$c-widget"
-#   done
-# }
-# bind-git-helper f b t r h s
-# unset -f bind-git-helper
-
-# fzy {{{2
-
-source ~/racine/shell/source/zsh-fzy.plugin.zsh
-
-bindkey '^X\ec' fzy-cd-widget
-bindkey '^X^T'  fzy-file-widget
-bindkey '^X^R'  fzy-history-widget
-bindkey '^X^P'  fzy-proc-widget
-
-#bindkey '^R'  fzy-history-widget
 
 # zoxide {{{2
 
@@ -1184,7 +1154,7 @@ function _pip_completion {
 }
 compctl -K _pip_completion pip
 
-# Kitty {{{1
+# kitty {{{1
 
 kitty + complete setup zsh | source /dev/stdin
 

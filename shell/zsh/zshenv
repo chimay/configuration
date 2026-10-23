@@ -324,6 +324,7 @@ export FZF_DEFAULT_OPTS='
 	-i
 	--exact
 	--cycle
+	--height=50%
 	--min-height=12
 	--layout=reverse
 	--scroll-off=5
@@ -349,7 +350,6 @@ export FZF_DEFAULT_OPTS='
 	--color=marker:#6b3c11
 	'
 
-# 	--height=50%
 # 	--pointer='▶'
 # 	--marker='⊙'
 

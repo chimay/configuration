@@ -1043,6 +1043,7 @@ kitty --single-instance --title calc calc
 
 hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("dolphin || thunar || caja || pcmanfm"))
 hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
+hl.bind(super .. " + CONTROL + M", hl.dsp.exec_cmd("kitty --single-instance btop"))
 hl.bind(super .. " + CONTROL + N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
 hl.bind(super .. " + CONTROL + C", hl.dsp.exec_cmd("vscodium"))
 hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
