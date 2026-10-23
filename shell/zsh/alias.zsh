@@ -260,6 +260,7 @@ alias st='run-syncthing.sh &'
 alias §=run-vifm
 alias 2=run-vifm
 
+alias 5=spf
 alias 3=yazi
 alias 1=xplr
 

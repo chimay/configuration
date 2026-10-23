@@ -96,224 +96,11 @@ setopt auto_remove_slash
 
 unsetopt complete_aliases
 
-#  Zstyle {{{2
+# zstyle {{{2
 
-# Priorité {{{3
-
-zstyle ':completion:*' \
-	completer \
-		_all_matches \
-		_oldlist \
-		_expand:-glob _expand:-subst \
-		_complete \
-		_match \
-		_approximate:-serre \
-		_approximate:-large \
-		_files \
-		_ignored
-
-		#_history \
-
-# Dernière liste
-
-zstyle ':completion:*' old-list always
-
-# Indices des tableaux
-
-zstyle ':completion:*:-subscript-:*' tag-order indexes parameters
-
-# Ordre des répertoires
-
-zstyle ':completion:*:cd:*' tag-order "local-directories path-directories"
-
-# Répertoires en premier
-
-zstyle ':completion:*' list-dirs-first yes
-
-# Groupes {{{3
-
+zstyle ':completion:*' completer _complete
+zstyle ':completion:*' matcher-list ''
 zstyle ':completion:*' group-name ''
-
-zstyle ':completion:*' list-grouped yes
-
-zstyle ':completion:*:-command-' group-order builtins functions commands
-
-# Complétion floue {{{3
-
-#zstyle ':completion:*:approximate-serre:*' max-errors 2 numeric
-#zstyle ':completion:*:approximate-large:*' max-errors 4 numeric
-
-zstyle -e ':completion:*:approximate-serre:*' \
-        max-errors 'reply=($(( ($#PREFIX+$#SUFFIX) / 4 )) numeric)'
-
-zstyle -e ':completion:*:approximate-large:*' \
-        max-errors 'reply=($(( ($#PREFIX+$#SUFFIX) / 3 )) numeric)'
-
-zstyle ':completion:*:correct:*' max-errors 2 numeric
-
-zstyle ':completion:*' original true
-
-# Prédiction {{{3
-
-zstyle ':completion:predict:*' completer _complete
-
-# Présentation {{{3
-
-# Majuscule = activé / minuscule = désactivé
-# %S = inversion couleurs
-# %B = gras
-# %U = souligné
-
-zstyle ':completion:*:descriptions' format '%UCompletion par %d%u'
-zstyle ':completion:*:messages' format '%B%UCompletion par %d%u%b'
-zstyle ':completion:*:warnings' format '%BPas de résultats pour : %d%b'
-zstyle ':completion:*:corrections' format '%B%d (%e erreur(s))%b'
-
-zstyle ':completion:*:options' description yes
-zstyle ':completion:*:options' auto-description '%d'
-
-zstyle ':completion:*' list-separator ' : '
-
-zstyle ':completion:*' list-colors '=*='
-
-# Menu {{{3
-
-# pour obtenir un menu convivial pour la completion (avec les flèches du clavier)
-# le chiffre est le nombre minimal de possibilités pour afficher le menu
-
-zstyle ':completion:*:*:*:*' menu 'select=2' 'yes=long'
-
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-
-#zstyle ':completion:*' old-menu yes
-
-# Affichage détaillé
-
-zstyle ':completion:*' file-list list=7 insert=7
-
-# Historique {{{3
-
-zstyle ':completion:history-complete-word:*' remove-all-dups yes
-
-# Cache {{{3
-
-# Cache
-
-# Crée un cache des complétion possibles
-# très utile pour les complétion qui demandent beaucoup de temps
-# comme la recherche d'un paquet
-
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/racine/varia/cache/zsh/completion
-
-# Commandes {{{3
-
-zstyle ':completion:*:rm:*' \
-	file-patterns \
-		'*.pyc:compiled-python' \
-		'*.dvi:dvi-files' \
-		'*.o:object-files' \
-		'%p:all-files'
-
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                             /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*' force-list always
-
-zstyle ':completion:*:*:pkill:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:*:pkill:*' menu yes select
-
-zstyle ':completion:*:*:killall:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:*:killall:*' menu yes select
-
-# Sous-commandes {{{3
-
-#zstyle ':completion:*:gravure:*' \
-	#file-patterns \
-		#'gravure-iso image-iso gravure-cd'
-
-# Unicité des arguments {{{3
-
-# Pour éviter de reproposer un argument déjà utilisés
-# dans la commande lors de la completion
-
-zstyle ':completion:*:mv:*' ignore-line yes
-zstyle ':completion:*:cp:*' ignore-line yes
-zstyle ':completion:*:rsync:*' ignore-line yes
-zstyle ':completion:*:x:*' ignore-line yes
-zstyle ':completion:*:rm:*' ignore-line yes
-zstyle ':completion:*:trash-put:*' ignore-line yes
-zstyle ':completion:*:diff:*' ignore-line yes
-
-zstyle ':completion:*:joue:*' ignore-line yes
-zstyle ':completion:*:mplayer:*' ignore-line yes
-
-# Ignorer {{{3
-
-#fignore=(.zwc .pyc .dvi .o \~)
-
-zstyle ':completion:*:(all-|)files' ignored-patterns '*?.pyc' '*?.dvi' '*?.o' '*?~'
-
-zstyle ':completion:*:functions' ignored-patterns '_*'
-
-# Complète par les ignorés si rien d'autre
-
-zstyle ':completion:*:ignored:*' completer _complete
-
-# Motifs {{{3
-
-# m:... : insensibilité à la casse
-# r:... : mots partiels
-# l:... r:... : mots entourés
-# ...||... : AF --> ArbreFlottant
-
-zstyle ':completion:*' \
-	matcher-list \
-		'' \
-		'm:{a-z-}={A-Z_}' \
-		'+m:{A-Z-}={a-z_}' \
-		'r:|[-_./]=* r:|=*' \
-		'l:|=* r:|=*' \
-		'r:[^A-Z0-9]||[A-Z0-9]=** r:|=*'
-
-# Utilisateurs & Hôtes {{{3
-
-zstyle ':completion:*' users-hosts \
-	$USER@taijitu.local \
-	$USER@shari.local \
-	$USER@tixu.local
-
-# Courriel {{{3
-
-zstyle ':completion:*' mail-directory ~/racine/mail
-zstyle ':completion:*' muttrc ~/racine/config/mail/neomutt/alias.mutt
-
-# Options {{{3
-
-zstyle ':completion:*:expand-glob:*' glob yes
-zstyle ':completion:*:expand-subst:*' substitute yes
-
-# Slashs retirés automatiquement
-
-zstyle ':completion:*' squeeze-slashes yes
-
-# ../
-
-zstyle ':completion:*' ignore-parents parent pwd
-
-# Partie non ambiguë
-
-zstyle ':completion:*' insert-unambiguous true
-
-# Tabulation littérale en début de ligne
-
-zstyle ':completion:*' insert-tab yes
-
-# En cas d’insertion de toutes les possibilités
-
-zstyle ':completion:all-matches:*' old-matches only
 
 #  Compdef {{{2
 
@@ -369,8 +156,9 @@ compdef '_arguments "1:Subcmds:(dmsend update setup block unblock follow unfollo
 
 compdef sshx=ssh
 compdef trash-put=rm
-compdef k=kill
+compdef signal-all=pkill
 
+compdef _ls eza
 compdef _man info
 
 #  Compctl (ancien système) {{{2
@@ -627,71 +415,6 @@ bindkey '^Xi' incremental-complete-word
 
 bindkey '\e$' insert-last-word
 
-#  Expansion & complétion {{{2
-
-bindkey '\t' menu-complete
-bindkey '\e=' menu-complete
-
-# urxvt ne connaît pas backtab
-#bindkey "${clavier[Backtab]}" reverse-menu-complete
-
-bindkey '\e^I' self-insert-unmeta
-
-bindkey '^D' delete-char-or-list
-
-# Menu {{{3
-
-bindkey -M menuselect '\t' vi-forward-char
-
-bindkey -M menuselect '^F' vi-forward-char
-bindkey -M menuselect '^B' vi-backward-char
-bindkey -M menuselect '^N' vi-down-line-or-history
-bindkey -M menuselect '^P' vi-up-line-or-history
-bindkey -M menuselect '\ef' vi-forward-blank-word
-bindkey -M menuselect '\eb' vi-backward-blank-word
-
-# Accepte la sélection et relance la complétion (pratique pour les répertoires)
-
-bindkey -M menuselect '\e\t' accept-and-infer-next-history
-bindkey -M menuselect '\ei' accept-and-infer-next-history
-
-#bindkey -M menuselect "${clavier[Down]}" accept-and-infer-next-history
-
-# bindkey -M menuselect 'h' vi-backward-char
-# bindkey -M menuselect 'j' vi-down-line-or-history
-# bindkey -M menuselect 'k' vi-up-line-or-history
-# bindkey -M menuselect 'l' vi-forward-char
-
-# bindkey -M menuselect 'n' vi-forward-blank-word
-# bindkey -M menuselect 'p' vi-backward-blank-word
-
-# Historique {{{3
-
-bindkey '\ep' _history-complete-older
-bindkey '\en' _history-complete-newer
-
-# Expansion {{{3
-
-bindkey '\e*' expand-word
-
-# Expansion & complétion {{{3
-
-#bindkey '^I' expand-or-complete
-
-#bindkey '^I' expand-or-complete-prefix
-
-#bindkey '^I' menu-expand-or-complete
-
-# L’espace provoque l'expansion de : !!, !N, ... {{{3
-
-bindkey ' ' magic-space
-
-# Insère toutes les complétions possibles sur la ligne de commandes {{{3
-
-zle -C all-matches complete-word _generic
-
-bindkey '^Xa' all-matches
-
 # Modes {{{2
 
 # Mode vicmd {{{3
@@ -901,7 +624,7 @@ bindkey '\ee' biblio-edit-command-line
 # bash style
 bindkey '^x^e' biblio-edit-command-line
 
-# filters {{{1
+# fuzzy filters {{{1
 
 # fzf : fuzzy finder {{{2
 
@@ -919,16 +642,59 @@ bindkey '^x^e' biblio-edit-command-line
 #			remplace capitalize-word
 #			toujours disponible sur Alt Shift c
 
-source ~/racine/shell/source/fzf-key-bindings.zsh
-source ~/racine/shell/source/fzf-completion.zsh
+# Set up fzf key bindings and fuzzy completion
+
+source <(fzf --zsh)
 
 # voir aussi <url:zshenv#tn=FZF_DEFAULT_OPTS>
 
-# fzf tab completion {{{3
+# fzf-tab {{{2
 
-#source ~/racine/shell/source/fzf-zsh-completion.sh
+source ~/racine/shell/source/fzf-tab.plugin.zsh
 
-#bindkey '^X^I' fzf_completion
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:*:*' menu no
+
+zstyle ':fzf-tab:*' fzf-command fzf
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+zstyle ':fzf-tab:*' fzf-flags \
+  --pointer='▶' \
+  --marker='✓'
+
+# colors {{{3
+
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*' list-colors ''
+#zstyle -d ':completion:*' list-colors
+
+zstyle ':fzf-tab:*' fzf-flags \
+  --pointer='▶' \
+  --marker='=' \
+  --color=bg:-1,bg+:#000000 \
+  --color=fg:#5b3c11,fg+:#6b3c11 \
+  --color=hl:#6b3c11,hl+:#6b3c11 \
+  --color=prompt:#5b3c11,pointer:#5b3c11 \
+  --color=marker:#7b3c11,spinner:#5b3c11,header:#5b3c11 \
+  --color='pointer:#6b3c11,marker:#6b3c11' \
+  --ansi
+
+zstyle ':fzf-tab:*' header-color $'\e[38;2;91;60;17m'
+
+# -- need more colors for the group switching
+
+zstyle ':fzf-tab:*' group-colors \
+  $'\e[38;2;91;60;17m' \
+  $'\e[38;2;120;80;30m' \
+  $'\e[38;2;150;100;40m' \
+  $'\e[38;2;180;120;50m' \
+  $'\e[38;2;210;150;70m' \
+  $'\e[38;2;230;180;100m' \
+  $'\e[38;2;230;180;101m' \
+  $'\e[38;2;230;180;102m' \
 
 # git & fzf {{{3
 
@@ -972,8 +738,6 @@ eval "$(zoxide init zsh)"
 zle -N biblio-zoxide-interactive
 
 bindkey "^F" biblio-zoxide-interactive
-
-# ------------------------------------------------------------
 
 # alias {{{1
 
@@ -1302,7 +1066,6 @@ unsetopt ignore_eof
 # zmodload -i zsh/sched
 # zmodload -i zsh/stat
 # zmodload -i zsh/system
-# zmodload -i zsh/zprof
 # zmodload -i zsh/zpty
 # zmodload -i zsh/zselect
 
@@ -1420,28 +1183,21 @@ compctl -K _pip_completion pip
 
 kitty + complete setup zsh | source /dev/stdin
 
-# anaconda {{{1
-
-# ---- takes a lot of time to start
-
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/david/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/david/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/david/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/david/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
-
 # mise {{{1
 
 eval "$(mise activate zsh)"
+
+# plugin managers {{{1
+
+# zinit {{{2
+
+# interferes with zoxide
+
+# ZINIT_HOME="${HOME}/racine/local/share/zinit/zinit.git"
+# [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+# [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+
+# source "${ZINIT_HOME}/zinit.zsh"
 
 # profiling end {{{1
 

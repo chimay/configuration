@@ -47,6 +47,18 @@ command = "~/racine/shell/wayland/hypr-suspend.zsh >> ~/log/hypr-suspend.log 2>&
 action = "shutdown"
 command = "~/racine/shell/wayland/hypr-poweroff.zsh >> ~/log/hypr-poweroff.log 2>&1"
 
+# custom {{{2
+
+[widget.htop]
+type = "custom_button"
+glyph = "activity"
+text = "htop"
+tooltip = "system monitor"
+
+[widget.htop.actions]
+left = "exec kitty --single-instance htop"
+right = "exec resources"
+
 # lockscreen {{{1
 
 [lockscreen]
@@ -85,6 +97,7 @@ key_file = "~/.config/noctalia/storage.key"
 
 [notification]
 filter_order = [
+	"reminder",
 	"new_mail",
 	"package_manager",
 	"disconnected",
@@ -97,6 +110,11 @@ filter_order = [
 enabled = true
 match_content = ".*"
 override_duration = 12000
+
+[notification.filter.reminder]
+enabled = true
+match_content = "Reminder"
+override_duration = 3600000
 
 [notification.filter.new_mail]
 enabled = true
@@ -168,6 +186,8 @@ center = [
 	"media",
 ]
 end = [
+	"htop",
+	"spacer",
 	"screenshot",
 	"spacer",
 	"clipboard",
@@ -191,27 +211,30 @@ scale = 1.3
 font_scale = 1.2
 start = [
 	"lock_keys",
+	"spacer",
+ 	"brightness",
+	"spacer",
+ 	"bluetooth",
+	"spacer",
+ 	"privacy",
 ]
 #center = ["active_window"]
 center = [
 	"taskbar"
 ]
 end = [
-	"spacer",
 	"network",
 	"spacer",
 	"notifications",
 	"spacer",
 	"session",
+	"spacer",
 ]
 
 # other available widgets {{{2
 
 # 	"keyboard_layout",
-# 	"brightness",
 # 	"wallpaper",
-# 	"privacy",
-# 	"bluetooth",
 
 # 	"gpu-temp",
 

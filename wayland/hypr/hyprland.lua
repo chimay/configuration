@@ -675,8 +675,8 @@ local hyper = "MOD3"
 
 -- help {{{2
 
-hl.bind(hyper .. " + F1", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
-hl.bind(hyper .. " + H", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
+-- hl.bind(hyper .. " + F1", hl.dsp.exec_cmd(""))
+-- hl.bind(hyper .. " + H", hl.dsp.exec_cmd(""))
 
 -- hyprland {{{2
 
@@ -1030,9 +1030,12 @@ hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("rofi-run.zsh"))
 
 -- applications {{{2
 
+-- run ALL favorites
+
 hl.bind(super .. " + CONTROL + A", hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
 
 hl.bind(super .. " + CONTROL + section", hl.dsp.exec_cmd("run-vifm.zsh"))
+hl.bind(super .. " + CONTROL + s", hl.dsp.exec_cmd("kitty --single-instance spf ~/racine"))
 
 hl.bind(super .. " + CONTROL + equal", hl.dsp.exec_cmd([[
 kitty --single-instance --title calc calc
@@ -1287,6 +1290,8 @@ end
 -- dms ipc call systemupdater toggle
 
 if hl.dsp.exec_cmd("pgrep -af 'dms run' >/dev/null") then
+	hl.bind(hyper .. " + F1", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
+	hl.bind(hyper .. " + H", hl.dsp.exec_cmd("dms ipc call hypr toggleBinds"))
 	hl.bind(hyper .. " + ugrave", hl.dsp.exec_cmd("dms ipc call control-center toggle "))
 	hl.bind(hyper .. " + mu", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
 	hl.bind(hyper .. " + D", hl.dsp.exec_cmd("dms ipc call settings toggle"))

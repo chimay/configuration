@@ -1157,6 +1157,9 @@ nnoremap <m-q> gqap
 "nnoremap <c-l> <cmd>call library#smart_ctrl_l()<cr>
 vnoremap <c-l> <esc>
 
+" clear search hl, multi cursor
+nnoremap <esc> <cmd>nohlsearch<cr>
+
 nnoremap <leader>dc <cmd>set cursorline!<cr>
 nnoremap <leader>dw <cmd>set wrap!<cr>
 nnoremap <leader>dl <cmd>call library#toggle_relative_linum()<cr>

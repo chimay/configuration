@@ -79,6 +79,12 @@ case $TERM in
 	rxvt-unicode-256color)
 		source $RACINE_ZSH/prompt/default.zsh
 		;;
+	kitty)
+		source $RACINE_ZSH/prompt/default.zsh
+		;;
+	xterm-kitty)
+		source $RACINE_ZSH/prompt/default.zsh
+		;;
 	alacritty)
 		source $RACINE_ZSH/prompt/default.zsh
 		;;
