@@ -156,7 +156,7 @@ compdef '_arguments "1:Subcmds:(dmsend update setup block unblock follow unfollo
 
 compdef sshx=ssh
 compdef trash-put=rm
-compdef signal-all=pkill
+compdef signal-all=kill
 
 compdef _ls eza
 compdef _man info
@@ -661,6 +661,12 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
+# size {{{3
+
+zstyle ':fzf-tab:*' fzf-min-height 12
+
+# glyphs {{{3
+
 zstyle ':fzf-tab:*' fzf-flags \
   --pointer='▶' \
   --marker='✓'
@@ -735,9 +741,8 @@ bindkey '^X^P'  fzy-proc-widget
 
 eval "$(zoxide init zsh)"
 
-zle -N biblio-zoxide-interactive
-
-bindkey "^F" biblio-zoxide-interactive
+zle -N zi
+bindkey '^F' zi
 
 # alias {{{1
 
@@ -1191,13 +1196,15 @@ eval "$(mise activate zsh)"
 
 # zinit {{{2
 
-# interferes with zoxide
+ZINIT_HOME="${HOME}/racine/local/share/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 
-# ZINIT_HOME="${HOME}/racine/local/share/zinit/zinit.git"
-# [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-# [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-# source "${ZINIT_HOME}/zinit.zsh"
+# -- to avoid conflict with zoxide interactive (also zi)
+
+unalias zi 2>/dev/null
 
 # profiling end {{{1
 
