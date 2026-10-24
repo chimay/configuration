@@ -155,6 +155,7 @@ typeset -U fpath
 fpath=(~/racine/fun/zsh/autoload/*(F) $fpath)
 fpath=(~/racine/fun/zsh/completion/*(F) $fpath)
 fpath=(~/racine/fun/zsh/zle $fpath)
+
 fpath=(/usr/share/zsh/functions/Completion/compinit $fpath)
 
 # Répertoires {{{3

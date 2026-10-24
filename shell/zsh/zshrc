@@ -315,11 +315,11 @@ bindkey "^Xk" insert-composed-char
 
 # Mouvements {{{2
 
-[[ -n "${clavier[Home]}" ]]     && bindkey "${clavier[Home]}" beginning-of-line
-[[ -n "${clavier[End]}" ]]      && bindkey "${clavier[End]}" end-of-line
+[[ -n "${clavier[Home]}" ]]  && bindkey "${clavier[Home]}" beginning-of-line
+[[ -n "${clavier[End]}" ]]   && bindkey "${clavier[End]}" end-of-line
 
-[[ -n "${clavier[Left]}" ]]     && bindkey "${clavier[Left]}" backward-char
-[[ -n "${clavier[Right]}" ]]    && bindkey "${clavier[Right]}" forward-char
+[[ -n "${clavier[Left]}" ]]  && bindkey "${clavier[Left]}" backward-char
+[[ -n "${clavier[Right]}" ]] && bindkey "${clavier[Right]}" forward-char
 
 #bindkey '^F' forward-char
 bindkey '^B' backward-char
@@ -655,19 +655,38 @@ source <(fzf --zsh)
 
 source ~/racine/shell/source/fzf-tab.plugin.zsh
 
+bindkey '^I' fzf-tab-complete
+
+# zstyle {{{3
+
 # traditional menu could interfere
 zstyle ':completion:*:*:*:*' menu no
-# allows chars before and after the word to be completed
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z} l:|=* r:|=*'
+
+# exact match first, then allows chars before and after the word to be completed
+# handles ~named-tilde-dirs as beg of word
+zstyle ':completion:*' matcher-list \
+  '' \
+  'm:{a-z}={A-Za-z} l:|=* r:|=*'
+
 # completion heading format
 zstyle ':completion:*:descriptions' format '[%d]'
 # completion colors
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+# debug
+zmodload zsh/complist
+bindkey '^Xh' _complete_help
+#zstyle ':completion:*' verbose yes
+#zmodload zsh/zutil
+#zstyle -L ':completion:*' matcher-list
+
+# zstyle fzf-tab {{{3
+
 zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:*:*' fzf-flags --scheme=path
 
 # size {{{3
 
@@ -1164,6 +1183,14 @@ kitty + complete setup zsh | source /dev/stdin
 # mise {{{1
 
 eval "$(mise activate zsh)"
+
+# herdr {{{1
+
+# -- replaced by this command :
+# --   herdr completion zsh > ~/racine/fun/zsh/completion/multiplex/_herdr
+# -- see <url:~/racine/config/shell/zsh/zshenv#tn=fpath>
+
+#source <(herdr completion zsh)
 
 # plugin managers {{{1
 
