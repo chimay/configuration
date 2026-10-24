@@ -1162,27 +1162,17 @@ fi
 
 [ $OPERASYS = archlinux ] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
-# pip {{{1
-
-# pip zsh completion
-
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip
-
-# kitty {{{1
-
-kitty + complete setup zsh | source /dev/stdin
-
 # mise {{{1
 
 eval "$(mise activate zsh)"
+
+# kitty {{{1
+
+# -- replaced by this command :
+# --   kitty + complete setup zsh > ~fun/zsh/completion/terminal/_kitty
+# -- see <url:~/racine/config/shell/zsh/zshenv#tn=fpath>
+
+#kitty + complete setup zsh | source /dev/stdin
 
 # herdr {{{1
 

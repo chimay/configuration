@@ -26,10 +26,6 @@ alias rr='builtin r'
 
 
 
-# meta with completion {{{1
-
-alias fn=fzf-nova
-
 # sudo {{{1
 
 # Remplacement pour gksu, kdesu
@@ -38,6 +34,11 @@ alias sudologin='sudo -i'
 alias sudoshell='sudo -s'
 alias visudo='sudo -E visudo'
 alias gsu=pkexec
+
+# multiplexer {{{1
+
+alias tm=tmux
+alias hr=herdr
 
 # encryption {{{1
 
@@ -663,13 +664,11 @@ hash -d blog=~/racine/public/blog
 
 hash -d bookmarks=~/racine/refer/bookmarks
 
-# terminal {{{2
+# multiplexer {{{2
 
 hash -d tmuxconf=~/racine/config/multiplex/tmux
 
 # shell, script {{{2
-
-hash -d historique=~/racine/dotdir/zsh
 
 hash -d zconf=$RACINE_ZSH
 hash -d zdot=~/racine/dotdir/zsh

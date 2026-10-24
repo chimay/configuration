@@ -1013,10 +1013,11 @@ hl.bind(super .. " + Return", hl.dsp.exec_cmd([[
 kitty --single-instance --title kitty-dropdown
 ]]))
 
-hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd("ghostty --gtk-single-instance=true"))
+hl.bind(super .. " + dollar", hl.dsp.exec_cmd("footclient"))
+hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd("xterm"))
 
-hl.bind(super .. " + exclam", hl.dsp.exec_cmd("alacritty"))
-hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
+hl.bind(super .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
+hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("ghostty --gtk-single-instance=true"))
 
 -- launchers {{{2
 

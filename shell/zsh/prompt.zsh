@@ -85,6 +85,9 @@ case $TERM in
 	xterm-kitty)
 		source $RACINE_ZSH/prompt/default.zsh
 		;;
+	foot)
+		source $RACINE_ZSH/prompt/default.zsh
+		;;
 	alacritty)
 		source $RACINE_ZSH/prompt/default.zsh
 		;;

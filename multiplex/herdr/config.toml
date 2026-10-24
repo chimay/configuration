@@ -13,6 +13,8 @@ onboarding = false
 #                  vesper
 # name = "catppuccin"
 
+name = "gruvbox"
+
 # Follow host terminal light/dark appearance and switch Herdr UI themes.
 # Existing manual behavior is unchanged unless this is true.
 # auto_switch = false
@@ -30,6 +32,21 @@ onboarding = false
 # red = "#ff6188"
 # green = "#a6e3a1"
 
+[theme.custom]
+text = "#c8c0b8"
+panel_bg = "#181512"
+accent = "#9b3c11"
+sidebar_bg = "#000000"
+active_row_bg = "#2b211b" # active Space / Agent row
+selection_bg = "#3b2a20"  # Navigate-mode cursor row
+
+# text = "#5b3c11"
+# panel_bg = "#000000"
+# accent = "#9b3c11"
+# sidebar_bg = "#000000"
+# active_row_bg = "#070403" # active Space / Agent row
+# selection_bg = "#000000"  # Navigate-mode cursor row
+
 # Layer appearance-specific overrides on top when auto_switch is enabled.
 # [theme.custom.light]
 # panel_bg = "#eff1f5"
@@ -38,14 +55,6 @@ onboarding = false
 # [theme.custom.dark]
 # panel_bg = "#1e1e2e"
 # text = "#cdd6f4"
-
-[theme.custom]
-text = "#c8c0b8"
-panel_bg = "#181512"
-accent = "#9b3c11"
-sidebar_bg = "#181512"   # sidebar background
-active_row_bg = "#2b211b" # active Space / Agent row
-selection_bg = "#3b2a20"  # Navigate-mode cursor row
 
 [terminal]
 # Executable used for new interactive panes.
@@ -101,13 +110,17 @@ detach = "prefix+d"
 
 # reload_config = "prefix+shift+r"
 
-reload_config = "prefix+@"
+#reload_config = "prefix+@"
+
+reload_config = "F5"
 
 # open_notification_target = "prefix+o"
 # workspace_picker = "prefix+w"
 # goto = "prefix+g"
 
-goto = "prefix+g"
+#goto = "prefix+§"
+
+goto = "F2"
 
 # new_workspace = "prefix+shift+n"
 
@@ -146,8 +159,18 @@ next_tab = "alt+right"
 
 # move_tab_previous = ""   # optional, e.g. "alt+shift+left" moves the tab toward the front
 # move_tab_next = ""       # optional, e.g. "alt+shift+right" moves the tab toward the back
+
+move_tab_previous = "shift+left"
+move_tab_next = "shift+right"
+
 # switch_tab = "prefix+1..9"
+
+switch_tab = "alt+1..9"
+
 # switch_workspace = ""   # optional indexed binding, e.g. "prefix+shift+1..9"
+
+switch_workspace = "prefix+1..9"
+
 # close_tab = "prefix+shift+x"
 # rename_pane = "prefix+shift+p"
 # edit_scrollback = "prefix+e"
@@ -174,6 +197,9 @@ split_horizontal = "prefix+minus"
 # close_pane = "prefix+x"
 # zoom = "prefix+z"       # legacy alias: fullscreen
 # resize_mode = "prefix+r"
+
+resize_mode = "F3"
+
 # resize_pane_left = ""   # optional, e.g. "ctrl+shift+alt+left" resizes without entering resize mode
 # resize_pane_down = ""   # optional, e.g. "ctrl+shift+alt+down"
 # resize_pane_up = ""     # optional, e.g. "ctrl+shift+alt+up"
@@ -210,6 +236,8 @@ toggle_sidebar = "prefix+b"
 # tabs = ""       # e.g. "ctrl" makes ctrl+1..9 switch tabs directly
 # workspaces = "" # e.g. "ctrl+shift" makes ctrl+shift+1..9 switch workspaces directly
 # agents = ""     # e.g. "alt" makes alt+1..9 focus agent rows directly
+
+copy_mode = "F4"
 
 # Size of the virtual terminal used when no client is attached.
 # Attached clients always use their own terminal size.
@@ -252,6 +280,8 @@ toggle_sidebar = "prefix+b"
 # Set false to retain drag or double-click word selection until Ctrl+C,
 # or Cmd+C when the host forwards it, copies and clears it.
 # copy_on_select = true
+
+copy_on_select = true
 
 # Host cursor policy: "auto", "native", or "drawn".
 # "auto" draws Herdr's own cursor on native Windows builds and WSL to avoid ConPTY cursor flicker, and uses the native terminal cursor elsewhere.
@@ -306,6 +336,8 @@ toggle_sidebar = "prefix+b"
 
 # Desktop tab row placement: "top" or "bottom".
 # tab_bar_position = "top"
+
+tab_bar_position = "top"
 
 # Ordered status entries at the right edge of the desktop tab bar.
 # Supported types: zoom, hostname, datetime, text, and command.
@@ -362,6 +394,8 @@ toggle_sidebar = "prefix+b"
 # system = ask the OS notification service directly
 # delivery = "off"
 # delay_seconds = 1
+
+delivery = "herdr"
 
 [ui.toast.herdr]
 # position = "bottom-right"

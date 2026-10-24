@@ -238,6 +238,40 @@ end = [
 
 # 	"gpu-temp",
 
+# dock {{{2
+
+[dock]
+enabled = true
+position = "left"
+pinned = [
+	"footclient",
+	"xterm",
+	"urxvt",
+]
+layer = "top"
+reserve_space   = false
+auto_hide = true
+smart_auto_hide = true
+show_running = true
+launcher_position   = "start"
+launcher_icon       = "grid-dots"
+background_opacity = 0.5
+magnification = true
+magnification_scale = 1.45
+show_instance_count = true
+show_dots = false
+active_scale = 1.0
+inactive_scale = 0.85
+active_opacity      = 1.0
+inactive_opacity    = 1.0
+icon_size = 48
+main_axis_padding = 16
+cross_axis_padding = 8
+item_spacing = 6
+radius = 16
+margin_ends = 0
+margin_edge = 8
+
 # control center {{{1
 
 [control_center]
@@ -261,7 +295,6 @@ session_position = "center"
 layout = "full"
 width = 760
 search_position = "top"
-#default_view = "recent"
 default_view = "all"
 categories = true
 show_settings_button = true
