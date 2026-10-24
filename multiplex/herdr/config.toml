@@ -1,11 +1,18 @@
+
+# opening {{{1
+
 # herdr configuration
 # Place this file at ~/.config/herdr/config.toml
+
+# first time {{{1
 
 # Show first-run notification setup on startup.
 # Missing also shows onboarding; set false after you've chosen.
 # onboarding = true
 
 onboarding = false
+
+# theme {{{1
 
 [theme]
 # Built-in themes: catppuccin, terminal, tokyo-night, dracula, nord,
@@ -21,6 +28,8 @@ name = "gruvbox"
 # dark_name = "catppuccin"
 # light_name = "catppuccin-latte"
 
+# custom {{{2
+
 # Override individual color tokens on top of the base theme.
 # Accepts: hex (#rrggbb), named colors, rgb(r,g,b), or panel_bg = "reset"
 # [theme.custom]
@@ -35,7 +44,7 @@ name = "gruvbox"
 [theme.custom]
 text = "#c8c0b8"
 panel_bg = "#181512"
-accent = "#9b3c11"
+accent = "#7b3c11"
 sidebar_bg = "#000000"
 active_row_bg = "#2b211b" # active Space / Agent row
 selection_bg = "#3b2a20"  # Navigate-mode cursor row
@@ -56,6 +65,8 @@ selection_bg = "#3b2a20"  # Navigate-mode cursor row
 # panel_bg = "#1e1e2e"
 # text = "#cdd6f4"
 
+# terminal {{{1
+
 [terminal]
 # Executable used for new interactive panes.
 # Empty means $SHELL, then /bin/sh.
@@ -73,6 +84,8 @@ selection_bg = "#3b2a20"  # Navigate-mode cursor row
 # Render pane images in Kitty graphics-compatible outer terminals.
 # kitty_graphics = true
 
+# update {{{1
+
 [update]
 # Update channel used by background version checks and `herdr update`.
 # Stable builds default to "stable". Windows preview builds default to "preview"
@@ -84,6 +97,8 @@ selection_bg = "#3b2a20"  # Navigate-mode cursor row
 
 # Check herdr.dev for remote agent-detection manifest updates in the background.
 # manifest_check = true
+
+# keys {{{1
 
 [keys]
 # Prefix key to enter prefix mode (default: "ctrl+b")
@@ -239,6 +254,8 @@ toggle_sidebar = "prefix+b"
 
 copy_mode = "F4"
 
+# server {{{1
+
 # Size of the virtual terminal used when no client is attached.
 # Attached clients always use their own terminal size.
 [server]
@@ -250,6 +267,8 @@ copy_mode = "F4"
 
 # [worktrees]
 # directory = "~/.herdr/worktrees"
+
+# user interface {{{1
 
 [ui]
 # Sidebar width (auto-scaled based on workspace names, this sets the default)
@@ -310,15 +329,21 @@ copy_on_select = true
 # Ask for a workspace name before interactive creation.
 # prompt_new_workspace_name = false
 
+prompt_new_workspace_name = true
+
 # Draw borders around split panes.
 # "auto" draws them only for split panes, "always" also frames a lone pane
 # (only while pane_outer_borders is enabled), "off" disables them.
 # Legacy booleans still parse: true = "auto", false = "off".
 # pane_borders = "auto"
 
+pane_borders = "always"
+
 # Draw borders along the outside edge of the pane area.
 # Disable for tmux-style internal splitters without an outside frame.
 # pane_outer_borders = true
+
+pane_outer_borders = true
 
 # Draw interactive scrollbars beside terminal panes.
 # Set false to reclaim the scrollbar column and keep it out of terminal-native selections.
@@ -344,6 +369,16 @@ tab_bar_position = "top"
 # Hostname, datetime, and command entries resolve on the Herdr server.
 # tab_bar_right = []
 # tab_bar_right_separator = " "
+
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "hostname" },
+  { type = "datetime", format = "%H:%M, %d %b" },
+  { type = "text", text = "--" },
+  { type = "command", command = "~/racine/shell/calendar/moonphase.py", interval_seconds = 3600, timeout_seconds = 5 },
+]
+
+tab_bar_right_separator = " "
 
 # Title Herdr writes to the terminal it runs in, which is what window managers
 # show in title, tab, and group bars. Tokens are {hostname}, {workspace}, {tab},
@@ -386,6 +421,8 @@ tab_bar_position = "top"
 # row_gap = 0
 # rows = [["state_icon", "workspace"], ["branch", "git_status"]]
 
+# notifications {{{2
+
 # Background notification popup delivery
 [ui.toast]
 # off = disable pop-up notifications
@@ -404,6 +441,8 @@ delivery = "herdr"
 # enabled = true
 # position = "bottom-center"
 
+# sound {{{2
+
 # Play sounds when agents change state in background workspaces
 [ui.sound]
 # enabled = true
@@ -417,12 +456,16 @@ delivery = "herdr"
 # [ui.sound.agents]
 # droid = "off"
 
+# session {{{1
+
 [session]
 # Resume supported AI-agent panes into their native conversation sessions after
 # a Herdr server restart. Requires official integrations that report session refs.
 # resume_agents_on_restore = true
 # Milliseconds between automatic agent restores; 0 starts them without spacing.
 # startup_per_agent_delay_ms = 100
+
+# remote {{{1
 
 [remote]
 # Whether herdr manages the ssh config used for `herdr --remote`.
@@ -435,11 +478,15 @@ delivery = "herdr"
 # force keepalive or multiplexing off, it only stops herdr from adding its own.
 # manage_ssh_config = true
 
+# experimental {{{1
+
 [experimental]
 # Allow launching herdr from inside a herdr-managed pane.
 # allow_nested = false
 # Save recent pane screen history across full server restarts.
+
 pane_history = false
+
 # While prefix mode is active, temporarily switch the host input source to
 # an ASCII-capable mode so prefix commands register even when an IME is
 # active, then restore the previous input source when prefix mode exits. On
@@ -462,6 +509,8 @@ pane_history = false
 # Cursor shape rendered when reveal_hidden_cursor_for_cjk_ime is true.
 # Values: block, steady_block (default), underline, steady_underline, bar, steady_bar.
 # cjk_ime_cursor_shape = "steady_block"
+
+# advanced {{{1
 
 [advanced]
 # Maximum scrollback buffer size in bytes retained per pane terminal.
