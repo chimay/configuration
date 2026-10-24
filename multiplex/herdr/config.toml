@@ -337,7 +337,8 @@ prompt_new_workspace_name = true
 # Legacy booleans still parse: true = "auto", false = "off".
 # pane_borders = "auto"
 
-pane_borders = "always"
+pane_borders = "auto"
+#pane_borders = "always"
 
 # Draw borders along the outside edge of the pane area.
 # Disable for tmux-style internal splitters without an outside frame.
@@ -376,6 +377,7 @@ tab_bar_right = [
   { type = "datetime", format = "%H:%M, %d %b" },
   { type = "text", text = "--" },
   { type = "command", command = "~/racine/shell/calendar/moonphase.py", interval_seconds = 3600, timeout_seconds = 5 },
+  { type = "text", text = "--" },
 ]
 
 tab_bar_right_separator = " "

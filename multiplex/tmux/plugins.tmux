@@ -51,6 +51,8 @@ set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'laktak/extrakto'
 set -g @plugin 'wfxr/tmux-fzf-url'
 set -g @plugin 'whame/tmux-modal'
+set -g @plugin 'sainnhe/tmux-fzf'
+set -g @plugin 'omerxx/tmux-sessionx'
 
 # set -g @plugin 'tmux-plugins/tmux-resurrect'
 # set -g @plugin 'tmux-plugins/tmux-continuum'
@@ -93,6 +95,44 @@ set -g @yank_selection 'clipboard'
 # set -g @continuum-systemd-start-cmd 'new-session -d'
 # set -g @continuum-save-interval '300'
 #set -g @continuum-restore 'on'
+
+TMUX_FZF_LAUNCH_KEY=":"
+TMUX_FZF_ORDER="command|session|window|pane|keybinding|clipboard|process"
+TMUX_FZF_OPTIONS='
+	-i
+	--exact
+	--cycle
+	--height=50%
+	--min-height=12
+	--layout=reverse
+	--scroll-off=5
+	--hscroll-off=100
+	--border
+	--margin=5%
+	--padding=5%
+	--color=bw
+	--bind=home:first,end:last
+	--bind=alt-j:preview-down,alt-k:preview-up
+	--bind=insert:print-query
+	--bind=tab:replace-query
+	--multi
+	--pointer='▶'
+ 	--marker='='
+	--bind=alt-space:toggle+down,shift-tab:toggle+down
+	--bind=alt-a:toggle-all
+	--bind=ctrl-s:toggle-sort
+	--bind=ctrl-u:end-of-line+unix-line-discard
+	--bind 'home:first,end:last'
+	--color=info:#6b3c11
+	--color=pointer:#6b3c11
+	--color=marker:#6b3c11
+	'
+
+TMUX_FZF_SWITCH_CURRENT=1
+TMUX_FZF_MENU_POPUP_WIDTH=70%
+TMUX_FZF_MENU_POPUP_HEIGHT=70%
+
+set -g @sessionx-bind 'o'
 
 # automatic install {{{1
 

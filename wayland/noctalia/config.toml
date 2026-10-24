@@ -245,8 +245,10 @@ enabled = true
 position = "left"
 pinned = [
 	"footclient",
-	"xterm",
-	"urxvt",
+	"gvim",
+	"org.kde.dolphin",
+	"org.kde.gwenview",
+	"org.qutebrowser.qutebrowser",
 ]
 layer = "top"
 reserve_space   = false

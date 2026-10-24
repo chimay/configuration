@@ -257,9 +257,9 @@ if ! exists("g:wheel_loaded")
 	" Name of the default session file
 	let g:wheel_config.storage.session.name = 'layout'
 	" Auto read default session file on startup if > 0
-	let g:wheel_config.storage.session.autoread = 1
+	let g:wheel_config.storage.session.autoread = 0
 	" Auto write default session file on exit if > 0
-	let g:wheel_config.storage.session.autowrite = 1
+	let g:wheel_config.storage.session.autowrite = 0
 	" Number of backups for the wheel or session file
 	let g:wheel_config.storage.backups = 7
 
