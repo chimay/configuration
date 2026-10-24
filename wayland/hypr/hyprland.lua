@@ -224,7 +224,9 @@ hl.config({
 		mfact = 0.618,
 	},
 	dwindle = {
-		preserve_split = true, -- You probably want this
+		preserve_split = true,
+		force_split = 2,
+		default_split_ratio = 1.2,
 	},
     scrolling = {
 		direction = "left",
@@ -321,6 +323,11 @@ hl.workspace_rule({ workspace = "9", persistent = true, default_name = "game"})
 hl.workspace_rule({
     workspace = "name:view",
     layout = "scrolling",
+})
+
+hl.workspace_rule({
+    workspace = "name:system",
+    layout = "dwindle",
 })
 
 hl.workspace_rule({
