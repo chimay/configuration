@@ -1158,7 +1158,7 @@ nnoremap <m-q> gqap
 vnoremap <c-l> <esc>
 
 " clear search hl, multi cursor
-nnoremap <esc> <cmd>nohlsearch<cr>
+"nnoremap <esc> <cmd>nohlsearch<cr>
 
 nnoremap <leader>dc <cmd>set cursorline!<cr>
 nnoremap <leader>dw <cmd>set wrap!<cr>

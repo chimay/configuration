@@ -49,15 +49,25 @@ command = "~/racine/shell/wayland/hypr-poweroff.zsh >> ~/log/hypr-poweroff.log 2
 
 # custom {{{2
 
-[widget.htop]
+[widget.htop-btop]
 type = "custom_button"
 glyph = "activity"
 text = "htop"
 tooltip = "system monitor"
 
-[widget.htop.actions]
+[widget.htop-btop.actions]
 left = "exec kitty --single-instance btop"
 right = "exec kitty --single-instance htop"
+
+[widget.zen-minuter]
+type = "custom_button"
+glyph = "clock"
+text = "zen minuter"
+tooltip = "zen minuter"
+
+[widget.zen-minuter.actions]
+left = "exec zen-minuter.zsh"
+right = "exec ~/racine/shell/alarm/zen-minuter.zsh"
 
 # lockscreen {{{1
 
@@ -186,7 +196,9 @@ center = [
 	"media",
 ]
 end = [
-	"htop",
+	"htop-btop",
+	"spacer",
+	"zen-minuter",
 	"spacer",
 	"screenshot",
 	"spacer",
@@ -245,7 +257,9 @@ enabled = true
 position = "left"
 pinned = [
 	"footclient",
-	"gvim",
+	"tmux",
+	"herdr",
+	"neovim-qt-lite",
 	"org.kde.dolphin",
 	"org.kde.gwenview",
 	"org.qutebrowser.qutebrowser",

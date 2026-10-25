@@ -46,8 +46,8 @@ text = "#c8c0b8"
 panel_bg = "#181512"
 accent = "#7b3c11"
 sidebar_bg = "#000000"
-active_row_bg = "#2b211b" # active Space / Agent row
-selection_bg = "#3b2a20"  # Navigate-mode cursor row
+active_row_bg = "#2b211b"   # active Space / Agent row
+selection_bg = "#3b2a20"    # Navigate-mode cursor row
 
 # text = "#5b3c11"
 # panel_bg = "#000000"

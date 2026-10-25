@@ -1,0 +1,60 @@
+{
+  "keys": {
+    "prefix": "ctrl+a",
+    "alt_shortcuts": false,
+    "super_shortcuts": false,
+    "new-tab": ["t"],
+    "close-tab": "x",
+    "new-pane-smart": "n",
+    "focus-left": "h",
+    "focus-down": "j",
+    "focus-up": "k",
+    "focus-right": "l",
+    "next-tab": "tab",
+    "prev-tab": "backtab",
+    "new-screen": "c",
+    "next-screen": "n",
+    "prev-screen": "p",
+    "split-right": "%",
+    "split-down": "\"",
+    "zoom-pane": "z",
+    "swap-pane-prev": "{",
+    "swap-pane-next": "}",
+    "toggle-sidebar": "s",
+    "focus-sidebar": "S",
+    "rename-screen": ",",
+    "rename-workspace": "$",
+    "resize-grow": ["alt+=", "shift+="],
+    "resize-shrink": ["alt+-", "-"],
+    "show-shortcuts": "?",
+    "detach": "d"
+  },
+  "theme": {
+    "sidebar_rail": "#121212",
+    "sidebar_active_bg": "#120705",
+    "sidebar_fg": "#5b3c11",
+    "sidebar_selected_fg": "#5b3c11",
+    "tab_rail": "#af875f",
+    "tab_bg": "#18110c",
+    "tab_active_bg": "#382417",
+    "border_active": "#c08048",
+    "border_inactive": "#493426",
+    "selection_background": "#120705",
+    "notification_info": "#c09060",
+    "notification_warning": "#d7a35f",
+    "notification_error": "#d75f5f",
+    "status_bg": "#100b07",
+    "status_fg": "#5b3c11",
+    "border_style": "rounded",
+    "dim_inactive": true,
+    "chrome": "dark"
+  },
+  "tabs": {
+    "show_titles": true,
+    "style": "pill"
+  },
+  "sidebar": {
+    "view": "workspaces",
+    "width": 24
+  }
+}
