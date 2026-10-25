@@ -96,7 +96,7 @@ set -g @yank_selection 'clipboard'
 # set -g @continuum-save-interval '300'
 #set -g @continuum-restore 'on'
 
-TMUX_FZF_LAUNCH_KEY=":"
+TMUX_FZF_LAUNCH_KEY="="
 TMUX_FZF_ORDER="command|session|window|pane|keybinding|clipboard|process"
 TMUX_FZF_OPTIONS='
 	-i

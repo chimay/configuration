@@ -257,18 +257,19 @@ enabled = true
 position = "left"
 pinned = [
 	"footclient",
-	"tmux",
 	"herdr",
 	"neovim-qt-lite",
 	"org.kde.dolphin",
 	"org.kde.gwenview",
 	"org.qutebrowser.qutebrowser",
+	"floorp",
+	"freetube",
 ]
 layer = "top"
 reserve_space   = false
 auto_hide = true
 smart_auto_hide = true
-show_running = true
+show_running = false
 launcher_position   = "start"
 launcher_icon       = "grid-dots"
 background_opacity = 0.5

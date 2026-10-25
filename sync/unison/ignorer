@@ -103,6 +103,8 @@ ignore = Name *.ptc*
 
 # Sockets {{{2
 
+ignore = Name *.sock
+
 ignore = Path racine/config/crypte/gnupg/S.gpg-agent*
 
 ignore = Path racine/config/crypte/ssh/*/agent/s.*.agent.*

@@ -26,9 +26,13 @@ bind -T custom @ \
 	source ~/racine/config/multiplex/tmux/tmux.conf \; \
 	display-message 'tmux.conf reloaded'
 
+bind -n F5 \
+	source ~/racine/config/multiplex/tmux/tmux.conf \; \
+	display-message 'tmux.conf reloaded'
+
 # Pass through next key {{{1
 
-bind -n F5 command-prompt -kp 'pass through key' 'send-keys %%%'
+bind -n F6 command-prompt -kp 'pass through key' 'send-keys %%%'
 
 # Help {{{1
 

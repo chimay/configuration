@@ -391,13 +391,14 @@ hl.window_rule({
 	move = "300 70",
 })
 
--- hl.window_rule({
--- 	match = {
--- 		class = "dev.noctalia.Noctalia"
--- 	},
---     float = true,
---     center = true,
--- })
+hl.window_rule({
+	match = {
+		class = "com.github.hluk.copyq",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
 
 -- title {{{3
 
