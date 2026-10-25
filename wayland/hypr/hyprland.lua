@@ -483,6 +483,15 @@ hl.window_rule({
 	move = "300 70",
 })
 
+hl.window_rule({
+	match = {
+		title = "rmpc",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
 -- windows and workspaces {{{3
 
 -- term {{{4
@@ -1181,7 +1190,8 @@ hl.define_submap("mpc", function()
 	end)
 	hl.bind("T", function()
 		hl.dispatch(hl.dsp.submap("reset"))
-		hl.dispatch(hl.dsp.exec_cmd("kitty --single-instance --title mpc-tui -e ncmpcpp"))
+		--hl.dispatch(hl.dsp.exec_cmd("kitty --single-instance --title mpc-tui ncmpcpp"))
+		hl.dispatch(hl.dsp.exec_cmd("kitty --single-instance --title rmpc rmpc"))
 	end)
 	hl.bind("space", function()
 		hl.dispatch(hl.dsp.submap("reset"))
