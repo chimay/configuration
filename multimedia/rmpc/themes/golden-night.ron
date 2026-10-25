@@ -13,7 +13,7 @@
     modal_backdrop: false,
     preview_label_style: (fg: "yellow"),
     preview_metadata_group_style: (fg: "yellow", modifiers: "Bold"),
-    highlighted_item_style: (fg: "#6b3c11", modifiers: "Bold"),
+    highlighted_item_style: (fg: "yellow", modifiers: "Bold"),
     current_item_style: (fg: "#7b3c11", bg: "#000000", modifiers: "Bold"),
     borders_style: (fg: "#5b3c11"),
     highlight_border_style: (fg: "#c18b45"),
