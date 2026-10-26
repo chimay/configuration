@@ -257,6 +257,7 @@ enabled = true
 position = "left"
 pinned = [
 	"footclient",
+	"zellij-custom",
 	"herdr",
 	"neovim-qt-lite",
 	"org.kde.dolphin",

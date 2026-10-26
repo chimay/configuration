@@ -66,11 +66,9 @@ esac
 
 export TERM
 
-# Pour i3
-# Prendre un terminal qui supporte les bonnes options pour visualiser le
-# journal d’erreur
+# for noctalia dock when terminal=true in the desktop file
 
-export TERMINAL=xterm
+export TERMINAL='kitty --single-instance'
 
 #  Self (zsh configure zsh) {{{1
 

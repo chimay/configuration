@@ -121,7 +121,11 @@ help = "prefix+,"
 # settings = "prefix+s"
 # detach = "prefix+q"
 
-detach = "prefix+d"
+#detach = "prefix+d"
+
+#detach = "ctrl+&"
+
+detach = "super+&"
 
 # reload_config = "prefix+shift+r"
 
@@ -135,7 +139,11 @@ reload_config = "F5"
 
 #goto = "prefix+§"
 
-goto = "F2"
+#goto = "ctrl+§"
+
+goto = "super+§"
+
+#goto = "F2"
 
 # new_workspace = "prefix+shift+n"
 
@@ -189,6 +197,9 @@ switch_workspace = "prefix+1..9"
 # close_tab = "prefix+shift+x"
 # rename_pane = "prefix+shift+p"
 # edit_scrollback = "prefix+e"
+
+edit_scrollback = "prefix+e"
+
 # clear_pane = ""                  # unbound; e.g. "prefix+ctrl+k"
 # focus_pane_left = "prefix+h"
 # focus_pane_down = "prefix+j"
@@ -515,6 +526,8 @@ pane_history = false
 # advanced {{{1
 
 [advanced]
+
 # Maximum scrollback buffer size in bytes retained per pane terminal.
 # Matches Ghostty's default scrollback-limit behavior.
-# scrollback_limit_bytes = 10000000
+
+scrollback_limit_bytes = 10000000

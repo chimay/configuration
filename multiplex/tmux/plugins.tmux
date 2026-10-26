@@ -59,12 +59,16 @@ set -g @plugin 'omerxx/tmux-sessionx'
 
 # configuration {{{1
 
+# prefix highlight {{{2
+
 set -g @prefix_highlight_output_prefix '['
 set -g @prefix_highlight_output_suffix ']'
 set -g @prefix_highlight_show_copy_mode 'on'
 set -g @prefix_highlight_fg '1'
 set -g @prefix_highlight_bg 'default'
 set -g @prefix_highlight_copy_mode_attr 'none,fg=1,bg=default'
+
+# extrakto {{{2
 
 #set -g @extrakto_split_size "15"
 #set -g @extrakto_clip_tool "xsel --input --clipboard" # works better for nvim
@@ -73,28 +77,42 @@ set -g @prefix_highlight_copy_mode_attr 'none,fg=1,bg=default'
 #set -g @extrakto_fzf_unset_default_opts "false"  # keep our custom FZF_DEFAULT_OPTS
 #set -g @extrakto_fzf_header "i c f g" # for small screens shorten the fzf header
 
+# fzf-url {{{2
+
 set -g @fzf-url-bind 'u'
 set -g @fzf-url-history-limit '900'
 set -g @fzf-url-fzf-options '--layout=reverse'
 #set -g @fzf-url-open "tmux split w3m"
 set -g @fzf-url-open "qutebrowser"
 
+# logging {{{2
+
 set -g @logging-path "~/log"
+
+# modal {{{2
 
 set -g @modal-yesno-cmd on
 
+# yank {{{2
+
 # clipboard, primary ou secondary
 set -g @yank_selection 'clipboard'
+
+# resurrect {{{2
 
 #set -g @resurrect-capture-pane-contents 'on'
 #set -g @resurrect-processes 'ncmpcpp cmus elinks alarm-sensor.zsh'
 # set -g @resurrect-save 'C-S'
 # set -g @resurrect-restore 'C-R'
 
+# continuum {{{2
+
 # set -g @continuum-boot 'on'
 # set -g @continuum-systemd-start-cmd 'new-session -d'
 # set -g @continuum-save-interval '300'
 #set -g @continuum-restore 'on'
+
+# fzf {{{2
 
 TMUX_FZF_LAUNCH_KEY="="
 TMUX_FZF_ORDER="command|session|window|pane|keybinding|clipboard|process"
@@ -132,7 +150,16 @@ TMUX_FZF_SWITCH_CURRENT=1
 TMUX_FZF_MENU_POPUP_WIDTH=70%
 TMUX_FZF_MENU_POPUP_HEIGHT=70%
 
+# sessionx {{{2
+
 set -g @sessionx-bind 'o'
+set -g @sessionx-bind-zo-new-window 'ctrl-y'
+set -g @sessionx-auto-accept 'off'
+set -g @sessionx-window-height '85%'
+set -g @sessionx-window-width '75%'
+set -g @sessionx-zoxide-mode 'on'
+set -g @sessionx-custom-paths-subdirectories 'false'
+set -g @sessionx-filter-current 'false'
 
 # automatic install {{{1
 

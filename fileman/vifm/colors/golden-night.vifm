@@ -10,7 +10,9 @@ highlight TopLine		  cterm=none			ctermfg=default		  ctermbg=232
 highlight TopLineSel	  cterm=none			ctermfg=default		  ctermbg=232
 
 highlight TabLine		  cterm=none			ctermfg=default		  ctermbg=none
-highlight TabLineSel	  cterm=bold			ctermfg=58			  ctermbg=none
+"highlight TabLineSel	  cterm=bold			ctermfg=3			  ctermbg=none
+"highlight TabLineSel	  cterm=bold			ctermfg=58			  ctermbg=none
+highlight TabLineSel	  cterm=bold			ctermfg=7			  ctermbg=none
 
 highlight StatusLine	  cterm=none			ctermfg=default		  ctermbg=none
 highlight JobLine		  cterm=none			ctermfg=2			  ctermbg=none
@@ -21,7 +23,7 @@ highlight Selected		  cterm=none			ctermfg=3			  ctermbg=default
 
 "highlight CurrLine		  cterm=reverse,bold	ctermfg=default		  ctermbg=default
 highlight CurrLine		  cterm=none			ctermfg=3			  ctermbg=none
-highlight OtherLine		  cterm=bold			ctermfg=8			  ctermbg=none
+highlight OtherLine		  cterm=bold			ctermfg=default		  ctermbg=none
 
 highlight WildMenu		  cterm=none			ctermfg=3			  ctermbg=black
 highlight SuggestBox	  cterm=none			ctermfg=default		  ctermbg=black

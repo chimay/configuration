@@ -38,6 +38,7 @@ alias gsu=pkexec
 # multiplexer {{{1
 
 alias tm=tmux
+alias zj=zellij
 alias hr=herdr
 
 # encryption {{{1

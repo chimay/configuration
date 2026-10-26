@@ -1,11 +1,20 @@
+
+// env {{{1
+
+env {
+	IS_IN_ZELLIJ "true"
+}
+
+// bindings {{{1
+
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
-keybinds {
+keybinds clear-defaults=true {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
     }
     locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
+        bind "F1" { SwitchToMode "Normal"; }
     }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -83,8 +92,8 @@ keybinds {
         bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
         bind "d" { HalfPageScrollDown; }
         bind "u" { HalfPageScrollUp; }
-        bind "[" { ScrollToPreviousPrompt; }
-        bind "]" { ScrollToNextPrompt; }
+        bind "Ctrl p" { ScrollToPreviousPrompt; }
+        bind "Ctrl n" { ScrollToNextPrompt; }
         bind "m" { SelectCommandAtScrollPosition; }
         bind "c" { CopyLastCommandOutput; SwitchToMode "Normal"; }
         // uncomment this and adjust key if using copy_on_select=false
@@ -99,8 +108,8 @@ keybinds {
         bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
         bind "d" { HalfPageScrollDown; }
         bind "u" { HalfPageScrollUp; }
-        bind "[" { ScrollToPreviousPrompt; }
-        bind "]" { ScrollToNextPrompt; }
+        bind "Ctrl p" { ScrollToPreviousPrompt; }
+        bind "Ctrl n" { ScrollToNextPrompt; }
         bind "m" { SelectCommandAtScrollPosition; }
         bind "n" { Search "down"; }
         bind "p" { Search "up"; }
@@ -193,17 +202,27 @@ keybinds {
         bind "Space" { NextSwapLayout; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
     }
+    shared {
+        bind "Ctrl PageUp" { GoToPreviousTab; }
+        bind "Ctrl PageDown" { GoToNextTab; }
+        bind "Ctrl Left" { MoveFocusOrTab "Left"; }
+        bind "Ctrl Right" { MoveFocusOrTab "Right"; }
+        bind "Ctrl Down" { MoveFocus "Down"; }
+        bind "Ctrl Up" { MoveFocus "Up"; }
+    }
     shared_except "locked" {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
+        bind "F1" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt n" { NewPane; }
         bind "Alt i" { MoveTab "Left"; }
         bind "Alt o" { MoveTab "Right"; }
-        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-        bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+        bind "Ctrl PageUp" { GoToPreviousTab; }
+        bind "Ctrl PageDown" { GoToNextTab; }
+        bind "Alt h" "Ctrl Left" { MoveFocusOrTab "Left"; }
+        bind "Alt l" "Ctrl Right" { MoveFocusOrTab "Right"; }
+        bind "Alt j" "Ctrl Down" { MoveFocus "Down"; }
+        bind "Alt k" "Ctrl Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt [" { PreviousSwapLayout; }
@@ -214,31 +233,34 @@ keybinds {
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
-    shared_except "pane" "locked" {
-        bind "Ctrl p" { SwitchToMode "Pane"; }
-    }
-    shared_except "resize" "locked" {
-        bind "Ctrl n" { SwitchToMode "Resize"; }
-    }
-    shared_except "scroll" "locked" {
-        bind "Ctrl s" { SwitchToMode "Scroll"; }
-    }
     shared_except "session" "locked" {
-        bind "Ctrl o" { SwitchToMode "Session"; }
+        bind "Alt s" { SwitchToMode "Session"; }
     }
     shared_except "tab" "locked" {
         bind "Ctrl t" { SwitchToMode "Tab"; }
     }
+    shared_except "pane" "locked" {
+        bind "Ctrl p" { SwitchToMode "Pane"; }
+    }
+    shared_except "scroll" "locked" {
+        bind "Ctrl s" { SwitchToMode "Scroll"; }
+    }
+    shared_except "resize" "locked" {
+        bind "Alt r" { SwitchToMode "Resize"; }
+    }
     shared_except "move" "locked" {
-        bind "Ctrl h" { SwitchToMode "Move"; }
+        bind "Alt m" { SwitchToMode "Move"; }
     }
     shared_except "tmux" "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
     }
 }
 
+// plugins {{{1
+
 // Plugin aliases - can be used to change the implementation of Zellij
 // changing these requires a restart to take effect
+
 plugins {
     tab-bar location="zellij:tab-bar"
     status-bar location="zellij:status-bar"
@@ -256,12 +278,19 @@ plugins {
     about location="zellij:about"
 }
 
+// load {{{2
+
 // Plugins to load in the background when a new session starts
+
 load_plugins {
     "zellij:link"
     // "file:/path/to/my-plugin.wasm"
     // "https://example.com/my-plugin.wasm"
 }
+
+// options {{{1
+
+show_startup_tips false
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
 // eg. when terminal window with an active zellij session is closed
@@ -292,6 +321,8 @@ load_plugins {
 // Default: $SHELL
 //
 // default_shell "fish"
+
+default_shell "zsh"
 
 // Choose the path to override cwd that zellij will use for opening new panes
 //
@@ -342,56 +373,6 @@ load_plugins {
 //
 // scrollback_lines_to_serialize 10000
 
-// Define color themes for Zellij
-// For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
-// Once these themes are defined, one of them should to be selected in the "theme" section of this file
-//
-// themes {
-//     dracula {
-//         fg 248 248 242
-//         bg 40 42 54
-//         red 255 85 85
-//         green 80 250 123
-//         yellow 241 250 140
-//         blue 98 114 164
-//         magenta 255 121 198
-//         orange 255 184 108
-//         cyan 139 233 253
-//         black 0 0 0
-//         white 255 255 255
-//     }
-// }
-
-// Choose the theme that is specified in the themes section.
-// Default: default
-//
-// theme "default"
-
-//theme "everforest-dark"
-theme "one-half-dark"
-theme "solarized-dark"
-
-// Themes to use when the host terminal reports a dark or light color palette.
-// Both must be set for automatic switching to take place, otherwise `theme`
-// remains authoritative. Until the host terminal reports (or if it never does),
-// the dark theme is used.
-//
-// theme_dark "nightfox"
-// theme_light "dayfox"
-
-// Pin the session to a dark or light appearance, ignoring what the host
-// terminal reports. Resolved before the first render. When unset, the host
-// terminal decides.
-// Options: dark, light
-//
-// explicit_theme_hue "dark"
-
-// The name of the default layout to load on startup
-// Default: "default"
-// (Requires restart)
-//
-// default_layout "compact"
-
 // Choose the mode that zellij uses when starting up.
 // Default: normal
 //
@@ -415,6 +396,8 @@ theme "solarized-dark"
 // Default value: 10000
 //
 // scroll_buffer_size 10000
+
+ scroll_buffer_size 10000
 
 // Provide a command to execute when copying text. The text will be piped to
 // the stdin of the program to perform the copy. This can be used with
@@ -445,6 +428,8 @@ theme "solarized-dark"
 //
 // scrollback_editor "/usr/bin/vim"
 
+scrollback_editor "/home/david/racine/shell/edit/neovim-lite.sh"
+
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
 // or should each user have their own cursor (false)
@@ -452,16 +437,6 @@ theme "solarized-dark"
 // Default: false
 //
 // mirror_session true
-
-// The folder in which Zellij will look for layouts
-// (Requires restart)
-//
-// layout_dir "/path/to/my/layout_dir"
-
-// The folder in which Zellij will look for themes
-// (Requires restart)
-//
-// theme_dir "/path/to/my/theme_dir"
 
 // Enable or disable the rendering of styled and colored underlines (undercurl).
 // May need to be disabled for certain unsupported terminals
@@ -637,3 +612,96 @@ theme "solarized-dark"
 web_client {
     font "monospace"
 }
+
+// themes {{{1
+
+// directory {{{2
+
+// The folder in which Zellij will look for themes
+// (Requires restart)
+//
+// theme_dir "/path/to/my/theme_dir"
+
+// definition {{{2
+
+themes {
+    brown-black {
+        fg "#5b3c11"
+        bg "#341207"
+        black "#000000"
+        //red "#f85438"
+        //red "#f9963a"
+        red "#5b3c11"
+        green "#9a7530"
+        yellow "#b58a45"
+        blue "#806b50"
+        //magenta "#98705b"
+        magenta "#7b3c11"
+        cyan "#9b8060"
+        //white "#e8967a"
+        white "#5b3c11"
+        //orange "#b56b35"
+        orange "#5b3c11"
+    }
+}
+
+// Define color themes for Zellij
+// For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
+// Once these themes are defined, one of them should to be selected in the "theme" section of this file
+//
+// themes {
+//     dracula {
+//         fg 248 248 242
+//         bg 40 42 54
+//         red 255 85 85
+//         green 80 250 123
+//         yellow 241 250 140
+//         blue 98 114 164
+//         magenta 255 121 198
+//         orange 255 184 108
+//         cyan 139 233 253
+//         black 0 0 0
+//         white 255 255 255
+//     }
+// }
+
+// choose {{{2
+
+// Choose the theme that is specified in the themes section.
+// Default: default
+//
+// theme "default"
+
+//theme "everforest-dark"
+//theme "one-half-dark"
+//theme "solarized-dark"
+
+theme "brown-black"
+
+// Themes to use when the host terminal reports a dark or light color palette.
+// Both must be set for automatic switching to take place, otherwise `theme`
+// remains authoritative. Until the host terminal reports (or if it never does),
+// the dark theme is used.
+//
+// theme_dark "nightfox"
+// theme_light "dayfox"
+
+// Pin the session to a dark or light appearance, ignoring what the host
+// terminal reports. Resolved before the first render. When unset, the host
+// terminal decides.
+// Options: dark, light
+//
+// explicit_theme_hue "dark"
+
+// layout {{{1
+
+// The name of the default layout to load on startup
+// Default: "default"
+// (Requires restart)
+//
+// default_layout "compact"
+
+// The folder in which Zellij will look for layouts
+// (Requires restart)
+//
+// layout_dir "/path/to/my/layout_dir"
