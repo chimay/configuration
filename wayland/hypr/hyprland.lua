@@ -476,7 +476,7 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
-		title = "mpc-tui",
+		title = "ncmpcpp",
 	},
 	float = true,
 	size = "1200 600",
@@ -1030,11 +1030,15 @@ hl.bind(super .. " + Return", hl.dsp.exec_cmd([[
 kitty --single-instance --title kitty-dropdown
 ]]))
 
-hl.bind(super .. " + dollar", hl.dsp.exec_cmd("footclient"))
-hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd("xterm"))
+hl.bind(super .. " + dollar", hl.dsp.exec_cmd("run-tmux.sh"))
+hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd("run-zellij.sh"))
+hl.bind(super .. " + exclam", hl.dsp.exec_cmd("run-herdr.sh"))
 
-hl.bind(super .. " + exclam", hl.dsp.exec_cmd("urxvtc"))
-hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("ghostty --gtk-single-instance=true"))
+hl.bind(hyper .. " + exclam", hl.dsp.exec_cmd("footclient"))
+
+-- hl.bind(super .. " + dollar", hl.dsp.exec_cmd("xterm"))
+-- hl.bind(hyper .. " + dollar", hl.dsp.exec_cmd("urxvtc"))
+-- hl.bind(super .. " + exclam", hl.dsp.exec_cmd("ghostty --gtk-single-instance=true"))
 
 -- launchers {{{2
 
@@ -1190,7 +1194,10 @@ hl.define_submap("mpc", function()
 	end)
 	hl.bind("T", function()
 		hl.dispatch(hl.dsp.submap("reset"))
-		--hl.dispatch(hl.dsp.exec_cmd("kitty --single-instance --title mpc-tui ncmpcpp"))
+		hl.dispatch(hl.dsp.exec_cmd("kitty --single-instance --title ncmpcpp ncmpcpp"))
+	end)
+	hl.bind("R", function()
+		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("kitty --single-instance --title rmpc rmpc"))
 	end)
 	hl.bind("space", function()

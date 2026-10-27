@@ -256,7 +256,6 @@ end = [
 enabled = true
 position = "left"
 pinned = [
-	"footclient",
 	"tmux-custom",
 	"zellij-custom",
 	"herdr",

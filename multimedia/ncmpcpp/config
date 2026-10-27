@@ -571,8 +571,8 @@ color2 = default
 # current_item_prefix = $(default)$3
 # current_item_suffix = $0$(end)
 
-current_item_prefix = $(default)$u
-current_item_suffix = $/u$(end)
+current_item_prefix = $(default)$8
+current_item_suffix = $0$(end)
 
 current_item_inactive_column_prefix = $(default)$r
 current_item_inactive_column_suffix = $/r$(end)

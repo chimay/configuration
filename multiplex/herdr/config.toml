@@ -98,7 +98,7 @@ selection_bg = "#3b2a20"    # Navigate-mode cursor row
 # Check herdr.dev for remote agent-detection manifest updates in the background.
 # manifest_check = true
 
-# keys {{{1
+# keybindings {{{1
 
 [keys]
 # Prefix key to enter prefix mode (default: "ctrl+b")
