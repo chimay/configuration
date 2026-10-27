@@ -102,8 +102,8 @@ keybinds clear-defaults=true {
 		bind "x" { CloseTab; SwitchToMode "Normal"; }
 		bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
 		bind "b" { BreakPane; SwitchToMode "Normal"; }
-		bind "]" { BreakPaneRight; SwitchToMode "Normal"; }
-		bind "[" { BreakPaneLeft; SwitchToMode "Normal"; }
+		bind ")" { BreakPaneRight; SwitchToMode "Normal"; }
+		bind "(" { BreakPaneLeft; SwitchToMode "Normal"; }
 		bind "1" { GoToTab 1; SwitchToMode "Normal"; }
 		bind "2" { GoToTab 2; SwitchToMode "Normal"; }
 		bind "3" { GoToTab 3; SwitchToMode "Normal"; }
@@ -126,8 +126,8 @@ keybinds clear-defaults=true {
 		bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
 		bind "d" { HalfPageScrollDown; }
 		bind "u" { HalfPageScrollUp; }
-		bind "Ctrl p" { ScrollToPreviousPrompt; }
-		bind "Ctrl n" { ScrollToNextPrompt; }
+		bind "(" { ScrollToPreviousPrompt; }
+		bind ")" { ScrollToNextPrompt; }
 		bind "m" { SelectCommandAtScrollPosition; }
 		bind "c" { CopyLastCommandOutput; SwitchToMode "Normal"; }
 		// uncomment this and adjust key if using copy_on_select=false
@@ -249,6 +249,7 @@ keybinds clear-defaults=true {
 		bind "Shift Down" { MovePane "Down"; }
 		bind "Shift Up" { MovePane "Up"; }
 		bind "Shift Right" { MovePane "Right"; }
+		bind "Alt z" { ToggleFocusFullscreen; }
 		bind "Super &" { Detach; }
 		bind "Super §" {
 			LaunchOrFocusPlugin "session-manager" {
@@ -352,7 +353,15 @@ show_startup_tips false
 //
 // default_shell "fish"
 
-default_shell "zsh"
+//default_shell "zsh"
+
+// default_shell "zsh" {
+//     args "-l" "-i"
+// }
+
+default_shell "zsh" {
+    args "-l"
+}
 
 // Choose the path to override cwd that zellij will use for opening new panes
 //
@@ -652,6 +661,8 @@ web_client {
 //
 // theme_dir "/path/to/my/theme_dir"
 
+theme_dir "/home/david/racine/config/multiplex/zellij/theme"
+
 // definition {{{2
 
 themes {
@@ -731,7 +742,11 @@ theme "brown-black"
 //
 // default_layout "compact"
 
+// default_layout "basic"
+
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 //
 // layout_dir "/path/to/my/layout_dir"
+
+layout_dir "/home/david/racine/config/multiplex/zellij/layout"
