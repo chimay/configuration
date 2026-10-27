@@ -359,9 +359,11 @@ show_startup_tips false
 //     args "-l" "-i"
 // }
 
-default_shell "zsh" {
-    args "-l"
-}
+// default_shell "/bin/zsh" {
+//     args "--login" "-i"
+// }
+
+default_shell "/home/david/racine/shell/run/zsh-login.zsh"
 
 // Choose the path to override cwd that zellij will use for opening new panes
 //
@@ -411,6 +413,8 @@ default_shell "zsh" {
 // (Requires restart)
 //
 // scrollback_lines_to_serialize 10000
+
+ scrollback_lines_to_serialize 123470
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal

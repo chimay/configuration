@@ -1191,11 +1191,9 @@ if [[ -n $ZELLIJ ]]; then
         print -Pn '\e]133;D;%?\a'
         print -Pn '\e]133;A\a'
     }
-
     function zellij_preexec() {
         print -Pn '\e]133;C\a'
     }
-
     autoload -Uz add-zsh-hook
     add-zsh-hook precmd zellij_precmd
     add-zsh-hook preexec zellij_preexec
