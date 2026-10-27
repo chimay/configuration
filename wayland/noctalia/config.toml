@@ -124,7 +124,7 @@ override_duration = 12000
 [notification.filter.reminder]
 enabled = true
 match_content = "Reminder"
-override_duration = 3600000
+override_duration = 36000000
 
 [notification.filter.new_mail]
 enabled = true

@@ -51,7 +51,7 @@ color normal default default
 
 # {{{ Statut
 
-color status color9 color232
+color status color7 color232
 
 mono status reverse,bold
 
@@ -141,7 +141,7 @@ color index color88 default '(~N | ~O) ~n 12-'
 # ------------------------------------------------------------------------
 
 #color hdrdefault color241	black
-#color hdrdefault color95	color233
+#color hdrdefault color75	color233
 #color hdrdefault color58	color232
 #color hdrdefault color131	color232
 color hdrdefault default	color232
@@ -150,7 +150,7 @@ color hdrdefault default	color232
 #color header     color106	color232 "^(date|subject):"
 
 color bold        color88   default			# bold on mails' body
-color underline   color94   default			# underlined
+color underline   color74   default			# underlined
 
 color search      color0    color3
 
@@ -159,17 +159,16 @@ color signature   color131  default			# signature
 color tilde       default   default			# ~ at the end of messages
 color markers	  color52   default			# the + sign at the start of broken lines
 
-color quoted      color9  default			# quoted text
-color quoted1     color9  default
-color quoted2     color9  default
-color quoted3     color9  default
-color quoted4     color9  default
-color quoted5     color9  default
-color quoted6     color9  default
-color quoted7     color9  default
-color quoted8     color9  default
-#color quoted9     color9  default
-
+color quoted      color7  default			# quoted text
+color quoted1     color7  default
+color quoted2     color7  default
+color quoted3     color7  default
+color quoted4     color7  default
+color quoted5     color7  default
+color quoted6     color7  default
+color quoted7     color7  default
+color quoted8     color7  default
+#color quoted9     color7  default
 
 # {{{ Expressions régulières
 

@@ -18,8 +18,10 @@ set -s escape-time 30
 #set -ga terminal-overrides ",tmux-256color:Tc"
 #set -ga terminal-overrides ",xterm-256color:Tc"
 #set -ga terminal-overrides ",kitty-256color:Tc"
+#set -ga terminal-overrides ",*:RGB"
 
-set -ga terminal-overrides ",*:RGB"
+set -as terminal-overrides ',kitty-256color:RGB'
+set -as terminal-features ',*:RGB'
 
 #set -sa terminal-features ',xterm-kitty:RGB'
 
