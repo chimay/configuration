@@ -1512,6 +1512,12 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+" shell {{{2
+
+nnoremap <leader>$h :tabe ~/racine/hist/zsh/$HOST<cr>
+nnoremap <leader>$s :tabe ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+nnoremap <leader>$S :w! >> ~/racine/snippet/hist/$OPERASYS.zsh<cr>
+
 " terminal {{{1
 
 " filetypes {{{1
