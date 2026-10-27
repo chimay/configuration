@@ -16,8 +16,10 @@ set -s escape-time 30
 # True colors
 
 #set -ga terminal-overrides ",tmux-256color:Tc"
-set -ga terminal-overrides ",xterm-256color:Tc"
+#set -ga terminal-overrides ",xterm-256color:Tc"
 #set -ga terminal-overrides ",kitty-256color:Tc"
+
+set -ga terminal-overrides ",*:RGB"
 
 #set -sa terminal-features ',xterm-kitty:RGB'
 
@@ -127,6 +129,9 @@ set -g detach-on-destroy on
 # windows (~ tabs) {{{1
 
 set -g base-index 1
+set -g pane-base-index 1
+set-window-option -g pane-base-index 1
+set-option -g renumber-windows on
 
 set -g automatic-rename off
 

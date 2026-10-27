@@ -951,8 +951,8 @@ nnoremap N Nzzzv
 " next word like this with another cursor
 "nnoremap # Q*
 
-nnoremap <m-r> :%s///g<left><left><left>
-vnoremap <m-r> :s///g<left><left><left>
+nnoremap <m-r> :%substitute///g<left><left><left>
+vnoremap <m-r> :substitute///g<left><left><left>
 
 nnoremap <leader>sw <cmd>call library#search_word()<cr>
 nnoremap <leader>sr <cmd>call library#search_and_replace_word()<cr>

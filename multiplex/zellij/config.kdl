@@ -209,6 +209,7 @@ keybinds clear-defaults=true {
         bind "Ctrl Right" { MoveFocusOrTab "Right"; }
         bind "Ctrl Down" { MoveFocus "Down"; }
         bind "Ctrl Up" { MoveFocus "Up"; }
+        bind "Super &" { Detach; }
     }
     shared_except "locked" {
         bind "F1" { SwitchToMode "Locked"; }
@@ -225,8 +226,8 @@ keybinds clear-defaults=true {
         bind "Alt k" "Ctrl Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
+        bind "Alt (" { PreviousSwapLayout; }
+        bind "Alt )" { NextSwapLayout; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
     }

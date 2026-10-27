@@ -347,6 +347,7 @@ export FZF_DEFAULT_OPTS="
 	--color=info:#6b3c11
 	--color=pointer:#6b3c11
 	--color=marker:#6b3c11
+	--color=current-fg:#7b3c11,current-bg:#000000
 	"
 
 # 	--pointer='▶'

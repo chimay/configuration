@@ -1149,6 +1149,8 @@ eval-ssh-agent () {
 # avant
 #
 # bindkey '...' fonction
+#
+# dans zshrc
 
 # avant-plan {{{2
 
@@ -1167,23 +1169,29 @@ copie-et-desactive-region () {
 	(( REGION_ACTIVE == 1 )) && REGION_ACTIVE=0
 }
 
+# zoxide {{{2
 
-# Fzf & Greenclip {{{2
-
-fzf-greenclip () {
-	emulate -R zsh
-	setopt local_options
-	setopt warn_create_global
-	tampon=$BUFFER
-	copie=$(greenclip print | fzf)
-	echo $copie | xclip -selection clipboard
-	zle reset-prompt
-	zle kill-buffer
-	LBUFFER=$copie
-	zle quote-line
-	LBUFFER=$tampon$LBUFFER
-	zle beginning-of-line
+zoxide-interactive () {
+	zi
+	zle accept-line
 }
+
+# fzf & greenclip {{{2
+
+# fzf-greenclip () {
+# 	emulate -R zsh
+# 	setopt local_options
+# 	setopt warn_create_global
+# 	tampon=$BUFFER
+# 	copie=$(greenclip print | fzf)
+# 	echo $copie | xclip -selection clipboard
+# 	zle reset-prompt
+# 	zle kill-buffer
+# 	LBUFFER=$copie
+# 	zle quote-line
+# 	LBUFFER=$tampon$LBUFFER
+# 	zle beginning-of-line
+# }
 
 # math functions {{{1
 

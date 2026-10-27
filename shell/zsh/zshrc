@@ -733,8 +733,8 @@ zstyle ':fzf-tab:*' group-colors \
 
 eval "$(zoxide init zsh)"
 
-zle -N zi
-bindkey '^F' zi
+zle -N zoxide-interactive
+bindkey "^F" zoxide-interactive
 
 # alias {{{1
 
