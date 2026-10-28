@@ -353,16 +353,12 @@ show_startup_tips false
 //
 // default_shell "fish"
 
-default_shell "zsh"
-
 // args syntax does not work
 // replaced by sourced env files
 // see ~/racine/config/wayland/uwsm/env
 // and ~/racine/config/shell/utils/profile
 
-// default_shell "/bin/zsh" {
-//     args "-l" "-i"
-// }
+default_shell "zsh"
 
 // works but zellij asks confirm to run it
 

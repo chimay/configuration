@@ -85,6 +85,8 @@ default_shell = "zsh"
 # "auto" uses login shells on macOS and keeps the current behavior elsewhere.
 # shell_mode = "auto"
 
+shell_mode = "login"
+
 # CWD policy for new panes, tabs, and workspaces when no explicit --cwd is provided.
 # Use "follow" to inherit the source pane/workspace, "home" for $HOME,
 # "current" for Herdr's process directory, or a fixed path such as "~/Projects".
@@ -92,6 +94,8 @@ default_shell = "zsh"
 
 # Render pane images in Kitty graphics-compatible outer terminals.
 # kitty_graphics = true
+
+kitty_graphics = true
 
 # update {{{1
 
