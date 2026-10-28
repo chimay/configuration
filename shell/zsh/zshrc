@@ -657,6 +657,10 @@ source ~/racine/shell/source/fzf-tab.plugin.zsh
 
 bindkey '^I' fzf-tab-complete
 
+# television {{{2
+
+eval "$(tv init zsh)"
+
 # zstyle {{{3
 
 # traditional menu could interfere

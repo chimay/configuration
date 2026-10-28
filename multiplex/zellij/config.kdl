@@ -676,7 +676,7 @@ themes {
 		//red "#f85438"
 		//red "#f9963a"
 		red "#5b3c11"
-		green "#9a7530"
+		green "#7b3c11"
 		yellow "#b58a45"
 		blue "#806b50"
 		//magenta "#98705b"
@@ -745,7 +745,13 @@ theme "brown-black"
 //
 // default_layout "compact"
 
-// default_layout "basic"
+// tab bar bottom, binding mode at top
+
+//default_layout "reverse"
+
+// tab bar and binding mode at top
+
+default_layout "top"
 
 // The folder in which Zellij will look for layouts
 // (Requires restart)

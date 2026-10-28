@@ -485,16 +485,18 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- nvim-treesitter-modules {{{3
 
+-- also visual : an and in
+
 require("treesitter-modules").setup({
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<c-space>",
-      node_incremental = "<c-space>",
-      scope_incremental = false,
-      node_decremental = "<m-space>",
-    },
-  },
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "gnn", -- Normal mode
+			node_incremental = "grn", -- Visual mode
+			scope_incremental = "grc", -- Visual mode
+			node_decremental = "grm", -- Visual mode
+		},
+	},
 })
 
 -- nvim-treesitter-textobjects {{{3
@@ -744,20 +746,19 @@ vim.diagnostic.config({ virtual_text = false })
 map("n", "[d", vim.diagnostic.goto_prev,          { desc = "Previous diagnostic" })
 map("n", "]d", vim.diagnostic.goto_next,          { desc = "Next diagnostic" })
 
+-- map("n", "[d", vim.diagnostic.jump({ count = -1 }), { desc = "Previous diagnostic" })
+-- map("n", "]d", vim.diagnostic.jump({ count = 1 }),  { desc = "Next diagnostic" })
+
+map("n", "K",  vim.lsp.buf.hover,            { desc = "LSP: Hover documentation" })
+
+map("n", "<f11>lf", vim.diagnostic.open_float,  { desc = "Show diagnostic" })
+
 map('n', '<f11>ll', telescope_builtin.diagnostics, { desc = 'Telescope diagnostics' })
 
 map("n", "<f11>ldd", vim.lsp.buf.definition,      { desc = "LSP: Go to definition" })
 map("n", "<f11>ldc", vim.lsp.buf.declaration,     { desc = "LSP: Go to declaration" })
-map("n", "<f11>li", vim.lsp.buf.implementation,   { desc = "LSP: Go to implementation" })
-map("n", "<f11>l&", vim.lsp.buf.references,       { desc = "LSP: References" })
-map("n", "<f11>ldt", vim.lsp.buf.type_definition,  { desc = "LSP: Go to type definition" })
-map("n", "K",  vim.lsp.buf.hover,            { desc = "LSP: Hover documentation" })
 map("n", "<f11>lds", vim.lsp.buf.document_symbol, { desc = "LSP: Document symbols" })
 map("n", "<f11>lw", vim.lsp.buf.workspace_symbol, { desc = "LSP: Workspace symbols" })
-
-map("n", "<f11>lr", vim.lsp.buf.rename,        { desc = "LSP: Rename symbol" })
-map("n", "<f11>lc", vim.lsp.buf.code_action,  { desc = "LSP: Code action" })
-map("n", "<f11>lf", vim.diagnostic.open_float,  { desc = "Show diagnostic" })
 
 -- dap : debug adapter protocol {{{2
 
@@ -877,23 +878,6 @@ luasnip.add_snippets("cs", {
             }),
             i(2),
         })),
-})
-
-luasnip.add_snippets("typescriptreact", {
-    s("co", {
-        d(function()
-            local register_data = vim.fn.getreg() .. "";
-            if string.match(register_data, "[%d-]+,%s*[%d-]+") then
-                return M.sn(nil, {
-                    M.t("position([" .. register_data .. "])"),
-                })
-            else
-                print("register does not contain the pattern")
-                return M.sn(nil, { })
-            end
-        end),
-        i(1)
-    })
 })
 
 -- completion {{{2

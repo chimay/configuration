@@ -585,18 +585,14 @@ nnoremap <s-space>C <cmd>FzfLua colorschemes<cr>
 
 " telescope {{{2
 
-nnoremap <f11>t<f11> <cmd>Telescope<cr>
-nnoremap <f11>tf <cmd>Telescope find_files<cr>
-nnoremap <f11>to <cmd>Telescope oldfiles<cr>
-nnoremap <f11>tb <cmd>Telescope buffers<cr>
-nnoremap <f11>tj <cmd>Telescope jumplist<cr>
-nnoremap <f11>tt <cmd>Telescope tags<cr>
-nnoremap <f11>tF <cmd>Telescope file_browser<cr>
-nnoremap <f11>td <cmd>Telescope diagnostics<cr>
-
-" nnoremap <f11>nn :Telescope notify<cr>
-" nnoremap <f11>nc :NotificationsClear<cr>
-" nnoremap <f11><f11> :Telescope notify<cr>
+nnoremap <c-space><c-space> <cmd>Telescope<cr>
+nnoremap <c-space>f <cmd>Telescope find_files<cr>
+nnoremap <c-space>o <cmd>Telescope oldfiles<cr>
+nnoremap <c-space>b <cmd>Telescope buffers<cr>
+nnoremap <c-space>j <cmd>Telescope jumplist<cr>
+nnoremap <c-space>t <cmd>Telescope tags<cr>
+nnoremap <c-space>F <cmd>Telescope file_browser<cr>
+nnoremap <c-space>d <cmd>Telescope diagnostics<cr>
 
 " Liens {{{1
 
