@@ -670,7 +670,7 @@ theme_dir "/home/david/racine/config/multiplex/zellij/theme"
 
 themes {
 	brown-black {
-		fg "#5b3c11"
+		fg "#4b3c11"
 		bg "#341207"
 		black "#000000"
 		//red "#f85438"
