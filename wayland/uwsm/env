@@ -36,6 +36,11 @@ $HOME/racine/shell/version:\
 $HOME/racine/shell/visu:\
 $HOME/racine/shell/wayland:\
 $HOME/racine/shell/windenv:\
+$HOME/racine/self/bin/build:\
+$HOME/racine/self/bin/filesys:\
+$HOME/racine/self/bin/install:\
+$HOME/racine/self/bin/system:\
+$HOME/racine/self/bin/version:\
 "
 
 export LS_COLORS='\

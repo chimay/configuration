@@ -35,6 +35,10 @@ let g:no_plugin_maps = 1
 
 " ------------------------------------
 
+" builtin {{{1
+
+packadd nvim.undotree
+
 " plugin managers {{{1
 
 " rocks {{{2
