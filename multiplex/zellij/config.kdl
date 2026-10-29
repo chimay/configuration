@@ -302,14 +302,23 @@ keybinds clear-defaults=true {
 	shared_except "tab" "locked" {
 		bind "Ctrl t" { SwitchToMode "Tab"; }
 	}
+	shared_except "tab" "locked" {
+		bind "F2" { SwitchToMode "Tab"; }
+	}
 	shared_except "pane" "locked" {
 		bind "Ctrl p" { SwitchToMode "Pane"; }
 	}
 	shared_except "scroll" "locked" {
 		bind "Ctrl s" { SwitchToMode "Scroll"; }
 	}
+	shared_except "scroll" "locked" {
+		bind "F4" { SwitchToMode "Scroll"; }
+	}
 	shared_except "resize" "locked" {
 		bind "Alt r" { SwitchToMode "Resize"; }
+	}
+	shared_except "resize" "locked" {
+		bind "F3" { SwitchToMode "Resize"; }
 	}
 	shared_except "move" "locked" {
 		bind "Alt m" { SwitchToMode "Move"; }

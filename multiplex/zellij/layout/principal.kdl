@@ -7,29 +7,20 @@ layout {
 		}
 		children
 	}
+	pane_template name="zsh" {
+		cwd "~/racine"
+		command "zsh"
+		args "-l"
+		start_suspended false
+	}
 	tab name="1 shell" {
-		pane {
-			cwd "~/racine"
-			command "zsh"
-			args "-l"
-			start_suspended false
-		}
+		zsh
 	}
 	tab name="2 sand" {
-		pane {
-			cwd "~/racine"
-			command "zsh"
-			args "-l"
-			start_suspended false
-		}
+		zsh
 	}
 	tab name="3 wave" {
-		pane {
-			cwd "~/racine"
-			command "zsh"
-			args "-l"
-			start_suspended false
-		}
+		zsh
 	}
 	// avoid auto cd from zsh at login
 	tab name="4 repo" {
@@ -52,12 +43,11 @@ layout {
 			}
 		}
 	}
-	tab name="5 fedi" {
+	tab name="5 mail" {
 		pane {
-			cwd "~/racine"
-			command "zsh"
-			args "-l"
-			start_suspended false
+			command "run-neomutt.zsh"
+			start_suspended true
+			close_on_exit false
 		}
 	}
 	tab name="6 music" {
