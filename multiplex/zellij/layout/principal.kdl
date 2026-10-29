@@ -10,7 +10,7 @@ layout {
 	pane_template name="zsh" {
 		cwd "~/racine"
 		command "zsh"
-		args "-l"
+		args "-l" "-i"
 		start_suspended false
 	}
 	tab name="1 shell" {

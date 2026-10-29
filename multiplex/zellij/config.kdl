@@ -53,7 +53,7 @@ keybinds clear-defaults=true {
 	resize {
 		bind "Ctrl n" { SwitchToMode "Normal"; }
 		bind "Alt r" { SwitchToMode "Normal"; }
-		bind "F5" { SwitchToMode "Normal"; }
+		bind "F6" { SwitchToMode "Normal"; }
 		bind "h" "Left" { Resize "Increase Left"; }
 		bind "j" "Down" { Resize "Increase Down"; }
 		bind "k" "Up" { Resize "Increase Up"; }
@@ -89,6 +89,8 @@ keybinds clear-defaults=true {
 	}
 	move {
 		bind "Ctrl h" { SwitchToMode "Normal"; }
+		bind "Alt m" { SwitchToMode "Normal"; }
+		bind "F5" { SwitchToMode "Normal"; }
 		bind "n" "Tab" { MovePane; }
 		bind "p" { MovePaneBackwards; }
 		bind "h" "Left" { MovePane "Left"; }
@@ -244,6 +246,8 @@ keybinds clear-defaults=true {
 	shared {
 		bind "Ctrl PageUp" { GoToPreviousTab; }
 		bind "Ctrl PageDown" { GoToNextTab; }
+		bind "Shift PageUp" { MoveTab "Left"; }
+		bind "Shift PageDown" { MoveTab "Right"; }
 		bind "Alt Left" { GoToPreviousTab; }
 		bind "Alt Right" { GoToNextTab; }
 		bind "Ctrl Left" { MoveFocusOrTab "Left"; }
@@ -270,7 +274,7 @@ keybinds clear-defaults=true {
 			}
 			SwitchToMode "Locked"
 		}
-		bind "Ctrl !" { LaunchOrFocusPlugin "zellij-palette" {
+		bind "Ctrl :" { LaunchOrFocusPlugin "zellij-palette" {
 				floating true
 				move_to_focused_tab true
 				show_plugins false
@@ -326,10 +330,13 @@ keybinds clear-defaults=true {
 		bind "Alt r" { SwitchToMode "Resize"; }
 	}
 	shared_except "resize" "locked" {
-		bind "F5" { SwitchToMode "Resize"; }
+		bind "F6" { SwitchToMode "Resize"; }
 	}
 	shared_except "move" "locked" {
 		bind "Alt m" { SwitchToMode "Move"; }
+	}
+	shared_except "move" "locked" {
+		bind "F5" { SwitchToMode "Move"; }
 	}
 	shared_except "tmux" "locked" {
 		bind "Ctrl b" { SwitchToMode "Tmux"; }
