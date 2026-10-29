@@ -54,7 +54,12 @@ layout {
 		}
 	}
 	tab name="7 fedi" {
-		zsh
+		pane {
+			command "zsh"
+			//command "weechat"
+			start_suspended false
+			close_on_exit false
+		}
 	}
 	tab name="8 music" {
 		pane {

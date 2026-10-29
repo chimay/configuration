@@ -553,7 +553,9 @@ export RUBYLIB=~/racine/ruby/lib
 
 #  Navigateurs {{{1
 
-export BROWSER=w3m
+#export BROWSER=w3m
+
+export BROWSER=qutebrowser
 
 export WWW_HOME="file://$HOME/racine/refer/bookmarks/index.html"
 

@@ -18,7 +18,7 @@ quiet = false
 [commands.post]
 editor = "vim"
 
-[tui]
+[commands.tui]
 colors = 16
 
 [tui.palette]

@@ -698,7 +698,7 @@ theme_dir "/home/david/racine/config/multiplex/zellij/theme"
 
 themes {
 	brown-black {
-		fg "#5b3c11"
+		fg "#5b3711"
 		bg "#341207"
 		black "#000000"
 		//red "#f85438"
@@ -711,7 +711,7 @@ themes {
 		magenta "#7b3c11"
 		cyan "#9b8060"
 		//white "#e8967a"
-		white "#5b3c11"
+		white "#5b3711"
 		//orange "#b56b35"
 		orange "#5b3c11"
 	}
