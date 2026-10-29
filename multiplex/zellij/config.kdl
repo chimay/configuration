@@ -53,7 +53,7 @@ keybinds clear-defaults=true {
 	resize {
 		bind "Ctrl n" { SwitchToMode "Normal"; }
 		bind "Alt r" { SwitchToMode "Normal"; }
-		bind "F6" { SwitchToMode "Normal"; }
+		bind "F5" { SwitchToMode "Normal"; }
 		bind "h" "Left" { Resize "Increase Left"; }
 		bind "j" "Down" { Resize "Increase Down"; }
 		bind "k" "Up" { Resize "Increase Up"; }
@@ -78,7 +78,7 @@ keybinds clear-defaults=true {
 		bind "d" { NewPane "Down"; SwitchToMode "Normal"; }
 		bind "r" { NewPane "Right"; SwitchToMode "Normal"; }
 		bind "s" { NewPane "stacked"; SwitchToMode "Normal"; }
-		bind "x" { CloseFocus; SwitchToMode "Normal"; }
+		bind "x" { CloseFocus; }
 		bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
 		bind "Shift f" { ToggleFocusNoUiFullscreen; SwitchToMode "Normal"; }
 		bind "z" { TogglePaneFrames; SwitchToMode "Normal"; }
@@ -90,7 +90,7 @@ keybinds clear-defaults=true {
 	move {
 		bind "Ctrl h" { SwitchToMode "Normal"; }
 		bind "Alt m" { SwitchToMode "Normal"; }
-		bind "F5" { SwitchToMode "Normal"; }
+		bind "F6" { SwitchToMode "Normal"; }
 		bind "n" "Tab" { MovePane; }
 		bind "p" { MovePaneBackwards; }
 		bind "h" "Left" { MovePane "Left"; }
@@ -105,7 +105,7 @@ keybinds clear-defaults=true {
 		bind "h" "Left" "Up" "k" { GoToPreviousTab; }
 		bind "l" "Right" "Down" "j" { GoToNextTab; }
 		bind "n" { NewTab; SwitchToMode "RenameTab"; TabNameInput 0; }
-		bind "x" { CloseTab; SwitchToMode "Normal"; }
+		bind "x" { CloseTab; }
 		bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
 		bind "b" { BreakPane; SwitchToMode "Normal"; }
 		bind ")" { BreakPaneRight; SwitchToMode "Normal"; }
@@ -330,13 +330,13 @@ keybinds clear-defaults=true {
 		bind "Alt r" { SwitchToMode "Resize"; }
 	}
 	shared_except "resize" "locked" {
-		bind "F6" { SwitchToMode "Resize"; }
+		bind "F5" { SwitchToMode "Resize"; }
 	}
 	shared_except "move" "locked" {
 		bind "Alt m" { SwitchToMode "Move"; }
 	}
 	shared_except "move" "locked" {
-		bind "F5" { SwitchToMode "Move"; }
+		bind "F6" { SwitchToMode "Move"; }
 	}
 	shared_except "tmux" "locked" {
 		bind "Ctrl b" { SwitchToMode "Tmux"; }

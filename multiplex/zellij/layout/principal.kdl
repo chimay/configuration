@@ -22,8 +22,11 @@ layout {
 	tab name="3 wave" {
 		zsh
 	}
+	tab name="4 beach" {
+		zsh
+	}
 	// avoid auto cd from zsh at login
-	tab name="4 repo" {
+	tab name="5 repo" {
 		pane stacked=true {
 			pane {
 				expanded true
@@ -43,14 +46,17 @@ layout {
 			}
 		}
 	}
-	tab name="5 mail" {
+	tab name="6 mail" {
 		pane {
 			command "run-neomutt.zsh"
 			start_suspended true
 			close_on_exit false
 		}
 	}
-	tab name="6 music" {
+	tab name="7 fedi" {
+		zsh
+	}
+	tab name="8 music" {
 		pane {
 			command "ncmpcpp"
 			//command "rmpc"
@@ -58,7 +64,7 @@ layout {
 			close_on_exit false
 		}
 	}
-	tab name="7 monitor" {
+	tab name="9 monitor" {
 		pane {
 			command "btop"
 			start_suspended true

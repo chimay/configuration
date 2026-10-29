@@ -164,7 +164,7 @@ enabled = false
 [nightlight]
 enabled = true
 force = false
-temperature_day = 6000
+temperature_day = 6200
 temperature_night = 4700
 
 [location]
@@ -299,7 +299,7 @@ sidebar = "full"
 
 [shell]
 clipboard_enabled = true
-clipboard_history_max_entries = 5000
+clipboard_history_max_entries = 300
 clipboard_keep_from_closed_apps = true
 clipboard_confirm_clear_history = true
 

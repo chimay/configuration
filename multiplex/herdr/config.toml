@@ -129,6 +129,8 @@ prefix = "F1"
 # Prefix-mode actions
 # help = "prefix+?"
 
+# -- , is below ?
+
 help = "prefix+,"
 
 # settings = "prefix+s"
