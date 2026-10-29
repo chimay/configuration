@@ -52,6 +52,8 @@ keybinds clear-defaults=true {
 	}
 	resize {
 		bind "Ctrl n" { SwitchToMode "Normal"; }
+		bind "Alt r" { SwitchToMode "Normal"; }
+		bind "F5" { SwitchToMode "Normal"; }
 		bind "h" "Left" { Resize "Increase Left"; }
 		bind "j" "Down" { Resize "Increase Down"; }
 		bind "k" "Up" { Resize "Increase Up"; }
@@ -65,6 +67,7 @@ keybinds clear-defaults=true {
 	}
 	pane {
 		bind "Ctrl p" { SwitchToMode "Normal"; }
+		bind "F3" { SwitchToMode "Normal"; }
 		bind "h" "Left" { MoveFocus "Left"; }
 		bind "l" "Right" { MoveFocus "Right"; }
 		bind "j" "Down" { MoveFocus "Down"; }
@@ -95,6 +98,7 @@ keybinds clear-defaults=true {
 	}
 	tab {
 		bind "Ctrl t" { SwitchToMode "Normal"; }
+		bind "F2" { SwitchToMode "Normal"; }
 		bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
 		bind "h" "Left" "Up" "k" { GoToPreviousTab; }
 		bind "l" "Right" "Down" "j" { GoToNextTab; }
@@ -117,6 +121,7 @@ keybinds clear-defaults=true {
 	}
 	scroll {
 		bind "Ctrl s" { SwitchToMode "Normal"; }
+		bind "F4" { SwitchToMode "Normal"; }
 		bind "e" { EditScrollback; SwitchToMode "Normal"; }
 		bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
 		bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
@@ -308,6 +313,9 @@ keybinds clear-defaults=true {
 	shared_except "pane" "locked" {
 		bind "Ctrl p" { SwitchToMode "Pane"; }
 	}
+	shared_except "pane" "locked" {
+		bind "F3" { SwitchToMode "Pane"; }
+	}
 	shared_except "scroll" "locked" {
 		bind "Ctrl s" { SwitchToMode "Scroll"; }
 	}
@@ -318,7 +326,7 @@ keybinds clear-defaults=true {
 		bind "Alt r" { SwitchToMode "Resize"; }
 	}
 	shared_except "resize" "locked" {
-		bind "F3" { SwitchToMode "Resize"; }
+		bind "F5" { SwitchToMode "Resize"; }
 	}
 	shared_except "move" "locked" {
 		bind "Alt m" { SwitchToMode "Move"; }
@@ -357,6 +365,8 @@ show_startup_tips false
 //
 // simplified_ui true
 
+simplified_ui true
+
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //
@@ -383,6 +393,8 @@ default_shell "zsh"
 //   - false
 //
 // pane_frames true
+
+pane_frames true
 
 // Set the pane frame style when pane_frames is enabled
 // Options:
