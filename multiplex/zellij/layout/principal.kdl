@@ -1,0 +1,32 @@
+
+layout {
+	default_tab_template {
+		pane size=1 borderless=true {
+			plugin location="status-bar"
+		}
+		pane size=1 borderless=true {
+			plugin location="tab-bar"
+		}
+		children
+	}
+	tab name="shell"
+	tab name="sand"
+	tab name="wave"
+	tab name="repo" {
+		pane stacked=true {
+			pane {
+				expanded true
+				cwd "~/racine/public/eclats2vers/generic"
+			}
+			pane {
+				cwd "~/racine/public/eclats2vers/generic/matemat"
+			}
+			pane {
+				cwd "~/racine/public/eclats2vers/generic/matemat/tikz"
+			}
+		}
+	}
+	tab name="fedi"
+	tab name="mail"
+	tab name="news"
+}

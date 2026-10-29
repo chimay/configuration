@@ -98,7 +98,7 @@ keybinds clear-defaults=true {
 		bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
 		bind "h" "Left" "Up" "k" { GoToPreviousTab; }
 		bind "l" "Right" "Down" "j" { GoToNextTab; }
-		bind "n" { NewTab; SwitchToMode "Normal"; }
+		bind "n" { NewTab; SwitchToMode "RenameTab"; TabNameInput 0; }
 		bind "x" { CloseTab; SwitchToMode "Normal"; }
 		bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
 		bind "b" { BreakPane; SwitchToMode "Normal"; }
@@ -670,7 +670,7 @@ theme_dir "/home/david/racine/config/multiplex/zellij/theme"
 
 themes {
 	brown-black {
-		fg "#4b3c11"
+		fg "#5b3c11"
 		bg "#341207"
 		black "#000000"
 		//red "#f85438"

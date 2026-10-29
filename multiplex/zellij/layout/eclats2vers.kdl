@@ -1,0 +1,21 @@
+
+layout {
+	pane size=1 borderless=true {
+		plugin location="status-bar"
+	}
+	pane size=1 borderless=true {
+		plugin location="tab-bar"
+	}
+	pane stacked=true {
+		pane {
+			expanded true
+			cwd "~/racine/public/eclats2vers/generic"
+		}
+		pane {
+			cwd "~/racine/public/eclats2vers/generic/matemat"
+		}
+		pane {
+			cwd "~/racine/public/eclats2vers/generic/matemat/tikz"
+		}
+	}
+}
