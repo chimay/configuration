@@ -12,7 +12,7 @@ layout {
 	}
 	pane {
 		command "zsh"
-		args "-l"
+		args "-l" "-i"
 		start_suspended false
 	}
 }
