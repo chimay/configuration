@@ -1,32 +1,78 @@
 
 layout {
+	cwd "~/racine"
 	default_tab_template {
 		pane size=1 borderless=true {
-			plugin location="status-bar"
-		}
-		pane size=1 borderless=true {
-			plugin location="tab-bar"
+			plugin location="compact-bar"
 		}
 		children
 	}
-	tab name="shell"
-	tab name="sand"
-	tab name="wave"
-	tab name="repo" {
+	tab name="1 shell" {
+		pane {
+			cwd "~/racine"
+			command "zsh"
+			args "-l"
+			start_suspended false
+		}
+	}
+	tab name="2 sand" {
+		pane {
+			cwd "~/racine"
+			command "zsh"
+			args "-l"
+			start_suspended false
+		}
+	}
+	tab name="3 wave" {
+		pane {
+			cwd "~/racine"
+			command "zsh"
+			args "-l"
+			start_suspended false
+		}
+	}
+	// avoid auto cd from zsh at login
+	tab name="4 repo" {
 		pane stacked=true {
 			pane {
 				expanded true
 				cwd "~/racine/public/eclats2vers/generic"
+				command "zsh"
+				start_suspended false
 			}
 			pane {
 				cwd "~/racine/public/eclats2vers/generic/matemat"
+				command "zsh"
+				start_suspended false
 			}
 			pane {
 				cwd "~/racine/public/eclats2vers/generic/matemat/tikz"
+				command "zsh"
+				start_suspended false
 			}
 		}
 	}
-	tab name="fedi"
-	tab name="mail"
-	tab name="news"
+	tab name="5 fedi" {
+		pane {
+			cwd "~/racine"
+			command "zsh"
+			args "-l"
+			start_suspended false
+		}
+	}
+	tab name="6 music" {
+		pane {
+			command "ncmpcpp"
+			//command "rmpc"
+			start_suspended true
+			close_on_exit false
+		}
+	}
+	tab name="7 monitor" {
+		pane {
+			command "btop"
+			start_suspended true
+			close_on_exit false
+		}
+	}
 }
