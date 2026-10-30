@@ -1097,7 +1097,7 @@ hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("rofi-run.zsh"))
 hl.bind(super .. " + CONTROL + A", hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
 
 hl.bind(super .. " + CONTROL + section", hl.dsp.exec_cmd("run-vifm.zsh"))
-hl.bind(super .. " + CONTROL + s", hl.dsp.exec_cmd("kitty --single-instance spf ~/racine"))
+hl.bind(super .. " + SHIFT + F", hl.dsp.exec_cmd("kitty --single-instance spf ~/racine"))
 
 hl.bind(super .. " + CONTROL + equal", hl.dsp.exec_cmd([[
 kitty --single-instance --title calc calc
@@ -1107,7 +1107,6 @@ hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("dolphin || thunar || caja ||
 hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
 hl.bind(super .. " + CONTROL + M", hl.dsp.exec_cmd("kitty --single-instance btop"))
 hl.bind(super .. " + CONTROL + N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
-hl.bind(super .. " + CONTROL + C", hl.dsp.exec_cmd("vscodium"))
 hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
 hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("goto-or-run.sh qutebrowser"))
 hl.bind(super .. " + CONTROL + B", hl.dsp.exec_cmd("floorp"))

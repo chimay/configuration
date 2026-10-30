@@ -79,6 +79,7 @@ vim.pack.add({
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = "main"},
 	{ src = "https://github.com/MeanderingProgrammer/treesitter-modules.nvim" },
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = "main"},
+	{ src = 'https://github.com/Wansmer/treesj', version = "main"},
 })
 
 -- mason {{{2
@@ -595,6 +596,32 @@ end, { desc = "swap inner arguments" })
 map("n", "<f11>sA", function()
   require("nvim-treesitter-textobjects.swap").swap_previous "@parameter.outer"
 end, { desc = "swap outer arguments" })
+
+-- treesj {{{3
+
+local tsj = require('treesj')
+
+--local langs = {[> configuration for languages <]}
+
+tsj.setup({
+  use_default_keymaps = true,
+  check_syntax_error = true,
+  max_join_length = 120,
+  ---Cursor behavior:
+  ---hold - cursor follows the node/place on which it was called
+  ---start - cursor jumps to the first symbol of the node being formatted
+  ---end - cursor jumps to the last symbol of the node being formatted
+  cursor_behavior = 'hold',
+  notify = true,
+  dot_repeat = true,
+  on_error = nil,
+  -- langs = {}, -- See the default presets in lua/treesj/langs
+})
+
+vim.keymap.set('n', '<f11>j', require('treesj').toggle)
+vim.keymap.set('n', '<f11>J', function()
+    require('treesj').toggle({ split = { recursive = true } })
+end)
 
 -- mason {{{2
 

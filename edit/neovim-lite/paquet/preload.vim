@@ -445,7 +445,7 @@ set tabline=%!wheel#status#tabline()
 
 " maps {{{3
 
-nnoremap <s-space>          :<c-u>Wheel<space>
+nnoremap <m-space>          :<c-u>Wheel<space>
 
 nnoremap <m-$>           <plug>(wheel-sync-up)
 nnoremap <c-$>           <plug>(wheel-sync-down)
@@ -500,20 +500,20 @@ nmap <silent> <d-s-space>    <plug>(wheel-mandala-backward)
 
 " fzf lua {{{2
 
-nnoremap <c-space><c-space> <cmd>FzfLua<cr>
-nnoremap <c-space>f <cmd>FzfLua files<cr>
-nnoremap <c-space>o <cmd>FzfLua oldfiles<cr>
-nnoremap <c-space>a <cmd>FzfLua args<cr>
-nnoremap <c-space>b <cmd>FzfLua buffers<cr>
-nnoremap <c-space>w <cmd>FzfLua tabs<cr>
-nnoremap <c-space>j <cmd>FzfLua jumps<cr>
-nnoremap <c-space>c <cmd>FzfLua changes<cr>
-nnoremap <c-space>l <cmd>FzfLua blines<cr>
-nnoremap <c-space>L <cmd>FzfLua lines<cr>
-nnoremap <c-space>t <cmd>FzfLua tags<cr>
-nnoremap <c-space>u <cmd>FzfLua undotree<cr>
-nnoremap <c-space>m <cmd>FzfLua keymap<cr>
-nnoremap <c-space>C <cmd>FzfLua colorschemes<cr>
+nnoremap <s-space><c-space> <cmd>FzfLua<cr>
+nnoremap <s-space>f <cmd>FzfLua files<cr>
+nnoremap <s-space>o <cmd>FzfLua oldfiles<cr>
+nnoremap <s-space>a <cmd>FzfLua args<cr>
+nnoremap <s-space>b <cmd>FzfLua buffers<cr>
+nnoremap <s-space>w <cmd>FzfLua tabs<cr>
+nnoremap <s-space>j <cmd>FzfLua jumps<cr>
+nnoremap <s-space>c <cmd>FzfLua changes<cr>
+nnoremap <s-space>l <cmd>FzfLua blines<cr>
+nnoremap <s-space>L <cmd>FzfLua lines<cr>
+nnoremap <s-space>t <cmd>FzfLua tags<cr>
+nnoremap <s-space>u <cmd>FzfLua undotree<cr>
+nnoremap <s-space>m <cmd>FzfLua keymap<cr>
+nnoremap <s-space>C <cmd>FzfLua colorschemes<cr>
 
 " Liens {{{1
 
@@ -680,7 +680,7 @@ if ! exists("g:organ_loaded")
 	let g:organ_config.completion.fuzzy = 0
 	let g:organ_config.completion.scores = 0
 	" maps
-	nnoremap <c-tab> :<c-u>Organ<space>
+	nnoremap <m-tab> :<c-u>Organ<space>
 	nnoremap <d-M> :<c-u>Organ org-to-markdown
 	nmap § <plug>(organ-goto-headline)
 	nmap <bs> <plug>(organ-goto-headline)
