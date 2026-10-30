@@ -20,7 +20,7 @@ set -s escape-time 30
 #set -ga terminal-overrides ",kitty-256color:Tc"
 #set -ga terminal-overrides ",*:RGB"
 
-set -as terminal-overrides ',kitty-256color:RGB'
+set -as terminal-overrides ',kitty:RGB'
 set -as terminal-features ',*:RGB'
 
 #set -sa terminal-features ',xterm-kitty:RGB'
@@ -142,7 +142,7 @@ set -w -g allow-rename off
 # Si on, restore l’écran d’avant le lancement d’une TUI
 # Si off, la fenêtre du TUI s’insère dans le flux du terminal
 
-set -g alternate-screen off
+set -g alternate-screen on
 
 # panels (~ windows) {{{1
 

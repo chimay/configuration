@@ -273,8 +273,6 @@ require('telescope').setup({
     }
 })
 
-local telescope_builtin = require('telescope.builtin')
-
 -- file explorer {{{2
 
 -- nvim-tree {{{3
@@ -470,10 +468,10 @@ nvim_treesitter.install {
 
 vim.treesitter.language.register('bash', { 'sh' })
 
-local treesitter = vim.api.nvim_create_augroup('treesitter', { clear = true })
+local treesitter_group = vim.api.nvim_create_augroup('treesitter', { clear = true })
 
 vim.api.nvim_create_autocmd('FileType', {
-	group = treesitter,
+	group = treesitter_group,
 	pattern = 'python',
 	callback = function()
 		vim.treesitter.start()
@@ -485,19 +483,21 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- nvim-treesitter-modules {{{3
 
--- also visual : an and in
+---- default
 
-require("treesitter-modules").setup({
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "gnn", -- Normal mode
-			node_incremental = "grn", -- Visual mode
-			scope_incremental = "grc", -- Visual mode
-			node_decremental = "grm", -- Visual mode
-		},
-	},
-})
+-- require("treesitter-modules").setup({
+-- 	incremental_selection = {
+-- 		enable = true,
+-- 		keymaps = {
+-- 			init_selection = "gnn", -- Normal mode
+-- 			scope_incremental = "grc", -- Visual mode
+-- 			node_incremental = "grn", -- Visual mode
+-- 			node_decremental = "grm", -- Visual mode
+-- 			node_incremental = "an", -- Visual mode
+-- 			node_decremental = "in", -- Visual mode
+-- 		},
+-- 	},
+-- })
 
 -- nvim-treesitter-textobjects {{{3
 
@@ -741,24 +741,49 @@ diagnostic_hl()
 
 -- lsp maps {{{3
 
-vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({ virtual_text = true })
 
-map("n", "[d", vim.diagnostic.goto_prev,          { desc = "Previous diagnostic" })
-map("n", "]d", vim.diagnostic.goto_next,          { desc = "Next diagnostic" })
+---- see :help lsp-defaults
 
--- map("n", "[d", vim.diagnostic.jump({ count = -1 }), { desc = "Previous diagnostic" })
--- map("n", "]d", vim.diagnostic.jump({ count = 1 }),  { desc = "Next diagnostic" })
+-- - "gra" (Normal and Visual mode) is mapped to |vim.lsp.buf.code_action()|
+-- - "gri" is mapped to |vim.lsp.buf.implementation()|
+-- - "grn" is mapped to |vim.lsp.buf.rename()|
+-- - "grr" is mapped to |vim.lsp.buf.references()|
+-- - "grt" is mapped to |vim.lsp.buf.type_definition()|
+-- - "grx" is mapped to |vim.lsp.codelens.run()|
+-- - "gO" is mapped to |vim.lsp.buf.document_symbol()|
+-- - CTRL-S (Insert mode) is mapped to |vim.lsp.buf.signature_help()|
+-- - |v_an| and |v_in| fall back to LSP |vim.lsp.buf.selection_range()| if
+--   treesitter is not active.
+-- - |gx| handles `textDocument/documentLink`. Example: with gopls, invoking gx
+--   on "os" in this Go code will open documentation externally: >
+--     package nvim
+--     import (
+--        "os"
+--     )
 
-map("n", "K",  vim.lsp.buf.hover,            { desc = "LSP: Hover documentation" })
+---- see :help diagnostic-defaults
 
-map("n", "<f11>lf", vim.diagnostic.open_float,  { desc = "Show diagnostic" })
+-- These diagnostic keymaps are created unconditionally when Nvim starts:
+-- - `]d` jumps to the next diagnostic in the buffer. |]d-default|
+-- - `[d` jumps to the previous diagnostic in the buffer. |[d-default|
+-- - `]D` jumps to the last diagnostic in the buffer. |]D-default|
+-- - `[D` jumps to the first diagnostic in the buffer. |[D-default|
+-- - `<C-w>d` shows diagnostic at cursor in a floating window. |CTRL-W_d-default|
 
-map('n', '<f11>ll', telescope_builtin.diagnostics, { desc = 'Telescope diagnostics' })
+---- not needed any more
 
-map("n", "<f11>ldd", vim.lsp.buf.definition,      { desc = "LSP: Go to definition" })
-map("n", "<f11>ldc", vim.lsp.buf.declaration,     { desc = "LSP: Go to declaration" })
-map("n", "<f11>lds", vim.lsp.buf.document_symbol, { desc = "LSP: Document symbols" })
-map("n", "<f11>lw", vim.lsp.buf.workspace_symbol, { desc = "LSP: Workspace symbols" })
+--local telescope_builtin = require('telescope.builtin')
+
+-- map("n", "[d", vim.diagnostic.goto_prev,          { desc = "Previous diagnostic" })
+-- map("n", "]d", vim.diagnostic.goto_next,          { desc = "Next diagnostic" })
+-- map("n", "K",  vim.lsp.buf.hover,            { desc = "LSP: Hover documentation" })
+-- map("n", "<f11>lf", vim.diagnostic.open_float,  { desc = "Show diagnostic" })
+-- map('n', '<f11>ll', telescope_builtin.diagnostics, { desc = 'Telescope diagnostics' })
+-- map("n", "<f11>ldd", vim.lsp.buf.definition,      { desc = "LSP: Go to definition" })
+-- map("n", "<f11>ldc", vim.lsp.buf.declaration,     { desc = "LSP: Go to declaration" })
+-- map("n", "<f11>lds", vim.lsp.buf.document_symbol, { desc = "LSP: Document symbols" })
+-- map("n", "<f11>lw", vim.lsp.buf.workspace_symbol, { desc = "LSP: Workspace symbols" })
 
 -- dap : debug adapter protocol {{{2
 
@@ -836,49 +861,49 @@ end, {silent = true})
 -- local ms = luasnip.multi_snippet
 -- local k = require("luasnip.nodes.key_indexer").new_key
 
-local s = luasnip.snippet
-local t = luasnip.text_node
-local i = luasnip.insert_node
-local extras = require("luasnip.extras")
-local rep = extras.rep
-local fmt = require("luasnip.extras.fmt").fmt
-local c = luasnip.choice_node
-local f = luasnip.function_node
-local d = luasnip.dynamic_node
-local sn = luasnip.snippet_node
+-- local s = luasnip.snippet
+-- local t = luasnip.text_node
+-- local i = luasnip.insert_node
+-- local extras = require("luasnip.extras")
+-- local rep = extras.rep
+-- local fmt = require("luasnip.extras.fmt").fmt
+-- local c = luasnip.choice_node
+-- local f = luasnip.function_node
+-- local d = luasnip.dynamic_node
+-- local sn = luasnip.snippet_node
 
-luasnip.add_snippets("lua", {
-    s("if", {
-        t('if '),
-        i(1, "true"),
-        t(' then '),
-        i(2),
-        t(' end')
-    })
-})
+-- luasnip.add_snippets("lua", {
+--     s("if", {
+--         t('if '),
+--         i(1, "true"),
+--         t(' then '),
+--         i(2),
+--         t(' end')
+--     })
+-- })
 
-luasnip.add_snippets("tex", {
-    s("beg", {
-        t("\\begin{"), i(1), t("}"),
-        t({ "", "\t" }), i(0),
-        t({ "", "\\end{" }), rep(1), t("}"),
-    })
-})
+-- luasnip.add_snippets("tex", {
+--     s("beg", {
+--         t("\\begin{"), i(1), t("}"),
+--         t({ "", "\t" }), i(0),
+--         t({ "", "\\end{" }), rep(1), t("}"),
+--     })
+-- })
 
-luasnip.add_snippets("cs", {
-    s("logc",
-        fmt([[Debug.Log($"<color={}>{}</color>");]],
-        {
-            c(1, {
-                t("red"),
-                t("green"),
-                t("blue"),
-                t("cyan"),
-                t("magenta")
-            }),
-            i(2),
-        })),
-})
+-- luasnip.add_snippets("cs", {
+--     s("logc",
+--         fmt([[Debug.Log($"<color={}>{}</color>");]],
+--         {
+--             c(1, {
+--                 t("red"),
+--                 t("green"),
+--                 t("blue"),
+--                 t("cyan"),
+--                 t("magenta")
+--             }),
+--             i(2),
+--         })),
+-- })
 
 -- completion {{{2
 

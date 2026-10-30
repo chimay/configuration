@@ -140,7 +140,7 @@ override_duration = 1000
 [notification.filter.suspend_is_blocked]
 enabled = true
 match_content = "Suspend is blocked"
-override_duration = 3600000
+override_duration = 1800000
 
 [notification.filter.disconnected]
 enabled = true
