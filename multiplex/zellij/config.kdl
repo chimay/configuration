@@ -53,7 +53,7 @@ keybinds clear-defaults=true {
 	resize {
 		bind "Ctrl n" { SwitchToMode "Normal"; }
 		bind "Alt r" { SwitchToMode "Normal"; }
-		bind "F5" { SwitchToMode "Normal"; }
+		bind "F7" { SwitchToMode "Normal"; }
 		bind "h" "Left" { Resize "Increase Left"; }
 		bind "j" "Down" { Resize "Increase Down"; }
 		bind "k" "Up" { Resize "Increase Up"; }
@@ -126,6 +126,7 @@ keybinds clear-defaults=true {
 		bind "F4" { SwitchToMode "Normal"; }
 		bind "e" { EditScrollback; SwitchToMode "Normal"; }
 		bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
+		bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
 		bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
 		bind "j" "Down" { ScrollDown; }
 		bind "k" "Up" { ScrollUp; }
@@ -171,7 +172,9 @@ keybinds clear-defaults=true {
 		bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
 	}
 	session {
-		bind "Ctrl o" { SwitchToMode "Normal"; }
+		bind "F5" { SwitchToMode "Normal"; }
+		//bind "Alt s" { SwitchToMode "Normal"; }
+		//bind "Ctrl o" { SwitchToMode "Normal"; }
 		bind "Ctrl s" { SwitchToMode "Scroll"; }
 		bind "d" { Detach; }
 		bind "]" { FocusHostSession; SwitchToMode "Normal"; }
@@ -284,8 +287,8 @@ keybinds clear-defaults=true {
 	}
 	shared_except "locked" {
 		bind "F1" { SwitchToMode "Locked"; }
-		bind "Ctrl q" { Quit; }
-		bind "Alt f" { ToggleFloatingPanes; }
+		bind "Ctrl Shift q" { Quit; }
+		bind "Alt F12" { ToggleFloatingPanes; }
 		bind "Alt n" { NewPane; }
 		bind "Alt i" { MoveTab "Left"; }
 		bind "Alt o" { MoveTab "Right"; }
@@ -306,40 +309,32 @@ keybinds clear-defaults=true {
 		bind "Enter" "Esc" { SwitchToMode "Normal"; }
 	}
 	shared_except "session" "locked" {
-		bind "Alt s" { SwitchToMode "Session"; }
-	}
-	shared_except "tab" "locked" {
-		bind "Ctrl t" { SwitchToMode "Tab"; }
+		bind "F5" { SwitchToMode "Session"; }
+		//bind "Alt s" { SwitchToMode "Session"; }
 	}
 	shared_except "tab" "locked" {
 		bind "F2" { SwitchToMode "Tab"; }
-	}
-	shared_except "pane" "locked" {
-		bind "Ctrl p" { SwitchToMode "Pane"; }
+		//bind "Ctrl t" { SwitchToMode "Tab"; }
 	}
 	shared_except "pane" "locked" {
 		bind "F3" { SwitchToMode "Pane"; }
-	}
-	shared_except "scroll" "locked" {
-		bind "Ctrl s" { SwitchToMode "Scroll"; }
+		//bind "Ctrl p" { SwitchToMode "Pane"; }
 	}
 	shared_except "scroll" "locked" {
 		bind "F4" { SwitchToMode "Scroll"; }
+		//bind "Ctrl s" { SwitchToMode "Scroll"; }
 	}
 	shared_except "resize" "locked" {
-		bind "Alt r" { SwitchToMode "Resize"; }
-	}
-	shared_except "resize" "locked" {
-		bind "F5" { SwitchToMode "Resize"; }
-	}
-	shared_except "move" "locked" {
-		bind "Alt m" { SwitchToMode "Move"; }
+		bind "F7" { SwitchToMode "Resize"; }
+		//bind "Alt r" { SwitchToMode "Resize"; }
 	}
 	shared_except "move" "locked" {
 		bind "F6" { SwitchToMode "Move"; }
+		//bind "Alt m" { SwitchToMode "Move"; }
 	}
 	shared_except "tmux" "locked" {
-		bind "Ctrl b" { SwitchToMode "Tmux"; }
+		bind "F8" { SwitchToMode "Tmux"; }
+		//bind "Ctrl b" { SwitchToMode "Tmux"; }
 	}
 }
 
@@ -394,6 +389,8 @@ default_shell "zsh"
 //
 // default_cwd ""
 
+default_cwd "~/racine"
+
 // Toggle between having pane frames around the panes
 // Options:
 //   - true (default)
@@ -411,6 +408,8 @@ pane_frames true
 //
 // pane_frame_style "titles"
 
+pane_frame_style "titles"
+
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
 //   - true (default)
@@ -426,6 +425,8 @@ pane_frames true
 //
 // session_serialization false
 
+session_serialization true
+
 // Whether pane viewports are serialized along with the session, default is false
 // (Requires restart)
 // Options:
@@ -434,6 +435,8 @@ pane_frames true
 //
 // serialize_pane_viewport true
 
+serialize_pane_viewport true
+
 // Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
 // defaults to the scrollback size. If this number is higher than the scrollback size, it will
 // also default to the scrollback size. This does nothing if `serialize_pane_viewport` is not true.
@@ -441,12 +444,17 @@ pane_frames true
 //
 // scrollback_lines_to_serialize 10000
 
- scrollback_lines_to_serialize 123470
+ scrollback_lines_to_serialize 1000
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
 //
 // default_mode "locked"
+
+default_mode "normal"
+
+// -- blocks normal input
+//default_mode "locked"
 
 // Toggle enabling the mouse mode.
 // On certain configurations, or terminals this could
@@ -458,6 +466,8 @@ pane_frames true
 //
 // mouse_mode false
 
+mouse_mode true
+
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
 // buffer. Excess number of lines are discarded in a FIFO fashion.
@@ -467,7 +477,7 @@ pane_frames true
 //
 // scroll_buffer_size 10000
 
-scroll_buffer_size 10000
+scroll_buffer_size 123470
 
 // Provide a command to execute when copying text. The text will be piped to
 // the stdin of the program to perform the copy. This can be used with
@@ -478,6 +488,8 @@ scroll_buffer_size 10000
 // copy_command "xclip -selection clipboard" // x11
 // copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
+
+//copy_command "wl-copy"
 
 // Choose the destination for copied text
 // Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.
@@ -492,6 +504,8 @@ scroll_buffer_size 10000
 // Default: true
 //
 // copy_on_select false
+
+copy_on_select true
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
@@ -528,11 +542,15 @@ scrollback_editor "/home/david/racine/shell/edit/neovim-lite.sh"
 //
 // support_kitty_keyboard_protocol false
 
+support_kitty_keyboard_protocol true
+
 // Enable or disable support for the Kitty Graphics Protocol, used to display images (the host terminal must also support it)
 // (Requires restart)
 // Default: true (if the host terminal supports it)
 //
 // support_kitty_graphics_protocol false
+
+support_kitty_graphics_protocol true
 
 // Whether to make sure a local web server is running when a new Zellij session starts.
 // This web server will allow creating new sessions and attaching to existing ones that have
@@ -571,7 +589,6 @@ scrollback_editor "/home/david/racine/shell/edit/neovim-lite.sh"
 // (Requires restart)
 //
 // web_server_ip "127.0.0.1"
-
 
 // A path to a certificate file to be used when setting up the web client to serve the
 // connection over HTTPs
@@ -626,6 +643,8 @@ scrollback_editor "/home/david/racine/shell/edit/neovim-lite.sh"
 //
 // advanced_mouse_actions false
 
+advanced_mouse_actions true
+
 // Whether Ctrl+ScrollWheel resizes panes
 // Default: true
 //
@@ -636,15 +655,21 @@ scrollback_editor "/home/david/racine/shell/edit/neovim-lite.sh"
 //
 // scroll_mode_sync false
 
+scroll_mode_sync true
+
 // Whether to enable mouse hover visual effects (frame highlight and help text)
 // Default: true
 //
 // mouse_hover_effects false
 
+ ouse_hover_effects true
+
 // Whether to show mouse hover help-text tips (resize help and group shortcuts)
 // Default: true
 //
 // mouse_hover_tips false
+
+mouse_hover_tips true
 
 // Whether triple-clicking inside command output marked by the shell (OSC 133) selects
 // the command and its output instead of the logical line
@@ -677,7 +702,6 @@ scrollback_editor "/home/david/racine/shell/edit/neovim-lite.sh"
 // typically work best. Set to 0 to use the number of (physical) CPU cores.
 // NOTE: This only applies to web clients at the moment."#;
 // client_async_worker_tasks 4
-
 
 web_client {
 	font "monospace"
