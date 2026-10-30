@@ -1183,7 +1183,8 @@ end)
 
 -- clipboard {{{2
 
-hl.bind(hyper .. " + ccedilla", hl.dsp.exec_cmd("rofi-cliphist.sh"))
+hl.bind(super .. " + ccedilla", hl.dsp.exec_cmd("rofi-cliphist.sh"))
+hl.bind(hyper .. " + ccedilla", hl.dsp.exec_cmd("copyq toggle"))
 
 -- keyboard {{{2
 
