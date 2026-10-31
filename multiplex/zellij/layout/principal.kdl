@@ -64,19 +64,4 @@ layout {
 			close_on_exit false
 		}
 	}
-	tab name="8 music" {
-		pane {
-			command "ncmpcpp"
-			//command "rmpc"
-			start_suspended true
-			close_on_exit false
-		}
-	}
-	tab name="9 monitor" {
-		pane {
-			command "btop"
-			start_suspended true
-			close_on_exit false
-		}
-	}
 }

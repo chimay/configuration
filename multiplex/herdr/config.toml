@@ -15,6 +15,7 @@ onboarding = false
 # theme {{{1
 
 [theme]
+
 # Built-in themes: catppuccin, terminal, tokyo-night, dracula, nord,
 #                  gruvbox, one-dark, solarized, kanagawa, rose-pine,
 #                  vesper
@@ -42,26 +43,42 @@ name = "gruvbox"
 # green = "#a6e3a1"
 
 [theme.custom]
-text = "#c8c0b8"
-panel_bg = "#181512"
+panel_bg = "#080706"
+sidebar_bg = "#080706"
+active_row_bg = "#17110a"
+selection_bg = "#5b3c11"
+#accent = "#9b6b2f"
 accent = "#7b3c11"
-sidebar_bg = "#000000"
-active_row_bg = "#2b211b"   # active Space / Agent row
-selection_bg = "#3b2a20"    # Navigate-mode cursor row
+#text = "#d6c5a5"
+text = "#7b3c11"
+subtext0 = "#9b6b2f"
+surface0 = "#17110a"
+surface1 = "#241a0e"
+#surface1 = "#000000"
+#surface_dim = "#080706"
+surface_dim = "#211207"
+overlay0 = "#5b3c11"
+overlay1 = "#795020"
+green = "#9b8b5a"
+yellow = "#c49a50"
+red = "#a64b32"
+blue = "#927858"
+teal = "#8c8060"
+peach = "#c08a50"
+mauve = "#9b6b2f"
 
-# text = "#5b3c11"
-# panel_bg = "#000000"
-# accent = "#9b3c11"
-# sidebar_bg = "#000000"
-# active_row_bg = "#070403" # active Space / Agent row
-# selection_bg = "#000000"  # Navigate-mode cursor row
+# light {{{3
 
 # Layer appearance-specific overrides on top when auto_switch is enabled.
+
 # [theme.custom.light]
 # panel_bg = "#eff1f5"
 # text = "#4c4f69"
-#
+
+# dark {{{3
+
 # [theme.custom.dark]
+
 # panel_bg = "#1e1e2e"
 # text = "#cdd6f4"
 
