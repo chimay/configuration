@@ -1,0 +1,17 @@
+
+themes {
+	brown-black {
+		fg "#5b3711"
+		bg "#341207"
+		black "#000000"
+		red "#ab1c00"
+		green "#7b3c11"
+		yellow "#b58a45"
+		blue "#806b50"
+		magenta "#7b3c11"
+		cyan "#9b8060"
+		white "#5b3711"
+		orange "#5b3c11"
+	}
+}
+

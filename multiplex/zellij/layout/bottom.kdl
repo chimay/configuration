@@ -1,13 +1,10 @@
 
 layout {
-    //pane size=1 borderless=true {
-        //plugin location="status-bar"
-    //}
-    //pane size=1 borderless=true {
-        //plugin location="tab-bar"
-    //}
     pane
-    pane size=2 borderless=true {
-        plugin location="compact-bar"
-    }
+	pane size=1 borderless=true {
+		plugin location="status-bar"
+	}
+	pane size=1 borderless=true {
+		plugin location="tab-bar"
+	}
 }

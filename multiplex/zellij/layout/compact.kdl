@@ -1,0 +1,13 @@
+
+
+layout {
+	cwd "~/racine"
+	pane size=1 borderless=false {
+		plugin location="compact-bar"
+	}
+	pane {
+		command "zsh"
+		args "-l" "-i"
+		start_suspended false
+	}
+}

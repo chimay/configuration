@@ -288,23 +288,21 @@ keybinds clear-defaults=true {
 	}
 	shared_except "locked" {
 		bind "F8" { SwitchToMode "Locked"; }
+		bind "Alt F9" { NewPane; }
 		bind "Alt F12" { ToggleFloatingPanes; }
-		//bind "Ctrl Shift q" { Quit; }
-		bind "Alt n" { NewPane; }
-		bind "Alt i" { MoveTab "Left"; }
-		bind "Alt o" { MoveTab "Right"; }
-		bind "Ctrl PageUp" { GoToPreviousTab; }
-		bind "Ctrl PageDown" { GoToNextTab; }
+		bind "Ctrl Shift q" { Quit; }
 		bind "Alt h" "Ctrl Left" { MoveFocusOrTab "Left"; }
 		bind "Alt l" "Ctrl Right" { MoveFocusOrTab "Right"; }
 		bind "Alt j" "Ctrl Down" { MoveFocus "Down"; }
 		bind "Alt k" "Ctrl Up" { MoveFocus "Up"; }
+		//bind "Alt i" { MoveTab "Left"; }
+		//bind "Alt o" { MoveTab "Right"; }
 		bind "Alt =" "Alt +" { Resize "Increase"; }
 		bind "Alt -" { Resize "Decrease"; }
 		bind "Alt (" { PreviousSwapLayout; }
 		bind "Alt )" { NextSwapLayout; }
-		bind "Alt p" { TogglePaneInGroup; }
-		bind "Alt Shift p" { ToggleGroupMarking; }
+		bind "Alt g" { TogglePaneInGroup; }
+		bind "Alt Shift g" { ToggleGroupMarking; }
 	}
 	shared_except "normal" "locked" {
 		bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -663,7 +661,7 @@ scroll_mode_sync true
 //
 // mouse_hover_effects false
 
- ouse_hover_effects true
+ mouse_hover_effects true
 
 // Whether to show mouse hover help-text tips (resize help and group shortcuts)
 // Default: true
@@ -728,7 +726,7 @@ themes {
 		black "#000000"
 		//red "#f85438"
 		//red "#f9963a"
-		red "#5b3c11"
+		red "#ab1c00"
 		green "#7b3c11"
 		yellow "#b58a45"
 		blue "#806b50"
@@ -773,7 +771,7 @@ themes {
 //theme "one-half-dark"
 //theme "solarized-dark"
 
-theme "brown-black"
+theme "golden-night"
 
 // Themes to use when the host terminal reports a dark or light color palette.
 // Both must be set for automatic switching to take place, otherwise `theme`
@@ -800,11 +798,9 @@ theme "brown-black"
 
 // tab bar bottom, binding mode at top
 
-//default_layout "reverse"
+//default_layout "basic"
 
-// tab bar and binding mode at top
-
-default_layout "top"
+default_layout "reverse"
 
 // The folder in which Zellij will look for layouts
 // (Requires restart)
