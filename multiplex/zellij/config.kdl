@@ -290,7 +290,7 @@ keybinds clear-defaults=true {
 		bind "F8" { SwitchToMode "Locked"; }
 		bind "Alt F9" { NewPane; }
 		bind "Alt F12" { ToggleFloatingPanes; }
-		bind "Ctrl Shift q" { Quit; }
+		//bind "Ctrl Shift q" { Quit; }
 		bind "Alt h" "Ctrl Left" { MoveFocusOrTab "Left"; }
 		bind "Alt l" "Ctrl Right" { MoveFocusOrTab "Right"; }
 		bind "Alt j" "Ctrl Down" { MoveFocus "Down"; }
