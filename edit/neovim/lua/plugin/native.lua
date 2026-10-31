@@ -618,10 +618,11 @@ tsj.setup({
   -- langs = {}, -- See the default presets in lua/treesj/langs
 })
 
-vim.keymap.set('n', '<f11>j', require('treesj').toggle)
-vim.keymap.set('n', '<f11>J', function()
-    require('treesj').toggle({ split = { recursive = true } })
-end)
+vim.keymap.set('n', '<bar>j', require('treesj').toggle, { desc = 'treesj toggle' })
+
+vim.keymap.set('n', '<bar>J', function()
+	require('treesj').toggle({ split = { recursive = true } })
+end, { desc = 'treesj recursive toggle' })
 
 -- mason {{{2
 
@@ -1055,6 +1056,7 @@ require('iron.core').setup({
 			sh = { command = { 'sh' } },
 			bash = { command = { 'bash' } },
 			zsh = { command = { 'zsh' } },
+			vim = { command = { 'ex' } },
 			lua = { command = { 'lua' } },
 			python = {
 				command = { "ipython", "--no-autoindent" },

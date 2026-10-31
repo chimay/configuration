@@ -288,8 +288,8 @@ keybinds clear-defaults=true {
 	}
 	shared_except "locked" {
 		bind "F8" { SwitchToMode "Locked"; }
-		bind "Ctrl Shift q" { Quit; }
 		bind "Alt F12" { ToggleFloatingPanes; }
+		//bind "Ctrl Shift q" { Quit; }
 		bind "Alt n" { NewPane; }
 		bind "Alt i" { MoveTab "Left"; }
 		bind "Alt o" { MoveTab "Right"; }

@@ -249,9 +249,9 @@ if ! exists("g:wheel_loaded")
 	" Name of the default wheel file
 	let g:wheel_config.storage.wheel.name = 'auto'
 	" Auto read wheel file on startup if > 0
-	let g:wheel_config.storage.wheel.autoread = 1
+	let g:wheel_config.storage.wheel.autoread = 0
 	" Auto write wheel file on exit if > 0
-	let g:wheel_config.storage.wheel.autowrite = 1
+	let g:wheel_config.storage.wheel.autowrite = 0
 	" The folder where sessions will be stored and read
 	let g:wheel_config.storage.session.folder = '~/racine/plugin/data/vim/wheel/session'
 	" Name of the default session file

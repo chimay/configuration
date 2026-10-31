@@ -634,7 +634,7 @@ set makeef=
 
 " altgr-...
 
-" Mapping with Meta/Alt key {{{2
+" Mapping with Meta/Alt key {{{3
 
 " Xterm, by default, sets eightBitInput to true, meaning that the eighth
 " bit is set for meta characters (combinations with the Alt key, for
@@ -651,6 +651,21 @@ set makeef=
 " set <m-a> = ^[a map <m-a> ggVG " the ^[ is an Esc char that comes
 " before the 'a' In most default configs, ^[a may be typed by pressing
 " first <C-v>, then <M-a>
+
+" conventions {{{3
+
+" leader = \ = <bslash> : generic maps, classed by prefixes
+"
+" m,c,d-letter : often used keys
+"
+" | = <bar> : often used plugins maps
+"
+" space, m-space : wheel
+" tab, s-tab, m-tab, backspace : organ
+"
+" f9 : misc non plugins maps
+" f10 : edit maps
+" f11 : non often used plugins maps
 
 "  Options {{{2
 

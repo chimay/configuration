@@ -109,6 +109,8 @@ key_file = "~/.config/noctalia/storage.key"
 filter_order = [
 	"reminder",
 	"new_mail",
+	"minuter_ring",
+	"minuter",
 	"package_manager",
 	"suspend_is_blocked",
 	"disconnected",
@@ -130,6 +132,16 @@ override_duration = 36000000
 [notification.filter.new_mail]
 enabled = true
 match_content = "New mail"
+override_duration = 3600000
+
+[notification.filter.minuter]
+enabled = true
+match_content = "Minuter"
+override_duration = 12000
+
+[notification.filter.minuter_ring]
+enabled = true
+match_content = "Minuter ring"
 override_duration = 3600000
 
 [notification.filter.package_manager]

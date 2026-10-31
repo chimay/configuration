@@ -522,6 +522,13 @@ hl.window_rule({
 
 hl.window_rule({
     match = {
+        class = "Nsxiv",
+    },
+    workspace = "2",
+})
+
+hl.window_rule({
+    match = {
         class = "imv",
     },
     workspace = "2",
@@ -1092,28 +1099,30 @@ hl.bind(super .. " + ugrave", hl.dsp.exec_cmd("rofi-run.zsh"))
 
 -- applications {{{2
 
--- run ALL favorites
-
-hl.bind(super .. " + CONTROL + A", hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
-
-hl.bind(super .. " + CONTROL + section", hl.dsp.exec_cmd("run-vifm.zsh"))
-hl.bind(super .. " + SHIFT + F", hl.dsp.exec_cmd("kitty --single-instance spf ~/racine"))
-
 hl.bind(super .. " + CONTROL + equal", hl.dsp.exec_cmd([[
 kitty --single-instance --title calc calc
 ]]))
 
-hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("dolphin || thunar || caja || pcmanfm"))
-hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
-hl.bind(super .. " + CONTROL + M", hl.dsp.exec_cmd("kitty --single-instance btop"))
+hl.bind(super .. " + SHIFT + T", hl.dsp.exec_cmd("kitty --single-instance btop"))
+hl.bind(super .. " + CONTROL + M", hl.dsp.exec_cmd("zen-minuter.zsh"))
+
 hl.bind(super .. " + CONTROL + N", hl.dsp.exec_cmd("run-neovim-server.sh & sleep 2 ; run-neovim-qt-client.sh"))
-hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
+
+hl.bind(super .. " + CONTROL + section", hl.dsp.exec_cmd("run-vifm.zsh"))
+hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("dolphin || thunar || caja || pcmanfm"))
+hl.bind(super .. " + SHIFT + F", hl.dsp.exec_cmd("kitty --single-instance spf ~/racine"))
+
+hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
 hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("goto-or-run.sh qutebrowser"))
-hl.bind(super .. " + CONTROL + B", hl.dsp.exec_cmd("floorp"))
+hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
 hl.bind(super .. " + CONTROL + Y", hl.dsp.exec_cmd("run-freetube.sh"))
 
 --hl.bind(hyper .. " + X", hl.dsp.exec_cmd("passmenu.bash"))
 hl.bind(hyper .. " + X", hl.dsp.exec_cmd("pass-rofi.bash"))
+
+-- run ALL favorites
+
+hl.bind(super .. " + CONTROL + A", hl.dsp.exec_cmd("hypr-run-favorites.zsh"))
 
 -- screen {{{2
 
@@ -1306,7 +1315,14 @@ hl.config({
 
 -- host specific {{{1
 
-if hostname == "mandala" then
+if hostname == "galaxy" then
+	hl.monitor({
+		output   = "",
+		mode     = "preferred",
+		position = "auto",
+		scale    = "0.8",
+	})
+elseif hostname == "mandala" then
 	hl.config({
 		input = {
 			numlock_by_default = false,

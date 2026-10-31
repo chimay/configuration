@@ -6,6 +6,8 @@ hi link		vimComment		Comment
 hi link		vimContinue		Comment
 hi link		vimOper			Normal
 
+hi WarningMsg			   	guifg=#872e30		guibg=NONE			gui=NONE
+
 hi Type				   	guifg=#872E30		guibg=NONE			gui=NONE
 hi vimBracket		   	guifg=#872E30		guibg=NONE			gui=NONE
 hi vimHiClear		   	guifg=#872E30		guibg=NONE			gui=NONE

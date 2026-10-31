@@ -418,14 +418,14 @@ fileviewer <image/*>
 	\ vifmimg clear
 
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
-        \ {View in sxiv}
-        \ sxiv %f %i &,
+        \ {View in nsxiv}
+        \ nsxiv %f %i &,
         \ {View in vimiv}
         \ vimiv %f %i &,
 
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
-        \ {View in sxiv}
-        \ sxiv %f %i &,
+        \ {View in nsxiv}
+        \ nsxiv %f %i &,
         \ {View in vimiv}
         \ vimiv %f %i &,
         \ {View in gpicview}
