@@ -86,6 +86,8 @@ bind -T custom '}' switch-client -n
 
 bind -T custom ù send-keys "tmux capture-pane -S - -p | less +G" Enter
 
+bind -T custom e run-shell "edit-tmux-pane.sh"
+
 bind -T custom c command-prompt -p 'save history to filename:' \
 	-I '~/racine/hist/tmux/#h-#S-#W-#P.history' 'capture-pane -S - ; \
 	save-buffer %1 ; delete-buffer'
@@ -149,8 +151,8 @@ bind -T custom 0 select-window -t :=10
 bind -T custom 'h' split-window -v
 bind -T custom 'v' split-window -h
 
-bind -T custom M-h command-prompt -p 'Commande pour le nouveau panel ? ' "split-window -h '%%'"
-bind -T custom M-v command-prompt -p 'Commande pour le nouveau panel ? ' "split-window -v '%%'"
+bind -T custom M-h command-prompt -p 'Commande pour le nouveau panel ? ' "split-window -h -k '%%'"
+bind -T custom M-v command-prompt -p 'Commande pour le nouveau panel ? ' "split-window -v -k '%%'"
 
 # navigation {{{2
 
@@ -216,6 +218,10 @@ bind -T custom -r S-Down resize-pane -D 2
 bind -T custom -r S-Left resize-pane -L 2
 bind -T custom -r S-Right resize-pane -R 2
 
+# respawn pane command {{{2
+
+bind -T custom Enter respawn-pane -k
+
 # Background command {{{1
 
 bind -T custom '&' command-prompt -p 'Commande à lancer ? ' "run-shell -b '%%'"
@@ -253,6 +259,8 @@ bind -T copy-mode-vi 'C-v' send -X rectangle-toggle
 
 bind -T copy-mode-vi 'y' send -X  copy-selection
 bind -T copy-mode-vi 'p' send -X  paste-buffer
+
+bind -T copy-mode-vi e run-shell "edit-tmux-pane.sh"
 
 # Mouse {{{1
 

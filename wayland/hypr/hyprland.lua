@@ -232,7 +232,7 @@ hl.config({
 		direction = "left",
 		-- 1 - golden_ratio^3
         --column_width = 0.764,
-        column_width = 0.95,
+        column_width = 0.99,
         --explicit_column_widths = "0.333, 0.5, 0.667, 1.0",
 		fullscreen_on_one_column = true,
 		follow_focus = true,
@@ -1231,7 +1231,7 @@ hl.define_submap("mpc", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("pavucontrol-qt"))
 	end)
-	hl.bind("C", function()
+	hl.bind("Y", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("hyprpwcenter"))
 	end)
@@ -1246,6 +1246,10 @@ hl.define_submap("mpc", function()
 	hl.bind("R", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("kitty --single-instance --title rmpc rmpc"))
+	end)
+	hl.bind("C", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("noctalia msg panel-toggle control-center media"))
 	end)
 	hl.bind("space", function()
 		hl.dispatch(hl.dsp.submap("reset"))
@@ -1320,7 +1324,7 @@ if hostname == "galaxy" then
 		output   = "",
 		mode     = "preferred",
 		position = "auto",
-		scale    = "0.8",
+		scale    = "1.0",
 	})
 elseif hostname == "mandala" then
 	hl.config({

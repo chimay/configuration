@@ -68,6 +68,10 @@ keybinds clear-defaults=true {
 	pane {
 		bind "F3" { SwitchToMode "Normal"; }
 		bind "Ctrl p" { SwitchToMode "Normal"; }
+		//bind "Left" { MoveFocus "Left"; }
+		//bind "Right" { MoveFocus "Right"; }
+		//bind "Down" { MoveFocus "Down"; }
+		//bind "Up" { MoveFocus "Up"; }
 		bind "h" "Left" { MoveFocus "Left"; }
 		bind "l" "Right" { MoveFocus "Right"; }
 		bind "j" "Down" { MoveFocus "Down"; }
@@ -77,6 +81,8 @@ keybinds clear-defaults=true {
 		bind "n" { NewPane; SwitchToMode "Normal"; }
 		bind "d" { NewPane "Down"; SwitchToMode "Normal"; }
 		bind "r" { NewPane "Right"; SwitchToMode "Normal"; }
+		//bind "u" { NewPane "Up"; SwitchToMode "Normal"; }
+		//bind "l" { NewPane "Left"; SwitchToMode "Normal"; }
 		bind "s" { NewPane "stacked"; SwitchToMode "Normal"; }
 		bind "x" { CloseFocus; }
 		bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
