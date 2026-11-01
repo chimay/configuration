@@ -948,8 +948,13 @@ endfun
 fun! library#win2prev_tab ()
 	" Send window to previous tab
 	let bufnum = bufnr('%')
+	let last_win = winnr('$')
+	let current_tab = tabpagenr()
+	let last_tab = tabpagenr('$')
 	close
-	tabnext -1
+	if last_win > 1 || current_tab != last_tab
+		tabnext -1
+	endif
 	split
 	execute 'buffer' bufnum
 endfun
@@ -957,9 +962,9 @@ endfun
 fun! library#win2next_tab ()
 	" Send window to next tab
 	let bufnum = bufnr('%')
-	let lastwin = winnr('$')
+	let last_win = winnr('$')
 	close
-	if lastwin > 1
+	if last_win > 1
 		tabnext +1
 	endif
 	split
