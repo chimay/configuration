@@ -1113,8 +1113,12 @@ hl.bind(super .. " + CONTROL + F", hl.dsp.exec_cmd("dolphin || thunar || caja ||
 hl.bind(super .. " + SHIFT + F", hl.dsp.exec_cmd("kitty --single-instance spf ~/racine"))
 
 hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
+
 hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("goto-or-run.sh qutebrowser"))
+hl.bind(super .. " + CONTROL + W", hl.dsp.exec_cmd("goto-or-run.sh waterfox"))
+
 hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
+
 hl.bind(super .. " + CONTROL + Y", hl.dsp.exec_cmd("run-freetube.sh"))
 
 --hl.bind(hyper .. " + X", hl.dsp.exec_cmd("passmenu.bash"))

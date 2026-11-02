@@ -294,8 +294,9 @@ keybinds clear-defaults=true {
 	}
 	shared_except "locked" {
 		bind "F8" { SwitchToMode "Locked"; }
-		bind "Alt F9" { NewPane; }
-		bind "Alt F12" { ToggleFloatingPanes; }
+		bind "F9" { NewPane; }
+		bind "F10" { EditScrollback; }
+		bind "F12" { ToggleFloatingPanes; }
 		//bind "Ctrl Shift q" { Quit; }
 		bind "Alt h" "Ctrl Left" { MoveFocusOrTab "Left"; }
 		bind "Alt l" "Ctrl Right" { MoveFocusOrTab "Right"; }
@@ -648,7 +649,7 @@ support_kitty_graphics_protocol true
 //
 // advanced_mouse_actions false
 
-advanced_mouse_actions true
+//advanced_mouse_actions true
 
 // Whether Ctrl+ScrollWheel resizes panes
 // Default: true
@@ -667,14 +668,14 @@ scroll_mode_sync true
 //
 // mouse_hover_effects false
 
- mouse_hover_effects true
+//mouse_hover_effects true
 
 // Whether to show mouse hover help-text tips (resize help and group shortcuts)
 // Default: true
 //
 // mouse_hover_tips false
 
-mouse_hover_tips true
+//mouse_hover_tips true
 
 // Whether triple-clicking inside command output marked by the shell (OSC 133) selects
 // the command and its output instead of the logical line

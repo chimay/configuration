@@ -10,8 +10,8 @@ themes {
 			emphasis_3 91 60 17
 		}
 		text_selected {
-			base 91 60 17
-			background 0 0 0
+			base 123 60 17
+			background 7 7 7
 			emphasis_0 155 107 47
 			emphasis_1 184 145 91
 			emphasis_2 155 107 47

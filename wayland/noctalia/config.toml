@@ -28,8 +28,8 @@ stat = "cpu_temp"
 # stat = "gpu_temp"
 
 [widget.media]
-min_length = 5
-max_length = 120
+min_length = 50
+max_length = 150
 
 [widget.screenshot.actions]
 left = "screenshot-region"
@@ -317,7 +317,7 @@ sidebar = "full"
 
 [shell]
 clipboard_enabled = true
-clipboard_history_max_entries = 300
+clipboard_history_max_entries = 120
 clipboard_keep_from_closed_apps = true
 clipboard_confirm_clear_history = true
 

@@ -32,8 +32,8 @@ set -g pane-border-style "fg=#341207"
 
 # copy mode {{{1
 
-set -g mode-style fg=black
-set -ag mode-style "bg=#5b3c11"
+set -g mode-style "fg=#7b3c11"
+set -ag mode-style "bg=#070707"
 
 # content {{{1
 

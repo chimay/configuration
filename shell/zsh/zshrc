@@ -924,6 +924,8 @@ ulimit -c 0
 
 autoload -U colors
 
+zle_highlight=(region:bg=black,fg=white)
+
 # prompt {{{1
 
 source ${RACINE_ZSH}/prompt.zsh

@@ -34,7 +34,7 @@ let g:colors_name = "golden-night"
 " Générique {{{2
 
 hi Normal			guifg=#5B3C11		guibg=black			gui=NONE
-hi Visual			guifg=black			guibg=#5B3C11		gui=NONE
+hi Visual			guifg=#7b3c11		guibg=#121212		gui=NONE
 
 hi Italic			guifg=#5B3C11		guibg=black			gui=italic
 hi Underlined		guifg=#5B3C11		guibg=black			gui=underline
