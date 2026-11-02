@@ -282,14 +282,14 @@ keybinds clear-defaults=true {
 				move_to_focused_tab true
 				show_plugins false
 			}
-			SwitchToMode "Locked"
+			SwitchToMode "Normal"
 		}
 		bind "Ctrl :" { LaunchOrFocusPlugin "zellij-palette" {
 				floating true
 				move_to_focused_tab true
 				show_plugins false
 			}
-			SwitchToMode "Locked"
+			SwitchToMode "Normal"
 		}
 	}
 	shared_except "locked" {

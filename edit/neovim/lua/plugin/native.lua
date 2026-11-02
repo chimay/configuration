@@ -996,7 +996,7 @@ cmp.setup {
 
 local cmp_enabled = true
 
-vim.keymap.set('n', '<f11>c', function()
+local function toggle_cmp ()
 	cmp_enabled = not cmp_enabled
 	if cmp_enabled then
 		cmp.setup({ enabled = true, })
@@ -1020,7 +1020,11 @@ vim.keymap.set('n', '<f11>c', function()
 		vim.keymap.set('i', '<s-tab>', '<Plug>(organ-shift-tab)', { remap = true })
 		vim.keymap.set('i', '<c-tab>', '<C-x><C-o>', { remap = true })
 	end
-end, { desc = 'Toggle nvim-cmp' })
+end
+
+vim.keymap.set('n', '<f11>c', toggle_cmp, { desc = 'Toggle nvim-cmp' })
+
+toggle_cmp ()
 
 -- cmp-nvim-lsp {{{3
 

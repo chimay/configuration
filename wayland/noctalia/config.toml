@@ -29,11 +29,19 @@ stat = "cpu_temp"
 
 [widget.media]
 min_length = 50
-max_length = 150
+max_length = 350
 
 [widget.screenshot.actions]
 left = "screenshot-region"
 #left = "screenshot-fullscreen"
+
+[widget.spacer]
+length = 25
+#expand = true
+
+# [widget.gap]
+# type   = "spacer"
+# length = 24
 
 [[shell.session.actions]]
 action = "logout"
@@ -211,7 +219,6 @@ start = [
 center = [
 	"clock",
 	"spacer",
-	"media",
 ]
 end = [
 	"htop-btop",
@@ -242,27 +249,28 @@ font_scale = 1.2
 start = [
 	"lock_keys",
 	"spacer",
- 	"brightness",
-	"spacer",
- 	"bluetooth",
-	"spacer",
- 	"privacy",
+	"media",
 ]
 #center = ["active_window"]
 center = [
-	"taskbar"
+	"taskbar",
 ]
 end = [
-	"network",
-	"spacer",
 	"notifications",
 	"spacer",
 	"session",
 	"spacer",
+	"brightness",
+	"spacer",
+	"bluetooth",
+	"spacer",
+	"network",
 ]
 
 # other available widgets {{{2
 
+# 	"spacer",
+# 	"privacy",
 # 	"keyboard_layout",
 # 	"wallpaper",
 
