@@ -29,7 +29,7 @@ stat = "cpu_temp"
 
 [widget.media]
 min_length = 50
-max_length = 350
+max_length = 450
 
 [widget.screenshot.actions]
 left = "screenshot-region"
