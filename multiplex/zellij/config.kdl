@@ -48,7 +48,7 @@ keybinds clear-defaults=true {
 		// bind "Alt c" { Copy; }
 	}
 	locked {
-		bind "F8" { SwitchToMode "Normal"; }
+		bind "F12" { SwitchToMode "Normal"; }
 	}
 	resize {
 		bind "F5" { SwitchToMode "Normal"; }
@@ -293,10 +293,10 @@ keybinds clear-defaults=true {
 		}
 	}
 	shared_except "locked" {
-		bind "F8" { SwitchToMode "Locked"; }
+		bind "F12" { SwitchToMode "Locked"; }
+		bind "F8" { EditScrollback; }
 		bind "F9" { NewPane; }
-		bind "F10" { EditScrollback; }
-		bind "F12" { ToggleFloatingPanes; }
+		bind "F10" { ToggleFloatingPanes; }
 		//bind "Ctrl Shift q" { Quit; }
 		bind "Alt h" "Ctrl Left" { MoveFocusOrTab "Left"; }
 		bind "Alt l" "Ctrl Right" { MoveFocusOrTab "Right"; }
