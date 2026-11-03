@@ -589,6 +589,7 @@ hl.window_rule({
         class = "tradingview",
     },
     workspace = "6",
+	opacity = 1.0,
 })
 
 -- artisan {{{4
