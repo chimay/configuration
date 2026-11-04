@@ -125,8 +125,8 @@ filter_order = [
 	"new_mail",
 	"minuter_ring",
 	"minuter",
-	"package_manager",
 	"suspend_is_blocked",
+	"package_manager",
 	"disconnected",
 	"connection_established",
 	"screenshot_saved",
@@ -158,30 +158,34 @@ enabled = true
 match_content = "Minuter ring"
 override_duration = 3600000
 
-[notification.filter.package_manager]
-enabled = true
-match_content = "Package Manager"
-override_duration = 1000
-
 [notification.filter.suspend_is_blocked]
 enabled = true
 match_content = "Suspend is blocked"
 override_duration = 1800000
 
+[notification.filter.package_manager]
+enabled = true
+match_content = "Package Manager"
+override_duration = 1000
+save_history = false
+
 [notification.filter.disconnected]
 enabled = true
 match_content = "Disconnected"
 override_duration = 1000
+save_history = false
 
 [notification.filter.connection_established]
 enabled = true
 match_content = "Connection Established"
 override_duration = 1000
+save_history = false
 
 [notification.filter.screenshot_saved]
 enabled = true
 match_content = "Screenshot saved"
 override_duration = 1000
+save_history = false
 
 # appearence {{{1
 
