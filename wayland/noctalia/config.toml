@@ -44,16 +44,22 @@ length = 25
 # length = 24
 
 [[shell.session.actions]]
-action = "logout"
-command = "~/racine/shell/wayland/hypr-logout.zsh >> ~/log/hypr-logout.log 2>&1"
-
-[[shell.session.actions]]
 action = "suspend"
 command = "~/racine/shell/wayland/hypr-suspend.zsh >> ~/log/hypr-suspend.log 2>&1"
 
 [[shell.session.actions]]
+action = "logout"
+command = "~/racine/shell/wayland/hypr-logout.zsh >> ~/log/hypr-logout.log 2>&1"
+
+# [[shell.session.actions]]
+# action = "shutdown"
+# command = "~/racine/shell/wayland/hypr-poweroff.zsh >> ~/log/hypr-poweroff.log 2>&1"
+
+[[shell.session.actions]]
 action = "shutdown"
-command = "~/racine/shell/wayland/hypr-poweroff.zsh >> ~/log/hypr-poweroff.log 2>&1"
+label = "Menu"
+glyph = "power"
+command = "~/racine/shell/windenv/rofi-shutdown.zsh >> ~/log/rofi-shutdown.log 2>&1"
 
 # custom {{{2
 
@@ -209,7 +215,7 @@ scale = 1.4
 font_scale = 1.1
 thickness = 40
 margin_ends = 10
-background_opacity = 0.3
+background_opacity = 0.5
 start = [
 	"control-center",
 	"spacer",
@@ -247,13 +253,12 @@ scale = 1.3
 font_scale = 1.2
 thickness = 32
 margin_ends = 10
-background_opacity = 0.3
+background_opacity = 0.5
 start = [
 	"lock_keys",
 	"spacer",
 	"media",
 ]
-#center = ["active_window"]
 center = [
 	"taskbar",
 ]
@@ -271,6 +276,7 @@ end = [
 
 # other available widgets {{{2
 
+#   "active_window"
 # 	"spacer",
 # 	"privacy",
 # 	"keyboard_layout",
@@ -301,7 +307,7 @@ smart_auto_hide = true
 show_running = false
 #launcher_position   = "start"
 #launcher_icon       = "grid-dots"
-background_opacity = 0.3
+background_opacity = 0.5
 magnification = true
 magnification_scale = 1.45
 show_instance_count = true
