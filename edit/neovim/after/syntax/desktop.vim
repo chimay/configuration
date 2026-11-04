@@ -1,6 +1,8 @@
 " vim: set filetype=vim :
 
 hi dtGroup			   guifg=#872e30		guibg=NONE			gui=NONE
+hi dtVersion		   guifg=#5b3c11		guibg=NONE			gui=NONE
+hi dtVersionKey		   guifg=#5b3c11		guibg=NONE			gui=NONE
 hi dtLocaleString	   guifg=#5B3C11		guibg=NONE			gui=NONE
 hi dtLocaleStringKey   guifg=#5B3C11		guibg=NONE			gui=NONE
 hi dtExec			   guifg=#5B3C11		guibg=NONE			gui=NONE

@@ -436,6 +436,7 @@ alias pm=pulsemixer
 alias pmt=ncpamixer
 
 alias mpt=ncmpcpp
+alias rmp=rmpc
 
 alias mp=midiplay.sh
 alias tms=timidity-segment.sh

@@ -4,11 +4,11 @@
 
 unbind C-b
 
-set -g prefix F1
+set -g prefix F2
 
-# Pass F1 prefix to term apps
+# Pass F2 prefix to term apps
 
-bind F1 send-prefix
+bind F2 send-prefix
 
 # Temps max de répétition sans préfixe
 
@@ -16,7 +16,7 @@ set -g repeat-time 1275
 
 # Key tables {{{1
 
-bind -n F2 switch-client -T custom
+bind -n F1 switch-client -T custom
 bind -n F3 switch-client -T resize
 bind -n F4 copy-mode
 

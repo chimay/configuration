@@ -29,7 +29,7 @@ stat = "cpu_temp"
 
 [widget.media]
 min_length = 50
-max_length = 450
+max_length = 700
 
 [widget.screenshot.actions]
 left = "screenshot-region"
@@ -257,10 +257,9 @@ background_opacity = 0.5
 start = [
 	"lock_keys",
 	"spacer",
-	"media",
 ]
 center = [
-	"taskbar",
+	"media",
 ]
 end = [
 	"notifications",
@@ -276,6 +275,7 @@ end = [
 
 # other available widgets {{{2
 
+# 	"taskbar",
 #   "active_window"
 # 	"spacer",
 # 	"privacy",

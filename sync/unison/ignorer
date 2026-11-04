@@ -67,6 +67,11 @@ ignore = Path racine/mail/system/dead.letter
 ignore = Path racine/plugin/manager/elpaca/*
 ignore = Path racine/plugin/manager/elpaca/.*
 
+# gui shell {{{1
+
+ignore = Path racine/local/state/noctalia/*
+ignore = Path racine/local/state/noctalia/.*
+
 # Source {{{1
 
 #ignore = Path racine/pack/aur/*

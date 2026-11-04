@@ -1018,7 +1018,8 @@ hl.bind(hyper .. " + asciicircum", hl.dsp.focus({ workspace = "previous" }))
 hl.bind("SHIFT + F12",         hl.dsp.workspace.toggle_special("shell"))
 hl.bind("CONTROL + F12",         hl.dsp.workspace.toggle_special("calc"))
 
---hl.bind("CONTROL + SHIFT + F12", hl.dsp.window.move({ workspace = "special:shell" }))
+hl.bind("CONTROL + SHIFT + F12", hl.dsp.window.move({ workspace = "special:shell" }))
+hl.bind("ALT + SHIFT + F12", hl.dsp.window.move({ workspace = "special:calc" }))
 
 -- quit {{{3
 

@@ -27,13 +27,6 @@ ignorenot = Path racine/index/locate/.*
 
 # Contrôle de version {{{1
 
-# À décommenter de temps en temps
-
-#ignorenot = Name .git
-
-#ignorenot = Regex racine/plugin/manager/.*/.git
-#ignorenot = Regex racine/plugin/manager/.*
-
 # Courriel {{{1
 
 ignorenot = Path racine/mail/Procmail/Sauvegarde
