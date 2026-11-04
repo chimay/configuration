@@ -59,7 +59,7 @@ command = "~/racine/shell/wayland/hypr-logout.zsh >> ~/log/hypr-logout.log 2>&1"
 action = "shutdown"
 label = "Menu"
 glyph = "power"
-command = "~/racine/shell/windenv/rofi-shutdown.zsh >> ~/log/rofi-shutdown.log 2>&1"
+command = "~/racine/shell/windenv/rofi-power.zsh >> ~/log/rofi-shutdown.log 2>&1"
 
 # custom {{{2
 
