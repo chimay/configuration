@@ -98,9 +98,16 @@ unsetopt complete_aliases
 
 # zstyle {{{2
 
-zstyle ':completion:*' completer _complete
-zstyle ':completion:*' matcher-list ''
-zstyle ':completion:*' group-name ''
+# -- default completion mechanism
+#zstyle ':completion:*' completer _complete
+
+# -- skip longest match step
+zstyle ':completion:*' insert-tab false
+
+# -- exact matching
+#zstyle ':completion:*' matcher-list ''
+# -- no explicit group name
+#zstyle ':completion:*' group-name ''
 
 #  Compdef {{{2
 
@@ -657,10 +664,6 @@ source ~/racine/shell/source/fzf-tab.plugin.zsh
 
 bindkey '^I' fzf-tab-complete
 
-# television {{{2
-
-eval "$(tv init zsh)"
-
 # zstyle {{{3
 
 # traditional menu could interfere
@@ -676,13 +679,6 @@ zstyle ':completion:*' matcher-list \
 zstyle ':completion:*:descriptions' format '[%d]'
 # completion colors
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# debug
-zmodload zsh/complist
-bindkey '^Xh' _complete_help
-#zstyle ':completion:*' verbose yes
-#zmodload zsh/zutil
-#zstyle -L ':completion:*' matcher-list
 
 # zstyle fzf-tab {{{3
 
@@ -701,6 +697,8 @@ zstyle ':fzf-tab:*' fzf-min-height 12
 zstyle ':fzf-tab:*' fzf-flags \
   --pointer='▶' \
   --marker='✓'
+
+zstyle ':fzf-tab:*' prefix ''
 
 # colors {{{3
 
@@ -732,6 +730,10 @@ zstyle ':fzf-tab:*' group-colors \
   $'\e[38;2;230;180;100m' \
   $'\e[38;2;230;180;101m' \
   $'\e[38;2;230;180;102m' \
+
+# television {{{2
+
+eval "$(tv init zsh)"
 
 # zoxide {{{2
 
