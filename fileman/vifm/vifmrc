@@ -417,6 +417,11 @@ fileviewer <image/*>
 	\ %pc
 	\ vifmimg clear
 
+" fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
+"     \ kitty +icat --place %pwx%ph@%pxx%py  --silent %c
+"     \ %pc
+"     \ kitty icat --clear --silent %pd
+
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.webp
         \ {View in nsxiv}
         \ nsxiv %f %i &,
@@ -900,7 +905,9 @@ nnoremap <c-q> :trashes?<cr>
 
 " Corbeille générale {{{3
 
-nnoremap <f8> :!tsp trash-put %f<cr>
+" midnight commander (mc) binding style : remove
+"nnoremap <f8> :!tsp trash-put %f<cr>
+
 nnoremap dr :!trash-restore<cr>
 
 " Autres opérations sur fichiers {{{2

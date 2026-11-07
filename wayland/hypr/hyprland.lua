@@ -228,17 +228,17 @@ hl.config({
 		force_split = 2,
 		default_split_ratio = 1.2,
 	},
-    scrolling = {
+	scrolling = {
 		direction = "left",
 		-- 1 - golden_ratio^3
-        --column_width = 0.764,
-        column_width = 0.99,
-        --explicit_column_widths = "0.333, 0.5, 0.667, 1.0",
+		--column_width = 0.764,
+		column_width = 0.95,
+		--explicit_column_widths = "0.333, 0.5, 0.667, 1.0",
 		fullscreen_on_one_column = true,
 		follow_focus = true,
 		wrap_focus = true,
 		wrap_swapcol = true,
-    },
+	},
 })
 
 -- animations {{{2
