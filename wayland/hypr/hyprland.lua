@@ -366,6 +366,15 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
+		class = "yad",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
 		class = "pavucontrol-qt",
 	},
 	float = true,
