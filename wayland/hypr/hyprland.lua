@@ -1125,8 +1125,11 @@ hl.bind(super .. " + SHIFT + F", hl.dsp.exec_cmd("kitty --single-instance spf ~/
 
 hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
 
-hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("goto-or-run.sh qutebrowser"))
+hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("ram-cache.sh qutebrowser"))
+hl.bind(super .. " + CONTROL + L", hl.dsp.exec_cmd("goto-or-run.sh ladybird"))
 hl.bind(super .. " + CONTROL + W", hl.dsp.exec_cmd("goto-or-run.sh waterfox"))
+hl.bind(super .. " + CONTROL + Z", hl.dsp.exec_cmd("goto-or-run.sh zen-browser"))
+hl.bind(super .. " + CONTROL + B", hl.dsp.exec_cmd("goto-or-run.sh floorp"))
 
 hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
 

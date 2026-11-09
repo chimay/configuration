@@ -59,7 +59,7 @@ super + ctrl + q
 	goto-or-run.sh qutebrowser
 
 super + ctrl + {b,w,z}
-	goto-or-run-appimage.sh {floorp,vieb,zen-browser}
+	goto-or-run.sh {floorp,vieb,zen-browser}
 
 super + shift + o
 	torbrowser-launcher
