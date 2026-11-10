@@ -15,7 +15,7 @@ result_line_number_fg = "#6b3c11"
 result_value_fg = "#b09060"
 selection_fg = "#7b3c11"
 selection_bg = "#120705"
-match_fg = "#eeb454"
+match_fg = "#5b4c11"
 
 # Preview
 #preview_title_fg = "#c09050"
