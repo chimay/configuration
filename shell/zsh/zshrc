@@ -98,16 +98,109 @@ unsetopt complete_aliases
 
 # zstyle {{{2
 
-# -- default completion mechanism
-#zstyle ':completion:*' completer _complete
+zstyle ':completion:*' menu select
 
-# -- skip longest match step
-zstyle ':completion:*' insert-tab false
+zstyle ':completion:*' file-list list=7 insert=7
 
-# -- exact matching
-#zstyle ':completion:*' matcher-list ''
-# -- no explicit group name
-#zstyle ':completion:*' group-name ''
+zstyle ':completion:*' old-list always
+
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-dirs-first yes
+
+zstyle ':completion:*' ignore-parents parent pwd
+
+zstyle ':completion:history-complete-word:*' remove-all-dups yes
+
+# no list for _history-complete-older, go straight to previous candidate
+zstyle ':completion:*' list false
+
+# matcher list {{{3
+
+zstyle ':completion:*' \
+	matcher-list \
+		'' \
+		'm:{a-z}={A-Za-z} l:|=* r:|=*' \
+		'+m:{A-Z-}={a-z_}' \
+		'r:|[-_./]=* r:|=*' \
+		'l:|=* r:|=*' \
+		'r:[^A-Z0-9]||[A-Z0-9]=** r:|=*'
+
+		#'m:{a-z-}={A-Z_}' \
+
+# groups {{{3
+
+zstyle ':completion:*' group-name ''
+
+zstyle ':completion:*' list-grouped yes
+
+zstyle ':completion:*:-command-' group-order builtins functions commands
+
+# fuzzy {{{3
+
+zstyle -e ':completion:*:approximate-serre:*' \
+        max-errors 'reply=($(( ($#PREFIX+$#SUFFIX) / 4 )) numeric)'
+
+zstyle -e ':completion:*:approximate-large:*' \
+        max-errors 'reply=($(( ($#PREFIX+$#SUFFIX) / 3 )) numeric)'
+
+zstyle ':completion:*:correct:*' max-errors 2 numeric
+
+zstyle ':completion:*' original true
+
+# completers {{{3
+
+zstyle ':completion:*' \
+	completer \
+		_all_matches \
+		_oldlist \
+		_expand:-glob _expand:-subst \
+		_complete \
+		_match \
+		_approximate:-serre \
+		_approximate:-large \
+		_files \
+		_ignored
+
+# theme {{{3
+
+zstyle ':completion:*' list-colors 'di=0' 'ma=38;2;139;60;17'
+
+zstyle ':completion:*:descriptions' format '%UCompletion par %d%u'
+zstyle ':completion:*:messages' format '%B%UCompletion par %d%u%b'
+zstyle ':completion:*:warnings' format '%BPas de résultats pour : %d%b'
+zstyle ':completion:*:corrections' format '%B%d (%e erreur(s))%b'
+
+zstyle ':completion:*:options' description yes
+zstyle ':completion:*:options' auto-description '%d'
+
+zstyle ':completion:*' list-separator ' : '
+
+# ignore {{{3
+
+zstyle ':completion:*:(all-|)files' ignored-patterns '*?.pyc' '*?.dvi' '*?.o' '*?~'
+
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
+# commands {{{3
+
+zstyle ':completion:*:mv:*' ignore-line yes
+zstyle ':completion:*:cp:*' ignore-line yes
+zstyle ':completion:*:rsync:*' ignore-line yes
+zstyle ':completion:*:rm:*' ignore-line yes
+zstyle ':completion:*:trash-put:*' ignore-line yes
+zstyle ':completion:*:diff:*' ignore-line yes
+
+# hosts {{{3
+
+zstyle ':completion:*' users-hosts \
+	$USER@taijitu.local \
+	$USER@shari.local \
+	$USER@tixu.local
+
+# mail {{{3
+
+zstyle ':completion:*' mail-directory ~/racine/mail
+zstyle ':completion:*' muttrc ~/racine/config/mail/neomutt/alias.mutt
 
 #  Compdef {{{2
 
@@ -657,79 +750,6 @@ bindkey '^x^e' biblio-edit-command-line
 source <(fzf --zsh)
 
 # voir aussi <url:zshenv#tn=FZF_DEFAULT_OPTS>
-
-# fzf-tab {{{2
-
-source ~/racine/shell/source/fzf-tab.plugin.zsh
-
-bindkey '^I' fzf-tab-complete
-
-# zstyle {{{3
-
-# traditional menu could interfere
-zstyle ':completion:*:*:*:*' menu no
-
-# exact match first, then allows chars before and after the word to be completed
-# handles ~named-tilde-dirs as beg of word
-zstyle ':completion:*' matcher-list \
-  '' \
-  'm:{a-z}={A-Za-z} l:|=* r:|=*'
-
-# completion heading format
-zstyle ':completion:*:descriptions' format '[%d]'
-# completion colors
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# zstyle fzf-tab {{{3
-
-zstyle ':fzf-tab:*' fzf-command fzf
-zstyle ':fzf-tab:*' use-fzf-default-opts yes
-zstyle ':fzf-tab:*' switch-group '<' '>'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-zstyle ':fzf-tab:complete:*:*' fzf-flags --scheme=path
-
-# size {{{3
-
-zstyle ':fzf-tab:*' fzf-min-height 12
-
-# glyphs {{{3
-
-zstyle ':fzf-tab:*' fzf-flags \
-  --pointer='▶' \
-  --marker='✓'
-
-zstyle ':fzf-tab:*' prefix ''
-
-# colors {{{3
-
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-#zstyle ':completion:*' list-colors ''
-#zstyle -d ':completion:*' list-colors
-
-zstyle ':fzf-tab:*' fzf-flags \
-  --pointer='▶' \
-  --marker='=' \
-  --color=bg:-1,bg+:#000000 \
-  --color=fg:#5b3c11,fg+:#6b3c11 \
-  --color=hl:#6b3c11,hl+:#6b3c11 \
-  --color=prompt:#5b3c11,pointer:#5b3c11 \
-  --color=marker:#7b3c11,spinner:#5b3c11,header:#5b3c11 \
-  --color='pointer:#6b3c11,marker:#6b3c11' \
-  --ansi
-
-zstyle ':fzf-tab:*' header-color $'\e[38;2;91;60;17m'
-
-# -- need more colors for the group switching
-
-zstyle ':fzf-tab:*' group-colors \
-  $'\e[38;2;91;60;17m' \
-  $'\e[38;2;120;80;30m' \
-  $'\e[38;2;150;100;40m' \
-  $'\e[38;2;180;120;50m' \
-  $'\e[38;2;210;150;70m' \
-  $'\e[38;2;230;180;100m' \
-  $'\e[38;2;230;180;101m' \
-  $'\e[38;2;230;180;102m' \
 
 # television {{{2
 
