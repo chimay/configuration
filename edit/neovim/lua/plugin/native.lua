@@ -769,7 +769,7 @@ diagnostic_hl()
 
 -- lsp maps {{{3
 
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({ virtual_text = false })
 
 ---- see :help lsp-defaults
 
