@@ -165,15 +165,16 @@ zstyle ':completion:*' \
 
 zstyle ':completion:*' list-colors 'di=0' 'ma=38;2;139;60;17'
 
-zstyle ':completion:*:descriptions' format '%UCompletion par %d%u'
-zstyle ':completion:*:messages' format '%B%UCompletion par %d%u%b'
-zstyle ':completion:*:warnings' format '%BPas de résultats pour : %d%b'
-zstyle ':completion:*:corrections' format '%B%d (%e erreur(s))%b'
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# ---- completion heading format
+
+zstyle ':completion:*:descriptions' format '[%d]'
+
+zstyle ':completion:*' list-separator ' : '
 
 zstyle ':completion:*:options' description yes
 zstyle ':completion:*:options' auto-description '%d'
-
-zstyle ':completion:*' list-separator ' : '
 
 # ignore {{{3
 
@@ -750,6 +751,80 @@ bindkey '^x^e' biblio-edit-command-line
 source <(fzf --zsh)
 
 # voir aussi <url:zshenv#tn=FZF_DEFAULT_OPTS>
+
+# fzf-tab {{{2
+
+source ~/racine/shell/source/fzf-tab.plugin.zsh
+
+bindkey '\ez' fzf-tab-complete
+
+#bindkey '^I' expand-or-complete
+bindkey '^I' fzf-completion
+
+# zstyle for fzf-tab {{{3
+
+# -- not needed if intended for use besides classical menu completion
+# -- with another binding
+
+# # traditional menu could interfere
+# zstyle ':completion:*:*:*:*' menu no
+#
+# # exact match first, then allows chars before and after the word to be completed
+# # handles ~named-tilde-dirs as beg of word
+# zstyle ':completion:*' matcher-list \
+#   '' \
+#   'm:{a-z}={A-Za-z} l:|=* r:|=*'
+
+# zstyle fzf-tab {{{3
+
+zstyle ':fzf-tab:*' fzf-command fzf
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:*:*' fzf-flags --scheme=path
+
+# size {{{3
+
+zstyle ':fzf-tab:*' fzf-min-height 12
+
+# glyphs {{{3
+
+zstyle ':fzf-tab:*' fzf-flags \
+  --pointer='▶' \
+  --marker='✓'
+
+zstyle ':fzf-tab:*' prefix ''
+
+# colors {{{3
+
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*' list-colors ''
+#zstyle -d ':completion:*' list-colors
+
+zstyle ':fzf-tab:*' fzf-flags \
+  --pointer='▶' \
+  --marker='=' \
+  --color=bg:-1,bg+:#000000 \
+  --color=fg:#5b3c11,fg+:#6b3c11 \
+  --color=hl:#6b3c11,hl+:#6b3c11 \
+  --color=prompt:#5b3c11,pointer:#5b3c11 \
+  --color=marker:#7b3c11,spinner:#5b3c11,header:#5b3c11 \
+  --color='pointer:#6b3c11,marker:#6b3c11' \
+  --ansi
+
+zstyle ':fzf-tab:*' header-color $'\e[38;2;91;60;17m'
+
+# -- need more colors for the group switching
+
+zstyle ':fzf-tab:*' group-colors \
+  $'\e[38;2;91;60;17m' \
+  $'\e[38;2;120;80;30m' \
+  $'\e[38;2;150;100;40m' \
+  $'\e[38;2;180;120;50m' \
+  $'\e[38;2;210;150;70m' \
+  $'\e[38;2;230;180;100m' \
+  $'\e[38;2;230;180;101m' \
+  $'\e[38;2;230;180;102m' \
 
 # television {{{2
 
