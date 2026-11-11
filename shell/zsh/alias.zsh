@@ -84,7 +84,7 @@ alias taco='multitail -C -ts'
 
 # PDF, EPUB
 
-alias d=sioyek
+alias d='goto-or-run.sh sioyek'
 
 # Images
 
@@ -584,8 +584,8 @@ alias -s htm=$BROWSER
 alias -s html=$BROWSER
 alias -s php=$BROWSER
 
-alias -s pdf=sioyek
-alias -s epub=sioyek
+alias -s pdf='goto-or-run.sh sioyek'
+alias -s epub=zathura
 
 alias -s xz=less
 alias -s gz=less
