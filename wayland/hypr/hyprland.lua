@@ -1239,6 +1239,12 @@ hl.define_submap("mpc", function()
 		kitty --single-instance --title pulsemixer -e pulsemixer
 		]]))
 	end)
+	hl.bind("SHIFT + M", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd([[
+		kitty --single-instance --title pulsemixer -e pipemixer
+		]]))
+	end)
 	hl.bind("W", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd([[

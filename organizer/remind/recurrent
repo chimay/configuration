@@ -2,24 +2,19 @@
 
 REM mon tue wed thu fri AT 7:40 MSG Réveiller les enfants
 
-REM wednesday AT 11:00 +30 MSG Mise à jour ordinateur
+REM wednesday AT 11:00 MSG Mise à jour ordinateur
 
-REM sunday AT 19:30 +30 MSG Synchroniser la clé usb
-REM friday AT 9:40 +30 MSG Synchroniser la clé usb
+REM sunday AT 19:30 MSG Synchroniser la clé usb
+REM friday AT 9:40 MSG Synchroniser la clé usb
 
-REM 1 AT 11:00 +30 MSG Photos -> ordinateur
+REM 1 AT 11:00 MSG Photos -> ordinateur
 
-REM 10 AT 11:00 +30 MSG Vérifier zoomit
+REM 10 AT 11:00 MSG Vérifier zoomit
 
-REM 30 june AT 11:00 +30 MSG Tax on Web
+REM 30 june AT 11:00 MSG Tax on Web
 
-# REM friday AT 14:00 +30 MSG Désactiver le réveil
-# REM sunday AT 14:00 +30 MSG Activer le réveil
-
-REM 1 AT 11:00 +30 MSG Filtres lave-vaisselle et lave-linge
+REM 1 AT 11:00 MSG Filtres lave-vaisselle et lave-linge
 REM 2021-10-29 *60 MSG Nettoyer le lave-vaisselle
 REM 2022-06-07 *60 MSG Produits à déboucher dans l’évier
 REM 2021-08-23 *61 MSG Nettoyer sous le filtre de l’évier
 REM 2022-06-07 *180 MSG Produits à déboucher dans le lavabo
-
-#REM 2020-01-30 *28 ++1 AT 10:00 +30 MSG Jour des cartons %b
