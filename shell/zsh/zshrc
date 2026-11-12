@@ -758,6 +758,9 @@ source ~/racine/shell/source/fzf-tab.plugin.zsh
 
 bindkey '\ez' fzf-tab-complete
 
+# ---- reset tab to normal completion,
+# ---- handled by zsh or fzf
+
 #bindkey '^I' expand-or-complete
 bindkey '^I' fzf-completion
 

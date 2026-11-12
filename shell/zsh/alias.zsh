@@ -578,7 +578,7 @@ alias -g DS='| diffstat'
 
 # suffix : alias -s {{{1
 
-# Pour choisir le programme qui va ouvrir le fichier, d’après l’extension
+# choisir le programme qui va ouvrir le fichier, d’après l’extension
 
 alias -s htm=$BROWSER
 alias -s html=$BROWSER

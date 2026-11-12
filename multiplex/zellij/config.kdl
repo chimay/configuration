@@ -128,7 +128,7 @@ keybinds clear-defaults=true {
 		bind "Tab" { ToggleTab; }
 	}
 	scroll {
-		bind "F4" { SwitchToMode "Normal"; }
+		bind "Alt F4" { SwitchToMode "Normal"; }
 		bind "Ctrl s" { SwitchToMode "Normal"; }
 		bind "e" { EditScrollback; SwitchToMode "Normal"; }
 		bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
@@ -230,7 +230,7 @@ keybinds clear-defaults=true {
 		}
 	}
 	tmux {
-		bind "F7" { SwitchToMode "Normal"; }
+		bind "Alt F1" { SwitchToMode "Normal"; }
 		bind "[" { SwitchToMode "Scroll"; }
 		bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
 		bind "\"" { NewPane "Down"; SwitchToMode "Normal"; }
@@ -293,7 +293,7 @@ keybinds clear-defaults=true {
 	}
 	shared_except "locked" {
 		bind "F12" { SwitchToMode "Locked"; }
-		bind "F8" { EditScrollback; }
+		bind "F4" { EditScrollback; }
 		bind "F9" { NewPane; }
 		bind "F10" { ToggleFloatingPanes; }
 		bind "F11" { ToggleFocusFullscreen; }
@@ -327,7 +327,7 @@ keybinds clear-defaults=true {
 		//bind "Ctrl p" { SwitchToMode "Pane"; }
 	}
 	shared_except "scroll" "locked" {
-		bind "F4" { SwitchToMode "Scroll"; }
+		bind "Alt F4" { SwitchToMode "Scroll"; }
 		//bind "Ctrl s" { SwitchToMode "Scroll"; }
 	}
 	shared_except "resize" "locked" {
@@ -339,7 +339,7 @@ keybinds clear-defaults=true {
 		//bind "Alt m" { SwitchToMode "Move"; }
 	}
 	shared_except "tmux" "locked" {
-		bind "F7" { SwitchToMode "Tmux"; }
+		bind "Alt F1" { SwitchToMode "Tmux"; }
 		//bind "Ctrl b" { SwitchToMode "Tmux"; }
 	}
 }
