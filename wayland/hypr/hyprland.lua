@@ -1350,6 +1350,18 @@ if hostname == "galaxy" then
 		position = "auto",
 		scale    = "1.0",
 	})
+elseif hostname == "outerspace" then
+	hl.config({
+		input = {
+			numlock_by_default = false,
+		}
+	})
+	hl.monitor({
+		output   = "",
+		mode     = "preferred",
+		position = "auto",
+		scale    = "1.2",
+	})
 elseif hostname == "mandala" then
 	hl.config({
 		input = {

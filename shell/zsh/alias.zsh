@@ -111,7 +111,7 @@ alias se=sudoedit
 alias v=neovim-lite.sh
 alias n=nvim
 
-alias ni='run-neovim-bundle.zsh nvim-kickstart'
+#alias ni='run-neovim-bundle.zsh nvim-kickstart'
 
 alias ns='run-neovim-server.sh &!'
 alias nc=run-neovim-client.sh
