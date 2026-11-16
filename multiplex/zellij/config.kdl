@@ -308,8 +308,8 @@ keybinds clear-defaults=true {
 		bind "Alt -" { Resize "Decrease"; }
 		bind "Alt (" { PreviousSwapLayout; }
 		bind "Alt )" { NextSwapLayout; }
-		bind "Alt g" { TogglePaneInGroup; }
-		bind "Alt Shift g" { ToggleGroupMarking; }
+		bind "F7" { TogglePaneInGroup; }
+		bind "F8" { ToggleGroupMarking; }
 	}
 	shared_except "normal" "locked" {
 		bind "Enter" "Esc" { SwitchToMode "Normal"; }
