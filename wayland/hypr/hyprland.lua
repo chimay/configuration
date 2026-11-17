@@ -90,12 +90,6 @@ hl.monitor({
 
 -- input : keyboard, mouse, touchpad {{{1
 
--- to switch keyboard layout
---
--- hyprctl switchxkblayout all next
--- hyprctl switchxkblayout all 0
--- hyprctl switchxkblayout all 1
-
 hl.config({
 	input = {
 		--kb_layout  = "be",
@@ -788,11 +782,19 @@ end)
 
 -- keyboards {{{3
 
+-- to switch keyboard layout
+--
+-- hyprctl switchxkblayout all next
+-- hyprctl switchxkblayout all 0
+-- hyprctl switchxkblayout all 1
+
 --hl.bind(super .. " + F10", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
 
 -- monitors {{{3
 
-hl.bind(super .. " + Home",
+hl.bind(super .. " + Home", hl.dsp.focus({monitor = "+1"}))
+
+hl.bind(super .. " + End",
     hl.dsp.workspace.swap_monitors({
         monitor1 = 0,
         monitor2 = 1,
