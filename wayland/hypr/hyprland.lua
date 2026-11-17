@@ -99,7 +99,7 @@ hl.monitor({
 hl.config({
 	input = {
 		--kb_layout  = "be",
-		kb_layout  = "belge-meta-super-hyper,be",
+		kb_layout  = "belge-meta-super-hyper,be,us",
 		kb_variant = "",
 		kb_model   = "",
 		kb_options = "",
@@ -124,6 +124,28 @@ hl.config({
 		no_warps = true,
 	},
 })
+
+-- separate layouts for each keyboard {{{2
+
+-- hl.device({
+-- 	name = "logitech-usb-keyboard",
+-- 	kb_layout  = "belge-meta-super-hyper,be,us",
+-- 	kb_variant = "",
+-- 	kb_model   = "",
+-- 	kb_options = "",
+-- 	kb_rules   = "",
+-- })
+
+-- hl.device({
+-- 	name = "at-translated-set-2-keyboard",
+-- 	kb_layout  = "belge-meta-super-hyper,be,us",
+-- 	kb_variant = "",
+-- 	kb_model   = "",
+-- 	kb_options = "",
+-- 	kb_rules   = "",
+-- })
+
+-- miscellaneous {{{2
 
 -- hl.gesture({
 -- 	fingers = 3,
@@ -725,8 +747,14 @@ hl.define_submap("hyperland", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
 	end)
-	hl.bind("Q", hl.dsp.exec_cmd("hypr-autostop.zsh >> ~/log/hypr-autostop.log 2>&1 ; hyprshutdown"))
-	hl.bind("S", hl.dsp.exec_cmd("hypr-autostop.zsh >> ~/log/hypr-autostop.log 2>&1 ; uwsm stop"))
+	hl.bind("S", hl.dsp.exec_cmd([[
+	hypr-autostop.zsh >> ~/log/hypr-autostop.log 2>&1
+	uwsm stop
+	]]))
+	hl.bind("Q", hl.dsp.exec_cmd([[
+	hypr-autostop.zsh >> ~/log/hypr-autostop.log 2>&1
+	hyprshutdown
+	]]))
 	hl.bind("L", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd([[
@@ -757,6 +785,19 @@ hl.define_submap("hyperland", function()
 	hl.bind("escape", hl.dsp.submap("reset"))
 	hl.bind("return", hl.dsp.submap("reset"))
 end)
+
+-- keyboards {{{3
+
+--hl.bind(super .. " + F10", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
+
+-- monitors {{{3
+
+hl.bind(super .. " + Home",
+    hl.dsp.workspace.swap_monitors({
+        monitor1 = 0,
+        monitor2 = 1,
+    })
+)
 
 -- windows {{{3
 
@@ -1356,6 +1397,22 @@ elseif hostname == "outerspace" then
 			numlock_by_default = false,
 		}
 	})
+	hl.device({
+		name = "logitech-usb-keyboard",
+		kb_layout  = "belge-meta-super-hyper,be,us",
+		kb_variant = "",
+		kb_model   = "",
+		kb_options = "",
+		kb_rules   = "",
+	})
+	hl.device({
+		name = "at-translated-set-2-keyboard",
+		kb_layout  = "belge-meta-super-hyper,be,us",
+		kb_variant = "",
+		kb_model   = "",
+		kb_options = "",
+		kb_rules   = "",
+	})
 	hl.monitor({
 		output   = "",
 		mode     = "preferred",
@@ -1399,7 +1456,6 @@ if hl.dsp.exec_cmd("pgrep -af noctalia >/dev/null") then
 	hl.bind(hyper .. " + N", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center notifications"))
 	hl.bind(hyper .. " + D", hl.dsp.exec_cmd("noctalia msg dock-toggle"))
 	hl.bind(hyper .. " + SHIFT + D", hl.dsp.exec_cmd("noctalia msg notification-dnd-toggle"))
-	hl.bind(super .. " + F11", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center notifications"))
 	hl.bind(super .. " + F12", hl.dsp.exec_cmd("noctalia msg notification-clear-active"))
 	hl.bind(hyper .. " + K", hl.dsp.exec_cmd("noctalia msg session lock"))
 	hl.bind(hyper .. " + Q", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
