@@ -330,15 +330,35 @@ hl.workspace_rule({ workspace = "7", persistent = true, default_name = "artisan"
 hl.workspace_rule({ workspace = "8", persistent = true, default_name = "video"})
 hl.workspace_rule({ workspace = "9", persistent = true, default_name = "game"})
 
--- hl.workspace_rule({ workspace = "1", default_name = "term"})
--- hl.workspace_rule({ workspace = "2", default_name = "view"})
--- hl.workspace_rule({ workspace = "3", default_name = "edit"})
--- hl.workspace_rule({ workspace = "4", default_name = "system"})
--- hl.workspace_rule({ workspace = "5", default_name = "browser"})
--- hl.workspace_rule({ workspace = "6", default_name = "office"})
--- hl.workspace_rule({ workspace = "7", default_name = "artisan"})
--- hl.workspace_rule({ workspace = "8", default_name = "video"})
--- hl.workspace_rule({ workspace = "9", default_name = "game"})
+-- workspaces monitors {{{2
+
+-- hl.workspace_rule({
+--     workspace = "1",
+--     monitor = "eDP-1",
+--     default = true,
+-- })
+
+-- hl.workspace_rule({
+--     workspace = "2",
+--     monitor = "DP-1",
+--     default = true,
+-- })
+
+---- persistent
+
+-- hl.workspace_rule({
+--     workspace = "1",
+--     monitor = "eDP-1",
+--     default = true,
+--     persistent = true,
+-- })
+
+-- hl.workspace_rule({
+--     workspace = "2",
+--     monitor = "DP-1",
+--     default = true,
+--     persistent = true,
+-- })
 
 -- workspaces layouts {{{2
 
@@ -806,6 +826,11 @@ hl.bind(super .. " + End",
         monitor2 = 1,
     })
 )
+
+-- hl.dsp.workspace.move({
+--     workspace = 1,
+--     monitor = "DP-1",
+-- })
 
 -- windows {{{3
 
