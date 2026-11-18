@@ -116,6 +116,12 @@ hl.config({
 		hide_on_key_press = true,
 		inactive_timeout = 5,
 		no_warps = true,
+		warp_on_change_workspace = 2,
+		warp_on_toggle_special = 2,
+	},
+	misc = {
+		mouse_move_enables_dpms = true,
+		mouse_move_focuses_monitor = true,
 	},
 })
 
