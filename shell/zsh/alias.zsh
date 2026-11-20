@@ -40,6 +40,7 @@ alias gsu=pkexec
 alias tm=tmux
 alias zj=zellij
 alias hr=herdr
+alias to=tuios
 
 # encryption {{{1
 

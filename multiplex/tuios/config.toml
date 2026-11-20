@@ -133,6 +133,11 @@ daemon = true
 leader_key = "F1"
 # leader_key = "ctrl+b"
 
+[keybindings.global]
+launcher = ["ctrl+:"]
+goto_picker = ["ctrl+§"]
+command_palette = ["ctrl+="]
+
 [keybindings.prefix_mode]
 edit_scrollback = ["e"]
 prefix_detach = ["d"]
@@ -162,3 +167,6 @@ calm = true
 # match_fg = "#080706"
 # cursor_bg = "#7b3c11"
 # cursor_fg = "#d6c5a5"
+
+[spotlight]
+enabled = false
