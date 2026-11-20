@@ -51,9 +51,9 @@ command = "~/racine/shell/wayland/hypr-suspend.zsh >> ~/log/hypr-suspend.log 2>&
 action = "logout"
 command = "~/racine/shell/wayland/hypr-logout.zsh >> ~/log/hypr-logout.log 2>&1"
 
-# [[shell.session.actions]]
-# action = "shutdown"
-# command = "~/racine/shell/wayland/hypr-poweroff.zsh >> ~/log/hypr-poweroff.log 2>&1"
+[[shell.session.actions]]
+action = "shutdown"
+command = "~/racine/shell/wayland/hypr-poweroff.zsh >> ~/log/hypr-poweroff.log 2>&1"
 
 [[shell.session.actions]]
 action = "shutdown"
@@ -82,6 +82,16 @@ tooltip = "zen minuter"
 [widget.zen-minuter.actions]
 left = "exec zen-minuter.zsh"
 right = "exec ~/racine/shell/alarm/zen-minuter.zsh"
+
+[widget.pavucontrol]
+type = "custom_button"
+glyph = "volume"
+text = "pavucontrol"
+tooltip = "audio mixer"
+
+[widget.pavucontrol.actions]
+left = "exec pavucontrol-qt"
+right = "exec pavucontrol-qt"
 
 # lockscreen {{{1
 
@@ -237,8 +247,6 @@ end = [
 	"spacer",
 	"zen-minuter",
 	"spacer",
-	"screenshot",
-	"spacer",
 	"clipboard",
 	"spacer",
 	"tray",
@@ -246,6 +254,8 @@ end = [
 	"cpu-temp",
 	"spacer",
 	"battery",
+	"spacer",
+	"pavucontrol",
 	"spacer",
 	"volume",
 ]
@@ -286,6 +296,8 @@ end = [
 # 	"privacy",
 # 	"keyboard_layout",
 # 	"wallpaper",
+# 	"spacer",
+# 	"screenshot",
 
 # 	"gpu-temp",
 
@@ -296,14 +308,16 @@ enabled = true
 position = "left"
 pinned = [
 	"tmux-custom",
-	"zellij-custom",
-	"herdr",
+	#"zellij-custom",
+	#"herdr",
 	"neovim-qt-lite",
 	"org.kde.dolphin",
 	"org.kde.gwenview",
 	"org.qutebrowser.qutebrowser",
+	"firefox",
 	"floorp",
 	"freetube",
+	"vlc",
 ]
 layer = "top"
 reserve_space   = false

@@ -116,6 +116,7 @@ hl.config({
 		hide_on_key_press = true,
 		inactive_timeout = 5,
 		no_warps = true,
+		--warp_on_monitor_change = 2,
 		warp_on_change_workspace = 2,
 		warp_on_toggle_special = 2,
 	},
@@ -409,6 +410,15 @@ hl.window_rule({
 hl.window_rule({
 	match = {
 		class = "yad",
+	},
+	float = true,
+	size = "1200 600",
+	move = "300 70",
+})
+
+hl.window_rule({
+	match = {
+		class = "org.pulseaudio.pavucontrol",
 	},
 	float = true,
 	size = "1200 600",
@@ -1070,7 +1080,7 @@ end)
 
 for i = 1, 9 do
 	-- local key = i % 10 -- 10 maps to key 0
-	key = i
+	local key = i
 	hl.bind(super .. " + F" .. key,             hl.dsp.focus({ workspace = i }))
 	hl.bind(super .. " + SHIFT + F" .. key,     hl.dsp.window.move({ workspace = i }))
 end
@@ -1156,6 +1166,10 @@ hl.define_submap("terminal", function()
 	hl.bind("T", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("run-tmux.sh"))
+	end)
+	hl.bind("O", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("run-tuios.sh"))
 	end)
 	hl.bind("Z", function()
 		hl.dispatch(hl.dsp.submap("reset"))
@@ -1310,19 +1324,19 @@ hl.define_submap("mpc", function()
 	hl.bind("M", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd([[
-		kitty --single-instance --title pulsemixer -e pulsemixer
+		kitty --single-instance --title pulsemixer pulsemixer
 		]]))
 	end)
 	hl.bind("SHIFT + M", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd([[
-		kitty --single-instance --title pulsemixer -e pipemixer
+		kitty --single-instance --title pulsemixer pipemixer
 		]]))
 	end)
 	hl.bind("W", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd([[
-		kitty --single-instance --title wiremix -e wiremix
+		kitty --single-instance --title wiremix wiremix
 		]]))
 	end)
 	hl.bind("V", function()
@@ -1425,13 +1439,8 @@ if hostname == "galaxy" then
 		scale    = "1.0",
 	})
 elseif hostname == "outerspace" then
-	hl.config({
-		input = {
-			numlock_by_default = false,
-		}
-	})
 	hl.device({
-		name = "logitech-usb-keyboard",
+		name = "sigmachip-hp-wired-keyboard",
 		kb_layout  = "belge-meta-super-hyper,be,us",
 		kb_variant = "",
 		kb_model   = "",
@@ -1440,9 +1449,9 @@ elseif hostname == "outerspace" then
 	})
 	hl.device({
 		name = "at-translated-set-2-keyboard",
-		kb_layout  = "belge-meta-super-hyper,be,us",
+		kb_layout  = "be,us",
 		kb_variant = "",
-		kb_model   = "",
+		kb_model   = "chromebook",
 		kb_options = "",
 		kb_rules   = "",
 	})
@@ -1451,6 +1460,16 @@ elseif hostname == "outerspace" then
 		mode     = "preferred",
 		position = "auto",
 		scale    = "1.2",
+	})
+	hl.workspace_rule({
+		workspace = "1",
+		monitor = 0,
+		default = true,
+	})
+	hl.workspace_rule({
+		workspace = "8",
+		monitor = 1,
+		default = true,
 	})
 elseif hostname == "mandala" then
 	hl.config({

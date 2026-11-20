@@ -1,0 +1,164 @@
+
+# documentation {{{1
+
+# TUIOS Configuration File
+# This file allows you to customize appearance and keybindings
+#
+# Configuration location: /home/david/.config/tuios/config.toml
+# Documentation: https://github.com/Gaurav-Gosain/tuios
+# For keybindings documentation, run: tuios keybinds list
+#
+# tuios watches this file. A save takes effect at once, with no restart.
+# tuios does not apply a file that has an error. It keeps the settings that
+# are in use and shows the error on screen.
+
+# ============================================================================
+# APPEARANCE SETTINGS
+# ============================================================================
+# Many of these can be changed live from the in-app settings page
+# (open it with the leader key followed by ',').
+#
+# border_style: rounded, normal, thick, double, hidden, block, ascii,
+#               outer-half-block, inner-half-block
+# dockbar_position: bottom, top, hidden
+# window_title_position: bottom, top, hidden
+# window_button_style: pill, dots (macOS traffic lights)
+# window_button_position: right, left. Independent of the style; dots and
+#               left is the shipped pair, the macOS arrangement
+# theme: color theme name (e.g. dracula, nord); empty for terminal colors
+# click_to_type: single (a click on a pane starts typing in it), double
+#               (two clicks do), off (a click only focuses)
+# auto_enter_terminal_on_focus: off (Tab keeps cycling windows),
+#               targeted (numbered select and arrows start typing),
+#               all (every covered focus command, including Tab)
+# [appearance.scrollbar]: style = thin, track; thumb/track = a one-cell glyph
+#               (track also takes "none"); tint = border, muted, #RRGGBB
+# background: off (your terminal shows through), theme (the theme's
+#               background), or #RRGGBB, for every surface at once
+# pane_background, desktop_background, window_chrome_background,
+#               dock_background, [appearance.sidebar] background: the same
+#               values for one surface; empty follows background, and a
+#               colour a program or the chrome chose always wins
+# ============================================================================
+
+# ============================================================================
+# KEYBINDINGS
+# ============================================================================
+# Set an action to [] to unbind it and hand the key back to the shell.
+# An empty list and a missing line are not the same thing. A line this file
+# does not have gets its default back the next time tuios starts; an action
+# set to [] stays empty.
+#
+# You do not have to edit this by hand. In tuios, open the keybind manager
+# (leader then k, or the command palette) and press ctrl+d on a binding to
+# remove it, or ctrl+x to take its key off every action. From a shell:
+#
+#   tuios keybinds unbind close_window w   # one key off one action
+#   tuios keybinds free alt+left           # off every action
+#
+# `tuios keybinds doctor` says which binding in each scope is live, what
+# clashes with what, and which keys never reach the program in the pane.
+#
+# [keybindings.global] acts in window mode and terminal mode alike. It binds
+# ctrl+p to the command palette and alt+space to the launcher, which costs
+# you fish's history-back and readline's set-mark. To move or drop either:
+#
+#   [keybindings.global]
+#   command_palette = ["ctrl+shift+p"]
+#   launcher = []
+#
+# [keybindings.terminal_mode] binds alt+arrows to move focus between panes.
+# In readline, fish and zsh, alt+left and alt+right move the cursor a word
+# at a time. If you want those back:
+#
+#   [keybindings.terminal_mode]
+#   terminal_focus_left = []
+#   terminal_focus_right = []
+#
+# alt+up and alt+down are unclaimed by the common shells, so they are the
+# safer pair to keep.
+#
+# shift+pgup and shift+pgdown scroll one page. middle pastes from the host
+# clipboard. Write ctrl+middle to add a modifier.
+#
+# hold_window_mode binds a key that puts tuios in window-management mode for
+# as long as it is physically held, and hands the previous mode back when it
+# is let go. In window-management mode the key does nothing and stays a
+# plain modifier, so alt chords there keep their own bindings:
+#
+#   [keybindings.mode_control]
+#   hold_window_mode = ["leftalt"]
+#
+# It needs a terminal that speaks the Kitty keyboard protocol (Ghostty, kitty,
+# WezTerm, foot, Alacritty; not Terminal.app), because nothing else reports
+# that a key was released. Naming a modifier key (leftalt, rightalt, leftctrl,
+# leftsuper) asks the terminal for one more thing on top: every keystroke in
+# the session then arrives as an escape code. Any ordinary key (f13 to f63,
+# scrolllock, a spare letter) avoids that. Unbound by default.
+# ============================================================================
+
+# ============================================================================
+# DOCK COMPONENTS
+# ============================================================================
+# The dock is three ordered lists of component names. Leave [dock] out
+# entirely and the bar draws what it always drew; write the lists to
+# reorder it, and omit a name to drop that segment.
+#
+#   [dock]
+#   left   = ["mode", "workspaces", "trail", "tape"]
+#   center = ["windows"]
+#   right  = ["notifications", "copy-help", "cpu", "ram", "clock", "session-controls"]
+#
+# A cell of your own is a command whose first line of stdout is the text:
+#
+#   [dock.custom.branch]
+#   command = "git branch --show-current"
+#   refresh = "event:after-focus-change"   # or once, push, or "30s"
+#
+# and then "custom/branch" in one of the lists above. A component that
+# fails is hidden rather than left showing a stale value;
+# `tuios list-dock-components` says which and why.
+# ============================================================================
+
+# startup {{{1
+
+[startup]
+tiled = true
+layout = "master-stack"
+daemon = true
+
+# bindings {{{1
+
+[keybindings]
+leader_key = "F1"
+# leader_key = "ctrl+b"
+
+[keybindings.prefix_mode]
+edit_scrollback = ["e"]
+prefix_detach = ["d"]
+prefix_explore = ["E"]
+
+[keybindings.terminal_mode]
+prefix_selection = ["F4"]
+
+[keybindings.window_management]
+# snap_left = "ctrl+left"
+# snap_right = "ctrl+right"
+# focus_down = "ctrl+down"
+# focus_up = "ctrl+up"
+
+# theme {{{1
+
+[appearance]
+#theme = "gilt"
+theme = "golden-night"
+background = "theme"
+calm = true
+
+# [appearance.selection]
+# search_bg = "#6b3c11"
+# search_fg = "#d6c5a5"
+# match_bg = "#8b3c11"
+# match_fg = "#080706"
+# cursor_bg = "#7b3c11"
+# cursor_fg = "#d6c5a5"

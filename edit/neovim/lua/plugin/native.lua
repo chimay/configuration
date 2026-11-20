@@ -171,33 +171,33 @@ vim.pack.add({
 -- mini {{{3
 
 require('mini.map').setup({
-  -- Highlight integrations (none by default)
-  integrations = nil,
-  -- Symbols used to display data
-  symbols = {
-    -- Encode symbols. See `:h MiniMap.config` for specification and
-    -- `:h MiniMap.gen_encode_symbols` for pre-built ones.
-    -- Default: solid blocks with 3x2 resolution.
-    encode = nil,
-    -- Scrollbar parts for view and line. Use empty string to disable any.
-    scroll_line = '█',
-    scroll_view = '┃',
-  },
-  -- Window options
-  window = {
-    -- Whether window is focusable in normal way (with `wincmd` or mouse)
-    focusable = false,
-    -- Side to stick ('left' or 'right')
-    side = 'right',
-    -- Whether to show count of multiple integration highlights
-    show_integration_count = true,
-    -- Total width
-    width = 10,
-    -- Value of 'winblend' option
-    winblend = 25,
-    -- Z-index
-    zindex = 10,
-  },
+	-- Highlight integrations (none by default)
+	integrations = nil,
+	-- Symbols used to display data
+	symbols = {
+		-- Encode symbols. See `:h MiniMap.config` for specification and
+		-- `:h MiniMap.gen_encode_symbols` for pre-built ones.
+		-- Default: solid blocks with 3x2 resolution.
+		encode = nil,
+		-- Scrollbar parts for view and line. Use empty string to disable any.
+		scroll_line = '█',
+		scroll_view = '┃',
+	},
+	-- Window options
+	window = {
+		-- Whether window is focusable in normal way (with `wincmd` or mouse)
+		focusable = false,
+		-- Side to stick ('left' or 'right')
+		side = 'right',
+		-- Whether to show count of multiple integration highlights
+		show_integration_count = true,
+		-- Total width
+		width = 10,
+		-- Value of 'winblend' option
+		winblend = 25,
+		-- Z-index
+		zindex = 10,
+	},
 })
 
 -- mappings {{{2
@@ -264,14 +264,14 @@ which_key.add({
 -- telescope {{{3
 
 require('telescope').setup({
-    extensions = {
-        fzf = {
-        fuzzy = true,
-        override_generic_sorter = true,
-        override_file_sorter = true,
-        case_mode = "smart_case",
-        }
-    }
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = true,
+			override_file_sorter = true,
+			case_mode = "smart_case",
+		}
+	}
 })
 
 -- file explorer {{{2
@@ -422,27 +422,27 @@ vim.keymap.set("n", "<c-)>", function() harpoon:list():next() end)
 -- undotree {{{3
 
 require('undotree').setup({
-    float_diff = true,
-    layout = "left_bottom",
-    position = "left",
-    window = {
-        width = 0.25,
-        height = 0.25,
-        border = "rounded",
-    },
-    ignore_filetype = {},
-    parser = "compact",
-    keymaps = {
-        ["move_next"] = "j",
-        ["move_prev"] = "k",
-        ["move2parent"] = "gj",
-        ["move_change_next"] = "J",
-        ["move_change_prev"] = "K",
-        ["action_enter"] = "<cr>",
-        ["enter_diffbuf"] = "p",
-        ["quit"] = "q",
-        ["update_undotree_view"] = "S",
-    },
+	float_diff = true,
+	layout = "left_bottom",
+	position = "left",
+	window = {
+		width = 0.25,
+		height = 0.25,
+		border = "rounded",
+	},
+	ignore_filetype = {},
+	parser = "compact",
+	keymaps = {
+		["move_next"] = "j",
+		["move_prev"] = "k",
+		["move2parent"] = "gj",
+		["move_change_next"] = "J",
+		["move_change_prev"] = "K",
+		["action_enter"] = "<cr>",
+		["enter_diffbuf"] = "p",
+		["quit"] = "q",
+		["update_undotree_view"] = "S",
+	},
 })
 
 vim.keymap.set('n', '<f11>u', require('undotree').toggle, { silent = true, desc = 'undotree' })
@@ -454,8 +454,8 @@ vim.keymap.set('n', '<f11>u', require('undotree').toggle, { silent = true, desc 
 local nvim_treesitter = require('nvim-treesitter')
 
 nvim_treesitter.setup {
-  -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
-  install_dir = vim.fn.stdpath('data') .. '/site'
+	-- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+	install_dir = vim.fn.stdpath('data') .. '/site'
 }
 
 nvim_treesitter.install {
@@ -503,18 +503,18 @@ vim.api.nvim_create_autocmd('FileType', {
 -- nvim-treesitter-textobjects {{{3
 
 require("nvim-treesitter-textobjects").setup({
-  select = {
-    lookahead = true,
-    selection_modes = {
-      ["@parameter.outer"] = "v",
-      ["@function.outer"] = "V",
-      ["@loop.outer"] = "V",
-      ["@conditional.outer"] = "V",
-    },
-  },
-  move = {
-    set_jumps = true,
-  },
+	select = {
+		lookahead = true,
+		selection_modes = {
+			["@parameter.outer"] = "v",
+			["@function.outer"] = "V",
+			["@loop.outer"] = "V",
+			["@conditional.outer"] = "V",
+		},
+	},
+	move = {
+		set_jumps = true,
+	},
 })
 
 -- select {{{4
@@ -522,33 +522,33 @@ require("nvim-treesitter-textobjects").setup({
 local select = require("nvim-treesitter-textobjects.select")
 
 local select_maps = {
-  ["a="] = { "@assignment.outer", "Select outer assignment" },
-  ["i="] = { "@assignment.inner", "Select inner assignment" },
-  ["l="] = { "@assignment.lhs", "Select assignment left-hand side" },
-  ["r="] = { "@assignment.rhs", "Select assignment right-hand side" },
-  ["a:"] = { "@property.outer", "Select outer property" },
-  ["i:"] = { "@property.inner", "Select inner property" },
-  ["l:"] = { "@property.lhs", "Select property left-hand side" },
-  ["r:"] = { "@property.rhs", "Select property right-hand side" },
-  ["aa"] = { "@parameter.outer", "Select outer parameter" },
-  ["ia"] = { "@parameter.inner", "Select inner parameter" },
-  ["ac"] = { "@conditional.outer", "Select outer conditional" },
-  ["ic"] = { "@conditional.inner", "Select inner conditional" },
-  -- l taken by line
-  ["ao"] = { "@loop.outer", "Select outer loop" },
-  ["io"] = { "@loop.inner", "Select inner loop" },
-  ["aM"] = { "@call.outer", "Select outer call" },
-  ["iM"] = { "@call.inner", "Select inner call" },
-  ["am"] = { "@function.outer", "Select outer function" },
-  ["im"] = { "@function.inner", "Select inner function" },
-  ["aC"] = { "@class.outer", "Select outer class" },
-  ["iC"] = { "@class.inner", "Select inner class" },
+	["a="] = { "@assignment.outer", "Select outer assignment" },
+	["i="] = { "@assignment.inner", "Select inner assignment" },
+	["l="] = { "@assignment.lhs", "Select assignment left-hand side" },
+	["r="] = { "@assignment.rhs", "Select assignment right-hand side" },
+	["a:"] = { "@property.outer", "Select outer property" },
+	["i:"] = { "@property.inner", "Select inner property" },
+	["l:"] = { "@property.lhs", "Select property left-hand side" },
+	["r:"] = { "@property.rhs", "Select property right-hand side" },
+	["aa"] = { "@parameter.outer", "Select outer parameter" },
+	["ia"] = { "@parameter.inner", "Select inner parameter" },
+	["ac"] = { "@conditional.outer", "Select outer conditional" },
+	["ic"] = { "@conditional.inner", "Select inner conditional" },
+	-- l taken by line
+	["ao"] = { "@loop.outer", "Select outer loop" },
+	["io"] = { "@loop.inner", "Select inner loop" },
+	["aM"] = { "@call.outer", "Select outer call" },
+	["iM"] = { "@call.inner", "Select inner call" },
+	["am"] = { "@function.outer", "Select outer function" },
+	["im"] = { "@function.inner", "Select inner function" },
+	["aC"] = { "@class.outer", "Select outer class" },
+	["iC"] = { "@class.inner", "Select inner class" },
 }
 
 for key, spec in pairs(select_maps) do
-  vim.keymap.set({ "x", "o" }, key, function()
-    select.select_textobject(spec[1], "textobjects")
-  end, { desc = spec[2] })
+	vim.keymap.set({ "x", "o" }, key, function()
+		select.select_textobject(spec[1], "textobjects")
+	end, { desc = spec[2] })
 end
 
 -- move {{{4
@@ -556,45 +556,47 @@ end
 local move = require("nvim-treesitter-textobjects.move")
 
 map({ "n", "x", "o" }, "]m", function()
-  move.goto_next_start("@function.outer", "textobjects")
+	move.goto_next_start("@function.outer", "textobjects")
 end, { desc = "goto next function start" })
 
 map({ "n", "x", "o" }, "[m", function()
-  move.goto_previous_start("@function.outer", "textobjects")
+	move.goto_previous_start("@function.outer", "textobjects")
 end, { desc = "goto previous function start" })
 
 map({ "n", "x", "o" }, "]M", function()
-  move.goto_next_end("@function.outer", "textobjects")
+	move.goto_next_end("@function.outer", "textobjects")
 end, { desc = "goto previous function end" })
 
 map({ "n", "x", "o" }, "[M", function()
-  move.goto_previous_end("@function.outer", "textobjects")
+	move.goto_previous_end("@function.outer", "textobjects")
 end, { desc = "goto previous function end" })
 
 map({ "n", "x", "o" }, "]o", function()
-  move.goto_next_start("@loop.outer", "textobjects")
+	move.goto_next_start("@loop.outer", "textobjects")
 end)
+
 map({ "n", "x", "o" }, "[o", function()
-  move.goto_previous_start("@loop.outer", "textobjects")
+	move.goto_previous_start("@loop.outer", "textobjects")
 end)
 
 ---- ᄠ= alt gr c
 
 map({ "n", "x", "o" }, "]ᄠ", function()
-  move.goto_next_start("@conditional.outer", "textobjects")
+	move.goto_next_start("@conditional.outer", "textobjects")
 end)
+
 map({ "n", "x", "o" }, "[ᄠ", function()
-  move.goto_previous_start("@conditional.outer", "textobjects")
+	move.goto_previous_start("@conditional.outer", "textobjects")
 end)
 
 -- swap {{{4
 
 map("n", "<f11>sa", function()
-  require("nvim-treesitter-textobjects.swap").swap_next "@parameter.inner"
+	require("nvim-treesitter-textobjects.swap").swap_next "@parameter.inner"
 end, { desc = "swap inner arguments" })
 
 map("n", "<f11>sA", function()
-  require("nvim-treesitter-textobjects.swap").swap_previous "@parameter.outer"
+	require("nvim-treesitter-textobjects.swap").swap_previous "@parameter.outer"
 end, { desc = "swap outer arguments" })
 
 -- treesj {{{3
@@ -604,18 +606,18 @@ local tsj = require('treesj')
 --local langs = {[> configuration for languages <]}
 
 tsj.setup({
-  use_default_keymaps = true,
-  check_syntax_error = true,
-  max_join_length = 120,
-  ---Cursor behavior:
-  ---hold - cursor follows the node/place on which it was called
-  ---start - cursor jumps to the first symbol of the node being formatted
-  ---end - cursor jumps to the last symbol of the node being formatted
-  cursor_behavior = 'hold',
-  notify = true,
-  dot_repeat = true,
-  on_error = nil,
-  -- langs = {}, -- See the default presets in lua/treesj/langs
+	use_default_keymaps = true,
+	check_syntax_error = true,
+	max_join_length = 120,
+	---Cursor behavior:
+	---hold - cursor follows the node/place on which it was called
+	---start - cursor jumps to the first symbol of the node being formatted
+	---end - cursor jumps to the last symbol of the node being formatted
+	cursor_behavior = 'hold',
+	notify = true,
+	dot_repeat = true,
+	on_error = nil,
+	-- langs = {}, -- See the default presets in lua/treesj/langs
 })
 
 vim.keymap.set('n', '<bar>j', require('treesj').toggle, { desc = 'treesj toggle' })
@@ -699,21 +701,21 @@ require("luasnip.loaders.from_vscode").lazy_load()
 -- see also <url:#tn=cmp>
 
 vim.keymap.set({ "i", "s" }, "<m-j>", function()
-  if luasnip.expand_or_jumpable() then
-    luasnip.expand_or_jump()
-  end
+	if luasnip.expand_or_jumpable() then
+		luasnip.expand_or_jump()
+	end
 end, {silent = true})
 
 vim.keymap.set({ "i", "s" }, "<m-k>", function()
-  if luasnip.jumpable(-1) then
-    luasnip.jump(-1)
-  end
+	if luasnip.jumpable(-1) then
+		luasnip.jump(-1)
+	end
 end, {silent = true})
 
 vim.keymap.set({ "i", "s" }, "<m-c>", function()
-    if luasnip.choice_active() then
-        luasnip.change_choice(1)
-    end
+	if luasnip.choice_active() then
+		luasnip.change_choice(1)
+	end
 end, {silent = true})
 
 -- custom snippets {{{3
@@ -889,7 +891,7 @@ toggle_cmp ()
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 vim.lsp.config("*", {
-  capabilities = capabilities,
+	capabilities = capabilities,
 })
 
 -- terminal {{{2
@@ -950,24 +952,24 @@ require('iron.core').setup({
 local iron = require("iron.core")
 
 vim.keymap.set("v", "<c-cr>", function()
-  iron.visual_send()
-  iron.send(nil, "\r")
+	iron.visual_send()
+	iron.send(nil, "\r")
 end, { desc = "Send selection + CR" })
 
 vim.keymap.set("n", "<s-cr>", function()
-  local start = vim.fn.search("^\\s*$", "bnW") + 1
-  local finish = vim.fn.search("^\\s*$", "nW") - 1
-  if finish < start then
-    finish = vim.fn.line("$")
-  end
-  local lines = vim.api.nvim_buf_get_lines(0, start - 1, finish, false)
-  table.insert(lines, "\r")
-  iron.send(nil, table.concat(lines, "\n"))
+	local start = vim.fn.search("^\\s*$", "bnW") + 1
+	local finish = vim.fn.search("^\\s*$", "nW") - 1
+	if finish < start then
+		finish = vim.fn.line("$")
+	end
+	local lines = vim.api.nvim_buf_get_lines(0, start - 1, finish, false)
+	table.insert(lines, "\r")
+	iron.send(nil, table.concat(lines, "\n"))
 end, { desc = "Send paragraph + CR" })
 
 vim.keymap.set("n", "<c-s-cr>", function()
-  iron.send_file()
-  iron.send(nil, "\r")
+	iron.send_file()
+	iron.send(nil, "\r")
 end, { desc = "Send file + CR" })
 
 -- yarepl {{{3

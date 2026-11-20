@@ -150,9 +150,9 @@ set noerrorbells
 
 set mouse=a
 set mousefocus
-set mousehide					
+set mousehide
 " clic droit modifie sélection
-set mousemodel=extend				
+set mousemodel=extend
 set mouseshape=i-r:beam,s:updown,sd:udsizing,vs:leftright,vd:lrsizing,m:no,ml:up-arrow,v:rightup-arrow
 
 "  Recherche {{{1
@@ -395,8 +395,8 @@ nnoremap ]b :bnext<cr>
 nnoremap [B :bfirst<cr>
 nnoremap ]B :blast<cr>
 
-nnoremap <m-q> <cmd>bw!<cr>
-nnoremap <m-s-q> <cmd>bw! #<cr>
+nnoremap <m-w> <cmd>bw!<cr>
+nnoremap <m-s-w> <cmd>bw! #<cr>
 
 " Fenêtres {{{2
 
@@ -668,6 +668,10 @@ nmap <k6> 6
 nmap <k7> 7
 nmap <k8> 8
 nmap <k9> 9
+
+" formattage des paragraphes {{{2
+
+nnoremap <m-q> gqap
 
 "  Présentation {{{1
 
