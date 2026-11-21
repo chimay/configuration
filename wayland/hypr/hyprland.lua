@@ -368,10 +368,10 @@ hl.workspace_rule({
     layout = "scrolling",
 })
 
-hl.workspace_rule({
-    workspace = "name:system",
-    layout = "dwindle",
-})
+-- hl.workspace_rule({
+--     workspace = "name:system",
+--     layout = "dwindle",
+-- })
 
 hl.workspace_rule({
     workspace = "name:browser",

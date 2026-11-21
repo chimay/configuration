@@ -133,11 +133,12 @@ daemon = true
 leader_key = "F1"
 
 [keybindings.global]
-launcher = ["ctrl+:"]
 command_palette = ["ctrl+!", "super+!"]
+launcher = ["ctrl+:"]
 goto_picker = ["super+§"]
 prefix_session_switcher = ["ctrl+§"]
 prefix_workspace_switcher = ["ctrl+="]
+toggle_scratch = ["F10"]
 move_and_follow_1 = ["alt+&"]
 move_and_follow_2 = ["alt+é"]
 move_and_follow_3 = ['alt+"']
@@ -149,9 +150,12 @@ move_and_follow_8 = ["alt+!"]
 move_and_follow_9 = ["alt+ç"]
 
 [keybindings.prefix_mode]
+prefix_exit_mode = ["v"]
 edit_scrollback = ["e"]
 prefix_detach = ["d"]
-prefix_explore = ["E"]
+prefix_explore = ["b"]
+prefix_toggle_sidebar = ["shift+e"]
+prefix_review = []
 
 [keybindings.terminal_mode]
 prefix_selection = ["F4"]
@@ -163,6 +167,8 @@ swap_left = ["shift+left"]
 swap_right = ["shift+right"]
 swap_up = ["shift+up"]
 swap_down = ["shift+down"]
+terminal_scroll_down = []
+terminal_scroll_up = []
 
 [keybindings.workspace_prefix]
 workspace_prefix_move_1 = ["&"]
@@ -187,10 +193,12 @@ description = "Reload config"
 theme = "golden-night"
 background = "theme"
 calm = true
-border_focused_color_window = "#7b3c11"
-border_focused_color_terminal = "#7b3c11"
-border_unfocused_color_window = "#5b3c11"
-border_unfocused_color_terminal = "#5b3c11"
+zen_mode = "mouse"
+pane_overlays = false
+border_focused_color_window = "#6b3c11"
+border_focused_color_terminal = "#6b3c11"
+border_unfocused_color_window = "#4b3c11"
+border_unfocused_color_terminal = "#4b3c11"
 
 # [appearance.selection]
 # search_bg = "#6b3c11"
@@ -205,3 +213,5 @@ enabled = false
 
 [appearance.sidebar]
 enabled = false
+position = "left"
+files_style = "tree"
