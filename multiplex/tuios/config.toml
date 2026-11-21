@@ -135,8 +135,8 @@ leader_key = "F1"
 
 [keybindings.global]
 launcher = ["ctrl+:"]
-goto_picker = ["ctrl+§"]
-command_palette = ["ctrl+="]
+goto_picker = ["ctrl+§", "super+§"]
+command_palette = ["ctrl+!", "super+!"]
 
 [keybindings.prefix_mode]
 edit_scrollback = ["e"]
@@ -145,12 +145,20 @@ prefix_explore = ["E"]
 
 [keybindings.terminal_mode]
 prefix_selection = ["F4"]
+terminal_focus_left = ["ctrl+left"]
+terminal_focus_right = ["ctrl+right"]
+terminal_focus_up = ["ctrl+up"]
+terminal_focus_down = ["ctrl+down"]
+swap_left = ["shift+left"]
+swap_right = ["shift+right"]
+swap_up = ["shift+up"]
+swap_down = ["shift+down"]
 
-[keybindings.window_management]
-# snap_left = "ctrl+left"
-# snap_right = "ctrl+right"
-# focus_down = "ctrl+down"
-# focus_up = "ctrl+up"
+[[keybindings.command]]
+key = "F5"
+type = "popup"
+command = "tuios config apply"
+description = "Reload config"
 
 # theme {{{1
 
@@ -159,6 +167,10 @@ prefix_selection = ["F4"]
 theme = "golden-night"
 background = "theme"
 calm = true
+border_focused_color_window = "#7b3c11"
+border_focused_color_terminal = "#7b3c11"
+border_unfocused_color_window = "#5b3c11"
+border_unfocused_color_terminal = "#5b3c11"
 
 # [appearance.selection]
 # search_bg = "#6b3c11"

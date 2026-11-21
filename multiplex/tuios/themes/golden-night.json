@@ -1,11 +1,9 @@
 {
   "id": "golden-night",
   "display_name": "Brown Black",
-
   "fg": "#5b3c11",
   "bg": "#000000",
   "cursor": "#d6c5a5",
-
   "black": "#080706",
   "red": "#9b3c11",
   "green": "#6b6b3c",
@@ -14,7 +12,6 @@
   "purple": "#7b3c11",
   "cyan": "#8b6b3c",
   "white": "#d6c5a5",
-
   "bright_black": "#17110a",
   "bright_red": "#b04a18",
   "bright_green": "#8b7b45",
@@ -23,10 +20,9 @@
   "bright_purple": "#8b3c11",
   "bright_cyan": "#a08050",
   "bright_white": "#e6d5b5",
-
   "chrome": {
     "accent": "#7b3c11",
-    "accent_bright": "#8b3c11",
+    "accent_bright": "#7b3c11",
     "success": "#6b6b3c",
     "warning": "#9b6b2f",
     "error": "#9b3c11",
@@ -34,6 +30,14 @@
     "surface": "#17110a",
     "canvas": "#080706",
     "panel": "#0f0b07",
-    "card": "#17110a"
+    "card": "#17110a",
+    "border": {
+      "unfocused": "#5b3c11"
+    },
+    "dots": {
+      "close": "#bb3d36",
+      "minimize": "#dc9a0c",
+      "zoom": "#06a620"
+    }
   }
 }
