@@ -131,12 +131,22 @@ daemon = true
 
 [keybindings]
 leader_key = "F1"
-# leader_key = "ctrl+b"
 
 [keybindings.global]
 launcher = ["ctrl+:"]
-goto_picker = ["ctrl+§", "super+§"]
 command_palette = ["ctrl+!", "super+!"]
+goto_picker = ["super+§"]
+prefix_session_switcher = ["ctrl+§"]
+prefix_workspace_switcher = ["ctrl+="]
+move_and_follow_1 = ["alt+&"]
+move_and_follow_2 = ["alt+é"]
+move_and_follow_3 = ['alt+"']
+move_and_follow_4 = ["alt+'"]
+move_and_follow_5 = ["alt+("]
+move_and_follow_6 = ["alt+§"]
+move_and_follow_7 = ["alt+è"]
+move_and_follow_8 = ["alt+!"]
+move_and_follow_9 = ["alt+ç"]
 
 [keybindings.prefix_mode]
 edit_scrollback = ["e"]
@@ -154,6 +164,17 @@ swap_right = ["shift+right"]
 swap_up = ["shift+up"]
 swap_down = ["shift+down"]
 
+[keybindings.workspace_prefix]
+workspace_prefix_move_1 = ["&"]
+workspace_prefix_move_2 = ["é"]
+workspace_prefix_move_3 = ['"']
+workspace_prefix_move_4 = ["'"]
+workspace_prefix_move_5 = ["("]
+workspace_prefix_move_6 = ["§"]
+workspace_prefix_move_7 = ["è"]
+workspace_prefix_move_8 = ["!"]
+workspace_prefix_move_9 = ["ç"]
+
 [[keybindings.command]]
 key = "F5"
 type = "popup"
@@ -163,7 +184,6 @@ description = "Reload config"
 # theme {{{1
 
 [appearance]
-#theme = "gilt"
 theme = "golden-night"
 background = "theme"
 calm = true
@@ -181,4 +201,7 @@ border_unfocused_color_terminal = "#5b3c11"
 # cursor_fg = "#d6c5a5"
 
 [spotlight]
+enabled = false
+
+[appearance.sidebar]
 enabled = false
