@@ -12,7 +12,7 @@
   "purple": "#7b3c11",
   "cyan": "#8b6b3c",
   "white": "#d6c5a5",
-  "bright_black": "#17110a",
+  "bright_black": "#57513a",
   "bright_red": "#b04a18",
   "bright_green": "#8b7b45",
   "bright_yellow": "#b07a32",
@@ -21,7 +21,7 @@
   "bright_cyan": "#a08050",
   "bright_white": "#e6d5b5",
   "chrome": {
-    "accent": "#7b3c11",
+    "accent": "#6b3c11",
     "accent_bright": "#7b3c11",
     "success": "#6b6b3c",
     "warning": "#9b6b2f",
@@ -29,7 +29,7 @@
     "info": "#8b6b3c",
     "surface": "#17110a",
     "canvas": "#080706",
-    "panel": "#0f0b07",
+    "panel": "#3f0b07",
     "card": "#17110a",
     "border": {
       "unfocused": "#5b3c11"

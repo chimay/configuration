@@ -168,9 +168,11 @@ command_palette = ["ctrl+:", "super+!"]
 # -- run shell command in new window
 launcher = ["ctrl+!"]
 # -- goto session, workspace, window
-goto_picker = ["super+§"]
-prefix_session_switcher = ["ctrl+§"]
-prefix_workspace_switcher = ["ctrl+="]
+goto_picker = ["ctrl+shift+§"]
+# -- goto session
+prefix_session_switcher = ["super+§"]
+# -- goto workspace
+prefix_workspace_switcher = ["ctrl+§"]
 # -- focus windows
 terminal_focus_left = ["ctrl+left"]
 terminal_focus_right = ["ctrl+right"]
