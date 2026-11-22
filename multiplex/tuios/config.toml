@@ -142,16 +142,17 @@ leader_key = "F1"
 [keybindings.global]
 # -- workspace menu
 prefix_workspace = ["F2"]
-# -- window menu
-prefix_window = ["F3"]
+# -- go to window mode
+prefix_exit_mode = ["F3"]
 # -- go to copy mode
 prefix_selection = ["F4"]
-# -- go to window mode
-prefix_exit_mode = ["F6"]
+# -- window menu
+prefix_window = ["F6"]
 # -- layout menu
 prefix_layout = ["F7"]
 # -- debug menu
 prefix_debug = ["F8"]
+# -- new window
 #new_window = ["F9"]
 split_vertical = ["F9"]
 split_horizontal = ["F10"]
@@ -160,6 +161,8 @@ toggle_scratch = ["F11"]
 # -- nested mode : all keys sended to windows
 # -- except F12
 nest = ["F12"]
+# -- detach
+prefix_detach = ["super+&"]
 # -- palette with available actions
 command_palette = ["ctrl+:", "super+!"]
 # -- run shell command in new window
@@ -233,6 +236,19 @@ switch_workspace_9 = ["9"]
 #move_and_follow_9 = ["9"]
 
 [keybindings.terminal_mode]
+terminal_scroll_down = []
+terminal_scroll_up = []
+
+[keybindings.window_management]
+restore_minimized_1 = ["1"]
+restore_minimized_2 = ["2"]
+restore_minimized_3 = ["3"]
+restore_minimized_4 = ["4"]
+restore_minimized_5 = ["5"]
+restore_minimized_6 = ["6"]
+restore_minimized_7 = ["7"]
+restore_minimized_8 = ["8"]
+restore_minimized_9 = ["9"]
 terminal_scroll_down = []
 terminal_scroll_up = []
 
