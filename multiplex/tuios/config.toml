@@ -124,62 +124,150 @@
 
 [startup]
 tiled = true
-layout = "master-stack"
+layout = "bsp"
+#layout = "master-stack"
+#layout = "scrolling"
 daemon = true
 
 # bindings {{{1
+
+# -- hierarchy :
+# -- - sessions
+# -- - workspaces = tabs in zellij
+# -- - windows = panes in zellij
 
 [keybindings]
 leader_key = "F1"
 
 [keybindings.global]
-command_palette = ["ctrl+!", "super+!"]
-launcher = ["ctrl+:"]
+# -- workspace menu
+prefix_workspace = ["F2"]
+# -- window menu
+prefix_window = ["F3"]
+# -- go to copy mode
+prefix_selection = ["F4"]
+# -- go to window mode
+prefix_exit_mode = ["F6"]
+# -- layout menu
+prefix_layout = ["F7"]
+# -- debug menu
+prefix_debug = ["F8"]
+#new_window = ["F9"]
+split_vertical = ["F9"]
+split_horizontal = ["F10"]
+# -- scratch buffer
+toggle_scratch = ["F11"]
+# -- nested mode : all keys sended to windows
+# -- except F12
+nest = ["F12"]
+# -- palette with available actions
+command_palette = ["ctrl+:", "super+!"]
+# -- run shell command in new window
+launcher = ["ctrl+!"]
+# -- goto session, workspace, window
 goto_picker = ["super+§"]
 prefix_session_switcher = ["ctrl+§"]
 prefix_workspace_switcher = ["ctrl+="]
-toggle_scratch = ["F10"]
-move_and_follow_1 = ["alt+&"]
-move_and_follow_2 = ["alt+é"]
-move_and_follow_3 = ['alt+"']
-move_and_follow_4 = ["alt+'"]
-move_and_follow_5 = ["alt+("]
-move_and_follow_6 = ["alt+§"]
-move_and_follow_7 = ["alt+è"]
-move_and_follow_8 = ["alt+!"]
-move_and_follow_9 = ["alt+ç"]
+# -- focus windows
+terminal_focus_left = ["ctrl+left"]
+terminal_focus_right = ["ctrl+right"]
+terminal_focus_up = ["ctrl+up"]
+terminal_focus_down = ["ctrl+down"]
+# -- swap windows
+swap_left = ["shift+left"]
+swap_right = ["shift+right"]
+swap_up = ["shift+up"]
+swap_down = ["shift+down"]
+# -- focus workspaces
+next_workspace = ["ctrl+pgdown"]
+prev_workspace = ["ctrl+pgup"]
+# -- move window to workspace
+switch_workspace_1 = ["alt+1"]
+switch_workspace_2 = ["alt+2"]
+switch_workspace_3 = ["alt+3"]
+switch_workspace_4 = ["alt+4"]
+switch_workspace_5 = ["alt+5"]
+switch_workspace_6 = ["alt+6"]
+switch_workspace_7 = ["alt+7"]
+switch_workspace_8 = ["alt+8"]
+switch_workspace_9 = ["alt+9"]
 
 [keybindings.prefix_mode]
-prefix_exit_mode = ["v"]
 edit_scrollback = ["e"]
 prefix_detach = ["d"]
 prefix_explore = ["b"]
 prefix_toggle_sidebar = ["shift+e"]
 prefix_review = []
+# -- go to window
+# -- ctrl+arrows generally enough
+prefix_select_0 = []
+prefix_select_9 = []
+prefix_select_8 = []
+prefix_select_7 = []
+prefix_select_6 = []
+prefix_select_5 = []
+prefix_select_4 = []
+prefix_select_3 = []
+prefix_select_2 = []
+prefix_select_1 = []
+# -- go to workspace
+switch_workspace_1 = ["1"]
+switch_workspace_2 = ["2"]
+switch_workspace_3 = ["3"]
+switch_workspace_4 = ["4"]
+switch_workspace_5 = ["5"]
+switch_workspace_6 = ["6"]
+switch_workspace_7 = ["7"]
+switch_workspace_8 = ["8"]
+switch_workspace_9 = ["9"]
+# -- move to workspace
+# -- accessible with F2 1 .. 9
+#move_and_follow_1 = ["1"]
+#move_and_follow_2 = ["2"]
+#move_and_follow_3 = ["3"]
+#move_and_follow_4 = ["4"]
+#move_and_follow_5 = ["5"]
+#move_and_follow_6 = ["6"]
+#move_and_follow_7 = ["7"]
+#move_and_follow_8 = ["8"]
+#move_and_follow_9 = ["9"]
 
 [keybindings.terminal_mode]
-prefix_selection = ["F4"]
-terminal_focus_left = ["ctrl+left"]
-terminal_focus_right = ["ctrl+right"]
-terminal_focus_up = ["ctrl+up"]
-terminal_focus_down = ["ctrl+down"]
-swap_left = ["shift+left"]
-swap_right = ["shift+right"]
-swap_up = ["shift+up"]
-swap_down = ["shift+down"]
 terminal_scroll_down = []
 terminal_scroll_up = []
 
 [keybindings.workspace_prefix]
-workspace_prefix_move_1 = ["&"]
-workspace_prefix_move_2 = ["é"]
-workspace_prefix_move_3 = ['"']
-workspace_prefix_move_4 = ["'"]
-workspace_prefix_move_5 = ["("]
-workspace_prefix_move_6 = ["§"]
-workspace_prefix_move_7 = ["è"]
-workspace_prefix_move_8 = ["!"]
-workspace_prefix_move_9 = ["ç"]
+workspace_prefix_move_1 = ["1"]
+workspace_prefix_move_2 = ["2"]
+workspace_prefix_move_3 = ["3"]
+workspace_prefix_move_4 = ["4"]
+workspace_prefix_move_5 = ["5"]
+workspace_prefix_move_6 = ["6"]
+workspace_prefix_move_7 = ["7"]
+workspace_prefix_move_8 = ["8"]
+workspace_prefix_move_9 = ["9"]
+
+[keybindings.workspaces]
+switch_workspace_1 = []
+switch_workspace_2 = []
+switch_workspace_3 = []
+switch_workspace_4 = []
+switch_workspace_5 = []
+switch_workspace_6 = []
+switch_workspace_7 = []
+switch_workspace_8 = []
+switch_workspace_9 = []
+
+[keybindings.gui]
+switch_workspace_1 = []
+switch_workspace_2 = []
+switch_workspace_3 = []
+switch_workspace_4 = []
+switch_workspace_5 = []
+switch_workspace_6 = []
+switch_workspace_7 = []
+switch_workspace_8 = []
+switch_workspace_9 = []
 
 [[keybindings.command]]
 key = "F5"
@@ -195,6 +283,18 @@ background = "theme"
 calm = true
 zen_mode = "mouse"
 pane_overlays = false
+# -- window title and buttons
+window_title_format = "{index} : {title} : {cwd}"
+#window_title_style = "pill"
+#window_title_style = "tab"
+window_title_style = "plain"
+window_title_position = "top"
+window_title_align = "auto"
+window_button_style = "dots"
+#window_button_style = "pill"
+window_button_position = "left"
+hide_window_buttons = false
+# -- frame
 border_focused_color_window = "#6b3c11"
 border_focused_color_terminal = "#6b3c11"
 border_unfocused_color_window = "#4b3c11"
