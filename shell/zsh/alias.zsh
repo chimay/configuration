@@ -182,13 +182,13 @@ else
 	alias ll='command ls -lh --color=auto'
 	alias lla='command ls -lha --color=auto'
 	alias la='command ls -a --color=auto'
-	alias ls='eza --icons'
-	alias lsa='eza --icons -a'
-	alias lsl='eza --icons -lh'
-	alias lsla='eza --icons -lha'
-	alias lst='eza --icons -T'
-	alias lslt='eza --icons -T -lh'
-	alias lslat='eza --icons -T -lha'
+	alias ez='eza --icons'
+	alias eza='eza --icons -a'
+	alias ezl='eza --icons -lh'
+	alias ezla='eza --icons -lha'
+	alias ezt='eza --icons -T'
+	alias ezlt='eza --icons -T -lh'
+	alias ezlat='eza --icons -T -lha'
 fi
 
 alias ù=most-recently-modified

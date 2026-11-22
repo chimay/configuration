@@ -310,6 +310,7 @@ pinned = [
 	"tmux-custom",
 	#"zellij-custom",
 	#"herdr",
+	"tuios",
 	"neovim-qt-lite",
 	"org.kde.dolphin",
 	"org.kde.gwenview",

@@ -184,8 +184,8 @@ swap_right = ["shift+right"]
 swap_up = ["shift+up"]
 swap_down = ["shift+down"]
 # -- focus workspaces
-next_workspace = ["ctrl+pgdown"]
-prev_workspace = ["ctrl+pgup"]
+next_workspace = ["ctrl+pgdown", "alt+right"]
+prev_workspace = ["ctrl+pgup", "alt+left"]
 # -- move window to workspace
 switch_workspace_1 = ["alt+1"]
 switch_workspace_2 = ["alt+2"]
@@ -242,6 +242,15 @@ terminal_scroll_down = []
 terminal_scroll_up = []
 
 [keybindings.window_management]
+terminal_focus_left = ["left"]
+terminal_focus_right = ["right"]
+terminal_focus_up = ["up"]
+terminal_focus_down = ["down"]
+swap_left = ["shift+left"]
+swap_right = ["shift+right"]
+swap_up = ["shift+up"]
+swap_down = ["shift+down"]
+minimize_window = ["m"]
 restore_minimized_1 = ["1"]
 restore_minimized_2 = ["2"]
 restore_minimized_3 = ["3"]
@@ -293,9 +302,15 @@ type = "popup"
 command = "tuios config apply"
 description = "Reload config"
 
-# theme {{{1
+# appearance {{{1
+
+[dock]
+left   = ["mode", "workspaces", "trail", "tape"]
+center = ["windows"]
+right  = ["notifications", "copy-help", "cpu", "ram", "clock", "session-controls"]
 
 [appearance]
+dockbar_position = "top"
 theme = "golden-night"
 background = "theme"
 calm = true
