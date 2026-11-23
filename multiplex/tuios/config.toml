@@ -129,6 +129,11 @@ layout = "bsp"
 #layout = "scrolling"
 daemon = true
 
+# options {{{1
+
+[shell]
+login = true
+
 # bindings {{{1
 
 # -- hierarchy :
