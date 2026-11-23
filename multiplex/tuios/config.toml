@@ -168,9 +168,9 @@ command_palette = ["ctrl+:", "super+!"]
 # -- run shell command in new window
 launcher = ["ctrl+!"]
 # -- goto session, workspace, window
-goto_picker = ["ctrl+shift+§"]
+goto_picker = ["super+§"]
 # -- goto session
-prefix_session_switcher = ["super+§"]
+prefix_session_switcher = ["alt+§"]
 # -- goto workspace
 prefix_workspace_switcher = ["ctrl+§"]
 # -- focus windows
@@ -338,16 +338,17 @@ background = "theme"
 calm = true
 zen_mode = "mouse"
 pane_overlays = false
-# -- window title and buttons
+# -- window title
+window_title_position = "top"
 window_title_format = "{index} : {title} : {cwd}"
 #window_title_style = "pill"
 #window_title_style = "tab"
 window_title_style = "plain"
-window_title_position = "top"
 window_title_align = "auto"
+# -- window buttons
+window_button_position = "right"
 window_button_style = "dots"
 #window_button_style = "pill"
-window_button_position = "left"
 hide_window_buttons = false
 # -- frame
 border_focused_color_window = "#6b3c11"
