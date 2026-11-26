@@ -163,7 +163,7 @@ split_vertical = ["F9"]
 split_horizontal = ["F10"]
 # -- scratch buffer
 toggle_scratch = ["F11"]
-# -- nested mode : all keys sended to windows
+# -- nested mode : all keys are sent to windows
 # -- except F12
 nest = ["F12"]
 # -- detach
@@ -205,6 +205,8 @@ switch_workspace_9 = ["alt+9"]
 [keybindings.prefix_mode]
 edit_scrollback = ["e"]
 prefix_detach = ["d"]
+split_vertical = ["v"]
+split_horizontal = ["h"]
 prefix_explore = ["b"]
 prefix_toggle_sidebar = ["shift+e"]
 prefix_review = []
@@ -231,7 +233,7 @@ switch_workspace_7 = ["7"]
 switch_workspace_8 = ["8"]
 switch_workspace_9 = ["9"]
 # -- move to workspace
-# -- accessible with F2 1 .. 9
+# -- accessible with F2 1 .. 9 = prefix_workspace 1 ... 9
 #move_and_follow_1 = ["1"]
 #move_and_follow_2 = ["2"]
 #move_and_follow_3 = ["3"]
@@ -323,18 +325,35 @@ switch_workspace_9 = []
 terminal_focus_left = []
 terminal_focus_right = []
 
+[keybindings.inbox]
+inbox_stage_prev = ["H"]
+inbox_stage_next = ["L"]
+
 [[keybindings.command]]
 key = "F5"
 type = "popup"
 command = "tuios config apply"
 description = "Reload config"
 
-# appearance {{{1
+# hosts {{{1
 
-[dock]
-left   = ["mode", "workspaces", "trail", "tape"]
-center = ["windows"]
-right  = ["notifications", "copy-help", "cpu", "ram", "clock", "session-controls"]
+[hosts.universe]
+addr = "david@universe"
+command = "/home/david/.local/share/mise/installs/aqua-gaurav-gosain-tuios/latest/tuios"
+
+[hosts.galaxy]
+addr = "david@galaxy"
+command = "/home/david/.local/share/mise/installs/aqua-gaurav-gosain-tuios/latest/tuios"
+
+[hosts.outerspace]
+addr = "david@outerspace"
+command = "/home/david/.local/share/mise/installs/aqua-gaurav-gosain-tuios/latest/tuios"
+
+[hosts.mandala]
+addr = "david@mandala"
+command = "/home/david/.local/share/mise/installs/aqua-gaurav-gosain-tuios/latest/tuios"
+
+# appearance {{{1
 
 [appearance]
 dockbar_position = "top"
@@ -343,6 +362,7 @@ background = "theme"
 calm = true
 zen_mode = "mouse"
 pane_overlays = false
+scrollback_lines = 50000
 # -- window title
 window_title_position = "top"
 window_title_format = "{index} : {title} : {cwd}"
@@ -361,22 +381,27 @@ border_focused_color_terminal = "#6b3c11"
 border_unfocused_color_window = "#4b3c11"
 border_unfocused_color_terminal = "#4b3c11"
 
-# [appearance.selection]
-# search_bg = "#6b3c11"
-# search_fg = "#d6c5a5"
-# match_bg = "#8b3c11"
-# match_fg = "#080706"
-# cursor_bg = "#7b3c11"
-# cursor_fg = "#d6c5a5"
+[appearance.selection]
+fg = "#7b3c11"
+bg = "#120705"
+cursor_fg = "#7b3c11"
+cursor_bg = "#000000"
+match_fg = "#8b3c11"
+match_bg = "#000000"
+search_fg = "#7b3c11"
+search_bg = "#000000"
+
+[dock]
+left   = ["mode", "workspaces", "trail", "tape"]
+center = ["windows"]
+right  = ["notifications", "copy-help", "cpu", "ram", "clock", "session-controls"]
 
 [spotlight]
 enabled = false
 
 [appearance.sidebar]
+# -- also for scrollback editor
+editor="neovim-lite.sh"
 enabled = false
 position = "left"
 files_style = "tree"
-
-[keybindings.inbox]
-inbox_stage_prev = ["H"]
-inbox_stage_next = ["L"]

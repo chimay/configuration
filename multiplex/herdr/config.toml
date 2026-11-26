@@ -214,6 +214,10 @@ rename_tab = "prefix+m"
 # previous_tab = "shift+left"
 # next_tab = "shift+right"
 
+# -- herdr complains : invalid keybinding
+# previous_tab = "ctrl+prior"
+# next_tab = "ctrl+next"
+
 previous_tab = "alt+left"
 next_tab = "alt+right"
 

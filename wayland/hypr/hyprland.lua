@@ -1162,6 +1162,10 @@ hl.define_submap("terminal", function()
 		hl.dispatch(hl.dsp.submap("reset"))
 		hl.dispatch(hl.dsp.exec_cmd("urxvtc"))
 	end)
+	hl.bind("C", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("xfce4-terminal"))
+	end)
 	-- multiplexers
 	hl.bind("T", function()
 		hl.dispatch(hl.dsp.submap("reset"))
@@ -1214,10 +1218,11 @@ hl.bind(super .. " + SHIFT + F", hl.dsp.exec_cmd("kitty --single-instance spf ~/
 hl.bind(super .. " + CONTROL + I", hl.dsp.exec_cmd("gwenview"))
 
 hl.bind(super .. " + CONTROL + Q", hl.dsp.exec_cmd("ram-cache.sh qutebrowser"))
+hl.bind(super .. " + CONTROL + B", hl.dsp.exec_cmd("ram-cache.sh floorp"))
 hl.bind(super .. " + CONTROL + L", hl.dsp.exec_cmd("ram-cache.sh ladybird"))
 hl.bind(super .. " + CONTROL + W", hl.dsp.exec_cmd("ram-cache.sh waterfox"))
 hl.bind(super .. " + CONTROL + Z", hl.dsp.exec_cmd("ram-cache.sh zen-browser"))
-hl.bind(super .. " + CONTROL + B", hl.dsp.exec_cmd("ram-cache.sh floorp"))
+hl.bind(super .. " + CONTROL + V", hl.dsp.exec_cmd("ram-cache.sh vieb"))
 
 hl.bind(super .. " + CONTROL + T", hl.dsp.exec_cmd("tradingview"))
 
@@ -1464,6 +1469,11 @@ elseif hostname == "outerspace" then
 	hl.workspace_rule({
 		workspace = "1",
 		monitor = 0,
+		default = true,
+	})
+	hl.workspace_rule({
+		workspace = "5",
+		monitor = 1,
 		default = true,
 	})
 	hl.workspace_rule({
