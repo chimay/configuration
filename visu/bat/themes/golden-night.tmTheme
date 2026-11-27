@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>Golden Night</string>
+
+  <key>settings</key>
+  <array>
+
+    <dict>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>#080706</string>
+        <key>foreground</key>
+        <string>#5b3c11</string>
+        <key>caret</key>
+        <string>#9b3c11</string>
+        <key>selection</key>
+        <string>#7b3c11</string>
+      </dict>
+    </dict>
+
+    <!-- comments -->
+    <dict>
+      <key>scope</key>
+      <string>comment</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#5b3c11</string>
+      </dict>
+    </dict>
+
+    <!-- strings -->
+    <dict>
+      <key>scope</key>
+      <string>string</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#7b3c11</string>
+      </dict>
+    </dict>
+
+    <!-- keywords -->
+    <dict>
+      <key>scope</key>
+      <string>keyword</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#9b3c11</string>
+      </dict>
+    </dict>
+
+    <!-- functions -->
+    <dict>
+      <key>scope</key>
+      <string>entity.name.function</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#8b3c11</string>
+      </dict>
+    </dict>
+
+    <!-- types/classes -->
+    <dict>
+      <key>scope</key>
+      <string>entity.name.type, entity.name.class</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#9b3c11</string>
+      </dict>
+    </dict>
+
+    <!-- constants/numbers -->
+    <dict>
+      <key>scope</key>
+      <string>constant, constant.numeric</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#7b3c11</string>
+      </dict>
+    </dict>
+
+  </array>
+</dict>
+</plist>

@@ -32,6 +32,16 @@ layout {
 	tab name="5 repo" {
 		pane stacked=true {
 			pane {
+				cwd "~/racine/public/configuration"
+				command "zsh"
+				start_suspended false
+			}
+			pane {
+				cwd "~/racine/public/scripts"
+				command "zsh"
+				start_suspended false
+			}
+			pane {
 				expanded true
 				cwd "~/racine/public/eclats2vers/generic"
 				command "zsh"

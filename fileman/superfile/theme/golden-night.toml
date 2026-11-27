@@ -1,7 +1,8 @@
 
 # Brown / Black theme
 
-code_syntax_highlight = "gruvbox"
+#code_syntax_highlight = "gruvbox"
+code_syntax_highlight = "monokai"
 
 # Full screen
 full_screen_fg = "#d6c5a5"
@@ -18,11 +19,11 @@ file_panel_border = "#5b3c11"
 file_panel_border_active = "#8b3c11"
 file_panel_top_directory_icon = "#9b6b2f"
 file_panel_top_path = "#9b6b2f"
-file_panel_item_selected_fg = "#d6c5a5"
+file_panel_item_selected_fg = "#8b3c11"
 file_panel_item_selected_bg = "#17110a"
 
 # Footer
-footer_fg = "#d6c5a5"
+footer_fg = "#5b3c11"
 footer_bg = "#080706"
 footer_border = "#5b3c11"
 footer_border_active = "#8b3c11"
