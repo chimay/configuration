@@ -561,6 +561,14 @@ hl.window_rule({
 
 hl.window_rule({
     match = {
+        class = "npdf",
+    },
+    --workspace = "name:view",
+    workspace = "2",
+})
+
+hl.window_rule({
+    match = {
         class = "sioyek",
     },
     --workspace = "name:view",

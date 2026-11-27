@@ -22,6 +22,7 @@ file_panel_top_path = "#9b6b2f"
 file_panel_item_selected_fg = "#8b3c11"
 file_panel_item_selected_bg = "#17110a"
 
+
 # Footer
 footer_fg = "#5b3c11"
 footer_bg = "#080706"
@@ -39,9 +40,10 @@ sidebar_item_selected_bg = "#17110a"
 sidebar_divider = "#5b3c11"
 
 # Modals
-modal_fg = "#d6c5a5"
-modal_bg = "#17110a"
-modal_border_active = "#8b3c11"
+modal_fg = "#5b3c11"
+#modal_bg = "#17110a"
+modal_bg = "#070605"
+modal_border_active = "#6b3c11"
 modal_cancel_fg = "#080706"
 modal_cancel_bg = "#5b3c11"
 modal_confirm_fg = "#080706"
@@ -52,7 +54,9 @@ help_menu_hotkey = "#9b6b2f"
 help_menu_title = "#8b3c11"
 
 # Special
-cursor = "#d6c5a5"
+#cursor = "#a7c080"
+cursor = "#8b3c11"
+#cursor = "#9b6b2f"
 correct = "#9b6b2f"
 error = "#9b3c11"
 hint = "#9b6b2f"
