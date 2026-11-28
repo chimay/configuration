@@ -122,7 +122,7 @@ mpd_music_dir = ~/audio
 ##
 #playlist_disable_highlight_delay = 5
 
-playlist_disable_highlight_delay = 1
+playlist_disable_highlight_delay = 2
 
 #playlist_disable_highlight_delay = 0
 

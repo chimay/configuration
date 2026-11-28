@@ -87,6 +87,9 @@ alias taco='multitail -C -ts'
 
 alias d='goto-or-run.sh nomadys-pdf'
 
+alias ev=evince
+alias ok=okular
+
 # Images
 
 alias i=sxiv
@@ -585,7 +588,7 @@ alias -s htm=$BROWSER
 alias -s html=$BROWSER
 alias -s php=$BROWSER
 
-alias -s pdf='goto-or-run.sh nomadys-pdf'
+alias -s pdf=okular
 alias -s epub=zathura
 
 alias -s xz=less

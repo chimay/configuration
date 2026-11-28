@@ -331,7 +331,7 @@ fileviewer *.pdf
 	\ %pc
 	\ vifmimg clear
 
-filextype *.pdf nomadys-pdf %c %i &, apvlv %c &, xpdf %c &
+filextype *.pdf okular %c %i &, apvlv %c &, xpdf %c &
 
 " Epub
 

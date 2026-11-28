@@ -561,7 +561,7 @@ hl.window_rule({
 
 hl.window_rule({
     match = {
-        class = "npdf",
+        class = "org.kde.okular",
     },
     --workspace = "name:view",
     workspace = "2",
@@ -569,9 +569,22 @@ hl.window_rule({
 
 hl.window_rule({
     match = {
+        class = "org.gnome.Evince",
+    },
+    workspace = "2",
+})
+
+hl.window_rule({
+    match = {
+        class = "npdf",
+    },
+    workspace = "2",
+})
+
+hl.window_rule({
+    match = {
         class = "sioyek",
     },
-    --workspace = "name:view",
     workspace = "2",
 })
 
